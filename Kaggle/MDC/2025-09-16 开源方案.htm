@@ -1,0 +1,1102 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href="2025-09-16%20开源方案.htm">
+<link rel=File-List href="2025-09-16%20开源方案.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:27.4145in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:3.2722in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'>2025-09-16 开源方案</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>9</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>16</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>10:45</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:1.1777in;margin-left:.2034in;width:27.2111in'>
+
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold' lang=zh-CN>我只发现了</span><span style='font-weight:bold'
+ lang=en-US>Data cite corpus</span><span style='font-weight:bold' lang=zh-CN>这个数据集，没有发现包含</span><span
+ style='font-weight:bold' lang=en-US>metadata</span><span style='font-weight:
+ bold' lang=zh-CN>的数据集。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold' lang=zh-CN>第</span><span style='font-weight:bold'
+ lang=en-US>1</span><span style='font-weight:bold' lang=zh-CN>名：</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US><span
+ style='mso-spacerun:yes'> </span></span><span lang=zh-CN>主要是通过</span><span
+ lang=en-US>api</span><span lang=zh-CN>获取了</span><span lang=en-US>dataset</span><span
+ lang=zh-CN>的标题、作者和年份信息，和</span><span lang=en-US>article</span><span
+ lang=zh-CN>的标题、作者信息、年份进行比较，直接用</span><span lang=en-US>catboost</span><span
+ lang=zh-CN>。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>Model Qwen2.5-Coder (32B, AWQ
+ quantization) + vLLM. Coder was better in classification than base
+ model.这个确实是，</span><span style='font-weight:bold' lang=en-US>public lb
+ 0.81-&gt;0.85 private lb 0.745-&gt;0.749</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold' lang=zh-CN>第</span><span style='font-weight:bold'
+ lang=en-US>5</span><span style='font-weight:bold' lang=zh-CN>名：</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>只对</span><span style='font-weight:bold'
+ lang=en-US>samn</span><span style='font-weight:bold' lang=zh-CN>和</span><span
+ style='font-weight:bold' lang=en-US>doi</span><span style='font-weight:bold'
+ lang=zh-CN>进行</span><span style='font-weight:bold' lang=en-US>llm</span><span
+ style='font-weight:bold' lang=zh-CN>分类。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=en-US>prompt</span><span style='font-weight:
+ bold' lang=zh-CN>：任务要求放在了</span><span style='font-weight:bold' lang=en-US>user
+ prompt</span><span style='font-weight:bold' lang=zh-CN>中，我的是直接放在</span><span
+ style='font-weight:bold' lang=en-US>system prompt</span><span
+ style='font-weight:bold' lang=zh-CN>中</span></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&lt;|im_start|&gt;system</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>You
+ are Qwen, created by Alibaba Cloud. You are a helpful
+ assistant.&lt;|im_end|&gt;</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&lt;|im_start|&gt;user</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>###
+ Core Instructions ###</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>*
+ Inspect WINDOW taking particular interest in ID, given below.</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>*
+ The ID is specifically a data citation - that relates to data held in an
+ open-access repository.</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>*
+ Determine whether the WINDOW context holds evidence that the WINDOW authors
+ are responsible for the ID held in the public repository.</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>*
+ After thinking, give your final answer using the rubric:</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='mso-spacerun:yes'>    </span>* Owner: the WINDOW authors have some sort
+ of ownership around ID.</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='mso-spacerun:yes'>    </span>* User: the data has be
+ re-used/referenced/compared in the WINDOW.</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='mso-spacerun:yes'>    </span>* None: there is no evidence to determine
+ ownership.</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>*
+ When reviewing the METADATA remember: </cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='mso-spacerun:yes'>    </span>* The METADATA is collected from several
+ sources and hence has various formats for authour names and dates.</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='mso-spacerun:yes'>    </span>* The most important thing is finding the
+ overlap of WINDOW author(s) with the ID author(s); usually one author overlap
+ is enough to assume Owner.</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>*
+ The final answer should be wrapped in \boxed{} containing only User, Owner or
+ None.</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&nbsp;</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>#
+ ID</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><a
+ href="https://doi.org/10.17882/47142">https://doi.org/10.17882/47142</a></cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&nbsp;</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>#
+ METADATA</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>##
+ ID METADATA</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>[Title]:
+ A global bio-optical database derived from Biogeochemical Argo float
+ measurements within the layer of interest for field and remote ocean color
+ applications</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>[Authors]:
+ Organelli, Emanuele; Barbieux, Marie; Claustre, Herv; Schmechtig, Catherine;
+ Poteau, Antoine; Bricaud, Annick; Uitz, Julia; Dortenzio, Fabrizio; Dallolmo,
+ Giorgio</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>##
+ WINDOW METADATA</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>[Title]:
+ Assessing the Variability in the Relationship Between the Particulate
+ Backscattering Coefficient and the Chlorophyll &lt;i&gt;a&lt;/i&gt;
+ Concentration From a Global BiogeochemicalArgo Database</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>[Authors]:
+ Marie Barbieux; Julia Uitz; Annick Bricaud; Emanuele Organelli; Antoine
+ Poteau; Catherine Schmechtig; Bernard Gentili; Grigor Obolensky; Edouard
+ Leymarie; Christophe Penkerc'h; Fabrizio D'Ortenzio; Herv Claustre</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>[Date]:
+ 2018-2</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&nbsp;</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>#
+ WINDOW</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>##
+ Paragraph</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&lt;p
+ xmlns=&quot;http://www.tei-c.org/ns/1.0&quot;
+ xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;
+ xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;&lt;s&gt;Sherbrooke,
+ Canada) are acknowledged for useful comments and fruitful discussion.&lt;/s&gt;&lt;s&gt;We
+ also thank the International Argo Program and the CORIOLIS project that
+ contribute to make the data freely and publicly
+ available.&lt;/s&gt;&lt;s&gt;Data referring to &lt;ref
+ type=&quot;bibr&quot;&gt;(Organelli et al., 2016a)&lt;/ref&gt;
+ (doi:10.17882/47142)&lt;/s&gt;&lt;s&gt;and &lt;ref target=&quot;#b8&quot;
+ type=&quot;bibr&quot;&gt;(Barbieux et al., 2017)&lt;/ref&gt; (doi:
+ 10.17882/49388) are freely available on SEANOE.&lt;/s&gt;&lt;/p&gt;</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&nbsp;</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>##
+ References Condensed</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&lt;biblstruct
+ xmlns=&quot;http://www.tei-c.org/ns/1.0&quot;
+ xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;
+ xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+ xml:id=&quot;b100&quot;&gt;</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&nbsp;</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&lt;monogr&gt;</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&lt;title
+ level=&quot;j&quot;&gt;SEANOE&lt;/title&gt;</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&lt;imprint&gt;</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&lt;date
+ type=&quot;published&quot; when=&quot;2016&quot;&gt;2016&lt;/date&gt;</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&lt;/imprint&gt;</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&lt;/monogr&gt;</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&lt;note
+ type=&quot;raw_reference&quot;&gt;Organelli, E., M. Barbieux, H. Claustre, C.
+ Schmechtig, A. Poteau, A. Bricaud, J. Uitz, F. D'Ortenzio, and G. Dall'Olmo
+ (2016a), A global bio-optical database derived from Biogeochemical Argo float
+ measurements within the layer of interest for field and remote ocean colour
+ applications, SEANOE, doi:10.17882/47142.&lt;/note&gt;</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&lt;/biblstruct&gt;&lt;|im_end|&gt;</cite></p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&lt;|im_start|&gt;assistant</cite></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>llm_response
+ = (<br>
+  <span style='mso-spacerun:yes'>   
+ </span>pl.read_parquet('/kaggle/working/llm_out.pq')<br>
+  <span style='mso-spacerun:yes'>    </span>.with_columns(<br>
+  <span style='mso-spacerun:yes'>        </span>cot = pl.col('completions').str.split('&lt;/think&gt;').list.first(),<br>
+  <span style='mso-spacerun:yes'>        </span>ans =
+ pl.col('completions').str.split('&lt;/think&gt;').list.last()<br>
+  <span style='mso-spacerun:yes'>    </span>)<br>
+  <span style='mso-spacerun:yes'>    </span>.with_columns(<br>
+  <span style='mso-spacerun:yes'>       
+ </span>pl.col('ans').str.extract(r'oxed\{(.*)\}').alias('ans')<br>
+  <span style='mso-spacerun:yes'>    </span>)<br>
+  <span style='mso-spacerun:yes'>    </span>.with_columns(<br>
+  <span style='mso-spacerun:yes'>       
+ </span>pl.when(pl.col('ans').str.starts_with('\\'))<br>
+  <span style='mso-spacerun:yes'>       
+ </span>.then(pl.col('ans').str.extract(r'ext\{(.*)\}'))<br>
+  <span style='mso-spacerun:yes'>        </span>.otherwise('ans')<br>
+  <span style='mso-spacerun:yes'>        </span>.alias('ans')<br>
+  <span style='mso-spacerun:yes'>    </span>)<br>
+  <span style='mso-spacerun:yes'>    </span>.with_columns(<br>
+  <span style='mso-spacerun:yes'>        </span>pl.when(is_doi.and_((pl.col('ans')=='None').or_(pl.col('ans').is_null())))<br>
+  <span style='mso-spacerun:yes'>        </span>.then(S)<br>
+  <span style='mso-spacerun:yes'>       
+ </span>.when((~is_doi).and_((pl.col('ans')=='None').or_(pl.col('ans').is_null())))<br>
+  <span style='mso-spacerun:yes'>        </span>.then(S)<br>
+  <span style='mso-spacerun:yes'>       
+ </span>.when(pl.col('ans')=='Owner')<br>
+  <span style='mso-spacerun:yes'>        </span>.then(P)<br>
+  <span style='mso-spacerun:yes'>        </span>.otherwise(S)<br>
+  <span style='mso-spacerun:yes'>        </span>.alias('type')<br>
+  <span style='mso-spacerun:yes'>    </span>)<br>
+  <span style='mso-spacerun:yes'>    </span># .join(<br>
+  <span style='mso-spacerun:yes'>    </span>#<span
+ style='mso-spacerun:yes'>    
+ </span>get_ground_truth().filter(pl.col('type')!='Missing'), on=['article_id',
+ 'dataset_id'], how='left'<br>
+  <span style='mso-spacerun:yes'>    </span># )<br>
+  <span style='mso-spacerun:yes'>    </span>.select('article_id', 'dataset_id',
+ 'type',) #'ans', 'type_right')<br>
+  )</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold' lang=zh-CN>第</span><span style='font-weight:bold'
+ lang=en-US>2</span><span style='font-weight:bold' lang=zh-CN>名</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>关于为什么有些</span><span
+ lang=en-US>accession id</span><span lang=zh-CN>不算数据集的疑问：</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>E.g. In many cases,
+ some Accession numbers from the same table and repository were picked while
+ others were not. The speculation here was that some kind of <span
+ style='font-weight:bold'>NER model is being used, thresholding upon</span>
+ which leaves out some relevant Accession numbers</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>关于</span><span
+ lang=en-US>DOI</span><span lang=zh-CN>的</span><span lang=en-US>type</span><span
+ lang=zh-CN>分类，纯规则：</span></p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:inherit;font-size:36.0pt;
+ color:#3C4043'>Accession: SAMN and EMDB -&gt; Primary</p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:inherit;font-size:36.0pt;
+ color:#3C4043'>DOI: If dataset is found in multiple papers as per datacite
+ corpus, tag first as Primary rest as Secondary after sorting by
+ publicationDate（<span style='font-weight:bold'>这个我怎么就没想到</span>）</p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-size:36.0pt;color:#3C4043'><span
+ style='font-family:inherit'>DOI: If article_id&nbsp;</span><span
+ style='font-family:"Roboto Mono";background:#F1F3F4'>isSupplementTo</span><span
+ style='font-family:inherit'>&nbsp;dataset_id as per datacite public data file
+ -&gt; Primary</span></p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:inherit;font-size:36.0pt;
+ color:#3C4043'>DOI: If more than 4 occurence of same repo (first 4 letters) or
+ more than 4 DOI mentioned around the dataset in article -&gt; Secondary</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#3C4043'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#3C4043'><span
+ lang=zh-CN>分类：</span><span lang=en-US>2</span><span lang=zh-CN>个人用不同的方法</span></p>
+ <p style='margin-top:18pt;margin-bottom:6pt;font-family:Inter;font-size:36.0pt;
+ color:#202124'><span style='font-weight:bold'>第一个人：Mohsin - DOI classification</span></p>
+ <p style='margin-top:0pt;margin-bottom:12pt;font-family:Inter;font-size:36.0pt;
+ color:#3C4043'>Most time was spent on creating context for classification
+ (&lt;2048 tokens) . I mapped dataset authors and abstract from datacite public
+ data file. Then I collate context by extracting following parts of paper:</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>context around first match of dataset id regex</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-weight:bold;
+      font-family:inherit;font-size:36.0pt' lang=zh-CN>Whole paper was split in
+      overlapping chunks of 1024 chars, then I used BM25 similarity score w.r.t
+      dataset abstract to get top 3 chunks.用b</span><span style='font-weight:
+      bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>m25</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>找</span></li>
+ </ul>
+ <p style='margin-top:0pt;margin-bottom:12pt;font-family:Inter;font-size:36.0pt;
+ color:#3C4043'>Model -&gt; MedGemma-4B lora</p>
+ <p style='margin-top:0pt;margin-bottom:12pt;font-family:微软雅黑;font-size:36.0pt;
+ color:#3C4043'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>第二个人：Classification
+ Models - Nikhil，训练</span><span lang=en-US>bert</span><span lang=zh-CN>来进行分类。</span></p>
+ <p style='margin-top:18pt;margin-bottom:9pt;font-family:Inter;font-size:36.0pt;
+ color:#202124'><span style='font-weight:bold'>Data Sources</span></p>
+ <p style='margin-left:.375in;margin-top:0pt;margin-bottom:12pt;font-family:
+ inherit;font-size:36.0pt;color:#3C4043'><span style='font-weight:bold'>Training
+ Labels:</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>Competition Data</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt' lang=zh-CN>RDMPage Data (including labels absent from
+      Zenodo DataCite corpus)另一个人分享自己标注的</span><span style='font-family:微软雅黑;
+      font-size:36.0pt' lang=en-US>data</span></li>
+ </ul>
+ <p style='margin-top:18pt;margin-bottom:9pt;font-family:Inter;font-size:36.0pt;
+ color:#202124'><span style='font-weight:bold'>Model Architecture</span></p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:6pt;font-family:
+ Inter;font-size:36.0pt;color:#202124'><span style='font-weight:bold'>Base
+ Model</span></p>
+ <p style='margin-left:.375in;margin-top:0pt;margin-bottom:12pt;font-family:
+ "Roboto Mono";font-size:36.0pt;color:#3C4043'><span style='background:#F1F3F4'>microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract-fulltext</span></p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:9pt;font-family:
+ Inter;font-size:36.0pt;color:#202124'><span style='font-weight:bold'>Stabilization
+ Techniques</span></p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:6pt;font-family:
+ Inter;font-size:36.0pt;color:#202124'><span style='font-weight:bold'>1. Token
+ Replacement Strategy</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>Replace all non-target dataset IDs with:&nbsp;</span><span
+      style='font-family:"Roboto Mono";font-size:36.0pt;background:#F1F3F4'>&quot;other
+      dataset id&quot;</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>Transform target dataset ID to:&nbsp;</span><span
+      style='font-family:"Roboto Mono";font-size:36.0pt;background:#F1F3F4'>&quot;Prediction
+      {DATASET_ID}&quot;</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-weight:bold;
+      font-family:inherit;font-size:36.0pt'>Purpose:</span><span
+      style='font-family:inherit;font-size:36.0pt'>&nbsp;Focus model attention
+      on specific ID being classified</span></li>
+ </ul>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:6pt;font-family:
+ Inter;font-size:36.0pt;color:#202124'><span style='font-weight:bold'>2.
+ Hyperparameter Configuration</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-weight:bold;
+      font-family:inherit;font-size:36.0pt'>Batch Size:</span><span
+      style='font-family:inherit;font-size:36.0pt'>&nbsp;256 (unusually large)</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-weight:bold;
+      font-family:inherit;font-size:36.0pt'>Impact:</span><span
+      style='font-family:inherit;font-size:36.0pt'>&nbsp;Significantly improved
+      training stability</span></li>
+ </ul>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:6pt;font-family:
+ Inter;font-size:36.0pt;color:#202124'><span style='font-weight:bold'>3.
+ Threshold Optimization</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>Run models with multiple random seeds</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>Average out-of-fold (OOF) predictions</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>Select optimal threshold from averaged results</span></li>
+ </ul>
+ <p style='margin-left:.375in;margin-top:6pt;margin-bottom:6pt;font-family:
+ 微软雅黑;font-size:36.0pt;color:#3C4043'>&nbsp;</p>
+ <p style='margin-top:18pt;margin-bottom:6pt;font-size:36.0pt;color:#202124'><span
+ style='font-weight:bold;font-family:Inter' lang=zh-CN>Context Construction
+ Example</span><span style='font-weight:bold;font-family:微软雅黑' lang=en-US><span
+ style='mso-spacerun:yes'>  </span></span><span style='font-weight:bold;
+ font-family:微软雅黑' lang=zh-CN>除了</span><span style='font-weight:bold;
+ font-family:微软雅黑' lang=en-US>context</span><span style='font-weight:bold;
+ font-family:微软雅黑' lang=zh-CN>，还加了</span><span style='font-weight:bold;
+ font-family:微软雅黑' lang=en-US>mention time</span><span style='font-weight:bold;
+ font-family:微软雅黑' lang=zh-CN>和</span><span style='font-weight:bold;font-family:
+ 微软雅黑' lang=en-US>repository </span><span style='font-weight:bold;font-family:
+ 微软雅黑' lang=zh-CN>类型</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:"Roboto Mono";
+ color:#3C4043;background:#F1F3F4'>DOI </span><span style='font-family:inherit;
+ color:#A50E0E;background:#F1F3F4'>Context</span><span style='font-family:"Roboto Mono";
+ color:#3C4043;background:#F1F3F4'> = [Mention Token] + [Repository Token] + [</span><span
+ style='font-family:inherit;color:#7928A1;background:#F1F3F4'>Original </span><span
+ style='font-family:inherit;color:#A50E0E;background:#F1F3F4'>Context</span><span
+ style='font-family:"Roboto Mono";color:#3C4043;background:#F1F3F4'>]</span></p>
+ <p style='margin-top:18pt;margin-bottom:18pt;font-size:36.0pt'><span
+ style='font-family:inherit;color:green;background:#F1F3F4'>Example:</span><span
+ style='font-family:"Roboto Mono";color:#3C4043;background:#F1F3F4'><br>
+  </span><span style='font-family:inherit;color:green;background:#F1F3F4'>&quot;More
+ than 3 mentions&quot;</span><span style='font-family:"Roboto Mono";color:#3C4043;
+ background:#F1F3F4'> + </span><span style='font-family:inherit;color:green;
+ background:#F1F3F4'>&quot;Zenodo Repository&quot;</span><span
+ style='font-family:"Roboto Mono";color:#3C4043;background:#F1F3F4'> + [</span><span
+ style='font-family:inherit;color:#A50E0E;background:#F1F3F4'>150</span><span
+ style='font-family:"Roboto Mono";color:#3C4043;background:#F1F3F4'> chars </span><span
+ style='font-family:inherit;color:#A50E0E;background:#F1F3F4'>context</span><span
+ style='font-family:"Roboto Mono";color:#3C4043;background:#F1F3F4'>]</span></p>
+ <p style='margin-top:18pt;margin-bottom:9pt;font-family:Inter;font-size:36.0pt;
+ color:#202124'><span style='font-weight:bold'>Key Success Factors</span></p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:inherit;font-size:36.0pt;
+ color:#3C4043'><span style='font-weight:bold'>Model Separation:</span>&nbsp;Treating
+ accession IDs and DOIs as distinct problems</p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:inherit;font-size:36.0pt;
+ color:#3C4043'><span style='font-weight:bold'>Context Optimization:</span>&nbsp;Different
+ window sizes for different ID types</p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:inherit;font-size:36.0pt;
+ color:#3C4043'><span style='font-weight:bold'>Feature Engineering:</span>&nbsp;Leveraging
+ metadata (mentions, repository)</p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:inherit;font-size:36.0pt;
+ color:#3C4043'><span style='font-weight:bold'>Stability Focus:</span>&nbsp;Large
+ batch size and multi-seed averaging</p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:inherit;font-size:36.0pt;
+ color:#3C4043'><span style='font-weight:bold'>Token Strategy:</span>&nbsp;Replacing
+ irrelevant IDs to reduce noise</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold' lang=zh-CN>第</span><span style='font-weight:bold'
+ lang=en-US>3</span><span style='font-weight:bold' lang=zh-CN>名</span></p>
+ <p style='margin-top:18pt;margin-bottom:6pt;font-family:Inter;font-size:36.0pt;
+ color:#202124'><span style='font-weight:bold'>Dataset type classification</span></p>
+ <p style='margin-top:0pt;margin-bottom:12pt;font-family:Inter;font-size:36.0pt;
+ color:#3C4043'>At the very beginning we knew that type classification was one
+ of the most important parts of this competition. The reason is that, since we
+ use the F1 score as the metric, a FN or a FP in the retrieval part count only
+ as 1 single error. However, if we get a TP sample but misclassify its typ<span
+ style='font-weight:bold'>e we would get 2 errors:</span> 1 FN for the missing
+ correct type and 1 FP for the wrong predicted type.</p>
+ <p style='margin-top:0pt;margin-bottom:12pt;font-family:Inter;font-size:36.0pt;
+ color:#3C4043'>Our solution here consists in mainly two steps: <span
+ style='font-weight:bold'>a 6-fold Deberta-v3 ensemble</span> and some
+ heuristics.</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>一些规则（类似第</span><span style='font-weight:
+ bold' lang=en-US>2</span><span style='font-weight:bold' lang=zh-CN>名）</span></p>
+ <p style='margin-top:0pt;margin-bottom:12pt;font-family:Inter;font-size:36.0pt;
+ color:#3C4043'>Similarly to other teams, we first used a few rules that proved
+ to work on both LB and CV:</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>All&nbsp;</span><span style='font-family:"Roboto Mono";
+      font-size:36.0pt;background:#F1F3F4'>dryad</span><span style='font-family:
+      inherit;font-size:36.0pt'>&nbsp;DOIs and&nbsp;</span><span
+      style='font-family:"Roboto Mono";font-size:36.0pt;background:#F1F3F4'>SAMN</span><span
+      style='font-family:inherit;font-size:36.0pt'>&nbsp;accessions are primary</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>If a DOI title or authors list are similar to the paper
+      (via string edit distance), the dataset is primary</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>If an accession is cited more than 5 times in EUPMC it
+      is secondary (simple probability check)</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>If a DOI has 5 or more citations, it is secondary
+      (simple probability check)</span></li>
+ </ul>
+ <p style='margin-top:0pt;margin-bottom:12pt;font-family:Inter;font-size:36.0pt;
+ color:#3C4043'>The remaining citations were then classified using a Deberta-v3
+ Large ensemble.</p>
+ <p style='margin-top:0pt;margin-bottom:12pt;font-family:微软雅黑;font-size:36.0pt;
+ color:#3C4043'>&nbsp;</p>
+ <p style='margin-top:18pt;margin-bottom:6pt;font-family:Inter;font-size:36.0pt;
+ color:#202124'><span style='font-weight:bold'>Training details</span></p>
+ <p style='margin-top:0pt;margin-bottom:12pt;font-size:36.0pt;color:#3C4043'><span
+ style='font-family:Inter'>We created a 6-fold&nbsp;</span><span
+ style='font-family:"Roboto Mono";background:#F1F3F4'>StratifiedGroupKFold</span><span
+ style='font-family:Inter'>&nbsp;(stratified by&nbsp;</span><span
+ style='font-family:"Roboto Mono";background:#F1F3F4'>type</span><span
+ style='font-family:Inter'>&nbsp;and grouped by&nbsp;</span><span
+ style='font-family:"Roboto Mono";background:#F1F3F4'>article_id</span><span
+ style='font-family:Inter'>) and trained one deberta-v3 large on each of those
+ fold using a binary classification setup (classification head on top). The
+ following features were used to generate the training prompts:</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>The context around the citations on the paper (1k
+      characters)</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>The first 500 characters of the article text</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>Paper and dataset titles whenever available</span></li>
+ </ul>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>通过两个</span><span style='font-weight:bold'
+ lang=en-US>trick</span><span style='font-weight:bold' lang=zh-CN>来使训练更加稳定</span><span
+ style='font-weight:bold' lang=en-US>!</span></p>
+ <p style='margin-top:0pt;margin-bottom:12pt;font-size:36.0pt;color:#3C4043'><span
+ style='font-family:Inter'>We found two very important tricks to stabilize the
+ training: </span><span style='font-weight:bold;font-family:Inter'>adding
+ gradient clipping</span><span style='font-family:Inter'> and </span><span
+ style='font-weight:bold;font-family:Inter'>model/weight EMA</span><span
+ style='font-family:Inter'>. The latter is a very simple technique that
+ consists of having a trainable model via SGD/Adam and a frozen counterpart,
+ which is updated via direct averaging (weighted) of both model's weights after
+ each training step. Using&nbsp;</span><span style='font-family:"Roboto Mono";
+ background:#F1F3F4'>transformers</span><span style='font-family:Inter'>&nbsp;lib,
+ it can be easily implemented by inheriting the&nbsp;</span><span
+ style='font-family:"Roboto Mono";background:#F1F3F4'>Trainer</span><span
+ style='font-family:Inter'>&nbsp;class like the following:</span></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>from typing import Dict</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>import torch</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>from ema_pytorch import EMA</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>import copy</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>class EMATrainer(Trainer):</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>def __init__(self,
+ ema_decay=0.9995, ema_update_every=1, *args, **kwargs):</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>super().__init__(*args,
+ **kwargs)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span># Initialize EMA after
+ model is set</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>self.ema_decay =
+ ema_decay</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>self.ema_update_every =
+ ema_update_every</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>self.ema = None</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>def _setup_ema(self):</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>if self.ema is None:</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>            </span>self.ema = EMA(</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>                </span>self.model,</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>               
+ </span>beta=self.ema_decay,</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>               
+ </span>update_every=self.ema_update_every,</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>               
+ </span>update_after_step=50<span style='mso-spacerun:yes'>  </span># Start EMA
+ after 50 steps</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>            </span>)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>def training_step(self,
+ model, inputs, num_items_in_batch = None):</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>       
+ </span>&quot;&quot;&quot;Override training step to include EMA
+ updates&quot;&quot;&quot;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>if self.ema is None:</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>            </span>self._setup_ema()</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span># Perform normal
+ training step</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>loss =
+ super().training_step(model, inputs, num_items_in_batch=num_items_in_batch)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span># Update EMA after each
+ step</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>self.ema.update()</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>return loss</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>def evaluate(self,
+ eval_dataset=None, ignore_keys=None, metric_key_prefix=&quot;eval&quot;):</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>       
+ </span>&quot;&quot;&quot;Evaluate using EMA model&quot;&quot;&quot;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>if self.ema is not None:</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>            </span># Temporarily use
+ EMA model for evaluation</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>            </span>original_model =
+ self.model</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>            </span>self.model =
+ self.ema.ema_model</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>            </span>results =
+ super().evaluate(eval_dataset, ignore_keys, metric_key_prefix)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>            </span># Restore original
+ model</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>            </span>self.model =
+ original_model</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>            </span>return results</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>else:</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>            </span>return
+ super().evaluate(eval_dataset, ignore_keys, metric_key_prefix)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>def save_model(self,
+ output_dir=None, _internal_call=False):</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>&quot;&quot;&quot;Save
+ EMA models&quot;&quot;&quot;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span># Save EMA model</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>ema_output_dir =
+ f&quot;{output_dir}/ema_model&quot;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>if self.ema is not None
+ and output_dir is not None:</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>           
+ </span>self.ema.ema_model.save_pretrained(ema_output_dir)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>else:</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>           
+ </span>self.model.save_pretrained(ema_output_dir)<span
+ style='mso-spacerun:yes'>  </span></code></p>
+ <p><code style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
+ color:#3C4043'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#3C4043'><span
+ style='font-weight:bold' lang=zh-CN>关于</span><span style='font-weight:bold'
+ lang=en-US>EMA</span><span style='font-weight:bold' lang=zh-CN>的移动平均和</span><span
+ style='font-weight:bold' lang=en-US>amda</span><span style='font-weight:bold'
+ lang=zh-CN>的移动平均的区别：</span><span style='font-weight:bold' lang=en-US><span
+ style='mso-spacerun:yes'>  </span></span><span style='font-weight:bold'
+ lang=zh-CN><span style='mso-spacerun:yes'>   </span></span></code></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:black'><span
+ style='font-weight:bold'>AdamW 中的移动平均：针对梯度的统计特性，而模型 EMA 中的移动平均：针对参数本身</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>从流程上看，确实是 “先经 AdamW
+      的梯度平滑得到&nbsp;</span><span style='font-family:Menlo;font-size:36.0pt'>θ_t</span><span
+      style='font-family:微软雅黑;font-size:36.0pt'>，再经模型 EMA 对&nbsp;</span><span
+      style='font-family:Menlo;font-size:36.0pt'>θ_t</span><span
+      style='font-family:微软雅黑;font-size:36.0pt'>&nbsp;进一步平滑得到&nbsp;</span><span
+      style='font-family:Menlo;font-size:36.0pt'>θ_ema_t</span><span
+      style='font-family:微软雅黑;font-size:36.0pt'>”，存在 “平滑后再平滑” 的叠加效果，这和
+      “移动平均的移动平均” 的直觉是一致的。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>但核心区别在于：AdamW
+      的 EMA 是</span><span style='font-weight:bold;font-family:微软雅黑;font-size:
+      36.0pt'>优化器层面</span><span style='font-family:微软雅黑;font-size:36.0pt'>的机制，作用于梯度统计量，影响参数的
+      “更新方向和步长”；模型 EMA 是</span><span style='font-weight:bold;font-family:微软雅黑;
+      font-size:36.0pt'>模型层面</span><span style='font-family:微软雅黑;font-size:
+      36.0pt'>的机制，作用于参数本身，直接修正参数的 “最终取值”。</span></li>
+ </ul>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&nbsp;</cite></p>
+ <p><code style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#3C4043'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#3C4043'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:"Microsoft YaHei";font-size:48.0pt;
+ color:#3C4043'><span style='font-weight:bold' lang=zh-CN>第</span><span
+ style='font-weight:bold' lang=en-US>4</span><span style='font-weight:bold'
+ lang=zh-CN>名（有代码！需要看看，包括</span><span style='font-weight:bold' lang=en-US>agent</span><span
+ style='font-weight:bold' lang=zh-CN>的</span><span style='font-weight:bold'
+ lang=en-US>demo</span><span style='font-weight:bold' lang=zh-CN>）</span></code></p>
+ <p style='margin-top:24pt;margin-bottom:18pt;font-size:36.0pt;color:#202124'><span
+ style='font-weight:bold;font-family:Inter' lang=zh-CN>Type
+ Classification，其实我也应该微调</span><span style='font-weight:bold;font-family:微软雅黑'
+ lang=en-US>accession type</span><span style='font-weight:bold;font-family:
+ 微软雅黑' lang=zh-CN>的。</span></p>
+ <p style='margin-top:0pt;margin-bottom:12pt;font-family:Inter;font-size:36.0pt;
+ color:#3C4043'>We trained LLM classifiers that handled both DOI and Accession
+ subsets without separate models for each. Training a robust model was tricky
+ due to competition dataset being small and noisy. We adopted a few strategies
+ to address these challenges:</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt;color:#3C4043'>Implemented a tool calling agent that
+      generates synthetic labels using articles from the&nbsp;</span><a
+      href="https://europepmc.org/downloads/openaccess"><span style='font-family:
+      inherit;font-size:36.0pt'>Europe PMC open access subset</span></a><span
+      style='font-family:inherit;font-size:36.0pt;color:#3C4043'>. The agent
+      combined keyword and semantic search tools to gather sufficient
+      context/evidence from an article before making a citation type
+      classification. We warmed up public LLMs (Qwen 2.5 family) using the
+      synthetic dataset before finetuning with the competition examples. We
+      shared a demo notebook&nbsp;</span><a
+      href="https://www.kaggle.com/code/conjuring92/mdc-tool-calling-agent-demo"><span
+      style='font-family:inherit;font-size:36.0pt'>here</span></a><span
+      style='font-family:inherit;font-size:36.0pt;color:#3C4043'>&nbsp;showing
+      the agent setup and classification trajectory. Agent generated synthetic
+      dataset can be found&nbsp;</span><a
+      href="https://www.kaggle.com/datasets/conjuring92/mdc-type-synthetic-v1/settings"><span
+      style='font-family:inherit;font-size:36.0pt'>here</span></a><span
+      style='font-family:inherit;font-size:36.0pt;color:#3C4043'>.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>For model diversity in ensemble, we also trained a few
+      models by adding pseudo labeled examples (generated with Qwen-2.5-72B) to
+      the competition dataset.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>A few articles contained lots of accession ids (32+),
+      having an outsized impact on model training. So, we limited dataset
+      mentions to a maximum of 24 per article in the fine-tuning datamix. For
+      data augmentation, we masked dataset ids with tokens, where i represents
+      distinct dataset mentions within a given context.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>Averaged checkpoints using Exponential Moving Average
+      (EMA).</span></li>
+ </ul>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&nbsp;</cite></p>
+ <p style='margin-top:24pt;margin-bottom:18pt;font-family:Inter;font-size:36.0pt;
+ color:#202124'><span style='font-weight:bold'>Inference</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>To speed up inference, we assumed secondary type for
+      certain accession ids like&nbsp;</span><span style='font-family:"Roboto Mono";
+      font-size:36.0pt;background:#F1F3F4'>cath</span><span style='font-family:
+      inherit;font-size:36.0pt'>,&nbsp;</span><span style='font-family:"Roboto Mono";
+      font-size:36.0pt;background:#F1F3F4'>alphafold</span><span
+      style='font-family:inherit;font-size:36.0pt'>,&nbsp;</span><span
+      style='font-family:"Roboto Mono";font-size:36.0pt;background:#F1F3F4'>cellosaurus</span><span
+      style='font-family:inherit;font-size:36.0pt'>,&nbsp;</span><span
+      style='font-family:"Roboto Mono";font-size:36.0pt;background:#F1F3F4'>chembl</span><span
+      style='font-family:inherit;font-size:36.0pt'>,&nbsp;</span><span
+      style='font-family:"Roboto Mono";font-size:36.0pt;background:#F1F3F4'>dbgap</span><span
+      style='font-family:inherit;font-size:36.0pt'>,&nbsp;</span><span
+      style='font-family:"Roboto Mono";font-size:36.0pt;background:#F1F3F4'>igsr</span><span
+      style='font-family:inherit;font-size:36.0pt'>,&nbsp;</span><span
+      style='font-family:"Roboto Mono";font-size:36.0pt;background:#F1F3F4'>pfam</span><span
+      style='font-family:inherit;font-size:36.0pt'>,&nbsp;</span><span
+      style='font-family:"Roboto Mono";font-size:36.0pt;background:#F1F3F4'>reactome</span><span
+      style='font-family:inherit;font-size:36.0pt'>, and&nbsp;</span><span
+      style='font-family:"Roboto Mono";font-size:36.0pt;background:#F1F3F4'>refseq</span><span
+      style='font-family:inherit;font-size:36.0pt'>. This was informed by stats
+      from the synthetic labels, where they were predominantly secondary.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>We removed accession IDs when a given article had DOI
+      mentions in the data availability (or similar) sections OR when sum of
+      primary DOI probs was greater than 0.8.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>We used a </span><span style='font-weight:bold;
+      font-family:inherit;font-size:36.0pt'>cascaded inference approach:
+      initial type classification with a fine-tuned Qwen-2.5-14B model, then
+      routing uncertain examples (50% of DOI cases + 20% of accession cases) to
+      a fine-tuned Qwen-2.5-32B model. Finally, the top 10% most difficult
+      predictions were handled by a fine-tuned Qwen-2.5-72B.</span></li>
+ </ul>
+ <p style='margin-top:18pt;margin-bottom:6pt;font-family:Inter;font-size:36.0pt;
+ color:#202124'><span style='font-weight:bold'>Links:</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#202124'><a
+      href="https://www.kaggle.com/code/conjuring92/mdc-a12-mdc-pipeline/notebook?scriptVersionId=260735888"><span
+      style='font-family:inherit;font-size:36.0pt'>Inference notebook</span></a></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#202124'><a
+      href="https://www.kaggle.com/datasets/conjuring92/mdc-utils-v02"><span
+      style='font-family:inherit;font-size:36.0pt'>Training scripts</span></a><span
+      style='font-family:inherit;font-size:36.0pt;color:#3C4043'>. We will
+      clean it up and share as a github repo.</span></li>
+ </ul>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:微软雅黑;font-size:36.0pt;
+ color:#3C4043'>&nbsp;</p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:微软雅黑;font-size:36.0pt;
+ color:#3C4043'>&nbsp;</p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:微软雅黑;font-size:48.0pt;
+ color:#3C4043'><span style='font-weight:bold' lang=zh-CN>第</span><span
+ style='font-weight:bold' lang=en-US>9</span><span style='font-weight:bold'
+ lang=zh-CN>名</span></p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:微软雅黑;font-size:36.0pt;
+ color:#3C4043'><span style='font-weight:bold' lang=zh-CN>用</span><span
+ style='font-weight:bold' lang=en-US>llm</span><span style='font-weight:bold'
+ lang=zh-CN>提取出p</span><span style='font-weight:bold' lang=en-US>df to text</span><span
+ style='font-weight:bold' lang=zh-CN>后的</span><span style='font-weight:bold'
+ lang=en-US>author</span><span style='font-weight:bold' lang=zh-CN>等信息</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>extract title, author, published year from beginning of
+      paper using Qwen2.5-32B</span></li>
+ </ul>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:微软雅黑;font-size:36.0pt;
+ color:#3C4043'><span style='font-weight:bold' lang=zh-CN>用</span><span
+ style='font-weight:bold' lang=en-US>embedding</span><span style='font-weight:
+ bold' lang=zh-CN>相似度判断是否是</span><span style='font-weight:bold' lang=en-US>primary</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Extracted sentence containing
+      the ACC_ID and calculated the sentence similarity using
+      Qwen3-Embedding-0.6B w.r.t. seed_sentence = &quot;DNA Deposition\nThe
+      following information was supplied regarding the deposition of DNA
+      sequences:\nThey are available at\nGenBank: PRJNA664798. BioSample:
+      SAMN16233641, SAMN16233642, SAMN16233643, SAMN16233644,
+      SAMN16233645.&quot; - if &gt;= 0.667 and contains submit/deposit then
+      Primary else Secondary</span></li>
+ </ul>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:微软雅黑;font-size:48.0pt;
+ color:#3C4043'><span style='font-weight:bold' lang=zh-CN>第</span><span
+ style='font-weight:bold' lang=en-US>11</span><span style='font-weight:bold'
+ lang=zh-CN>名</span></p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:微软雅黑;font-size:36.0pt;
+ color:#3C4043'><span style='font-weight:bold' lang=zh-CN>正文和参考文献分开的方式我也用了，但是我怎么就没有想到用作者信息匹配呢，没有想到用</span><span
+ style='font-weight:bold' lang=en-US>llm</span><span style='font-weight:bold'
+ lang=zh-CN>提取作者信息</span></p>
+ <p style='margin-top:0pt;margin-bottom:12pt;font-family:Inter;font-size:36.0pt;
+ color:#3C4043'>Part 2: DOI Classification (Primary vs. Secondary)</p>
+ <p style='margin-top:0pt;margin-bottom:12pt;font-family:Inter;font-size:36.0pt;
+ color:#3C4043'>We used two distinct methods for classifying DOIs:</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt;background:#F1F3F4'>Main Text DOIs: For DOIs found in
+      the main body of the paper, we used a semantic approach, analyzing the
+      context to determine their role.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt;background:#F1F3F4'>Reference Section DOIs: For DOIs in
+      the references, we based our classification on authorship. A reference
+      DOI was classified as primary if its author list overlapped with the
+      authors of the main paper. To get the paper's authors, we extracted them
+      by having an LLM parse the first 2,000 characters of the text.</span></li>
+ </ul>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold' lang=zh-CN>第</span><span style='font-weight:bold'
+ lang=en-US>12</span><span style='font-weight:bold' lang=zh-CN>名</span></p>
+ <p style='margin-top:24pt;margin-bottom:18pt;font-family:Inter;font-size:36.0pt;
+ color:#202124'><span style='font-weight:bold'>Type classification</span></p>
+ <p style='margin-top:18pt;margin-bottom:9pt;font-family:Inter;font-size:36.0pt;
+ color:#202124'><span style='font-weight:bold'>DOIs</span></p>
+ <p style='margin-top:0pt;margin-bottom:12pt;font-family:Inter;font-size:36.0pt;
+ color:#3C4043'>LLM-based classification leveraging context and metadata.</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:"Roboto Mono";
+      font-size:36.0pt;background:#F1F3F4'>Qwen2.5-72B-Instruct-AWQ</span><span
+      style='font-family:inherit;font-size:36.0pt'>&nbsp;(zero-shot)</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>Input features</span></li>
+  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+       6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+       font-size:36.0pt'>Context (~3000 chars)</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+       6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+       font-size:36.0pt'>Data Citation Corpus based features</span></li>
+   <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+    margin-bottom:0in'>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+        6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+        font-size:36.0pt'>Number of dataset citations</span></li>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+        6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+        font-size:36.0pt'>Whether it is the first paper that cited the dataset
+        in the corpus</span></li>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+        6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+        font-size:36.0pt'>Elapsed days from dataset release date to paper
+        publication date</span></li>
+   </ul>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+       6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+       font-size:36.0pt'>Paper and dataset metadata</span></li>
+   <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+    margin-bottom:0in'>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+        6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+        font-size:36.0pt'>Title</span></li>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+        6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+        font-size:36.0pt'>Authors</span></li>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+        6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+        font-size:36.0pt'>Abstract</span></li>
+   </ul>
+  </ul>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>Force a binary choice (A: Primary / B: Secondary) and
+      select the option with the larger logit.</span></li>
+ </ul>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'>system = &quot;&quot;&quot;You are given (1) an
+ article snippet (Context) and (2) a candidate dataset identifier (DOI) with
+ metadata for both the paper and the dataset.</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&nbsp;</blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'>Decide whether the dataset is used as:</span></blockquote>
+ <blockquote style='margin:0in;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic;font-family:Calibri'>A) Primary<span
+ style='mso-spacerun:yes'>   </span></span><span style='font-style:italic;
+ font-family:微软雅黑'>—</span><span style='font-style:italic;font-family:Calibri'>
+ data generated by/for this study</span></blockquote>
+ <blockquote style='margin:0in;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic;font-family:Calibri'>B) Secondary </span><span
+ style='font-style:italic;font-family:微软雅黑'>—</span><span style='font-style:
+ italic;font-family:Calibri'> reused/derived from prior work or previously
+ published dataset</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&nbsp;</blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'>Use BOTH:</span></blockquote>
+ <blockquote style='margin:0in;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic;font-family:微软雅黑'>•</span><span style='font-style:
+ italic;font-family:Calibri'> Context: the article snippet discussing data
+ usage</span></blockquote>
+ <blockquote style='margin:0in;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic;font-family:微软雅黑'>•</span><span style='font-style:
+ italic;font-family:Calibri'> Metadata similarity: closeness between paper vs.
+ dataset (titles, abstracts, author overlap, topics)</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'>&nbsp;</blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'>Reply with ONLY one letter: A or B.</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'>&quot;&quot;&quot;</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'>user = (</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'><span style='mso-spacerun:yes'>           
+ </span>f&quot;Identifier (DOI): {to_str(dsid)}\n&quot;</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'><span style='mso-spacerun:yes'>           
+ </span>f&quot;Features: n_citations={to_str(n_cit)}, &quot;</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'><span style='mso-spacerun:yes'>           
+ </span>f&quot;is_first_publication={str(bool(row.get('is_first_publication'))).lower()},
+ &quot;</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'><span style='mso-spacerun:yes'>           
+ </span>f&quot;citations_before={to_str(cb)}, &quot;</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'><span style='mso-spacerun:yes'>           
+ </span>f&quot;elapsed_days_from_dataset_publication={to_str(dd)}\n\n&quot;</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'><span style='mso-spacerun:yes'>           
+ </span>f&quot;=== Paper Metadata ===\n&quot;</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'><span style='mso-spacerun:yes'>           
+ </span>f&quot;Title: {to_str(row.get('paper_title'))}\n&quot;</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'><span style='mso-spacerun:yes'>           
+ </span>f&quot;Authors: {to_str(row.get('paper_author_name'))}\n&quot;</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'><span style='mso-spacerun:yes'>           
+ </span>f&quot;Abstract: {to_str(row.get('paper_abstract'))}\n\n&quot;</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'><span style='mso-spacerun:yes'>           
+ </span>f&quot;=== Dataset Metadata ===\n&quot;</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'><span style='mso-spacerun:yes'>           
+ </span>f&quot;Title: {to_str(row.get('dataset_title'))}\n&quot;</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'><span style='mso-spacerun:yes'>           
+ </span>f&quot;Authors: {to_str(row.get('dataset_author_name'))}\n&quot;</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'><span style='mso-spacerun:yes'>           
+ </span>f&quot;Abstract: {to_str(row.get('dataset_abstract'))}\n\n&quot;</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'><span style='mso-spacerun:yes'>           
+ </span>f&quot;=== Context (article snippet)
+ ===\n{to_str(row.get('chunk'))}\n&quot;</span></blockquote>
+ <blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+ style='font-style:italic'><span style='mso-spacerun:yes'>        </span>)</span></blockquote>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>The addition of
+ metadata contributed the most to performance improvement (doi only LB: 0.333 →
+ 0.345).</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>我微调后的也就</span><span
+ lang=en-US>0.314</span><span lang=zh-CN>，说明</span><span lang=en-US>metadata</span><span
+ lang=zh-CN>很有用。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold' lang=zh-CN>第</span><span style='font-weight:bold'
+ lang=en-US>15</span><span style='font-weight:bold' lang=zh-CN>名</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#3C4043'>Finally,
+ I used <span style='font-weight:bold'>Grobid</span> to extract the author list
+ for each paper and determined primary vs. secondary authors based on surnames,
+ using an LLM in a multi-stage decision process.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Grobid是一个开源的机器学习库,专门设计用于处理学术文献。它能够:</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>提取文档的元数据(如标题、作者、摘要等)</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>识别和解析文档的结构(如章节、段落、图表等)</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>提取引用信息和参考文献</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>将PDF转换为结构化的XML或JSON格式</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Grobid特别擅长处理学术论文,能够准确识别论文的各个部分,包括引言、方法、结果和讨论等章节。</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold' lang=zh-CN>第</span><span style='font-weight:bold'
+ lang=en-US>20</span><span style='font-weight:bold' lang=zh-CN>名</span></p>
+ <p style='margin-top:0pt;margin-bottom:12pt;font-family:inherit;font-size:
+ 36.0pt;color:#3C4043'><span style='font-weight:bold'>Accession IDs</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      0pt;margin-bottom:12pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>Extracted candidates using regex patterns.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      0pt;margin-bottom:12pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>Fine-tuned&nbsp;</span><span style='font-weight:bold;
+      font-family:inherit;font-size:36.0pt'>DeBERTa</span><span
+      style='font-family:inherit;font-size:36.0pt'>&nbsp;to filter out false
+      positives.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      0pt;margin-bottom:12pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>Certain ID types always mapped directly to&nbsp;</span><span
+      style='font-weight:bold;font-family:inherit;font-size:36.0pt'>Secondary</span><span
+      style='font-family:inherit;font-size:36.0pt'>.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      0pt;margin-bottom:12pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt'>For the rest, fine-tuned&nbsp;</span><span
+      style='font-weight:bold;font-family:inherit;font-size:36.0pt'>Qwen2.5-3B
+      (base)</span><span style='font-family:inherit;font-size:36.0pt'>&nbsp;with
+      QLoRA:</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+       6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+       font-size:36.0pt'>Input = identifier + context in a structured template
+       with cues.</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+       6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+       font-size:36.0pt'>Representation = global mean + target-span mean
+       pooling.</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+       6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+       font-size:36.0pt'>Added a&nbsp;</span><span style='font-weight:bold;
+       font-family:inherit;font-size:36.0pt'>span-gated GELU classifier head</span><span
+       style='font-family:inherit;font-size:36.0pt'>.</span></li>
+  </ul>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:inherit;
+      font-size:36.0pt;background:white'>Combined with context as input
+      to&nbsp;</span><span style='font-weight:bold;font-family:inherit;
+      font-size:36.0pt;background:white'>Light-R1-14B-awq</span><span
+      style='font-family:inherit;font-size:36.0pt;background:white'>.</span><span
+      style='font-weight:bold;font-family:inherit;font-size:36.0pt;background:
+      white'>这是个什么模型</span></li>
+ </ul>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

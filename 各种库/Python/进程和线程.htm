@@ -1,0 +1,590 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=进程和线程.htm>
+<link rel=File-List href="进程和线程.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:25.7423in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.9236in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'>进程和线程</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.5979in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>6</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>3</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>16:37</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4569in;margin-left:0in;width:25.7423in'>
+
+<p style='margin:0in;margin-left:3.375in'><img src="进程和线程.files/image001.jpg"
+width=1194 height=985></p>
+
+<p style='margin:0in;margin-left:3.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>一个进程包含</span><span
+lang=en-US>code, data, register,stack</span><span lang=zh-CN>等部分，进程之间是独立的，不共享这些参数，一个进程可能包含多个线程，线程之间是共享</span><span
+lang=en-US>code</span><span lang=zh-CN>和</span><span lang=en-US>data</span><span
+lang=zh-CN>的，但不共享</span><span lang=en-US>register,stack</span><span lang=zh-CN>。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in'><img src="进程和线程.files/image002.jpg"
+width=2075 height=918></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>假设进程</span><span
+lang=en-US>0</span><span lang=zh-CN>和进程</span><span lang=en-US>1</span><span
+lang=zh-CN>各有两个线程，可以看到，</span><span style='font-weight:bold' lang=zh-CN>同一个进程的两个线程无法同时执行。所以线程是</span><span
+style='font-weight:bold' lang=en-US>cocurrent</span><span style='font-weight:
+bold' lang=zh-CN>共存的，但不是</span><span style='font-weight:bold' lang=en-US>parrallel</span><span
+style='font-weight:bold' lang=zh-CN>并行的。而且还可以看出，线程和进程可以在不同的</span><span
+style='font-weight:bold' lang=en-US>CPU</span><span style='font-weight:bold'
+lang=zh-CN>上切换。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>在</span><span
+lang=en-US>python</span><span lang=zh-CN>中，一个进程下只有一个线程在运行，可以保证线程安全，并且可以提高线程效率。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+bold' lang=zh-CN>线程的切换</span><span lang=zh-CN>（</span><span style='font-weight:
+bold' lang=zh-CN>在哪个</span><span style='font-weight:bold' lang=en-US>CPU core</span><span
+style='font-weight:bold' lang=zh-CN>上执行，执行</span><span style='font-weight:bold'
+lang=en-US>thread0</span><span style='font-weight:bold' lang=zh-CN>还是</span><span
+style='font-weight:bold' lang=en-US>thread1</span><span style='font-weight:
+bold' lang=zh-CN>）</span><span lang=zh-CN>是由</span><span style='font-weight:
+bold' lang=en-US>CP</span><span style='font-weight:bold' lang=zh-CN>ytho</span><span
+style='font-weight:bold' lang=en-US>n </span><span lang=zh-CN>决定的，</span><span
+lang=en-US>C</span><span lang=zh-CN>pyth</span><span lang=en-US>on </span><span
+lang=zh-CN>will</span><span lang=en-US> consider switching threads every 15ms
+or when an I/O operation is encountered.</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+bold' lang=zh-CN>进程的切换（在哪个</span><span style='font-weight:bold' lang=en-US>CPU </span><span
+style='font-weight:bold' lang=zh-CN>core上执行）</span><span lang=zh-CN>取决于</span><span
+lang=en-US>os</span><span lang=zh-CN>。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>大多数的</span><span
+lang=en-US>python</span><span lang=zh-CN>库如</span><span lang=en-US>numpy,scipy,tensorflow</span><span
+lang=zh-CN>底层已经进行了多线程优化，不需要我们再去实现。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+bold'>Multi-processing (多處理程序/多進程)：</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>資料在彼此間傳遞變得更加複雜及花時間，因為一個
+process 在作業系統的管理下是無法去存取別的 process 的 memory</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>適合需要 CPU 密集</span><span lang=en-US> </span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+bold'>Multi-threading (多執行緒/多線程)：</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>資料彼此傳遞簡單，因為多執行緒的
+memory 之間是共用的，但也因此要避免會有 Race Condition 問題</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>適合需要
+I/O 密集，像是爬蟲需要時間等待 request 回覆</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin-top:18pt;margin-bottom:18pt;font-family:微软雅黑;font-size:36.0pt;
+color:#273239'><span style='font-weight:bold'>Multithreading in Python</span></p>
+
+<p style='margin-left:.375in;margin-top:0pt;margin-bottom:7pt;font-family:微软雅黑;
+font-size:36.0pt;color:#273239'><span style='font-weight:bold'>Step 1:&nbsp;</span>Import
+Module</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>import
+threading</p>
+
+<p style='margin-left:.375in;margin-top:0pt;margin-bottom:7pt;font-family:微软雅黑;
+font-size:36.0pt;color:#273239'><span style='font-weight:bold'>Step 2:&nbsp;</span>Create
+a Thread</p>
+
+<p style='margin-left:.75in;margin-top:0pt;margin-bottom:7pt;font-family:微软雅黑;
+font-size:36.0pt;color:#273239'>To create a new thread, we create an object of
+the&nbsp;<span style='font-weight:bold'>Thread&nbsp;</span>class. It takes the
+'target' and 'args' as the parameters. The&nbsp;<span style='font-weight:bold'>target&nbsp;</span>is
+the function to be executed by the thread whereas the&nbsp;<span
+style='font-weight:bold'>args is&nbsp;</span>the arguments to be passed to the
+target function.</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>t1 =
+threading.Thread(target, args)</p>
+
+<p style='margin-left:.75in;margin-top:0pt;margin-bottom:7pt;font-family:微软雅黑;
+font-size:36.0pt'>t2 = threading.Thread(target, args)</p>
+
+<p style='margin-left:.375in;margin-top:0pt;margin-bottom:7pt;font-family:微软雅黑;
+font-size:36.0pt;color:#273239'><span style='font-weight:bold'>Step 3:&nbsp;</span>Start
+a Thread</p>
+
+<p style='margin-left:.75in;margin-top:0pt;margin-bottom:7pt;font-family:微软雅黑;
+font-size:36.0pt;color:#273239'>To start a thread, we use the&nbsp;<span
+style='font-weight:bold'>start()&nbsp;</span>method of the Thread class.</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>t1.start()</p>
+
+<p style='margin-left:.75in;margin-top:0pt;margin-bottom:7pt;font-family:微软雅黑;
+font-size:36.0pt'>t2.start()</p>
+
+<p style='margin-left:.375in;margin-top:0pt;margin-bottom:7pt;font-family:微软雅黑;
+font-size:36.0pt;color:#273239'><span style='font-weight:bold'>Step 4:&nbsp;</span>End
+the thread Execution</p>
+
+<p style='margin-left:.75in;margin-top:0pt;margin-bottom:7pt;font-family:微软雅黑;
+font-size:36.0pt;color:#273239'><span style='font-weight:bold' lang=zh-CN>线程</span><span
+style='font-weight:bold' lang=en-US>start</span><span style='font-weight:bold'
+lang=zh-CN>之后，主线程的代码会继续执行，如果要等待子线程执行完毕后再执行后续代码，需要用</span><span
+style='font-weight:bold' lang=en-US>.join()</span></p>
+
+<p style='margin-left:.75in;margin-top:0pt;margin-bottom:7pt;font-family:微软雅黑;
+font-size:36.0pt;color:#273239'>Once the threads start, the current program
+(you can think of it like a main thread) also keeps on executing. In order to
+stop the execution of the current program until a thread is complete, we use
+the&nbsp;<span style='font-weight:bold'>join()&nbsp;</span>method.</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>t1.join()</p>
+
+<p style='margin-left:.75in;margin-top:0pt;margin-bottom:7pt;font-family:微软雅黑;
+font-size:36.0pt'>t2.join()</p>
+
+<p style='margin-left:.75in;margin-top:0pt;margin-bottom:7pt;font-family:微软雅黑;
+font-size:36.0pt;color:#273239'>As a result, the current program will first
+wait for the completion of&nbsp;<span style='font-weight:bold'>t1&nbsp;</span>and
+then&nbsp;<span style='font-weight:bold'>t2&nbsp;</span>. Once, they are
+finished, the remaining statements of the current program are executed.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#FF8000'>import threading</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#FF8000'>import time</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#979797'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#FF8000'>def main</span><span style='color:#979797'>(</span><span
+style='color:#9D9859'>url</span><span style='color:#979797'>, </span><span
+style='color:#9D9859'>num</span><span style='color:#979797'>):</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#006FE0'>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style='color:#FF8000'>print</span><span
+style='color:#979797'>(</span><span style='color:#C38F79'>'開始執行'</span><span
+style='color:#979797'>, </span><span style='color:#9D9859'>url</span><span
+style='color:#979797'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#006FE0'>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style='color:#9D9859'>time</span><span
+style='color:#979797'>.</span><span style='color:#FF8000'>sleep</span><span
+style='color:#979797'>(</span><span style='color:#CB8F6B'>2</span><span
+style='color:#979797'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#006FE0'>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style='color:#FF8000'>print</span><span
+style='color:#979797'>(</span><span style='color:#C38F79'>'結束'</span><span
+style='color:#979797'>, </span><span style='color:#9D9859'>num</span><span
+style='color:#979797'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>url_list1 </span><span style='color:#979797'>= [</span><span
+style='color:#C38F79'>'</span><a href="http://www.yahoo.com.tw"><span
+style='color:#C38F79'>www.yahoo.com.tw</span></a><span style='color:#C38F79'>, </span><a
+href="http://www.google.com'"><span style='color:#C38F79'>www.google.com'</span></a><span
+style='color:#979797'>]</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>url_list2 </span><span style='color:#979797'>= [</span><span
+style='color:#C38F79'>'</span><a href="http://www.yahoo.com.tw"><span
+style='color:#C38F79'>www.yahoo.com.tw</span></a><span style='color:#C38F79'>, </span><a
+href="http://www.google.com'"><span style='color:#C38F79'>www.google.com'</span></a><span
+style='color:#979797'>]</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>url_list3 </span><span style='color:#979797'>= [</span><span
+style='color:#C38F79'>'</span><a href="http://www.yahoo.com.tw"><span
+style='color:#C38F79'>www.yahoo.com.tw</span></a><span style='color:#C38F79'>, </span><a
+href="http://www.google.com'"><span style='color:#C38F79'>www.google.com'</span></a><span
+style='color:#979797'>]</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#979788'># 定義線程</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>t_list </span><span style='color:#979797'>= []</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#979797'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>t1 </span><span style='color:#979797'>= </span><span
+style='color:#9D9859'>threading</span><span style='color:#979797'>.</span><span
+style='color:#FF8000'>Thread</span><span style='color:#979797'>(</span><span
+style='color:#9D9859'>target</span><span style='color:#979797'>=</span><span
+style='color:#9D9859'>main</span><span style='color:#979797'>, </span><span
+style='color:#9D9859'>args</span><span style='color:#979797'>=(</span><span
+style='color:#9D9859'>url_list1</span><span style='color:#979797'>, </span><span
+style='color:#CB8F6B'>1</span><span style='color:#979797'>))</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>t_list</span><span style='color:#979797'>.</span><span
+style='color:#FF8000'>append</span><span style='color:#979797'>(</span><span
+style='color:#9D9859'>t1</span><span style='color:#979797'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>t2 </span><span style='color:#979797'>= </span><span
+style='color:#9D9859'>threading</span><span style='color:#979797'>.</span><span
+style='color:#FF8000'>Thread</span><span style='color:#979797'>(</span><span
+style='color:#9D9859'>target</span><span style='color:#979797'>=</span><span
+style='color:#9D9859'>main</span><span style='color:#979797'>, </span><span
+style='color:#9D9859'>args</span><span style='color:#979797'>=(</span><span
+style='color:#9D9859'>url_list2</span><span style='color:#979797'>, </span><span
+style='color:#CB8F6B'>2</span><span style='color:#979797'>))</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>t_list</span><span style='color:#979797'>.</span><span
+style='color:#FF8000'>append</span><span style='color:#979797'>(</span><span
+style='color:#9D9859'>t2</span><span style='color:#979797'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>t3 </span><span style='color:#979797'>= </span><span
+style='color:#9D9859'>threading</span><span style='color:#979797'>.</span><span
+style='color:#FF8000'>Thread</span><span style='color:#979797'>(</span><span
+style='color:#9D9859'>target</span><span style='color:#979797'>=</span><span
+style='color:#9D9859'>main</span><span style='color:#979797'>, </span><span
+style='color:#9D9859'>args</span><span style='color:#979797'>=(</span><span
+style='color:#9D9859'>url_list3</span><span style='color:#979797'>, </span><span
+style='color:#CB8F6B'>3</span><span style='color:#979797'>))</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>t_list</span><span style='color:#979797'>.</span><span
+style='color:#FF8000'>append</span><span style='color:#979797'>(</span><span
+style='color:#9D9859'>t3</span><span style='color:#979797'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#979788'># 開始工作</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#20B0DA'>for </span><span style='color:#979797'>t </span><span
+style='color:#20B0DA'>in </span><span style='color:#9D9859'>t_list</span><span
+style='color:#979797'>:</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#006FE0'>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style='color:#9D9859'>t</span><span
+style='color:#979797'>.</span><span style='color:#FF8000'>start</span><span
+style='color:#979797'>()</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#979788'># 調整多程順序</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#20B0DA'>for </span><span style='color:#979797'>t </span><span
+style='color:#20B0DA'>in </span><span style='color:#9D9859'>t_list</span><span
+style='color:#979797'>:</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#006FE0'>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style='color:#9D9859'>t</span><span
+style='color:#979797'>.</span><span style='color:#FF8000'>join</span><span
+style='color:#979797'>()</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+bold;color:#00102E;background:white' lang=zh-CN>Multi-processing</span><span
+style='font-weight:bold;color:#00102E;background:white' lang=en-US> </span><span
+style='font-weight:bold;color:#273239' lang=zh-CN><span
+style='mso-spacerun:yes'> </span>in Python</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#FF8000'>import multiprocessing </span><span style='color:#20B0DA'>as
+</span><span style='color:#FF8000'>mp</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#FF8000'>import time</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#979797'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#FF8000'>def main</span><span style='color:#979797'>(</span><span
+style='color:#9D9859'>url</span><span style='color:#979797'>, </span><span
+style='color:#9D9859'>num</span><span style='color:#979797'>):</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#006FE0'>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style='color:#FF8000'>print</span><span
+style='color:#979797'>(</span><span style='color:#C38F79'>'開始執行'</span><span
+style='color:#979797'>, </span><span style='color:#9D9859'>url</span><span
+style='color:#979797'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#006FE0'>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style='color:#9D9859'>time</span><span
+style='color:#979797'>.</span><span style='color:#FF8000'>sleep</span><span
+style='color:#979797'>(</span><span style='color:#CB8F6B'>2</span><span
+style='color:#979797'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#006FE0'>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style='color:#FF8000'>print</span><span
+style='color:#979797'>(</span><span style='color:#C38F79'>'結束'</span><span
+style='color:#979797'>, </span><span style='color:#9D9859'>num</span><span
+style='color:#979797'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#979797'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>url_list1 </span><span style='color:#979797'>= [</span><span
+style='color:#C38F79'>'</span><a href="http://www.yahoo.com.tw"><span
+style='color:#C38F79'>www.yahoo.com.tw</span></a><span style='color:#C38F79'>, </span><a
+href="http://www.google.com'"><span style='color:#C38F79'>www.google.com'</span></a><span
+style='color:#979797'>]</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>url_list2 </span><span style='color:#979797'>= [</span><span
+style='color:#C38F79'>'</span><a href="http://www.yahoo.com.tw"><span
+style='color:#C38F79'>www.yahoo.com.tw</span></a><span style='color:#C38F79'>, </span><a
+href="http://www.google.com'"><span style='color:#C38F79'>www.google.com'</span></a><span
+style='color:#979797'>]</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>url_list3 </span><span style='color:#979797'>= [</span><span
+style='color:#C38F79'>'</span><a href="http://www.yahoo.com.tw"><span
+style='color:#C38F79'>www.yahoo.com.tw</span></a><span style='color:#C38F79'>, </span><a
+href="http://www.google.com'"><span style='color:#C38F79'>www.google.com'</span></a><span
+style='color:#979797'>]</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#979788'># 定義線程</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>p_list </span><span style='color:#979797'>= []</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>p1 </span><span style='color:#979797'>= </span><span
+style='color:#9D9859'>mp</span><span style='color:#979797'>.</span><span
+style='color:#FF8000'>Process</span><span style='color:#979797'>(</span><span
+style='color:#9D9859'>target</span><span style='color:#979797'>=</span><span
+style='color:#9D9859'>main</span><span style='color:#979797'>, </span><span
+style='color:#9D9859'>args</span><span style='color:#979797'>=(</span><span
+style='color:#9D9859'>url_list1</span><span style='color:#979797'>, </span><span
+style='color:#CB8F6B'>2</span><span style='color:#979797'>))</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>p_list</span><span style='color:#979797'>.</span><span
+style='color:#FF8000'>append</span><span style='color:#979797'>(</span><span
+style='color:#9D9859'>p1</span><span style='color:#979797'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#979797'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>p2 </span><span style='color:#979797'>= </span><span
+style='color:#9D9859'>mp</span><span style='color:#979797'>.</span><span
+style='color:#FF8000'>Process</span><span style='color:#979797'>(</span><span
+style='color:#9D9859'>target</span><span style='color:#979797'>=</span><span
+style='color:#9D9859'>main</span><span style='color:#979797'>, </span><span
+style='color:#9D9859'>args</span><span style='color:#979797'>=(</span><span
+style='color:#9D9859'>url_list2</span><span style='color:#979797'>, </span><span
+style='color:#CB8F6B'>2</span><span style='color:#979797'>))</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>p_list</span><span style='color:#979797'>.</span><span
+style='color:#FF8000'>append</span><span style='color:#979797'>(</span><span
+style='color:#9D9859'>p2</span><span style='color:#979797'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>p3 </span><span style='color:#979797'>= </span><span
+style='color:#9D9859'>mp</span><span style='color:#979797'>.</span><span
+style='color:#FF8000'>Process</span><span style='color:#979797'>(</span><span
+style='color:#9D9859'>target</span><span style='color:#979797'>=</span><span
+style='color:#9D9859'>main</span><span style='color:#979797'>, </span><span
+style='color:#9D9859'>args</span><span style='color:#979797'>=(</span><span
+style='color:#9D9859'>url_list3</span><span style='color:#979797'>, </span><span
+style='color:#CB8F6B'>2</span><span style='color:#979797'>))</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#9D9859'>p_list</span><span style='color:#979797'>.</span><span
+style='color:#FF8000'>append</span><span style='color:#979797'>(</span><span
+style='color:#9D9859'>p3</span><span style='color:#979797'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#979797'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#979788'># 開始工作</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#20B0DA'>for </span><span style='color:#979797'>p </span><span
+style='color:#20B0DA'>in </span><span style='color:#9D9859'>p_list</span><span
+style='color:#979797'>:</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#006FE0'>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style='color:#9D9859'>p</span><span
+style='color:#979797'>.</span><span style='color:#FF8000'>start</span><span
+style='color:#979797'>()</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#979797'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#979788'># 調整多程順序</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#20B0DA'>for </span><span style='color:#979797'>p </span><span
+style='color:#20B0DA'>in </span><span style='color:#9D9859'>p_list</span><span
+style='color:#979797'>:</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#006FE0'>&nbsp;&nbsp;&nbsp;&nbsp;</span><span style='color:#9D9859'>p</span><span
+style='color:#979797'>.</span><span style='color:#FF8000'>join</span><span
+style='color:#979797'>()</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin-left:.375in;margin-top:0pt;margin-bottom:3pt;font-family:微软雅黑;
+font-size:36.0pt'><span style='color:black'>&nbsp;</span><a
+href="https://docs.python.org/zh-cn/3.13/library/multiprocessing.html#multiprocessing.pool.Pool">multiprocessing.pool.Pool</a><span
+style='color:black'>这个包中的功能要求子进程可以导入&nbsp;__main__&nbsp;模块。虽然这在&nbsp;</span><a
+href="https://docs.python.org/zh-cn/3.13/library/multiprocessing.html#multiprocessing-programming">编程指导</a><span
+style='color:black'>&nbsp;中有描述，但还是需要提前说明一下。这意味着一些示例在交互式解释器中不起作用。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><a
+href="https://docs.python.org/zh-cn/3.13/library/multiprocessing.html#module-multiprocessing"><span
+style='font-weight:bold' lang=zh-CN>multiprocessing</span></a><span
+style='font-weight:bold;color:black' lang=zh-CN>&nbsp;支持进程之间的两种通信通道：队列</span><span
+style='font-weight:bold;color:black' lang=en-US>Q</span><span style='font-weight:
+bold;color:black' lang=zh-CN>u</span><span style='font-weight:bold;color:black'
+lang=en-US>eue</span><span style='font-weight:bold;color:black' lang=zh-CN>和管道</span><span
+style='font-weight:bold;color:black' lang=en-US>Pipe</span><span
+style='font-weight:bold;color:black' lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+color:black'>使用多进程时，一般使用消息机制实现进程间通信，尽可能避免使用同步原语，例如锁。</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:black'>消息机制包含：&nbsp;</span><a
+href="https://docs.python.org/zh-cn/3.13/library/multiprocessing.html#multiprocessing.Pipe">Pipe()</a><span
+style='color:black'>&nbsp;(可以用于在两个进程间传递消息)，以及队列(能够在多个生产者和消费者之间通信)。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+style='font-family:微软雅黑'>与其他 Python 队列实现的区别之一，在于&nbsp;</span><a
+href="https://docs.python.org/zh-cn/3.13/library/multiprocessing.html#module-multiprocessing"><span
+style='font-family:Menlo;background:white'>multiprocessing</span></a><span
+style='font-family:微软雅黑'>&nbsp;队列会使用&nbsp;</span><a
+href="https://docs.python.org/zh-cn/3.13/library/pickle.html#module-pickle"><span
+style='font-family:Menlo;background:white'>pickle</span></a><span
+style='font-family:微软雅黑'>&nbsp;来序列化所有被放入的对象。 由获取方法所返回的对象是重新创建的对象，它不会与原始对象共享内存。</span></p>
+
+<p style='margin-left:.75in;margin-top:0pt;margin-bottom:3pt;font-family:微软雅黑;
+font-size:36.0pt;color:black'><span style='font-weight:bold'>备注</span></p>
+
+<p style='margin-left:.75in;margin-top:0pt;margin-bottom:3pt;font-family:微软雅黑;
+font-size:36.0pt'><span style='color:black'>当一个对象被放入一个队列中时，这个对象首先会被一个后台线程用
+pickle 序列化，并将序列化后的数据通过一个底层管道的管道传递到队列中。 这种做法会有点让人惊讶，但一般不会出现什么问题。
+如果它们确实妨碍了你，你可以使用一个由管理器&nbsp;</span><a
+href="https://docs.python.org/zh-cn/3.13/library/multiprocessing.html#multiprocessing-managers">manager</a><span
+style='color:black'>&nbsp;创建的队列替换它。</span></p>
+
+<ol type=i style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+     margin-top:0pt;margin-bottom:3pt;color:black'><span style='font-family:
+     微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal;font-family:
+     微软雅黑;font-size:36.0pt;color:black'>将一个对象放入一个空队列后，可能需要极小的延迟，队列的方法&nbsp;</span><a
+     href="https://docs.python.org/zh-cn/3.13/library/multiprocessing.html#multiprocessing.Queue.empty"><span
+     style='font-family:微软雅黑;font-size:36.0pt;font-family:微软雅黑;font-size:36.0pt'>empty()</span></a><span
+     style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:36.0pt;color:black'>&nbsp; 才会返回&nbsp;</span><a
+     href="https://docs.python.org/zh-cn/3.13/library/constants.html#False"><span
+     style='font-family:微软雅黑;font-size:36.0pt;font-family:微软雅黑;font-size:36.0pt'>False</span></a><span
+     style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:36.0pt;color:black'>&nbsp;。而&nbsp;</span><a
+     href="https://docs.python.org/zh-cn/3.13/library/multiprocessing.html#multiprocessing.Queue.get_nowait"><span
+     style='font-family:微软雅黑;font-size:36.0pt;font-family:微软雅黑;font-size:36.0pt'>get_nowait()</span></a><span
+     style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:36.0pt;color:black'>&nbsp;可以不抛出&nbsp;</span><a
+     href="https://docs.python.org/zh-cn/3.13/library/queue.html#queue.Empty"><span
+     style='font-family:微软雅黑;font-size:36.0pt;font-family:微软雅黑;font-size:36.0pt'>queue.Empty</span></a><span
+     style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:36.0pt;color:black'>&nbsp;直接返回。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black'><span
+     style='font-family:微软雅黑;font-size:36.0pt'>如果有多个进程同时将对象放入队列，那么在队列的另一端接受到的对象可能是无序的。但是由同一个进程放入的多个对象的顺序在另一端输出时总是一样的。</span></li>
+</ol>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的知识库</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-bg: #f8f9fa;
+            --border-color: #e1e4e8;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+        }
+        
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+            align-items: start; /* 确保卡片顶部对齐 */
+        }
+        
+        .main-category {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* 移除固定高度，让内容决定高度 */
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .main-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .category-header {
+            background: linear-gradient(135deg, var(--primary-color), #34495e);
+            color: white;
+            padding: 20px;
+            position: relative;
+            /* 头部固定，不随内容变化 */
+            flex-shrink: 0;
+        }
+        
+        .category-header h2 {
+            margin: 0;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-count {
+            background: var(--accent-color);
+            color: white;
+            border-radius: 20px;
+            padding: 2px 10px;
+            font-size: 0.8em;
+            margin-left: auto;
+        }
+        
+        .category-content {
+            padding: 0;
+            /* 内容区域自适应高度 */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sub-category {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.2s;
+            /* 子分类也使用flex布局 */
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sub-category:last-child {
+            border-bottom: none;
+        }
+        
+        .sub-category:hover {
+            background: var(--light-bg);
+        }
+        
+        .sub-category-name {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .notes-list {
+            list-style: none;
+            padding-left: 10px;
+            /* 笔记列表自适应 */
+            flex-grow: 1;
+        }
+        
+        .note-item {
+            margin: 8px 0;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        
+        .note-item:hover {
+            background: var(--light-bg);
+            border-left-color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+        
+        .note-link {
+            text-decoration: none;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95em;
+        }
+        
+        .note-link:hover {
+            color: var(--secondary-color);
+        }
+        
+        .toggle-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 12px;
+            font-size: 0.8em;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            align-self: flex-start; /* 按钮左对齐 */
+        }
+        
+        .toggle-btn:hover {
+            background: #2980b9;
+        }
+        
+        .hidden-notes {
+            display: none;
+        }
+        
+        .stats {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .stat-item {
+            padding: 15px;
+            background: var(--light-bg);
+            border-radius: 10px;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--secondary-color);
+            display: block;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .empty-message {
+            text-align: center;
+            color: #999;
+            padding: 40px;
+            font-style: italic;
+        }
+        
+        /* 新增：根据内容量添加不同样式类 */
+        .content-small {
+            /* 内容较少的大类卡片 - 不需要特殊处理，因为高度自适应 */
+        }
+        
+        .content-medium {
+            /* 内容中等的大类卡片 */
+        }
+        
+        .content-large {
+            /* 内容较多的大类卡片 */
+            /* 可以添加最大高度和滚动，但这里我们选择完全自适应 */
+        }
+        
+        @media (max-width: 768px) {
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 我的知识库</h1>
+            <p>系统化整理的知识笔记，共 6 个知识领域</p>
+        </div>
+        
+        <div class="category-grid">
+            
+            <div class="main-category content-medium">
+                <div class="category-header">
+                    <h2>
+                        📂 Kaggle
+                        <span class="category-count">12 篇</span>
+                    </h2>
+                </div>
+                <div class="category-content">
+            
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 Drawing with llms
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            6 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="Kaggle/Drawing with llms/kaggle平台.htm" target="_blank">
+                                📄 kaggle平台
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="Kaggle/Drawing with llms/vllm多进程报错.htm" target="_blank">
+                                📄 vllm多进程报错
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="Kaggle/Drawing with llms/开源方案学习.htm" target="_blank">
+                                📄 开源方案学习
+                            </a>
+                        </li>
+                        
+                    <div class="hidden-notes">
+                    
+                        <li class="note-item">
+                            <a class="note-link" href="Kaggle/Drawing with llms/比赛总结.htm" target="_blank">
+                                📄 比赛总结
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="Kaggle/Drawing with llms/给kaggle的反馈.htm" target="_blank">
+                                📄 给kaggle的反馈
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="Kaggle/Drawing with llms/遇到的问题.htm" target="_blank">
+                                📄 遇到的问题
+                            </a>
+                        </li>
+                        
+                    </div>
+                    <button class="toggle-btn">
+                        ▼ 展开更多 (3 篇)
+                    </button>
+                    
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 Eedi
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            3 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="Kaggle/Eedi/pip安装问题.htm" target="_blank">
+                                📄 pip安装问题
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="Kaggle/Eedi/开源方案学习.htm" target="_blank">
+                                📄 开源方案学习
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="Kaggle/Eedi/总结.htm" target="_blank">
+                                📄 总结
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 Jane street
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            1 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="Kaggle/Jane street/总结.htm" target="_blank">
+                                📄 总结
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 MDC
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            2 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="Kaggle/MDC/2025-09-16 开源方案.htm" target="_blank">
+                                📄 2025-09-16 开源方案
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="Kaggle/MDC/2025-09-17 总结.htm" target="_blank">
+                                📄 2025-09-17 总结
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                </div>
+            </div>
+            
+
+            <div class="main-category content-medium">
+                <div class="category-header">
+                    <h2>
+                        📂 各种库
+                        <span class="category-count">20 篇</span>
+                    </h2>
+                </div>
+                <div class="category-content">
+            
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 Github
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            1 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/Github/常用命令.htm" target="_blank">
+                                📄 常用命令
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 Numpy_Pandas
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            3 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/Numpy_Pandas/.isin()重新认识.htm" target="_blank">
+                                📄 .isin()重新认识
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/Numpy_Pandas/DataFrameGroupBy.htm" target="_blank">
+                                📄 DataFrameGroupBy
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/Numpy_Pandas/两个argsort.htm" target="_blank">
+                                📄 两个argsort
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 Python
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            8 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/Python/azure docker.htm" target="_blank">
+                                📄 azure docker
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/Python/import.htm" target="_blank">
+                                📄 import
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/Python/可变类型.htm" target="_blank">
+                                📄 可变类型
+                            </a>
+                        </li>
+                        
+                    <div class="hidden-notes">
+                    
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/Python/慎用if x：….htm" target="_blank">
+                                📄 慎用if x：…
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/Python/指定函数 参数类型.htm" target="_blank">
+                                📄 指定函数 参数类型
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/Python/正则.htm" target="_blank">
+                                📄 正则
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/Python/装饰器.htm" target="_blank">
+                                📄 装饰器
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/Python/进程和线程.htm" target="_blank">
+                                📄 进程和线程
+                            </a>
+                        </li>
+                        
+                    </div>
+                    <button class="toggle-btn">
+                        ▼ 展开更多 (5 篇)
+                    </button>
+                    
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 Pytorch
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            4 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/Pytorch/Batchnorm layernorm.htm" target="_blank">
+                                📄 Batchnorm layernorm
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/Pytorch/cuda 多进程.htm" target="_blank">
+                                📄 cuda 多进程
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/Pytorch/广播.htm" target="_blank">
+                                📄 广播
+                            </a>
+                        </li>
+                        
+                    <div class="hidden-notes">
+                    
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/Pytorch/花式索引.htm" target="_blank">
+                                📄 花式索引
+                            </a>
+                        </li>
+                        
+                    </div>
+                    <button class="toggle-btn">
+                        ▼ 展开更多 (1 篇)
+                    </button>
+                    
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 Scikit-learn
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            1 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/Scikit-learn/Kfold.htm" target="_blank">
+                                📄 Kfold
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 huggingface
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            3 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/huggingface/datasets.htm" target="_blank">
+                                📄 datasets
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/huggingface/sentence_transformers.htm" target="_blank">
+                                📄 sentence_transformers
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="各种库/huggingface/transformers_Trainer.htm" target="_blank">
+                                📄 transformers_Trainer
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                </div>
+            </div>
+            
+
+            <div class="main-category content-small">
+                <div class="category-header">
+                    <h2>
+                        📂 图像相关
+                        <span class="category-count">8 篇</span>
+                    </h2>
+                </div>
+                <div class="category-content">
+            
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 图像生成
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            7 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="图像相关/图像生成/Classifier-free Guidance.htm" target="_blank">
+                                📄 Classifier-free Guidance
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="图像相关/图像生成/DDPM.htm" target="_blank">
+                                📄 DDPM
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="图像相关/图像生成/Score base diffusion models.htm" target="_blank">
+                                📄 Score base diffusion models
+                            </a>
+                        </li>
+                        
+                    <div class="hidden-notes">
+                    
+                        <li class="note-item">
+                            <a class="note-link" href="图像相关/图像生成/Stable diffusion代码.htm" target="_blank">
+                                📄 Stable diffusion代码
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="图像相关/图像生成/VAE paper.htm" target="_blank">
+                                📄 VAE paper
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="图像相关/图像生成/vae.htm" target="_blank">
+                                📄 vae
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="图像相关/图像生成/变分推理.htm" target="_blank">
+                                📄 变分推理
+                            </a>
+                        </li>
+                        
+                    </div>
+                    <button class="toggle-btn">
+                        ▼ 展开更多 (4 篇)
+                    </button>
+                    
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 算法
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            1 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="图像相关/算法/CNN.htm" target="_blank">
+                                📄 CNN
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                </div>
+            </div>
+            
+
+            <div class="main-category content-small">
+                <div class="category-header">
+                    <h2>
+                        📂 数学
+                        <span class="category-count">8 篇</span>
+                    </h2>
+                </div>
+                <div class="category-content">
+            
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 其他知识
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            1 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="数学/其他知识/How to learn.htm" target="_blank">
+                                📄 How to learn
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 微积分
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            1 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="数学/微积分/Unnamed__60.htm" target="_blank">
+                                📄 Unnamed__60
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 线性代数
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            3 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="数学/线性代数/矩阵的转置.htm" target="_blank">
+                                📄 矩阵的转置
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="数学/线性代数/线代part-1.htm" target="_blank">
+                                📄 线代part-1
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="数学/线性代数/线代part-2.htm" target="_blank">
+                                📄 线代part-2
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 统计学
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            3 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="数学/统计学/KL散度.htm" target="_blank">
+                                📄 KL散度
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="数学/统计学/P-value.htm" target="_blank">
+                                📄 P-value
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="数学/统计学/调和平均数.htm" target="_blank">
+                                📄 调和平均数
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                </div>
+            </div>
+            
+
+            <div class="main-category content-medium">
+                <div class="category-header">
+                    <h2>
+                        📂 机器学习
+                        <span class="category-count">22 篇</span>
+                    </h2>
+                </div>
+                <div class="category-content">
+            
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 其他算法
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            4 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/其他算法/GNN.htm" target="_blank">
+                                📄 GNN
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/其他算法/Pointwise pairwise listwise.htm" target="_blank">
+                                📄 Pointwise pairwise listwise
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/其他算法/对比学习.htm" target="_blank">
+                                📄 对比学习
+                            </a>
+                        </li>
+                        
+                    <div class="hidden-notes">
+                    
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/其他算法/聚类.htm" target="_blank">
+                                📄 聚类
+                            </a>
+                        </li>
+                        
+                    </div>
+                    <button class="toggle-btn">
+                        ▼ 展开更多 (1 篇)
+                    </button>
+                    
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 树模型
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            6 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/树模型/Catboost.htm" target="_blank">
+                                📄 Catboost
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/树模型/GBDT.htm" target="_blank">
+                                📄 GBDT
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/树模型/LightGBM.htm" target="_blank">
+                                📄 LightGBM
+                            </a>
+                        </li>
+                        
+                    <div class="hidden-notes">
+                    
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/树模型/Random forest.htm" target="_blank">
+                                📄 Random forest
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/树模型/XGB.htm" target="_blank">
+                                📄 XGB
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/树模型/分类和回归树.htm" target="_blank">
+                                📄 分类和回归树
+                            </a>
+                        </li>
+                        
+                    </div>
+                    <button class="toggle-btn">
+                        ▼ 展开更多 (3 篇)
+                    </button>
+                    
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 神经网络
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            6 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/神经网络/Basic.htm" target="_blank">
+                                📄 Basic
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/神经网络/batch_size.htm" target="_blank">
+                                📄 batch_size
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/神经网络/Google 调参playbook.htm" target="_blank">
+                                📄 Google 调参playbook
+                            </a>
+                        </li>
+                        
+                    <div class="hidden-notes">
+                    
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/神经网络/反向传播实现.htm" target="_blank">
+                                📄 反向传播实现
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/神经网络/损失函数.htm" target="_blank">
+                                📄 损失函数
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/神经网络/激活函数.htm" target="_blank">
+                                📄 激活函数
+                            </a>
+                        </li>
+                        
+                    </div>
+                    <button class="toggle-btn">
+                        ▼ 展开更多 (3 篇)
+                    </button>
+                    
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 线性模型
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            4 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/线性模型/Lasso regression.htm" target="_blank">
+                                📄 Lasso regression
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/线性模型/Logistic regression.htm" target="_blank">
+                                📄 Logistic regression
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/线性模型/Ridge regression.htm" target="_blank">
+                                📄 Ridge regression
+                            </a>
+                        </li>
+                        
+                    <div class="hidden-notes">
+                    
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/线性模型/SVM.htm" target="_blank">
+                                📄 SVM
+                            </a>
+                        </li>
+                        
+                    </div>
+                    <button class="toggle-btn">
+                        ▼ 展开更多 (1 篇)
+                    </button>
+                    
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 降维
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            2 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/降维/SVD PCA.htm" target="_blank">
+                                📄 SVD PCA
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="机器学习/降维/可视化降维三巨头：PCA、t-SNE、UMAP.htm" target="_blank">
+                                📄 可视化降维三巨头：PCA、t-SNE、UMAP
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                
+                </div>
+            </div>
+            
+
+            <div class="main-category content-large">
+                <div class="category-header">
+                    <h2>
+                        📂 自然语言处理
+                        <span class="category-count">43 篇</span>
+                    </h2>
+                </div>
+                <div class="category-content">
+            
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 LLM
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            10 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/LLM/LLAMA.htm" target="_blank">
+                                📄 LLAMA
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/LLM/LLM知识.htm" target="_blank">
+                                📄 LLM知识
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/LLM/MLA.htm" target="_blank">
+                                📄 MLA
+                            </a>
+                        </li>
+                        
+                    <div class="hidden-notes">
+                    
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/LLM/MOE.htm" target="_blank">
+                                📄 MOE
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/LLM/MTP.htm" target="_blank">
+                                📄 MTP
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/LLM/Prenorm vs postnorm.htm" target="_blank">
+                                📄 Prenorm vs postnorm
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/LLM/Reasoning.htm" target="_blank">
+                                📄 Reasoning
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/LLM/位置编码.htm" target="_blank">
+                                📄 位置编码
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/LLM/量化-2.htm" target="_blank">
+                                📄 量化-2
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/LLM/量化_1.htm" target="_blank">
+                                📄 量化_1
+                            </a>
+                        </li>
+                        
+                    </div>
+                    <button class="toggle-btn">
+                        ▼ 展开更多 (7 篇)
+                    </button>
+                    
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 应用
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            7 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/应用/Advanced Context engineer in coding agent.htm" target="_blank">
+                                📄 Advanced Context engineer in coding agent
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/应用/Agent.htm" target="_blank">
+                                📄 Agent
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/应用/Chunking.htm" target="_blank">
+                                📄 Chunking
+                            </a>
+                        </li>
+                        
+                    <div class="hidden-notes">
+                    
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/应用/Context engineer.htm" target="_blank">
+                                📄 Context engineer
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/应用/Context engineering-LiHongYi.htm" target="_blank">
+                                📄 Context engineering-LiHongYi
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/应用/Extractive QA.htm" target="_blank">
+                                📄 Extractive QA
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/应用/RAG.htm" target="_blank">
+                                📄 RAG
+                            </a>
+                        </li>
+                        
+                    </div>
+                    <button class="toggle-btn">
+                        ▼ 展开更多 (4 篇)
+                    </button>
+                    
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 教程
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            8 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/教程/[1hr Talk] Intro to Large Language Models.htm" target="_blank">
+                                📄 [1hr Talk] Intro to Large Language Models
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/教程/Andrej Karpathy微软Build大会.htm" target="_blank">
+                                📄 Andrej Karpathy微软Build大会
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/教程/Build makemore.htm" target="_blank">
+                                📄 Build makemore
+                            </a>
+                        </li>
+                        
+                    <div class="hidden-notes">
+                    
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/教程/Let&#x27;s build GPT_ from scratch, in code, spelled out.htm" target="_blank">
+                                📄 Let&#x27;s build GPT_ from scratch, in code, spelled out
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/教程/Let&#x27;s build the GPT Tokenizer.htm" target="_blank">
+                                📄 Let&#x27;s build the GPT Tokenizer
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/教程/let&#x27;s dive deep into chatgpt.htm" target="_blank">
+                                📄 let&#x27;s dive deep into chatgpt
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/教程/Let&#x27;s reproduce GPT-2(124M).htm" target="_blank">
+                                📄 Let&#x27;s reproduce GPT-2(124M)
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/教程/如何使用LLM.htm" target="_blank">
+                                📄 如何使用LLM
+                            </a>
+                        </li>
+                        
+                    </div>
+                    <button class="toggle-btn">
+                        ▼ 展开更多 (5 篇)
+                    </button>
+                    
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 算法
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            8 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/算法/BGE.htm" target="_blank">
+                                📄 BGE
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/算法/Bi-encoder_ Cross encoder.htm" target="_blank">
+                                📄 Bi-encoder_ Cross encoder
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/算法/bm25.htm" target="_blank">
+                                📄 bm25
+                            </a>
+                        </li>
+                        
+                    <div class="hidden-notes">
+                    
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/算法/Deberta.htm" target="_blank">
+                                📄 Deberta
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/算法/Lora.htm" target="_blank">
+                                📄 Lora
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/算法/Rnn Lstm Gru.htm" target="_blank">
+                                📄 Rnn Lstm Gru
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/算法/Roberta.htm" target="_blank">
+                                📄 Roberta
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/算法/Transformer.htm" target="_blank">
+                                📄 Transformer
+                            </a>
+                        </li>
+                        
+                    </div>
+                    <button class="toggle-btn">
+                        ▼ 展开更多 (5 篇)
+                    </button>
+                    
+                    </ul>
+                </div>
+                
+                <div class="sub-category">
+                    <div class="sub-category-name">
+                        📁 课程
+                        <span style="margin-left: auto; font-size: 0.8em; color: #666;">
+                            10 篇
+                        </span>
+                    </div>
+                    <ul class="notes-list">
+                
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/课程/[李宏毅]- 生成式AI时代下的机器学习2025-第7-8讲.htm" target="_blank">
+                                📄 [李宏毅]- 生成式AI时代下的机器学习2025-第7-8讲
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/课程/CS336-2025-lec1.htm" target="_blank">
+                                📄 CS336-2025-lec1
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/课程/CS336-2025-lec10.htm" target="_blank">
+                                📄 CS336-2025-lec10
+                            </a>
+                        </li>
+                        
+                    <div class="hidden-notes">
+                    
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/课程/CS336-2025-lec2.htm" target="_blank">
+                                📄 CS336-2025-lec2
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/课程/CS336-2025-lec3-4.htm" target="_blank">
+                                📄 CS336-2025-lec3-4
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/课程/CS336-2025-lec5.htm" target="_blank">
+                                📄 CS336-2025-lec5
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/课程/CS336-2025-lec6.htm" target="_blank">
+                                📄 CS336-2025-lec6
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/课程/CS336-2025-lec7.htm" target="_blank">
+                                📄 CS336-2025-lec7
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/课程/CS336-2025-lec8.htm" target="_blank">
+                                📄 CS336-2025-lec8
+                            </a>
+                        </li>
+                        
+                        <li class="note-item">
+                            <a class="note-link" href="自然语言处理/课程/CS336-2025-lec9.htm" target="_blank">
+                                📄 CS336-2025-lec9
+                            </a>
+                        </li>
+                        
+                    </div>
+                    <button class="toggle-btn">
+                        ▼ 展开更多 (7 篇)
+                    </button>
+                    
+                    </ul>
+                </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="stats">
+            <h3>📊 知识库统计</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">知识大类</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">26</span>
+                    <span class="stat-label">子分类</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">113</span>
+                    <span class="stat-label">笔记数量</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2025-10-30</span>
+                    <span class="stat-label">更新日期</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 展开/折叠功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为所有切换按钮添加点击事件
+            document.querySelectorAll('.toggle-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const hiddenNotes = this.previousElementSibling;
+                    const isHidden = hiddenNotes.classList.contains('hidden-notes');
+                    
+                    if (isHidden) {
+                        // 展开隐藏的笔记
+                        hiddenNotes.classList.remove('hidden-notes');
+                        this.innerHTML = '▲ 收起';
+                    } else {
+                        // 隐藏笔记
+                        hiddenNotes.classList.add('hidden-notes');
+                        this.innerHTML = '▼ 展开更多 (' + hiddenNotes.children.length + ' 篇)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

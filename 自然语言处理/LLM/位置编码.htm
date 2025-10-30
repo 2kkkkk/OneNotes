@@ -1,0 +1,495 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=位置编码.htm>
+<link rel=File-List href="位置编码.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:31.059in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.6458in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'>位置编码</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.5979in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>7</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>26</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>9:21</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:31.059in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+bold' lang=en-US>1.</span><span style='font-weight:bold' lang=zh-CN>正弦</span><span
+style='font-weight:bold' lang=en-US>-</span><span style='font-weight:bold'
+lang=zh-CN>余弦位置编码</span></p>
+
+<p style='margin:0in;margin-left:3.375in'><img src="位置编码.files/image001.jpg"
+width=1424 height=519></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=en-US>pos</span><span lang=zh-CN>表示输入序列的位置索引，</span><span lang=en-US>d</span><span
+lang=zh-CN>表示</span><span lang=en-US>embedding</span><span lang=zh-CN>的维度，</span><span
+lang=en-US>i</span><span lang=zh-CN>表示</span><span lang=en-US>embedding</span><span
+lang=zh-CN>的位置索引。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>三角函数的</span><span style='font-weight:bold' lang=zh-CN>周期</span><span
+lang=zh-CN>为</span><span lang=en-US>embedding</span><span lang=zh-CN>位置索引来决定，</span><span
+lang=en-US> </span><span lang=zh-CN>随着</span><span lang=en-US>i</span><span
+lang=zh-CN>的增加，函数的频率会降低，周期变长，也就是</span><span lang=en-US>embedding</span><span
+lang=zh-CN>后面的维度的周期要长，振荡缓慢。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=en-US>pos</span><span lang=zh-CN>相当于是三角函数</span><span style='font-weight:
+bold' lang=en-US>cos(x)</span><span lang=zh-CN>的</span><span style='font-weight:
+bold' lang=zh-CN>中的</span><span style='font-weight:bold' lang=en-US>x</span><span
+lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>正余弦位置编码具有</span><span style='font-weight:bold' lang=zh-CN>远程衰减</span><span
+lang=zh-CN>性质：对于两个相同的词向量，如果它们的位置距离越近，它们的内积分数越高，反之越低。随着</span><span lang=en-US>q,k</span><span
+lang=zh-CN>之间距离的增加，它们的内积分数震荡衰减。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>正余弦位置编码是绝对位置编码，但是三角函数的数学性质使其也能够捕捉一些相对位置信息，具体来说：距离相近的位置，位置编码的差异小，距离相远的位置，位置编码的差异大（远程衰减）。</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+style='font-weight:bold'>2.ROPE</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>通过绝对位置编码的方式实现了相对位置编码。</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>不对</span><span lang=en-US>token embedding</span><span lang=zh-CN>加入位置信息</span><span
+lang=en-US>position embedding</span><span lang=zh-CN>，而是</span><span
+style='font-weight:bold' lang=zh-CN>对</span><span style='font-weight:bold'
+lang=en-US>q</span><span style='font-weight:bold' lang=zh-CN>和</span><span
+style='font-weight:bold' lang=en-US>k</span><span style='font-weight:bold'
+lang=zh-CN>注入位置信息（绝对位置编码）</span><span lang=zh-CN>，如果注入位置信息后的</span><span
+lang=en-US>q</span><span lang=zh-CN>和</span><span lang=en-US>k</span><span
+lang=zh-CN>，它们的内积可以表示为它们之间相对距离</span><span lang=en-US>m-n</span><span
+lang=zh-CN>的函数，那么就</span><span style='font-weight:bold' lang=zh-CN>相当于将相对位置</span><span
+style='font-weight:bold' lang=en-US>m-n</span><span style='font-weight:bold'
+lang=zh-CN>引入到了</span><span style='font-weight:bold' lang=en-US>q</span><span
+style='font-weight:bold' lang=zh-CN>和</span><span style='font-weight:bold'
+lang=en-US>k</span><span style='font-weight:bold' lang=zh-CN>的内积计算中了，实现了相对位置编码。</span><span
+lang=zh-CN>对不同位置的</span><span lang=en-US>q,k</span><span lang=zh-CN>向量进行不同角度的旋转，刚好满足这个性质。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>对向量</span><span lang=en-US>qm</span><span lang=zh-CN>旋转</span><span
+lang=en-US>m\theta</span><span lang=zh-CN>个角度，即对向量</span><span lang=en-US>q</span><span
+lang=zh-CN>左乘一个旋转矩阵：</span></p>
+
+<p style='margin:0in;margin-left:5.25in'><img src="位置编码.files/image002.jpg"
+width=1130 height=298></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>对向量</span><span lang=en-US>km</span><span lang=zh-CN>旋转</span><span
+lang=en-US>m\theta</span><span lang=zh-CN>个角度，即对向量</span><span lang=en-US>k</span><span
+lang=zh-CN>左乘一个旋转矩阵：</span></p>
+
+<p style='margin:0in;margin-left:5.25in'><img src="位置编码.files/image003.jpg"
+width=1142 height=273></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>对施加了旋转矩阵后的</span><span lang=en-US>qm,</span><span lang=zh-CN>和</span><span
+lang=en-US>kn,</span><span lang=zh-CN>进行向量点积，</span><span lang=en-US>m</span><span
+lang=zh-CN>和</span><span lang=en-US>n</span><span lang=zh-CN>表示</span><span
+lang=en-US>token</span><span lang=zh-CN>的位置：</span></p>
+
+<p style='margin:0in;margin-left:3.0in'><img src="位置编码.files/image004.jpg"
+width=1811 height=328></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>扩展到多维，分成</span><span lang=en-US>d/2</span><span lang=zh-CN>个组，每组进行旋转，每组旋转的基础角度</span><span
+lang=en-US>\theta</span><span lang=zh-CN>不同，维度低的基础旋转角度大，维度高的基础旋转角度小</span><span
+lang=en-US>(</span><span lang=zh-CN>和正余弦编码的</span><span lang=en-US>\theta</span><span
+lang=zh-CN>类似</span><span lang=en-US>)</span><span lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:3.0in'><img src="位置编码.files/image005.jpg"
+width=1890 height=661></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>实现方式有</span><span lang=en-US>2</span><span lang=zh-CN>种：</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold' lang=en-US>1</span><span style='font-weight:bold'
+lang=zh-CN>）转到复数域，</span><span style='font-weight:bold' lang=en-US>llama</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=en-US>xq</span><span lang=zh-CN>，</span><span lang=en-US>xk</span><span
+lang=zh-CN>，</span><span lang=en-US>xv</span><span lang=zh-CN>都是</span><span
+lang=en-US>4</span><span lang=zh-CN>维的，(B, </span><span lang=en-US><span
+style='mso-spacerun:yes'> </span></span><span lang=zh-CN>T,</span><span
+lang=en-US> n_head</span><span lang=zh-CN>， </span><span lang=en-US>head_dim</span><span
+lang=zh-CN>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=en-US>xq, xk = </span><span lang=zh-CN>apply_rotary_emb(xq,</span><span
+lang=en-US> </span><span lang=zh-CN>xk, freqs_cis) </span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>def
+apply_rotary_emb(</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>xq: torch.Tensor,</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>xk: torch.Tensor,</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>freqs_cis: torch.Tensor,</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>)
+-&gt; Tuple[torch.Tensor, torch.Tensor]:</p>
+
+<p style='margin:0in;margin-left:.75in;font-size:36.0pt'><span
+style='font-family:微软雅黑' lang=zh-CN><span style='mso-spacerun:yes'>   
+</span>xq_ = torch.view_as_complex(xq.float().reshape(*xq.shape[:-1], -1, 2))</span><span
+style='font-family:微软雅黑' lang=en-US> </span><span style='font-weight:bold;
+font-family:微软雅黑;background:lime;mso-highlight:lime' lang=en-US>#</span><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=zh-CN>把最后一维拆分成</span><span style='font-weight:bold;font-family:微软雅黑;
+background:lime;mso-highlight:lime' lang=en-US>2</span><span style='font-weight:
+bold;font-family:微软雅黑;background:lime;mso-highlight:lime' lang=zh-CN>个维度，原来</span><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=en-US>xq</span><span style='font-weight:bold;font-family:微软雅黑;background:
+lime;mso-highlight:lime' lang=zh-CN>是(B, </span><span style='font-weight:bold;
+font-family:微软雅黑;background:lime;mso-highlight:lime' lang=en-US><span
+style='mso-spacerun:yes'> </span></span><span style='font-weight:bold;
+font-family:微软雅黑;background:lime;mso-highlight:lime' lang=zh-CN>T,</span><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=en-US> n_head</span><span style='font-weight:bold;font-family:微软雅黑;
+background:lime;mso-highlight:lime' lang=zh-CN>， </span><span style='font-family:
+微软雅黑' lang=en-US>head_dim</span><span style='font-weight:bold;font-family:微软雅黑;
+background:lime;mso-highlight:lime' lang=zh-CN>)，现在reshape(*xq.shape[:-1], -1,
+2)后是(B, </span><span style='font-weight:bold;font-family:微软雅黑;background:lime;
+mso-highlight:lime' lang=en-US><span style='mso-spacerun:yes'> </span></span><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=zh-CN>T,</span><span style='font-weight:bold;font-family:微软雅黑;background:
+lime;mso-highlight:lime' lang=en-US> n_head</span><span style='font-weight:
+bold;font-family:微软雅黑;background:lime;mso-highlight:lime' lang=zh-CN>，</span><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=en-US> head_dim//2</span><span style='font-weight:bold;font-family:微软雅黑;
+background:lime;mso-highlight:lime' lang=zh-CN>，</span><span style='font-weight:
+bold;font-family:微软雅黑;background:lime;mso-highlight:lime' lang=en-US> 2</span><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=zh-CN>)，将最后这个维度的两个数，看成是复数的实部和虚部，也就是将</span><span style='font-weight:bold;
+font-family:微软雅黑;background:lime;mso-highlight:lime' lang=en-US>q</span><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=zh-CN>向量</span><span style='font-weight:bold;font-family:微软雅黑;background:
+lime;mso-highlight:lime' lang=en-US>head_dim</span><span style='font-weight:
+bold;font-family:微软雅黑;background:lime;mso-highlight:lime' lang=zh-CN>个维度进行两两组合，组合成</span><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=en-US>head_dim//2</span><span style='font-weight:bold;font-family:微软雅黑;
+background:lime;mso-highlight:lime' lang=zh-CN>个组，每个组是一个</span><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=en-US>2</span><span style='font-weight:bold;font-family:微软雅黑;background:
+lime;mso-highlight:lime' lang=zh-CN>维向量，然后将这个</span><span style='font-weight:
+bold;font-family:微软雅黑;background:lime;mso-highlight:lime' lang=en-US>2</span><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=zh-CN>维向量用复数表示，</span><span style='font-weight:bold;font-family:微软雅黑;
+background:lime;mso-highlight:lime' lang=en-US>a*</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSup><m:sSupPr><m:ctrlPr/></m:sSupPr><m:e><m:r><m:t>&#119838;</m:t></m:r></m:e><m:sup><m:r><m:t>&#119842;</m:t></m:r><m:r><m:t>&#120521;</m:t></m:r></m:sup></m:sSup><m:r><m:t>&#0;</m:t></m:r><m:r><m:t>方便进行后续</m:t></m:r><m:r><m:t>的旋转。</m:t></m:r><m:r><m:t>&#119855;&#119842;&#119838;&#119856;</m:t></m:r><m:r><m:t>_</m:t></m:r><m:r><m:t>&#119834;&#119852;</m:t></m:r><m:r><m:t>_</m:t></m:r><m:r><m:t>&#119836;&#119848;&#119846;&#119849;&#119845;&#119838;&#119857;</m:t></m:r><m:r><m:t>后</m:t></m:r><m:r><m:t>&#119857;&#119850;</m:t></m:r><m:r><m:t>_</m:t></m:r><m:r><m:t>的维度是</m:t></m:r></m:oMath><![endif]--><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=zh-CN>(B, </span><span style='font-weight:bold;font-family:微软雅黑;
+background:lime;mso-highlight:lime' lang=en-US><span
+style='mso-spacerun:yes'> </span></span><span style='font-weight:bold;
+font-family:微软雅黑;background:lime;mso-highlight:lime' lang=zh-CN>T,</span><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=en-US> n_head</span><span style='font-weight:bold;font-family:微软雅黑;
+background:lime;mso-highlight:lime' lang=zh-CN>， </span><span style='font-weight:
+bold;font-family:微软雅黑;background:lime;mso-highlight:lime' lang=en-US>head_dim//2</span><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=zh-CN>），仍然是</span><span style='font-weight:bold;font-family:微软雅黑;
+background:lime;mso-highlight:lime' lang=en-US>4</span><span style='font-weight:
+bold;font-family:微软雅黑;background:lime;mso-highlight:lime' lang=zh-CN>维张量。</span><![if !msEquation]><img
+src="位置编码.files/image006.png" width=4368 height=495><![endif]></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN><span style='mso-spacerun:yes'>    </span>xk_ =
+torch.view_as_complex(xk.float().reshape(*xk.shape[:-1], -1, 2))</span><span
+lang=en-US> </span><span style='font-weight:bold;background:lime;mso-highlight:
+lime' lang=en-US>#</span><span style='font-weight:bold;background:lime;
+mso-highlight:lime' lang=zh-CN>对</span><span style='font-weight:bold;
+background:lime;mso-highlight:lime' lang=en-US>k</span><span style='font-weight:
+bold;background:lime;mso-highlight:lime' lang=zh-CN>也进行同样的操作，</span></p>
+
+<p style='margin:0in;margin-left:11.25in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US><span
+style='mso-spacerun:yes'>                                           </span>k</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>shape</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>(B, </span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US><span
+style='mso-spacerun:yes'> </span></span><span style='font-weight:bold;
+background:lime;mso-highlight:lime' lang=zh-CN>T,</span><span style='font-weight:
+bold;background:lime;mso-highlight:lime' lang=en-US> n_head</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>， </span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>head_dim//2</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>）</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN><span style='mso-spacerun:yes'>    </span>freqs_cis =
+reshape_for_broadcast(freqs_cis, xq_)</span><span lang=en-US> </span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>#</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>将</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>freqs_cis
+</span><span style='font-weight:bold;background:lime;mso-highlight:lime'
+lang=zh-CN>的</span><span style='font-weight:bold;background:lime;mso-highlight:
+lime' lang=en-US>shape</span><span style='font-weight:bold;background:lime;
+mso-highlight:lime' lang=zh-CN>是（</span><span style='font-weight:bold;
+background:lime;mso-highlight:lime' lang=en-US>1</span><span style='font-weight:
+bold;background:lime;mso-highlight:lime' lang=zh-CN>，</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>T</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>1</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>head_dim//2</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>）</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN><span style='mso-spacerun:yes'>    </span>xq_out =
+torch.view_as_real(xq_ * freqs_cis).flatten(3)</span><span lang=en-US> </span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>#xq_*freqs_cis</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>是张量对应元素相乘，每个元素都是复数，两个复数相乘，第一个复数是</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>q</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，第二个复数的模为</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>1</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，角度为</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>/theta</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，相当于对q进行旋转</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>\theta</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，旋转后得到仍然是复数，</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>shape</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>是(B, </span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US><span
+style='mso-spacerun:yes'> </span></span><span style='font-weight:bold;
+background:lime;mso-highlight:lime' lang=zh-CN>T,</span><span style='font-weight:
+bold;background:lime;mso-highlight:lime' lang=en-US> n_head</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>， </span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>head_dim//2</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>），再经过</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>view_as_real</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，将复数变为实数，</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>shape</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>变成了(B, </span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US><span
+style='mso-spacerun:yes'> </span></span><span style='font-weight:bold;
+background:lime;mso-highlight:lime' lang=zh-CN>T,</span><span style='font-weight:
+bold;background:lime;mso-highlight:lime' lang=en-US> n_head</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>， </span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>head_dim//2</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>2</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>），再经过</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>flatten(3)</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，从第</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>3</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>维开始拍扁，</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>shape</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>变成了(B, </span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US><span
+style='mso-spacerun:yes'> </span></span><span style='font-weight:bold;
+background:lime;mso-highlight:lime' lang=zh-CN>T,</span><span style='font-weight:
+bold;background:lime;mso-highlight:lime' lang=en-US> n_head</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>， head</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>_dim</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>）</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>,</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>变回了</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>xq</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>原始的形状了。</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>xk_out = torch.view_as_real(xk_ *
+freqs_cis).flatten(3)</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>return xq_out.type_as(xq),
+xk_out.type_as(xk)</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>def
+precompute_freqs_cis(dim: int, end: int, theta: float = 10000.0):</p>
+
+<p style='margin:0in;margin-left:.75in;font-size:36.0pt'><span
+style='font-family:微软雅黑' lang=zh-CN><span style='mso-spacerun:yes'>   
+</span>freqs = 1.0 / (theta ** (torch.arange(0, dim, 2)[: (dim // 2)].float() /
+dim))</span><span style='font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=en-US> </span><span style='font-weight:bold;font-family:微软雅黑;background:
+lime;mso-highlight:lime' lang=en-US>#freqs</span><span style='font-weight:bold;
+font-family:微软雅黑;background:lime;mso-highlight:lime' lang=zh-CN>即上图中的</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:t>&#120637;</m:t></m:r></m:oMath><![endif]--><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=en-US>0,</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:t>&#120637;</m:t></m:r></m:oMath><![endif]--><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=en-US>1,……</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:t>&#120637;</m:t></m:r></m:oMath><![endif]--><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=en-US>(d/2-1)</span><![if !msEquation]><img src="位置编码.files/image007.png"
+width=3899 height=125><![endif]></p>
+
+<p style='margin:0in;margin-left:11.25in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US><span
+style='mso-spacerun:yes'>                                               
+</span>#freqs</span><span style='font-weight:bold;background:lime;mso-highlight:
+lime' lang=zh-CN>是一维张量，长度为</span><span style='font-weight:bold;background:lime;
+mso-highlight:lime' lang=en-US>dim/2</span><span style='font-weight:bold;
+background:lime;mso-highlight:lime' lang=zh-CN>，这里的</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>dim</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>是</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>d_head</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，即</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>d_model//n_head</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN><span style='mso-spacerun:yes'>    </span>t = torch.arange(end,
+device=freqs.device)<span style='mso-spacerun:yes'>  </span># type: ignore</span><span
+lang=en-US> </span><span style='font-weight:bold;background:lime;mso-highlight:
+lime' lang=en-US><span style='mso-spacerun:yes'> </span>#t</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>是一维张量，</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>[0,1,2,…,end]</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>end</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>是序列最大长度，即</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>T</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN><span style='mso-spacerun:yes'>    </span>freqs = torch.outer(t,
+freqs).float()<span style='mso-spacerun:yes'>  </span># type: ignore</span><span
+lang=en-US> </span><span style='font-weight:bold;background:lime;mso-highlight:
+lime' lang=en-US>#t</span><span style='font-weight:bold;background:lime;
+mso-highlight:lime' lang=zh-CN>和</span><span style='font-weight:bold;
+background:lime;mso-highlight:lime' lang=en-US>freqs</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>进行</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>torch.outer()</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，即向量中的每一个元素与另外一个向量中的每一个元素相乘，得到是个矩阵，</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>size</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>是（</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>T</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>dim/2</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>），矩阵的第</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>[i,j]</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>个元素表示的是第</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>i</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>个</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>token</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，第</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>j</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>组</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>dim</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的旋转角度。</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-size:36.0pt'><span
+style='font-family:微软雅黑' lang=zh-CN><span style='mso-spacerun:yes'>   
+</span>freqs_cis = torch.polar(torch.ones_like(freqs), freqs) </span><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=zh-CN><span style='mso-spacerun:yes'> </span># complex64</span><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=en-US> #</span><span style='font-weight:bold;font-family:微软雅黑;background:
+lime;mso-highlight:lime' lang=zh-CN>将矩阵转化为复数形式，</span><span style='font-weight:
+bold;font-family:微软雅黑;background:lime;mso-highlight:lime' lang=en-US>shape</span><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=zh-CN>不变，freqs_cis的</span><span style='font-weight:bold;font-family:微软雅黑;
+background:lime;mso-highlight:lime' lang=en-US>shape</span><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=zh-CN>还是（</span><span style='font-weight:bold;font-family:微软雅黑;background:
+lime;mso-highlight:lime' lang=en-US>T</span><span style='font-weight:bold;
+font-family:微软雅黑;background:lime;mso-highlight:lime' lang=zh-CN>，</span><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=en-US>dim/2</span><span style='font-weight:bold;font-family:微软雅黑;
+background:lime;mso-highlight:lime' lang=zh-CN>），只不过每个元素是复数，用极坐标表示即</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSup><m:sSupPr><m:ctrlPr/></m:sSupPr><m:e><m:r><m:t>&#119942;</m:t></m:r></m:e><m:sup><m:r><m:t>&#119946;</m:t></m:r><m:r><m:t>&#120637;</m:t></m:r></m:sup></m:sSup><m:r><m:t>，</m:t></m:r></m:oMath><![endif]--><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=zh-CN>模长都为</span><span style='font-weight:bold;font-family:微软雅黑;
+background:lime;mso-highlight:lime' lang=en-US>1</span><span style='font-weight:
+bold;font-family:微软雅黑;background:lime;mso-highlight:lime' lang=zh-CN>，角度</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:t>&#120637;</m:t></m:r></m:oMath><![endif]--><span
+style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+lang=zh-CN>仍然是freqs 中的角度。</span><![if !msEquation]><img
+src="位置编码.files/image008.png" width=4368 height=248><![endif]></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>return freqs_cis</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>def
+reshape_for_broadcast(freqs_cis: torch.Tensor, x: torch.Tensor):</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>ndim = x.ndim</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>assert 0 &lt;= 1 &lt; ndim</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>assert freqs_cis.shape == (x.shape[1],
+x.shape[-1])</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN><span style='mso-spacerun:yes'>    </span>shape = [d if i == 1 or i
+== ndim - 1 else 1 for i, d in enumerate(x.shape)</span><span style='font-weight:
+bold;background:lime;mso-highlight:lime' lang=zh-CN>]</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US> #</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>将</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>freqs_cis<span
+style='mso-spacerun:yes'>  </span></span><span style='font-weight:bold;
+background:lime;mso-highlight:lime' lang=zh-CN>r</span><span style='font-weight:
+bold;background:lime;mso-highlight:lime' lang=en-US>eshape</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>成</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>xq_</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的形状，</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>shape</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>是（</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>1</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>T</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>1</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>head_dim//2</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>）</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>return freqs_cis.view(*shape)</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

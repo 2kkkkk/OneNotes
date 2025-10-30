@@ -1,0 +1,8 @@
+Transformer
+Rnn Lstm Gru
+Bi-encoder_ Cross encoder
+Lora
+BGE
+bm25
+Deberta
+Roberta

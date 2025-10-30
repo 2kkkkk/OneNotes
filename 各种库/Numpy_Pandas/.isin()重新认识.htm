@@ -1,0 +1,90 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=".isin()重新认识.htm">
+<link rel=File-List href=".isin()重新认识.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:30.4326in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:2.3465in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'><span lang=en-US>.isin()</span><span
+lang=zh-CN>重新认识</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:.4576in'>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>11:11</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.5465in;margin-left:0in;width:30.4326in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+bold' lang=en-US>x</span><span style='font-weight:bold' lang=zh-CN>是一个</span><span
+style='font-weight:bold' lang=en-US>series</span><span style='font-weight:bold'
+lang=zh-CN>，x</span><span style='font-weight:bold' lang=en-US>.isin(y)</span><span
+style='font-weight:bold' lang=zh-CN>返回的是个</span><span style='font-weight:bold'
+lang=en-US>bool series</span><span style='font-weight:bold' lang=zh-CN>，长度和x一样。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>要从df中筛选出MisconceptionAId
+MisconceptionBId MisconceptionCId MisconceptionDId
+同时包含在这个列表中的数据，也就是说，如果MisconceptionAId MisconceptionBId MisconceptionCId
+MisconceptionDId中有任意一个数不包含在misconception列表中，就剔除掉。<span style='font-weight:bold'>非常优雅的实现：</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+36.0pt'>misconception_columns = ['MisconceptionAId', 'MisconceptionBId',
+'MisconceptionCId', 'MisconceptionDId']</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+36.0pt'>misconception_list = mis_competition['MisconceptionId']</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+style='font-family:Consolas'># </span><span style='font-family:微软雅黑'>创建一个布尔掩码，检查每一行的所有</span><span
+style='font-family:Consolas'>Misconception</span><span style='font-family:微软雅黑'>列是否都在列表中或为</span><span
+style='font-family:Consolas'>NaN</span></code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+36.0pt'>mask = train_systhetic[misconception_columns].apply(</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+36.0pt'><span style='mso-spacerun:yes'>    </span>lambda x:
+x.isin(misconception_list) | x.isna()</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+36.0pt'>).all(axis=1)</code></p>
+
+<p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+36.0pt'>filtered_df = train_systhetic[mask]</code></p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

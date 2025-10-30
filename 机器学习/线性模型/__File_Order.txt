@@ -1,0 +1,4 @@
+Lasso regression
+Ridge regression
+Logistic regression
+SVM

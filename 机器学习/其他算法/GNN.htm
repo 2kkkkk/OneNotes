@@ -1,0 +1,608 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=GNN.htm>
+<link rel=File-List href="GNN.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:27.3881in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.193in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt' lang=en-US>GNN</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.5979in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>9</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>21</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>9:14</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.5277in;margin-left:.518in;width:26.8701in'>
+
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <p style='margin:0in;font-size:48.0pt'><span style='font-weight:bold;
+ font-family:-apple-system;color:black'>A Gentle Introduction to Graph Neural
+ Networks</span><span style='font-family:Aptos'>来自</span><span
+ style='font-family:微软雅黑'> &lt;</span><a
+ href="https://distill.pub/2021/gnn-intro/"><span style='font-family:微软雅黑'>https://distill.pub/2021/gnn-intro/</span></a><span
+ style='font-family:微软雅黑'>&gt; </span></p>
+ <p style='margin:0in;margin-left:.75in'><img src="GNN.files/image001.jpg"
+ width=1795 height=884></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>图由节点</span><span
+ lang=en-US>V</span><span lang=zh-CN>，边</span><span lang=en-US>E</span><span
+ lang=zh-CN>，全局信息</span><span lang=en-US>U</span><span lang=zh-CN>组成。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>可以用邻接矩阵表示图的连通性，即边，如下图中间的矩阵，对于无向图来说，邻接矩阵是对称的。</p>
+ <p style='margin:0in;margin-left:1.125in'><img src="GNN.files/image002.jpg"
+ width=1921 height=745></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>There are three
+ general types of prediction tasks on graphs: graph-level, node-level, and
+ edge-level.</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:bold;font-style:normal'>
+  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold'><span style='font-family:微软雅黑;font-size:36.0pt;
+      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+      font-size:36.0pt'>Graph-level task</span></li>
+ </ol>
+ <p style='margin:0in;margin-left:2.625in'><img src="GNN.files/image003.jpg"
+ width=1543 height=940></p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:bold;font-style:normal'>
+  <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold'><span style='font-family:微软雅黑;font-size:36.0pt;
+      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+      font-size:36.0pt'>Node-level task</span></li>
+ </ol>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>预测每个节点的性质</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:bold;font-style:normal'>
+  <li value=3 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold'><span style='font-family:微软雅黑;font-size:36.0pt;
+      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+      font-size:36.0pt' lang=en-US>E</span><span style='font-family:微软雅黑;
+      font-size:36.0pt;font-weight:bold;font-style:normal;font-weight:bold;
+      font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>dge-level</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;font-weight:bold;font-style:
+      normal;font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US> </span><span
+      style='font-family:微软雅黑;font-size:36.0pt;font-weight:bold;font-style:
+      normal;font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>task</span></li>
+ </ol>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>预测每条边的性质</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:42.0pt'><span
+ style='font-weight:bold'>The challenges of using graphs in machine learning</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>1.</span><span
+ lang=zh-CN>图的连通性表示。可以用邻接矩阵表示，但是对于一张大图来说，邻接矩阵通常是稀疏的，稀疏矩阵的处理效率较低。并且，同一张图可以有多个邻接矩阵的表示（只需要变换节点的顺序，但还是同一张gra</span><span
+ lang=en-US>ph</span><span lang=zh-CN>，如下图所示，这些矩阵表示都是同一张</span><span
+ lang=en-US>graph</span><span lang=zh-CN>），也就是说</span><span lang=en-US>graph</span><span
+ lang=zh-CN>是</span><span lang=en-US>permutation invariant</span><span
+ lang=zh-CN>，邻接矩阵变了，图是不变的，但是我们的神经网络的输出通常是变的。</span></p>
+ <p style='margin:0in;margin-left:1.875in'><img src="GNN.files/image004.jpg"
+ width=1775 height=764></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>解决方法是用邻接列表来代替邻接矩阵，只存储边。</p>
+ <p style='margin:0in;margin-left:2.625in'><img src="GNN.files/image005.jpg"
+ width=1549 height=781></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:42.0pt'><span
+ style='font-weight:bold'>Graph Neural Networks</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>A GNN is an
+ optimizable transformation on all attributes of the graph (nodes, edges,
+ global-context) that preserves graph symmetries (permutation invariances). </p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=en-US>GNN</span><span style='font-weight:bold'
+ lang=zh-CN>就是一种作用在图的节点、边、全局信息上的一种可优化的变换，同时不改变图的结构。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>GNNs adopt a
+ “graph-in, graph-out” architecture meaning that these model types accept a
+ graph as input, with information loaded into its nodes, edges and
+ global-context, and progressively transform these embeddings, without changing
+ the connectivity of the input graph.</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=en-US>GNN</span><span style='font-weight:bold'
+ lang=zh-CN>的输入是图，输出也是图。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:42.0pt;font-weight:bold;font-style:normal'>
+  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold'><span style='font-family:微软雅黑;font-size:42.0pt;
+      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+      font-size:42.0pt' lang=zh-CN>最简单的</span><span style='font-family:微软雅黑;
+      font-size:42.0pt;font-weight:bold;font-style:normal;font-weight:bold;
+      font-family:微软雅黑;font-size:42.0pt' lang=en-US>GNN</span><span
+      style='font-family:微软雅黑;font-size:42.0pt;font-weight:bold;font-style:
+      normal;font-weight:bold;font-family:微软雅黑;font-size:42.0pt' lang=zh-CN>架构：对</span><span
+      style='font-family:微软雅黑;font-size:42.0pt;font-weight:bold;font-style:
+      normal;font-weight:bold;font-family:微软雅黑;font-size:42.0pt' lang=en-US>V</span><span
+      style='font-family:微软雅黑;font-size:42.0pt;font-weight:bold;font-style:
+      normal;font-weight:bold;font-family:微软雅黑;font-size:42.0pt' lang=zh-CN>、</span><span
+      style='font-family:微软雅黑;font-size:42.0pt;font-weight:bold;font-style:
+      normal;font-weight:bold;font-family:微软雅黑;font-size:42.0pt' lang=en-US>E</span><span
+      style='font-family:微软雅黑;font-size:42.0pt;font-weight:bold;font-style:
+      normal;font-weight:bold;font-family:微软雅黑;font-size:42.0pt' lang=zh-CN>、</span><span
+      style='font-family:微软雅黑;font-size:42.0pt;font-weight:bold;font-style:
+      normal;font-weight:bold;font-family:微软雅黑;font-size:42.0pt' lang=en-US>U</span><span
+      style='font-family:微软雅黑;font-size:42.0pt;font-weight:bold;font-style:
+      normal;font-weight:bold;font-family:微软雅黑;font-size:42.0pt' lang=zh-CN>分别单独处理，不考虑连通性。</span></li>
+ </ol>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>We will start with the
+ simplest GNN architecture, one where we learn new embeddings for all graph
+ attributes (nodes, edges, global), but <span style='font-weight:bold'>where we
+ do not yet use the connectivity of the graph.</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>For simplicity, the
+ previous diagrams used scalars to represent graph attributes; in practice
+ feature vectors, or embeddings, are much more useful.</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>This GNN uses <span
+ style='font-weight:bold'>a separate multilayer perceptron (MLP)</span> (or
+ your favorite differentiable model) on each component of a graph; we call this
+ a GNN layer. For each node vector, we apply the MLP and get back a learned
+ node-vector. We do the same for each edge, learning a per-edge embedding, and
+ also for the global-context vector, learning a single embedding for the entire
+ graph.</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:2.25in'><img src="GNN.files/image006.jpg"
+ width=1707 height=534></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>We
+ only use connectivity when pooling information for prediction.</span><span
+ lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>在预测时，假设我们缺失某个节点或边的属性，我们可以利用连通性，汇聚邻居节点或边的信息。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:42.0pt;font-weight:bold;font-style:normal'>
+  <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold' lang=en-US><span style='font-family:微软雅黑;font-size:
+      42.0pt;font-weight:bold;font-style:normal;font-weight:bold;font-family:
+      微软雅黑;font-size:42.0pt'>GCN</span></li>
+ </ol>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>M</span><span lang=zh-CN>ess</span><span lang=en-US>age passing</span><span
+ lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>利用连通性，在每一层，对一个节点，</span><span style='font-weight:bold' lang=zh-CN>汇聚其周围邻居信息之后</span><span
+ style='font-weight:bold' lang=en-US> </span><span style='font-weight:bold'
+ lang=zh-CN>，然后再进入</span><span style='font-weight:bold' lang=en-US>MLP</span><span
+ style='font-weight:bold' lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Message
+ passing works in three steps:</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>For each node in the
+      graph,&nbsp;</span><span style='font-style:italic;font-family:微软雅黑;
+      font-size:36.0pt'>gather</span><span style='font-family:微软雅黑;font-size:
+      36.0pt'>&nbsp;all the neighboring node embeddings (or messages), which is
+      the&nbsp;g&nbsp;function described above.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Aggregate all messages via an
+      aggregate function </span><span style='font-weight:bold;font-family:微软雅黑;
+      font-size:36.0pt'>(like sum</span><span style='font-family:微软雅黑;
+      font-size:36.0pt'>).</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>All pooled messages are passed
+      through an&nbsp;</span><span style='font-style:italic;font-family:微软雅黑;
+      font-size:36.0pt'>update function</span><span style='font-family:微软雅黑;
+      font-size:36.0pt'>, usually a learned neural network.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:1.5in'><img src="GNN.files/image007.jpg"
+ width=1902 height=822></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>This
+ is reminiscent of </span><span style='font-weight:bold' lang=zh-CN>standard
+ convolution</span><span lang=zh-CN>: in essence, message passing and
+ convolution are operations to aggregate and process the information of an
+ element’s neighbors in order to update the element’s value. In graphs, the
+ element is a node, and in images, the element is a pixel. However, the number
+ of neighboring nodes in a graph can be variable, unlike in an image where each
+ pixel has a set number of neighboring
+ elements.还有一点和图像中的卷积不一样，就是图像中的卷积核中定义了不同位置的权重</span><span lang=en-US> </span><span
+ lang=zh-CN>，而这里所有邻居的权重都是</span><span lang=en-US>1</span><span lang=zh-CN>，直接相加，而图像中的卷积相当于是加权和。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:1.5in'><img src="GNN.files/image008.jpg"
+ width=1935 height=826></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>上图表示的是<span
+ style='font-weight:bold'>Schematic for a GCN architecture,</span> which <span
+ style='font-weight:bold'>updates node representations</span> of a graph by
+ pooling neighboring nodes at a distance of one degree。</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>除了将周围节点的信息汇聚到节点外，还可以将周围边的信息汇聚到某个节点，以及将某个边连接的两个节点的信息汇聚到这条边上，</span><span
+ lang=zh-CN>如果节点和边的</span><span lang=en-US>embedding</span><span lang=zh-CN>不一样的话，进行一个线性变换（投影）即可。完成了信息传递之后，再输入到各自的</span><span
+ lang=en-US>MLP</span><span lang=zh-CN>即可。如下图所示，可以先将节点信息汇聚到边，然后再将更新后的边的信息汇聚到点，也可以反过来，具体按照哪个顺序，不确定，可以同时更新。</span></p>
+ <p style='margin:0in;margin-left:2.25in'><img src="GNN.files/image009.jpg"
+ width=1920 height=545></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>还可以在</span><span
+ lang=en-US>message passing</span><span lang=zh-CN>中加上全局信息</span><span
+ lang=en-US>U</span><span lang=zh-CN>，架构如下图所示</span></p>
+ <p style='margin:0in;margin-left:2.625in'><img src="GNN.files/image010.jpg"
+ width=1599 height=730></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>In this view all graph
+ attributes have learned representations, so we can leverage them during
+ pooling by conditioning the information of our attribute of interest with
+ respect to the rest. For example, for one node we can consider information
+ from neighboring nodes, connected edges and the global information. To
+ condition the new node embedding on all these possible sources of information,
+ we can simply concatenate them. Additionally we may also map them to the same
+ space via a linear map and add them or apply a <span style='font-weight:bold'>feature-wise
+ modulation layer, which can be considered a type of featurize-wise attention
+ mechanism.</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>如下图所示，对每一层来说，以某个节点的</span><span
+ style='font-weight:bold' lang=en-US>embedding</span><span style='font-weight:
+ bold' lang=zh-CN>更新为例，除了用自己的</span><span style='font-weight:bold' lang=en-US>embedding</span><span
+ style='font-weight:bold' lang=zh-CN>和邻居节点的</span><span style='font-weight:
+ bold' lang=en-US>embedding</span><span style='font-weight:bold' lang=zh-CN>外，还用了所有相连的边的</span><span
+ style='font-weight:bold' lang=en-US>embedding</span><span style='font-weight:
+ bold' lang=zh-CN>以及全局信息</span><span style='font-weight:bold' lang=en-US>embedding</span><span
+ style='font-weight:bold' lang=zh-CN>，</span><span style='font-weight:bold'
+ lang=en-US>cond(x|z</span><span style='font-weight:bold' lang=zh-CN>）表示可以对这</span><span
+ style='font-weight:bold' lang=en-US>4</span><span style='font-weight:bold'
+ lang=zh-CN>个信息进行</span><span style='font-weight:bold' lang=en-US>concat</span><span
+ style='font-weight:bold' lang=zh-CN>，也可以投影后相加，也可以做</span><span
+ style='font-weight:bold' lang=en-US>film</span><span style='font-weight:bold'
+ lang=zh-CN>，特征层面上的</span><span style='font-weight:bold' lang=en-US>attention</span><span
+ style='font-weight:bold' lang=zh-CN>。然后再经过</span><span style='font-weight:
+ bold' lang=en-US>f_Vn</span><span style='font-weight:bold' lang=zh-CN>（</span><span
+ style='font-weight:bold' lang=en-US>MLP</span><span style='font-weight:bold'
+ lang=zh-CN>），得到新的节点的</span><span style='font-weight:bold' lang=en-US>embedding</span><span
+ style='font-weight:bold' lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:1.5in'><img src="GNN.files/image011.jpg"
+ width=1973 height=801></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:2.25in'><img src="GNN.files/image012.jpg"
+ width=1497 height=426></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>这个图是先对邻居节点</span><span
+ lang=en-US>xj</span><span lang=zh-CN>进行变换，然后每个</span><span lang=en-US>xj</span><span
+ lang=zh-CN>都有一个权重</span><span lang=en-US> </span><span lang=zh-CN>，如果这些权重是固定不变的，就类似于卷积核中的参数，也就是说邻居节点的权重取决于邻居的位置？</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>所以是先对</span><span style='font-weight:bold'
+ lang=en-US>xj</span><span style='font-weight:bold' lang=zh-CN>变换，再汇聚，还是先汇聚，再对汇聚后的向量做变换？都可以？对简单的求和汇聚的</span><span
+ style='font-weight:bold' lang=en-US>GCN</span><span style='font-weight:bold'
+ lang=zh-CN>来说，没有区别，</span><span style='font-weight:bold' lang=en-US>Wx1+Wx2+Wx3=W(x1+x2+x3)</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+ style='font-weight:bold'>GCN:</span></p>
+ <p style='margin:0in;margin-left:1.875in'><img src="GNN.files/image013.jpg"
+ width=1599 height=401></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=en-US>W*x_j<span style='mso-spacerun:yes'> 
+ </span></span><span style='font-weight:bold' lang=zh-CN>是对每个邻居节点的</span><span
+ style='font-weight:bold' lang=en-US>embedding</span><span style='font-weight:
+ bold' lang=zh-CN>做</span><span style='font-weight:bold' lang=en-US>linear
+ layer</span><span style='font-weight:bold' lang=zh-CN>线性变换，所有的节点共享一个</span><span
+ style='font-weight:bold' lang=en-US>W</span><span style='font-weight:bold'
+ lang=zh-CN>。This operation is called convolution, or neighborhood
+ aggregation，邻居汇聚也称为卷积。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑'><span style='font-weight:bold;
+ font-size:48.0pt' lang=en-US>GAT</span><span style='font-weight:bold;
+ font-size:48.0pt' lang=zh-CN>：</span><span style='font-size:36.0pt'
+ lang=zh-CN>https://mlabonne.github.io/blog/posts/2022-03-09-Graph_Attention_Network.html</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in'><img src="GNN.files/image014.jpg"
+ width=2324 height=1051></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=en-US>1. L</span><span style='font-weight:bold'
+ lang=zh-CN>i</span><span style='font-weight:bold' lang=en-US>near
+ transformation</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ color:#1E2124'><span style='background:white'>To calculate the attention
+ coefficient, we need to consider pairs of nodes. An easy way to create these
+ pairs is to concatenate attribute vectors from both nodes.</span></p>
+ <p style='margin:0in;margin-left:.375in;font-size:36.0pt;color:#1E2124'><span
+ style='font-family:system-ui;background:white' lang=zh-CN>Then, we can apply a
+ new&nbsp;</span><span style='font-weight:bold;font-family:system-ui;
+ background:white' lang=zh-CN>linear transformation</span><span
+ style='font-family:system-ui;background:white' lang=zh-CN>&nbsp;with a weight
+ matrix&nbsp;</span><span style='font-family:KaTeX_Main;background:white'
+ lang=zh-CN>W</span><span style='font-family:微软雅黑;background:white' lang=en-US>_</span><span
+ style='font-family:KaTeX_Main;background:white' lang=zh-CN>att​</span><span
+ style='font-family:system-ui;background:white' lang=zh-CN>:</span></p>
+ <p style='margin:0in;margin-left:3.75in'><img src="GNN.files/image015.jpg"
+ width=1349 height=1658></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=en-US>4. M</span><span style='font-weight:bold'
+ lang=zh-CN>ult</span><span style='font-weight:bold' lang=en-US>i head
+ attention</span></p>
+ <p style='margin:0in;margin-left:.375in'><img src="GNN.files/image016.jpg"
+ width=2216 height=1319></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in'><img src="GNN.files/image017.jpg"
+ width=2116 height=1198></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>在</span><span style='font-weight:bold'
+ lang=en-US>pyG</span><span style='font-weight:bold' lang=zh-CN>中，有两种</span><span
+ style='font-weight:bold' lang=en-US>GAT </span><span style='font-weight:bold'
+ lang=zh-CN>l</span><span style='font-weight:bold' lang=en-US>ayer</span></p>
+ <p style='margin:0in;margin-left:1.125in'><img src="GNN.files/image018.jpg"
+ width=2096 height=974></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>import torch.nn.functional as F</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>from torch.nn import Linear, Dropout</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>from torch_geometric.nn import GCNConv, GATv2Conv</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>class GCN(torch.nn.Module):</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>&quot;&quot;&quot;Graph
+ Convolutional Network&quot;&quot;&quot;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>def __init__(self, dim_in,
+ dim_h, dim_out):</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>      </span>super().__init__()</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>      </span>self.gcn1 =
+ GCNConv(dim_in, dim_h)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>      </span>self.gcn2 = GCNConv(dim_h,
+ dim_out)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>      </span>self.optimizer =
+ torch.optim.Adam(self.parameters(),</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>                                       
+ </span>lr=0.01,</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>                                       
+ </span>weight_decay=5e-4)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>def forward(self, x,
+ edge_index):</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>h = F.dropout(x, p=0.5,
+ training=self.training)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>h = self.gcn1(h,
+ edge_index).relu()</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>h = F.dropout(h, p=0.5,
+ training=self.training)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>h = self.gcn2(h,
+ edge_index)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>return h,
+ F.log_softmax(h, dim=1)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>class GAT(torch.nn.Module):</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>&quot;&quot;&quot;Graph
+ Attention Network&quot;&quot;&quot;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>def __init__(self, dim_in,
+ dim_h, dim_out, heads=8):</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>super().__init__()</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>self.gat1 =
+ GATv2Conv(dim_in, dim_h, heads=heads)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>self.gat2 =
+ GATv2Conv(dim_h*heads, dim_out, heads=1)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>self.optimizer =
+ torch.optim.Adam(self.parameters(),</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span
+ style='mso-spacerun:yes'>                                         
+ </span>lr=0.005,</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span
+ style='mso-spacerun:yes'>                                         
+ </span>weight_decay=5e-4)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>def forward(self, x,
+ edge_index):</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>h = F.dropout(x, p=0.6,
+ training=self.training)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>h = self.gat1(h,
+ edge_index)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>h = F.elu(h)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>h = F.dropout(h, p=0.6,
+ training=self.training)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>h = self.gat2(h,
+ edge_index)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>return h,
+ F.log_softmax(h, dim=1)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>def accuracy(pred_y, y):</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>&quot;&quot;&quot;Calculate
+ accuracy.&quot;&quot;&quot;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>return ((pred_y == y).sum()
+ / len(y)).item()</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>def train(model, data):</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>&quot;&quot;&quot;Train a
+ GNN model and return the trained model.&quot;&quot;&quot;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>criterion =
+ torch.nn.CrossEntropyLoss()</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>optimizer = model.optimizer</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>epochs = 200</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>model.train()</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>for epoch in
+ range(epochs+1):</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span># Training</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>optimizer.zero_grad()</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>_, out = model(data.x,
+ data.edge_index)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>loss =
+ criterion(out[data.train_mask], data.y[data.train_mask])</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>acc =
+ accuracy(out[data.train_mask].argmax(dim=1), data.y[data.train_mask])</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>loss.backward()</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>optimizer.step()</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span># Validation</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>val_loss =
+ criterion(out[data.val_mask], data.y[data.val_mask])</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>val_acc =
+ accuracy(out[data.val_mask].argmax(dim=1), data.y[data.val_mask])</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span># Print metrics every 10
+ epochs</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>        </span>if(epoch % 10 == 0):</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>            </span>print(f'Epoch
+ {epoch:&gt;3} | Train Loss: {loss:.3f} | Train Acc: '</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>                 
+ </span>f'{acc*100:&gt;6.2f}% | Val Loss: {val_loss:.2f} | '</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>                  </span>f'Val Acc:
+ {val_acc*100:.2f}%')</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>          </span></code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>return model</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>@torch.no_grad()</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'>def test(model, data):</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>&quot;&quot;&quot;Evaluate
+ the model on test set and print the accuracy score.&quot;&quot;&quot;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>model.eval()</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>_, out = model(data.x,
+ data.edge_index)</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>acc =
+ accuracy(out.argmax(dim=1)[data.test_mask], data.y[data.test_mask])</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
+ 36.0pt'><span style='mso-spacerun:yes'>    </span>return acc</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</code></p>
+ <p style='margin:0in;margin-left:1.5in'><img src="GNN.files/image019.jpg"
+ width=1880 height=1253></p>
+ <p><code style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold'>一个节点的邻居越多，分类准确率越高。</span></code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+ style='font-weight:bold'>GraphSAGE</span></code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>对</span><span lang=en-US>batch</span><span lang=zh-CN>中的所有</span><span
+ lang=en-US>target node</span><span lang=zh-CN>进行采样，每个</span><span lang=en-US>target
+ node</span><span lang=zh-CN>采出一个子图来，然后合并为一张图，用来</span><span lang=en-US>message
+ passing</span><span lang=zh-CN>，而不是用整个完整的图进行</span><span lang=en-US>message
+ passing</span><span lang=zh-CN>。</span><span style='font-weight:bold'
+ lang=zh-CN>mini-batching is incredibly efficient，训练速度比</span><span
+ style='font-weight:bold' lang=en-US>GAT</span><span style='font-weight:bold'
+ lang=zh-CN>快多了。</span></code></p>
+ <p><code style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold' lang=en-US>GIN </span><span style='font-weight:bold'
+ lang=zh-CN>图同构网络</span></code></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>核心目标是</span><span
+ style='font-weight:bold' lang=zh-CN>实现图同构识别</span><span lang=zh-CN>（判断两个图是否结构相同），并在此基础上学习具有强区分性的图表示。它的设计直接对标图同构测试的经典算法（Weisfeiler-Lehman
+ 算法），理论上能区分任何非同构的图，更</span><span style='font-weight:bold' lang=zh-CN>适合图级任务</span><span
+ lang=zh-CN>（如图分类、分子属性预测）。</span><span lang=en-US>GIN</span><span lang=zh-CN>和</span><span
+ lang=en-US>GCN</span><span lang=zh-CN>两者的核心差异体现在</span><span style='font-weight:
+ bold' lang=zh-CN>邻居信息的聚合方式</span><span lang=zh-CN>上，这直接决定了它们对图结构的捕捉能力。</span></p>
+ <p style='margin:0in;margin-left:1.125in'><img src="GNN.files/image020.jpg"
+ width=2068 height=633></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>对所有节点的</span><span
+ lang=en-US>embedding</span><span lang=zh-CN>进行汇聚，得到全图的</span><span lang=en-US>embedding</span><span
+ lang=zh-CN>信息，具体做法：</span></p>
+ <p style='margin:0in;margin-left:2.625in'><img src="GNN.files/image021.jpg"
+ width=1877 height=1404></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>也就是在每一层的计算中，</span><span style='font-weight:
+ bold' lang=en-US>sum</span><span style='font-weight:bold' lang=zh-CN>所有节点得到全图的</span><span
+ style='font-weight:bold' lang=en-US>embedding</span><span style='font-weight:
+ bold' lang=zh-CN>，然后把每一层的</span><span style='font-weight:bold' lang=en-US>graph
+ embedding concat</span><span style='font-weight:bold' lang=zh-CN>起来。</span></p>
+ <p style='margin:0in;margin-left:1.125in'><img src="GNN.files/image022.jpg"
+ width=2272 height=1243></p>
+ <p><code style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</code></p>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

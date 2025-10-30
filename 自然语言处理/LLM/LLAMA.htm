@@ -1,0 +1,759 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=LLAMA.htm>
+<link rel=File-List href="LLAMA.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:29.5569in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.4826in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt' lang=en-US>LLAMA</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>7</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>27</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>16:36</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4569in;margin-left:0in;width:29.5569in'>
+
+<p style='margin:0in;margin-left:7.5in'><img src="LLAMA.files/image001.jpg"
+width=1449 height=1590></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+bold' lang=zh-CN>为什么需要</span><span style='font-weight:bold' lang=en-US>norm</span><span
+style='font-weight:bold' lang=zh-CN>？或者说神经网络为什么需要</span><span style='font-weight:
+bold' lang=en-US>norm</span><span style='font-weight:bold' lang=zh-CN>？</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>神经网络中每一层的输出也是下一层的输入，反向传播更新参数后，由于</span><span lang=en-US>w</span><span
+lang=zh-CN>的更新，会使得每一层的输出分布发生变化</span><span lang=en-US> </span><span lang=zh-CN>，也就是下一层的输入分布发生了变化</span><span
+lang=en-US> </span><span lang=zh-CN>，导致下一层还要根据输入的变化再调整本层的参数</span><span
+lang=en-US>w</span><span lang=zh-CN>，这使得训练变得缓慢且网络预测时也会不稳定。</span><span
+lang=en-US>norm</span><span lang=zh-CN>可以使得每一层的输入分布变化不会过大，使得网络更加稳定。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>神经网络内部节点（神经元）的分布变化</span><span lang=en-US> </span><span lang=zh-CN>被称为</span><span
+style='font-weight:bold' lang=en-US>Internal Covariate Shift</span><span
+style='font-weight:bold' lang=zh-CN>，内部协变量漂移</span><span lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+style='font-weight:bold'>RMSNorm</span></p>
+
+<p style='margin:0in;margin-left:1.5in'><img src="LLAMA.files/image002.jpg"
+width=2383 height=891></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=en-US>RMSnorm</span><span lang=zh-CN>认为</span><span lang=en-US>layernorm</span><span
+lang=zh-CN>的成功主要是由于</span><span style='font-weight:bold' lang=en-US>re-scaling
+invariance</span><span style='font-weight:bold' lang=zh-CN>，而不是</span><span
+style='font-weight:bold' lang=en-US>re-centering invariance</span><span
+lang=zh-CN>，所以去掉了去中心化这一步骤。</span><span lang=en-US>RMSnorm</span><span
+lang=zh-CN>的好处有：</span><span lang=en-US>1</span><span lang=zh-CN>）计算量少，不需要计算均值。</span><span
+lang=en-US>2</span><span lang=zh-CN>）在实际应用中效果好。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+bold'>相对位置编码</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+style='font-family:微软雅黑' lang=zh-CN>相对位置编码告诉注意力机制两个</span><span
+style='font-family:微软雅黑' lang=en-US>token</span><span style='font-family:微软雅黑'
+lang=zh-CN>之间的距离。给定两个</span><span style='font-family:微软雅黑' lang=en-US>token</span><span
+style='font-family:微软雅黑' lang=zh-CN>，我们创建表示它们之间距离的向量，即下图中的</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSubSup><m:sSubSupPr><m:ctrlPr/></m:sSubSupPr><m:e><m:r><m:t>&#119886;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119894;&#119895;</m:t></m:r></m:sub><m:sup><m:r><m:t>&#119870;</m:t></m:r></m:sup></m:sSubSup></m:oMath><![endif]--><span
+style='font-family:微软雅黑' lang=zh-CN>。</span><![if !msEquation]><img
+src="LLAMA.files/image003.png" width=4030 height=125><![endif]></p>
+
+<p style='margin:0in;margin-left:.375in'><img src="LLAMA.files/image004.jpg"
+width=2447 height=536></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+style='font-weight:bold'>Rope</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>作者：追一科技的苏剑林</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>出发点：计算</span><span lang=en-US>attention score</span><span
+lang=zh-CN>时，使用的是</span><span lang=en-US>q</span><span lang=zh-CN>和</span><span
+lang=en-US>k</span><span lang=zh-CN>的内积，</span><span style='font-weight:bold'
+lang=en-US>C</span><span style='font-weight:bold' lang=zh-CN>an</span><span
+style='font-weight:bold' lang=en-US> we find a inner product over q and k that
+only depends on the two vectors and the relative distance of the two tokens
+they represent.</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;margin-left:4.875in'><img src="LLAMA.files/image005.jpg"
+width=1407 height=122></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>事实上，可以找到这样的函数：</p>
+
+<p style='margin:0in;margin-left:2.625in'><img src="LLAMA.files/image006.jpg"
+width=2146 height=743></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+style='font-weight:bold'>GPU is too fast</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>运算速度的</span><span lang=en-US>bottleneck</span><span lang=zh-CN>不在于计算量，而在于数据传输量。这意味着，我们的目标</span><span
+style='font-weight:bold' lang=zh-CN>不仅是优化算法执行的计算量，而是最小化</span><span
+style='font-weight:bold' lang=en-US>memory access/transfer</span><span
+style='font-weight:bold' lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+bold' lang=en-US>S</span><span style='font-weight:bold' lang=zh-CN>wi</span><span
+style='font-weight:bold' lang=en-US>GLU</span></p>
+
+<p style='margin:0in;margin-left:4.125in'><img src="LLAMA.files/image007.png"
+width=1693 height=1320></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+color:#191B1F'><span style='background:white'>论文《Gaussian Error Linear
+Units（GELUs）》提出了GELU，这是ReLU的平滑版本。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>论文《Swish: a Self-Gated Activation
+Function》提出了Swish，这也是对带有非零负值梯度的ReLU平滑版本。Swish同样是个处处可微的非线性函数，且有一个参数beta用于控制函数的形状</span><span
+lang=en-US>.</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold'>GLU（Gated Linear Units）其实不算是一种激活函数，而是一种神经网络层。</span>它是一个线性变换后面接门控机制的结构。其中门控机制是一个sigmoid函数用来控制信息能够通过多少。</p>
+
+<p style='margin:0in;margin-left:4.875in'><img src="LLAMA.files/image008.jpg"
+width=1810 height=877></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+bold' lang=en-US>GQA </span><span style='font-weight:bold' lang=zh-CN>源码</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>#</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>核心就是这个</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>repeat_kv</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>函数，将</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>k</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>和</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>v</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>重复</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>n_rep</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>次，从而和</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>q</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的头数匹配。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>def
+repeat_kv(x: torch.Tensor, n_rep: int) -&gt; torch.Tensor:</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>   
+</span>&quot;&quot;&quot;torch.repeat_interleave(x, dim=2,
+repeats=n_rep)&quot;&quot;&quot;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>bs, slen, n_kv_heads, head_dim = x.shape</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>if n_rep == 1:</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>return x</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>return (</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN><span style='mso-spacerun:yes'>        </span>x[:, :, :, None, :]</span><span
+lang=en-US><span style='mso-spacerun:yes'>  </span></span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>#</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>在倒数第二维中增加一维，相当于</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>unsqueeze(-1)</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>.expand(bs, slen, n_kv_heads, n_rep,
+head_dim)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>.reshape(bs, slen, n_kv_heads * n_rep,
+head_dim)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>class
+Attention(nn.Module):</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>&quot;&quot;&quot;Multi-head attention
+module.&quot;&quot;&quot;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>def __init__(self, args: ModelArgs):</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>&quot;&quot;&quot;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>Initialize the Attention module.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>Args:</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>args (ModelArgs): Model
+configuration parameters.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>Attributes:</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>n_kv_heads (int): Number of key and
+value heads.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>n_local_heads (int): Number of
+local query heads.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>n_local_kv_heads (int): Number of
+local key and value heads.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>n_rep (int): Number of repetitions
+for local heads.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>head_dim (int): Dimension size of
+each attention head.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>wq (ColumnParallelLinear): Linear
+transformation for queries.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>wk (ColumnParallelLinear): Linear
+transformation for keys.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>wv (ColumnParallelLinear): Linear
+transformation for values.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>wo (RowParallelLinear): Linear
+transformation for output.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>cache_k (torch.Tensor): Cached keys
+for attention.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>cache_v (torch.Tensor): Cached
+values for attention.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>&quot;&quot;&quot;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>#
+ColumnParallelLinear是一个在大规模并行训练中使用的术语，特别是在训练大型的深度学习模型，</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>#
+如Transformer模型时。在模型并行训练中，一个大型的矩阵（例如神经网络的权重矩阵）会被分割成不同的列，</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span># 并分散到不同的计算设备（如GPU）上。</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>#</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>#
+在ColumnParallelLinear的情况下，每个计算设备存储权重矩阵的一部分列，而不是整个矩阵。</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>#
+每个设备计算它自己的前向传播部分，并将结果发送给其他设备以进行进一步的处理或合并结果。</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>#
+对于反向传播和梯度计算，每个设备计算其自己列的梯度，并可能需要与其他设备交换信息以更新权重。</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>#</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>#
+这种方式可以显著减少每个设备上的内存需求，并允许训练更大的模型，因为模型的不同部分可以分布在多个设备上。</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>#
+ColumnParallelLinear和RowParallelLinear（另一种将权重矩阵按行划分的方法）是实现模型并行的两种常见策略。</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>     </span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>super().__init__()</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.n_kv_heads = args.n_heads if
+args.n_kv_heads is None else args.n_kv_heads</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>model_parallel_size =
+fs_init.get_model_parallel_world_size()</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.n_local_heads = args.n_heads //
+model_parallel_size</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.n_local_kv_heads = self.n_kv_heads
+// model_parallel_size</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.n_rep = self.n_local_heads //
+self.n_local_kv_heads</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.head_dim = args.dim //
+args.n_heads</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.wq = ColumnParallelLinear(</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>args.dim,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>args.n_heads * self.head_dim,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>bias=False,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>gather_output=False,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>init_method=lambda x: x,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.wk = ColumnParallelLinear(</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>args.dim,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>self.n_kv_heads * self.head_dim,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>bias=False,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>gather_output=False,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>init_method=lambda x: x,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.wv = ColumnParallelLinear(</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>args.dim,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>self.n_kv_heads * self.head_dim,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>bias=False,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>gather_output=False,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>init_method=lambda x: x,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.wo = RowParallelLinear(</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>args.n_heads * self.head_dim,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>args.dim,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>bias=False,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>input_is_parallel=True,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>init_method=lambda x: x,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span># kv_cache是缓存键值对，在训练过程中，我们只保存最近n个键值对</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.cache_k = torch.zeros(</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>(</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>                </span>args.max_batch_size,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>                </span>args.max_seq_len,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>                </span>self.n_local_kv_heads,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>                </span>self.head_dim,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>).cuda()</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.cache_v = torch.zeros(</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>(</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>                </span>args.max_batch_size,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>                </span>args.max_seq_len,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>                </span>self.n_local_kv_heads,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>                </span>self.head_dim,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>).cuda()</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>def forward(</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>self,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>x: torch.Tensor,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>start_pos: int,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>freqs_cis: torch.Tensor,</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>mask: Optional[torch.Tensor],</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>):</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>&quot;&quot;&quot;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>Forward pass of the attention module.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>Args:</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>x (torch.Tensor): Input tensor.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>start_pos (int): Starting position
+for caching.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>freqs_cis (torch.Tensor):
+Precomputed frequency tensor.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>mask (torch.Tensor, optional):
+Attention mask tensor.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>Returns:</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>torch.Tensor: Output tensor after
+attention.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>&quot;&quot;&quot;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span># 假设当前x为(1, 1, dim)，也就是上一个预测的token</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span># self-attention的输入，标准的(bs, seqlen,
+hidden_dim)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>bsz, seqlen, _ = x.shape</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span># 计算当前token的qkv </p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span># q k v分别进行映射，注意这里key,
+value也需要先由输入进行映射再和kv_cache里面的key, value进行拼接</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>xq, xk, xv = self.wq(x), self.wk(x),
+self.wv(x)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>xq = xq.view(bsz, seqlen,
+self.n_local_heads, self.head_dim)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>xk = xk.view(bsz, seqlen,
+self.n_local_kv_heads, self.head_dim)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>xv = xv.view(bsz, seqlen,
+self.n_local_kv_heads, self.head_dim)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>#
+对当前输入的query和key进行RoPE，注意kv_cache里面的key已经做过了RoPE</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>xq, xk = apply_rotary_emb(xq, xk,
+freqs_cis=freqs_cis)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span># 缓存当前token的kv</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.cache_k = self.cache_k.to(xq)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.cache_v = self.cache_v.to(xq)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN><span style='mso-spacerun:yes'>        </span>self.cache_k[:bsz,
+start_pos: start_pos + seqlen] = xk</span><span lang=en-US><span
+style='mso-spacerun:yes'>  </span></span><span style='font-weight:bold;
+background:lime;mso-highlight:lime' lang=en-US># start_pos</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>是推理时需要计算的</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>token</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的起始位置</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>,seqlen</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>是</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>1</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>（如果</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US> </span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>是一个一个</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>token</span><span
+style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>预测的话）</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.cache_v[:bsz, start_pos: start_pos
++ seqlen] = xv</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span># 取出前seqlen个token的kv缓存</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>#
+取出全部缓存的key和value（包括之前在cache里面的和本次输入的），作为最终的key和value</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>keys = self.cache_k[:bsz, : start_pos +
+seqlen]</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>values = self.cache_v[:bsz, : start_pos
++ seqlen]</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span><span style='font-weight:bold;
+background:lime;mso-highlight:lime'># 将kv重复填充，使kv和q的头数个数相同</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span># repeat k/v heads if n_kv_heads &lt;
+n_heads，对齐头的数量</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>keys = repeat_kv(keys, self.n_rep)<span
+style='mso-spacerun:yes'>  </span># (bs, cache_len + seqlen, n_local_heads,
+head_dim)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>values = repeat_kv(values,
+self.n_rep)<span style='mso-spacerun:yes'>  </span># (bs, cache_len + seqlen,
+n_local_heads, head_dim)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span># 计算当前token的attention
+score，，注意mask需要加上，另外维度要对应上</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>xq = xq.transpose(1, 2)<span
+style='mso-spacerun:yes'>  </span># (bs, n_local_heads, seqlen, head_dim)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>keys = keys.transpose(1, 2)<span
+style='mso-spacerun:yes'>  </span># (bs, n_local_heads, cache_len + seqlen,
+head_dim)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>values = values.transpose(1, 2)<span
+style='mso-spacerun:yes'>  </span># (bs, n_local_heads, cache_len + seqlen,
+head_dim)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>scores = torch.matmul(xq,
+keys.transpose(2, 3)) / math.sqrt(self.head_dim)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>if mask is not None:</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>scores = scores + mask<span
+style='mso-spacerun:yes'>  </span># (bs, n_local_heads, seqlen, cache_len +
+seqlen)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>scores = F.softmax(scores.float(),
+dim=-1).type_as(xq)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>output = torch.matmul(scores,
+values)<span style='mso-spacerun:yes'>  </span># (bs, n_local_heads, seqlen,
+head_dim)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>output = output.transpose(1,
+2).contiguous().view(bsz, seqlen, -1)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>return self.wo(output)</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US>&nbsp;</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

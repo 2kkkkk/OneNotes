@@ -1,0 +1,1158 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File
+href="Let's%20build%20GPT_%20from%20scratch,%20in%20code,%20spelled%20out.htm">
+<link rel=File-List
+href="Let's%20build%20GPT_%20from%20scratch,%20in%20code,%20spelled%20out.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:28.7361in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.4243in;width:6.5055in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt;color:#0F0F0F'><span
+style='font-weight:bold'>Let's build GPT: from scratch, in code, spelled out.</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:.4243in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>5</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>28</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>13:50</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.5013in;margin-left:0in;width:28.7361in'>
+
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:normal'>
+  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold'><span style='font-family:微软雅黑;font-size:48.0pt;
+      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+      font-size:48.0pt' lang=zh-CN>关于</span><span style='font-family:微软雅黑;
+      font-size:48.0pt;font-weight:bold;font-style:normal;font-weight:bold;
+      font-family:微软雅黑;font-size:48.0pt' lang=en-US>Transformer</span><span
+      style='font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:
+      normal;font-weight:bold;font-family:微软雅黑;font-size:48.0pt' lang=zh-CN>的输入输出：</span></li>
+ </ol>
+ <p style='margin:0in;line-height:14pt;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>torch.manual_seed(</span><span style='color:#116644'>1337</span><span
+ style='color:black'>)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>batch_size = </span><span style='color:#116644'>4 </span><span
+ style='color:green'># how many independent sequences will we process in
+ parallel?</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>block_size = </span><span style='color:#116644'>8 </span><span
+ style='color:green'># what is the maximum context length for predictions?</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:blue'>def </span><span style='color:#6A5221'>get_batch</span><span
+ style='color:black'>(</span><span style='color:#001080'>split</span><span
+ style='color:black'>):</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:green'># generate
+ a small batch of data of inputs x and targets y</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; data = train_data </span><span
+ style='color:#9723B4'>if</span><span style='color:black'> split == </span><span
+ style='color:#A31515'>'train' </span><span style='color:#9723B4'>else</span><span
+ style='color:black'> val_data</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; ix = torch.randint(</span><span
+ style='color:#6A5221'>len</span><span style='color:black'>(data) - block_size,
+ (batch_size,))</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; x = torch.stack([data[i:i+block_size] </span><span
+ style='color:#9723B4'>for</span><span style='color:black'> i </span><span
+ style='color:blue'>in</span><span style='color:black'> ix])</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; y = torch.stack([data[i+</span><span
+ style='color:#116644'>1</span><span style='color:black'>:i+block_size+</span><span
+ style='color:#116644'>1</span><span style='color:black'>] </span><span
+ style='color:#9723B4'>for</span><span style='color:black'> i </span><span
+ style='color:blue'>in</span><span style='color:black'> ix])</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:#9723B4'>return</span><span
+ style='color:black'> x, y</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>xb, yb = get_batch(</span><span style='color:#A31515'>'train'</span><span
+ style='color:black'>)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#6A5221'>print</span><span style='color:black'>(</span><span
+ style='color:#A31515'>'inputs:'</span><span style='color:black'>)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#6A5221'>print</span><span style='color:black'>(xb.shape)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#6A5221'>print</span><span style='color:black'>(xb)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#6A5221'>print</span><span style='color:black'>(</span><span
+ style='color:#A31515'>'targets:'</span><span style='color:black'>)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#6A5221'>print</span><span style='color:black'>(yb.shape)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#6A5221'>print</span><span style='color:black'>(yb)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#6A5221'>print</span><span style='color:black'>(</span><span
+ style='color:#A31515'>'----'</span><span style='color:black'>)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#9723B4'>for</span><span style='color:black'> b </span><span
+ style='color:blue'>in </span><span style='color:#6A5221'>range</span><span
+ style='color:black'>(batch_size): </span><span style='color:green'># batch
+ dimension</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:#9723B4'>for</span><span
+ style='color:black'> t </span><span style='color:blue'>in </span><span
+ style='color:#6A5221'>range</span><span style='color:black'>(block_size): </span><span
+ style='color:green'># time dimension</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; context = xb[b, :t+</span><span
+ style='color:#116644'>1</span><span style='color:black'>]</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp; &nbsp; &nbsp; &nbsp; target = yb[b,t]</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #6A5221'>print</span><span style='color:black'>(</span><span style='color:
+ blue'>f</span><span style='color:#A31515'>&quot;when input is </span><span
+ style='color:black'>{context.tolist()}</span><span style='color:#A31515'> the
+ target: </span><span style='color:black'>{target}</span><span
+ style='color:#A31515'>&quot;</span><span style='color:black'>)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>inputs:</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>torch.Size([4, 8])</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>tensor([[24, 43, 58,<span style='mso-spacerun:yes'>  </span>5,
+ 57,<span style='mso-spacerun:yes'>  </span>1, 46, 43],</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'><span style='mso-spacerun:yes'>        </span>[44, 53, 56,<span
+ style='mso-spacerun:yes'>  </span>1, 58, 46, 39, 58],</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'><span style='mso-spacerun:yes'>        </span>[52, 58,<span
+ style='mso-spacerun:yes'>  </span>1, 58, 46, 39, 58,<span
+ style='mso-spacerun:yes'>  </span>1],</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'><span style='mso-spacerun:yes'>        </span>[25, 17, 27, 10,<span
+ style='mso-spacerun:yes'>  </span>0, 21,<span style='mso-spacerun:yes'> 
+ </span>1, 54]])</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>targets:</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>torch.Size([4, 8])</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>tensor([[43, 58,<span style='mso-spacerun:yes'>  </span>5, 57,<span
+ style='mso-spacerun:yes'>  </span>1, 46, 43, 39],</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'><span style='mso-spacerun:yes'>        </span>[53, 56,<span
+ style='mso-spacerun:yes'>  </span>1, 58, 46, 39, 58,<span
+ style='mso-spacerun:yes'>  </span>1],</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'><span style='mso-spacerun:yes'>        </span>[58,<span
+ style='mso-spacerun:yes'>  </span>1, 58, 46, 39, 58,<span
+ style='mso-spacerun:yes'>  </span>1, 46],</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'><span style='mso-spacerun:yes'>        </span>[17, 27, 10,<span
+ style='mso-spacerun:yes'>  </span>0, 21,<span style='mso-spacerun:yes'> 
+ </span>1, 54, 39]])</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>----</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>when input is [24] the target: 43</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>when input is [24, 43] the target: 58</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>when input is [24, 43, 58] the target: 5</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>when input is [24, 43, 58, 5] the target: 57</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>when input is [24, 43, 58, 5, 57] the target: 1</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>when input is [24, 43, 58, 5, 57, 1] the target: 46</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>when input is [24, 43, 58, 5, 57, 1, 46] the target: 43</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>when input is [24, 43, 58, 5, 57, 1, 46, 43] the target: 39</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>when input is [44] the target: 53</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>when input is [44, 53] the target: 56</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>when input is [44, 53, 56] the target: 1</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>when input is [44, 53, 56, 1] the target: 58</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>when input is [44, 53, 56, 1, 58] the target: 46</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>when input is [44, 53, 56, 1, 58, 46] the target: 39</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>when input is [44, 53, 56, 1, 58, 46, 39] the target: 58</code></p>
+ <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
+ 28.0pt'>when input is [44, 53, 56, 1, 58, 46, 39, 58] the target: </code></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN><br>
+  </span><span style='font-weight:bold' lang=zh-CN>将</span><span
+ style='font-weight:bold' lang=en-US>X</span><span style='font-weight:bold'
+ lang=zh-CN>和</span><span style='font-weight:bold' lang=en-US>y</span><span
+ style='font-weight:bold' lang=zh-CN>中的</span><span style='font-weight:bold'
+ lang=en-US>token</span><span style='font-weight:bold' lang=zh-CN>整数索引替换为</span><span
+ style='font-weight:bold' lang=en-US>token</span><span style='font-weight:bold'
+ lang=zh-CN>的</span><span style='font-weight:bold' lang=en-US>embedding</span><span
+ style='font-weight:bold' lang=zh-CN>，</span><span style='font-weight:bold'
+ lang=en-US>X</span><span style='font-weight:bold' lang=zh-CN>和</span><span
+ style='font-weight:bold' lang=en-US>y</span><span style='font-weight:bold'
+ lang=zh-CN>的</span><span style='font-weight:bold' lang=en-US>Shape</span><span
+ style='font-weight:bold' lang=zh-CN>就是</span><span style='font-weight:bold'
+ lang=en-US>3</span><span style='font-weight:bold' lang=zh-CN>维的，</span><span
+ style='font-weight:bold' lang=en-US>shape = B,T,C, B=batch_size, T</span><span
+ style='font-weight:bold' lang=zh-CN>是上下文长度，</span><span style='font-weight:
+ bold' lang=en-US>C</span><span style='font-weight:bold' lang=zh-CN>是</span><span
+ style='font-weight:bold' lang=en-US>channel</span><span style='font-weight:
+ bold' lang=zh-CN>，即</span><span style='font-weight:bold' lang=en-US>embedding</span><span
+ style='font-weight:bold' lang=zh-CN>的长度。</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:normal'>
+  <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold'><span style='font-family:微软雅黑;font-size:48.0pt;
+      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+      font-size:48.0pt'>优化平均值的计算</span></li>
+ </ol>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>X</span><span lang=zh-CN>的</span><span lang=en-US>shape</span><span
+ lang=zh-CN>为</span><span lang=en-US> B,T,C</span><span lang=zh-CN>，对于</span><span
+ lang=en-US>batch</span><span lang=zh-CN>中的单个样本来说，当想要计算当前位置</span><span
+ lang=en-US>t</span><span lang=zh-CN>的前面所有的</span><span lang=en-US>token</span><span
+ lang=zh-CN>的</span><span lang=en-US>embedding</span><span lang=zh-CN>的平均值时，即</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:green'># We want x[b,t] = mean_{i&lt;=t} x[b,i]</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:green'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span lang=en-US>1</span><span lang=zh-CN>）直接的方法是：</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>xbow = torch.zeros((B,T,C))</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#9723B4'>for</span><span style='color:black'> b </span><span
+ style='color:blue'>in </span><span style='color:#6A5221'>range</span><span
+ style='color:black'>(B):</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:#9723B4'>for</span><span
+ style='color:black'> t </span><span style='color:blue'>in </span><span
+ style='color:#6A5221'>range</span><span style='color:black'>(T):</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; xprev = x[b,:t+</span><span
+ style='color:#116644'>1</span><span style='color:black'>] </span><span
+ style='color:green'># (t,C)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; xbow[b,t] = torch.mean(xprev, </span><span
+ style='color:#116644'>0</span><span style='color:black'>)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span lang=en-US>2</span><span lang=zh-CN>）还可以通过矩阵相乘来实现优化：</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:green'># version 2: using matrix multiply for a weighted aggregation</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span lang=zh-CN>wei = torch.tril(torch.ones(T, T))</span><span
+ lang=en-US><span style='mso-spacerun:yes'>    </span># </span><span
+ lang=zh-CN>下三角矩阵</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>wei = wei / wei.</span><span style='color:#6A5221'>sum</span><span
+ style='color:black'>(</span><span style='color:#116644'>1</span><span
+ style='color:black'>, keepdim=</span><span style='color:blue'>True</span><span
+ style='color:black'>)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>xbow2 = wei @ x </span><span style='color:green'
+ lang=zh-CN># (B, T, T) @ (B, T, C) ----&gt; (B, T, C)</span><span
+ style='color:green' lang=en-US><span style='mso-spacerun:yes'>  </span></span><span
+ style='color:green' lang=zh-CN>这里是</span><span style='color:green' lang=en-US>batch
+ matrix multiplication</span><span style='color:green' lang=zh-CN>，</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>torch.allclose(xbow, xbow2)</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>wei 是个</span><span style='color:black'
+ lang=en-US> </span><span style='font-weight:bold;color:black' lang=zh-CN>下三角矩阵</span><span
+ style='color:black' lang=zh-CN>：array([[1.<span
+ style='mso-spacerun:yes'>        </span>, 0.<span
+ style='mso-spacerun:yes'>        </span>, 0.<span
+ style='mso-spacerun:yes'>        </span>, 0.<span
+ style='mso-spacerun:yes'>        </span>, 0.<span
+ style='mso-spacerun:yes'>        </span>],</span></p>
+ <p style='margin:0in;margin-left:6.0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>       </span>[0.5<span
+ style='mso-spacerun:yes'>       </span>, 0.5<span
+ style='mso-spacerun:yes'>       </span>, 0.<span
+ style='mso-spacerun:yes'>        </span>, 0.<span
+ style='mso-spacerun:yes'>        </span>, 0.<span
+ style='mso-spacerun:yes'>        </span>],</p>
+ <p style='margin:0in;margin-left:6.0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>       </span>[0.33333333, 0.33333333, 0.33333333,
+ 0.<span style='mso-spacerun:yes'>        </span>, 0.<span
+ style='mso-spacerun:yes'>        </span>],</p>
+ <p style='margin:0in;margin-left:6.0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>       </span>[0.25<span
+ style='mso-spacerun:yes'>      </span>, 0.25<span
+ style='mso-spacerun:yes'>      </span>, 0.25<span
+ style='mso-spacerun:yes'>      </span>, 0.25<span
+ style='mso-spacerun:yes'>      </span>, 0.<span
+ style='mso-spacerun:yes'>        </span>],</p>
+ <p style='margin:0in;margin-left:6.0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>       </span>[0.2<span
+ style='mso-spacerun:yes'>       </span>, 0.2<span
+ style='mso-spacerun:yes'>       </span>, 0.2<span
+ style='mso-spacerun:yes'>       </span>, 0.2<span
+ style='mso-spacerun:yes'>       </span>, 0.2<span
+ style='mso-spacerun:yes'>       </span>]])</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>3</span><span lang=zh-CN>）第三种方式是用</span><span lang=en-US>mask_fill+softmax</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:green'># version 3: use Softmax</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>tril = torch.tril(torch.ones(T, T))</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>wei = torch.zeros((T,T))</span><span
+ style='color:black' lang=en-US><span style='mso-spacerun:yes'>   </span></span><span
+ style='color:green' lang=en-US># </span><span style='color:green' lang=zh-CN>这行表示</span><span
+ style='color:green' lang=en-US>how much of each token from past do we want to
+ aggregate </span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>wei = wei.masked_fill(tril == </span><span
+ style='color:#116644' lang=en-US>0</span><span style='color:black' lang=en-US>,
+ </span><span style='color:#257693' lang=en-US>float</span><span
+ style='color:black' lang=en-US>(</span><span style='color:#A31515' lang=en-US>'-inf'</span><span
+ style='color:black' lang=en-US>)) </span><span style='color:green' lang=en-US>#
+ </span><span style='color:green' lang=zh-CN>这行表示</span><span style='color:
+ green' lang=en-US>token</span><span style='color:green' lang=zh-CN>只能和</span><span
+ style='color:green' lang=en-US>past tokens</span><span style='color:green'
+ lang=zh-CN>交互</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>wei = F.softmax(wei, dim=</span><span
+ style='color:#116644' lang=en-US>-1</span><span style='color:black'
+ lang=en-US>)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>xbow3 = wei @ x</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>torch.allclose(xbow, xbow3)</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black' lang=en-US>&nbsp;</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:normal'>
+  <li value=3 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold;color:black' lang=en-US><span style='font-family:微软雅黑;
+      font-size:48.0pt;font-weight:bold;font-style:normal;font-weight:bold;
+      font-family:微软雅黑;font-size:48.0pt'>Attention Block</span></li>
+ </ol>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:black'
+ lang=en-US>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span lang=zh-CN>关于</span><span lang=en-US>attention</span><span
+ lang=zh-CN>的理解，</span><span lang=en-US>different tokens will find different
+ other tokens more or less interesting, and we want that to be </span><span
+ style='font-weight:bold' lang=en-US>data dependent, </span><span
+ style='font-weight:bold' lang=zh-CN>也就是根据数据，来决定对其他</span><span
+ style='font-weight:bold' lang=en-US>token</span><span style='font-weight:bold'
+ lang=zh-CN>的关注度。</span><span lang=zh-CN>如何自适应数据，决定对其他</span><span lang=en-US>token</span><span
+ lang=zh-CN>的关注度呢？</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span lang=en-US>Every token at each position will emit two
+ vectors, a query and a key, the query roughly speaking what I am looking for,
+ and the key is what do I contain. The affinities between tokens(</span><span
+ style='font-weight:bold' lang=zh-CN>也就是</span><span style='font-weight:bold'
+ lang=en-US>token</span><span style='font-weight:bold' lang=zh-CN>之间的交互强度</span><span
+ lang=en-US>) is the </span><span style='font-weight:bold' lang=en-US>dot
+ product </span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black' lang=en-US>of key and query.<span style='mso-spacerun:yes'> 
+ </span>So if the key and query are aligned, they will interact to a very high
+ amount .</p>
+ <p style='margin:0in;margin-left:.375in;line-height:14pt;font-family:微软雅黑;
+ font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:green'># version 4: self-attention!</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>torch.manual_seed(</span><span
+ style='color:#116644' lang=en-US>1337</span><span style='color:black'
+ lang=en-US>)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>B,T,C = </span><span style='color:#116644'
+ lang=en-US>4</span><span style='color:black' lang=en-US>,</span><span
+ style='color:#116644' lang=en-US>8</span><span style='color:black' lang=en-US>,</span><span
+ style='color:#116644' lang=en-US>32 </span><span style='color:green'
+ lang=en-US># batch, time, channels</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>x = torch.randn(B,T,C)</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:green'># let's see a single Head perform self-attention</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>head_size = </span><span style='color:#116644'
+ lang=en-US>16</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>key = nn.Linear(C, head_size, bias=</span><span
+ style='color:blue' lang=en-US>False</span><span style='color:black'
+ lang=en-US>)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>query = nn.Linear(C, head_size, bias=</span><span
+ style='color:blue' lang=en-US>False</span><span style='color:black'
+ lang=en-US>)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>value = nn.Linear(C, head_size, bias=</span><span
+ style='color:blue' lang=en-US>False</span><span style='color:black'
+ lang=en-US>)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>k = key(x) &nbsp; </span><span
+ style='color:green' lang=en-US># (B, T, 16)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>q = query(x) </span><span style='color:green'
+ lang=en-US># (B, T, 16)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>wei = &nbsp;q @ k.transpose(</span><span
+ style='color:#116644' lang=en-US>-2</span><span style='color:black'
+ lang=en-US>, </span><span style='color:#116644' lang=en-US>-1</span><span
+ style='color:black' lang=en-US>) </span><span style='color:green' lang=en-US>#
+ (B, T, 16) @ (B, 16, T) ---&gt; (B, T, T)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>tril = torch.tril(torch.ones(T, T))</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:green'>#wei = torch.zeros((T,T))</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>wei = wei.masked_fill(tril == </span><span
+ style='color:#116644' lang=en-US>0</span><span style='color:black' lang=en-US>,
+ </span><span style='color:#257693' lang=en-US>float</span><span
+ style='color:black' lang=en-US>(</span><span style='color:#A31515' lang=en-US>'-inf'</span><span
+ style='color:black' lang=en-US>))</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>wei = F.softmax(wei, dim=</span><span
+ style='color:#116644' lang=en-US>-1</span><span style='color:black'
+ lang=en-US>)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>v = value(x)</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>out = wei @ v</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:green'>#out = wei @ x</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>out.shape</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black' lang=en-US>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold' lang=zh-CN>Attention is a
+ communication mechanism. Can be seen as nodes in a directed graph looking at
+ each other and aggregating information with a weighted sum from all nodes that
+ point to them, with data-dependent weights.</span><span style='font-weight:
+ bold' lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>类比：有向图中节点的汇聚。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'>&quot;Scaled&quot; attention additional
+ divides&nbsp;wei&nbsp;by 1/sqrt(head_size). This makes it so when input Q,K
+ are unit variance, wei will be unit variance too and Softmax will stay diffuse
+ and not saturate too much. Illustration below。</p>
+ <p style='margin:0in;margin-left:.375in;font-size:48.0pt;color:#1F1F1F'><span
+ style='font-family:微软雅黑' lang=en-US>Attention = </span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>softmax</m:t></m:r><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:f><m:fPr><m:ctrlPr/></m:fPr><m:num><m:r><m:t>&#119876;</m:t></m:r><m:sSup><m:sSupPr><m:ctrlPr/></m:sSupPr><m:e><m:r><m:t>&#119870;</m:t></m:r></m:e><m:sup><m:r><m:t>&#119879;</m:t></m:r></m:sup></m:sSup></m:num><m:den><m:rad><m:radPr><m:degHide m:val="on"/><m:ctrlPr/></m:radPr><m:deg/><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119889;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119896;</m:t></m:r></m:sub></m:sSub></m:e></m:rad><m:r><m:t>&nbsp;</m:t></m:r></m:den></m:f></m:e></m:d><m:r><m:t>∗</m:t></m:r><m:r><m:t>&#119881;</m:t></m:r></m:oMath><![endif]--><![if !msEquation]><img
+ src="Let's%20build%20GPT_%20from%20scratch,%20in%20code,%20spelled%20out.files/image001.png"
+ width=1396 height=211><![endif]></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#212121'><span lang=zh-CN>为什么要除以根号</span><span lang=en-US>dk</span><span
+ lang=zh-CN>呢，</span><span lang=en-US> </span></p>
+ <p style='margin:0in;margin-left:.375in;line-height:14pt;font-family:微软雅黑;
+ font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>k = torch.randn(B,T,head_size)</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>q = torch.randn(B,T,head_size)</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>wei = q @ k.transpose(</span><span
+ style='color:#116644' lang=en-US>-2</span><span style='color:black'
+ lang=en-US>, </span><span style='color:#116644' lang=en-US>-1</span><span
+ style='color:black' lang=en-US>)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#212121' lang=en-US>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-size:36.0pt;color:#212121'><span
+ style='font-family:微软雅黑' lang=en-US>k,q</span><span style='font-family:微软雅黑'
+ lang=zh-CN>都是方差为</span><span style='font-family:微软雅黑' lang=en-US>1</span><span
+ style='font-family:微软雅黑' lang=zh-CN>的正态分布，但是</span><span style='font-family:
+ 微软雅黑' lang=en-US>k*q</span><span style='font-family:微软雅黑' lang=zh-CN>的方差不是</span><span
+ style='font-family:微软雅黑' lang=en-US>1</span><span style='font-family:微软雅黑'
+ lang=zh-CN>，类似于神经网络初始化权重时，进行</span><span style='font-family:微软雅黑' lang=en-US>normalization</span><span
+ style='font-family:微软雅黑' lang=zh-CN>一样：</span><span style='font-family:Calibri'
+ lang=zh-CN>self</span><span style='font-weight:bold;font-family:Calibri'
+ lang=zh-CN>.</span><span style='font-family:Calibri' lang=zh-CN>weight </span><span
+ style='font-weight:bold;font-family:Calibri' lang=zh-CN>=</span><span
+ style='font-family:Calibri' lang=zh-CN> torch</span><span style='font-weight:
+ bold;font-family:Calibri' lang=zh-CN>.</span><span style='font-family:Calibri'
+ lang=zh-CN>randn((fan_in, fan_out), generator</span><span style='font-weight:
+ bold;font-family:Calibri' lang=zh-CN>=</span><span style='font-family:Calibri'
+ lang=zh-CN>g) </span><span style='font-weight:bold;font-family:Calibri'
+ lang=zh-CN>/</span><span style='font-family:Calibri' lang=zh-CN> fan_in</span><span
+ style='font-weight:bold;font-family:Calibri' lang=zh-CN>**</span><span
+ style='font-family:Calibri' lang=zh-CN>0.5</span><span style='font-family:
+ 微软雅黑' lang=en-US>.</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'><span lang=zh-CN>那么为什么要方差为</span><span lang=en-US>1</span><span
+ lang=zh-CN>的分布呢，因为如果</span><span lang=en-US>wei</span><span lang=zh-CN>的方差过大，即</span><span
+ lang=en-US>wei</span><span lang=zh-CN>的分布不是均匀的，那么经过</span><span lang=en-US>softmax</span><span
+ lang=zh-CN>后，会出现占主导地位的值，例如，</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'><span lang=en-US>print(</span><span lang=zh-CN>torch.softmax(torch.tensor([0.1,
+ -0.2, 0.3, -0.2, 0.5]), dim=-1)</span><span lang=en-US> )</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'><span lang=zh-CN>tensor([0.1925, 0.1426, 0.2351, 0.1426,
+ 0.2872])</span><span lang=en-US><span style='mso-spacerun:yes'>  </span># </span><span
+ style='font-weight:bold' lang=zh-CN>分布比较均匀</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#1F1F1F'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>而如果某个值过大，经过</span><span lang=en-US>softmax</span><span lang=zh-CN>后，概率也会变得很大，如</span><span
+ lang=en-US>0.8</span><span lang=zh-CN>，</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>print(</span><span lang=zh-CN>torch.softmax(torch.tensor([</span><span
+ lang=en-US>0.1, -0.2, 0.3, -0.2, 0.5])*8, dim=-1) )# gets too peaky, converges
+ to one-hot</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'><span lang=en-US>tensor([0.0326, 0.0030, 0.1615, 0.0030,</span><span
+ style='font-weight:bold' lang=en-US> 0.8000</span><span lang=en-US>])<span
+ style='mso-spacerun:yes'>  </span># </span><span style='font-weight:bold'
+ lang=zh-CN>分布不均匀</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>这样的情况不利用</span><span style='font-weight:
+ bold' lang=en-US>aggregate</span><span style='font-weight:bold' lang=zh-CN>，尤其是在初始化的阶段。</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#1F1F1F'>&nbsp;</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:normal'>
+  <li value=4 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold;color:#1F1F1F'><span style='font-family:微软雅黑;font-size:
+      48.0pt;font-weight:bold;font-style:normal;font-weight:bold;font-family:
+      微软雅黑;font-size:48.0pt'>整体代码</span></li>
+ </ol>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:48.0pt;
+ color:#1F1F1F'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#1F1F1F'><span
+ style='font-weight:bold' lang=en-US>Transformer</span><span style='font-weight:
+ bold' lang=zh-CN>中采取的两个措施来解决深度神经网络训练困难的问题：</span><span style='font-weight:
+ bold' lang=en-US>1.</span><span style='font-weight:bold' lang=zh-CN>残差连接</span><span
+ style='font-weight:bold' lang=en-US> 2.layernorm</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt;color:#1F1F1F'>&nbsp;</p>
+ <p style='margin:0in;margin-left:4.125in'><img
+ src="Let's%20build%20GPT_%20from%20scratch,%20in%20code,%20spelled%20out.files/image002.png"
+ width=1420 height=1826></p>
+ <p style='margin:0in;line-height:14pt;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:1.125in'><img
+ src="Let's%20build%20GPT_%20from%20scratch,%20in%20code,%20spelled%20out.files/image003.jpg"
+ width=2435 height=814></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>batch_size = </span><span style='color:#116644'>16 </span><span
+ style='color:green'># how many independent sequences will we process in
+ parallel?</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>block_size = </span><span style='color:#116644'>32 </span><span
+ style='color:green'># what is the maximum context length for predictions?</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>max_iters = </span><span style='color:#116644'>5000</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>eval_interval = </span><span style='color:#116644'>100</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>learning_rate = </span><span style='color:#116644'>1e-3</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>device = </span><span style='color:#A31515'>'cuda' </span><span
+ style='color:#9723B4'>if</span><span style='color:black'>
+ torch.cuda.is_available() </span><span style='color:#9723B4'>else </span><span
+ style='color:#A31515'>'cpu'</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>eval_iters = </span><span style='color:#116644'>200</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>n_embd = </span><span style='color:#116644'>64</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>n_head = </span><span style='color:#116644'>4</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>n_layer = </span><span style='color:#116644'>4</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>dropout = </span><span style='color:#116644'>0.0</span></p>
+ <p style='margin:0in;line-height:14pt;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:blue'>class </span><span style='color:#257693'>Head</span><span
+ style='color:black'>(</span><span style='color:#257693'>nn</span><span
+ style='color:black'>.</span><span style='color:#257693'>Module</span><span
+ style='color:black'>):</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:#A31515'>&quot;&quot;&quot;
+ one head of self-attention &quot;&quot;&quot;</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:blue'>def </span><span
+ style='color:#6A5221'>__init__</span><span style='color:black'>(</span><span
+ style='color:#001080'>self</span><span style='color:black'>, </span><span
+ style='color:#001080'>head_size</span><span style='color:black'>):</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; super().</span><span
+ style='color:#6A5221'>__init__</span><span style='color:black'>()</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #001080'>self</span><span style='color:black'>.key = nn.Linear(n_embd,
+ head_size, bias=</span><span style='color:blue'>False</span><span
+ style='color:black'>)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #001080'>self</span><span style='color:black'>.query = nn.Linear(n_embd,
+ head_size, bias=</span><span style='color:blue'>False</span><span
+ style='color:black'>)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #001080'>self</span><span style='color:black'>.value = nn.Linear(n_embd,
+ head_size, bias=</span><span style='color:blue'>False</span><span
+ style='color:black'>)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #001080'>self</span><span style='color:black'>.register_buffer(</span><span
+ style='color:#A31515'>'tril'</span><span style='color:black'>,
+ torch.tril(torch.ones(block_size, block_size)))</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #001080'>self</span><span style='color:black'>.dropout = nn.Dropout(dropout)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:blue'>def </span><span
+ style='color:#6A5221'>forward</span><span style='color:black'>(</span><span
+ style='color:#001080'>self</span><span style='color:black'>, </span><span
+ style='color:#001080'>x</span><span style='color:black'>):</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp; &nbsp; &nbsp; &nbsp; B,T,C = x.shape</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; k = </span><span
+ style='color:#001080'>self</span><span style='color:black'>.key(x) &nbsp; </span><span
+ style='color:green'># (B,T,C)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; q = </span><span
+ style='color:#001080'>self</span><span style='color:black'>.query(x) </span><span
+ style='color:green'># (B,T,C)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ green'># compute attention scores (&quot;affinities&quot;)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; wei = q @ k.transpose(</span><span
+ style='color:#116644'>-2</span><span style='color:black'>,</span><span
+ style='color:#116644'>-1</span><span style='color:black'>) * C**</span><span
+ style='color:#116644'>-0.5 </span><span style='color:green'># (B, T, C) @ (B,
+ C, T) -&gt; (B, T, T)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; wei = wei.masked_fill(</span><span
+ style='color:#001080'>self</span><span style='color:black'>.tril[:T, :T] == </span><span
+ style='color:#116644'>0</span><span style='color:black'>, </span><span
+ style='color:#257693'>float</span><span style='color:black'>(</span><span
+ style='color:#A31515'>'-inf'</span><span style='color:black'>)) </span><span
+ style='color:green'># (B, T, T)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; wei = F.softmax(wei, dim=</span><span
+ style='color:#116644'>-1</span><span style='color:black'>) </span><span
+ style='color:green'># (B, T, T)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; wei = </span><span
+ style='color:#001080'>self</span><span style='color:black'>.dropout(wei)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ green'># perform the weighted aggregation of the values</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; v = </span><span
+ style='color:#001080'>self</span><span style='color:black'>.value(x) </span><span
+ style='color:green'># (B,T,C)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; out = wei @ v </span><span
+ style='color:green'># (B, T, T) @ (B, T, C) -&gt; (B, T, C)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #9723B4'>return</span><span style='color:black'> out</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:blue'>class </span><span style='color:#257693'>MultiHeadAttention</span><span
+ style='color:black'>(</span><span style='color:#257693'>nn</span><span
+ style='color:black'>.</span><span style='color:#257693'>Module</span><span
+ style='color:black'>):</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:#A31515'>&quot;&quot;&quot;
+ multiple heads of self-attention in parallel &quot;&quot;&quot;</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:blue'>def </span><span
+ style='color:#6A5221'>__init__</span><span style='color:black'>(</span><span
+ style='color:#001080'>self</span><span style='color:black'>, </span><span
+ style='color:#001080'>num_heads</span><span style='color:black'>, </span><span
+ style='color:#001080'>head_size</span><span style='color:black'>):</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; super().</span><span
+ style='color:#6A5221'>__init__</span><span style='color:black'>()</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #001080'>self</span><span style='color:black'>.heads =
+ nn.ModuleList([Head(head_size) </span><span style='color:#9723B4'>for</span><span
+ style='color:black'> _ </span><span style='color:blue'>in </span><span
+ style='color:#6A5221'>range</span><span style='color:black'>(num_heads)])</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>&nbsp; &nbsp; &nbsp; &nbsp; </span><span
+ style='color:#001080' lang=zh-CN>self</span><span style='color:black'
+ lang=zh-CN>.proj = nn.Linear(n_embd, n_embd)</span><span style='font-weight:
+ bold;color:black;background:lime;mso-highlight:lime' lang=en-US><span
+ style='mso-spacerun:yes'>  </span># </span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>这里还有个</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>projection</span><span style='font-weight:bold;color:black;
+ background:lime;mso-highlight:lime' lang=zh-CN>层，对多个头的</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>concated attention value</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>进行线性变换，也就是将</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>n</span><span style='font-weight:bold;color:black;background:lime;
+ mso-highlight:lime' lang=zh-CN>个头</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US>concat</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>的结果投影回原来的</span><span style='font-weight:bold;color:black;
+ background:lime;mso-highlight:lime' lang=en-US>token</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>的</span><span style='font-weight:bold;color:black;background:lime;
+ mso-highlight:lime' lang=en-US>embedding</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>维度。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #001080'>self</span><span style='color:black'>.dropout = nn.Dropout(dropout)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:blue'>def </span><span
+ style='color:#6A5221'>forward</span><span style='color:black'>(</span><span
+ style='color:#001080'>self</span><span style='color:black'>, </span><span
+ style='color:#001080'>x</span><span style='color:black'>):</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>&nbsp; &nbsp; &nbsp; &nbsp; out =
+ torch.cat([h(x) </span><span style='color:#9723B4' lang=zh-CN>for</span><span
+ style='color:black' lang=zh-CN> h </span><span style='color:blue' lang=zh-CN>in
+ </span><span style='color:#001080' lang=zh-CN>self</span><span
+ style='color:black' lang=zh-CN>.heads], dim=</span><span style='color:#116644'
+ lang=zh-CN>-1</span><span style='color:black' lang=zh-CN>)</span><span
+ style='color:black' lang=en-US><span style='mso-spacerun:yes'>   </span></span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US><span style='mso-spacerun:yes'> </span># </span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>多头注意力是将多个头</span><span style='font-weight:bold;color:black;
+ background:lime;mso-highlight:lime' lang=en-US>concat</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>起来，所以</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=en-US>attention value</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>的维度是原来的</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=en-US>n_head</span><span style='font-weight:
+ bold;color:black;background:lime;mso-highlight:lime' lang=zh-CN>分之一，这样</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>concat</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=zh-CN>之后的长度才和原来的</span><span style='font-weight:
+ bold;color:black;background:lime;mso-highlight:lime' lang=en-US>embedding</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>一致。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; out = </span><span
+ style='color:#001080'>self</span><span style='color:black'>.dropout(</span><span
+ style='color:#001080'>self</span><span style='color:black'>.proj(out))</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #9723B4'>return</span><span style='color:black'> out</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#1F1F1F'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;line-height:14pt;font-family:微软雅黑;
+ font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:blue' lang=zh-CN>class </span><span style='color:#257693'
+ lang=zh-CN>FeedFoward</span><span style='color:black' lang=zh-CN>(</span><span
+ style='color:#257693' lang=zh-CN>nn</span><span style='color:black'
+ lang=zh-CN>.</span><span style='color:#257693' lang=zh-CN>Module</span><span
+ style='color:black' lang=zh-CN>):</span><span style='color:black' lang=en-US><span
+ style='mso-spacerun:yes'>  </span></span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US># </span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>前馈层对每个</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=en-US>token</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>单独独立处理的，不存在</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>attention</span><span style='font-weight:bold;color:black;
+ background:lime;mso-highlight:lime' lang=zh-CN>中的交互。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:#A31515'>&quot;&quot;&quot;
+ a simple linear layer followed by a non-linearity &quot;&quot;&quot;</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:blue'>def </span><span
+ style='color:#6A5221'>__init__</span><span style='color:black'>(</span><span
+ style='color:#001080'>self</span><span style='color:black'>, </span><span
+ style='color:#001080'>n_embd</span><span style='color:black'>):</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; super().</span><span
+ style='color:#6A5221'>__init__</span><span style='color:black'>()</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #001080'>self</span><span style='color:black'>.net = nn.Sequential(</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+ nn.Linear(n_embd, </span><span style='color:#116644' lang=zh-CN>4</span><span
+ style='color:black' lang=zh-CN> * n_embd),</span><span style='color:black'
+ lang=en-US> </span><span style='font-weight:bold;color:black;background:lime;
+ mso-highlight:lime' lang=en-US># </span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>这里前馈层先将每个</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>token</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=zh-CN>的</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US>embedding</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>的长度扩大</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=en-US>4</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>倍</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nn.ReLU(),</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+ nn.Linear(</span><span style='color:#116644' lang=zh-CN>4</span><span
+ style='color:black' lang=zh-CN> * n_embd, n_embd),</span><span
+ style='color:black' lang=en-US> </span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US># </span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>这里还有个</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=en-US>projection</span><span style='font-weight:
+ bold;color:black;background:lime;mso-highlight:lime' lang=zh-CN>层，投影回原来</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>token</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=zh-CN>的</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US>embedding</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>的长度。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; nn.Dropout(dropout),</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp; &nbsp; &nbsp; &nbsp; )</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:blue'>def </span><span
+ style='color:#6A5221'>forward</span><span style='color:black'>(</span><span
+ style='color:#001080'>self</span><span style='color:black'>, </span><span
+ style='color:#001080'>x</span><span style='color:black'>):</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #9723B4'>return </span><span style='color:#001080'>self</span><span
+ style='color:black'>.net(x)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:blue' lang=zh-CN>class </span><span style='color:#257693'
+ lang=zh-CN>Block</span><span style='color:black' lang=zh-CN>(</span><span
+ style='color:#257693' lang=zh-CN>nn</span><span style='color:black'
+ lang=zh-CN>.</span><span style='color:#257693' lang=zh-CN>Module</span><span
+ style='color:black' lang=zh-CN>):</span><span style='color:black' lang=en-US><span
+ style='mso-spacerun:yes'>  </span></span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US><span
+ style='mso-spacerun:yes'> </span>#Block</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>是多头注意力</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>+</span><span style='font-weight:bold;color:black;background:lime;
+ mso-highlight:lime' lang=zh-CN>前馈层的组合</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:#A31515'>&quot;&quot;&quot;
+ Transformer block: communication followed by computation &quot;&quot;&quot;</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:blue'>def </span><span
+ style='color:#6A5221'>__init__</span><span style='color:black'>(</span><span
+ style='color:#001080'>self</span><span style='color:black'>, </span><span
+ style='color:#001080'>n_embd</span><span style='color:black'>, </span><span
+ style='color:#001080'>n_head</span><span style='color:black'>):</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ green'># n_embd: embedding dimension, n_head: the number of heads we'd like</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; super().</span><span
+ style='color:#6A5221'>__init__</span><span style='color:black'>()</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp; &nbsp; &nbsp; &nbsp; head_size = n_embd // n_head</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #001080'>self</span><span style='color:black'>.sa = MultiHeadAttention(n_head,
+ head_size)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #001080'>self</span><span style='color:black'>.ffwd = FeedFoward(n_embd)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #001080'>self</span><span style='color:black'>.ln1 = nn.LayerNorm(n_embd)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #001080'>self</span><span style='color:black'>.ln2 = nn.LayerNorm(n_embd)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:blue'>def </span><span
+ style='color:#6A5221'>forward</span><span style='color:black'>(</span><span
+ style='color:#001080'>self</span><span style='color:black'>, </span><span
+ style='color:#001080'>x</span><span style='color:black'>):</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>&nbsp; &nbsp; &nbsp; &nbsp; x = x + </span><span
+ style='color:#001080' lang=zh-CN>self</span><span style='color:black'
+ lang=zh-CN>.sa(</span><span style='color:#001080' lang=zh-CN>self</span><span
+ style='color:black' lang=zh-CN>.ln1(x))</span><span style='color:black'
+ lang=en-US><span style='mso-spacerun:yes'>   </span></span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>#block</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=zh-CN>中加入残差连接，因为深度神经网络的训练困难，为什么可以缓解：因为提供了另一个</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>path,</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=zh-CN>使得输入对输出的影响不只有一条</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>path</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=zh-CN>，也就是输入的梯度不会变为</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>0</span><span style='font-weight:bold;color:black;background:lime;
+ mso-highlight:lime' lang=zh-CN>，类似的还有</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US>LSTM</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>中的各种门，也是提供了不同的</span><span style='font-weight:bold;color:black;
+ background:lime;mso-highlight:lime' lang=en-US>path</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>，使得某个</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=en-US>path</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>无法占主导地位或完全没有作用。</span></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>&nbsp; &nbsp; &nbsp; &nbsp; x = x + </span><span
+ style='color:#001080' lang=zh-CN>self</span><span style='color:black'
+ lang=zh-CN>.ffwd(</span><span style='color:#001080' lang=zh-CN>self</span><span
+ style='color:black' lang=zh-CN>.ln2(x))</span><span style='color:black'
+ lang=en-US><span style='mso-spacerun:yes'>  </span></span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US># </span><span style='font-weight:bold;color:black;background:lime;
+ mso-highlight:lime' lang=zh-CN>两个残差连接</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US>, </span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>一个是多头注意力，一个是前馈</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:8.25in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:lime;mso-highlight:lime'
+ lang=en-US>#</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN>两个</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=en-US>layernorm</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=zh-CN>分别在多头注意力层和前馈层之前，而不是之后</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US> </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>。这和上面那张原始的</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>T</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>rans</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>former</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>论文中的图不一样</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #9723B4'>return</span><span style='color:black'> x</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:green'># super simple bigram model</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:blue'>class </span><span style='color:#257693'>BigramLanguageModel</span><span
+ style='color:black'>(</span><span style='color:#257693'>nn</span><span
+ style='color:black'>.</span><span style='color:#257693'>Module</span><span
+ style='color:black'>):</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:blue'>def </span><span
+ style='color:#6A5221'>__init__</span><span style='color:black'>(</span><span
+ style='color:#001080'>self</span><span style='color:black'>):</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; super().</span><span
+ style='color:#6A5221'>__init__</span><span style='color:black'>()</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ green'># each token directly reads off the logits for the next token from a
+ lookup table</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #001080'>self</span><span style='color:black'>.token_embedding_table =
+ nn.Embedding(vocab_size, n_embd)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #001080'>self</span><span style='color:black'>.position_embedding_table =
+ nn.Embedding(block_size, n_embd)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #001080'>self</span><span style='color:black'>.blocks =
+ nn.Sequential(*[Block(n_embd, n_head=n_head) </span><span style='color:#9723B4'>for</span><span
+ style='color:black'> _ </span><span style='color:blue'>in </span><span
+ style='color:#6A5221'>range</span><span style='color:black'>(n_layer)])</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #001080'>self</span><span style='color:black'>.ln_f = nn.LayerNorm(n_embd) </span><span
+ style='color:green'># final layer norm</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #001080'>self</span><span style='color:black'>.lm_head = nn.Linear(n_embd,
+ vocab_size)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:blue'>def </span><span
+ style='color:#6A5221'>forward</span><span style='color:black'>(</span><span
+ style='color:#001080'>self</span><span style='color:black'>, </span><span
+ style='color:#001080'>idx</span><span style='color:black'>, </span><span
+ style='color:#001080'>targets</span><span style='color:black'>=</span><span
+ style='color:blue'>None</span><span style='color:black'>):</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp; &nbsp; &nbsp; &nbsp; B, T = idx.shape</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ green'># idx and targets are both (B,T) tensor of integers</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; tok_emb = </span><span
+ style='color:#001080'>self</span><span style='color:black'>.token_embedding_table(idx)
+ </span><span style='color:green'># (B,T,C)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; pos_emb = </span><span
+ style='color:#001080'>self</span><span style='color:black'>.position_embedding_table(torch.arange(T,
+ device=device)) </span><span style='color:green'># (T,C)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; x = tok_emb + pos_emb </span><span
+ style='color:green'># (B,T,C)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; x = </span><span
+ style='color:#001080'>self</span><span style='color:black'>.blocks(x) </span><span
+ style='color:green'># (B,T,C)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black' lang=zh-CN>&nbsp; &nbsp; &nbsp; &nbsp; x = </span><span
+ style='color:#001080' lang=zh-CN>self</span><span style='color:black'
+ lang=zh-CN>.ln_f(x) </span><span style='color:green' lang=zh-CN># (B,T,C)</span><span
+ style='color:green' lang=en-US><span style='mso-spacerun:yes'>  </span></span><span
+ style='font-weight:bold;color:green;background:lime;mso-highlight:lime'
+ lang=en-US><span style='mso-spacerun:yes'> </span>blocks</span><span
+ style='font-weight:bold;color:green;background:lime;mso-highlight:lime'
+ lang=zh-CN>层之后也加入</span><span style='font-weight:bold;color:green;background:
+ lime;mso-highlight:lime' lang=en-US>layernorm</span><span style='font-weight:
+ bold;color:green;background:lime;mso-highlight:lime' lang=zh-CN>层</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; logits = </span><span
+ style='color:#001080'>self</span><span style='color:black'>.lm_head(x) </span><span
+ style='color:green'># (B,T,vocab_size)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #9723B4'>if</span><span style='color:black'> targets </span><span
+ style='color:blue'>is None</span><span style='color:black'>:</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; loss = </span><span
+ style='color:blue'>None</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #9723B4'>else</span><span style='color:black'>:</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; B, T, C = logits.shape</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; logits =
+ logits.view(B*T, C)</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; targets =
+ targets.view(B*T)</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; loss =
+ F.cross_entropy(logits, targets)</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #9723B4'>return</span><span style='color:black'> logits, loss</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; </span><span style='color:blue'>def </span><span
+ style='color:#6A5221'>generate</span><span style='color:black'>(</span><span
+ style='color:#001080'>self</span><span style='color:black'>, </span><span
+ style='color:#001080'>idx</span><span style='color:black'>, </span><span
+ style='color:#001080'>max_new_tokens</span><span style='color:black'>):</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ green'># idx is (B, T) array of indices in the current context</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #9723B4'>for</span><span style='color:black'> _ </span><span style='color:
+ blue'>in </span><span style='color:#6A5221'>range</span><span
+ style='color:black'>(max_new_tokens):</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span
+ style='color:green'># crop idx to the last block_size tokens</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; idx_cond = idx[:,
+ -block_size:]</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span
+ style='color:green'># get the predictions</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; logits, loss = </span><span
+ style='color:#001080'>self</span><span style='color:black'>(idx_cond)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span
+ style='color:green'># focus only on the last time step</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; logits =
+ logits[:, </span><span style='color:#116644'>-1</span><span style='color:black'>,
+ :] </span><span style='color:green'># becomes (B, C)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span
+ style='color:green'># apply softmax to get probabilities</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; probs =
+ F.softmax(logits, dim=</span><span style='color:#116644'>-1</span><span
+ style='color:black'>) </span><span style='color:green'># (B, C)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span
+ style='color:green'># sample from the distribution</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; idx_next =
+ torch.multinomial(probs, num_samples=</span><span style='color:#116644'>1</span><span
+ style='color:black'>) </span><span style='color:green'># (B, 1)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span
+ style='color:green'># append sampled index to the running sequence</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; idx =
+ torch.cat((idx, idx_next), dim=</span><span style='color:#116644'>1</span><span
+ style='color:black'>) </span><span style='color:green'># (B, T+1)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='color:
+ #9723B4'>return</span><span style='color:black'> idx</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'>&nbsp;</p>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

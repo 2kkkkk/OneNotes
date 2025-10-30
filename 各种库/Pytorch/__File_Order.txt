@@ -1,0 +1,4 @@
+Batchnorm layernorm
+广播
+花式索引
+cuda 多进程

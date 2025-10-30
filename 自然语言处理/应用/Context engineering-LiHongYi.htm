@@ -1,0 +1,162 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href="Context%20engineering-LiHongYi.htm">
+<link rel=File-List href="Context%20engineering-LiHongYi.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:21.2958in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.0236in;width:4.5701in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt' lang=en-US>Context
+engineering-LiHongYi</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:.0236in;width:1.7388in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>10</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>15</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>15:53</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:21.2958in'>
+
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=en-US>Context </span><span style='font-weight:
+ bold' lang=zh-CN>中包含哪些内容？</span></p>
+ <p style='margin:0in;margin-left:.75in'><img
+ src="Context%20engineering-LiHongYi.files/image001.jpg" width=1499 height=598></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>对于</span><span style='font-weight:bold'
+ lang=en-US>Agent</span><span style='font-weight:bold' lang=zh-CN>来说，需要不断和环境进行</span><span
+ style='font-weight:bold' lang=en-US>observation-&gt;reasoning-&gt;observation-&gt;reasoning……</span><span
+ style='font-weight:bold' lang=zh-CN>，</span><span style='font-weight:bold'
+ lang=en-US>context</span><span style='font-weight:bold' lang=zh-CN>就更长了。</span></p>
+ <p style='margin:0in;margin-left:1.875in'><img
+ src="Context%20engineering-LiHongYi.files/image002.jpg" width=1366 height=631></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>虽然现在</span><span
+ lang=en-US>LLM</span><span lang=zh-CN>的输入长度可以达到</span><span lang=en-US>100</span><span
+ lang=zh-CN>万甚至更多，但是并不代表当输入长度超长时，</span><span lang=en-US>LLM</span><span
+ lang=zh-CN>可以好的响应。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in'><img
+ src="Context%20engineering-LiHongYi.files/image003.jpg" width=1813 height=594></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>上图就表明，</span><span
+ lang=en-US>rag</span><span lang=zh-CN>搜寻到的资料并不是越多越好。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in'><img
+ src="Context%20engineering-LiHongYi.files/image004.jpg" width=1704 height=784></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>并且答案在</span><span
+ lang=en-US>context</span><span lang=zh-CN>的中间时，</span><span lang=en-US>llm</span><span
+ lang=zh-CN>回答的准确率不如答案在</span><span lang=en-US>context</span><span lang=zh-CN>的开头和结尾，也就是</span><span
+ style='font-weight:bold' lang=en-US>llm</span><span style='font-weight:bold'
+ lang=zh-CN>更关注</span><span style='font-weight:bold' lang=en-US>context</span><span
+ style='font-weight:bold' lang=zh-CN>的开头和结尾。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:2.25in'><img
+ src="Context%20engineering-LiHongYi.files/image005.jpg" width=1522 height=830></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=en-US>Context engineering </span><span
+ style='font-weight:bold' lang=zh-CN>常用招数：</span></p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:bold;font-style:normal'>
+  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold' lang=en-US><span style='font-family:微软雅黑;font-size:
+      36.0pt;font-weight:bold;font-style:normal;font-weight:bold;font-family:
+      微软雅黑;font-size:36.0pt'>select</span></li>
+ </ol>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>rag</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，通过</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>rag</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>技术检索出最相关的内容放入</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>context</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>中</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>tool
+      rag</span><span style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'
+      lang=zh-CN>，不要把所有的</span><span style='font-weight:bold;font-family:微软雅黑;
+      font-size:36.0pt' lang=en-US>tool</span><span style='font-weight:bold;
+      font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>全部放入</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>context</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>中，挑选出最相关的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>tool</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>即可</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>memory
+      rag</span><span style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'
+      lang=zh-CN>，不将整个</span><span style='font-weight:bold;font-family:微软雅黑;
+      font-size:36.0pt' lang=en-US>agent history</span><span style='font-weight:
+      bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>放入</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>context</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>中，只放入关键的片断（人的一生太漫长，只记住关键的几个瞬息）；或者将</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>history</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>存储出文件中，然后进行</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>memory
+      rag</span><span style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'
+      lang=zh-CN>检索出最相关的</span><span style='font-weight:bold;font-family:微软雅黑;
+      font-size:36.0pt' lang=en-US>memory</span><span style='font-weight:bold;
+      font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>即可。</span></li>
+ </ul>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:bold;font-style:normal'>
+  <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold' lang=en-US><span style='font-family:微软雅黑;font-size:
+      36.0pt;font-weight:bold;font-style:normal;font-weight:bold;font-family:
+      微软雅黑;font-size:36.0pt'>compress</span></li>
+ </ol>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>比如每</span><span style='font-weight:bold'
+ lang=en-US>100</span><span style='font-weight:bold' lang=zh-CN>轮对话就压缩，或</span><span
+ style='font-weight:bold' lang=en-US>context</span><span style='font-weight:
+ bold' lang=zh-CN>长度达到某个界限就压缩</span><span style='font-weight:bold' lang=en-US> </span></p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:bold;font-style:normal'>
+  <li value=3 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold' lang=en-US><span style='font-family:微软雅黑;font-size:
+      36.0pt;font-weight:bold;font-style:normal;font-weight:bold;font-family:
+      微软雅黑;font-size:36.0pt'>multi-agent</span></li>
+ </ol>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

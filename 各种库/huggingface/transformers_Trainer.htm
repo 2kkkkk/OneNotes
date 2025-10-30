@@ -1,0 +1,2514 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href="transformers_Trainer.htm">
+<link rel=File-List href="transformers_Trainer.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:31.5201in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.0715in;width:3.2812in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'><span lang=zh-CN>transformers</span><span
+lang=en-US>_Trainer</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:.0715in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>6</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>16</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>10:46</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:31.5201in'>
+
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+ style='font-weight:bold'>Trainer</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+ style='font-family:"Source Sans Pro";background:#FFFBEB' lang=zh-CN>class</span><span
+ style='font-weight:bold;font-family:"Source Sans Pro";background:#FFFBEB'
+ lang=zh-CN>&nbsp;</span><span style='font-family:"Source Sans Pro";background:
+ #FFFBEB' lang=zh-CN>transformers.Trainer</span><span style='font-family:微软雅黑;
+ background:#FFFBEB' lang=en-US><span style='mso-spacerun:yes'>   </span></span><a
+ href="https://github.com/huggingface/transformers/blob/v4.52.3/src/transformers/trainer.py#L318"><span
+ style='font-family:"Source Sans Pro";background:#FFFBEB' lang=zh-CN>&lt;source&gt;</span></a></p>
+ <p style='margin:0in;margin-left:.375in;font-family:"IBM Plex Mono";
+ font-size:36.0pt;color:#4A5565'><span style='background:#FFFBEB'>(&nbsp;model:
+ typing.Union[transformers.modeling_utils.PreTrainedModel,
+ torch.nn.modules.module.Module, NoneType] = Noneargs: TrainingArguments =
+ Nonedata_collator:
+ typing.Optional[transformers.data.data_collator.DataCollator] =
+ Nonetrain_dataset: typing.Union[torch.utils.data.dataset.Dataset,
+ torch.utils.data.dataset.IterableDataset, ForwardRef('datasets.Dataset'),
+ NoneType] = Noneeval_dataset: typing.Union[torch.utils.data.dataset.Dataset,
+ dict[str, torch.utils.data.dataset.Dataset], ForwardRef('datasets.Dataset'),
+ NoneType] = Noneprocessing_class:
+ typing.Union[transformers.tokenization_utils_base.PreTrainedTokenizerBase,
+ transformers.image_processing_utils.BaseImageProcessor,
+ transformers.feature_extraction_utils.FeatureExtractionMixin, transformers.processing_utils.ProcessorMixin,
+ NoneType] = Nonemodel_init: typing.Optional[typing.Callable[[],
+ transformers.modeling_utils.PreTrainedModel]] = Nonecompute_loss_func:
+ typing.Optional[typing.Callable] = Nonecompute_metrics:
+ typing.Optional[typing.Callable[[transformers.trainer_utils.EvalPrediction],
+ dict]] = Nonecallbacks:
+ typing.Optional[list[transformers.trainer_callback.TrainerCallback]] =
+ Noneoptimizers: tuple = (None, None)optimizer_cls_and_kwargs:
+ typing.Optional[tuple[type[torch.optim.optimizer.Optimizer], dict[str,
+ typing.Any]]] = Nonepreprocess_logits_for_metrics:
+ typing.Optional[typing.Callable[[torch.Tensor, torch.Tensor], torch.Tensor]] =
+ None&nbsp;)</span></p>
+ <p style='margin-left:.375in;margin-top:6pt;margin-bottom:6pt;font-family:
+ "Source Sans Pro";font-size:36.0pt;color:#4A5565'>Parameters</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#4A5565'><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>model&nbsp;(</span><a
+      href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/model#transformers.PreTrainedModel"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>PreTrainedModel</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>&nbsp;or&nbsp;torch.nn.Module,&nbsp;</span><span
+      style='font-style:italic;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>optional</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>) — The model to
+      train, evaluate or use for predictions. If not provided,
+      a&nbsp;model_init&nbsp;must be passed.<br>
+            </span><a
+      href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.Trainer"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Trainer</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>&nbsp;is
+      optimized to work with the&nbsp;</span><a
+      href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/model#transformers.PreTrainedModel"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>PreTrainedModel</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>&nbsp;provided by
+      the library. You can still use your own models defined
+      as&nbsp;torch.nn.Module&nbsp;as long as they work the same way as the </span><span
+      style='font-family:"Segoe UI Emoji";font-size:36.0pt;color:#4A5565'>&#129303;</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'> Transformers
+      models.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#4A5565'><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>args&nbsp;(</span><a
+      href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.TrainingArguments"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>TrainingArguments</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>,&nbsp;</span><span
+      style='font-style:italic;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>optional</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>) — The arguments
+      to tweak for training. Will default to a basic instance of&nbsp;</span><a
+      href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.TrainingArguments"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>TrainingArguments</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>&nbsp;with
+      the&nbsp;output_dir&nbsp;set to a directory named&nbsp;</span><span
+      style='font-style:italic;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>tmp_trainer</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>&nbsp;in the
+      current directory if not provided.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#4A5565'><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>data_collator&nbsp;(DataCollator,&nbsp;</span><span
+      style='font-style:italic;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>optional</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>) — The function
+      to use to form a batch from a list of elements
+      of&nbsp;train_dataset&nbsp;or&nbsp;eval_dataset. Will default to&nbsp;</span><a
+      href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/data_collator#transformers.default_data_collator"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>default_data_collator()</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>&nbsp;if
+      no&nbsp;processing_class&nbsp;is provided, an instance of&nbsp;</span><a
+      href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/data_collator#transformers.DataCollatorWithPadding"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>DataCollatorWithPadding</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>&nbsp;otherwise
+      if the processing_class is a feature extractor or tokenizer.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#4A5565'><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>train_dataset&nbsp;(Union[torch.utils.data.Dataset,&nbsp;torch.utils.data.IterableDataset,&nbsp;datasets.Dataset],&nbsp;</span><span
+      style='font-style:italic;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>optional</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>) — The dataset
+      to use for training. If it is a&nbsp;</span><a
+      href="https://huggingface.co/docs/datasets/v3.6.0/en/package_reference/main_classes#datasets.Dataset"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Dataset</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>, columns not
+      accepted by the&nbsp;model.forward()&nbsp;method are automatically
+      removed.<br>
+            Note that if it’s a&nbsp;torch.utils.data.IterableDataset&nbsp;with
+      some randomization and you are training in a distributed fashion, your
+      iterable dataset should either use a internal
+      attribute&nbsp;generator&nbsp;that is a&nbsp;torch.Generator&nbsp;for the
+      randomization that must be identical on all processes (and the Trainer
+      will manually set the seed of this&nbsp;generator&nbsp;at each epoch) or
+      have a&nbsp;set_epoch()&nbsp;method that internally sets the seed of the
+      RNGs used.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#4A5565'><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>eval_dataset&nbsp;(Union[torch.utils.data.Dataset,
+      Dict[str,&nbsp;torch.utils.data.Dataset,&nbsp;datasets.Dataset]),&nbsp;</span><span
+      style='font-style:italic;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>optional</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>) — The dataset
+      to use for evaluation. If it is a&nbsp;</span><a
+      href="https://huggingface.co/docs/datasets/v3.6.0/en/package_reference/main_classes#datasets.Dataset"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Dataset</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>, columns not
+      accepted by the&nbsp;model.forward()&nbsp;method are automatically
+      removed. If it is a dictionary, it will evaluate on each dataset
+      prepending the dictionary key to the metric name.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#4A5565'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>processing_class&nbsp;(PreTrainedTokenizerBase&nbsp;or&nbsp;BaseImageProcessor&nbsp;or&nbsp;FeatureExtractionMixin&nbsp;or&nbsp;ProcessorMixin,&nbsp;</span><span
+      style='font-style:italic;font-family:微软雅黑;font-size:36.0pt'>optional</span><span
+      style='font-family:微软雅黑;font-size:36.0pt'>) — Processing class used to
+      process the data. If provided, will be used to automatically process the
+      inputs for the model, and it will be saved along the model to make it
+      easier to rerun an interrupted training or reuse the fine-tuned model.
+      This supersedes the&nbsp;tokenizer&nbsp;argument, which is now
+      deprecated.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#4A5565'><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>model_init&nbsp;(Callable[[],
+      PreTrainedModel],&nbsp;</span><span style='font-style:italic;font-family:
+      微软雅黑;font-size:36.0pt;color:#4A5565'>optional</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>) — A function
+      that instantiates the model to be used. If provided, each call to&nbsp;</span><a
+      href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.Trainer.train"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>train()</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>&nbsp;will start
+      from a new instance of the model as given by this function.<br>
+            The function may have zero argument, or a single one containing the
+      optuna/Ray Tune/SigOpt trial object, to be able to choose different
+      architectures according to hyper parameters (such as layer count, sizes
+      of inner layers, dropout probabilities etc).</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#4A5565'><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>compute_loss_func&nbsp;(Callable,&nbsp;</span><span
+      style='font-style:italic;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>optional</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>) — A function
+      that accepts the raw model outputs, labels, and the number of items in
+      the entire accumulated batch (batch_size * gradient_accumulation_steps)
+      and returns the loss. For example, see the default&nbsp;</span><a
+      href="https://github.com/huggingface/transformers/blob/052e652d6d53c2b26ffde87e039b723949a53493/src/transformers/trainer.py#L3618"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>loss function</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>&nbsp;used
+      by&nbsp;</span><a
+      href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.Trainer"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Trainer</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#4A5565'><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>compute_metrics&nbsp;(Callable[[EvalPrediction],
+      Dict],&nbsp;</span><span style='font-style:italic;font-family:微软雅黑;
+      font-size:36.0pt;color:#4A5565'>optional</span><span style='font-family:
+      微软雅黑;font-size:36.0pt;color:#4A5565'>) — The function that will be used
+      to compute metrics at evaluation. Must take a&nbsp;</span><a
+      href="https://huggingface.co/docs/transformers/v4.52.3/en/internal/trainer_utils#transformers.EvalPrediction"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>EvalPrediction</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>&nbsp;and return
+      a dictionary string to metric values.&nbsp;</span><span style='font-style:
+      italic;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>Note</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>&nbsp;When
+      passing TrainingArgs with&nbsp;batch_eval_metrics&nbsp;set to&nbsp;True,
+      your compute_metrics function must take a
+      boolean&nbsp;compute_result&nbsp;argument. This will be triggered after
+      the last eval batch to signal that the function needs to calculate and
+      return the global summary statistics rather than accumulating the
+      batch-level statistics</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#4A5565'><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>callbacks&nbsp;(List
+      of&nbsp;</span><a
+      href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/callback#transformers.TrainerCallback"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>TrainerCallback</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>,&nbsp;</span><span
+      style='font-style:italic;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>optional</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>) — A list of
+      callbacks to customize the training loop. Will add those to the list of
+      default callbacks detailed in&nbsp;</span><a
+      href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/callback"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>here</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>.<br>
+            If you want to remove one of the default callbacks used, use
+      the&nbsp;</span><a
+      href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.Trainer.remove_callback"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Trainer.remove_callback()</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>&nbsp;method.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#4A5565'><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>optimizers&nbsp;(Tuple[torch.optim.Optimizer,
+      torch.optim.lr_scheduler.LambdaLR],&nbsp;</span><span style='font-style:
+      italic;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>optional</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>, defaults
+      to&nbsp;(None, None)) — A tuple containing the optimizer and the
+      scheduler to use. Will default to an instance of&nbsp;AdamW&nbsp;on your
+      model and a scheduler given by&nbsp;</span><a
+      href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/optimizer_schedules#transformers.get_linear_schedule_with_warmup"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>get_linear_schedule_with_warmup()</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>&nbsp;controlled
+      by&nbsp;args.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#4A5565'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>optimizer_cls_and_kwargs&nbsp;(Tuple[Type[torch.optim.Optimizer],
+      Dict[str, Any]],&nbsp;</span><span style='font-style:italic;font-family:
+      微软雅黑;font-size:36.0pt'>optional</span><span style='font-family:微软雅黑;
+      font-size:36.0pt'>) — A tuple containing the optimizer class and keyword
+      arguments to use.
+      Overrides&nbsp;optim&nbsp;and&nbsp;optim_args&nbsp;in&nbsp;args.
+      Incompatible with the&nbsp;optimizers&nbsp;argument.<br>
+            Unlike&nbsp;optimizers, this argument avoids the need to place
+      model parameters on the correct devices before initializing the Trainer.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#4A5565'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>preprocess_logits_for_metrics&nbsp;(Callable[[torch.Tensor,
+      torch.Tensor], torch.Tensor],&nbsp;</span><span style='font-style:italic;
+      font-family:微软雅黑;font-size:36.0pt'>optional</span><span style='font-family:
+      微软雅黑;font-size:36.0pt'>) — A function that preprocess the logits right
+      before caching them at each evaluation step. Must take two tensors, the
+      logits and the labels, and return the logits once processed as desired.
+      The modifications made by this function will be reflected in the
+      predictions received by&nbsp;compute_metrics.<br>
+            Note that the labels (second parameter) will be&nbsp;None&nbsp;if
+      the dataset does not have them.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+ lang=en-US>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>T</span><span lang=zh-CN>ra</span><span lang=en-US>iner</span><span
+ lang=zh-CN>的几个重要</span><span lang=en-US>method</span><span lang=zh-CN>，可继承并重写：</span></p>
+ <div style='direction:ltr'>
+ <table border=1 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+  border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+  1pt;margin-left:.3333in' title="" summary="">
+  <tr>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:9.2847in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;text-align:center'>method</p>
+   </td>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:21.7006in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;text-align:center'>description</p>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:9.2847in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+   href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.Trainer.get_train_dataloader">get_train_dataloader()</a></p>
+   </td>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:21.7006in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>create a training
+   DataLoader</p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:black'><span
+   style='font-weight:bold' lang=en-US>train_dataloader</span><span
+   style='font-weight:bold' lang=zh-CN>默认是随机采样</span><span style='font-weight:
+   bold' lang=en-US> </span></p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:black'
+   lang=en-US>&nbsp;</p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>Returns
+   the training ~torch.utils.data.DataLoader.</p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'><span
+   style='font-weight:bold'>Will use no sampler if train_dataset does not
+   implement __len__, a random sampler (adapted to distributed training if
+   necessary) otherwise.</span></p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>Subclass
+   and override this method if you want to inject some custom behavior.</p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:9.2062in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+   href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.Trainer.get_eval_dataloader">get_eval_dataloader()</a></p>
+   </td>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:21.7791in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+    0in'>
+    <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>create an
+    evaluation DataLoader</p>
+    <p style='margin-top:6pt;margin-bottom:6pt;font-family:微软雅黑;font-size:36.0pt;
+    color:#4A5565'>Parameters</p>
+    <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+     margin-bottom:0in'>
+     <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#4A5565'><span
+         style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>eval_dataset&nbsp;(str&nbsp;or&nbsp;torch.utils.data.Dataset,&nbsp;</span><span
+         style='font-style:italic;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>optional</span><span
+         style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>) — If
+         a&nbsp;str, will use&nbsp;self.eval_dataset[eval_dataset]&nbsp;as the
+         evaluation dataset. If a&nbsp;Dataset, will
+         override&nbsp;self.eval_dataset&nbsp;and must implement&nbsp;__len__.
+         If it is a&nbsp;</span><a
+         href="https://huggingface.co/docs/datasets/v3.6.0/en/package_reference/main_classes#datasets.Dataset"><span
+         style='font-family:微软雅黑;font-size:36.0pt'>Dataset</span></a><span
+         style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>, columns not
+         accepted by the&nbsp;model.forward()&nbsp;method are automatically
+         removed.</span></li>
+    </ul>
+    <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>&nbsp;</p>
+    <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:black'>Returns
+    the evaluation&nbsp;~torch.utils.data.DataLoader.</p>
+    <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:black'>Subclass
+    and override this method if you want to inject some custom behavior.</p>
+    <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+    <p><cite style='margin:0in;font-family:Calibri;font-size:9.0pt;color:#595959'>&nbsp;</cite></p>
+    <p><cite style='margin:0in;font-family:Calibri;font-size:9.0pt;color:#595959'>&nbsp;</cite></p>
+   </ul>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:9.2847in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+   href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.Trainer.get_test_dataloader">get_test_dataloader()</a></p>
+   </td>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:21.7006in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>create a test
+   DataLoader</p>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:9.2847in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+   href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.Trainer.log">log()</a></p>
+   </td>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:21.7006in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>log information
+   about the training process</p>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:9.2847in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+   href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.Trainer.create_optimizer_and_scheduler">create_optimizer_and_scheduler()</a></p>
+   </td>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:21.7006in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in'><span style='font-family:微软雅黑;font-size:36.0pt'>create
+   an optimizer and learning rate scheduler (can also be separately customized
+   with&nbsp;</span><a
+   href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.Trainer.create_optimizer"><span
+   style='font-family:微软雅黑;font-size:36.0pt'>create_optimizer()</span></a><span
+   style='font-family:微软雅黑;font-size:36.0pt'>&nbsp;and&nbsp;</span><a
+   href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.Trainer.create_scheduler"><span
+   style='font-family:微软雅黑;font-size:36.0pt'>create_scheduler()</span></a><span
+   style='font-family:微软雅黑;font-size:36.0pt'>&nbsp;if they weren’t passed
+   in&nbsp;</span><span style='font-family:"IBM Plex Mono";font-size:10.5pt'>__init__</span><span
+   style='font-family:微软雅黑;font-size:36.0pt'>)</span></p>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:9.2847in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+   href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.Trainer.compute_loss">compute_loss()</a></p>
+   </td>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:21.7006in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>compute the loss of
+   a batch of training inputs</p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>How the loss is
+   computed by Trainer. By default, all models return the loss in the first
+   element.</p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:9.2847in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+   href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.Trainer.training_step">training_step()</a></p>
+   </td>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:21.7006in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>perform the training
+   step</p>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:9.2847in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+   href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.Trainer.prediction_step">prediction_step()</a></p>
+   </td>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:21.7006in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>perform the
+   prediction and test step</p>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:9.2847in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+   href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.Trainer.evaluate">evaluate()</a></p>
+   </td>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:21.7006in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>evaluate the model
+   and return the evaluation metric</p>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:9.2847in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+   href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.Trainer.predict">predict()</a></p>
+   </td>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:21.7006in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>make a prediction
+   (with metrics if labels are available) on the test set</p>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:9.2847in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>create_optimizer</span><span
+   lang=en-US>()</span></p>
+   </td>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:21.7006in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Setup the optimizer.</p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>We provide a
+   reasonable default that works well. If you want to use something else, you
+   can pass a tuple in the Trainer’s init through optimizers, or subclass and
+   override this method in a subclass.</p>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:9.3034in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>create_optimizer_and_scheduler</span><span
+   lang=en-US>(</span><span lang=zh-CN>num_training_steps: int</span><span
+   lang=en-US>)</span></p>
+   </td>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:21.6819in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Setup the optimizer
+   and the learning rate scheduler.</p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>We provide a
+   reasonable default that works well. If you want to use something else, you
+   can pass a tuple in the Trainer’s init through optimizers, or subclass and
+   override this method (or create_optimizer and/or create_scheduler) in a
+   subclass.</p>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:9.2062in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>evaluate(
+   eval_dataset: typing.Union[torch.utils.data.dataset.Dataset, dict[str,
+   torch.utils.data.dataset.Dataset], NoneType] = Noneignore_keys:
+   typing.Optional[list[str]] = Nonemetric_key_prefix: str = 'eval' )</p>
+   </td>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:21.8479in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+    0in'>
+    <p style='margin-top:6pt;margin-bottom:6pt;font-family:微软雅黑;font-size:36.0pt'><span
+    style='font-weight:bold' lang=zh-CN>重写Eval</span><span style='font-weight:
+    bold' lang=en-US>uate</span><span style='font-weight:bold' lang=zh-CN>函数，</span><span
+    style='font-weight:bold' lang=en-US> </span></p>
+    <p style='margin-top:6pt;margin-bottom:6pt;font-family:微软雅黑;font-size:36.0pt;
+    color:#4A5565'>Parameters</p>
+    <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+     margin-bottom:0in'>
+     <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#4A5565'><span
+         style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>eval_dataset&nbsp;(Union[Dataset,
+         Dict[str,&nbsp;Dataset]),&nbsp;</span><span style='font-style:italic;
+         font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>optional</span><span
+         style='font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>) — </span><span
+         style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>Pass
+         a dataset if you wish to override&nbsp;self.eval_dataset. If it is
+         a&nbsp;</span><a
+         href="https://huggingface.co/docs/datasets/v3.6.0/en/package_reference/main_classes#datasets.Dataset"><span
+         style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Dataset</span></a><span
+         style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>,
+         columns not accepted by the&nbsp;model.forward()&nbsp;method are
+         automatically removed</span><span style='font-family:微软雅黑;font-size:
+         36.0pt;color:#4A5565'>. If it is a dictionary, it will evaluate on
+         each dataset, prepending the dictionary key to the metric name.
+         Datasets must implement the&nbsp;__len__&nbsp;method.<br>
+                  If you pass a dictionary with names of datasets as keys and
+         datasets as values, evaluate will run separate evaluations on each
+         dataset. This can be useful to monitor how training affects other
+         datasets or simply to get a more fine-grained evaluation. When used
+         with&nbsp;load_best_model_at_end, make sure&nbsp;metric_for_best_model&nbsp;references
+         exactly one of the datasets. If you, for example, pass
+         in&nbsp;{&quot;data1&quot;: data1, &quot;data2&quot;: data2}&nbsp;for
+         two datasets&nbsp;data1&nbsp;and&nbsp;data2, you could
+         specify&nbsp;metric_for_best_model=&quot;eval_data1_loss&quot;&nbsp;for
+         using the loss
+         on&nbsp;data1&nbsp;and&nbsp;metric_for_best_model=&quot;eval_data2_loss&quot;&nbsp;for
+         the loss on&nbsp;data2.</span></li>
+     <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#4A5565'><span
+         style='font-family:微软雅黑;font-size:36.0pt'>ignore_keys&nbsp;(List[str],&nbsp;</span><span
+         style='font-style:italic;font-family:微软雅黑;font-size:36.0pt'>optional</span><span
+         style='font-family:微软雅黑;font-size:36.0pt'>) — A list of keys in the
+         output of your model (if it is a dictionary) that should be ignored
+         when gathering predictions.</span></li>
+     <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#4A5565'><span
+         style='font-family:微软雅黑;font-size:36.0pt'>metric_key_prefix&nbsp;(str,&nbsp;</span><span
+         style='font-style:italic;font-family:微软雅黑;font-size:36.0pt'>optional</span><span
+         style='font-family:微软雅黑;font-size:36.0pt'>, defaults
+         to&nbsp;&quot;eval&quot;) — An optional prefix to be used as the
+         metrics key prefix. For example the metrics “bleu” will be named
+         “eval_bleu” if the prefix is “eval” (default)</span></li>
+    </ul>
+    <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#4A5565'>&nbsp;</p>
+    <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Run evaluation and
+    returns metrics.</p>
+    <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>The calling script
+    will be responsible for providing a method to compute metrics, as they are
+    task-dependent (pass it to the init&nbsp;compute_metrics&nbsp;argument).</p>
+    <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>You can also
+    subclass and override this method to inject custom behavior.</p>
+    <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+    <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+   </ul>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:9.2847in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>evaluation_loop(
+   dataloader: DataLoaderdescription: strprediction_loss_only:
+   typing.Optional[bool] = Noneignore_keys: typing.Optional[list[str]] =
+   Nonemetric_key_prefix: str = 'eval' )</p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+   </td>
+   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+   vertical-align:top;width:21.7006in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+   style='font-weight:bold'>Trainer.evaluate() and Trainer.predict()都要调用这个函数</span></p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Prediction/evaluation
+   loop, shared by Trainer.evaluate() and Trainer.predict().</p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+   <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Works both with or
+   without labels.</p>
+   </td>
+  </tr>
+ </table>
+ </div>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:72.0pt'><span
+ style='font-weight:bold' lang=en-US>T</span><span style='font-weight:bold'
+ lang=zh-CN>r</span><span style='font-weight:bold' lang=en-US>ainer.train()</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold' lang=zh-CN>主要是</span><span style='font-weight:bold'
+ lang=en-US>_inner_training_loop</span><span style='font-weight:bold'
+ lang=zh-CN>函数</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='color:#A626A4'>def </span><span style='color:#4078F2'>_inner_training_loop</span><span
+ style='color:#383A42'>(</span><br>
+  <span style='mso-spacerun:yes'>    </span>self<span style='color:#383A42'>,</span>
+ batch_size<span style='color:#4078F2'>=</span><span style='color:#B76B01'>None</span><span
+ style='color:#383A42'>,</span> args<span style='color:#4078F2'>=</span><span
+ style='color:#B76B01'>None</span><span style='color:#383A42'>,</span>
+ resume_from_checkpoint<span style='color:#4078F2'>=</span><span
+ style='color:#B76B01'>None</span><span style='color:#383A42'>,</span> trial<span
+ style='color:#4078F2'>=</span><span style='color:#B76B01'>None</span><span
+ style='color:#383A42'>,</span> ignore_keys_for_eval<span style='color:#4078F2'>=</span><span
+ style='color:#B76B01'>None</span><span style='color:#383A42'>):</span></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:48.0pt;
+ color:black'><span style='font-weight:bold' lang=en-US># 1. </span><span
+ style='font-weight:bold' lang=zh-CN>初始化阶段，初始化训练环境，处理自动批次大小调整和 DeepSpeed 配置。</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:28.0pt'><span
+ style='mso-spacerun:yes'> </span></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:48.0pt;
+ color:black'><span style='font-weight:bold' lang=zh-CN># </span><span
+ style='font-weight:bold' lang=en-US>2. </span><span style='font-weight:bold'
+ lang=zh-CN>获取训练数据加载器</span><span style='font-weight:bold' lang=en-US> train
+ dataloader</span><span style='font-weight:bold' lang=zh-CN>，计算训练步数、epoch数等关键变量</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D' lang=zh-CN># 获取训练数据加载器</span><span
+ lang=zh-CN><br>
+  </span><span style='font-weight:bold;background:lime;mso-highlight:lime'
+ lang=zh-CN>train_dataloader </span><span style='font-weight:bold;color:#4078F2;
+ background:lime;mso-highlight:lime' lang=zh-CN>=</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=zh-CN> self</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>.</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN>get_train_dataloader</span><span style='font-weight:bold;
+ color:#383A42;background:lime;mso-highlight:lime' lang=zh-CN>()</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=en-US><span style='mso-spacerun:yes'>   </span># </span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>这里调用了.</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=zh-CN>get_train_dataloader</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>()，</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN>get_train_dataloader</span><span style='font-weight:bold;
+ color:#383A42;background:lime;mso-highlight:lime' lang=zh-CN>()返回的是</span></p>
+ <p style='margin:0in;margin-left:5.25in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:lime;mso-highlight:lime'>return
+ self._get_dataloader(</span></p>
+ <p style='margin:0in;margin-left:5.25in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:lime;mso-highlight:lime'>&nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; dataset=self.train_dataset,</span></p>
+ <p style='margin:0in;margin-left:5.25in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:lime;mso-highlight:lime'>&nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; description=&quot;Training&quot;,</span></p>
+ <p style='margin:0in;margin-left:5.25in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:lime;mso-highlight:lime'>&nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; batch_size=self._train_batch_size,</span></p>
+ <p style='margin:0in;margin-left:5.25in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:lime;mso-highlight:lime'>&nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sampler_fn=self._get_train_sampler,</span></p>
+ <p style='margin:0in;margin-left:5.25in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:lime;mso-highlight:lime'>&nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; is_training=True,</span></p>
+ <p style='margin:0in;margin-left:5.25in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:lime;mso-highlight:lime'>&nbsp;
+ &nbsp; &nbsp; &nbsp; )</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:lime;mso-highlight:lime'
+ lang=zh-CN>self._get_dataloader函数会调用self.data_collator。</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>data_collator</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>函数是在每个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>batch</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>划分好之后（此时每个ba</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>tch</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>是</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>batch_siz</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>e个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>dataset</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>中的条目，每个条目由自定义的</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>dataset</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>类的</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>__getitem__</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>函数定义）</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US> </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，进行的后加工。</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:28.0pt;
+ color:#96979D'>&nbsp;</p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D'># 计算训练步数、epoch数等关键变量</span><br>
+  total_train_batch_size <span style='color:#4078F2'>=</span> self<span
+ style='color:#383A42'>.</span>_train_batch_size <span style='color:#4078F2'>*</span>
+ args<span style='color:#383A42'>.</span>gradient_accumulation_steps <span
+ style='color:#4078F2'>*</span> args<span style='color:#383A42'>.</span>world_size<br>
+  <span style='color:#383A42'>(</span><br>
+  <span style='mso-spacerun:yes'>    </span>num_train_epochs<span
+ style='color:#383A42'>,</span><br>
+  <span style='mso-spacerun:yes'>    </span>num_update_steps_per_epoch<span
+ style='color:#383A42'>,</span><br>
+  <span style='mso-spacerun:yes'>    </span>num_examples<span style='color:
+ #383A42'>,</span><br>
+  <span style='mso-spacerun:yes'>    </span>num_train_samples<span
+ style='color:#383A42'>,</span><br>
+  <span style='mso-spacerun:yes'>    </span>epoch_based<span style='color:#383A42'>,</span><br>
+  <span style='mso-spacerun:yes'>    </span>len_dataloader<span
+ style='color:#383A42'>,</span><br>
+  <span style='mso-spacerun:yes'>    </span>max_steps<span style='color:#383A42'>,</span><br>
+  <span style='color:#383A42'>) </span><span style='color:#4078F2'>=</span>
+ self<span style='color:#383A42'>.</span>set_initial_training_values<span
+ style='color:#383A42'>(</span>args<span style='color:#383A42'>,</span>
+ train_dataloader<span style='color:#383A42'>,</span> total_train_batch_size<span
+ style='color:#383A42'>)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt;
+ color:#404040' lang=en-US><span style='background:white'><span
+ style='mso-spacerun:yes'> </span></span></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold;color:black' lang=zh-CN># </span><span
+ style='font-weight:bold;color:black' lang=en-US>3. </span><span
+ style='font-weight:bold' lang=zh-CN>处理调试选项，初始化优化器和学习率调度器，支持</span><span
+ style='font-weight:bold;color:black' lang=en-US> DeepSpeed/FSDP </span><span
+ style='font-weight:bold;color:black' lang=zh-CN>等特殊场景。</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D' lang=zh-CN># 创建优化器和学习率调度器</span><span
+ lang=zh-CN><br>
+  </span><span style='font-weight:bold;color:#A626A4;background:lime;
+ mso-highlight:lime' lang=zh-CN>if not</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=zh-CN> delay_optimizer_creation</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>:</span><span style='font-weight:bold;color:#383A42;background:
+ lime;mso-highlight:lime' lang=en-US><span style='mso-spacerun:yes'>     
+ </span># </span><span style='font-weight:bold;color:#383A42;background:lime;
+ mso-highlight:lime' lang=zh-CN>这里调用了.</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=zh-CN>create_optimizer_and_scheduler</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>()</span><span style='font-weight:bold;color:#383A42;background:
+ lime;mso-highlight:lime' lang=en-US> </span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span>self</span><span style='font-weight:
+ bold;color:#383A42;background:lime;mso-highlight:lime' lang=zh-CN>.</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>create_optimizer_and_scheduler</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>(</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN>num_training_steps</span><span style='font-weight:bold;
+ color:#4078F2;background:lime;mso-highlight:lime' lang=zh-CN>=</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>max_steps</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>)</span></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:#383A42'>&nbsp;</p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold;color:black' lang=zh-CN># </span><span
+ style='font-weight:bold;color:black' lang=en-US>4. </span><span
+ style='font-weight:bold' lang=zh-CN>将模型包装为分布式训练模式（如 DDP/FSDP），并通过 Accelerator
+ 处理设备分配</span></p>
+ <p style='margin:0in;margin-left:2.625in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D'># 模型包装（如 DDP、FSDP、DeepSpeed）</span><br>
+  model <span style='color:#4078F2'>=</span> self<span style='color:#383A42'>.</span>_wrap_model<span
+ style='color:#383A42'>(</span>self<span style='color:#383A42'>.</span>model_wrapped<span
+ style='color:#383A42'>)</span></p>
+ <p style='margin:0in;margin-left:2.625in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D'># 使用 Accelerator 准备模型（如多 GPU 分布式训练）</span><br>
+  <span style='color:#A626A4'>if</span> use_accelerator_prepare<span
+ style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>    </span><span style='color:#A626A4'>if</span>
+ self<span style='color:#383A42'>.</span>is_fsdp_enabled<span style='color:
+ #383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>        </span>self<span style='color:#383A42'>.</span>model
+ <span style='color:#4078F2'>=</span> unwrap_model<span style='color:#383A42'>(</span>self<span
+ style='color:#383A42'>.</span>model<span style='color:#383A42'>,</span>
+ recursive<span style='color:#4078F2'>=</span><span style='color:#B76B01'>True</span><span
+ style='color:#383A42'>)</span><br>
+  <span style='mso-spacerun:yes'>    </span><span style='color:#A626A4'>if</span>
+ delay_optimizer_creation<span style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>        </span>self<span style='color:#383A42'>.</span>_fsdp_qlora_plugin_updates<span
+ style='color:#383A42'>()</span><br>
+  <span style='mso-spacerun:yes'>        </span><span style='color:#A626A4'>if</span>
+ self<span style='color:#383A42'>.</span>accelerator<span style='color:#383A42'>.</span>mixed_precision
+ <span style='color:#4078F2'>!= </span><span style='color:#50A14F'>&quot;fp8&quot;</span><span
+ style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>            </span>self<span style='color:
+ #383A42'>.</span>model <span style='color:#4078F2'>=</span> self<span
+ style='color:#383A42'>.</span>accelerator<span style='color:#383A42'>.</span>prepare<span
+ style='color:#383A42'>(</span>self<span style='color:#383A42'>.</span>model<span
+ style='color:#383A42'>)</span><br>
+  <span style='mso-spacerun:yes'>    </span>self<span style='color:#383A42'>.</span>create_optimizer_and_scheduler<span
+ style='color:#383A42'>(</span>num_training_steps<span style='color:#4078F2'>=</span>max_steps<span
+ style='color:#383A42'>)</span></p>
+ <p style='margin:0in;margin-left:2.625in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D'># 准备优化器和调度器</span><br>
+  <span style='color:#A626A4'>if</span> use_accelerator_prepare<span
+ style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>    </span>self<span style='color:#383A42'>.</span>model<span
+ style='color:#383A42'>.</span>train<span style='color:#383A42'>()</span><br>
+  <span style='mso-spacerun:yes'>    </span><span style='color:#A626A4'>if </span><span
+ style='color:#50A14F'>hasattr</span><span style='color:#383A42'>(</span>self<span
+ style='color:#383A42'>.</span>lr_scheduler<span style='color:#383A42'>, </span><span
+ style='color:#50A14F'>&quot;step&quot;</span><span style='color:#383A42'>):</span><br>
+  <span style='mso-spacerun:yes'>        </span>model<span style='color:#383A42'>,</span>
+ self<span style='color:#383A42'>.</span>optimizer <span style='color:#4078F2'>=</span>
+ self<span style='color:#383A42'>.</span>accelerator<span style='color:#383A42'>.</span>prepare<span
+ style='color:#383A42'>(</span>self<span style='color:#383A42'>.</span>model<span
+ style='color:#383A42'>,</span> self<span style='color:#383A42'>.</span>optimizer<span
+ style='color:#383A42'>)</span><br>
+  <span style='mso-spacerun:yes'>    </span><span style='color:#A626A4'>else</span><span
+ style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>        </span>model<span style='color:#383A42'>,</span>
+ self<span style='color:#383A42'>.</span>optimizer<span style='color:#383A42'>,</span>
+ self<span style='color:#383A42'>.</span>lr_scheduler <span style='color:#4078F2'>=</span>
+ self<span style='color:#383A42'>.</span>accelerator<span style='color:#383A42'>.</span>prepare<span
+ style='color:#383A42'>(</span><br>
+  <span style='mso-spacerun:yes'>            </span>self<span style='color:
+ #383A42'>.</span>model<span style='color:#383A42'>,</span> self<span
+ style='color:#383A42'>.</span>optimizer<span style='color:#383A42'>,</span>
+ self<span style='color:#383A42'>.</span>lr_scheduler<br>
+  <span style='mso-spacerun:yes'>        </span><span style='color:#383A42'>)</span></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold;color:black' lang=zh-CN># </span><span
+ style='font-weight:bold;color:black' lang=en-US>5. </span><span
+ style='font-weight:bold' lang=zh-CN>从检查点恢复模型、优化器和训练状态。</span></p>
+ <p style='margin:0in;margin-left:2.625in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D'># 加载模型检查点</span><br>
+  <span style='color:#A626A4'>if</span> resume_from_checkpoint <span
+ style='color:#A626A4'>is not </span><span style='color:#B76B01'>None</span><span
+ style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>    </span><span style='color:#A626A4'>if</span>
+ self<span style='color:#383A42'>.</span>is_deepspeed_enabled<span
+ style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>        </span>deepspeed_load_checkpoint<span
+ style='color:#383A42'>(</span>self<span style='color:#383A42'>.</span>model_wrapped<span
+ style='color:#383A42'>,</span> resume_from_checkpoint<span style='color:#383A42'>)</span><br>
+  <span style='mso-spacerun:yes'>    </span><span style='color:#A626A4'>elif</span>
+ is_sagemaker_mp_enabled<span style='color:#383A42'>() </span><span
+ style='color:#A626A4'>or</span> self<span style='color:#383A42'>.</span>is_fsdp_enabled<span
+ style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>        </span>self<span style='color:#383A42'>.</span>_load_from_checkpoint<span
+ style='color:#383A42'>(</span>resume_from_checkpoint<span style='color:#383A42'>,</span>
+ self<span style='color:#383A42'>.</span>model_wrapped<span style='color:#383A42'>)</span></p>
+ <p style='margin:0in;margin-left:2.625in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D' lang=zh-CN># 加载优化器和调度器状态</span><span
+ style='font-style:italic;color:#96979D' lang=en-US><span
+ style='mso-spacerun:yes'>    </span></span><span style='font-style:italic;
+ color:#96979D' lang=zh-CN>Check if saved optimizer or scheduler states exist</span><span
+ lang=zh-CN><br>
+  self</span><span style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>_load_optimizer_and_scheduler</span><span
+ style='color:#383A42' lang=zh-CN>(</span><span lang=zh-CN>resume_from_checkpoint</span><span
+ style='color:#383A42' lang=zh-CN>)</span><span lang=zh-CN><br>
+  self</span><span style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>_load_scaler</span><span
+ style='color:#383A42' lang=zh-CN>(</span><span lang=zh-CN>resume_from_checkpoint</span><span
+ style='color:#383A42' lang=zh-CN>)</span></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold;color:black' lang=zh-CN># </span><span
+ style='font-weight:bold;color:black' lang=en-US>6. </span><span
+ style='font-weight:bold' lang=zh-CN>执行训练循环，包括前向传播、反向传播、梯度裁剪和优化器更新，定期记录日志和保存模型。</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:#96979D' lang=en-US><span style='mso-spacerun:yes'> </span></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:lime;mso-highlight:lime'>&nbsp;
+ &nbsp; &nbsp; &nbsp; # important: at this point:</span></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:lime;mso-highlight:lime'>&nbsp;
+ &nbsp; &nbsp; &nbsp; # self.model &nbsp; &nbsp; &nbsp; &nbsp; is the
+ Transformers Model</span></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:lime;mso-highlight:lime'>&nbsp;
+ &nbsp; &nbsp; &nbsp; # self.model_wrapped is DDP(Transformers Model),
+ Deepspeed(Transformers Model),</span></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:lime;mso-highlight:lime'>&nbsp;
+ &nbsp; &nbsp; &nbsp; # FSDP(Transformers Model), Dynamo Optimized
+ Module(Transformers Model) etc.</span></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:lime;mso-highlight:lime'
+ lang=en-US><span style='mso-spacerun:yes'>       </span># </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>此时</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>self.model</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>必须是这几种</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>class</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>之一！</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#909196'># 初始化训练状态变量</span><br>
+  self<span style='color:#383A42'>.</span>state<span style='color:#383A42'>.</span>epoch
+ <span style='color:#4078F2'>= </span><span style='color:#B76B01'>0</span><span
+ style='mso-spacerun:yes'>                </span><span style='font-style:italic;
+ color:#909196'># 当前训练的 epoch 数（初始为 0）</span><br>
+  start_time <span style='color:#4078F2'>=</span> time<span style='color:#383A42'>.</span>time<span
+ style='color:#383A42'>()</span><span style='mso-spacerun:yes'>           
+ </span><span style='font-style:italic;color:#909196'># 记录训练开始时间（用于计算总耗时）</span><br>
+  epochs_trained <span style='color:#4078F2'>= </span><span style='color:#B76B01'>0</span><span
+ style='mso-spacerun:yes'>                  </span><span style='font-style:
+ italic;color:#909196'># 已训练的 epoch 数（用于恢复训练时跳过已完成 epoch）</span><br>
+  steps_trained_in_current_epoch <span style='color:#4078F2'>= </span><span
+ style='color:#B76B01'>0</span><span style='mso-spacerun:yes'>  </span><span
+ style='font-style:italic;color:#909196'># 当前 epoch 中已训练的 step 数（用于恢复训练时跳过已计算
+ batch）</span><br>
+  steps_trained_progress_bar <span style='color:#4078F2'>= </span><span
+ style='color:#B76B01'>None</span><span style='mso-spacerun:yes'>   </span><span
+ style='font-style:italic;color:#909196'># 进度条控制变量（初始为 None）</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt;
+ color:#909196'><span style='font-weight:bold;font-style:italic;background:
+ lime;mso-highlight:lime'># 检查是否从检查点（checkpoint）恢复训练</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US># </span><span style='font-weight:bold;color:black;background:lime;
+ mso-highlight:lime' lang=zh-CN>检查是否是从</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US>checkpoint</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>开始继续训练，也就是说如果要继续训练，</span><span style='font-weight:bold;color:black;
+ background:lime;mso-highlight:lime' lang=en-US>Trainer</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>会自动跳过之前已经训练过的</span><span style='font-weight:bold;color:black;
+ background:lime;mso-highlight:lime' lang=en-US>epoch</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>，而不需要人工手动减去训练过的</span><span style='font-weight:bold;color:black;
+ background:lime;mso-highlight:lime' lang=en-US>n</span><span style='font-weight:
+ bold;color:black;background:lime;mso-highlight:lime' lang=zh-CN>个</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>epoch</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=zh-CN>。<br>
+  </span><span style='font-weight:bold;color:#A626A4;background:lime;
+ mso-highlight:lime' lang=zh-CN>if</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=zh-CN> resume_from_checkpoint </span><span
+ style='font-weight:bold;color:#A626A4;background:lime;mso-highlight:lime'
+ lang=zh-CN>is not </span><span style='font-weight:bold;color:#B76B01;
+ background:lime;mso-highlight:lime' lang=zh-CN>None </span><span
+ style='font-weight:bold;color:#A626A4;background:lime;mso-highlight:lime'
+ lang=zh-CN>and</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN> os</span><span style='font-weight:bold;color:#383A42;
+ background:lime;mso-highlight:lime' lang=zh-CN>.</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=zh-CN>path</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>.</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN>isfile</span><span style='font-weight:bold;color:#383A42;
+ background:lime;mso-highlight:lime' lang=zh-CN>(</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span>os</span><span style='font-weight:
+ bold;color:#383A42;background:lime;mso-highlight:lime' lang=zh-CN>.</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>path</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>.</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN>join</span><span style='font-weight:bold;color:#383A42;
+ background:lime;mso-highlight:lime' lang=zh-CN>(</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=zh-CN>resume_from_checkpoint</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>,</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN> TRAINER_STATE_NAME</span><span style='font-weight:bold;
+ color:#383A42;background:lime;mso-highlight:lime' lang=zh-CN>)</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN><br>
+  </span><span style='font-weight:bold;color:#383A42;background:lime;
+ mso-highlight:lime' lang=zh-CN>):</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='font-style:
+ italic;color:#909196' lang=zh-CN># 加载保存的训练状态（包括 global_step、epoch、最佳指标等）</span><span
+ lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span>self</span><span style='color:#383A42'
+ lang=zh-CN>.</span><span lang=zh-CN>state </span><span style='color:#4078F2'
+ lang=zh-CN>=</span><span lang=zh-CN> TrainerState</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>load_from_json</span><span
+ style='color:#383A42' lang=zh-CN>(</span><span lang=zh-CN>os</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>path</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>join</span><span
+ style='color:#383A42' lang=zh-CN>(</span><span lang=zh-CN>resume_from_checkpoint</span><span
+ style='color:#383A42' lang=zh-CN>,</span><span lang=zh-CN> TRAINER_STATE_NAME</span><span
+ style='color:#383A42' lang=zh-CN>))</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span><br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='font-style:
+ italic;color:#909196' lang=zh-CN># 检查训练参数是否与 checkpoint 保存的参数一致（防止配置冲突）</span><span
+ lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span>self</span><span style='color:#383A42'
+ lang=zh-CN>.</span><span lang=zh-CN>compare_trainer_and_checkpoint_args</span><span
+ style='color:#383A42' lang=zh-CN>(</span><span lang=zh-CN>self</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>args</span><span
+ style='color:#383A42' lang=zh-CN>,</span><span lang=zh-CN> self</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>state</span><span
+ style='color:#383A42' lang=zh-CN>)</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span><br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='font-style:
+ italic;color:#909196' lang=zh-CN># 恢复回调函数的状态（如 EarlyStopping 的 patience 计数）</span><span
+ lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span>self</span><span style='color:#383A42'
+ lang=zh-CN>.</span><span lang=zh-CN>_load_callback_state</span><span
+ style='color:#383A42' lang=zh-CN>()</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span><br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='font-style:
+ italic;color:#909196' lang=zh-CN># 计算已完成的 epoch 数（global_step // 每个 epoch
+ 的更新步数）</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span>epochs_trained </span><span
+ style='color:#4078F2' lang=zh-CN>= </span><span style='color:#50A14F'
+ lang=zh-CN>int</span><span style='color:#383A42' lang=zh-CN>(</span><span
+ lang=zh-CN>self</span><span style='color:#383A42' lang=zh-CN>.</span><span
+ lang=zh-CN>state</span><span style='color:#383A42' lang=zh-CN>.</span><span
+ lang=zh-CN>global_step </span><span style='color:#4078F2' lang=zh-CN>//</span><span
+ lang=zh-CN> num_update_steps_per_epoch</span><span style='color:#383A42'
+ lang=zh-CN>)</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span><br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='font-style:
+ italic;color:#909196' lang=zh-CN># 是否跳过已训练的数据（由 ignore_data_skip 参数控制）</span><span
+ lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='color:#A626A4'
+ lang=zh-CN>if not</span><span lang=zh-CN> args</span><span style='color:#383A42'
+ lang=zh-CN>.</span><span lang=zh-CN>ignore_data_skip</span><span
+ style='color:#383A42' lang=zh-CN>:</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>        </span></span><span style='font-style:
+ italic;color:#909196' lang=zh-CN># 计算当前 epoch 中已训练的 step 数（考虑梯度累积）</span><span
+ lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>        </span>steps_trained_in_current_epoch </span><span
+ style='color:#4078F2' lang=zh-CN>=</span><span lang=zh-CN> self</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>state</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>global_step </span><span
+ style='color:#4078F2' lang=zh-CN>% </span><span style='color:#383A42'
+ lang=zh-CN>(</span><span lang=zh-CN>num_update_steps_per_epoch</span><span
+ style='color:#383A42' lang=zh-CN>)</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>        </span>steps_trained_in_current_epoch </span><span
+ style='color:#4078F2' lang=zh-CN>*=</span><span lang=zh-CN> args</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>gradient_accumulation_steps<br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='color:#A626A4'
+ lang=zh-CN>else</span><span style='color:#383A42' lang=zh-CN>:</span><span
+ lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>        </span>steps_trained_in_current_epoch </span><span
+ style='color:#4078F2' lang=zh-CN>= </span><span style='color:#B76B01'
+ lang=zh-CN>0</span><span lang=zh-CN><span style='mso-spacerun:yes'>  </span></span><span
+ style='font-style:italic;color:#909196' lang=zh-CN># 不跳过数据（从头开始训练当前 epoch）</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#909196'># 更新回调函数的引用（确保回调能访问最新模型、优化器等对象）</span><br>
+  <span style='color:#A626A4'>for</span> attr <span style='color:#A626A4'>in </span><span
+ style='color:#383A42'>(</span><span style='color:#50A14F'>&quot;model&quot;</span><span
+ style='color:#383A42'>, </span><span style='color:#50A14F'>&quot;optimizer&quot;</span><span
+ style='color:#383A42'>, </span><span style='color:#50A14F'>&quot;lr_scheduler&quot;</span><span
+ style='color:#383A42'>):</span><br>
+  <span style='mso-spacerun:yes'>    </span><span style='color:#50A14F'>setattr</span><span
+ style='color:#383A42'>(</span>self<span style='color:#383A42'>.</span>callback_handler<span
+ style='color:#383A42'>,</span> attr<span style='color:#383A42'>, </span><span
+ style='color:#50A14F'>getattr</span><span style='color:#383A42'>(</span>self<span
+ style='color:#383A42'>,</span> attr<span style='color:#383A42'>))</span><br>
+  self<span style='color:#383A42'>.</span>callback_handler<span
+ style='color:#383A42'>.</span>train_dataloader <span style='color:#4078F2'>=</span>
+ train_dataloader<span style='mso-spacerun:yes'>  </span><span
+ style='font-style:italic;color:#909196'># 绑定训练数据加载器</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#909196'># 初始化训练状态引用（关联 Trainer 对象和最大步数/epoch
+ 数）</span><br>
+  self<span style='color:#383A42'>.</span>state<span style='color:#383A42'>.</span>init_training_references<span
+ style='color:#383A42'>(</span>self<span style='color:#383A42'>,</span>
+ max_steps<span style='color:#383A42'>,</span> num_train_epochs<span
+ style='color:#383A42'>,</span> trial<span style='color:#383A42'>)</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#909196'># 初始化损失记录变量</span><br>
+  tr_loss <span style='color:#4078F2'>=</span> torch<span style='color:#383A42'>.</span>tensor<span
+ style='color:#383A42'>(</span><span style='color:#B76B01'>0.0</span><span
+ style='color:#383A42'>,</span> device<span style='color:#4078F2'>=</span>args<span
+ style='color:#383A42'>.</span>device<span style='color:#383A42'>)</span><span
+ style='mso-spacerun:yes'>  </span><span style='font-style:italic;color:#909196'>#
+ 避免 TPU 同步问题的张量损失</span><br>
+  self<span style='color:#383A42'>.</span>_total_loss_scalar <span
+ style='color:#4078F2'>= </span><span style='color:#B76B01'>0.0</span><span
+ style='mso-spacerun:yes'>                   </span><span style='font-style:
+ italic;color:#909196'># 累计损失标量值（用于日志）</span><br>
+  self<span style='color:#383A42'>.</span>_globalstep_last_logged <span
+ style='color:#4078F2'>=</span> self<span style='color:#383A42'>.</span>state<span
+ style='color:#383A42'>.</span>global_step<span style='mso-spacerun:yes'> 
+ </span><span style='font-style:italic;color:#909196'># 记录最后一次日志的 step</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#909196'># 清零模型梯度</span><br>
+  model<span style='color:#383A42'>.</span>zero_grad<span style='color:#383A42'>()</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#909196'># 初始化其他训练变量</span><br>
+  grad_norm<span style='color:#383A42'>:</span> Optional<span style='color:
+ #383A42'>[</span><span style='color:#50A14F'>float</span><span
+ style='color:#383A42'>] </span><span style='color:#4078F2'>= </span><span
+ style='color:#B76B01'>None</span><span style='mso-spacerun:yes'>  </span><span
+ style='font-style:italic;color:#909196'># 梯度范数（用于裁剪时记录）</span><br>
+  learning_rate <span style='color:#4078F2'>= </span><span style='color:#B76B01'>None</span><span
+ style='mso-spacerun:yes'>               </span><span style='font-style:italic;
+ color:#909196'># 当前学习率（动态更新）</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#909196'># 触发训练开始的回调（如自定义日志、初始化操作）</span><br>
+  self<span style='color:#383A42'>.</span>control <span style='color:#4078F2'>=</span>
+ self<span style='color:#383A42'>.</span>callback_handler<span
+ style='color:#383A42'>.</span>on_train_begin<span style='color:#383A42'>(</span>args<span
+ style='color:#383A42'>,</span> self<span style='color:#383A42'>.</span>state<span
+ style='color:#383A42'>,</span> self<span style='color:#383A42'>.</span>control<span
+ style='color:#383A42'>)</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-size:36.0pt'><span
+ style='font-weight:bold;font-family:微软雅黑;color:black;background:lime;
+ mso-highlight:lime' lang=zh-CN># 如果设置 eval_on_start，在训练开始前先评估模型，</span><span
+ style='font-weight:bold;font-family:"Microsoft YaHei";color:black;background:
+ lime;mso-highlight:lime' lang=zh-CN>评估时，调用的是</span><span style='font-weight:
+ bold;font-family:"Microsoft YaHei";color:black;background:lime;mso-highlight:
+ lime' lang=en-US>_evaluate()</span><span style='font-weight:bold;font-family:
+ "Microsoft YaHei";color:black;background:lime;mso-highlight:lime' lang=zh-CN>函数，</span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+ lang=zh-CN><br>
+  </span><span style='font-weight:bold;font-family:微软雅黑;color:#A626A4;
+ background:lime;mso-highlight:lime' lang=zh-CN>if</span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+ lang=zh-CN> args</span><span style='font-weight:bold;font-family:微软雅黑;
+ color:#383A42;background:lime;mso-highlight:lime' lang=zh-CN>.</span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+ lang=zh-CN>eval_on_start</span><span style='font-weight:bold;font-family:微软雅黑;
+ color:#383A42;background:lime;mso-highlight:lime' lang=zh-CN>:</span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+ lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span>self</span><span style='font-weight:
+ bold;font-family:微软雅黑;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>.</span><span style='font-weight:bold;font-family:微软雅黑;background:
+ lime;mso-highlight:lime' lang=zh-CN>_evaluate</span><span style='font-weight:
+ bold;font-family:微软雅黑;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>(</span><span style='font-weight:bold;font-family:微软雅黑;background:
+ lime;mso-highlight:lime' lang=zh-CN>trial</span><span style='font-weight:bold;
+ font-family:微软雅黑;color:#383A42;background:lime;mso-highlight:lime' lang=zh-CN>,</span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+ lang=zh-CN> ignore_keys_for_eval</span><span style='font-weight:bold;
+ font-family:微软雅黑;color:#383A42;background:lime;mso-highlight:lime' lang=zh-CN>,</span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+ lang=zh-CN> skip_scheduler</span><span style='font-weight:bold;font-family:
+ 微软雅黑;color:#4078F2;background:lime;mso-highlight:lime' lang=zh-CN>=</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#B76B01;background:lime;
+ mso-highlight:lime' lang=zh-CN>True</span><span style='font-weight:bold;
+ font-family:微软雅黑;color:#383A42;background:lime;mso-highlight:lime' lang=zh-CN>)</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua' lang=zh-CN>关于</span><span style='font-weight:bold;
+ background:aqua;mso-highlight:aqua' lang=en-US>_evaluate()</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>函数：</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>_evaluate()</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>函数首先调用了</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>evaluate</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>函数，</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua' lang=zh-CN>metrics =
+ self.evaluate(ignore_keys=ignore_keys_for_eval)也就是说自定义的</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>evaluate</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>函数会影响到</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>Trainer</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>本身的评估环节。</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua' lang=zh-CN>其次，在得到</span><span style='font-weight:bold;
+ background:aqua;mso-highlight:aqua' lang=en-US>metrics</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>之后，如果学习率调度器是
+ ReduceLROnPlateau
+ 且不跳过调度器更新，由于ReduceLROnPlateau&nbsp;的特殊性：依赖验证指标：需要根据外部指标（如验证损失）动态调整学习率。</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua'>触发条件：在验证阶段而非训练步骤调用&nbsp;scheduler.step(metrics)），此时需要根据验证指标调整学习率（如指标未提升则降低学习率）</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua' lang=zh-CN>关于</span><span style='font-weight:bold;
+ background:aqua;mso-highlight:aqua' lang=en-US>evaluate()</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>函数：</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua'>def evaluate(</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua'><span style='mso-spacerun:yes'>    </span>self,</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua'><span style='mso-spacerun:yes'>    </span>eval_dataset:
+ Optional[Union[Dataset, dict[str, Dataset]]] = None,</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua'><span style='mso-spacerun:yes'>    </span>ignore_keys:
+ Optional[list[str]] = None,</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua'><span style='mso-spacerun:yes'>   
+ </span>metric_key_prefix: str = &quot;eval&quot;,</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua'>) -&gt; dict[str, float]:</span></p>
+ <p style='margin:0in;margin-left:3.0in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:3.375in;font-size:36.0pt'><span
+ style='font-weight:bold;font-family:"Microsoft YaHei";color:black;background:
+ aqua;mso-highlight:aqua' lang=zh-CN><span style='mso-spacerun:yes'>   
+ </span># </span><span style='font-weight:bold;font-family:微软雅黑;background:
+ aqua;mso-highlight:aqua' lang=zh-CN>这里调用了.get_</span><span style='font-weight:
+ bold;font-family:微软雅黑;background:aqua;mso-highlight:aqua' lang=en-US>eval</span><span
+ style='font-weight:bold;font-family:微软雅黑;background:aqua;mso-highlight:aqua'
+ lang=zh-CN>_dataloader()，get_</span><span style='font-weight:bold;font-family:
+ 微软雅黑;background:aqua;mso-highlight:aqua' lang=en-US>eval</span><span
+ style='font-weight:bold;font-family:微软雅黑;background:aqua;mso-highlight:aqua'
+ lang=zh-CN>_dataloader()返回的是return self._get_dataloader(</span></p>
+ <p style='margin:0in;margin-left:10.125in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua'>&nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; dataset=eval_dataset,</span></p>
+ <p style='margin:0in;margin-left:10.125in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua'>&nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; description=&quot;Evaluation&quot;,</span></p>
+ <p style='margin:0in;margin-left:10.125in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua'>&nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; batch_size=self.args.eval_batch_size,</span></p>
+ <p style='margin:0in;margin-left:10.125in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua'>&nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; sampler_fn=self._get_eval_sampler,</span></p>
+ <p style='margin:0in;margin-left:10.125in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua'>&nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; dataloader_key=dataloader_key, )</span></p>
+ <p style='margin:0in;margin-left:6.0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;color:black;background:aqua;mso-highlight:aqua'
+ lang=zh-CN>，其中_get_dataloader函数和</span><span style='font-weight:bold;
+ background:aqua;mso-highlight:aqua' lang=en-US>get_train_dataloader()</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>中用到的是一个函数，也就是说，默认情况下，</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>eval_data</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>会经过和</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>train_data</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>同样的</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>data_collator</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>处理。 </span></p>
+ <p style='margin:0in;margin-left:6.0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua'><span style='mso-spacerun:yes'>    </span>eval_dataloader
+ = self.get_eval_dataloader(eval_dataset)</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US><span
+ style='mso-spacerun:yes'>    </span># </span><span style='font-weight:bold;
+ background:aqua;mso-highlight:aqua' lang=zh-CN>主要是进行</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>evaluation_loop()</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua'><span style='mso-spacerun:yes'>    </span>output =
+ eval_loop(</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua'><span style='mso-spacerun:yes'>       
+ </span>eval_dataloader,</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua'><span style='mso-spacerun:yes'>       
+ </span>description=&quot;Evaluation&quot;,</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua'><span style='mso-spacerun:yes'>        </span>#
+ 如果没有计算指标的方法，则只计算loss</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua'><span style='mso-spacerun:yes'>       
+ </span>prediction_loss_only=True if self.compute_metrics is None else None,</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua'><span style='mso-spacerun:yes'>       
+ </span>ignore_keys=ignore_keys,<span style='mso-spacerun:yes'>  </span>#
+ 忽略指定的输出键</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua'><span style='mso-spacerun:yes'>       
+ </span>metric_key_prefix=metric_key_prefix,<span style='mso-spacerun:yes'> 
+ </span># 指标前缀</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua'><span style='mso-spacerun:yes'>    </span>)</span></p>
+ <p style='margin:0in;margin-left:3.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:#B76B01'>&nbsp;</p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt;
+ color:#96979D'><span style='font-style:italic'># 开始训练</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='background:lime;mso-highlight:lime'><span
+ style='mso-spacerun:yes'> </span></span><span style='font-weight:bold;
+ font-style:italic;background:lime;mso-highlight:lime'># </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>这里遍历每个epoch</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;color:black'>for epoch in range(epochs_trained,
+ num_train_epochs):</span> <br>
+  <span style='mso-spacerun:yes'>    </span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime'>epoch_dataloader </span><span
+ style='font-weight:bold;color:#4078F2;background:lime;mso-highlight:lime'>=</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>
+ train_dataloader<span style='mso-spacerun:yes'>  </span></span><span
+ style='font-weight:bold;font-style:italic;color:#96979D;background:lime;
+ mso-highlight:lime'># 获取当前epoch的数据加载器</span><br>
+  <span style='mso-spacerun:yes'>    </span><br>
+  <span style='font-style:italic;color:#96979D'># 计算当前epoch的总步数（考虑梯度累积）</span><br>
+  <span style='mso-spacerun:yes'>    </span>steps_in_epoch <span
+ style='color:#4078F2'>= </span><span style='color:#383A42'>(</span><br>
+  <span style='mso-spacerun:yes'>        </span><span style='color:#50A14F'>len</span><span
+ style='color:#383A42'>(</span>epoch_dataloader<span style='color:#383A42'>) </span><span
+ style='color:#A626A4'>if</span> len_dataloader <span style='color:#A626A4'>is
+ not </span><span style='color:#B76B01'>None</span> <br>
+  <span style='mso-spacerun:yes'>        </span><span style='color:#A626A4'>else</span>
+ args<span style='color:#383A42'>.</span>max_steps <span style='color:#4078F2'>*</span>
+ args<span style='color:#383A42'>.</span>gradient_accumulation_steps<br>
+  <span style='mso-spacerun:yes'>    </span><span style='color:#383A42'>)</span><br>
+  <span style='mso-spacerun:yes'>    </span><br>
+  <span style='mso-spacerun:yes'>    </span><span style='font-style:italic;
+ color:#96979D'># 回调函数：epoch开始事件</span><br>
+  <span style='mso-spacerun:yes'>    </span>self<span style='color:#383A42'>.</span>control
+ <span style='color:#4078F2'>=</span> self<span style='color:#383A42'>.</span>callback_handler<span
+ style='color:#383A42'>.</span>on_epoch_begin<span style='color:#383A42'>(</span>args<span
+ style='color:#383A42'>,</span> self<span style='color:#383A42'>.</span>state<span
+ style='color:#383A42'>,</span> self<span style='color:#383A42'>.</span>control<span
+ style='color:#383A42'>)</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span><span style='font-style:italic;color:#96979D'>#
+ 如果是恢复训练且当前epoch是初始epoch</span><br>
+  <span style='mso-spacerun:yes'>    </span><span style='color:#A626A4'>if </span><span
+ style='color:#383A42'>(</span>epoch <span style='color:#4078F2'>==</span>
+ epochs_trained <span style='color:#A626A4'>and</span> <br>
+  <span style='mso-spacerun:yes'>        </span>resume_from_checkpoint <span
+ style='color:#A626A4'>is not </span><span style='color:#B76B01'>None </span><span
+ style='color:#A626A4'>and</span> <br>
+  <span style='mso-spacerun:yes'>        </span>steps_trained_in_current_epoch <span
+ style='color:#4078F2'>== </span><span style='color:#B76B01'>0</span><span
+ style='color:#383A42'>):</span><br>
+  <span style='mso-spacerun:yes'>        </span>self<span style='color:#383A42'>.</span>_load_rng_state<span
+ style='color:#383A42'>(</span>resume_from_checkpoint<span style='color:#383A42'>)</span><span
+ style='mso-spacerun:yes'>  </span><span style='font-style:italic;color:#96979D'>#
+ 加载随机数状态</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US><span style='mso-spacerun:yes'>        </span></span><span
+ lang=zh-CN>rng_to_sync </span><span style='color:#4078F2' lang=zh-CN>= </span><span
+ style='color:#B76B01' lang=zh-CN>False</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span></span><span lang=en-US><span
+ style='mso-spacerun:yes'>    </span></span><span lang=zh-CN>steps_skipped </span><span
+ style='color:#4078F2' lang=zh-CN>= </span><span style='color:#B76B01'
+ lang=zh-CN>0</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span><br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='font-style:
+ italic;color:#96979D' lang=zh-CN># 跳过已训练过的step（恢复训练时）</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='color:#A626A4'
+ lang=zh-CN>if</span><span lang=zh-CN> steps_trained_in_current_epoch </span><span
+ style='color:#4078F2' lang=zh-CN>&gt; </span><span style='color:#B76B01'
+ lang=zh-CN>0</span><span style='color:#383A42' lang=zh-CN>:</span><span
+ lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>        </span>epoch_dataloader </span><span
+ style='color:#4078F2' lang=zh-CN>=</span><span lang=zh-CN> skip_first_batches</span><span
+ style='color:#383A42' lang=zh-CN>(</span><span lang=zh-CN>epoch_dataloader</span><span
+ style='color:#383A42' lang=zh-CN>,</span><span lang=zh-CN>
+ steps_trained_in_current_epoch</span><span style='color:#383A42' lang=zh-CN>)</span><span
+ lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>        </span>steps_skipped </span><span
+ style='color:#4078F2' lang=zh-CN>=</span><span lang=zh-CN>
+ steps_trained_in_current_epoch<br>
+  <span style='mso-spacerun:yes'>        </span>steps_trained_in_current_epoch </span><span
+ style='color:#4078F2' lang=zh-CN>= </span><span style='color:#B76B01'
+ lang=zh-CN>0</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>        </span>rng_to_sync </span><span
+ style='color:#4078F2' lang=zh-CN>= </span><span style='color:#B76B01'
+ lang=zh-CN>True</span><span lang=zh-CN><span style='mso-spacerun:yes'> 
+ </span></span><span style='font-style:italic;color:#96979D' lang=zh-CN>#
+ 标记需要同步RNG状态</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN><span style='mso-spacerun:yes'>    </span>step </span><span
+ style='color:#4078F2' lang=zh-CN>= -</span><span style='color:#B76B01'
+ lang=zh-CN>1</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=zh-CN>epoch_iterator </span><span
+ style='font-weight:bold;color:#4078F2;background:lime;mso-highlight:lime'
+ lang=zh-CN>= </span><span style='font-weight:bold;color:#50A14F;background:
+ lime;mso-highlight:lime' lang=zh-CN>iter</span><span style='font-weight:bold;
+ color:#383A42;background:lime;mso-highlight:lime' lang=zh-CN>(</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>epoch_dataloader</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>)</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN><span style='mso-spacerun:yes'>  </span></span><span
+ style='font-weight:bold;font-style:italic;background:lime;mso-highlight:lime'
+ lang=zh-CN># 创建迭代器，在这里创建了</span><span style='font-weight:bold;font-style:italic;
+ background:lime;mso-highlight:lime' lang=en-US>iter</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span><br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='font-style:
+ italic;color:#96979D' lang=zh-CN># 计算梯度累积的批次划分</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span>remainder </span><span
+ style='color:#4078F2' lang=zh-CN>=</span><span lang=zh-CN> steps_in_epoch </span><span
+ style='color:#4078F2' lang=zh-CN>%</span><span lang=zh-CN> args</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>gradient_accumulation_steps<br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='color:#A626A4'
+ lang=zh-CN>if</span><span lang=zh-CN> remainder </span><span style='color:
+ #4078F2' lang=zh-CN>== </span><span style='color:#B76B01' lang=zh-CN>0</span><span
+ style='color:#383A42' lang=zh-CN>:</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>        </span>remainder </span><span
+ style='color:#4078F2' lang=zh-CN>=</span><span lang=zh-CN> args</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>gradient_accumulation_steps<br>
+  <span style='mso-spacerun:yes'>    </span><br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='font-style:
+ italic;color:#96979D' lang=zh-CN># 计算总更新次数（参数更新次数=总步数/梯度累积步数）</span><span
+ lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span>total_updates </span><span
+ style='color:#4078F2' lang=zh-CN>=</span><span lang=zh-CN> steps_in_epoch </span><span
+ style='color:#4078F2' lang=zh-CN>//</span><span lang=zh-CN> args</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>gradient_accumulation_steps
+ </span><span style='color:#4078F2' lang=zh-CN>+ </span><span style='color:
+ #50A14F' lang=zh-CN>int</span><span style='color:#383A42' lang=zh-CN>(</span><span
+ lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>        </span>remainder </span><span
+ style='color:#4078F2' lang=zh-CN>&lt;</span><span lang=zh-CN> args</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>gradient_accumulation_steps<br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='color:#383A42'
+ lang=zh-CN>)</span></p>
+ <p style='margin:0in;margin-left:3.0in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;font-style:italic;background:lime;
+ mso-highlight:lime' lang=zh-CN># </span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=zh-CN>这里遍历每个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>update</span></p>
+ <p style='margin-left:4.125in;margin-top:10pt;margin-bottom:10pt;font-size:
+ 32.0pt;color:#404040'><span style='font-family:Menlo;background:lime;
+ mso-highlight:lime'>total_updates</span><span style='font-family:quote-cjk-patch;
+ background:lime;mso-highlight:lime'>&nbsp;表示&nbsp;一个epoch内需要进行参数更新的总次数，其计算逻辑为：</span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:quote-cjk-patch;
+ font-size:32.0pt'><span style='color:#494949;background:lime;mso-highlight:
+ lime'>total_updates </span><span style='color:#4078F2;background:lime;
+ mso-highlight:lime'>=</span><span style='color:#494949;background:lime;
+ mso-highlight:lime'> steps_in_epoch </span><span style='color:#4078F2;
+ background:lime;mso-highlight:lime'>//</span><span style='color:#494949;
+ background:lime;mso-highlight:lime'> args</span><span style='color:#383A42;
+ background:lime;mso-highlight:lime'>.</span><span style='color:#494949;
+ background:lime;mso-highlight:lime'>gradient_accumulation_steps </span><span
+ style='color:#4078F2;background:lime;mso-highlight:lime'>+ </span><span
+ style='color:#50A14F;background:lime;mso-highlight:lime'>int</span><span
+ style='color:#383A42;background:lime;mso-highlight:lime'>(</span><span
+ style='color:#494949;background:lime;mso-highlight:lime'>remainder </span><span
+ style='color:#4078F2;background:lime;mso-highlight:lime'>&lt;</span><span
+ style='color:#494949;background:lime;mso-highlight:lime'> args</span><span
+ style='color:#383A42;background:lime;mso-highlight:lime'>.</span><span
+ style='color:#494949;background:lime;mso-highlight:lime'>gradient_accumulation_steps</span><span
+ style='color:#383A42;background:lime;mso-highlight:lime'>)</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#404040'><span
+      style='font-family:Menlo;font-size:32.0pt;background:lime;mso-highlight:
+      lime'>steps_in_epoch</span><span style='font-family:quote-cjk-patch;
+      font-size:32.0pt;background:lime;mso-highlight:lime'>：当前epoch的总步数（即数据加载器的批次数量）。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#404040'><span
+      style='font-family:Menlo;font-size:32.0pt;background:lime;mso-highlight:
+      lime'>args.gradient_accumulation_steps</span><span style='font-family:
+      quote-cjk-patch;font-size:32.0pt;background:lime;mso-highlight:lime'>：梯度累积步数（例如设为4时，每4个batch才更新一次参数）。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#404040'><span
+      style='font-family:Menlo;font-size:32.0pt;background:lime;mso-highlight:
+      lime'>remainder</span><span style='font-family:quote-cjk-patch;
+      font-size:32.0pt;background:lime;mso-highlight:lime'>：</span><span
+      style='font-family:Menlo;font-size:32.0pt;background:lime;mso-highlight:
+      lime'>steps_in_epoch</span><span style='font-family:quote-cjk-patch;
+      font-size:32.0pt;background:lime;mso-highlight:lime'>&nbsp;除以&nbsp;</span><span
+      style='font-family:Menlo;font-size:32.0pt;background:lime;mso-highlight:
+      lime'>gradient_accumulation_steps</span><span style='font-family:quote-cjk-patch;
+      font-size:32.0pt;background:lime;mso-highlight:lime'>&nbsp;的余数。</span></li>
+ </ul>
+ <p style='margin-left:4.125in;margin-top:13pt;margin-bottom:10pt;font-family:
+ quote-cjk-patch;font-size:32.0pt;color:#404040'><span style='background:lime;
+ mso-highlight:lime'>计算逻辑</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#404040'><span
+      style='font-family:quote-cjk-patch;font-size:32.0pt;background:lime;
+      mso-highlight:lime'>如果&nbsp;</span><span style='font-family:Menlo;
+      font-size:32.0pt;background:lime;mso-highlight:lime'>steps_in_epoch</span><span
+      style='font-family:quote-cjk-patch;font-size:32.0pt;background:lime;
+      mso-highlight:lime'>&nbsp;能被&nbsp;</span><span style='font-family:Menlo;
+      font-size:32.0pt;background:lime;mso-highlight:lime'>gradient_accumulation_steps</span><span
+      style='font-family:quote-cjk-patch;font-size:32.0pt;background:lime;
+      mso-highlight:lime'>&nbsp;整除（余数=0）：<br>
+            </span><span style='font-family:Menlo;font-size:32.0pt;background:
+      lime;mso-highlight:lime'>total_updates = steps_in_epoch //
+      gradient_accumulation_steps</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#404040'><span
+      style='font-family:quote-cjk-patch;font-size:32.0pt;background:lime;
+      mso-highlight:lime'>如果不能整除（余数&gt;0）：<br>
+            </span><span style='font-family:Menlo;font-size:32.0pt;background:
+      lime;mso-highlight:lime'>total_updates = (steps_in_epoch //
+      gradient_accumulation_steps) + 1<br>
+            </span><span style='font-family:quote-cjk-patch;font-size:32.0pt;
+      background:lime;mso-highlight:lime'>（因为剩余的步数需要额外一次更新）</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:3.0in;font-family:微软雅黑;font-size:36.0pt;
+ color:black' lang=en-US>&nbsp;</p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span><span style='font-weight:bold;color:#A626A4;
+ background:lime;mso-highlight:lime'>for</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime'> _ </span><span style='font-weight:bold;
+ color:#A626A4;background:lime;mso-highlight:lime'>in </span><span
+ style='font-weight:bold;color:#50A14F;background:lime;mso-highlight:lime'>range</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'>(</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>total_updates</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'>):</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'><span
+ style='mso-spacerun:yes'>  </span></span><span style='font-weight:bold;
+ font-style:italic;color:#96979D;background:lime;mso-highlight:lime'>#
+ 遍历每个参数更新周期</span><br>
+  <span style='mso-spacerun:yes'>        </span>update_step <span
+ style='color:#4078F2'>+= </span><span style='color:#B76B01'>1</span><br>
+  <span style='mso-spacerun:yes'>        </span><br>
+  <span style='mso-spacerun:yes'>        </span><span style='font-style:italic;
+ color:#96979D'># 当前更新周期的batch数量（最后一步可能不足）</span><br>
+  <span style='mso-spacerun:yes'>        </span>num_batches <span
+ style='color:#4078F2'>= </span><span style='color:#383A42'>(</span>args<span
+ style='color:#383A42'>.</span>gradient_accumulation_steps <br>
+  <span style='mso-spacerun:yes'>                      </span><span
+ style='color:#A626A4'>if</span> update_step <span style='color:#4078F2'>!= </span><span
+ style='color:#383A42'>(</span>total_updates <span style='color:#4078F2'>- </span><span
+ style='color:#B76B01'>1</span><span style='color:#383A42'>)</span> <br>
+  <span style='mso-spacerun:yes'>                      </span><span
+ style='color:#A626A4'>else</span> remainder<span style='color:#383A42'>)</span><br>
+  <span style='mso-spacerun:yes'>        </span><br>
+  <span style='background:lime;mso-highlight:lime'><span
+ style='mso-spacerun:yes'>        </span></span><span style='font-style:italic;
+ color:#96979D;background:lime;mso-highlight:lime'># 获取批次数据</span><span
+ style='background:lime;mso-highlight:lime'><br>
+  </span><span style='font-weight:bold;background:lime;mso-highlight:lime'><span
+ style='mso-spacerun:yes'>        </span>batch_samples</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'>,</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>
+ num_items_in_batch </span><span style='font-weight:bold;color:#4078F2;
+ background:lime;mso-highlight:lime'>=</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime'> self</span><span style='font-weight:bold;
+ color:#383A42;background:lime;mso-highlight:lime'>.</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>get_batch_samples</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'>(</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'><br>
+  <span style='mso-spacerun:yes'>            </span>epoch_iterator</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'>,</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'> num_batches</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'>,</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'> args</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'>.</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>device<br>
+  <span style='mso-spacerun:yes'>        </span></span><span style='font-weight:
+ bold;color:#383A42;background:lime;mso-highlight:lime'>)</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt;
+ color:#383A42'>&nbsp;</p>
+ <p style='margin:0in;margin-left:3.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;font-style:italic;background:lime;
+ mso-highlight:lime' lang=zh-CN># </span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=zh-CN>这里遍历每个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>batch</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='background:lime;mso-highlight:lime'><span
+ style='mso-spacerun:yes'>        </span></span><span style='font-weight:bold;
+ color:#A626A4;background:lime;mso-highlight:lime'>for</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'> i</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'>,</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'> inputs </span><span
+ style='font-weight:bold;color:#A626A4;background:lime;mso-highlight:lime'>in </span><span
+ style='font-weight:bold;color:#50A14F;background:lime;mso-highlight:lime'>enumerate</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'>(</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>batch_samples</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'>):</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'><span
+ style='mso-spacerun:yes'>  </span></span><span style='font-weight:bold;
+ font-style:italic;color:#96979D;background:lime;mso-highlight:lime'>#
+ 遍历每个micro batch</span><br>
+  <span style='mso-spacerun:yes'>            </span>step <span
+ style='color:#4078F2'>+= </span><span style='color:#B76B01'>1</span><br>
+  <span style='mso-spacerun:yes'>            </span><br>
+  <span style='background:lime;mso-highlight:lime'><span
+ style='mso-spacerun:yes'>            </span></span><span style='font-style:
+ italic;color:#96979D;background:lime;mso-highlight:lime'>#
+ 判断是否进行梯度同步（最后一步或累积步数满足时）</span><span style='background:lime;mso-highlight:
+ lime'><br>
+  <span style='mso-spacerun:yes'>            </span></span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>do_sync_step </span><span
+ style='font-weight:bold;color:#4078F2;background:lime;mso-highlight:lime'>= </span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'>((</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>step </span><span
+ style='font-weight:bold;color:#4078F2;background:lime;mso-highlight:lime'>+ </span><span
+ style='font-weight:bold;color:#B76B01;background:lime;mso-highlight:lime'>1</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'>) </span><span
+ style='font-weight:bold;color:#4078F2;background:lime;mso-highlight:lime'>%</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'> args</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'>.</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>gradient_accumulation_steps
+ </span><span style='font-weight:bold;color:#4078F2;background:lime;mso-highlight:
+ lime'>== </span><span style='font-weight:bold;color:#B76B01;background:lime;
+ mso-highlight:lime'>0</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime'> <br>
+  <span style='mso-spacerun:yes'>                          </span></span><span
+ style='font-weight:bold;color:#A626A4;background:lime;mso-highlight:lime'>or </span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'>(</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>step </span><span
+ style='font-weight:bold;color:#4078F2;background:lime;mso-highlight:lime'>+ </span><span
+ style='font-weight:bold;color:#B76B01;background:lime;mso-highlight:lime'>1</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'>) </span><span
+ style='font-weight:bold;color:#4078F2;background:lime;mso-highlight:lime'>==</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'> steps_in_epoch</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'>)</span><br>
+  <span style='mso-spacerun:yes'>            </span><br>
+  <span style='mso-spacerun:yes'>            </span><span style='font-style:
+ italic;color:#96979D'># 设置梯度同步状态（用于混合精度/分布式训练）</span><br>
+  <span style='mso-spacerun:yes'>            </span>self<span style='color:
+ #383A42'>.</span>accelerator<span style='color:#383A42'>.</span>gradient_state<span
+ style='color:#383A42'>.</span>_set_sync_gradients<span style='color:#383A42'>(</span>do_sync_step<span
+ style='color:#383A42'>)</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D'># 统计已处理的token数量（可选）</span><br>
+  <span style='mso-spacerun:yes'>            </span><span style='color:#A626A4'>if</span>
+ self<span style='color:#383A42'>.</span>args<span style='color:#383A42'>.</span>include_num_input_tokens_seen<span
+ style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>                </span>main_input_name <span
+ style='color:#4078F2'>= </span><span style='color:#50A14F'>getattr</span><span
+ style='color:#383A42'>(</span>self<span style='color:#383A42'>.</span>model<span
+ style='color:#383A42'>, </span><span style='color:#50A14F'>&quot;main_input_name&quot;</span><span
+ style='color:#383A42'>, </span><span style='color:#50A14F'>&quot;input_ids&quot;</span><span
+ style='color:#383A42'>)</span><br>
+  <span style='mso-spacerun:yes'>                </span><span style='color:
+ #A626A4'>if</span> main_input_name <span style='color:#A626A4'>in</span>
+ inputs<span style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>                    </span>input_tokens <span
+ style='color:#4078F2'>=</span> inputs<span style='color:#383A42'>[</span>main_input_name<span
+ style='color:#383A42'>].</span>numel<span style='color:#383A42'>()</span><br>
+  <span style='mso-spacerun:yes'>                    </span><span
+ style='font-style:italic;color:#96979D'># 多GPU时聚合所有设备的token数</span><br>
+  <span style='mso-spacerun:yes'>                    </span>self<span
+ style='color:#383A42'>.</span>state<span style='color:#383A42'>.</span>num_input_tokens_seen
+ <span style='color:#4078F2'>+=</span> self<span style='color:#383A42'>.</span>accelerator<span
+ style='color:#383A42'>.</span>gather<span style='color:#383A42'>(</span><br>
+  <span style='mso-spacerun:yes'>                        </span>torch<span
+ style='color:#383A42'>.</span>tensor<span style='color:#383A42'>(</span>input_tokens<span
+ style='color:#383A42'>,</span> device<span style='color:#4078F2'>=</span>self<span
+ style='color:#383A42'>.</span>args<span style='color:#383A42'>.</span>device<span
+ style='color:#383A42'>)</span><br>
+  <span style='mso-spacerun:yes'>                    </span><span
+ style='color:#383A42'>).</span><span style='color:#50A14F'>sum</span><span
+ style='color:#383A42'>().</span>item<span style='color:#383A42'>()</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D'># 恢复训练时同步随机状态</span><br>
+  <span style='mso-spacerun:yes'>            </span><span style='color:#A626A4'>if</span>
+ rng_to_sync<span style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>                </span>self<span
+ style='color:#383A42'>.</span>_load_rng_state<span style='color:#383A42'>(</span>resume_from_checkpoint<span
+ style='color:#383A42'>)</span><br>
+  <span style='mso-spacerun:yes'>                </span>rng_to_sync <span
+ style='color:#4078F2'>= </span><span style='color:#B76B01'>False</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span><span style='font-style:italic;
+ color:#96979D'># 跳过已训练的steps（恢复训练时）</span><br>
+  <span style='mso-spacerun:yes'>            </span><span style='color:#A626A4'>if</span>
+ steps_trained_in_current_epoch <span style='color:#4078F2'>&gt; </span><span
+ style='color:#B76B01'>0</span><span style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>               
+ </span>steps_trained_in_current_epoch <span style='color:#4078F2'>-= </span><span
+ style='color:#B76B01'>1</span><br>
+  <span style='mso-spacerun:yes'>                </span><span style='color:
+ #A626A4'>continue</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D'># 回调函数：step开始事件</span><br>
+  <span style='mso-spacerun:yes'>            </span><span style='color:#A626A4'>if</span>
+ step <span style='color:#4078F2'>%</span> args<span style='color:#383A42'>.</span>gradient_accumulation_steps
+ <span style='color:#4078F2'>== </span><span style='color:#B76B01'>0</span><span
+ style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>                </span>self<span
+ style='color:#383A42'>.</span>control <span style='color:#4078F2'>=</span>
+ self<span style='color:#383A42'>.</span>callback_handler<span
+ style='color:#383A42'>.</span>on_step_begin<span style='color:#383A42'>(</span>args<span
+ style='color:#383A42'>,</span> self<span style='color:#383A42'>.</span>state<span
+ style='color:#383A42'>,</span> self<span style='color:#383A42'>.</span>control<span
+ style='color:#383A42'>)</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D' lang=zh-CN># 梯度累积上下文（非最后一步时不同步梯度）</span><span
+ lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>            </span>context </span><span
+ style='color:#4078F2' lang=zh-CN>= </span><span style='color:#383A42'
+ lang=zh-CN>(</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>                </span>functools</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>partial</span><span
+ style='color:#383A42' lang=zh-CN>(</span><span lang=zh-CN>self</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>accelerator</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>no_sync</span><span
+ style='color:#383A42' lang=zh-CN>,</span><span lang=zh-CN> model</span><span
+ style='color:#4078F2' lang=zh-CN>=</span><span lang=zh-CN>model</span><span
+ style='color:#383A42' lang=zh-CN>)</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>                </span></span><span
+ style='color:#A626A4' lang=zh-CN>if </span><span style='color:#383A42'
+ lang=zh-CN>(</span><span lang=zh-CN>i </span><span style='color:#4078F2'
+ lang=zh-CN>!= </span><span style='color:#50A14F' lang=zh-CN>len</span><span
+ style='color:#383A42' lang=zh-CN>(</span><span lang=zh-CN>batch_samples</span><span
+ style='color:#383A42' lang=zh-CN>) </span><span style='color:#4078F2'
+ lang=zh-CN>- </span><span style='color:#B76B01' lang=zh-CN>1 </span><span
+ style='color:#A626A4' lang=zh-CN>and</span><span lang=zh-CN> <br>
+  <span style='mso-spacerun:yes'>                    </span>self</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>accelerator</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>distributed_type </span><span
+ style='color:#4078F2' lang=zh-CN>!=</span><span lang=zh-CN> DistributedType</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>DEEPSPEED</span><span
+ style='color:#383A42' lang=zh-CN>)</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>                </span></span><span
+ style='color:#A626A4' lang=zh-CN>else</span><span lang=zh-CN> contextlib</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>nullcontext</span><span
+ style='color:#383A42' lang=zh-CN>()</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>            </span></span><span
+ style='color:#383A42' lang=zh-CN>)</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>            </span><br>
+  <span style='mso-spacerun:yes'>            </span></span><span
+ style='font-style:italic;color:#96979D' lang=zh-CN># 执行训练步骤（前向+反向）</span><span
+ lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>            </span></span><span
+ style='color:#A626A4' lang=zh-CN>with</span><span lang=zh-CN> context</span><span
+ style='color:#383A42' lang=zh-CN>():</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>                </span></span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>tr_loss_step
+ </span><span style='font-weight:bold;color:#4078F2;background:lime;mso-highlight:
+ lime' lang=zh-CN>=</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=zh-CN> self</span><span style='font-weight:bold;
+ color:#383A42;background:lime;mso-highlight:lime' lang=zh-CN>.</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>training_step</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>(</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN>model</span><span style='font-weight:bold;color:#383A42;
+ background:lime;mso-highlight:lime' lang=zh-CN>,</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=zh-CN> inputs</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>,</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN> num_items_in_batch</span><span style='font-weight:bold;
+ color:#383A42;background:lime;mso-highlight:lime' lang=zh-CN>)</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=en-US> #</span><span style='font-weight:bold;color:#383A42;background:
+ lime;mso-highlight:lime' lang=zh-CN>单个</span><span style='font-weight:bold;
+ color:#383A42;background:lime;mso-highlight:lime' lang=en-US>batch</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>的训练</span><span style='font-weight:bold;color:#383A42;background:
+ lime;mso-highlight:lime' lang=en-US>step</span><span style='font-weight:bold;
+ color:#383A42;background:lime;mso-highlight:lime' lang=zh-CN>，</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D'># 处理NaN/Inf损失（调试用）</span><br>
+  <span style='mso-spacerun:yes'>            </span><span style='color:#A626A4'>if
+ </span><span style='color:#383A42'>(</span>args<span style='color:#383A42'>.</span>logging_nan_inf_filter
+ <span style='color:#A626A4'>and</span> <br>
+  <span style='mso-spacerun:yes'>                </span><span style='color:
+ #A626A4'>not</span> is_torch_xla_available<span style='color:#383A42'>() </span><span
+ style='color:#A626A4'>and</span> <br>
+  <span style='mso-spacerun:yes'>                </span><span style='color:
+ #383A42'>(</span>torch<span style='color:#383A42'>.</span>isnan<span
+ style='color:#383A42'>(</span>tr_loss_step<span style='color:#383A42'>) </span><span
+ style='color:#A626A4'>or</span> torch<span style='color:#383A42'>.</span>isinf<span
+ style='color:#383A42'>(</span>tr_loss_step<span style='color:#383A42'>))):</span><br>
+  <span style='mso-spacerun:yes'>                </span>tr_loss <span
+ style='color:#4078F2'>=</span> tr_loss <span style='color:#4078F2'>+</span>
+ tr_loss <span style='color:#4078F2'>/ </span><span style='color:#383A42'>(</span><span
+ style='color:#B76B01'>1 </span><span style='color:#4078F2'>+</span> self<span
+ style='color:#383A42'>.</span>state<span style='color:#383A42'>.</span>global_step
+ <span style='color:#4078F2'>-</span> self<span style='color:#383A42'>.</span>_globalstep_last_logged<span
+ style='color:#383A42'>)</span><br>
+  <span style='mso-spacerun:yes'>            </span><span style='color:#A626A4'>else</span><span
+ style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>                </span>tr_loss <span
+ style='color:#4078F2'>=</span> tr_loss <span style='color:#4078F2'>+</span>
+ tr_loss_step<span style='mso-spacerun:yes'>  </span><span style='font-style:
+ italic;color:#96979D'># 累积损失</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D'># 统计FLOPs（浮点运算次数）</span><br>
+  <span style='mso-spacerun:yes'>            </span>self<span style='color:
+ #383A42'>.</span>current_flos <span style='color:#4078F2'>+= </span><span
+ style='color:#50A14F'>float</span><span style='color:#383A42'>(</span>self<span
+ style='color:#383A42'>.</span>floating_point_ops<span style='color:#383A42'>(</span>inputs<span
+ style='color:#383A42'>))</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span><span style='font-style:italic;
+ color:#96979D'># 梯度同步时执行参数更新</span><br>
+  <span style='mso-spacerun:yes'>            </span><span style='font-weight:
+ bold;color:#A626A4'>if</span><span style='font-weight:bold'> do_sync_step</span><span
+ style='font-weight:bold;color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>                </span><span style='font-style:
+ italic;color:#96979D'># 梯度裁剪（防止梯度爆炸）</span><br>
+  <span style='mso-spacerun:yes'>                </span><span style='color:
+ #A626A4'>if</span> args<span style='color:#383A42'>.</span>max_grad_norm <span
+ style='color:#A626A4'>is not </span><span style='color:#B76B01'>None </span><span
+ style='color:#A626A4'>and</span> args<span style='color:#383A42'>.</span>max_grad_norm
+ <span style='color:#4078F2'>&gt; </span><span style='color:#B76B01'>0</span><span
+ style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>                    </span><span
+ style='color:#A626A4'>if</span> is_sagemaker_mp_enabled<span style='color:
+ #383A42'>() </span><span style='color:#A626A4'>and</span> args<span
+ style='color:#383A42'>.</span>fp16<span style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>                        </span>_grad_norm <span
+ style='color:#4078F2'>=</span> self<span style='color:#383A42'>.</span>optimizer<span
+ style='color:#383A42'>.</span>clip_master_grads<span style='color:#383A42'>(</span>args<span
+ style='color:#383A42'>.</span>max_grad_norm<span style='color:#383A42'>)</span><br>
+  <span style='mso-spacerun:yes'>                    </span><span
+ style='color:#A626A4'>elif</span> self<span style='color:#383A42'>.</span>use_apex<span
+ style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>                        </span>_grad_norm <span
+ style='color:#4078F2'>=</span> nn<span style='color:#383A42'>.</span>utils<span
+ style='color:#383A42'>.</span>clip_grad_norm_<span style='color:#383A42'>(</span><br>
+  <span style='mso-spacerun:yes'>                            </span>amp<span
+ style='color:#383A42'>.</span>master_params<span style='color:#383A42'>(</span>self<span
+ style='color:#383A42'>.</span>optimizer<span style='color:#383A42'>),</span>
+ args<span style='color:#383A42'>.</span>max_grad_norm<span style='color:#383A42'>)</span><br>
+  <span style='mso-spacerun:yes'>                    </span><span
+ style='color:#A626A4'>else</span><span style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>                        </span>_grad_norm <span
+ style='color:#4078F2'>=</span> self<span style='color:#383A42'>.</span>accelerator<span
+ style='color:#383A42'>.</span>clip_grad_norm_<span style='color:#383A42'>(</span><br>
+  <span style='mso-spacerun:yes'>                            </span>model<span
+ style='color:#383A42'>.</span>parameters<span style='color:#383A42'>(),</span>
+ args<span style='color:#383A42'>.</span>max_grad_norm<span style='color:#383A42'>)</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D'># 回调函数：优化器step前事件</span><br>
+  <span style='mso-spacerun:yes'>                </span>self<span
+ style='color:#383A42'>.</span>control <span style='color:#4078F2'>=</span>
+ self<span style='color:#383A42'>.</span>callback_handler<span
+ style='color:#383A42'>.</span>on_pre_optimizer_step<span style='color:#383A42'>(</span>args<span
+ style='color:#383A42'>,</span> self<span style='color:#383A42'>.</span>state<span
+ style='color:#383A42'>,</span> self<span style='color:#383A42'>.</span>control<span
+ style='color:#383A42'>)</span><br>
+  <span style='mso-spacerun:yes'>                </span><br>
+  <span style='mso-spacerun:yes'>                </span><span style='font-style:
+ italic;color:#96979D'># 参数更新</span><br>
+  <span style='mso-spacerun:yes'>                </span>self<span
+ style='color:#383A42'>.</span>optimizer<span style='color:#383A42'>.</span>step<span
+ style='color:#383A42'>()</span><br>
+  <span style='mso-spacerun:yes'>                </span><br>
+  <span style='mso-spacerun:yes'>                </span><span style='font-style:
+ italic;color:#96979D'># 回调函数：优化器step后事件</span><br>
+  <span style='mso-spacerun:yes'>                </span>self<span
+ style='color:#383A42'>.</span>control <span style='color:#4078F2'>=</span>
+ self<span style='color:#383A42'>.</span>callback_handler<span
+ style='color:#383A42'>.</span>on_optimizer_step<span style='color:#383A42'>(</span>args<span
+ style='color:#383A42'>,</span> self<span style='color:#383A42'>.</span>state<span
+ style='color:#383A42'>,</span> self<span style='color:#383A42'>.</span>control<span
+ style='color:#383A42'>)</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D'># 学习率调度（非ReduceLROnPlateau类型）</span><br>
+  <span style='mso-spacerun:yes'>                </span>learning_rate <span
+ style='color:#4078F2'>=</span> self<span style='color:#383A42'>.</span>_get_learning_rate<span
+ style='color:#383A42'>()</span><br>
+  <span style='mso-spacerun:yes'>                </span><span style='color:
+ #A626A4'>if not</span> self<span style='color:#383A42'>.</span>accelerator<span
+ style='color:#383A42'>.</span>optimizer_step_was_skipped<span
+ style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>                    </span><span
+ style='color:#A626A4'>if not </span><span style='color:#50A14F'>isinstance</span><span
+ style='color:#383A42'>(</span>self<span style='color:#383A42'>.</span>lr_scheduler<span
+ style='color:#383A42'>,</span> torch<span style='color:#383A42'>.</span>optim<span
+ style='color:#383A42'>.</span>lr_scheduler<span style='color:#383A42'>.</span>ReduceLROnPlateau<span
+ style='color:#383A42'>):</span><br>
+  <span style='mso-spacerun:yes'>                        </span>self<span
+ style='color:#383A42'>.</span>lr_scheduler<span style='color:#383A42'>.</span>step<span
+ style='color:#383A42'>()</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D' lang=zh-CN># 清空梯度、更新训练状态</span><span
+ lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>                </span>model</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>zero_grad</span><span
+ style='color:#383A42' lang=zh-CN>()</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>                </span>self</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>state</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>global_step </span><span
+ style='color:#4078F2' lang=zh-CN>+= </span><span style='color:#B76B01'
+ lang=zh-CN>1</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>                </span>self</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>state</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>epoch </span><span
+ style='color:#4078F2' lang=zh-CN>=</span><span lang=zh-CN> epoch </span><span
+ style='color:#4078F2' lang=zh-CN>+ </span><span style='color:#383A42'
+ lang=zh-CN>(</span><span lang=zh-CN>step </span><span style='color:#4078F2'
+ lang=zh-CN>+ </span><span style='color:#B76B01' lang=zh-CN>1 </span><span
+ style='color:#4078F2' lang=zh-CN>+</span><span lang=zh-CN> steps_skipped</span><span
+ style='color:#383A42' lang=zh-CN>) </span><span style='color:#4078F2'
+ lang=zh-CN>/</span><span lang=zh-CN> steps_in_epoch<br>
+  <span style='mso-spacerun:yes'>                </span><br>
+  <span style='mso-spacerun:yes'>                </span></span><span
+ style='font-style:italic;color:#96979D' lang=zh-CN># 回调函数：step结束事件</span><span
+ lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>                </span>self</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>control </span><span
+ style='color:#4078F2' lang=zh-CN>=</span><span lang=zh-CN> self</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>callback_handler</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>on_step_end</span><span
+ style='color:#383A42' lang=zh-CN>(</span><span lang=zh-CN>args</span><span
+ style='color:#383A42' lang=zh-CN>,</span><span lang=zh-CN> self</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>state</span><span
+ style='color:#383A42' lang=zh-CN>,</span><span lang=zh-CN> self</span><span
+ style='color:#383A42' lang=zh-CN>.</span><span lang=zh-CN>control</span><span
+ style='color:#383A42' lang=zh-CN>)</span><span lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>                </span><br>
+  </span><span style='background:lime;mso-highlight:lime' lang=zh-CN><span
+ style='mso-spacerun:yes'>                </span></span><span style='background:
+ lime;mso-highlight:lime' lang=en-US># </span><span style='font-weight:bold;
+ color:#383A42;background:lime;mso-highlight:lime' lang=zh-CN>在</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>每个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>step</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>执行完后，调用_maybe_log_save_evaluate</span><span
+ style='background:lime;mso-highlight:lime' lang=zh-CN><br>
+  </span><span style='font-weight:bold;background:lime;mso-highlight:lime'
+ lang=zh-CN><span style='mso-spacerun:yes'>                </span>self</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>.</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN>_maybe_log_save_evaluate</span><span style='font-weight:bold;
+ color:#383A42;background:lime;mso-highlight:lime' lang=zh-CN>(</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>                    </span>tr_loss</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>,</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN> grad_norm</span><span style='font-weight:bold;color:#383A42;
+ background:lime;mso-highlight:lime' lang=zh-CN>,</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=zh-CN> model</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>,</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN> trial</span><span style='font-weight:bold;color:#383A42;
+ background:lime;mso-highlight:lime' lang=zh-CN>,</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=zh-CN> epoch</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>,</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN> <br>
+  <span style='mso-spacerun:yes'>                   
+ </span>ignore_keys_for_eval</span><span style='font-weight:bold;color:#383A42;
+ background:lime;mso-highlight:lime' lang=zh-CN>,</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=zh-CN> start_time</span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>,</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN> learning_rate</span><span style='font-weight:bold;
+ color:#4078F2;background:lime;mso-highlight:lime' lang=zh-CN>=</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>learning_rate<br>
+  <span style='mso-spacerun:yes'>                </span></span><span
+ style='font-weight:bold;color:#383A42;background:lime;mso-highlight:lime'
+ lang=zh-CN>)这个函数在</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=zh-CN>do_sync_step 时才执行，也就是真正执行梯度更新时的那个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>step</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>执行。</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#A626A4'>else</span><span style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>                </span><span style='font-style:
+ italic;color:#96979D'># 回调函数：子步结束事件（梯度累积中）</span><br>
+  <span style='mso-spacerun:yes'>                </span>self<span
+ style='color:#383A42'>.</span>control <span style='color:#4078F2'>=</span>
+ self<span style='color:#383A42'>.</span>callback_handler<span
+ style='color:#383A42'>.</span>on_substep_end<span style='color:#383A42'>(</span>args<span
+ style='color:#383A42'>,</span> self<span style='color:#383A42'>.</span>state<span
+ style='color:#383A42'>,</span> self<span style='color:#383A42'>.</span>control<span
+ style='color:#383A42'>)</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span><span style='font-style:italic;
+ color:#96979D'># 提前终止检查（如EarlyStopping回调触发）</span><br>
+  <span style='mso-spacerun:yes'>            </span><span style='color:#A626A4'>if</span>
+ self<span style='color:#383A42'>.</span>control<span style='color:#383A42'>.</span>should_epoch_stop
+ <span style='color:#A626A4'>or</span> self<span style='color:#383A42'>.</span>control<span
+ style='color:#383A42'>.</span>should_training_stop<span style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>                </span><span style='color:
+ #A626A4'>if</span> is_torch_xla_available<span style='color:#383A42'>():</span><span
+ style='mso-spacerun:yes'>  </span><span style='font-style:italic;color:#96979D'>#
+ TPU特殊处理</span><br>
+  <span style='mso-spacerun:yes'>                    </span>xm<span
+ style='color:#383A42'>.</span>mark_step<span style='color:#383A42'>()</span><br>
+  <span style='mso-spacerun:yes'>                </span><span style='color:
+ #A626A4'>break</span><span style='mso-spacerun:yes'>  </span><span
+ style='font-style:italic;color:#96979D'># 终止内层循环</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D'># 双重检查终止条件（同时跳出外层循环）</span><br>
+  <span style='mso-spacerun:yes'>        </span><span style='color:#A626A4'>if</span>
+ self<span style='color:#383A42'>.</span>control<span style='color:#383A42'>.</span>should_epoch_stop
+ <span style='color:#A626A4'>or</span> self<span style='color:#383A42'>.</span>control<span
+ style='color:#383A42'>.</span>should_training_stop<span style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>            </span><span style='color:#A626A4'>if</span>
+ is_torch_xla_available<span style='color:#383A42'>():</span><br>
+  <span style='mso-spacerun:yes'>                </span>xm<span
+ style='color:#383A42'>.</span>mark_step<span style='color:#383A42'>()</span><br>
+  <span style='mso-spacerun:yes'>            </span><span style='color:#A626A4'>break</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D'># 空数据检查</span><br>
+  <span style='mso-spacerun:yes'>    </span><span style='color:#A626A4'>if</span>
+ step <span style='color:#4078F2'>&lt; </span><span style='color:#B76B01'>0</span><span
+ style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>        </span>logger<span style='color:#383A42'>.</span>warning<span
+ style='color:#383A42'>(</span><span style='color:#50A14F'>&quot;No training
+ data available!&quot;</span><span style='color:#383A42'>)</span><br>
+  <span style='mso-spacerun:yes'>        </span>self<span style='color:#383A42'>.</span>control<span
+ style='color:#383A42'>.</span>should_training_stop <span style='color:#4078F2'>=
+ </span><span style='color:#B76B01'>True</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D' lang=zh-CN><span
+ style='mso-spacerun:yes'>    </span># 回调函数：epoch结束事件</span><span
+ style='color:#383A42' lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span>self.control =
+ self.callback_handler.on_epoch_end(args, self.state, self.control)<br>
+  <span style='mso-spacerun:yes'>    </span><br>
+  </span><span style='font-weight:bold;background:lime;mso-highlight:lime'
+ lang=zh-CN><span style='mso-spacerun:yes'>   </span></span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US># </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>在每个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>epoch</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>执行完后，调用_maybe_log_save_evaluate，_maybe_log_save_evaluate这个函数内部调用了</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>_evluate()</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>函数和</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>_save_checkpoint()</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>函数。</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>_save_checkpoint()</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>函数内部调用了self.save_model函数，以及</span></p>
+ <p style='margin:0in;margin-left:11.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>&nbsp; &nbsp;
+ &nbsp; &nbsp; if not self.args.save_only_model:</span></p>
+ <p style='margin:0in;margin-left:11.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>&nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; # Save optimizer and scheduler</span></p>
+ <p style='margin:0in;margin-left:11.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>&nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; self._save_optimizer_and_scheduler(output_dir)</span></p>
+ <p style='margin:0in;margin-left:11.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>&nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; self._save_scaler(output_dir)</span></p>
+ <p style='margin:0in;margin-left:11.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>&nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; # Save RNG state</span></p>
+ <p style='margin:0in;margin-left:11.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>&nbsp; &nbsp;
+ &nbsp; &nbsp; &nbsp; &nbsp; self._save_rng_state(output_dir)</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>并且</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>save_model()</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>函数中调用了</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>_save()</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>函数。<br>
+  <span style='mso-spacerun:yes'>   
+ </span>self._maybe_log_save_evaluate(<br>
+  <span style='mso-spacerun:yes'>        </span>tr_loss, grad_norm, model,
+ trial, epoch, <br>
+  <span style='mso-spacerun:yes'>        </span>ignore_keys_for_eval, start_time,
+ learning_rate=learning_rate<br>
+  <span style='mso-spacerun:yes'>    </span>)</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D'># TPU调试信息输出（可选）</span><br>
+  <span style='mso-spacerun:yes'>    </span><span style='color:#A626A4'>if</span>
+ DebugOption<span style='color:#383A42'>.</span>TPU_METRICS_DEBUG <span
+ style='color:#A626A4'>in</span> self<span style='color:#383A42'>.</span>args<span
+ style='color:#383A42'>.</span>debug<span style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>        </span><span style='color:#A626A4'>if</span>
+ is_torch_xla_available<span style='color:#383A42'>():</span><br>
+  <span style='mso-spacerun:yes'>            </span>xm<span style='color:#383A42'>.</span>master_print<span
+ style='color:#383A42'>(</span>met<span style='color:#383A42'>.</span>metrics_report<span
+ style='color:#383A42'>())</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#96979D'># 全局终止检查</span><br>
+  <span style='mso-spacerun:yes'>    </span><span style='color:#A626A4'>if</span>
+ self<span style='color:#383A42'>.</span>control<span style='color:#383A42'>.</span>should_training_stop<span
+ style='color:#383A42'>:</span><br>
+  <span style='mso-spacerun:yes'>        </span><span style='color:#A626A4'>break</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold;color:black' lang=zh-CN># </span><span
+ style='font-weight:bold;color:black' lang=en-US>7. </span><span
+ style='font-weight:bold' lang=zh-CN>加载最佳模型（如果配置），计算最终训练指标，释放资源并返回结果。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold' lang=zh-CN>评估时的关键函数：</span><span style='font-weight:
+ bold' lang=en-US>evaluation_loop </span><span style='font-weight:bold'
+ lang=zh-CN>代码，模型评估主函数</span></p>
+ <p style='margin:0in;margin-left:1.5in;font-size:36.0pt'><span
+ style='font-family:微软雅黑;color:#B15EF2'>def </span><span style='font-family:
+ 微软雅黑;color:#FF5D4D'>evaluation_loop</span><span style='font-family:微软雅黑;
+ color:black'>(<br>
+  <span style='mso-spacerun:yes'>        </span>self,<br>
+  <span style='mso-spacerun:yes'>        </span>dataloader: DataLoader,<br>
+  <span style='mso-spacerun:yes'>        </span>description: </span><span
+ style='font-family:微软雅黑;color:#FF5D4D'>str</span><span style='font-family:
+ 微软雅黑;color:black'>,<br>
+  <span style='mso-spacerun:yes'>        </span>prediction_loss_only: Optional[</span><span
+ style='font-family:微软雅黑;color:#FF5D4D'>bool</span><span style='font-family:
+ 微软雅黑;color:black'>] = </span><span style='font-family:微软雅黑;color:#E54595'>None</span><span
+ style='font-family:微软雅黑;color:black'>,<br>
+  <span style='mso-spacerun:yes'>        </span>ignore_keys: Optional[</span><span
+ style='font-family:微软雅黑;color:#FF5D4D'>list</span><span style='font-family:
+ 微软雅黑;color:black'>[</span><span style='font-family:微软雅黑;color:#FF5D4D'>str</span><span
+ style='font-family:微软雅黑;color:black'>]] = </span><span style='font-family:
+ 微软雅黑;color:#E54595'>None</span><span style='font-family:微软雅黑;color:black'>,<br>
+  <span style='mso-spacerun:yes'>        </span>metric_key_prefix: </span><span
+ style='font-family:微软雅黑;color:#FF5D4D'>str</span><span style='font-family:
+ 微软雅黑;color:black'> = </span><span style='font-family:微软雅黑;color:#4DA621'>&quot;eval&quot;</span><span
+ style='font-family:微软雅黑;color:black'>,<br>
+  <span style='mso-spacerun:yes'>    </span>) -&gt; EvalLoopOutput:</span><span
+ style='font-family:Menlo;color:black'><br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='font-family:
+ Menlo;color:#4DA621'>&quot;&quot;&quot;<br>
+  <span style='mso-spacerun:yes'>    </span>预测/评估循环，由 Trainer.evaluate() 和
+ Trainer.predict() 共享<br>
+  <span style='mso-spacerun:yes'>    </span>支持带标签或不带标签的评估场景<br>
+  <span style='mso-spacerun:yes'>    </span>&quot;&quot;&quot;</span><span
+ style='font-family:Menlo;color:black'><br>
+  <span style='mso-spacerun:yes'>  </span># 主评估循环：迭代处理每个数据批次<br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='font-family:
+ Menlo;color:#B15EF2'>for</span><span style='font-family:Menlo;color:black'>
+ step, inputs </span><span style='font-family:Menlo;color:#B15EF2'>in </span><span
+ style='font-family:Menlo;color:#FF5D4D'>enumerate</span><span
+ style='font-family:Menlo;color:black'>(dataloader):<br>
+  <span style='mso-spacerun:yes'>        </span># 更新已观察样本数<br>
+  <span style='mso-spacerun:yes'>        </span>observed_batch_size =
+ find_batch_size(inputs)<br>
+  <span style='mso-spacerun:yes'>        </span></span><span style='font-family:
+ Menlo;color:#B15EF2'>if</span><span style='font-family:Menlo;color:black'>
+ observed_batch_size </span><span style='font-family:Menlo;color:#B15EF2'>is
+ not </span><span style='font-family:Menlo;color:#E54595'>None</span><span
+ style='font-family:Menlo;color:black'>:<br>
+  <span style='mso-spacerun:yes'>            </span>observed_num_examples +=
+ observed_batch_size<br>
+  <span style='mso-spacerun:yes'>            </span>#
+ 动态确定批次大小（适用于批次大小不固定的情况）<br>
+  <span style='mso-spacerun:yes'>            </span></span><span
+ style='font-family:Menlo;color:#B15EF2'>if</span><span style='font-family:
+ Menlo;color:black'> batch_size </span><span style='font-family:Menlo;
+ color:#B15EF2'>is </span><span style='font-family:Menlo;color:#E54595'>None</span><span
+ style='font-family:Menlo;color:black'>:<br>
+  <span style='mso-spacerun:yes'>                </span>batch_size =
+ observed_batch_size</span></p>
+ <p style='margin:0in;margin-left:1.5in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:lime;mso-highlight:lime'>#
+ 执行预测步骤，获取损失、logits和标签</span></p>
+ <p style='margin:0in;margin-left:1.5in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:lime;mso-highlight:lime'><span
+ style='mso-spacerun:yes'> </span>losses, logits, labels =
+ self.prediction_step(model, inputs, prediction_loss_only,
+ ignore_keys=ignore_keys)</span></p>
+ <p style='margin:0in;margin-left:1.5in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:3.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'
+ lang=en-US># </span><span style='font-weight:bold;background:aqua;mso-highlight:
+ aqua' lang=zh-CN>关于self.prediction_step函数，它根据不同情况计算并返回三个关键值：损失（loss）、对数几率（logits）和标签（labels）。has_labels：判断输入是否包含标签。</span></p>
+ <p style='margin:0in;margin-left:4.5in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'>has_labels
+ = False if len(self.label_names) == 0 </span></p>
+ <p style='margin:0in;margin-left:4.5in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'>self.label_names
+ = default_label_names if self.args.label_names is None else
+ self.args.label_names</span></p>
+ <p style='margin:0in;margin-left:4.5in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'
+ lang=en-US><span style='mso-spacerun:yes'> </span>#</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>也就是说当手动指定了</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>label_names</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>或者</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>model</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>的</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>forward</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>函数里有</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>label</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>这个参数的时候，</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>has_labels</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>是</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>True</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:3.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'>如果有标签，从输入中提取标签并移至
+ CPU。</span></p>
+ <p style='margin:0in;margin-left:4.5in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'
+ lang=en-US>#</span><span style='font-weight:bold;background:aqua;mso-highlight:
+ aqua' lang=zh-CN>loss_without_labels为</span><span style='font-weight:bold;
+ background:aqua;mso-highlight:aqua' lang=en-US>True:</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>当</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>model</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>的forward
+ 方法有 return_loss=True 参数。</span></p>
+ <p style='margin:0in;margin-left:3.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'>if
+ has_labels or loss_without_labels:</span></p>
+ <p style='margin:0in;margin-left:3.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'><span
+ style='mso-spacerun:yes'>    </span>labels =
+ nested_detach(tuple(inputs.get(name) for name in self.label_names))</span></p>
+ <p style='margin:0in;margin-left:3.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'
+ lang=en-US># </span><span style='font-weight:bold;background:aqua;mso-highlight:
+ aqua' lang=zh-CN>如果有标签，调用</span><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua' lang=en-US>self.compute_loss</span><span style='font-weight:
+ bold;background:aqua;mso-highlight:aqua' lang=zh-CN>函数计算</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>loss</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>和</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>outputs</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:3.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'
+ lang=zh-CN><span style='mso-spacerun:yes'> </span>if has_labels or
+ loss_without_labels</span><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua' lang=en-US> </span><span style='font-weight:bold;
+ background:aqua;mso-highlight:aqua' lang=zh-CN>:</span><span style='font-weight:
+ bold;background:aqua;mso-highlight:aqua' lang=en-US><span
+ style='mso-spacerun:yes'>      </span></span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'><span
+ style='mso-spacerun:yes'>                    </span>with
+ self.compute_loss_context_manager():</span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'><span
+ style='mso-spacerun:yes'>                        </span>loss, outputs =
+ self.compute_loss(model, inputs, return_outputs=True)</span></p>
+ <p style='margin:0in;margin-left:5.625in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:silver;mso-highlight:
+ silver' lang=en-US>#</span><span style='font-weight:bold;background:silver;
+ mso-highlight:silver' lang=zh-CN>关于</span><span style='font-weight:bold;
+ background:silver;mso-highlight:silver' lang=en-US>self.compute_loss</span><span
+ style='font-weight:bold;background:silver;mso-highlight:silver' lang=zh-CN>函数，</span></p>
+ <p style='margin:0in;margin-left:5.625in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:silver;mso-highlight:
+ silver'>def compute_loss(self, model, inputs, return_outputs=False,
+ num_items_in_batch=None):</span></p>
+ <p style='margin:0in;margin-left:6.0in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:silver;mso-highlight:
+ silver' lang=zh-CN>在这个函数中调用了User-defined
+ compute_loss用户自定义损失计算函数，self.compute_loss_func，并引入</span><span
+ style='font-weight:bold;background:silver;mso-highlight:silver' lang=en-US> </span><span
+ style='font-weight:bold;background:silver;mso-highlight:silver' lang=zh-CN>了标签平滑self.label_smoother，并且如果</span><span
+ style='font-weight:bold;background:silver;mso-highlight:silver' lang=en-US>inputs</span><span
+ style='font-weight:bold;background:silver;mso-highlight:silver' lang=zh-CN>中没有</span><span
+ style='font-weight:bold;background:silver;mso-highlight:silver' lang=en-US>label</span><span
+ style='font-weight:bold;background:silver;mso-highlight:silver' lang=zh-CN>，那么</span><span
+ style='font-weight:bold;background:silver;mso-highlight:silver' lang=en-US>model</span><span
+ style='font-weight:bold;background:silver;mso-highlight:silver' lang=zh-CN>的输出字典中必须包含</span><span
+ style='font-weight:bold;background:silver;mso-highlight:silver' lang=en-US>loss</span><span
+ style='font-weight:bold;background:silver;mso-highlight:silver' lang=zh-CN>这个</span><span
+ style='font-weight:bold;background:silver;mso-highlight:silver' lang=en-US>key</span><span
+ style='font-weight:bold;background:silver;mso-highlight:silver' lang=zh-CN>，否则报错。</span></p>
+ <p style='margin:0in;margin-left:5.25in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'><span
+ style='mso-spacerun:yes'>                    </span>loss =
+ loss.detach().mean()</span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'><span
+ style='mso-spacerun:yes'>                    </span>if isinstance(outputs,
+ dict):</span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'><span
+ style='mso-spacerun:yes'>                        </span>logits = tuple(v for
+ k, v in outputs.items() if k not in ignore_keys + [&quot;loss&quot;])</span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'><span
+ style='mso-spacerun:yes'>                    </span>else:</span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'><span
+ style='mso-spacerun:yes'>                        </span>logits = outputs[1:]</span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'
+ lang=zh-CN>else:</span><span style='font-weight:bold;background:aqua;
+ mso-highlight:aqua' lang=en-US><span style='mso-spacerun:yes'>        </span>#</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>如果没有标签</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>label,</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>那么</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US> </span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>直接运行模型前向传播</span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'><span
+ style='mso-spacerun:yes'>                    </span>loss = None</span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'><span
+ style='mso-spacerun:yes'>                    </span>with
+ self.compute_loss_context_manager():</span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'
+ lang=zh-CN><span style='mso-spacerun:yes'>                       
+ </span>outputs = model(**inputs)</span><span style='font-weight:bold;
+ background:aqua;mso-highlight:aqua' lang=en-US> </span><span style='font-weight:
+ bold;background:aqua;mso-highlight:aqua' lang=zh-CN><span
+ style='mso-spacerun:yes'>                    </span>if isinstance(outputs,
+ dict):</span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'><span
+ style='mso-spacerun:yes'>                        </span>logits = tuple(v for
+ k, v in outputs.items() if k not in ignore_keys)</span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'><span
+ style='mso-spacerun:yes'>                    </span>else:</span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'><span
+ style='mso-spacerun:yes'>                        </span>logits = outputs</span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'><span
+ style='mso-spacerun:yes'>                    </span># TODO: this needs to be
+ fixed and made cleaner later.</span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'><span
+ style='mso-spacerun:yes'>                    </span>if self.args.past_index
+ &gt;= 0:</span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold;background:aqua;mso-highlight:aqua'><span
+ style='mso-spacerun:yes'>                        </span>self._past =
+ outputs[self.args.past_index - 1]</span></p>
+ <p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:3.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:3.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:3.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:1.5in;font-family:Menlo;font-size:36.0pt'><span
+ style='color:black'><br>
+  <span style='mso-spacerun:yes'>        </span>main_input_name = </span><span
+ style='color:#FF5D4D'>getattr</span><span style='color:black'>(self.model, </span><span
+ style='color:#4DA621'>&quot;main_input_name&quot;</span><span
+ style='color:black'>, </span><span style='color:#4DA621'>&quot;input_ids&quot;</span><span
+ style='color:black'>)<br>
+  <span style='mso-spacerun:yes'>        </span>inputs_decode = (<br>
+  <span style='mso-spacerun:yes'>           
+ </span>self._prepare_input(inputs[main_input_name]) </span><span
+ style='color:#B15EF2'>if </span><span style='color:#4DA621'>&quot;inputs&quot;
+ </span><span style='color:#B15EF2'>in</span><span style='color:black'>
+ args.include_for_metrics </span><span style='color:#B15EF2'>else </span><span
+ style='color:#E54595'>None</span><span style='color:black'><br>
+  <span style='mso-spacerun:yes'>        </span>)</span></p>
+ <p style='margin:0in;margin-left:1.5in;font-size:36.0pt'><span
+ style='font-family:Menlo;color:black' lang=en-US>#</span><span
+ style='font-family:Menlo;color:black' lang=zh-CN>计算</span><span
+ style='font-family:微软雅黑;color:black' lang=en-US>metric</span><span
+ style='font-family:Menlo;color:black' lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='font-family:
+ Menlo;color:#B15EF2' lang=zh-CN>if</span><span style='font-family:Menlo;
+ color:black' lang=zh-CN> (<br>
+  <span style='mso-spacerun:yes'>        </span>self.compute_metrics </span><span
+ style='font-family:Menlo;color:#B15EF2' lang=zh-CN>is not </span><span
+ style='font-family:Menlo;color:#E54595' lang=zh-CN>None</span><span
+ style='font-family:Menlo;color:black' lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>        </span></span><span style='font-family:
+ Menlo;color:#B15EF2' lang=zh-CN>and</span><span style='font-family:Menlo;
+ color:black' lang=zh-CN> all_preds </span><span style='font-family:Menlo;
+ color:#B15EF2' lang=zh-CN>is not </span><span style='font-family:Menlo;
+ color:#E54595' lang=zh-CN>None</span><span style='font-family:Menlo;
+ color:black' lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>        </span></span><span style='font-family:
+ Menlo;color:#B15EF2' lang=zh-CN>and</span><span style='font-family:Menlo;
+ color:black' lang=zh-CN> all_labels </span><span style='font-family:Menlo;
+ color:#B15EF2' lang=zh-CN>is not </span><span style='font-family:Menlo;
+ color:#E54595' lang=zh-CN>None</span><span style='font-family:Menlo;
+ color:black' lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>        </span></span><span style='font-family:
+ Menlo;color:#B15EF2' lang=zh-CN>and not</span><span style='font-family:Menlo;
+ color:black' lang=zh-CN> self.args.batch_eval_metrics<br>
+  <span style='mso-spacerun:yes'>    </span>):<br>
+  <span style='mso-spacerun:yes'>        </span>eval_set_kwargs[</span><span
+ style='font-family:Menlo;color:#4DA621' lang=zh-CN>&quot;losses&quot;</span><span
+ style='font-family:Menlo;color:black' lang=zh-CN>] = all_losses </span><span
+ style='font-family:Menlo;color:#B15EF2' lang=zh-CN>if </span><span
+ style='font-family:Menlo;color:#4DA621' lang=zh-CN>&quot;loss&quot; </span><span
+ style='font-family:Menlo;color:#B15EF2' lang=zh-CN>in</span><span
+ style='font-family:Menlo;color:black' lang=zh-CN> args.include_for_metrics </span><span
+ style='font-family:Menlo;color:#B15EF2' lang=zh-CN>else </span><span
+ style='font-family:Menlo;color:#E54595' lang=zh-CN>None</span><span
+ style='font-family:Menlo;color:black' lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>        </span>eval_set_kwargs[</span><span
+ style='font-family:Menlo;color:#4DA621' lang=zh-CN>&quot;inputs&quot;</span><span
+ style='font-family:Menlo;color:black' lang=zh-CN>] = all_inputs </span><span
+ style='font-family:Menlo;color:#B15EF2' lang=zh-CN>if </span><span
+ style='font-family:Menlo;color:#4DA621' lang=zh-CN>&quot;inputs&quot; </span><span
+ style='font-family:Menlo;color:#B15EF2' lang=zh-CN>in</span><span
+ style='font-family:Menlo;color:black' lang=zh-CN> args.include_for_metrics </span><span
+ style='font-family:Menlo;color:#B15EF2' lang=zh-CN>else </span><span
+ style='font-family:Menlo;color:#E54595' lang=zh-CN>None</span><span
+ style='font-family:Menlo;color:black' lang=zh-CN><br>
+  </span><span style='font-family:Menlo;color:black;background:lime;mso-highlight:
+ lime' lang=zh-CN><span style='mso-spacerun:yes'>     </span></span><span
+ style='font-weight:bold;font-family:Menlo;color:black;background:lime;
+ mso-highlight:lime' lang=zh-CN><span style='mso-spacerun:yes'>   </span></span><span
+ style='font-weight:bold;font-family:微软雅黑;color:black;background:lime;
+ mso-highlight:lime' lang=zh-CN># 使用所有批次的合并结果计算指标</span><span style='font-weight:
+ bold;font-family:微软雅黑;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>,app_preds</span><span style='font-weight:bold;font-family:微软雅黑;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>和</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:black;background:lime;
+ mso-highlight:lime' lang=en-US>all_labels</span><span style='font-weight:bold;
+ font-family:微软雅黑;color:black;background:lime;mso-highlight:lime' lang=zh-CN>相当于是self.prediction_step输出的logits,
+ labels，只不过把所有</span><span style='font-weight:bold;font-family:微软雅黑;color:black;
+ background:lime;mso-highlight:lime' lang=en-US>eval_batch</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:black;background:lime;
+ mso-highlight:lime' lang=zh-CN>合并了。<br>
+  <span style='mso-spacerun:yes'>        </span>metrics =
+ self.compute_metrics(<br>
+  <span style='mso-spacerun:yes'>           
+ </span>EvalPrediction(predictions=all_preds, label_ids=all_labels,
+ **eval_set_kwargs)<br>
+  <span style='mso-spacerun:yes'>        </span>)</span><span style='font-family:
+ Menlo;color:black' lang=zh-CN><br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='font-family:
+ Menlo;color:#B15EF2' lang=zh-CN>elif</span><span style='font-family:Menlo;
+ color:black' lang=zh-CN> metrics </span><span style='font-family:Menlo;
+ color:#B15EF2' lang=zh-CN>is </span><span style='font-family:Menlo;color:#E54595'
+ lang=zh-CN>None</span><span style='font-family:Menlo;color:black' lang=zh-CN>:<br>
+  <span style='mso-spacerun:yes'>        </span>metrics = {}<span
+ style='mso-spacerun:yes'>  </span># 初始化空指标字典</span></p>
+ <p style='margin:0in;margin-left:1.5in;font-family:Menlo;font-size:36.0pt;
+ color:black'># 转换指标数据类型（确保可JSON序列化）<br>
+  <span style='mso-spacerun:yes'>    </span>metrics =
+ denumpify_detensorize(metrics)</p>
+ <p style='margin:0in;margin-left:1.5in;font-family:Menlo;font-size:36.0pt'><span
+ style='color:black'># 添加损失指标到结果中<br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='color:#B15EF2'>if
+ </span><span style='color:#FF5D4D'>isinstance</span><span style='color:black'>(all_losses,
+ </span><span style='color:#FF5D4D'>list</span><span style='color:black'>) </span><span
+ style='color:#B15EF2'>and</span><span style='color:black'> all_losses:<br>
+  <span style='mso-spacerun:yes'>        </span>metrics[</span><span
+ style='color:#4DA621'>f&quot;</span><span style='color:black'>{metric_key_prefix}</span><span
+ style='color:#4DA621'>_loss&quot;</span><span style='color:black'>] =
+ np.concatenate(all_losses).mean().item()<br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='color:#B15EF2'>elif
+ </span><span style='color:#FF5D4D'>isinstance</span><span style='color:black'>(all_losses,
+ np.ndarray):<br>
+  <span style='mso-spacerun:yes'>        </span>metrics[</span><span
+ style='color:#4DA621'>f&quot;</span><span style='color:black'>{metric_key_prefix}</span><span
+ style='color:#4DA621'>_loss&quot;</span><span style='color:black'>] =
+ all_losses.mean().item()<br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='color:#B15EF2'>if
+ </span><span style='color:#FF5D4D'>hasattr</span><span style='color:black'>(self,
+ </span><span style='color:#4DA621'>&quot;jit_compilation_time&quot;</span><span
+ style='color:black'>):<br>
+  <span style='mso-spacerun:yes'>        </span>metrics[</span><span
+ style='color:#4DA621'>f&quot;</span><span style='color:black'>{metric_key_prefix}</span><span
+ style='color:#4DA621'>_jit_compilation_time&quot;</span><span
+ style='color:black'>] = self.jit_compilation_time<br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='color:#B15EF2'>if
+ </span><span style='color:#FF5D4D'>hasattr</span><span style='color:black'>(self,
+ </span><span style='color:#4DA621'>&quot;model_preparation_time&quot;</span><span
+ style='color:black'>):<br>
+  <span style='mso-spacerun:yes'>        </span>metrics[</span><span
+ style='color:#4DA621'>f&quot;</span><span style='color:black'>{metric_key_prefix}</span><span
+ style='color:#4DA621'>_model_preparation_time&quot;</span><span
+ style='color:black'>] = self.model_preparation_time</span></p>
+ <p style='margin:0in;margin-left:1.5in;font-family:Menlo;font-size:36.0pt'><span
+ style='color:black'># 为指标键添加前缀（如&quot;eval_loss&quot;）<br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='color:#B15EF2'>for</span><span
+ style='color:black'> key </span><span style='color:#B15EF2'>in </span><span
+ style='color:#FF5D4D'>list</span><span style='color:black'>(metrics.keys()):<br>
+  <span style='mso-spacerun:yes'>        </span></span><span style='color:#B15EF2'>if
+ not</span><span style='color:black'> key.startswith(</span><span
+ style='color:#4DA621'>f&quot;</span><span style='color:black'>{metric_key_prefix}</span><span
+ style='color:#4DA621'>_&quot;</span><span style='color:black'>):<br>
+  <span style='mso-spacerun:yes'>            </span>metrics[</span><span
+ style='color:#4DA621'>f&quot;</span><span style='color:black'>{metric_key_prefix}</span><span
+ style='color:#4DA621'>_</span><span style='color:black'>{key}</span><span
+ style='color:#4DA621'>&quot;</span><span style='color:black'>] =
+ metrics.pop(key)</span></p>
+ <p style='margin:0in;margin-left:1.5in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'>#
+ 返回评估结果（包含预测值、标签、指标和样本数）<br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='font-weight:
+ bold;color:#B15EF2;background:lime;mso-highlight:lime'>return</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'>
+ EvalLoopOutput(predictions=all_preds, label_ids=all_labels, metrics=metrics,
+ num_samples=num_samples)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold' lang=zh-CN>训练时的关键函数：</span><span style='font-weight:
+ bold' lang=en-US>training_step </span><span style='font-weight:bold'
+ lang=zh-CN>代码，训练单个</span><span style='font-weight:bold' lang=en-US>batch</span><span
+ style='font-weight:bold' lang=zh-CN>的函数</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN><span style='mso-spacerun:yes'>    </span>核心计算部分：loss =
+ self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)，</span><span
+ lang=en-US> </span><span lang=zh-CN>也就是计算</span><span lang=en-US>loss</span><span
+ lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold' lang=zh-CN>当需要在</span><span style='font-weight:bold'
+ lang=en-US>T</span><span style='font-weight:bold' lang=zh-CN>r</span><span
+ style='font-weight:bold' lang=en-US>ainer</span><span style='font-weight:bold'
+ lang=zh-CN>中使用自定义</span><span style='font-weight:bold' lang=en-US>m</span><span
+ style='font-weight:bold' lang=zh-CN>o</span><span style='font-weight:bold'
+ lang=en-US>del</span><span style='font-weight:bold' lang=zh-CN>时</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'> </span>When using it with your own model, make sure:</p>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt;background:white'>your model
+      always return tuples or subclasses of&nbsp;</span><a
+      href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/output#transformers.utils.ModelOutput"><span
+      style='font-family:微软雅黑;font-size:36.0pt;background:white'>ModelOutput</span></a></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt;background:white'>your model can
+      compute the loss if a&nbsp;labels&nbsp;argument is provided and that loss
+      is returned as the first element of the tuple (if your model returns
+      tuples)</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt;background:white'>your model can
+      accept multiple label arguments (use&nbsp;label_names&nbsp;in&nbsp;</span><a
+      href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.TrainingArguments"><span
+      style='font-family:微软雅黑;font-size:36.0pt;background:white'>TrainingArguments</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;background:white'>&nbsp;to
+      indicate their name to the&nbsp;</span><a
+      href="https://huggingface.co/docs/transformers/v4.52.3/en/main_classes/trainer#transformers.Trainer"><span
+      style='font-family:微软雅黑;font-size:36.0pt;background:white'>Trainer</span></a><span
+      style='font-family:微软雅黑;font-size:36.0pt;background:white'>) but none of
+      them should be named&nbsp;&quot;label&quot;</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,333 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.htm">
+<link rel=File-List
+href="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:22.5312in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.4243in;width:6.5055in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt;color:#18191C'><span
+lang=en-US>[</span><span lang=zh-CN>李宏毅</span><span lang=en-US>]</span><span
+lang=zh-CN>- 生成式AI时代下的机器学习2025</span><span lang=en-US>-</span><span lang=zh-CN>第</span><span
+lang=en-US>7-8</span><span lang=zh-CN>讲</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:.4243in;width:1.7388in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>10</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>16</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>11:03</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.6291in;margin-left:0in;width:22.5312in'>
+
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold' lang=zh-CN>第</span><span style='font-weight:bold'
+ lang=en-US>7</span><span style='font-weight:bold' lang=zh-CN>讲</span><span
+ style='font-weight:bold' lang=en-US>-LLM</span><span style='font-weight:bold'
+ lang=zh-CN>推理</span></p>
+ <p style='margin:0in;margin-left:1.5in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image001.jpg" width=1359
+ height=579></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>LLM</span><span
+ lang=zh-CN>推理和人类推理是不同的概念，</span><span lang=en-US>LLM</span><span lang=zh-CN>推理只是输入和答案之间的</span><span
+ lang=en-US>interm</span><span lang=zh-CN>e</span><span lang=en-US>diate</span><span
+ lang=zh-CN>中间</span><span lang=en-US>token</span><span lang=zh-CN>，</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>LLM</span><span
+ lang=zh-CN>推理是一种</span><span style='font-weight:bold' lang=en-US>test time
+ compute</span><span lang=zh-CN>，即在预测时进行更多的计算，来得到更好的结果。（例子就是，如果让</span><span
+ lang=en-US>LLM</span><span lang=zh-CN>直接生成答案，答案是错误的，但是让</span><span
+ lang=en-US>llm </span><span lang=zh-CN>t</span><span lang=en-US>hink step by
+ step</span><span lang=zh-CN>（或是不用</span><span lang=en-US>greedy decoding</span><span
+ lang=zh-CN>，而是采样更多的</span><span lang=en-US>response</span><span lang=zh-CN>），生成的</span><span
+ lang=en-US> response</span><span lang=zh-CN>长度虽然变长了，但答案是正确的）。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>为什么</span><span
+ lang=en-US>test time compute</span><span lang=zh-CN>有用？</span><span
+ style='font-weight:bold' lang=zh-CN>深度不够，长度来凑。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=en-US>Sc</span><span style='font-weight:bold'
+ lang=zh-CN>a</span><span style='font-weight:bold' lang=en-US>ling llm
+ test-time compute optimally can be more effective than scaling model
+ parameters.<span style='mso-spacerun:yes'>  </span></span><a
+ href="https://arxiv.org/abs/2408.03314"><span lang=en-US>https://arxiv.org/abs/2408.03314</span></a></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>在</span><span
+ lang=en-US>A</span><span lang=zh-CN>lp</span><span lang=en-US>haG</span><span
+ lang=zh-CN>o中，训练结束后得到了po</span><span lang=en-US>licy network</span><span
+ lang=zh-CN>，但是</span><span lang=en-US>test</span><span lang=zh-CN>时，并不是直接使用</span><span
+ lang=en-US>policy network</span><span lang=zh-CN>得到下一步落子位置，而是进行</span><span
+ lang=en-US>Morto carlo </span><span lang=zh-CN>树搜索，也就是使用了</span><span
+ lang=en-US>test time compute</span><span lang=zh-CN>的例子。</span></p>
+ <p style='margin:0in;margin-left:1.875in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image002.jpg" width=1455
+ height=909></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>上图就表明，在</span><span
+ lang=en-US>test</span><span lang=zh-CN>时投入更多的算力，和在</span><span lang=en-US>train</span><span
+ lang=zh-CN>时投入更多的算力，二者的效果可以一样好。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image003.jpg" width=1751
+ height=858></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:48.0pt'
+ lang=en-US>&nbsp;</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:normal'>
+  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold' lang=en-US><span style='font-family:微软雅黑;font-size:
+      48.0pt;font-weight:bold;font-style:normal;font-weight:bold;font-family:
+      微软雅黑;font-size:48.0pt'>COT</span></li>
+ </ol>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>分为</span><span
+ lang=en-US>few-shot cot</span><span lang=zh-CN>和</span><span lang=en-US>zero
+ shot cot</span><span lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:1.5in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image004.jpg" width=1491
+ height=799></p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:normal'>
+  <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold'><span style='font-family:微软雅黑;font-size:48.0pt;
+      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+      font-size:48.0pt'>给模型推理流程</span></li>
+ </ol>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>实际就是非</span><span lang=en-US>greedy decoding</span><span
+ lang=zh-CN>，进行多次采样，选择出现频率最高的</span><span lang=en-US>answer</span><span
+ lang=zh-CN>，或用选择答案</span><span lang=en-US>confidence</span><span lang=zh-CN>最高的。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>关于如何确定</span><span lang=en-US>response</span><span lang=zh-CN>中哪些</span><span
+ lang=en-US>token</span><span lang=zh-CN>是答案呢？在</span><span lang=en-US>prompt</span><span
+ lang=zh-CN>中显式指定答案包裹在</span><span lang=en-US>&lt;answer&gt;&lt;/answer&gt;</span><span
+ lang=zh-CN>中。</span></p>
+ <p style='margin:0in;margin-left:1.5in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image005.jpg" width=1754
+ height=662></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>除了</span><span lang=en-US>majority vote</span><span lang=zh-CN>之外，还可以对多个</span><span
+ lang=en-US>output</span><span lang=zh-CN>进行验证，即用一个</span><span lang=en-US>verifier</span><span
+ lang=zh-CN>得到</span><span lang=en-US>output</span><span lang=zh-CN>的分数，选择最高得分的那个</span><span
+ lang=en-US>output</span><span lang=zh-CN>。</span><span lang=en-US>verifier</span><span
+ lang=zh-CN>可以通过训练得到。</span></p>
+ <p style='margin:0in;margin-left:1.5in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image006.jpg" width=1583
+ height=736></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>如果对整个</span><span lang=en-US>output</span><span lang=zh-CN>进行</span><span
+ lang=en-US>verification</span><span lang=zh-CN>的话，那么</span><span lang=en-US>output</span><span
+ lang=zh-CN>可能是一大段错误的推理后输出的错误答案，此时虽然经过验证之后知道是错误答案，但白白浪费生成了大量</span><span
+ lang=en-US>token</span><span lang=zh-CN>，所以可以对中间</span><span lang=en-US>step</span><span
+ lang=zh-CN>就进行验证。</span></p>
+ <p style='margin:0in;margin-left:2.625in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image007.jpg" width=1346
+ height=1282></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>那么每个</span><span lang=en-US>step</span><span lang=zh-CN>的</span><span
+ lang=en-US>score</span><span lang=zh-CN>如何得到呢，可以进行多次采样，假设所有包含</span><span
+ lang=en-US>step1</span><span lang=zh-CN>的路径有</span><span lang=en-US>n</span><span
+ lang=zh-CN>条，其中</span><span lang=en-US>m</span><span lang=zh-CN>条路径得到了正确答案，那么</span><span
+ lang=en-US>step1</span><span lang=zh-CN>的</span><span lang=en-US>score</span><span
+ lang=zh-CN>就是</span><span lang=en-US>m/n</span><span lang=zh-CN>。就可以用这个</span><span
+ lang=en-US>score</span><span lang=zh-CN>作为</span><span lang=en-US>ground truth</span><span
+ lang=zh-CN>，训练</span><span lang=en-US>process verifier</span><span lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>process verifier</span><span lang=zh-CN>输出的是</span><span
+ lang=en-US>score</span><span lang=zh-CN>，</span><span lang=en-US> </span><span
+ lang=zh-CN>也就是</span><span lang=en-US>0-1</span><span lang=zh-CN>的值，那么可以每个步骤选择最高</span><span
+ lang=en-US>score</span><span lang=zh-CN>的</span><span lang=en-US>step</span><span
+ lang=zh-CN>，也可以采用束搜索，每步保留</span><span lang=en-US>n</span><span lang=zh-CN>步最高</span><span
+ lang=en-US>score</span><span lang=zh-CN>的路径。</span></p>
+ <p style='margin:0in;margin-left:1.5in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image008.jpg" width=1573
+ height=907></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:1.5in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image009.jpg" width=1476
+ height=930></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>可以看到，</span><span lang=en-US>beam search</span><span lang=zh-CN>这种方法，可以让</span><span
+ lang=en-US>llama 1B</span><span lang=zh-CN>模型达到</span><span lang=en-US>llama
+ 8B</span><span lang=zh-CN>模型的准确率。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>be</span><span lang=en-US>am search</span><span lang=zh-CN>有很多变体，如</span><span
+ lang=en-US>morto carlo tree search</span><span lang=zh-CN>等，可以用在这里。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:normal'>
+  <li value=3 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold'><span style='font-family:微软雅黑;font-size:48.0pt;
+      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+      font-size:48.0pt'>教模型推理流程</span></li>
+ </ol>
+ <p style='margin:0in;margin-left:1.5in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image010.jpg" width=1545
+ height=722></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>也就是</span><span lang=en-US>SFT</span><span lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>re</span><span lang=en-US>asoning process</span><span lang=zh-CN>可以来源于人类标注，也可以是</span><span
+ lang=en-US>llm</span><span lang=zh-CN>生成的。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>对于</span><span lang=en-US>llm</span><span lang=zh-CN>生成的</span><span
+ lang=en-US>reasoning process</span><span lang=zh-CN>，</span><span
+ style='font-weight:bold' lang=zh-CN>最简单的做法是只挑选</span><span style='font-weight:
+ bold' lang=en-US>answer</span><span style='font-weight:bold' lang=zh-CN>正确的那些</span><span
+ style='font-weight:bold' lang=en-US>reasoning response</span><span
+ style='font-weight:bold' lang=zh-CN>，也就是下图中左面的</span><span style='font-weight:
+ bold' lang=en-US>shortcut learning</span><span style='font-weight:bold'
+ lang=zh-CN>，但是这样就相当于只教模型正确的做法，模型只会打顺风局，不会打逆风局。还应该教给模型改正错误的能力，即</span><span
+ style='font-weight:bold' lang=en-US>journey learning</span><span
+ style='font-weight:bold' lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:.75in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image011.jpg" width=1816
+ height=776></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>现在，一种获得</span><span lang=en-US>reasoning process</span><span
+ lang=zh-CN>训练数据的简单方法就是</span><span lang=en-US>knowledge distillation</span><span
+ lang=zh-CN>，用</span><span lang=en-US>reasoning </span><span lang=zh-CN>Mo</span><span
+ lang=en-US>del</span><span lang=zh-CN>的</span><span lang=en-US> reasoning
+ process</span><span lang=zh-CN>数据来训练学生模型。</span></p>
+ <p style='margin:0in;margin-left:2.25in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image012.jpg" width=1577
+ height=707></p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:normal'>
+  <li value=4 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold'><span style='font-family:微软雅黑;font-size:48.0pt;
+      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+      font-size:48.0pt' lang=en-US>RL</span><span style='font-family:微软雅黑;
+      font-size:48.0pt;font-weight:bold;font-style:normal;font-weight:bold;
+      font-family:微软雅黑;font-size:48.0pt' lang=zh-CN>，只以结果为导向</span><span
+      style='font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:
+      normal;font-weight:bold;font-family:微软雅黑;font-size:48.0pt' lang=en-US> </span></li>
+ </ol>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:1.5in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image013.jpg" width=1730
+ height=968></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US><span
+ style='mso-spacerun:yes'>  </span>Deepseek-r1-zero</span><span lang=zh-CN>是纯用强化学习训练的，它的</span><span
+ lang=en-US>reasoing process</span><span lang=zh-CN>会出现</span><span lang=en-US>Aha
+ </span><span lang=zh-CN>mom</span><span lang=en-US>ent</span><span lang=zh-CN>，但是这个</span><span
+ lang=en-US>reasoning process</span><span lang=zh-CN>的可读性很差，且多个语言混杂，并不用供用户真正使用。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>真正能使用的</span><span lang=en-US> Deepseek-r1-zero</span><span
+ lang=zh-CN>是如何打造出来的呢？</span></p>
+ <p style='margin:0in;margin-left:.375in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image014.jpg" width=1778
+ height=1092></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>一个是对可读性差的</span><span style='font-weight:
+ bold' lang=en-US>reasoning process</span><span style='font-weight:bold'
+ lang=zh-CN>进行人工标注，然后再训练。另一个在</span><span style='font-weight:bold' lang=en-US>RL
+ reward</span><span style='font-weight:bold' lang=zh-CN>中加入</span><span
+ style='font-weight:bold' lang=en-US>language coherence</span><span
+ style='font-weight:bold' lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:1.5in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image015.jpg" width=1577
+ height=867></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>强化学习，</span><span style='font-weight:bold' lang=en-US>foundation
+ model</span><span style='font-weight:bold' lang=zh-CN>很重要，</span><span
+ lang=zh-CN>对</span><span lang=en-US>qwen32B</span><span lang=zh-CN>做</span><span
+ lang=en-US>rl</span><span lang=zh-CN>，就没什么效果。</span><span style='font-weight:
+ bold' lang=en-US>RL</span><span style='font-weight:bold' lang=zh-CN>是强化模型原有的能力，模型本身就有回答正确的能力，</span><span
+ style='font-weight:bold' lang=en-US>RL</span><span style='font-weight:bold'
+ lang=zh-CN>只是强化这一路径，</span><span lang=zh-CN>如果模型本身就没有能力，</span><span
+ lang=en-US>RL</span><span lang=zh-CN>很难通过尝试不同路径找出正确路径并强化它。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image016.jpg" width=1560
+ height=799></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image017.jpg" width=1848
+ height=506></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=en-US>D</span><span style='font-weight:bold'
+ lang=zh-CN>e</span><span style='font-weight:bold' lang=en-US>epseek-v3</span><span
+ style='font-weight:bold' lang=zh-CN>本来就会</span><span style='font-weight:bold'
+ lang=en-US>A</span><span style='font-weight:bold' lang=zh-CN>ha</span><span
+ style='font-weight:bold' lang=en-US>!</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+ lang=en-US>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold' lang=zh-CN>第</span><span style='font-weight:bold'
+ lang=en-US>8</span><span style='font-weight:bold' lang=zh-CN>讲</span><span
+ style='font-weight:bold' lang=en-US>-</span><span style='font-weight:bold'
+ lang=zh-CN>别让推理模型想太多</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>推理长度和回答正确率之间有关系吗，是不是推理越长，回答准确率越高呢？</p>
+ <p style='margin:0in;margin-left:2.625in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image018.jpg" width=1411
+ height=750></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>可以看出，推理越长，准确率反而越低（其实跟任务有关，有的任务推理越长，准确率越高）。推理越长，浪费的计算越多。</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>如何让模型不要想太多？还是从</span><span lang=en-US>4</span><span lang=zh-CN>个方面。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:42.0pt'><span
+ style='font-weight:bold' lang=en-US>1.</span><span style='font-weight:bold'
+ lang=zh-CN>直接在cot</span><span style='font-weight:bold' lang=en-US> prompt</span><span
+ style='font-weight:bold' lang=zh-CN>中限制</span></p>
+ <p style='margin:0in;margin-left:1.125in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image019.jpg" width=1518
+ height=811></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:42.0pt'><span
+ style='font-weight:bold' lang=en-US>3.SFT</span><span style='font-weight:bold'
+ lang=zh-CN>用短的</span><span style='font-weight:bold' lang=en-US>reasoing</span><span
+ style='font-weight:bold' lang=zh-CN>数据训练</span></p>
+ <p style='margin:0in;margin-left:1.875in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image020.jpg" width=1465
+ height=446></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:42.0pt'
+ lang=en-US><span style='font-weight:bold'>4.RL</span></p>
+ <p style='margin:0in;margin-left:.75in'><img
+ src="%5b李宏毅%5d-%20生成式AI时代下的机器学习2025-第7-8讲.files/image021.jpg" width=1576
+ height=923></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>在</span><span lang=en-US>Deepseek r1</span><span lang=zh-CN>中，随着训练进行，推理长度越来越长。</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>在re</span><span lang=en-US>ward</span><span lang=zh-CN>中加入对推理长度的限制</span><span
+ lang=en-US> </span><span lang=zh-CN>，如果</span><span lang=en-US> </span><span
+ lang=zh-CN>推理长度大于正确回答该问题所需要的平均长度，就惩罚。</span></p>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

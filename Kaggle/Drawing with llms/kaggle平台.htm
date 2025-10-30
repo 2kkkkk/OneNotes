@@ -1,0 +1,108 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=kaggle平台.htm>
+<link rel=File-List href="kaggle平台.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:30.3604in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.2361in;width:1.9819in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'><span lang=en-US>kaggle</span><span
+lang=zh-CN>平台</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:.2361in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>5</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>28</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>10:41</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:30.3604in'>
+
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>1.
+ 新建notebook时，如果没有在interactive 环境中运行，就直接save version </p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>类似kagglehub.model_download('qwen-lm/qwen2.5-coder/transformers/14b-instruct-awq/1')这样的语句</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>会报错，kagglehub.exceptions.BackendError:
+ POST failed with: {&quot;errors&quot;:[&quot;New Models cannot be attached in
+ non-interactive sessions. Version [1] requested, found no versions attached,
+ for Model [qwen-lm/qwen2.5-coder/Transformers/14b-instruct-awq].&quot;],&quot;error&quot;:{&quot;code&quot;:9,&quot;details&quot;:[]},&quot;wasSuccessful&quot;:false}</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>必须要在interactive环境中运行一次，才能正确导入。</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
+  <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
+      normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US>import transformer</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
+      normal;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>等类似的库时，报如下的warning，以及自动初始化cuda等相关问题，类似的还包含import
+      vllm,import diffusers等package，import这些package的时候可能会初始化cuda，</span><span
+      style='font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:
+      normal;font-weight:bold;font-family:微软雅黑;font-size:48.0pt' lang=zh-CN>应该是跟</span><span
+      style='font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:
+      normal;font-weight:bold;font-family:微软雅黑;font-size:48.0pt' lang=en-US>torch</span><span
+      style='font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:
+      normal;font-weight:bold;font-family:微软雅黑;font-size:48.0pt' lang=zh-CN>的版本有关。</span></li>
+ </ol>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>```</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>2025-05-23
+ 02:50:12.756668: E
+ external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:477] Unable to
+ register cuFFT factory: Attempting to register factory for plugin cuFFT when
+ one has already been registered</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>WARNING: All log
+ messages before absl::InitializeLog() is called are written to STDERR</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>E0000
+ 00:00:1747968612.987616<span style='mso-spacerun:yes'>      </span>98
+ cuda_dnn.cc:8310] Unable to register cuDNN factory: Attempting to register
+ factory for plugin cuDNN when one has already been registered</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>E0000
+ 00:00:1747968613.059145<span style='mso-spacerun:yes'>      </span>98
+ cuda_blas.cc:1418] Unable to register cuBLAS factory: Attempting to register
+ factory for plugin cuBLAS when one has already been registered</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>```</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,2357 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href="Let's%20reproduce%20GPT-2(124M).htm">
+<link rel=File-List href="Let's%20reproduce%20GPT-2(124M).files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:29.4145in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.0715in;width:4.4368in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'><span lang=en-US>L</span><span
+lang=zh-CN>et</span><span lang=en-US>'s reproduce GPT-2(124M)</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:.0715in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>6</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>28</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>11:07</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:29.4145in'>
+
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>pytorch</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>张量默认都是</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>fp32</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的，即</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>32</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>位浮点数，对于深度学习训练来说，不需要这么高的精度。</span></li>
+ </ul>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>int8</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>用于推理，不用于训练，因为</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>int8</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>基本具有均匀的间距分布，我们需要浮点数，来满足训练期间，激活值和权重的正态分布。</span></li>
+ </ul>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>GPU</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>内存的带宽问题，</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>tensor
+      cores</span><span style='font-weight:bold;font-family:微软雅黑;font-size:
+      36.0pt' lang=zh-CN>大部分时间并没有在计算，而是处于空闲状态，在等待数据。所以降低</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>tensor</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的精度，不仅可以减少显存使用，还能使数据更快地传输。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>什么是</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>tensor
+      core?tensor core</span><span style='font-weight:bold;font-family:微软雅黑;
+      font-size:36.0pt' lang=zh-CN>是</span><span style='font-weight:bold;
+      font-family:微软雅黑;font-size:36.0pt' lang=en-US>GPU</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>架构中的一个指令，它的作用基本上就是一个</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>4*4</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>矩阵乘法，任何需要矩阵乘法的操作都被</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US> </span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>分解成这种小的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>4*4</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>乘法。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>如果要统计在</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>GPU</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>上的运行时间，需要用tor</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>ch.cuda.synchronize()</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，因为当</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>CPU</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>运行时，它只是在</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>GPU</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>上调度工作，给</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>GPU</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>安排</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US> </span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>一些工作，安排后</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>CPU</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>继续运行，所以需要等待</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>GPU</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>完成工作后，才能计算时间。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>在训练时，每秒处理的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>token</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>数量是我们真正关心的客观指标。使用tor</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>ch.set_float32_matual_precision('high')</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>设置，</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>tensor
+      cores</span><span style='font-weight:bold;font-family:微软雅黑;font-size:
+      36.0pt' lang=zh-CN>在计算时使用</span><span style='font-weight:bold;font-family:
+      微软雅黑;font-size:36.0pt' lang=en-US>tf32</span><span style='font-weight:
+      bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>进行运算而不是</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>fp32</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，理论上每秒处理的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>token</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>数即吞吐量会快</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>8</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>倍，因为使用</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>tf32</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>计算的速度比</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>fp32</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>快</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>8</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>倍，但是实际上只快了</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>3</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>倍，这是因为只是在计算时使用了</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>tf32</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，在</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>tensor
+      cores</span><span style='font-weight:bold;font-family:微软雅黑;font-size:
+      36.0pt' lang=zh-CN>之外，这些数仍然是</span><span style='font-weight:bold;
+      font-family:微软雅黑;font-size:36.0pt' lang=en-US>fp32</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，这些f</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>p32</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>数字通过内存系统进行传输，传输过程占用了很多时间。因此，尽管我们已经使乘法本身更快了，但我们仍然受限于内存带宽。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>关于浮点数。即科学计数法。包含两部分，指数部分</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>+</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>小数部分。指数</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>exponent</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>决定了你能表示的数值范围，即</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>range</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>；小数部分</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>manissa</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>决定了数值的精确程度，即</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>precision</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>。</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:8.625in'><img
+ src="Let's%20reproduce%20GPT-2(124M).files/image001.jpg" width=1031
+ height=716></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=en-US><span style='mso-spacerun:yes'> 
+ </span>BF16</span><span style='font-weight:bold' lang=zh-CN>的</span><span
+ style='font-weight:bold' lang=en-US>range</span><span style='font-weight:bold'
+ lang=zh-CN>和</span><span style='font-weight:bold' lang=en-US>FP32</span><span
+ style='font-weight:bold' lang=zh-CN>一样，不需要对梯度进行缩放，而</span><span
+ style='font-weight:bold' lang=en-US>FP16</span><span style='font-weight:bold'
+ lang=zh-CN>的</span><span style='font-weight:bold' lang=en-US>range</span><span
+ style='font-weight:bold' lang=zh-CN>小于</span><span style='font-weight:bold'
+ lang=en-US>FP32</span><span style='font-weight:bold' lang=zh-CN>，所以训练时需要梯度</span><span
+ style='font-weight:bold' lang=en-US>scaler</span><span style='font-weight:
+ bold' lang=zh-CN>。</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>t</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>orch.compile</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>加速，</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>speedup
+      mainly comes from reducing python overhead and GPU read/writes. </span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>首先将神经网络编译成一个不涉及</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>pytho</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>n解释器的单一对象，它明确知道要运行什么并直接运行；减少</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>GPU
+      read/writes</span><span style='font-weight:bold;font-family:微软雅黑;
+      font-size:36.0pt' lang=zh-CN>，一个例子是</span><span style='font-weight:bold;
+      font-family:微软雅黑;font-size:36.0pt' lang=en-US>GELU</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>函数，如果不用</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>torch.compile</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，计算</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>GELU</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>激活值时，要先将输入</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>x</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>从显存移到</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>GPU</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>缓存中，计算to</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>rch.pow(x,3)</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，然后再将计算结果移回显存中，再将结果从显存移到</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>GPU</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>缓存中，计算tor</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>ch.tanh(x)….</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>（</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>GELU</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的等效分解公式），，，，，这样大量时间浪费在了传输上，但</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>torch.compile</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>能看到整个的计算代码，它能意识到这些操作都是</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>element-wise</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>操作，它会一次性将</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>x</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>移到</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>GPU</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>缓存中，并进行所有的操作，再把结果移到显存中，不会进行来回地传输。</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt;background:
+      lime;mso-highlight:lime' lang=zh-CN>但是有些操作是</span><span style='font-weight:
+      bold;font-family:微软雅黑;font-size:36.0pt;background:lime;mso-highlight:
+      lime' lang=en-US>torch.compile</span><span style='font-weight:bold;
+      font-family:微软雅黑;font-size:36.0pt;background:lime;mso-highlight:lime'
+      lang=zh-CN>无法发现识别的，需要自定义，如</span><span style='font-weight:bold;
+      font-family:微软雅黑;font-size:36.0pt;background:lime;mso-highlight:lime'
+      lang=en-US>flash attention.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>cuda</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>中的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>kernels</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>使用</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>block
+      tiles</span><span style='font-weight:bold;font-family:微软雅黑;font-size:
+      36.0pt' lang=zh-CN>，即一小块一小块，这些</span><span style='font-weight:bold;
+      font-family:微软雅黑;font-size:36.0pt' lang=en-US>block tiles</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>是</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>2</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>N</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>次方，如</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>64,32</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，也就是说，计算是以</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>64</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>或</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>32</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>这样的块进行的。所以你的输入也最好是</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>32</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>或</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>64</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>这些</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>2</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的指数，否则在计算时，会启动一些额外的块来计算剩余部分，导致计算低效。例如</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>GPT2(config={vocab_size:50057})</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，这个数不是</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>2</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的指数，将其增加一些，变为</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>50304</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，虽然计算量增加了，但是训练时间反而缩短了，就是这个原因。</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt;background:
+      lime;mso-highlight:lime' lang=zh-CN>所以填充你的输入，使其变为</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt;background:
+      lime;mso-highlight:lime' lang=en-US>2</span><span style='font-weight:
+      bold;font-family:微软雅黑;font-size:36.0pt;background:lime;mso-highlight:
+      lime' lang=zh-CN>的倍数，有时会加速计算。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>tor</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>ch.nn.utils.clip_grad_norm(model.parameters(),1.0)</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，我一直以为是对每个参数的梯度绝对值进行裁剪，其实是参数向量的范数，也就是对参数向量的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>L2</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>范数（可以看作向量的长度）</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>
+      sqrt(w1^2 +w2^2 +… +wn^2)</span><span style='font-weight:bold;font-family:
+      微软雅黑;font-size:36.0pt' lang=zh-CN>进行裁剪，具体怎么裁剪？所有参数等比例缩小？使用梯度裁剪的原因：在训练时可能遇到某个噪音比较大的或者数据质量很差的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>batch</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，在这个</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>batch</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>上的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>loss</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>很高，</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>loss</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>高的话梯度也会大，会</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>shock</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>你的优化过程，通过梯度裁剪防止模型受到过大的冲击，对梯度进行上限控制，</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt;background:
+      lime;mso-highlight:lime' lang=zh-CN>说白了，不希望参数一次性变动过大，而是慢慢地变化，是一种正则技巧。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>线性预热余弦衰减学习率，学习率从接近</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>0</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>开始，在一段时间内线性提升，然后以余弦形式下降至某个你设定的学习率。在</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>GPT3</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>中是初始学习率的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>10%</span></li>
+  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;font-size:
+       36.0pt'><img src="Let's%20reproduce%20GPT-2(124M).files/image002.jpg"
+       width=1474 height=818></li>
+  </ul>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>在训练的早期，即前几个s</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>tep</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，模型尚处于不稳定的状态，模型主要学习的是忽略在训练集上不经常出现的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>token</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，此时每个样本的梯度是高度相关的，类似人的学习总结规律一样，刚开始只看了几个例子，此时人总结出的规律是</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>bias</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的，不全面的。在训练后期，模型学会了所有简单的内容，真正的学习才开始，这时每个样本的梯度才变得不相关。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>权重衰减</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>weight
+      </span><span style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'
+      lang=zh-CN>de</span><span style='font-weight:bold;font-family:微软雅黑;
+      font-size:36.0pt' lang=en-US>cay</span><span style='font-weight:bold;
+      font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>。参数可以分为进行权重衰减的和不进行权重衰减的，不进行衰减的有</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>bias</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，和其他一维的张量如</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>layernorm</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>scale</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>和</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>bias</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>参数，对这些一维参数进行衰减没有太大意义，主要是对参数矩阵和</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>embedding</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>矩阵进行衰减。权重衰减是一种正则，当每个参数的权重变得小时，会迫使模型使用更多的参数，而不是依赖某些参数。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>关于梯度累积，其实是完全可以跟模拟的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>batch_size</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>实现完全一致的梯度，只需要在计算</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>loss</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>时，进行缩放，乘以</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>1/</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>acc</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>umulation_steps</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，因为在小</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>batch</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>上的梯度累积等价于对小</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>batch</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>上</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>loss</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的求和，而真正的大</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>batch</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>上的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>loss</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>其实是</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>loss/</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>样本数量，差了个缩放因子。例子如下：</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:1.875in;font-family:微软雅黑;font-size:28.0pt'><span
+ style='font-style:italic;color:#59636E'># super simple little MLP</span><span
+ style='color:#212121'><br>
+  net </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+ style='color:#212121'> torch</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+ style='color:#212121'>nn</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+ style='color:#212121'>Sequential</span><span style='color:#0055AA'>(</span><span
+ style='color:#212121'><br>
+  <span style='mso-spacerun:yes'>    </span>torch</span><span style='font-weight:
+ bold;color:#8250DF'>.</span><span style='color:#212121'>nn</span><span
+ style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>Linear</span><span
+ style='color:#0055AA'>(</span><span style='color:#1A7F37'>16</span><span
+ style='color:#0055AA'>, </span><span style='color:#1A7F37'>32</span><span
+ style='color:#0055AA'>),</span><span style='color:#212121'><br>
+  <span style='mso-spacerun:yes'>    </span>torch</span><span style='font-weight:
+ bold;color:#8250DF'>.</span><span style='color:#212121'>nn</span><span
+ style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>GELU</span><span
+ style='color:#0055AA'>(),</span><span style='color:#212121'><br>
+  <span style='mso-spacerun:yes'>    </span>torch</span><span style='font-weight:
+ bold;color:#8250DF'>.</span><span style='color:#212121'>nn</span><span
+ style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>Linear</span><span
+ style='color:#0055AA'>(</span><span style='color:#1A7F37'>32</span><span
+ style='color:#0055AA'>, </span><span style='color:#1A7F37'>1</span><span
+ style='color:#0055AA'>)</span><span style='color:#212121'><br>
+  </span><span style='color:#0055AA'>)</span><span style='color:#212121'><br>
+  torch</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+ style='color:#212121'>random</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+ style='color:#212121'>manual_seed</span><span style='color:#0055AA'>(</span><span
+ style='color:#1A7F37'>42</span><span style='color:#0055AA'>)</span></p>
+ <p style='margin:0in;margin-left:1.875in;font-family:微软雅黑;font-size:28.0pt;
+ color:#212121'><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=en-US>#</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=zh-CN>这里是大</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=en-US>batch, batch_size=4</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，一次性输入</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>4</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>个样本，进行</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>loss.backward()</span></p>
+ <p style='margin:0in;margin-left:1.875in;font-family:微软雅黑;font-size:28.0pt'><span
+ style='color:#212121'>x </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+ style='color:#212121'> torch</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+ style='color:#212121'>randn</span><span style='color:#0055AA'>(</span><span
+ style='color:#1A7F37'>4</span><span style='color:#0055AA'>, </span><span
+ style='color:#1A7F37'>16</span><span style='color:#0055AA'>)</span><span
+ style='color:#212121'><br>
+  y </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+ style='color:#212121'> torch</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+ style='color:#212121'>randn</span><span style='color:#0055AA'>(</span><span
+ style='color:#1A7F37'>4</span><span style='color:#0055AA'>, </span><span
+ style='color:#1A7F37'>1</span><span style='color:#0055AA'>)</span><span
+ style='color:#212121'><br>
+  net</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+ style='color:#212121'>zero_grad</span><span style='color:#0055AA'>()</span><span
+ style='color:#212121'><br>
+  yhat </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+ style='color:#212121'> net</span><span style='color:#0055AA'>(</span><span
+ style='color:#212121'>x</span><span style='color:#0055AA'>)</span><span
+ style='color:#212121'><br>
+  loss </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+ style='color:#212121'> torch</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+ style='color:#212121'>nn</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+ style='color:#212121'>functional</span><span style='font-weight:bold;
+ color:#8250DF'>.</span><span style='color:#212121'>mse_loss</span><span
+ style='color:#0055AA'>(</span><span style='color:#212121'>yhat</span><span
+ style='color:#0055AA'>,</span><span style='color:#212121'> y</span><span
+ style='color:#0055AA'>)</span><span style='color:#212121'><br>
+  loss</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+ style='color:#212121'>backward</span><span style='color:#0055AA'>()</span><span
+ style='color:#212121'><br>
+  print</span><span style='color:#0055AA'>(</span><span style='color:#212121'>net</span><span
+ style='color:#0055AA'>[</span><span style='color:#1A7F37'>0</span><span
+ style='color:#0055AA'>]</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+ style='color:#212121'>weight</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+ style='color:#212121'>grad</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+ style='color:#212121'>view</span><span style='color:#0055AA'>(</span><span
+ style='font-weight:bold;color:#8250DF'>-</span><span style='color:#1A7F37'>1</span><span
+ style='color:#0055AA'>)[:</span><span style='color:#1A7F37'>10</span><span
+ style='color:#0055AA'>])</span></p>
+ <p style='margin:0in;margin-left:1.875in;font-family:微软雅黑;font-size:28.0pt'><span
+ style='font-weight:bold;font-style:italic;color:#59636E'># the loss objective
+ here is (due to readuction='mean')</span><span style='font-weight:bold;
+ color:#212121'><br>
+  </span><span style='font-weight:bold;font-style:italic;color:#59636E'># L =
+ 1/4 * [</span><span style='font-weight:bold;color:#212121'><br>
+  </span><span style='font-weight:bold;font-style:italic;color:#59636E'>#<span
+ style='mso-spacerun:yes'>            </span>(y[0] - yhat[0])**2 +</span><span
+ style='font-weight:bold;color:#212121'><br>
+  </span><span style='font-weight:bold;font-style:italic;color:#59636E'>#<span
+ style='mso-spacerun:yes'>            </span>(y[1] - yhat[1])**2 +</span><span
+ style='font-weight:bold;color:#212121'><br>
+  </span><span style='font-weight:bold;font-style:italic;color:#59636E'>#<span
+ style='mso-spacerun:yes'>            </span>(y[2] - yhat[2])**2 +</span><span
+ style='font-weight:bold;color:#212121'><br>
+  </span><span style='font-weight:bold;font-style:italic;color:#59636E'>#<span
+ style='mso-spacerun:yes'>            </span>(y[3] - yhat[3])**2</span><span
+ style='font-weight:bold;color:#212121'><br>
+  </span><span style='font-weight:bold;font-style:italic;color:#59636E'>#<span
+ style='mso-spacerun:yes'>           </span>]</span><span style='font-weight:
+ bold;color:#212121'><br>
+  </span><span style='font-weight:bold;font-style:italic;color:#59636E'># NOTE:
+ 1/4!</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:1.875in;font-family:微软雅黑;font-size:28.0pt'><span
+ style='font-weight:bold;font-style:italic;color:#59636E'># now let's do it
+ with grad_accum_steps of 4, and B=1</span><span style='font-weight:bold;
+ color:#212121'><br>
+  </span><span style='font-weight:bold;font-style:italic;color:#59636E'># the
+ loss objective here is different because</span><span style='font-weight:bold;
+ color:#212121'><br>
+  </span><span style='font-weight:bold;font-style:italic;color:#59636E'>#
+ accumulation in gradient &lt;---&gt; SUM in loss</span><span style='font-weight:
+ bold;color:#212121'><br>
+  </span><span style='font-weight:bold;font-style:italic;color:#59636E'># i.e.
+ we instead get:</span><span style='font-weight:bold;color:#212121'><br>
+  </span><span style='font-weight:bold;font-style:italic;color:#59636E'># L0 =
+ 1/4(y[0] - yhat[0])**2</span><span style='font-weight:bold;color:#212121'><br>
+  </span><span style='font-weight:bold;font-style:italic;color:#59636E'># L1 =
+ 1/4(y[1] - yhat[1])**2</span><span style='font-weight:bold;color:#212121'><br>
+  </span><span style='font-weight:bold;font-style:italic;color:#59636E'># L2 =
+ 1/4(y[2] - yhat[2])**2</span><span style='font-weight:bold;color:#212121'><br>
+  </span><span style='font-weight:bold;font-style:italic;color:#59636E'># L3 =
+ 1/4(y[3] - yhat[3])**2</span><span style='font-weight:bold;color:#212121'><br>
+  </span><span style='font-weight:bold;font-style:italic;color:#59636E'># L =
+ L0 + L1 + L2 + L3</span><span style='font-weight:bold;color:#212121'><br>
+  </span><span style='font-weight:bold;font-style:italic;color:#59636E'># NOTE:
+ the &quot;normalizer&quot; of 1/4 is lost</span><span style='color:#212121'><br>
+  net</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+ style='color:#212121'>zero_grad</span><span style='color:#0055AA'>()</span></p>
+ <p style='margin:0in;margin-left:1.875in;font-family:微软雅黑;font-size:28.0pt;
+ color:#212121'><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=en-US>#</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=zh-CN>这里是小</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=en-US>batch, batch_size=1</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，每次输入</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>1</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>个样本，进行</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>loss.backward</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，此时</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>loss</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>要进行缩放，即</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>loss=loss/4</span></p>
+ <p style='margin:0in;margin-left:1.875in;font-family:微软雅黑;font-size:28.0pt'><span
+ style='font-weight:bold;color:#1A7F37'>for</span><span style='color:#212121'>
+ i </span><span style='font-weight:bold;color:#8250DF'>in</span><span
+ style='color:#212121'> range</span><span style='color:#0055AA'>(</span><span
+ style='color:#1A7F37'>4</span><span style='color:#0055AA'>):</span><span
+ style='color:#212121'><br>
+  <span style='mso-spacerun:yes'>    </span>yhat </span><span style='font-weight:
+ bold;color:#8250DF'>=</span><span style='color:#212121'> net</span><span
+ style='color:#0055AA'>(</span><span style='color:#212121'>x</span><span
+ style='color:#0055AA'>[</span><span style='color:#212121'>i</span><span
+ style='color:#0055AA'>])</span><span style='color:#212121'><br>
+  <span style='mso-spacerun:yes'>    </span>loss </span><span style='font-weight:
+ bold;color:#8250DF'>=</span><span style='color:#212121'> torch</span><span
+ style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>nn</span><span
+ style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>functional</span><span
+ style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>mse_loss</span><span
+ style='color:#0055AA'>(</span><span style='color:#212121'>yhat</span><span
+ style='color:#0055AA'>,</span><span style='color:#212121'> y</span><span
+ style='color:#0055AA'>[</span><span style='color:#212121'>i</span><span
+ style='color:#0055AA'>])</span><span style='color:#212121'><br>
+  <span style='mso-spacerun:yes'>    </span>loss </span><span style='font-weight:
+ bold;color:#8250DF'>=</span><span style='color:#212121'> loss </span><span
+ style='font-weight:bold;color:#8250DF'>/ </span><span style='color:#1A7F37'>4 </span><span
+ style='font-weight:bold;font-style:italic;color:#59636E;background:lime;
+ mso-highlight:lime'># &lt;-- have to add back the &quot;normalizer&quot;!</span><span
+ style='color:#212121'><br>
+  <span style='mso-spacerun:yes'>    </span>loss</span><span style='font-weight:
+ bold;color:#8250DF'>.</span><span style='color:#212121'>backward</span><span
+ style='color:#0055AA'>()</span><span style='color:#212121'><br>
+  print</span><span style='color:#0055AA'>(</span><span style='color:#212121'>net</span><span
+ style='color:#0055AA'>[</span><span style='color:#1A7F37'>0</span><span
+ style='color:#0055AA'>]</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+ style='color:#212121'>weight</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+ style='color:#212121'>grad</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+ style='color:#212121'>view</span><span style='color:#0055AA'>(</span><span
+ style='font-weight:bold;color:#8250DF'>-</span><span style='color:#1A7F37'>1</span><span
+ style='color:#0055AA'>)[:</span><span style='color:#1A7F37'>10</span><span
+ style='color:#0055AA'>])</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>import os</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>import math</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>import time</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>import inspect</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>from dataclasses
+ import dataclass</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>import torch</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>import torch.nn as nn</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>from torch.nn import
+ functional as F</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>from hellaswag import
+ render_example, iterate_examples</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>#
+ -----------------------------------------------------------------------------</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>class
+ CausalSelfAttention(nn.Module):</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>#</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>多头注意力并不复杂，就是多个头并行工作，它们的输出被简单地</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>concat</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>起来，形成了多头注意力的输出</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>#</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>这里的实现跟</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>lets
+ build gpt</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN>中不同，不是先定义一个</span><span style='font-weight:bold;background:
+ lime;mso-highlight:lime' lang=en-US>head</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=zh-CN>，再定义</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>Multihead</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，这里是直接实现多个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>head</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def __init__(self, config):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>super().__init__()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>assert config.n_embd % config.n_head
+ == 0</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># key, query, value projections for
+ all heads, but in a batch</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span>self.c_attn = nn.Linear(config.n_embd,
+ 3 * config.n_embd)</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=en-US> #</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=zh-CN>这里用self.c_att</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>n</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>直接相当于多头的</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>Wq,Wk,Wv</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>权重矩阵。原来单个头的
+ </span><span style='font-weight:bold;color:#001080;background:lime;mso-highlight:
+ lime' lang=zh-CN>self</span><span style='font-weight:bold;color:black;
+ background:lime;mso-highlight:lime' lang=zh-CN>.query = nn.Linear(n_embd,
+ head_size, bias=</span><span style='font-weight:bold;color:blue;background:
+ lime;mso-highlight:lime' lang=zh-CN>False</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>)， </span><span
+ style='font-weight:bold;color:#001080;background:lime;mso-highlight:lime'
+ lang=zh-CN>self</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=zh-CN>.key= nn.Linear(n_embd, head_size, bias=</span><span
+ style='font-weight:bold;color:blue;background:lime;mso-highlight:lime'
+ lang=zh-CN>False</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=zh-CN>)</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US>,</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN> </span><span
+ style='font-weight:bold;color:#001080;background:lime;mso-highlight:lime'
+ lang=zh-CN>self</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=zh-CN>.</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US>value</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN> = nn.Linear(n_embd, head_size, bias=</span><span style='font-weight:
+ bold;color:blue;background:lime;mso-highlight:lime' lang=zh-CN>False</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>)，即单头的</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=en-US>q,k,v</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>的</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>size</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=zh-CN>都是</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US>B,T,</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>h</span><span style='font-weight:bold;color:black;background:lime;
+ mso-highlight:lime' lang=en-US>ead_size</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>，多头的</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>q,k,v</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=zh-CN>的</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US>size</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>都是</span><span style='font-weight:bold;color:black;background:lime;
+ mso-highlight:lime' lang=en-US>B,T,</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>n</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>_embd</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=zh-CN>，多头的</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US>q,k,v</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>一共的</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=en-US>size</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>就是</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>3</span><span style='font-weight:bold;color:black;background:lime;
+ mso-highlight:lime' lang=zh-CN>倍的</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US>B,T,</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>n</span><span style='font-weight:bold;color:black;background:lime;
+ mso-highlight:lime' lang=en-US>_embd</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>（因为</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>q,k,v</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=zh-CN>每个都是</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US>B,T,</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>n</span><span style='font-weight:bold;color:black;background:lime;
+ mso-highlight:lime' lang=en-US>_embd</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>），也就是这里的self.c_attn
+ = nn.Linear(config.n_embd, 3 * config.n_embd)</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=en-US> </span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># output projection</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.c_proj = nn.Linear(config.n_embd,
+ config.n_embd)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.c_proj.NANOGPT_SCALE_INIT = 1</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># regularization</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.n_head = config.n_head</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.n_embd = config.n_embd</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def forward(self, x):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>B, T, C = x.size() # batch size,
+ sequence length, embedding dimensionality (n_embd)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># calculate query, key, values for all
+ heads in batch and move head forward to be the batch dim</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># nh is &quot;number of heads&quot;,
+ hs is &quot;head size&quot;, and C (number of channels) = nh * hs</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># e.g. in GPT-2 (124M), n_head=12,
+ hs=64, so nh*hs=C=768 channels in the Transformer</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span>qkv = self.c_attn(x)</span><span
+ lang=en-US> </span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=en-US>#qkv</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=zh-CN>先是一个整体，</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span>q, k, v = qkv.split(self.n_embd,
+ dim=2)</span><span lang=en-US> </span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=en-US>#</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=zh-CN>在这里将</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>q,k,v</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>进行</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>split</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，从而获得</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>q,k,v</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，注意这里的</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>q,k,v</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>是多头的</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>q,k,v</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，而不是单头的</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>q,k,v</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，即它们的</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>size</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>是</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>B,T,n_embd</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，而不是</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>B,T,head_size</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>。之前在</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>let's
+ build GPT</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN>的实现中k = self.key(x) ，</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=en-US>q=self.query(x),
+ v=self.value(x)</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=zh-CN>，这种是分别得到单个头的</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=en-US>q,k,v</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，然后再把</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>n</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>head</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>q,k,v </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>c</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>oncat</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>起来。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span>k = k.view(B, T, self.n_head, C //
+ self.n_head).transpose(1, 2) </span><span style='font-weight:bold;background:
+ lime;mso-highlight:lime' lang=zh-CN># (B, nh, T, heads</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>ize</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>)</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US> </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>我们把头的数量</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>nh</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>变成了一个类似</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>batch</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的维度，这样</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>pytorch</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>可以像处理</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>batch</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>一样并行地处理</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>nh</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span>q = q.view(B, T, self.n_head, C //
+ self.n_head).transpose(1, 2) # (B, nh, T, heads</span><span lang=en-US>ize</span><span
+ lang=zh-CN>)</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span>v = v.view(B, T, self.n_head, C //
+ self.n_head).transpose(1, 2) # (B, nh, T, heads</span><span lang=en-US>ize</span><span
+ lang=zh-CN>)</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span>y = F.scaled_dot_product_attention(q,
+ k, v, is_causal=True) </span><span style='background:lime;mso-highlight:lime'
+ lang=zh-CN># </span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN>flash attention，当执行这行代码时，py</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=en-US>torch</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>会自动调用</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>flash
+ attention</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN>，</span></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>#flash
+ attention</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN>相当于代替了下面这</span><span style='font-weight:bold;background:
+ lime;mso-highlight:lime' lang=en-US>4</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=zh-CN>行代码</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US>#att</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN> = q @ k.transpose(</span><span style='font-weight:bold;color:#116644;
+ background:lime;mso-highlight:lime' lang=zh-CN>-2</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>,</span><span style='font-weight:bold;color:#116644;background:
+ lime;mso-highlight:lime' lang=zh-CN>-1</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>) * C**</span><span
+ style='font-weight:bold;color:#116644;background:lime;mso-highlight:lime'
+ lang=zh-CN>-0.5 </span><span style='font-weight:bold;color:green;background:
+ lime;mso-highlight:lime' lang=zh-CN># (B, T, C) @ (B, C, T) -&gt; (B, T, T)</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US>#att</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN> = </span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=en-US>att</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>.masked_fill(</span><span
+ style='font-weight:bold;color:#001080;background:lime;mso-highlight:lime'
+ lang=zh-CN>self</span><span style='font-weight:bold;color:black;background:
+ lime;mso-highlight:lime' lang=zh-CN>.tril[:T, :T] == </span><span
+ style='font-weight:bold;color:#116644;background:lime;mso-highlight:lime'
+ lang=zh-CN>0</span><span style='font-weight:bold;color:black;background:lime;
+ mso-highlight:lime' lang=zh-CN>, </span><span style='font-weight:bold;
+ color:#257693;background:lime;mso-highlight:lime' lang=zh-CN>float</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>(</span><span style='font-weight:bold;color:#A31515;background:
+ lime;mso-highlight:lime' lang=zh-CN>'-inf'</span><span style='font-weight:
+ bold;color:black;background:lime;mso-highlight:lime' lang=zh-CN>)) </span><span
+ style='font-weight:bold;color:green;background:lime;mso-highlight:lime'
+ lang=zh-CN># (B, T, T)</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN>&nbsp; &nbsp; &nbsp; &nbsp; </span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=en-US>#att</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN> = F.softmax(</span><span style='font-weight:bold;color:black;
+ background:lime;mso-highlight:lime' lang=en-US>att,</span><span
+ style='font-weight:bold;color:black;background:lime;mso-highlight:lime'
+ lang=zh-CN> dim=</span><span style='font-weight:bold;color:#116644;background:
+ lime;mso-highlight:lime' lang=zh-CN>-1</span><span style='font-weight:bold;
+ color:black;background:lime;mso-highlight:lime' lang=zh-CN>) </span><span
+ style='font-weight:bold;color:green;background:lime;mso-highlight:lime'
+ lang=zh-CN># (B, T, T)</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:black'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US><span
+ style='mso-spacerun:yes'>        </span>#y<span style='mso-spacerun:yes'>   
+ </span></span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN>=</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=en-US><span style='mso-spacerun:yes'>  </span>att@v</span></p>
+ <p style='margin:0in;margin-left:1.125in;font-size:36.0pt;color:black'><span
+ style='font-weight:bold;font-family:微软雅黑'>FlashAttention利用底层硬件的内存层次知识，例如GPU的内存层次结构，来提高计算速度和减少内存访问开销。
+ FlashAttention的核心原理是通过将输入</span><span style='font-weight:bold;font-family:
+ -apple-system;background:white'>分块</span><span style='font-weight:bold;
+ font-family:微软雅黑'>并在每个块上执行注意力操作，从而减少对高带宽内存（</span><a
+ href="https://zhida.zhihu.com/search?content_id=238498031&amp;content_type=Article&amp;match_order=1&amp;q=HBM&amp;zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTEzNjA1MTUsInEiOiJIQk0iLCJ6aGlkYV9zb3VyY2UiOiJlbnRpdHkiLCJjb250ZW50X2lkIjoyMzg0OTgwMzEsImNvbnRlbnRfdHlwZSI6IkFydGljbGUiLCJtYXRjaF9vcmRlciI6MSwiemRfdG9rZW4iOm51bGx9.pz0o59_uY3mPMLG7Oiwj9kymsKycmCxi8mifntQWir4&amp;zhida_source=entity"><span
+ style='font-weight:bold;font-family:-apple-system;background:white'>HBM</span></a><span
+ style='font-weight:bold;font-family:微软雅黑'>）的读写操作。具体而言，FlashAttention使用平铺和重计算等经典技术，将输入块从HBM加载到</span><a
+ href="https://zhida.zhihu.com/search?content_id=238498031&amp;content_type=Article&amp;match_order=1&amp;q=SRAM&amp;zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTEzNjA1MTUsInEiOiJTUkFNIiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjM4NDk4MDMxLCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.sp4LzuWgROy9dzcD6laq_EpeTAdsI8K3VslPCZfPD7I&amp;zhida_source=entity"><span
+ style='font-weight:bold;font-family:-apple-system;background:white'>SRAM</span></a><span
+ style='font-weight:bold;font-family:微软雅黑'>（快速缓存），在SRAM上执行注意力操作，并将结果更新回HBM。FlashAttention减少了内存读写量，从而实现了</span><span
+ style='font-weight:bold;font-family:-apple-system;background:white'>2-4倍</span><span
+ style='font-weight:bold;font-family:微软雅黑'>的时钟时间加速。</span></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'>&nbsp;</p>
+ <p style='margin:0in;margin-left:1.875in'><img
+ src="Let's%20reproduce%20GPT-2(124M).files/image003.jpg" width=2415
+ height=1033></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold' lang=en-US>FlashAttention</span><span
+ style='font-weight:bold' lang=zh-CN>将att</span><span style='font-weight:bold'
+ lang=en-US>ention</span><span style='font-weight:bold' lang=zh-CN>的四个操作，整合成单一的融合核。如果只看浮点运算数</span><span
+ style='font-weight:bold' lang=en-US>FLOPS</span><span style='font-weight:bold'
+ lang=zh-CN>，</span><span style='font-weight:bold' lang=en-US>flash attention</span><span
+ style='font-weight:bold' lang=zh-CN>比原始的</span><span style='font-weight:bold'
+ lang=en-US>attention</span><span style='font-weight:bold' lang=zh-CN>执行了更多的</span><span
+ style='font-weight:bold' lang=en-US>FLOPS</span><span style='font-weight:bold'
+ lang=zh-CN>。</span><span style='font-weight:bold' lang=en-US>F</span><span
+ style='font-weight:bold' lang=zh-CN>lash</span><span style='font-weight:bold'
+ lang=en-US>attention</span><span style='font-weight:bold' lang=zh-CN>使得</span><span
+ style='font-weight:bold' lang=en-US>attention</span><span style='font-weight:
+ bold' lang=zh-CN>得分矩阵即</span><span style='font-weight:bold' lang=en-US>att=q@k.transpose(-2,-1)</span><span
+ style='font-weight:bold' lang=zh-CN>永远不会被具象化，也就不会被读写到</span><span
+ style='font-weight:bold' lang=en-US>HBM</span><span style='font-weight:bold'
+ lang=zh-CN>中，这是一个非常大的矩阵，</span><span style='font-weight:bold' lang=en-US>B</span><span
+ style='font-weight:bold' lang=zh-CN>，</span><span style='font-weight:bold'
+ lang=en-US>T</span><span style='font-weight:bold' lang=zh-CN>，</span><span
+ style='font-weight:bold' lang=en-US>T</span><span style='font-weight:bold'
+ lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold' lang=zh-CN>也就是说，原始的</span><span
+ style='font-weight:bold' lang=en-US>attention</span><span style='font-weight:
+ bold' lang=zh-CN>计算需要先算出q</span><span style='font-weight:bold' lang=en-US>@</span><span
+ style='font-weight:bold' lang=zh-CN>k，然后再将结果转移到</span><span style='font-weight:
+ bold' lang=en-US>HBM</span><span style='font-weight:bold' lang=zh-CN>显存，再将结果从</span><span
+ style='font-weight:bold' lang=en-US>HBM</span><span style='font-weight:bold'
+ lang=zh-CN>转移到</span><span style='font-weight:bold' lang=en-US>SRAM</span><span
+ style='font-weight:bold' lang=zh-CN>，再计算</span><span style='font-weight:bold'
+ lang=en-US>mask</span><span style='font-weight:bold' lang=zh-CN>，再进行转移，再计算</span><span
+ style='font-weight:bold' lang=en-US>softmax</span><span style='font-weight:
+ bold' lang=zh-CN>，再进行转移</span><span style='font-weight:bold' lang=en-US> </span><span
+ style='font-weight:bold' lang=zh-CN>，再计算</span><span style='font-weight:bold'
+ lang=en-US>dropout,</span><span style='font-weight:bold' lang=zh-CN>再进行转移，再计算at</span><span
+ style='font-weight:bold' lang=en-US>tn@v</span><span style='font-weight:bold'
+ lang=zh-CN>。而</span><span style='font-weight:bold' lang=en-US>flash attn</span><span
+ style='font-weight:bold' lang=zh-CN>一次性地转移，并计算最后的结果。</span></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold' lang=en-US>F</span><span
+ style='font-weight:bold' lang=zh-CN>las</span><span style='font-weight:bold'
+ lang=en-US>h attn</span><span style='font-weight:bold' lang=zh-CN>使用了在线</span><span
+ style='font-weight:bold' lang=en-US>softmax</span><span style='font-weight:
+ bold' lang=zh-CN>技巧，（和移动平均类似？？），不需要得到</span><span style='font-weight:bold'
+ lang=en-US>softmax</span><span style='font-weight:bold' lang=zh-CN>的所有元素，</span></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:black'><span style='font-weight:bold' lang=en-US>F</span><span
+ style='font-weight:bold' lang=zh-CN>las</span><span style='font-weight:bold'
+ lang=en-US>h attn</span><span style='font-weight:bold' lang=zh-CN>只是一个</span><span
+ style='font-weight:bold' lang=en-US>attention</span><span style='font-weight:
+ bold' lang=zh-CN>实现的重写，是一个更快的内核</span><span style='font-weight:bold'
+ lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>，并没有改变任何的计算，也不会提升算法效果。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>y = y.transpose(1,
+ 2).contiguous().view(B, T, C) # re-assemble all head outputs side by side</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># output projection</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>y = self.c_proj(y)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>return y</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>class MLP(nn.Module):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def __init__(self, config):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>super().__init__()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span>self.c_fc<span
+ style='mso-spacerun:yes'>    </span>= nn.Linear(config.n_embd, 4 *
+ config.n_embd)</span><span lang=en-US> </span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.gelu<span
+ style='mso-spacerun:yes'>    </span>= nn.GELU(approximate='tanh')</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span>self.c_proj<span
+ style='mso-spacerun:yes'>  </span>= nn.Linear(4 * config.n_embd,
+ config.n_embd)</span><span lang=en-US> </span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=en-US>#MLP</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>是两个线性层</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>c_fc</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>、</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>c_proj</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>中间夹了一个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>GELU</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>激活函数</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.c_proj.NANOGPT_SCALE_INIT = 1</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def forward(self, x):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x = self.c_fc(x)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x = self.gelu(x)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x = self.c_proj(x)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>return x</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>class
+ Block(nn.Module):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def __init__(self, config):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>super().__init__()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.ln_1 =
+ nn.LayerNorm(config.n_embd)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.attn =
+ CausalSelfAttention(config)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.ln_2 =
+ nn.LayerNorm(config.n_embd)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.mlp = MLP(config)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def forward(self, x):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span>x = x + self.attn(self.ln_1(x))</span><span
+ style='background:lime;mso-highlight:lime' lang=en-US> </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>#</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>预归一化，先经过</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>layernorm</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，再经过</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>attention</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>。注意力是一个聚合函数，池化函数，加权和函数，是一个归约操作</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>reduce </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>op</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>eration</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span>x = x + self.mlp(self.ln_2(x))</span><span
+ lang=en-US> </span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=en-US>#</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=zh-CN>先经过</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=en-US>layernorm</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，再经过</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>mlp</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>。</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>MLP</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>发生在每个独立的</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>token</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>上，</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>token</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>之间没有交换信息，是一个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>map</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>操作。所以</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>T</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>ran</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>sformer</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>可以看成一个不断进行</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>map
+ reduce</span><span style='font-weight:bold;background:lime;mso-highlight:lime'
+ lang=zh-CN>的过程。</span></p>
+ <p style='margin:0in;margin-left:7.875in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>#</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>残差连接，即加法，即在反向传播时将梯度平均地分配给它的两个分支</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>return x</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>@dataclass</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>class GPTConfig:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>block_size: int = 1024 # max sequence
+ length</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>vocab_size: int = 50257 # number of
+ tokens: 50,000 BPE merges + 256 bytes tokens + 1 &lt;|endoftext|&gt; token</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>n_layer: int = 12 # number of layers</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>n_head: int = 12 # number of heads</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>n_embd: int = 768 # embedding dimension</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold' lang=zh-CN>官方</span><span style='font-weight:bold'
+ lang=en-US>GPT2</span><span style='font-weight:bold' lang=zh-CN>的</span><span
+ style='font-weight:bold' lang=en-US>state_dict()</span><span style='font-weight:
+ bold' lang=zh-CN>，我们仿照这个</span><span style='font-weight:bold' lang=en-US>state_dict</span><span
+ style='font-weight:bold' lang=zh-CN>进行模型构建</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
+ style='background:aqua;mso-highlight:aqua'>model_hf =
+ GPT2LMHeadModel.from_pretrained(&quot;gpt2&quot;) # 124M</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
+ style='background:aqua;mso-highlight:aqua'>sd_hf = model_hf.state_dict()</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
+ style='background:aqua;mso-highlight:aqua'>for k, v in sd_hf.items():</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
+ style='background:aqua;mso-highlight:aqua'><span style='mso-spacerun:yes'>   
+ </span>print(k, v.shape)</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-size:28.0pt'><span style='font-family:inherit;
+ background:aqua;mso-highlight:aqua' lang=zh-CN>transformer.wte.weight
+ torch.Size([50257, 768])<br>
+  transformer.wpe.weight torch.Size([1024, 768])<br>
+  transformer.h.0.ln_1.weight torch.Size([768])<br>
+  transformer.h.0.ln_1.bias torch.Size([768])<br>
+  transformer.h.0.attn.c_attn.weight torch.Size([768, 2304])<br>
+  transformer.h.0.attn.c_attn.bias torch.Size([2304])<br>
+  transformer.h.0.attn.c_proj.weight torch.Size([768, 768])<br>
+  transformer.h.0.attn.c_proj.bias torch.Size([768])<br>
+  transformer.h.0.ln_2.weight torch.Size([768])<br>
+  transformer.h.0.ln_2.bias torch.Size([768])<br>
+  transformer.h.0.mlp.c_fc.weight torch.Size([768, 3072])<br>
+  transformer.h.0.mlp.c_fc.bias torch.Size([3072])<br>
+  transformer.h.0.mlp.c_proj.weight torch.Size([3072, 768])<br>
+  transformer.h.0.mlp.c_proj.bias torch.Size([768])<br>
+  transformer.h.1.ln_1.weight torch.Size([768])<br>
+  transformer.h.1.ln_1.bias torch.Size([768])<br>
+  transformer.h.1.attn.c_attn.weight torch.Size([768, 2304])<br>
+  transformer.h.1.attn.c_attn.bias torch.Size([2304])<br>
+  transformer.h.1.attn.c_proj.weight torch.Size([768, 768])<br>
+  transformer.h.1.attn.c_proj.bias torch.Size([768])<br>
+  transformer.h.1.ln_2.weight torch.Size([768])<br>
+  transformer.h.1.ln_2.bias torch.Size([768])<br>
+  transformer.h.1.mlp.c_fc.weight torch.Size([768, 3072])<br>
+  transformer.h.1.mlp.c_fc.bias torch.Size([3072])<br>
+  transformer.h.1.mlp.c_proj.weight torch.Size([3072, 768])<br>
+  transformer.h.1.mlp.c_proj.bias torch.Size([768])<br>
+  transformer.h.2.ln_1.weight torch.Size([768])<br>
+  transformer.h.2.ln_1.bias torch.Size([768])<br>
+  transformer.h.2.attn.c_attn.weight torch.Size([768, 2304])<br>
+  transformer.h.2.attn.c_attn.bias torch.Size([2304])<br>
+  transformer.h.2.attn.c_proj.weight torch.Size([768, 768])<br>
+  transformer.h.2.attn.c_proj.bias torch.Size([768])<br>
+  transformer.h.2.ln_2.weight torch.Size([768])<br>
+  transformer.h.2.ln_2.bias torch.Size([768])<br>
+  transformer.h.2.mlp.c_fc.weight torch.Size([768, 3072])<br>
+  transformer.h.2.mlp.c_fc.bias torch.Size([3072])<br>
+  transformer.h.2.mlp.c_proj.weight torch.Size([3072, 768])<br>
+  transformer.h.2.mlp.c_proj.bias torch.Size([768])<br>
+  </span><span style='font-family:微软雅黑;background:aqua;mso-highlight:aqua'
+ lang=en-US>…….</span></p>
+ <p style='margin:0in;font-family:inherit;font-size:28.0pt'><span
+ style='background:aqua;mso-highlight:aqua'>transformer.ln_f.weight
+ torch.Size([768])<br>
+  transformer.ln_f.bias torch.Size([768])<br>
+  lm_head.weight torch.Size([50257, 768])</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>注意，lm_head.weight和transformer.wte.weight的</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>size</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>是一样的，都是</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>20257,768</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>，实际上不只是大小一样，这两个其实是同一个</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>tensor</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>，即权重共享。原因：如果两个</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>token</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>在语义上是相似的，那么它们在嵌入空间中也应该是相邻的，即经过transformer.wte.weight后的</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>embedding</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>相邻，同样的，这两个相似语义的</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>token</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>经过lm_head.weight后的输出概率也应该是几乎相同的。即两个</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>token</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>语义相似</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>&lt;==&gt;</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>两个</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>embedding</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>相邻</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>&lt;==&gt;</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>两个输出</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=en-US>logits</span><span
+ style='font-weight:bold;background:aqua;mso-highlight:aqua' lang=zh-CN>相同。这两个矩阵具有相同的特性。因此进行权重共享。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>class GPT(nn.Module):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def __init__(self, config):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>super().__init__()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.config = config</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span>self.transformer = nn.ModuleDict(dict(</span><span
+ lang=en-US> </span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=en-US>#</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=zh-CN>如上所示，官方</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=en-US>GPT2</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的主模块的名称是</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>transformer</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，是一个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>ModuleDict</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，可以像字典一样通过</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>key</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>来索引到子模块</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>            </span>wte =
+ nn.Embedding(config.vocab_size, config.n_embd),</span><span lang=en-US> </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>#token </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>em</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>bedding</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>            </span>wpe =
+ nn.Embedding(config.block_size, config.n_embd),</span><span lang=en-US> </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>#</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>位置</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>embedding</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>            </span>h = nn.ModuleList([Block(config)
+ for _ in range(config.n_layer)]),</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=en-US># transformer.h</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，是一个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>ModuleList</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，可以像列表一样用整数进行索引，h</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>[0],h[1]…h[11]</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，每个元素是一个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>B</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>lco</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>k</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>B</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>loc</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>k</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的定义在上面</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>            </span>ln_f =
+ nn.LayerNorm(config.n_embd),</span><span lang=en-US> </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>#GPT2</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>最后有一个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>layernorm</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>层</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>))</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.lm_head =
+ nn.Linear(config.n_embd, config.vocab_size, bias=False)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># weight sharing scheme</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.transformer.wte.weight =
+ self.lm_head.weight</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># init params</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.apply(self._init_weights)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def _init_weights(self, module):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>if isinstance(module, nn.Linear):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>            </span>std = 0.02</span><span lang=en-US>
+ </span><span style='font-weight:bold;background:lime;mso-highlight:lime'
+ lang=en-US>#</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN>大概是</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=en-US>1/</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=zh-CN>sq</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>rt(d_model)</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的大小，因为矩阵</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>A*</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>矩阵</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>B</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>后，矩阵</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>A</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的方差会被放大，所以需要对矩阵</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>B</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的方差进行缩放，以保证</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>A*B</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的方差和</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>A</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的方差相比不会被放大很多。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>if hasattr(module,
+ 'NANOGPT_SCALE_INIT'):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>                </span>std *= (2 *
+ self.config.n_layer) ** -0.5</span><span style='font-weight:bold;background:
+ lime;mso-highlight:lime' lang=en-US> #</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=zh-CN>经过</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>n</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>次的</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>x=x+y</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>x</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的方差会逐渐增加。因此需要根据残差流的层数或次数对权重的</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>std</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>进行缩放，乘以</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>2</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>是因此每个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>layer</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>经过了</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>2</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>次残差连接，一次是</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>atten</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，一次是</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>mlp</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，对</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>std</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>进行缩放，以保证</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>tensor
+ x</span><span style='font-weight:bold;background:lime;mso-highlight:lime'
+ lang=zh-CN>的方差不会随着残差流层数的增加再变大。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>torch.nn.init.normal_(module.weight, mean=0.0, std=std)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>if module.bias is not None:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>               
+ </span>torch.nn.init.zeros_(module.bias)</span><span lang=en-US> </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>#bias</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>初始化为</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>0</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，py</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>torch</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>默认是均匀分布</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>elif isinstance(module, nn.Embedding):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>torch.nn.init.normal_(module.weight, mean=0.0, std=0.02)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def forward(self, idx, targets=None):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># idx is of shape (B, T)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>B, T = idx.size()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>assert T &lt;= self.config.block_size,
+ f&quot;Cannot forward sequence of length {T}, block size is only
+ {self.config.block_size}&quot;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># forward the token and posisition
+ embeddings</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>pos = torch.arange(0, T,
+ dtype=torch.long, device=idx.device) # shape (T)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span>pos_emb = self.transformer.wpe(pos) </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>#
+ position embeddings of shape (T, n_embd)，</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=en-US>B</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=zh-CN>at</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>ch</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>中所有样本的</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>position
+ embeddings</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN>都是一样的</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>tok_emb = self.transformer.wte(idx) <span
+ style='font-weight:bold;background:lime;mso-highlight:lime'># token embeddings
+ of shape (B, T, n_embd)</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span>x = tok_emb + pos_emb</span><span
+ lang=en-US> </span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=en-US>#</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=zh-CN>这里相加时其实进行了广播</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># forward the blocks of the
+ transformer</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>for block in self.transformer.h:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>x = block(x)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># forward the final layernorm and the
+ classifier</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x = self.transformer.ln_f(x)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>logits = self.lm_head(x) # (B, T,
+ vocab_size)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>loss = None</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>if targets is not None:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>            </span>loss =
+ F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1))</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>#F.cross_entropy</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>不支持多维输入，只支持</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>2</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>维输入，所以将</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>logits</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>(B, T,
+ vocab_size)变为（</span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=en-US>B*T</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=zh-CN>，</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=en-US>vocab_size</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>）二维</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>tensor</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>。t</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>argets</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>要变为一维的。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>return logits, loss</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>@classmethod</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def from_pretrained(cls, model_type):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>&quot;&quot;&quot;Loads pretrained
+ GPT-2 model weights from huggingface&quot;&quot;&quot;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>assert model_type in {'gpt2',
+ 'gpt2-medium', 'gpt2-large', 'gpt2-xl'}</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>from transformers import
+ GPT2LMHeadModel</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>print(&quot;loading weights from
+ pretrained gpt: %s&quot; % model_type)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># n_layer, n_head and n_embd are
+ determined from model_type</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>config_args = {</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>'gpt2':<span
+ style='mso-spacerun:yes'>         </span>dict(n_layer=12, n_head=12,
+ n_embd=768),<span style='mso-spacerun:yes'>  </span># 124M params</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>'gpt2-medium':<span
+ style='mso-spacerun:yes'>  </span>dict(n_layer=24, n_head=16, n_embd=1024), #
+ 350M params</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>'gpt2-large':<span
+ style='mso-spacerun:yes'>   </span>dict(n_layer=36, n_head=20, n_embd=1280), #
+ 774M params</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>'gpt2-xl':<span
+ style='mso-spacerun:yes'>      </span>dict(n_layer=48, n_head=25,
+ n_embd=1600), # 1558M params</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>}[model_type]</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>config_args['vocab_size'] = 50257 #
+ always 50257 for GPT model checkpoints</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>config_args['block_size'] = 1024 #
+ always 1024 for GPT model checkpoints</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># create a from-scratch initialized
+ minGPT model</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>config = GPTConfig(**config_args)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>model = GPT(config)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>sd = model.state_dict()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>sd_keys = sd.keys()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>sd_keys = [k for k in sd_keys if not
+ k.endswith('.attn.bias')] # discard this mask / buffer, not a param</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># init a huggingface/transformers
+ model</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>model_hf =
+ GPT2LMHeadModel.from_pretrained(model_type)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>sd_hf = model_hf.state_dict()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># copy while ensuring all of the
+ parameters are aligned and match in names and shapes</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>sd_keys_hf = sd_hf.keys()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>sd_keys_hf = [k for k in sd_keys_hf if
+ not k.endswith('.attn.masked_bias')] # ignore these, just a buffer</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>sd_keys_hf = [k for k in sd_keys_hf if
+ not k.endswith('.attn.bias')] # same, just the mask (buffer)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>transposed = ['attn.c_attn.weight',
+ 'attn.c_proj.weight', 'mlp.c_fc.weight', 'mlp.c_proj.weight']</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># basically the openai checkpoints use
+ a &quot;Conv1D&quot; module, but we only want to use a vanilla Linear</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># this means that we have to transpose
+ these weights when we import them</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>assert len(sd_keys_hf) ==
+ len(sd_keys), f&quot;mismatched keys: {len(sd_keys_hf)} !=
+ {len(sd_keys)}&quot;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>for k in sd_keys_hf:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>if any(k.endswith(w) for w in
+ transposed):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span># special treatment for the
+ Conv1D weights we need to transpose</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>assert sd_hf[k].shape[::-1] ==
+ sd[k].shape</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>with torch.no_grad():</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                    </span>sd[k].copy_(sd_hf[k].t())</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>else:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span># vanilla copy over the other
+ parameters</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>assert sd_hf[k].shape ==
+ sd[k].shape</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>with torch.no_grad():</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                    </span>sd[k].copy_(sd_hf[k])</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>return model</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def configure_optimizers(self,
+ weight_decay, learning_rate, device_type):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># start with all of the candidate
+ parameters (that require grad)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>param_dict = {pn: p for pn, p in
+ self.named_parameters()}</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>param_dict = {pn: p for pn, p in
+ param_dict.items() if p.requires_grad}</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># create optim groups. Any parameters
+ that is 2D will be weight decayed, otherwise no.</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># i.e. all weight tensors in matmuls +
+ embeddings decay, all biases and layernorms don't.</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>decay_params = [p for n, p in
+ param_dict.items() if p.dim() &gt;= 2]</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>nodecay_params = [p for n, p in
+ param_dict.items() if p.dim() &lt; 2]</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>optim_groups = [</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>{'params': decay_params,
+ 'weight_decay': weight_decay},</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>{'params': nodecay_params,
+ 'weight_decay': 0.0}</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>]</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>num_decay_params = sum(p.numel() for p
+ in decay_params)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>num_nodecay_params = sum(p.numel() for
+ p in nodecay_params)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>if master_process:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>print(f&quot;num decayed parameter
+ tensors: {len(decay_params)}, with {num_decay_params:,} parameters&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>print(f&quot;num non-decayed
+ parameter tensors: {len(nodecay_params)}, with {num_nodecay_params:,}
+ parameters&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># Create AdamW optimizer and use the
+ fused version if it is available</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span></span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=zh-CN>fused_available = 'fused' in
+ inspect.signature(torch.optim.AdamW).parameters</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=en-US><span
+ style='mso-spacerun:yes'>  </span>#</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=zh-CN>检查</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>adamw</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的参数</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>use_fused = fused_available and
+ device_type == &quot;cuda&quot;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>if master_process:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>print(f&quot;using fused AdamW:
+ {use_fused}&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>optimizer =
+ torch.optim.AdamW(optim_groups, lr=learning_rate, betas=(0.9, 0.95), eps=1e-8,
+ fused=use_fused)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>return optimizer</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>#
+ -----------------------------------------------------------------------------</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>import tiktoken</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>import numpy as np</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>def
+ load_tokens(filename):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>npt = np.load(filename)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>npt = npt.astype(np.int32) # added after
+ video</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>ptt = torch.tensor(npt, dtype=torch.long)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>return ptt</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>class DataLoaderLite:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def __init__(self, B, T, process_rank,
+ num_processes, split):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.B = B</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.T = T</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.process_rank = process_rank</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.num_processes = num_processes</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>assert split in {'train', 'val'}</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># get the shard filenames</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>data_root = &quot;edu_fineweb10B&quot;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>shards = os.listdir(data_root)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>shards = [s for s in shards if split
+ in s]</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>shards = sorted(shards)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>shards = [os.path.join(data_root, s)
+ for s in shards]</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.shards = shards</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>assert len(shards) &gt; 0, f&quot;no
+ shards found for split {split}&quot;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>if master_process:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>print(f&quot;found {len(shards)}
+ shards for split {split}&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.reset()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def reset(self):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># state, init at shard zero</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.current_shard = 0</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.tokens =
+ load_tokens(self.shards[self.current_shard])</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.current_position = self.B *
+ self.T * self.process_rank</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def next_batch(self):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>B, T = self.B, self.T</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>buf =
+ self.tokens[self.current_position : self.current_position+B*T+1]</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x = (buf[:-1]).view(B, T) # inputs</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>y = (buf[1:]).view(B, T) # targets</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># advance the position in the tensor</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span>self.current_position += B * T *
+ self.num_processes</span><span lang=en-US> </span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=en-US>#ddp</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>时，每次取数据的跨度要乘以</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>num_processes</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，进程数量</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># if loading the next batch would be
+ out of bounds, advance to next shard</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>if self.current_position + (B * T *
+ self.num_processes + 1) &gt; len(self.tokens):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>self.current_shard =
+ (self.current_shard + 1) % len(self.shards)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>self.tokens =
+ load_tokens(self.shards[self.current_shard])</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>self.current_position = B * T *
+ self.process_rank</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>return x, y</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>#
+ -----------------------------------------------------------------------------</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'># helper function for
+ HellaSwag eval</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'># takes tokens, mask,
+ and logits, returns the index of the completion with the lowest loss</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>def
+ get_most_likely_row(tokens, mask, logits):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span># evaluate the autoregressive loss at all
+ positions</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>shift_logits = (logits[..., :-1,
+ :]).contiguous()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>shift_tokens = (tokens[...,
+ 1:]).contiguous()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>flat_shift_logits = shift_logits.view(-1,
+ shift_logits.size(-1))</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>flat_shift_tokens = shift_tokens.view(-1)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>shift_losses =
+ F.cross_entropy(flat_shift_logits, flat_shift_tokens, reduction='none')</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>shift_losses =
+ shift_losses.view(tokens.size(0), -1)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span># now get the average loss just for the
+ completion region (where mask == 1), in each row</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>shift_mask = (mask[..., 1:]).contiguous()
+ # we must shift mask, so we start at the last prompt token</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>masked_shift_losses = shift_losses *
+ shift_mask</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span># sum and divide by the number of 1s in
+ the mask</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>sum_loss = masked_shift_losses.sum(dim=1)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>avg_loss = sum_loss /
+ shift_mask.sum(dim=1)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span># now we have a loss for each of the 4
+ completions</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span># the one with the lowest loss should be
+ the most likely</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>pred_norm = avg_loss.argmin().item()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>return pred_norm</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>#
+ -----------------------------------------------------------------------------</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'># simple launch:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'># python train_gpt2.py</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'># DDP launch for e.g.
+ 8 GPUs:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'># torchrun
+ --standalone --nproc_per_node=8 train_gpt2.py</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'># run the training
+ loop</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>from torch.distributed
+ import init_process_group, destroy_process_group</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>from torch.nn.parallel
+ import DistributedDataParallel as DDP</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>import
+ torch.distributed as dist</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'># set up DDP
+ (distributed data parallel).</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'># torchrun command
+ sets the env variables RANK, LOCAL_RANK, and WORLD_SIZE</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US># 8</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>块</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>GPU</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，开</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>8</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>个进程，每个进程一个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>GPU</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，有一个主进程，</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>rank=0</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，其他是辅助进程。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>ddp =
+ int(os.environ.get('RANK', -1)) != -1 # is this a ddp run?</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>if ddp:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span># use of DDP atm demands CUDA, we set the
+ device appropriately according to rank</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>assert torch.cuda.is_available(),
+ &quot;for now i think we need CUDA for DDP&quot;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>init_process_group(backend='nccl')</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>ddp_rank = int(os.environ['RANK'])</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>    </span>ddp_local_rank =
+ int(os.environ['LOCAL_RANK'])</span><span lang=en-US> </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US># </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>l</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>ocal_rank</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，只有在多节点时才使用，是单个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US> </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>节点上的</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>GPU</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>rank</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>ddp_world_size =
+ int(os.environ['WORLD_SIZE'])</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>device = f'cuda:{ddp_local_rank}'</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>torch.cuda.set_device(device)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>master_process = ddp_rank == 0 # this
+ process will do logging, checkpointing etc.</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>else:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span># vanilla, non-DDP run</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>ddp_rank = 0</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>ddp_local_rank = 0</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>ddp_world_size = 1</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>master_process = True</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span># attempt to autodetect device</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>device = &quot;cpu&quot;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>if torch.cuda.is_available():</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>device = &quot;cuda&quot;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>elif hasattr(torch.backends,
+ &quot;mps&quot;) and torch.backends.mps.is_available():</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>device = &quot;mps&quot;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>print(f&quot;using device: {device}&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'># added after video,
+ pytorch can be serious about it's device vs. device_type distinction</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>device_type =
+ &quot;cuda&quot; if device.startswith(&quot;cuda&quot;) else &quot;cpu&quot;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>torch.manual_seed(1337)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>if
+ torch.cuda.is_available():</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>torch.cuda.manual_seed(1337)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>enc =
+ tiktoken.get_encoding(&quot;gpt2&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>total_batch_size =
+ 524288 # 2**19, ~0.5M, in number of tokens</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>B = 64 # micro batch
+ size</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>T = 1024 # sequence
+ length</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>assert
+ total_batch_size % (B * T * ddp_world_size) == 0, &quot;make sure
+ total_batch_size is divisible by B * T * ddp_world_size&quot;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>grad_accum_steps
+ = total_batch_size // (B * T * ddp_world_size</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=zh-CN>)</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US> #</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>grad_accum_steps要相应调整，因为</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>ddp</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>if
+ master_process:</span><span lang=en-US> </span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=en-US>#</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=zh-CN>只有主进程负责打印</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>print(f&quot;total desired batch size:
+ {total_batch_size}&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>print(f&quot;=&gt; calculated gradient
+ accumulation steps: {grad_accum_steps}&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>train_loader =
+ DataLoaderLite(B=B, T=T, process_rank=ddp_rank, num_processes=ddp_world_size,
+ split=&quot;train&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>val_loader =
+ DataLoaderLite(B=B, T=T, process_rank=ddp_rank, num_processes=ddp_world_size,
+ split=&quot;val&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>torch.set_float32_matmul_precision('high')</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'># create model</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>model =
+ GPT(GPTConfig(vocab_size=50304))</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'># model =
+ GPT.from_pretrained(&quot;gpt2&quot;) # or init from OpenAI GPT-2</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>model.to(device)</span><span
+ lang=en-US> </span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=en-US>#model.to(device)</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=zh-CN>将</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=en-US>model</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>转移到</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>device</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>上，但是对于</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>tensor
+ x</span><span style='font-weight:bold;background:lime;mso-highlight:lime'
+ lang=zh-CN>来说，必须要用</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=en-US>x=x.to(device)</span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=zh-CN>，因为x是没有状态的，</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>x.to(device)</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>不会将</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>x</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>转换为</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>device</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>上的对象，而是返回指向</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>device</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>上新内存的指针，。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>use_compile = False #
+ torch.compile interferes with HellaSwag eval and Generation. TODO fix</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>if use_compile:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>model = torch.compile(model)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>if ddp:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>model = DDP(model,
+ device_ids=[ddp_local_rank])</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>raw_model
+ = model.module if ddp else model</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=zh-CN> # always contains the
+ &quot;raw&quot; unwrapped model</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=en-US> </span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=zh-CN>如果用</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>ddp</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，那么</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>raw_model</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>是</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>model.module</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>max_lr = 6e-4</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>min_lr = max_lr * 0.1</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>warmup_steps = 715</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>max_steps = 19073 #
+ 19,073 steps is ~1 epoch, if data is 10B tokens and batch size 0.5M tokens</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>def get_lr(it):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span># 1) linear warmup for warmup_iters steps</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>if it &lt; warmup_steps:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>return max_lr * (it+1) / warmup_steps</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span># 2) if it &gt; lr_decay_iters, return min
+ learning rate</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>if it &gt; max_steps:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>return min_lr</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span># 3) in between, use cosine decay down to
+ min learning rate</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>decay_ratio = (it - warmup_steps) /
+ (max_steps - warmup_steps)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>assert 0 &lt;= decay_ratio &lt;= 1</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>coeff = 0.5 * (1.0 + math.cos(math.pi *
+ decay_ratio)) # coeff starts at 1 and goes to 0</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>return min_lr + coeff * (max_lr - min_lr)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'># optimize!</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>optimizer =
+ raw_model.configure_optimizers(weight_decay=0.1, learning_rate=6e-4,
+ device_type=device_type)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'># create the log
+ directory we will write checkpoints to and log to</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>log_dir =
+ &quot;log&quot;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>os.makedirs(log_dir,
+ exist_ok=True)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>log_file =
+ os.path.join(log_dir, f&quot;log.txt&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>with open(log_file,
+ &quot;w&quot;) as f: # open for writing to clear the file</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>pass</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>for step in
+ range(max_steps):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>t0 = time.time()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>last_step = (step == max_steps - 1)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span># once in a while evaluate our validation
+ loss</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>if step % 250 == 0 or last_step:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>model.eval()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>val_loader.reset()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>with torch.no_grad():</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>val_loss_accum = 0.0</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>val_loss_steps = 20</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>for _ in range(val_loss_steps):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>x, y = val_loader.next_batch()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>x, y = x.to(device),
+ y.to(device)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>with
+ torch.autocast(device_type=device_type, dtype=torch.bfloat16):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                    </span>logits, loss = model(x, y)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>loss = loss / val_loss_steps</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>val_loss_accum +=
+ loss.detach()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>if ddp:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>dist.all_reduce(val_loss_accum,
+ op=dist.ReduceOp.AVG)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>if master_process:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>print(f&quot;validation loss:
+ {val_loss_accum.item():.4f}&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>with open(log_file, &quot;a&quot;)
+ as f:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>f.write(f&quot;{step} val
+ {val_loss_accum.item():.4f}\n&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>if step &gt; 0 and (step % 5000 ==
+ 0 or last_step):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span># optionally write model
+ checkpoints</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>checkpoint_path =
+ os.path.join(log_dir, f&quot;model_{step:05d}.pt&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>checkpoint = {</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                    </span>'model':
+ raw_model.state_dict(),</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                    </span>'config':
+ raw_model.config,</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                    </span>'step': step,</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                    </span>'val_loss':
+ val_loss_accum.item()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>}</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span># you might also want to add
+ optimizer.state_dict() and</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span># rng seeds etc., if you
+ wanted to more exactly resume training</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>torch.save(checkpoint,
+ checkpoint_path)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span># once in a while evaluate hellaswag</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>if (step % 250 == 0 or last_step) and (not
+ use_compile):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>num_correct_norm = 0</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>num_total = 0</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>for i, example in
+ enumerate(iterate_examples(&quot;val&quot;)):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># only process examples where i %
+ ddp_world_size == ddp_rank</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>if i % ddp_world_size != ddp_rank:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>continue</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># render the example into tokens
+ and labels</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>_, tokens, mask, label =
+ render_example(example)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>tokens = tokens.to(device)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>mask = mask.to(device)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># get the logits</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>with torch.no_grad():</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>with
+ torch.autocast(device_type=device_type, dtype=torch.bfloat16):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                    </span>logits, loss =
+ model(tokens)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>pred_norm =
+ get_most_likely_row(tokens, mask, logits)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>num_total += 1</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>num_correct_norm += int(pred_norm
+ == label)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># reduce the stats across all
+ processes</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>if ddp:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>num_total =
+ torch.tensor(num_total, dtype=torch.long, device=device)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>num_correct_norm =
+ torch.tensor(num_correct_norm, dtype=torch.long, device=device)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>            </span>dist.all_reduce(num_total,
+ op=dist.ReduceOp.SUM)</span><span lang=en-US> </span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=en-US>#</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>ran</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>k</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>之间进行同步</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>            </span>dist.all_reduce(num_correct_norm,
+ op=dist.ReduceOp.SUM)</span><span lang=en-US> </span><span style='font-weight:
+ bold;background:lime;mso-highlight:lime' lang=en-US>#</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>ran</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>k</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>之间进行同步</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>num_total = num_total.item()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>num_correct_norm =
+ num_correct_norm.item()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>acc_norm = num_correct_norm /
+ num_total</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>if master_process:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>print(f&quot;HellaSwag accuracy:
+ {num_correct_norm}/{num_total}={acc_norm:.4f}&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>with open(log_file, &quot;a&quot;)
+ as f:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>f.write(f&quot;{step} hella
+ {acc_norm:.4f}\n&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span># once in a while generate from the model
+ (except step 0, which is noise)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>if ((step &gt; 0 and step % 250 == 0) or
+ last_step) and (not use_compile):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>model.eval()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>num_return_sequences = 4</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>max_length = 32</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>tokens = enc.encode(&quot;Hello, I'm a
+ language model,&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>tokens = torch.tensor(tokens,
+ dtype=torch.long)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>tokens =
+ tokens.unsqueeze(0).repeat(num_return_sequences, 1)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>xgen = tokens.to(device)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>sample_rng =
+ torch.Generator(device=device)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>sample_rng.manual_seed(42 + ddp_rank)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>while xgen.size(1) &lt; max_length:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># forward the model to get the
+ logits</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>with torch.no_grad():</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>with
+ torch.autocast(device_type=device_type, dtype=torch.bfloat16):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                    </span>logits, loss = model(xgen)
+ # (B, T, vocab_size)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span># take the logits at the last
+ position</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>logits = logits[:, -1, :] #
+ (B, vocab_size)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span># get the probabilities</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>probs = F.softmax(logits,
+ dim=-1)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span># do top-k sampling of 50
+ (huggingface pipeline default)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span># topk_probs here becomes (5,
+ 50), topk_indices is (5, 50)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>topk_probs, topk_indices =
+ torch.topk(probs, 50, dim=-1)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span># select a token from the
+ top-k probabilities</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span># note: multinomial does not
+ demand the input to sum to 1</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>ix =
+ torch.multinomial(topk_probs, 1, generator=sample_rng) # (B, 1)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span># gather the corresponding
+ indices</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>xcol =
+ torch.gather(topk_indices, -1, ix) # (B, 1)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span># append to the sequence</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>xgen = torch.cat((xgen, xcol),
+ dim=1)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># print the generated text</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>for i in range(num_return_sequences):</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>tokens = xgen[i,
+ :max_length].tolist()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>decoded = enc.decode(tokens)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>print(f&quot;rank {ddp_rank}
+ sample {i}: {decoded}&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>    </span># do one step of the optimization</span><span
+ lang=en-US> </span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=zh-CN>这里开始训练</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>model.train()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>optimizer.zero_grad()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>loss_accum = 0.0</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>    </span>for micro_step in range(grad_accum_steps):</span><span
+ lang=en-US> </span><span style='font-weight:bold;background:lime;mso-highlight:
+ lime' lang=en-US>#</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=zh-CN>梯度累积步数，在每个</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=en-US>step</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>中，只进行</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>loss.backward</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，只进行梯度累加，不进行梯度更新</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x, y = train_loader.next_batch()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x, y = x.to(device), y.to(device)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># added after video, this field is
+ also used by the forward pass.</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>if ddp:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>            </span>model.require_backward_grad_sync =
+ (micro_step == grad_accum_steps - 1)</span><span lang=en-US> </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>#</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>l</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>oss.backward()</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>会进行梯度同步</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US> </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，在这里设置只有在grad_accum_steps的最后一步时，再进行所有</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>rank</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>的梯度同步。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span>with
+ torch.autocast(device_type=device_type, dtype=torch.bfloat16):</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>#</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>进行</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>bf16</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>运算。但并不是</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>model</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>中的所有层都会被转换为</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>bf16</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，只有部分层会进行</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>bf16</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>转换，其他层如</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>softmax</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>等仍然保持在f</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>p32</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>，因为这些层对精度变化更敏感。矩阵乘法对精度的变化</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US> </span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>相对来说很稳健。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>logits, loss = model(x, y)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># we have to scale the loss to account
+ for gradient accumulation,</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># because the gradients just add on
+ each successive backward().</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># addition of gradients corresponds to
+ a SUM in the objective, but</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># instead of a SUM we want MEAN. Scale
+ the loss here so it comes out right</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>loss = loss / grad_accum_steps</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>loss_accum += loss.detach()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>loss.backward()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>if ddp:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span>dist.all_reduce(loss_accum,
+ op=dist.ReduceOp.AVG)</span><span style='font-weight:bold;background:lime;
+ mso-highlight:lime' lang=en-US> #</span><span style='font-weight:bold;
+ background:lime;mso-highlight:lime' lang=zh-CN>这行代码对所有</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>rank</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>上的</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>loss</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>进行平均，并同步存储在每个</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>rank</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>上</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>norm =
+ torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span># determine and set the learning rate for
+ this iteration</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>lr = get_lr(step)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>for param_group in optimizer.param_groups:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>param_group['lr'] = lr</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>optimizer.step()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>if device_type == &quot;cuda&quot;:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>torch.cuda.synchronize() # wait for
+ the GPU to finish work</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>t1 = time.time()</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>dt = t1 - t0 # time difference in seconds</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>tokens_processed = train_loader.B *
+ train_loader.T * grad_accum_steps * ddp_world_size</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>tokens_per_sec = tokens_processed / dt</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>if master_process:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>print(f&quot;step {step:5d} | loss:
+ {loss_accum.item():.6f} | lr {lr:.4e} | norm: {norm:.4f} | dt: {dt*1000:.2f}ms
+ | tok/sec: {tokens_per_sec:.2f}&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>with open(log_file, &quot;a&quot;) as
+ f:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>f.write(f&quot;{step} train
+ {loss_accum.item():.6f}\n&quot;)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>if ddp:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>destroy_process_group()</p>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

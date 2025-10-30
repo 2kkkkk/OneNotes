@@ -1,0 +1,118 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href="sentence_transformers.htm">
+<link rel=File-List href="sentence_transformers.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:18.9145in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.6104in;width:3.5402in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'>sentence_transformers</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:.6104in;width:1.5979in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>6</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>6</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>16:18</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:18.9145in'>
+
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <p style='margin-top:0pt;margin-bottom:18pt;font-family:微软雅黑;font-size:48.0pt;
+ color:#404040'><span style='font-weight:bold;background:#FCFCFC'>分布式训练</span></p>
+ <p style='margin-top:0pt;margin-bottom:18pt;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#404040;background:#FCFCFC'>Sentence Transformers
+ 实现了两种形式的分布式训练：数据并行 (DP) 和分布式数据并行 (DDP)。阅读 Hugging Face 上关于这些策略的</span><a
+ href="https://hugging-face.cn/docs/transformers/en/perf_train_gpu_many#data-parallelism"><span
+ style='background:#FCFCFC'>数据并行文档</span></a><span style='color:#404040;
+ background:#FCFCFC'>以获取更多详细信息。一些主要区别包括</span></p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
+  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      color:#404040'><span style='font-family:微软雅黑;font-size:36.0pt;font-weight:
+      normal;font-style:normal;font-family:微软雅黑;font-size:36.0pt;background:
+      #FCFCFC'>DDP 通常比 DP 更快，因为它需要通信的数据更少。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#404040'><span
+      style='font-family:微软雅黑;font-size:36.0pt;background:#FCFCFC'>使用 DP 时，GPU
+      0 完成大部分工作，而使用 DDP 时，工作更均匀地分布在所有 GPU 上。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#404040'><span
+      style='font-family:微软雅黑;font-size:36.0pt;background:#FCFCFC'>DDP
+      允许跨多台机器进行训练，而 DP 仅限于单台机器。</span></li>
+ </ol>
+ <p style='margin-top:0pt;margin-bottom:18pt;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#404040;background:#FCFCFC'>简而言之，</span><span style='font-weight:
+ bold;color:#404040;background:#FCFCFC'>通常建议使用 DDP</span><span
+ style='color:#404040;background:#FCFCFC'>。您可以使用&nbsp;</span><span
+ style='color:#E74C3C;background:white'>torchrun</span><span style='color:#404040;
+ background:#FCFCFC'>&nbsp;或&nbsp;</span><span style='color:#E74C3C;background:
+ white'>accelerate</span><span style='color:#404040;background:#FCFCFC'>&nbsp;运行您的正常训练脚本来使用
+ DDP。例如，如果您有一个名为&nbsp;</span><span style='color:#E74C3C;background:white'>train_script.py</span><span
+ style='color:#404040;background:#FCFCFC'>&nbsp;的脚本，则可以使用以下命令通过 DDP 运行它</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;color:#0EA5E9'>通过&nbsp;</span><span style='font-weight:
+ bold;color:#E74C3C;background:white'>torchrun</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#404040'>torchrun </span><span style='color:#666666'>--</span><span
+ style='color:#404040'>nproc_per_node</span><span style='color:#666666'>=4</span><span
+ style='color:#404040'> train_script</span><span style='color:#666666'>.</span><span
+ style='color:#404040'>py</span></p>
+ <p style='margin-top:0pt;margin-bottom:18pt;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#404040'>当执行分布式训练时，您必须将代码包装在&nbsp;</span><span style='color:#E74C3C;
+ background:white'>main</span><span style='color:#404040'>&nbsp;函数中，并使用&nbsp;</span><span
+ style='color:#E74C3C;background:white'>if&nbsp;__name__&nbsp;==&nbsp;&quot;__main__&quot;:</span><span
+ style='color:#404040'>&nbsp;调用它。这是因为每个进程都会运行整个脚本，因此您不希望多次运行相同的代码。以下是如何执行此操作的示例</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;color:green'>from </span><span style='font-weight:
+ bold;color:blue'>sentence_transformers </span><span style='font-weight:bold;
+ color:green'>import</span><span style='color:#404040'> SentenceTransformer,
+ SentenceTransformerTrainingArguments, SentenceTransformerTrainer<br>
+  </span><span style='font-style:italic;color:#3D7B7B'># Other imports here</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;color:green'>def </span><span style='color:blue'>main</span><span
+ style='color:#404040'>():<br>
+  <span style='mso-spacerun:yes'>    </span></span><span style='font-style:
+ italic;color:#3D7B7B'># Your training code here</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;color:green'>if </span><span style='color:#19177C'>__name__
+ </span><span style='color:#666666'>== </span><span style='color:#BA2121'>&quot;__main__&quot;</span><span
+ style='color:#404040'>:<br>
+  <span style='mso-spacerun:yes'>    </span>main()</span></p>
+ <p><cite style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#595959'>&nbsp;</cite></p>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

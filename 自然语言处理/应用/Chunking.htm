@@ -1,0 +1,220 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=Chunking.htm>
+<link rel=File-List href="Chunking.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:23.6291in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.6118in'>
+
+<p style='margin:0in;font-size:20.0pt'><span style='font-family:微软雅黑'
+lang=en-US>C</span><span style='font-family:"Calibri Light"' lang=zh-CN>hunking</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:2.0562in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:"Microsoft YaHei"'>年</span><span
+style='font-family:Calibri'>8</span><span style='font-family:"Microsoft YaHei"'>月</span><span
+style='font-family:Calibri'>1</span><span style='font-family:"Microsoft YaHei"'>日
+星期五</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>10:45</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.1736in;margin-left:.0326in;width:23.5965in'>
+
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#242424'><span
+ style='font-weight:bold'>Level 1 : Fixed Size Chunking</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#242424'>This is
+ the most crude and simplest method of segmenting the text. It breaks down the
+ text into chunks of a specified number of characters, regardless of their
+ content or structure.</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#242424'>Langchain and llamaindex&nbsp;</span><span
+ style='color:#242424'>framework offer&nbsp;</span><a
+ href="https://python.langchain.com/docs/modules/data_connection/document_transformers/character_text_splitter">CharacterTextSplitter&nbsp;</a><span
+ style='color:#242424'>and&nbsp;</span><a
+ href="https://docs.llamaindex.ai/en/stable/api/llama_index.node_parser.SentenceSplitter.html">SentenceSplitter&nbsp;</a><span
+ style='color:#242424'>(default to spliting on sentences) classes for this
+ chunking technique. A few concepts to remember -</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#242424'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>How the text
+      is split</span><span style='font-family:微软雅黑;font-size:36.0pt'>: by
+      single character</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#242424'><span
+       style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>How the chunk
+       size is measured:</span><span style='font-family:微软雅黑;font-size:36.0pt'>&nbsp;by
+       number of characters</span></li>
+   <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+    margin-bottom:0in'>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#242424'><span
+        style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>chunk_size:</span><span
+        style='font-family:微软雅黑;font-size:36.0pt'>&nbsp;the number of
+        characters in the chunks</span></li>
+    <ul type=square style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+     margin-bottom:0in'>
+     <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#242424'><span
+         style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>chunk_overlap:</span><span
+         style='font-family:微软雅黑;font-size:36.0pt'>&nbsp;the number of
+         characters that are being overlap in sequential chunks. keep duplicate
+         data across chunks</span></li>
+     <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+      margin-bottom:0in'>
+      <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#242424'><span
+          style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>separator</span><span
+          style='font-family:微软雅黑;font-size:36.0pt'>: character(s) on which the
+          text would be split on (default “”)</span></li>
+     </ul>
+    </ul>
+   </ul>
+  </ul>
+ </ul>
+ <p style='margin:0in;line-height:21pt;font-family:微软雅黑;font-size:36.0pt;
+ color:#242424'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#242424'><span
+ style='font-weight:bold'>Level 2: Recursive Chunking</span></p>
+ <p style='margin:0in;margin-left:1.875in;font-family:微软雅黑;font-size:36.0pt;
+ color:#242424'>While Fixed size chunking is easier to implement, it doesn’t
+ consider the structure of text. Recursive chunking offers an alternative.</p>
+ <p style='margin:0in;margin-left:1.875in;font-family:微软雅黑;font-size:36.0pt;
+ color:#242424'>In this method, we divide the text into smaller chunk in a
+ hierarchical and iterative manner using a set of separators. If the initial
+ attempt at splitting the text doesn’t produce chunks of the desired size, the
+ method recursively calls itself on the resulting chunks with a different
+ separator until the desired chunk size is achieved.</p>
+ <p style='margin:0in;margin-left:1.875in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;color:#242424'>Langchain framework offers&nbsp;</span><a
+ href="https://python.langchain.com/docs/modules/data_connection/document_transformers/recursive_text_splitter"><span
+ style='font-weight:bold'>RecursiveCharacterTextSplitter</span></a><span
+ style='font-weight:bold;color:#242424'>&nbsp;class, which splits text
+ using&nbsp;</span><a
+ href="https://github.com/langchain-ai/langchain/blob/9ef2feb6747f5a69d186bd623b569ad722829a5e/libs/langchain/langchain/text_splitter.py#L842"><span
+ style='font-weight:bold'>default separators</span></a><span style='font-weight:
+ bold;color:#242424'>&nbsp;(“\n\n”, “\n”, “ “,””)</span></p>
+ <p style='margin:0in;margin-left:1.875in;line-height:24pt;font-family:微软雅黑;
+ font-size:36.0pt;color:#242424'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#242424'><span
+ style='font-weight:bold'>Level 3 : Document Based Chunking</span></p>
+ <p style='margin:0in;margin-left:1.875in;font-family:微软雅黑;font-size:36.0pt;
+ color:#242424'>In this chunking method, we split a document based on its
+ inherent structure. This approach considers the flow and structure of content
+ but may not be as effective documents lacking clear structure.</p>
+ <p style='margin:0in;margin-left:1.875in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold'>For instance, a legal document might be chunked by
+ individual charges, with each charge treated as a chunk. This method maintains
+ the document's structural integrity and ensures that no important legal
+ context is lost.&nbsp;</span></p>
+ <p style='margin:0in;margin-left:1.875in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold'>类似一个章节，或一个小节等。</span></p>
+ <p style='margin:0in;margin-left:1.875in;line-height:24pt;font-family:微软雅黑;
+ font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#242424'><span
+ style='font-weight:bold'>Level 4: Semantic Chunking</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#242424'>All
+ above three levels deals with content and structure of documents and
+ necessitate maintaining constant value of chunk size. This chunking method
+ aims to extract semantic meaning from embeddings and then assess the semantic
+ relationship between these chunks. The core idea is to keep together chunks
+ that are semantic similar.</p>
+ <p style='margin:0in;line-height:24pt;font-family:微软雅黑;font-size:36.0pt;
+ color:#242424'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#242424'><span
+ style='font-weight:bold'>Level 5: Agentic Chunking</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#242424'>This
+ chunking strategy explore the possibility to use LLM to determine how much and
+ what text should be included in a chunk based on the context.</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#242424'>To generate initial chunks, it uses&nbsp;</span><a
+ href="https://arxiv.org/pdf/2312.06648.pdf">concept of Propositions based on
+ paper</a><span style='color:#242424'>that extracts stand alone statements from
+ a raw piece of text. Langchain provides&nbsp;</span><a
+ href="https://templates.langchain.com/new?integration_name=propositional-retrieval">propositional-retrieval
+ template</a><span style='color:#242424'>&nbsp;to implement this.</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#242424'>After
+ generating propositions, these are being feed to LLM-based agent. This agent
+ determine whether a proposition should be included in an existing chunk or if
+ a new chunk should be created.</p>
+ <p style='margin:0in;line-height:24pt;font-family:微软雅黑;font-size:36.0pt;
+ color:#242424'>&nbsp;</p>
+ <p style='margin:0in;line-height:24pt;font-family:微软雅黑;font-size:36.0pt;
+ color:#242424'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt;color:#141413'><span
+ style='font-weight:bold;background:#FAF9F5'>Introducing Contextual Retrieval</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#141413'><span style='background:#FAF9F5'>The context conundrum in
+ traditional RAG</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#141413'><span style='background:#FAF9F5'>In traditional RAG, documents
+ are typically split into smaller chunks for efficient retrieval. While this
+ approach works well for many applications, it can lead to problems when
+ individual chunks lack sufficient context.</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#141413'><span style='background:#FAF9F5'>For example, imagine you had a
+ collection of financial information (say, U.S. SEC filings) embedded in your
+ knowledge base, and you received the following question: &quot;What was the
+ revenue growth for</span><span style='font-weight:bold;background:#FAF9F5'>
+ ACME Corp</span><span style='background:#FAF9F5'> in Q2 2023?&quot;</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#141413'><span style='background:#FAF9F5'>A relevant chunk might contain
+ the text: &quot;</span><span style='font-weight:bold;background:#FAF9F5'>The
+ company's</span><span style='background:#FAF9F5'> revenue grew by 3% over the
+ previous quarter.&quot; However, this chunk on its own doesn't specify which
+ company it's referring to or the relevant time period, making it difficult to
+ retrieve the right information or use the information effectively.</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#141413'><span style='font-weight:bold;background:#FAF9F5' lang=zh-CN>c</span><span
+ style='font-weight:bold;background:#FAF9F5' lang=en-US>hunk</span><span
+ style='font-weight:bold;background:#FAF9F5' lang=zh-CN>中没有显式地提到</span><span
+ style='font-weight:bold;background:#FAF9F5' lang=en-US>ACME</span><span
+ style='font-weight:bold;background:#FAF9F5' lang=zh-CN>公司，而是</span><span
+ style='font-weight:bold;background:#FAF9F5' lang=en-US>T</span><span
+ style='font-weight:bold;background:#FAF9F5' lang=zh-CN>he</span><span
+ style='font-weight:bold;background:#FAF9F5' lang=en-US> company</span><span
+ style='font-weight:bold;background:#FAF9F5' lang=zh-CN>，因此需要加入额外的上下文信息，这个信息可以用</span><span
+ style='font-weight:bold;background:#FAF9F5' lang=en-US>LLM</span><span
+ style='font-weight:bold;background:#FAF9F5' lang=zh-CN>提取，</span></p>
+ <p style='margin:0in;margin-left:1.125in'><img
+ src="Chunking.files/image001.jpg" width=2148 height=676></p>
+ <p style='margin:0in;line-height:24pt;font-family:微软雅黑;font-size:36.0pt;
+ color:#242424'>&nbsp;</p>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=CNN.htm>
+<link rel=File-List href="CNN.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:29.7041in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.1722in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt' lang=en-US>CNN</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>9</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>15</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>15:17</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.7444in;margin-left:.5784in;width:29.1256in'>
+
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>“卷积是一个通道一个通道分开独立计算”是不完全正确的，这是一个非常常见的误解。</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>卷积核是“全通道”的：</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>实际上，一<span
+ style='font-weight:bold'>个标准的卷积核（无论是3x3还是1x1），它的深度（即通道数）总是和输入特征图的通道数 C_in
+ 完全相等的。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>对于一个输入为 [H, W, C_in]
+ 的特征图。</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>一个单一的 3x3 卷积核，其实际尺寸是 [3, 3,
+      C_in]。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>一个单一的 1x1 卷积核，其实际尺寸是 [1, 1,
+      C_in]。</span></li>
+ </ul>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>计算过程是这样的：</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>这个 [3, 3, C_in]
+ 的核会同时覆盖输入特征图上一个 3x3xC_in 的局部区域。卷积操作是：</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>将这个核与输入区域逐通道、逐元素相乘。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>将所有 C_in
+      个通道的乘法结果求和，</span><span style='font-family:微软雅黑;font-size:36.0pt'>再加上一个偏置项（bias）。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>最终得到的只是一个数字（对应输出特征图的一个像素、一个通道）。</span></li>
+ </ul>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold'>一个卷积核相当于一次性融合所有输入通道的信息。</span>例如，如果输入是RGB三通道图片，一个权重为
+ [0.3, 0.6, 0.1] 的1x1卷积核，它的计算就是 输出 = 0.3*R + 0.6*G +
+ 0.1*B。这显然是在融合三个通道的信息，并且更“看重”G通道。</p>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

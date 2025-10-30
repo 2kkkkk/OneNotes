@@ -1,0 +1,229 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=CS336-2025-lec3-4.htm>
+<link rel=File-List href="CS336-2025-lec3-4.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:23.7131in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.3486in;width:3.0784in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt' lang=en-US>CS336-2025-lec3-4</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:.3486in;width:1.7388in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>10</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>21</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>16:15</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:23.7131in'>
+
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>z</span><span
+ lang=en-US>-loss</span><span lang=zh-CN>：通过约束</span><span lang=en-US>logits</span><span
+ lang=zh-CN>的</span><span lang=en-US>l2</span><span lang=zh-CN>范数来防止数值爆炸，从而提升训练过程的稳定性。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+ style='font-weight:bold'>lec4-MOE</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>将原来的一个</span><span lang=en-US>FFN</span><span lang=zh-CN>层换成多个稀疏激活的</span><span
+ lang=en-US>FFN</span><span lang=zh-CN>层，通过</span><span lang=en-US>router</span><span
+ lang=zh-CN>来稀疏激活子</span><span lang=en-US>FFN</span><span lang=zh-CN>层，这样的好处是在同样</span><span
+ lang=en-US>FLOPS</span><span lang=zh-CN>下可以拥有更多的参数量。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>多个</span><span lang=en-US>paper</span><span lang=zh-CN>的实验表明</span><span
+ lang=en-US> </span><span lang=zh-CN>，</span><span lang=en-US>MOE</span><span
+ lang=zh-CN>比</span><span lang=en-US>DENSE</span><span lang=zh-CN>架构训练效果更好。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>MOE</span><span lang=zh-CN>在系统设计上更容易并行。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>M</span><span lang=zh-CN>oe存在的问题：</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>1</span><span lang=zh-CN>）只有在多节点训练时</span><span lang=en-US>,MOE</span><span
+ lang=zh-CN>架构才有优势。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>2</span><span lang=zh-CN>）</span><span style='font-weight:bold'
+ lang=zh-CN>路由决策是不可微分</span><span style='font-weight:bold' lang=en-US> </span><span
+ style='font-weight:bold' lang=zh-CN>的</span><span lang=zh-CN>，因此优化时，即梯度反向传播时，存在困难，必须仔细设计这部分。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>通常的做法是对ff</span><span lang=en-US>n</span><span lang=zh-CN>层做</span><span
+ lang=en-US>moe</span><span lang=zh-CN>设计，但是也有对</span><span lang=en-US>attention</span><span
+ lang=zh-CN>层做</span><span lang=en-US>mo</span><span lang=zh-CN>e的，但是这样训练更不稳定。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:42.0pt;font-weight:bold;font-style:normal'>
+  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold'><span style='font-family:微软雅黑;font-size:42.0pt;
+      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+      font-size:42.0pt' lang=en-US>R</span><span style='font-family:微软雅黑;
+      font-size:42.0pt;font-weight:bold;font-style:normal;font-weight:bold;
+      font-family:微软雅黑;font-size:42.0pt' lang=zh-CN>out</span><span
+      style='font-family:微软雅黑;font-size:42.0pt;font-weight:bold;font-style:
+      normal;font-weight:bold;font-family:微软雅黑;font-size:42.0pt' lang=en-US>ing
+      function</span></li>
+ </ol>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>通常的做法是每个</span><span lang=en-US>token</span><span lang=zh-CN>选择</span><span
+ lang=en-US>topk</span><span lang=zh-CN>个</span><span lang=en-US>expert</span><span
+ lang=zh-CN>，少见的做法是每个</span><span lang=en-US>expert</span><span lang=zh-CN>选择</span><span
+ lang=en-US>topk</span><span lang=zh-CN>个</span><span lang=en-US>token</span><span
+ lang=zh-CN>。有</span><span lang=en-US>paper</span><span lang=zh-CN>的消融实验表明，</span><span
+ lang=en-US>token choice routing </span><span lang=zh-CN>效果好于</span><span
+ lang=en-US>expert choice routing</span><span lang=zh-CN>（</span><span
+ lang=en-US>expert choice routing</span><span lang=zh-CN>的好处是每个专家都会被分到数量均等的</span><span
+ lang=en-US>token</span><span lang=zh-CN>，这在专家并行时很重要，避免</span><span lang=en-US>token</span><span
+ lang=zh-CN>都被分到一个</span><span lang=en-US>GPU</span><span lang=zh-CN>上）。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>其他</span><span style='font-weight:bold'
+ lang=en-US>R</span><span style='font-weight:bold' lang=zh-CN>out</span><span
+ style='font-weight:bold' lang=en-US>ing</span><span style='font-weight:bold'
+ lang=zh-CN>方法：</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>对于</span><span lang=en-US>R</span><span lang=zh-CN>out</span><span
+ lang=en-US>er</span><span lang=zh-CN>，可以是一个单层</span><span lang=en-US>MLP</span><span
+ lang=zh-CN>，</span><span lang=en-US>x*W</span><span lang=zh-CN>，经过</span><span
+ lang=en-US>softmax</span><span lang=zh-CN>，得到</span><span lang=en-US>k</span><span
+ lang=zh-CN>个</span><span lang=en-US>expert</span><span lang=zh-CN>的权重</span><span
+ lang=en-US> </span><span lang=zh-CN>。也可以是一个</span><span lang=en-US>hash</span><span
+ lang=zh-CN>函数，不需要训练，根据</span><span lang=en-US>hash</span><span lang=zh-CN>函数分配</span><span
+ lang=en-US>token</span><span lang=zh-CN>到不同的Exper</span><span lang=en-US>t</span><span
+ lang=zh-CN>上。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>还有</span><span lang=en-US>RL routing</span><span lang=zh-CN>，因为</span><span
+ lang=en-US>routing</span><span lang=zh-CN>是个离散的过程，</span><span lang=en-US>RL</span><span
+ lang=zh-CN>适合解决离散的问题。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>还有的通过</span><span lang=en-US>solve a matching problem</span><span
+ lang=zh-CN>来做</span><span lang=en-US>routing</span><span lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:1.875in'><img
+ src="CS336-2025-lec3-4.files/image001.jpg" width=1457 height=765></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>上图是</span><span lang=en-US>token choice routing</span><span
+ lang=zh-CN>，计算每个</span><span lang=en-US>expert</span><span lang=zh-CN>的权重时，类似于计算</span><span
+ lang=en-US>attention</span><span lang=zh-CN>得分，将</span><span lang=en-US>token </span><span
+ lang=zh-CN>emb</span><span lang=en-US>edding </span><span style='font-weight:
+ bold' lang=en-US>u</span><span lang=zh-CN>和专家e</span><span lang=en-US>mbedding
+ </span><span style='font-weight:bold' lang=en-US>e </span><span
+ style='font-weight:bold' lang=zh-CN>做</span><span lang=zh-CN>点积，然后</span><span
+ lang=en-US>softmax</span><span lang=zh-CN>归一化（注意，只对</span><span lang=en-US>topk</span><span
+ lang=zh-CN>个专家进行</span><span lang=en-US>softmax</span><span lang=zh-CN>，而不是对所有专家），得到权重</span><span
+ lang=en-US> </span><span lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>D</span><span lang=zh-CN>eep</span><span lang=en-US>seek v3 moe</span><span
+ lang=zh-CN>：细粒度专家</span><span lang=en-US>+</span><span lang=zh-CN>共享专家。细粒度指的是每个专家的参数量变小，专家数量变多</span></p>
+ <p style='margin:0in;margin-left:1.125in'><img
+ src="CS336-2025-lec3-4.files/image002.jpg" width=1596 height=824></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:42.0pt;font-weight:bold;font-style:normal'>
+  <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold'><span style='font-family:微软雅黑;font-size:42.0pt;
+      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+      font-size:42.0pt' lang=en-US>E</span><span style='font-family:微软雅黑;
+      font-size:42.0pt;font-weight:bold;font-style:normal;font-weight:bold;
+      font-family:微软雅黑;font-size:42.0pt' lang=zh-CN>x</span><span
+      style='font-family:微软雅黑;font-size:42.0pt;font-weight:bold;font-style:
+      normal;font-weight:bold;font-family:微软雅黑;font-size:42.0pt' lang=en-US>pert
+      sizes</span></li>
+ </ol>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:42.0pt'
+ lang=en-US>&nbsp;</p>
+ <p style='margin:0in;margin-left:1.125in'><img
+ src="CS336-2025-lec3-4.files/image003.jpg" width=1679 height=907></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:42.0pt'
+ lang=en-US>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:42.0pt'
+ lang=en-US>&nbsp;</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:42.0pt;font-weight:bold;font-style:normal'>
+  <li value=3 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold' lang=en-US><span style='font-family:微软雅黑;font-size:
+      42.0pt;font-weight:bold;font-style:normal;font-weight:bold;font-family:
+      微软雅黑;font-size:42.0pt'>Training objectives</span></li>
+ </ol>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+ lang=en-US>Sparse gating decisions are not differentiable</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>RL-</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>效果一般</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=en-US><span
+      style='font-family:微软雅黑;font-size:36.0pt'>stochastic perturbations</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=en-US><span
+      style='font-family:微软雅黑;font-size:36.0pt'>heuristic balancing loss</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:1.875in'><img
+ src="CS336-2025-lec3-4.files/image004.jpg" width=1536 height=1015></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>通过设计</span><span lang=en-US>balanced loss</span><span lang=zh-CN>学习</span><span
+ lang=en-US>router </span><span lang=zh-CN>函数，让</span><span lang=en-US>tokens</span><span
+ lang=zh-CN>被均匀分配到不同的专家或</span><span lang=en-US>GPU</span><span lang=zh-CN>上。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>D</span><span lang=zh-CN>e</span><span lang=en-US>epseek v3 </span><span
+ lang=zh-CN>通过在线学习，调整每个ex</span><span lang=en-US>pert</span><span lang=zh-CN>的</span><span
+ lang=en-US>b_i</span><span lang=zh-CN>。如果这个专家很受欢迎，就降低它的</span><span
+ lang=en-US>bi</span><span lang=zh-CN>，如果不受欢迎，就提高它的</span><span lang=en-US>bi</span></p>
+ <p style='margin:0in;margin-left:.75in'><img
+ src="CS336-2025-lec3-4.files/image005.jpg" width=1754 height=394></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>如果不做专家</span><span lang=en-US>balanced loss</span><span lang=zh-CN>，那么实际上只有</span><span
+ lang=en-US>1-2</span><span lang=zh-CN>个专家被一直激活，其他专家都没有用。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:42.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:42.0pt'><span
+ style='font-weight:bold' lang=en-US>Moe</span><span style='font-weight:bold'
+ lang=zh-CN>存在的问题</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>MOE</span><span lang=zh-CN>存在训练不稳定的问题，解决方法是用fl</span><span
+ lang=en-US>oat32</span><span lang=zh-CN>，并且加入</span><span lang=en-US>z-loss</span><span
+ lang=zh-CN>，以及上面提到的</span><span lang=en-US>expert balanced loss.</span></p>
+ <p style='margin:0in;margin-left:1.5in'><img
+ src="CS336-2025-lec3-4.files/image006.jpg" width=1656 height=386></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>另一个问题是，</span><span lang=en-US>moe</span><span lang=zh-CN>在</span><span
+ lang=en-US>finetuning</span><span lang=zh-CN>时容易过拟合，解决方法是可以用</span><span
+ lang=en-US>dense</span><span lang=zh-CN>和</span><span lang=en-US>moe</span><span
+ lang=zh-CN>层交替的架构</span><span lang=en-US> </span><span lang=zh-CN>，也可以增加训练数据。</span></p>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

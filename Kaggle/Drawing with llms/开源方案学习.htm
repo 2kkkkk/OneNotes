@@ -1,0 +1,546 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=开源方案学习.htm>
+<link rel=File-List href="开源方案学习.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:28.4736in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:2.2013in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'>开源方案学习</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>5</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>28</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>10:50</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.7277in;margin-left:.5in;width:26.0284in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#202124'><span
+style='font-weight:bold' lang=zh-CN>关于di</span><span style='font-weight:bold'
+lang=en-US>ffvg optimization</span><span style='font-weight:bold' lang=zh-CN>，diffvg是一个
+differentiable rasterizer.</span><span style='font-weight:bold' lang=en-US> </span><span
+style='font-weight:bold' lang=zh-CN>需要看看代码，有了需要调整的参数，有了可微分的</span><span
+style='font-weight:bold' lang=en-US>pipeline</span><span style='font-weight:
+bold' lang=zh-CN>，有了</span><span style='font-weight:bold' lang=en-US>loss</span><span
+style='font-weight:bold' lang=zh-CN>，具体是如何</span><span style='font-weight:bold'
+lang=en-US> hill climb</span><span style='font-weight:bold' lang=zh-CN>的？</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#202124'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#202124'><span
+style='font-weight:bold' lang=zh-CN>总结：</span><span style='font-weight:bold'
+lang=en-US>1.</span><span style='font-weight:bold' lang=zh-CN>直接</span><span
+style='font-weight:bold' lang=en-US>fine-tune SD</span><span style='font-weight:
+bold' lang=zh-CN>，</span><span style='font-weight:bold' lang=en-US>lora,
+flowGRPO</span><span style='font-weight:bold' lang=zh-CN>等</span></p>
+
+<p style='margin:0in;margin-left:1.5in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span style='font-weight:bold' lang=en-US>2.</span><span
+style='font-weight:bold' lang=zh-CN>不</span><span style='font-weight:bold'
+lang=en-US>fine-tune SD</span><span style='font-weight:bold' lang=zh-CN>，用</span><span
+style='font-weight:bold' lang=en-US>diffvg optimazation </span><span
+style='font-weight:bold' lang=zh-CN>调整</span><span style='font-weight:bold'
+lang=en-US>svg</span><span style='font-weight:bold' lang=zh-CN>的参数如</span><span
+style='font-weight:bold' lang=en-US>path</span><span style='font-weight:bold'
+lang=zh-CN>等参数</span></p>
+
+<p style='margin:0in;margin-left:1.5in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span style='font-weight:bold' lang=en-US>3.</span><span
+style='font-weight:bold' lang=zh-CN>ha</span><span style='font-weight:bold'
+lang=en-US>ck ocr</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:1.5944in;margin-left:0in;width:28.4736in'>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:48.0pt;
+color:#202124'><span style='font-weight:bold' lang=zh-CN>3rd place solution:
+VQA/AES=0.81/0.64 Diffusion model + differentiable SVG optimization</span><span
+style='font-weight:bold' lang=en-US> </span><span style='font-weight:bold'
+lang=zh-CN>有源码</span><span style='font-weight:bold' lang=en-US> </span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span lang=en-US>1. </span><span lang=zh-CN>用flux.1-schnell生成图片，多个</span><span
+lang=en-US>prompt </span><span lang=zh-CN>To increase diversity and quality,</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span lang=en-US>2. </span><span lang=zh-CN>先用</span><span
+lang=en-US>vtracer </span><span lang=zh-CN>初步将</span><span lang=en-US>bitmap</span><span
+lang=zh-CN>转换为</span><span lang=en-US>svg</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span lang=en-US>3.</span><span lang=zh-CN> 用</span><span
+lang=en-US>siglip</span><span lang=zh-CN>得分选取得分最高的</span><span lang=en-US>2</span><span
+lang=zh-CN>张图片作为候选，然后经过简单的</span><span lang=en-US>optimization</span><span
+lang=zh-CN>选取aesthetic score得分最高的</span><span lang=en-US>svg</span><span
+lang=zh-CN>，进行进一步的</span><span lang=en-US>optimazation</span><span lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span lang=en-US>4.</span><span lang=zh-CN>用</span><span
+lang=en-US>diffvg </span><span lang=zh-CN>来优化</span><span lang=en-US>svg</span><span
+lang=zh-CN>的参数，SVG's parameters (control points of paths, fill colors, stroke
+colors, and stroke widths) were optimized using pydiffvg。</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-weight:bold;font-family:
+     微软雅黑;font-size:36.0pt'>Loss Functions:</span><span style='font-family:
+     微软雅黑;font-size:36.0pt'>&nbsp;The total loss was a weighted sum of:</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-weight:bold;font-family:
+     微软雅黑;font-size:36.0pt'>Aesthetic Loss:</span><span style='font-family:
+     微软雅黑;font-size:36.0pt'>&nbsp;Negative score from the Aesthetic Predictor.
+     We aimed to maximize this score.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-weight:bold;font-family:
+     微软雅黑;font-size:36.0pt'>SigLIP Similarity Loss:</span><span
+     style='font-family:微软雅黑;font-size:36.0pt'>&nbsp;Negative cosine similarity
+     between the SigLIP (google/siglip2-base-patch16-224) embedding of the
+     rendered SVG (after processing with a
+     differentiable&nbsp;ImageProcessor&nbsp;detailed below) and the SigLIP
+     embedding of the&nbsp;</span><span style='font-style:italic;font-family:
+     微软雅黑;font-size:36.0pt'>target png image</span><span style='font-family:
+     微软雅黑;font-size:36.0pt'>.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-weight:bold;font-family:
+     微软雅黑;font-size:36.0pt'>MSE Loss:</span><span style='font-family:微软雅黑;
+     font-size:36.0pt'>&nbsp;Mean Squared Error between the rendered SVG (after
+     processing with&nbsp;ImageProcessorTorch) and the&nbsp;</span><span
+     style='font-style:italic;font-family:微软雅黑;font-size:36.0pt'>target bitmap
+     image</span><span style='font-family:微软雅黑;font-size:36.0pt'>&nbsp;(after
+     processing with a reference&nbsp;ImageProcessor&nbsp;with the same random
+     seed for cropping). This helps maintain structural and color fidelity to
+     the initial high-quality bitmap`.</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=en-US><span style='mso-spacerun:yes'> </span>5.</span><span lang=zh-CN>由于比赛官方对图片进行了</span><span
+lang=en-US>denfense</span><span lang=zh-CN>处理，如随机裁剪，滤波，压缩，这些是不可微分的</span><span
+lang=en-US>undiffentiale</span><span lang=zh-CN>，于是自定义了可微分的算子，来模拟比赛官方的处理，从而使得梯度可以流到</span><span
+lang=en-US>svg</span><span lang=zh-CN>的参数中。</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-family:微软雅黑;font-size:
+     36.0pt'>To bridge the gap between our optimization process and the
+     competition's evaluation, we implemented&nbsp;ImageProcessorTorch. This
+     PyTorch module applies a sequence of image transformations similar to
+     those described in the evaluation details.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-family:微软雅黑;font-size:
+     36.0pt'>Crucially, these operations were implemented to be (mostly)
+     differentiable or use straight-through estimators where necessary,
+     allowing gradients to flow back to the SVG parameters.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-family:微软雅黑;font-size:
+     36.0pt'>Transformations included: </span><span style='font-weight:bold;
+     font-family:微软雅黑;font-size:36.0pt'>random crop &amp; resize, JPEG
+     compression (simulated via&nbsp;diff_jpeg), median filter, FFT low-pass
+     filter, and bilateral filter.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-family:微软雅黑;font-size:
+     36.0pt'>The rendered SVG was passed through this processor before loss
+     calculation. The target bitmap for the MSE loss was also processed using
+     the random crop &amp; resize part of this module (with a synchronized
+     random seed) to ensure fair comparison.</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=en-US>6.</span><span lang=zh-CN>一些后处理</span></p>
+
+<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt;color:#202124'><span
+style='font-weight:bold'>1st Place Solution</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span lang=zh-CN>关键点：</span><span style='font-weight:bold'
+lang=zh-CN>用来进行Ocr检测的图片和进行</span><span style='font-weight:bold' lang=en-US>vqa</span><span
+style='font-weight:bold' lang=zh-CN>和</span><span style='font-weight:bold'
+lang=en-US>aes</span><span style='font-weight:bold' lang=zh-CN>评估的图片是不一样的！！！！！进行Ocr检测的图片是用原始的图片。</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span style='font-weight:bold' lang=zh-CN>如果图片是一致的，也可以</span><span
+style='font-weight:bold' lang=en-US>hack</span><span style='font-weight:bold'
+lang=zh-CN>，我提问的。</span></p>
+
+<p style='margin:0in;margin-left:.75in'><img src="开源方案学习.files/image001.jpg"
+width=2572 height=833></p>
+
+<p style='margin:0in;line-height:27pt;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt;color:#202124'><span
+style='font-weight:bold' lang=zh-CN>5th place solution - VTracer and DiffVG
+optimization</span><span style='font-weight:bold' lang=en-US> </span><span
+style='font-weight:bold' lang=zh-CN>有源码</span><span style='font-weight:bold'
+lang=en-US> </span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>My final solution is based on generating a bunch of images with
+SDXL-turbo, converting them to SVGs, and then adding an optimized patch to
+significantly improve the aesthetic score. After that, I use a proxy function
+for the VQA model to find the best SVG to use in the end.</p>
+
+<p style='margin:0in;margin-left:.375in;line-height:27pt;font-family:微软雅黑;
+font-size:36.0pt;color:#202124'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span lang=zh-CN>通过</span><span lang=en-US>diffvg optimization</span><span
+lang=zh-CN>找到能最大提升</span><span lang=en-US>aes </span><span lang=zh-CN>score的</span><span
+lang=en-US>patch</span><span lang=zh-CN>，并放在图片的特定位置上，否则这个</span><span
+lang=en-US>patch</span><span lang=zh-CN>会影响</span><span lang=en-US>vqa </span><span
+lang=zh-CN>sc</span><span lang=en-US>ore.</span></p>
+
+<p style='margin:0in;margin-left:.375in'><img src="开源方案学习.files/image002.jpg"
+width=2394 height=1218></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span lang=zh-CN>对</span><span lang=en-US>pipeline</span><span
+lang=zh-CN>的优化：</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>For example, whenever a few images are ready from SDXL, we can
+start converting while we keep generating more images in parallel. The same for
+scoring when a few SVGs are ready.</p>
+
+<p style='margin:0in;margin-left:.75in;line-height:27pt;font-family:微软雅黑;
+font-size:36.0pt;color:#202124'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold;color:#202124'>After generating all the SVGs, the
+selection of the best one is done using a proxy function over the VQA score. I
+simply followed the method described in&nbsp;</span><a
+href="https://arxiv.org/abs/2404.01291">this paper</a><span style='font-weight:
+bold;color:#202124'>&nbsp;and used the&nbsp;</span><span style='font-weight:
+bold;color:#3C4043'>&quot;Yes&quot;</span><span style='font-weight:bold;
+color:#202124'>&nbsp;vs&nbsp;</span><span style='font-weight:bold;color:#3C4043'>&quot;No&quot;</span><span
+style='font-weight:bold;color:#202124'>&nbsp;probability for this
+question:&nbsp;</span><span style='color:#3C4043'>&quot;f&lt;image&gt;answer en
+Question: Does this image contain {description}? Answer Yes or
+No.\nAnswer:&quot;</span><span style='font-weight:bold;color:#202124'>.</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p><cite style='margin:0in;font-family:Calibri;font-size:9.0pt;color:#595959'>&nbsp;</cite></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;line-height:27pt;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt;color:#202124'><span
+style='font-weight:bold'>4th Place Solution: SD3.5M + DRaFT + diffvg</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#202124'>My pipeline first generates images with Stable Diffusion
+3.5 Medium, fine-tuned with&nbsp;</span><a
+href="https://arxiv.org/abs/2309.17400">DRaFT</a><span style='color:#202124'>&nbsp;to
+produce high-quality, score-optimized outputs. The images are then
+heuristically converted to rough SVGs, which are further refined using&nbsp;</span><a
+href="https://github.com/BachiLi/diffvg">diffvg</a><span style='color:#202124'>,
+a differentiable rasterizer.</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span lang=zh-CN>用</span><span lang=en-US>DRaft lora</span><span
+lang=zh-CN>微调</span><span lang=en-US>SD</span><span lang=zh-CN>，用</span><span
+lang=en-US>GPT-4o</span><span lang=zh-CN>生成数据集，微调的</span><span lang=en-US>reward</span><span
+lang=zh-CN>：</span></p>
+
+<p style='margin-left:.75in;margin-top:0pt;margin-bottom:12pt;font-family:微软雅黑;
+font-size:36.0pt;color:#3C4043'><span style='font-weight:bold'>Reward
+functions:</span>&nbsp;I used two general reward functions that I knew worked
+well from my previous work on DRaFT:</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#202124'><a href="https://github.com/tgxs002/HPSv2"><span
+     style='font-family:微软雅黑;font-size:36.0pt'>Human Preference Score v2</span></a></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#202124'><a
+     href="https://github.com/yuvalkirstain/PickScore"><span style='font-family:
+     微软雅黑;font-size:36.0pt'>PickScore</span></a></li>
+</ul>
+
+<p style='margin-left:1.125in;margin-top:0pt;margin-bottom:12pt;font-family:
+微软雅黑;font-size:36.0pt;color:#3C4043'>These models were trained on human
+preference data. I also added three competition-specific rewards:</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-family:微软雅黑;font-size:
+     36.0pt'>The competition aesthetic score</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-family:微软雅黑;font-size:
+     36.0pt'>A proxy for the VQA score (yes/no on “Does the image show
+     {prompt}?”). This was faster and surprisingly seemed to work better than
+     using the actual set of questions for each image.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-family:微软雅黑;font-size:
+     36.0pt;color:#3C4043'>Negative&nbsp;</span><a
+     href="https://github.com/richzhang/PerceptualSimilarity"><span
+     style='font-family:微软雅黑;font-size:36.0pt'>LPIPs</span></a><span
+     style='font-family:微软雅黑;font-size:36.0pt;color:#3C4043'>&nbsp;distance
+     between the image and convert_to_svg(image), so the model generates images
+     that are easy to convert.</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>同时用了</span><span lang=en-US>diffvg optimization</span><span
+lang=zh-CN>，</span><span style='font-weight:bold' lang=zh-CN>The optimization
+minimizes the L1 distance between the rendered SVG and the original diffusion
+image using gradient descent on the locations/colors of the paths. 也就是主要优化</span><span
+style='font-weight:bold' lang=en-US>bitmap--&gt;</span><span style='font-weight:
+bold' lang=zh-CN>svg转换这一步。</span></p>
+
+<p style='margin:0in;margin-left:.375in;line-height:27pt;font-family:微软雅黑;
+font-size:36.0pt;color:#202124'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:48.0pt;
+color:#202124'><span style='font-weight:bold' lang=zh-CN>12th Place Solution:
+SD3.5M + </span><span style='font-weight:bold' lang=en-US>Flow</span><span
+style='font-weight:bold' lang=zh-CN>GRPO</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span style='font-weight:bold' lang=zh-CN>直接用</span><span
+style='font-weight:bold' lang=en-US>grp</span><span style='font-weight:bold'
+lang=zh-CN>o</span><span style='font-weight:bold' lang=en-US> fine-tune sd, </span><span
+style='font-weight:bold' lang=zh-CN>基于流匹配，因此不适用于</span><span style='font-weight:
+bold' lang=en-US>SDXL</span><span style='font-weight:bold' lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>Unlike
+the approaches of many other teams, my method focused on directly fine-tuning
+Stable Diffusion. The goal was to generate images that were not only suitable
+for SVG conversion but also aligned with the preferences of the VQA evaluator.
+Given that the competition's evaluation metric was determined by PaliGemma and
+an aesthetic score, traditional preference-based methods like DPO (Direct
+Preference Optimization) were less suitable. During my research, I discovered
+the recently open-sourced Flow-GRPO [1], which perfectly met my needs. In
+essence, FlowGRPO employs a reinforcement learning strategy (GRPO - Group
+Relative Policy Optimization) to train Stable Diffusion by directly aiming to
+maximize the specified evaluation metric.</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin-left:.75in;margin-top:0pt;margin-bottom:12pt;font-family:微软雅黑;
+font-size:36.0pt;color:#3C4043'><span style='font-weight:bold'>Reward Function</span>:</p>
+
+<p style='margin-left:.75in;margin-top:0pt;margin-bottom:12pt;font-family:微软雅黑;
+font-size:36.0pt;color:#3C4043'>For more direct optimization, I employed the
+competition metric itself as the reward function: the harmonic mean of the VQA
+score and the aesthetic score.</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt;color:#202124'><span
+style='font-weight:bold'>8th Place Solution</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>We
+made most use of the infrastructure by utilizing both GPUs in parallel to
+generate images and to score in a single thread for each.&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold' lang=zh-CN>是的，如何同时利用两块</span><span style='font-weight:
+bold' lang=en-US>GPU</span><span style='font-weight:bold' lang=zh-CN>呢，开两个线程，需要研究一下。</span></p>
+
+<p style='margin:0in;margin-left:.375in;line-height:27pt;font-family:微软雅黑;
+font-size:48.0pt;color:#202124'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;line-height:27pt;font-family:微软雅黑;
+font-size:48.0pt;color:#202124'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt;color:#202124'><span
+style='font-weight:bold'>13th Place Solution - A Kaggle beginner's attempt</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>这个跟我是最像的，而且是我的方案的改进版本！！</p>
+
+<p style='margin-left:.375in;margin-top:24pt;margin-bottom:18pt;font-family:
+微软雅黑;font-size:36.0pt;color:#202124'><span style='font-weight:bold'>OCR
+mitigation</span></p>
+
+<p style='margin-left:.375in;margin-top:24pt;margin-bottom:18pt;font-family:
+微软雅黑;font-size:36.0pt;color:#202124'><span lang=zh-CN>用的是字母</span><span
+lang=en-US>a</span><span lang=zh-CN>，而不是圆圈，可能更能通过</span><span lang=en-US>OCR</span><span
+lang=zh-CN>检测。。</span></p>
+
+<p style='margin-left:.375in;margin-top:24pt;margin-bottom:18pt;font-family:
+微软雅黑;font-size:36.0pt;color:#202124'><span style='font-weight:bold' lang=en-US>SVG</span><span
+style='font-weight:bold' lang=zh-CN>压缩</span></p>
+
+<p style='margin-left:.75in;margin-top:24pt;margin-bottom:18pt;font-family:
+微软雅黑;font-size:36.0pt;color:#202124'><span style='font-weight:bold'>我没有用到紧凑简写h1,
+v24，当时不知道</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-weight:bold;font-family:
+     微软雅黑;font-size:36.0pt'>Absolute to Relative Coordinates</span><span
+     style='font-family:微软雅黑;font-size:36.0pt'>: Convert absolute coordinates
+     to relative coordinates in the SVG path.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-weight:bold;font-family:
+     微软雅黑;font-size:36.0pt' lang=zh-CN>Removing Transformations</span><span
+     style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>: Remove unnecessary
+     transformations like</span><span style='font-family:微软雅黑;font-size:36.0pt'
+     lang=en-US>&nbsp;translate</span><span style='font-family:微软雅黑;font-size:
+     36.0pt' lang=zh-CN>.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-weight:bold;font-family:
+     微软雅黑;font-size:36.0pt'>Longest path -&gt; fill</span><span
+     style='font-family:微软雅黑;font-size:36.0pt'>: Convert the longest path to a
+     fill rectangle.</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin-left:.375in;margin-top:24pt;margin-bottom:18pt;font-family:
+微软雅黑;font-size:36.0pt;color:#202124'><span style='font-weight:bold'>nunchaku包的安装</span></p>
+
+<p style='margin-left:.75in;margin-top:24pt;margin-bottom:18pt;font-family:
+微软雅黑;font-size:36.0pt;color:#202124'><span style='font-weight:bold' lang=zh-CN>通过</span><span
+style='font-weight:bold' lang=en-US>subprocess</span><span style='font-weight:
+bold' lang=zh-CN>安装</span><span style='font-weight:bold' lang=en-US> </span><span
+style='font-weight:bold' lang=zh-CN>。。。</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>import subprocess</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>nunchaku_whl_path =
+kagglehub.dataset_download(&quot;howarudo/nunchaku-whl&quot;)</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>subprocess.run([&quot;pip&quot;, &quot;install&quot;,
+f&quot;{nunchaku_whl_path}/nunchaku-0.2.0-cp310-cp310-linux_x86_64.whl&quot;])</p>
+
+<p style='margin-left:.75in;margin-top:24pt;margin-bottom:18pt;font-family:
+微软雅黑;font-size:36.0pt;color:#202124'><span style='font-weight:bold'>第三名的方案里，是这样实现的：</span></p>
+
+<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>path_nunchaku =
+kagglehub.model_download(&quot;cnumber/nunchaku/pyTorch/default&quot;)</p>
+
+<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>sys.path.append(path_nunchaku)</p>
+
+<p style='margin-left:1.125in;margin-top:24pt;margin-bottom:18pt;font-family:
+微软雅黑;font-size:36.0pt;color:#202124'>import nunchaku</p>
+
+<p style='margin-left:1.125in;margin-top:24pt;margin-bottom:18pt;font-family:
+微软雅黑;font-size:36.0pt;color:#202124'><span lang=en-US>model</span><span
+lang=zh-CN>里是已经</span><span lang=en-US>pip </span><span lang=zh-CN>安装好的包，有</span><span
+lang=en-US>EGG-INFO</span><span lang=zh-CN>文件夹，</span><span lang=en-US>pydiffvg</span><span
+lang=zh-CN>文件夹，还有一个</span><span lang=en-US>so</span><span lang=zh-CN>文件，感觉是复制</span><span
+lang=en-US>pip </span><span lang=zh-CN>安装好的文件夹。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#202124'><span
+style='font-weight:bold' lang=en-US><span style='mso-spacerun:yes'> </span></span><span
+style='font-weight:bold' lang=zh-CN>Dummy VQA</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span style='font-weight:bold' lang=zh-CN>我没有用到多选，只是</span><span
+style='font-weight:bold' lang=en-US>yes </span><span style='font-weight:bold'
+lang=zh-CN>和</span><span style='font-weight:bold' lang=en-US>no</span><span
+style='font-weight:bold' lang=zh-CN>，</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>question = [</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span style='mso-spacerun:yes'>    </span>f'Does this image
+primarily represent &quot;{description}&quot;?',</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span style='mso-spacerun:yes'>    </span>f'Is
+&quot;{description}&quot; clearly shown in the image??'</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>]</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>choices = [</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span style='mso-spacerun:yes'>    </span>['definitely',
+'somewhat', 'barely', 'no'],</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span style='mso-spacerun:yes'>    </span>['yes', 'somewhat',
+'no']</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>]</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>answer = [</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span style='mso-spacerun:yes'>    </span>'definitely',</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span style='mso-spacerun:yes'>    </span>'yes'</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>]</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'><span lang=zh-CN>而且跟我一样，也建立了回归方程，事实证明是有用的，</span><span
+style='font-weight:bold' lang=zh-CN>比自己拍脑袋设置权重要好。</span><span lang=en-US> </span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:black'>VQA= w_1 * VQA_{dummy_1} + w_2 * VQA_{dummy_2} + b</p>
+
+<p style='margin:0in;line-height:27pt;font-family:微软雅黑;font-size:36.0pt;
+color:#202124'>&nbsp;</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

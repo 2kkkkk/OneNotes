@@ -1,0 +1,214 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href="Andrej%20Karpathy微软Build大会.htm">
+<link rel=File-List href="Andrej%20Karpathy微软Build大会.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:27.9805in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:4.4701in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'>Andrej
+Karpathy微软Build大会</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>6</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>14</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>16:00</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:27.9805in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+style='font-weight:bold'>Why RLHF?</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=en-US>It is easier to discriminate than to generate.</span><span
+lang=zh-CN>让外包去做排序任务，而不是让外包人员生成样本。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>但是，在某些情况下，</span><span lang=en-US>RLHF</span><span lang=zh-CN>并不优于</span><span
+lang=en-US>base</span><span lang=zh-CN>模型，</span><span lang=en-US>RLHF</span><span
+lang=zh-CN>模型失去了一些熵，即他们会输出分布更尖锐的结果，即很自信地输出，它们输出的样本比基础模型的变化要小。基础模型的输出更加多样化。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+lang=en-US><span style='font-weight:bold'>Base model can be better at tasks
+where you have N examples and want to generate more things.</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+style='font-weight:bold'>Human text generation vs LLM text generation</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>假设要以</span><span lang=en-US>Califormia's population is 53 times that
+of alaska</span><span lang=zh-CN>为主题写文章，对于人类来说，脑海里可能如下构思：</span></p>
+
+<p style='margin:0in;margin-left:1.5in'><img
+src="Andrej%20Karpathy微软Build大会.files/image001.jpg" width=2041 height=1214></p>
+
+<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>在构思的过程中，人类脑海里知道自己知道什么，不知道什么，有自我认知，会使用一些工具来查阅资料，可能会在脑海里进行一些反思和合理性检查。<span
+style='font-weight:bold'>简言之，当人创造这样的句子时，人的内心独白实际上发生了很多事情。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>对于</span><span lang=en-US>GPT</span><span lang=zh-CN>来说，当</span><span
+lang=en-US>GPT</span><span lang=zh-CN>在训练或生成这些</span><span lang=en-US>token</span><span
+lang=zh-CN>时，</span><span lang=en-US>GPT</span><span lang=zh-CN>只是在逐个处理</span><span
+lang=en-US>token</span><span lang=zh-CN>，然后尽力地模仿出这段话，这跟人类的创造是很不一样的，</span><span
+lang=en-US>In particular, in the dataset that we create, then feed in llm, all
+the internal dialogue was completely stripped , and unlike you , GPT will look
+at every single token and spend the same amount of computes on every token.</span><span
+style='font-weight:bold' lang=en-US><span style='mso-spacerun:yes'>  </span>LLM</span><span
+style='font-weight:bold' lang=zh-CN>不知道人在创造这些句子时，发生的哪些内心独白，</span><span
+style='font-weight:bold' lang=en-US>LLM</span><span style='font-weight:bold'
+lang=zh-CN>只看到了最后的结果，对于</span><span style='font-weight:bold' lang=en-US>LLM</span><span
+style='font-weight:bold' lang=zh-CN>来说，每个</span><span style='font-weight:bold'
+lang=en-US>token</span><span style='font-weight:bold' lang=zh-CN>都是同样重要的。</span><span
+style='font-weight:bold' lang=en-US>LLM</span><span style='font-weight:bold'
+lang=zh-CN>可以看成是</span><span style='font-weight:bold' lang=en-US> token</span><span
+style='font-weight:bold' lang=zh-CN>生成器，</span><span style='font-weight:bold'
+lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>它们不知道自己擅长什么，不擅长什么，它们只是尽力模仿下一个</span><span
+style='font-weight:bold' lang=en-US>token</span><span style='font-weight:bold'
+lang=zh-CN>，它们不进行反思，也不会进行合理性检查，也不会在生成过程中纠正自己的错误，它们没有像人类一样的内心独白流。鹦鹉学舌。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>虽然如此，</span><span lang=en-US>LLM</span><span lang=zh-CN>确立有认知优势，</span><span
+lang=en-US>LLM</span><span lang=zh-CN>拥有非常广泛的事实基础知识</span><span lang=en-US> </span><span
+lang=zh-CN>，涵盖了大量领域。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=en-US>Prompt</span><span lang=zh-CN>只是弥补了人类大脑和</span><span lang=en-US>LLM</span><span
+lang=zh-CN>这两种认知架构的差异。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>如果你的任务需要推理，</span><span lang=en-US>you can't expect the transformer
+to do too much reasoning per token, you have to spread out the reasoning across
+more tokens. </span><span style='font-weight:bold' lang=zh-CN>例如，你不能给</span><span
+style='font-weight:bold' lang=en-US>LLM</span><span style='font-weight:bold'
+lang=zh-CN>一个非常复杂的问题，并期望它只输出单个</span><span style='font-weight:bold' lang=en-US>token</span><span
+style='font-weight:bold' lang=zh-CN>作为答案，它没有足够的时间，</span><span
+style='font-weight:bold' lang=en-US>LLM needs tokens to think. </span><span
+style='font-weight:bold' lang=zh-CN>即</span><span style='font-weight:bold'
+lang=en-US>few-shot prompt</span><span style='font-weight:bold' lang=zh-CN>，或</span><span
+style='font-weight:bold' lang=en-US> let's think step by step</span><span
+style='font-weight:bold' lang=zh-CN>这种方式。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+style='font-weight:bold'>Ensemble multiple attempts</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=en-US>LLM can get &quot;unlucky &quot; and sample a bad thought, once they
+do ,the are 'stuck with it'</span><span lang=zh-CN>。</span><span lang=en-US> </span><span
+style='font-weight:bold' lang=en-US>Make a few attempts</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold' lang=en-US>LLM</span><span style='font-weight:bold'
+lang=zh-CN>输出采样的时候，可能会采样到差的</span><span style='font-weight:bold' lang=en-US>token</span><span
+style='font-weight:bold' lang=zh-CN>，可以多让</span><span style='font-weight:bold'
+lang=en-US>LLM</span><span style='font-weight:bold' lang=zh-CN>进行几次回答，然后</span><span
+style='font-weight:bold' lang=en-US>vote</span><span style='font-weight:bold'
+lang=zh-CN>一下。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+style='font-weight:bold'>Condition on good performance</span></p>
+
+<p style='margin:0in;font-family:微软雅黑'><span style='font-weight:bold;
+font-size:48.0pt' lang=en-US><span style='mso-spacerun:yes'> </span></span><span
+style='font-size:36.0pt' lang=en-US>LLM just want to imitate training sets
+which has a wide spectrum of data qualities, you should ask </span><span
+style='font-size:36.0pt' lang=zh-CN>llm</span><span style='font-size:36.0pt'
+lang=en-US> to imitate high quality data to succeed.</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>例如，对于某个物理问题，</span><span lang=en-US>LLM</span><span lang=zh-CN>的训练数据集里可能有包含有某个学生的错误答案，也包含某个教授的正确答案，但是</span><span
+lang=en-US>LLM</span><span lang=zh-CN>对于这两个答案是一视同仁的，</span><span
+style='font-weight:bold' lang=zh-CN>所以需要在</span><span style='font-weight:bold'
+lang=en-US>prompt</span><span style='font-weight:bold' lang=zh-CN>中显式地指明“我们要得到正确答案的”</span><span
+style='font-weight:bold' lang=en-US>condition</span><span style='font-weight:
+bold' lang=zh-CN>限制，例如“le</span><span style='font-weight:bold' lang=en-US>ts
+think step by step to get the correct answer,</span><span style='font-weight:
+bold' lang=zh-CN>”</span><span style='font-weight:bold' lang=en-US> </span><span
+style='font-weight:bold' lang=zh-CN>“你是这个领域的专家</span><span style='font-weight:
+bold' lang=en-US>…</span><span style='font-weight:bold' lang=zh-CN>”，“假设你的智商是</span><span
+style='font-weight:bold' lang=en-US>120</span><span style='font-weight:bold'
+lang=zh-CN>”</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+style='font-weight:bold'>Finetune</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold' lang=en-US>Lora</span><span style='font-weight:bold'
+lang=zh-CN>的一个优点：由于不需要对原始的模型进行反向传播（原始模型的参数被冻结了），所以可以对原始的大模型进行量化，进行低精度的推理计算。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+style='font-weight:bold'>Use cases</span></p>
+
+<p style='margin:0in;margin-left:1.875in'><img
+src="Andrej%20Karpathy微软Build大会.files/image002.jpg" width=2410 height=1103></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US>&nbsp;</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

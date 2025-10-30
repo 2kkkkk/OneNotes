@@ -1,0 +1,1534 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href="Google%20调参playbook.htm">
+<link rel=File-List href="Google%20调参playbook.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:44.2215in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.4243in;width:2.9618in'>
+
+<p style='margin:0in;font-size:20.0pt'><span style='font-family:"Calibri Light"'
+lang=en-US>Google </span><span style='font-family:"Microsoft YaHei Light"'
+lang=zh-CN>调参</span><span style='font-family:"Calibri Light"' lang=en-US>playbook</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:.4243in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:"Microsoft YaHei"'>年</span><span
+style='font-family:Calibri'>4</span><span style='font-family:"Microsoft YaHei"'>月</span><span
+style='font-family:Calibri'>16</span><span style='font-family:"Microsoft YaHei"'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>14:29</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.243in;margin-left:0in;width:44.2215in'>
+
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+ href="https://github.com/google-research/tuning_playbook">https://github.com/google-research/tuning_playbook</a></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin-top:18pt;margin-bottom:12pt;font-family:"Microsoft YaHei";
+ font-size:48.0pt;color:#1F2328'><span style='font-weight:bold' lang=en-US>1.
+ Gu</span><span style='font-weight:bold' lang=zh-CN>ide for starting a new
+ project</span><span style='font-weight:bold' lang=en-US> </span><span
+ style='font-weight:bold' lang=zh-CN>开始新项目</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      18pt;margin-bottom:12pt;color:#1F2328'><span style='font-weight:bold;
+      font-family:"Microsoft YaHei";font-size:36.0pt' lang=en-US>1.1 Ch</span><span
+      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
+      lang=zh-CN>oosing the model architecture</span><span style='font-weight:
+      bold;font-family:"Microsoft YaHei";font-size:36.0pt' lang=en-US> </span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      18pt;margin-bottom:12pt;color:#1F2328'><span style='font-weight:bold;
+      font-family:"Microsoft YaHei";font-size:36.0pt' lang=zh-CN>选择模型，先选择</span><span
+      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
+      lang=en-US>commonly used</span><span style='font-weight:bold;font-family:
+      "Microsoft YaHei";font-size:36.0pt' lang=zh-CN>的，调整</span><span
+      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
+      lang=en-US>model</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+      font-size:36.0pt' lang=zh-CN>的层数等参数，然后再尝试</span><span style='font-weight:
+      bold;font-family:"Microsoft YaHei";font-size:36.0pt' lang=en-US>custom
+      model</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+      font-size:36.0pt' lang=zh-CN>。可能的话，读相关</span><span style='font-weight:
+      bold;font-family:"Microsoft YaHei";font-size:36.0pt' lang=en-US>paper</span><span
+      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
+      lang=zh-CN>。</span></li>
+ </ul>
+ <p style='margin-left:.375in;margin-top:0pt;margin-bottom:12pt;font-family:
+ "Microsoft YaHei";font-size:36.0pt;color:#1F2328'>Summary:&nbsp;When starting
+ a new project, try to reuse a model that already works.</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>Choose a well
+      established, commonly used model architecture to get working first. It is
+      always possible to build a custom model later.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>Model
+      architectures typically have various hyperparameters that determine the
+      model's size and other details (e.g. number of layers, layer width, type
+      of activation function).</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Thus, choosing
+       the architecture really means choosing a family of different models (one
+       for each setting of the model hyperparameters).</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt;color:#1F2328'>We
+       will consider the problem of choosing the model hyperparameters in&nbsp;</span><a
+       href="https://github.com/google-research/tuning_playbook?tab=readme-ov-file#choosing-the-initial-configuration"><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Choosing the
+       initial configuration</span></a><span style='font-family:"Microsoft YaHei";
+       font-size:36.0pt;color:#1F2328'>&nbsp;and&nbsp;</span><a
+       href="https://github.com/google-research/tuning_playbook?tab=readme-ov-file#a-scientific-approach-to-improving-model-performance"><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>A scientific
+       approach to improving model performance</span></a><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt;color:#1F2328'>.</span></li>
+  </ul>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>When possible, try
+      to find a paper that tackles something as close as possible to the
+      problem at hand and reproduce that model as a starting point.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.75in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:#1F2328'>&nbsp;</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      18pt;margin-bottom:12pt;color:#1F2328'><span style='font-weight:bold;
+      font-family:"Microsoft YaHei";font-size:36.0pt' lang=en-US>1.2 Ch</span><span
+      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
+      lang=zh-CN>oosing the optimizer</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      18pt;margin-bottom:12pt;color:#1F2328'><span style='font-weight:bold;
+      font-family:"Microsoft YaHei";font-size:36.0pt' lang=zh-CN>先用最流行的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>optimizer</span><span
+      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
+      lang=zh-CN>，没有最好的</span><span style='font-weight:bold;font-family:微软雅黑;
+      font-size:36.0pt' lang=en-US>optimizer</span><span style='font-weight:
+      bold;font-family:"Microsoft YaHei";font-size:36.0pt' lang=zh-CN>，只有最合适的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>optimizer</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>。</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>optimizer</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的参数需要注意，需要调整而不是盲目用默认参数，比如使用带动量的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>optimizer</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>中参数</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US> </span><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt' lang=zh-CN>β</span><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt' lang=en-US> </span><span
+      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
+      lang=zh-CN>的控制着计算多少个</span><span style='font-weight:bold;font-family:
+      "Microsoft YaHei";font-size:36.0pt' lang=en-US>batch</span><span
+      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
+      lang=zh-CN>的梯度平均值，</span><span style='font-weight:bold;font-family:微软雅黑;
+      font-size:36.0pt' lang=en-US>kaggle jane street</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>比赛中，一个</span><span
+      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
+      lang=en-US>batch</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+      font-size:36.0pt' lang=zh-CN>是一天的数据，而该数据不具有长期依赖性，数据的短期波动更为主要，默认的β相当于计算过去</span><span
+      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
+      lang=en-US>100</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+      font-size:36.0pt' lang=zh-CN>天？的移动平均，这个默认值过大，需要调整。</span></li>
+ </ul>
+ <p style='margin-left:.375in;margin-top:0pt;margin-bottom:12pt;font-family:
+ "Microsoft YaHei";font-size:36.0pt;color:#1F2328'><span lang=zh-CN>Summary:&nbsp;Start
+ with the most popular optimizer for the type of problem at hand.</span><span
+ lang=en-US> </span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt;color:#1F2328'>No
+      optimizer is the &quot;best&quot; across all types of machine learning
+      problems and model architectures. Even just&nbsp;</span><a
+      href="https://arxiv.org/abs/1910.05446"><span style='font-family:"Microsoft YaHei";
+      font-size:36.0pt'>comparing the performance of optimizers is a difficult
+      task</span></a><span style='font-family:"Microsoft YaHei";font-size:36.0pt;
+      color:#1F2328'>. </span><span style='font-family:"Segoe UI Emoji";
+      font-size:36.0pt;color:#1F2328'>&#129302;</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>We recommend
+      sticking with well-established, popular optimizers, especially when
+      starting a new project.</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Ideally, choose
+       the most popular optimizer used for the same type of problem.</span></li>
+  </ul>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>Be prepared to
+      give attention to&nbsp;*all*&nbsp;hyperparameters of the chosen
+      optimizer.</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Optimizers with
+       more hyperparameters may require more tuning effort to find the best
+       configuration.</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt;color:#1F2328'>This
+       is particularly relevant in the beginning stages of a project when we
+       are trying to find the best values of various other hyperparameters
+       (e.g. architecture hyperparameters) while treating optimizer
+       hyperparameters as&nbsp;</span><a
+       href="https://github.com/google-research/tuning_playbook?tab=readme-ov-file#identifying-scientific-nuisance-and-fixed-hyperparameters"><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>nuisance
+       parameters</span></a><span style='font-family:"Microsoft YaHei";
+       font-size:36.0pt;color:#1F2328'>.</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>It may be
+       preferable to start with a simpler optimizer (e.g. SGD with fixed
+       momentum or Adam with fixed&nbsp;ϵ,&nbsp;β1, and&nbsp;β2) in the initial
+       stages of the project and switch to a more general optimizer later.</span></li>
+  </ul>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>Well-established
+      optimizers that we like include (but are not limited to):</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0969DA'><a
+       href="https://github.com/google-research/tuning_playbook?tab=readme-ov-file#what-are-the-update-rules-for-all-the-popular-optimization-algorithms"><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>SGD with momentum</span></a><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt;color:#1F2328'>&nbsp;(we
+       like the Nesterov variant)</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0969DA'><a
+       href="https://github.com/google-research/tuning_playbook?tab=readme-ov-file#what-are-the-update-rules-for-all-the-popular-optimization-algorithms"><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Adam and NAdam</span></a><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt;color:#1F2328'>,
+       which are more general than SGD with momentum. Note that Adam has 4
+       tunable hyperparameters&nbsp;</span><a
+       href="https://arxiv.org/abs/1910.05446"><span style='font-family:"Microsoft YaHei";
+       font-size:36.0pt'>and they can all matter</span></a><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt;color:#1F2328'>!</span></li>
+   <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+    margin-bottom:0in'>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+        style='font-family:"Microsoft YaHei";font-size:36.0pt;color:#1F2328'>See&nbsp;</span><a
+        href="https://github.com/google-research/tuning_playbook?tab=readme-ov-file#how-should-adams-hyperparameters-be-tuned"><span
+        style='font-family:"Microsoft YaHei";font-size:36.0pt'>How should
+        Adam's hyperparameters be tuned?</span></a></li>
+   </ul>
+  </ul>
+ </ul>
+ <p style='margin:0in;margin-left:1.5in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:#1F2328'>&nbsp;</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      18pt;margin-bottom:12pt;color:#1F2328' lang=en-US><span style='font-weight:
+      bold;font-family:"Microsoft YaHei";font-size:36.0pt'>1.3 Choosing the
+      batch size</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      18pt;margin-bottom:12pt;color:#1F2328'><span style='font-weight:bold;
+      font-family:"Microsoft YaHei";font-size:36.0pt' lang=zh-CN>调整</span><span
+      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
+      lang=en-US>batchsize</span><span style='font-weight:bold;font-family:
+      "Microsoft YaHei";font-size:36.0pt' lang=zh-CN>可以加速训练，</span><span
+      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
+      lang=en-US>batchsize</span><span style='font-weight:bold;font-family:
+      "Microsoft YaHei";font-size:36.0pt' lang=zh-CN>不应该是一个可调整的超参数，理想的</span><span
+      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
+      lang=en-US>batchsize</span><span style='font-weight:bold;font-family:
+      "Microsoft YaHei";font-size:36.0pt' lang=zh-CN>是硬件支持范围内最大的</span><span
+      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
+      lang=en-US>batchsize</span><span style='font-weight:bold;font-family:
+      "Microsoft YaHei";font-size:36.0pt' lang=zh-CN>。当其他参数</span><span
+      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
+      lang=en-US>well tuned</span><span style='font-weight:bold;font-family:
+      "Microsoft YaHei";font-size:36.0pt' lang=zh-CN>，且训练</span><span
+      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
+      lang=en-US>steps</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+      font-size:36.0pt' lang=zh-CN>足够时，用任何大小的</span><span style='font-weight:
+      bold;font-family:"Microsoft YaHei";font-size:36.0pt' lang=en-US>batchsize</span><span
+      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
+      lang=zh-CN>训练都可以达到相同的</span><span style='font-weight:bold;font-family:
+      "Microsoft YaHei";font-size:36.0pt' lang=en-US>performance.</span></li>
+ </ul>
+ <p style='margin-left:.375in;margin-top:0pt;margin-bottom:12pt;font-family:
+ "Microsoft YaHei";font-size:36.0pt;color:#1F2328'>Summary:&nbsp;The batch size
+ governs the training speed and shouldn't be used to directly tune the
+ validation set performance. Often, the ideal batch size will be the largest
+ batch size supported by the available hardware.</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>The batch size is
+      a key factor in determining the&nbsp;</span><span style='font-style:italic;
+      font-family:"Microsoft YaHei";font-size:36.0pt'>training time</span><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>&nbsp;and&nbsp;</span><span
+      style='font-style:italic;font-family:"Microsoft YaHei";font-size:36.0pt'>computing
+      resource consumption</span><span style='font-family:"Microsoft YaHei";
+      font-size:36.0pt'>.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>Increasing the
+      batch size will often reduce the training time. This can be highly
+      beneficial because it, e.g.:</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Allows
+       hyperparameters to be tuned more thoroughly within a fixed time
+       interval, potentially resulting in a better final model.</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Reduces the
+       latency of the development cycle, allowing new ideas to be tested more
+       frequently.</span></li>
+  </ul>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>Increasing the
+      batch size may either decrease, increase, or not change the resource
+      consumption.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>The batch size
+      should&nbsp;</span><span style='font-style:italic;font-family:"Microsoft YaHei";
+      font-size:36.0pt'>not be</span><span style='font-family:"Microsoft YaHei";
+      font-size:36.0pt'>&nbsp;treated as a tunable hyperparameter for
+      validation set performance.</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt;color:#1F2328'>As
+       long as all hyperparameters are well-tuned (especially the learning rate
+       and regularization hyperparameters) and the number of training steps is
+       sufficient, the same final performance should be attainable using any
+       batch size (see&nbsp;</span><a href="https://arxiv.org/abs/1811.03600"><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Shallue et al.
+       2018</span></a><span style='font-family:"Microsoft YaHei";font-size:
+       36.0pt;color:#1F2328'>).</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt;color:#1F2328'>Please
+       see&nbsp;</span><a
+       href="https://github.com/google-research/tuning_playbook?tab=readme-ov-file#why-shouldnt-the-batch-size-be-tuned-to-directly-improve-validation-set-performance"><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Why shouldn't the
+       batch size be tuned to directly improve validation set performance?</span></a></li>
+  </ul>
+ </ul>
+ <p style='margin:0in;margin-left:1.125in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:#1F2328'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:#1F2328'><span style='font-weight:bold'>Determining the
+ feasible batch sizes and estimating training throughput</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'><span style='font-weight:bold' lang=zh-CN>增大</span><span
+ style='font-weight:bold' lang=en-US>batchsize</span><span style='font-weight:
+ bold' lang=zh-CN>的收益来源于增加</span><span style='font-weight:bold' lang=en-US>training</span><span
+ style='font-weight:bold' lang=zh-CN>吞吐量，理论上，当显存未满时，</span><span
+ style='font-weight:bold' lang=en-US>batchsize</span><span style='font-weight:
+ bold' lang=zh-CN>增加一倍，吞吐量也增加一倍，如果不是这种情况，那么可能有其他</span><span style='font-weight:
+ bold' lang=en-US>bottleneck</span><span style='font-weight:bold' lang=zh-CN>如</span><span
+ style='font-weight:bold' lang=en-US>IO</span><span style='font-weight:bold'
+ lang=zh-CN>。</span><span style='font-weight:bold' lang=en-US> </span><span
+ style='font-weight:bold' lang=zh-CN>这些步骤可能在每次模型或优化器发生改变时都要重复进行（如，不同的模型架构可能运行更大的batch
+ size适合内存）</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>For a given model
+      and optimizer, there will typically be a range of batch sizes supported
+      by the available hardware. The limiting factor is usually accelerator
+      memory.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>Unfortunately, it
+      can be difficult to calculate which batch sizes will fit in memory
+      without running, or at least compiling, the full training program.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>The easiest
+      solution is usually to run training jobs at different batch sizes (e.g.
+      increasing powers of 2) for a small number of steps until one of the jobs
+      exceeds the available memory.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>For each batch
+      size, we should train for long enough to get a reliable estimate of
+      the&nbsp;</span><span style='font-style:italic;font-family:"Microsoft YaHei";
+      font-size:36.0pt'>training throughput</span></li>
+ </ul>
+ <p style='margin-left:1.875in;margin-top:0pt;margin-bottom:12pt;font-family:
+ "Microsoft YaHei";font-size:36.0pt;color:#1F2328'>training throughput = (#
+ examples processed per second)</p>
+ <p style='margin-left:2.625in;margin-top:0pt;margin-bottom:12pt;font-family:
+ "Microsoft YaHei";font-size:36.0pt;color:#1F2328'>or, equivalently, the&nbsp;<span
+ style='font-style:italic'>time per step</span>.</p>
+ <p style='margin-left:1.875in;margin-top:0pt;margin-bottom:12pt;font-family:
+ "Microsoft YaHei";font-size:36.0pt;color:#1F2328'>time per step = (batch size)
+ / (training throughput)</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>When the
+      accelerators aren't yet saturated, if the batch size doubles, the
+      training throughput should also double (or at least nearly double).
+      Equivalently, the time per step should be constant (or at least nearly
+      constant) as the batch size increases.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>If this is not the
+      case then the training pipeline has a bottleneck such as I/O or
+      synchronization between compute nodes. This may be worth diagnosing and
+      correcting before proceeding.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>If the training
+      throughput increases only up to some maximum batch size, then we should
+      only consider batch sizes up to that maximum batch size, even if a larger
+      batch size is supported by the hardware.</span></li>
+  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>All benefits of
+       using a larger batch size assume the training throughput increases. If
+       it doesn't, fix the bottleneck or use the smaller batch size.</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Gradient
+       accumulation&nbsp;simulates a larger batch size than the hardware can
+       support and therefore does not provide any throughput benefits. It
+       should generally be avoided in applied work.</span></li>
+  </ul>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>These steps may
+      need to be </span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+      font-size:36.0pt'>repeated</span><span style='font-family:"Microsoft YaHei";
+      font-size:36.0pt'> every time the model or optimizer is changed (e.g. a
+      different model architecture may allow a larger batch size to fit in
+      memory).</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold'>Choosing the </span><span style='font-weight:bold;
+ color:#1F2328'>batch</span><span style='font-weight:bold'> size to minimize
+ training time</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>训练时间</span><span style='font-weight:bold'
+ lang=en-US>= time per step * total number steps </span><span style='font-weight:
+ bold' lang=zh-CN>，</span><span style='font-weight:bold' lang=en-US>time per
+ step</span><span style='font-weight:bold' lang=zh-CN>通常是常数，与</span><span
+ style='font-weight:bold' lang=en-US>batchsize</span><span style='font-weight:
+ bold' lang=zh-CN>无关。通常情况下随着batch size的增加，达到固定性能目标所需的步数</span><span
+ style='font-weight:bold' lang=en-US>steps</span><span style='font-weight:bold'
+ lang=zh-CN>通常会减少（Shallue et al. 2018 给出了当batch size发生改变时，重调所有相关超参数的方法），完美情况下，</span><span
+ style='font-weight:bold' lang=en-US>batchsize</span><span style='font-weight:
+ bold' lang=zh-CN>加倍，</span><span style='font-weight:bold' lang=en-US>total
+ steps</span><span style='font-weight:bold' lang=zh-CN>会减半。因此，让训练时间最小化的</span><span
+ style='font-weight:bold' lang=en-US>batchsize</span><span style='font-weight:
+ bold' lang=zh-CN>，是能达到固定性能所需的最小的训练步数</span><span style='font-weight:bold'
+ lang=en-US>steps</span><span style='font-weight:bold' lang=zh-CN>的那个</span><span
+ style='font-weight:bold' lang=en-US>batchsize</span><span style='font-weight:
+ bold' lang=zh-CN>。如果最终会增加训练时间，那么使用更大的批量大小是没有意义的。</span></p>
+ <p style='margin-left:.75in;margin-top:0pt;margin-bottom:12pt;font-family:
+ "Microsoft YaHei";font-size:36.0pt;color:#1F2328'>Training time = (time per
+ step) x (total number of steps)</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt;color:#1F2328'>We
+      can often consider the time per step to be approximately constant for all
+      feasible batch sizes. This is true when there is no overhead from
+      parallel computations and all training bottlenecks have been diagnosed
+      and corrected (see the&nbsp;</span><a
+      href="https://github.com/google-research/tuning_playbook?tab=readme-ov-file#determining-the-feasible-batch-sizes-and-estimating-training-throughput"><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>previous section</span></a><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt;color:#1F2328'>&nbsp;for
+      how to identify training bottlenecks). In practice, there is usually at
+      least some overhead from increasing the batch size.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt;color:#1F2328'>As
+      the batch size increases, the total number of steps needed to reach a
+      fixed performance goal typically decreases (provided all relevant
+      hyperparameters are re-tuned when the batch size is changed;&nbsp;</span><a
+      href="https://arxiv.org/abs/1811.03600"><span style='font-family:"Microsoft YaHei";
+      font-size:36.0pt'>Shallue et al. 2018</span></a><span style='font-family:
+      "Microsoft YaHei";font-size:36.0pt;color:#1F2328'>).</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>E.g. Doubling the
+       batch size might halve the total number of steps required. This is
+       called&nbsp;perfect scaling.</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Perfect scaling
+       holds for all batch sizes up to a critical batch size, beyond which one
+       achieves diminishing returns.</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Eventually,
+       increasing the batch size no longer reduces the number of training steps
+       (but never increases it).</span></li>
+  </ul>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>Therefore, the
+      batch size that minimizes training time is usually the largest batch size
+      that still provides a reduction in the number of training steps required.</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>This batch size
+       depends on the dataset, model, and optimizer, and it is an open problem
+       how to calculate it other than finding it experimentally for every new
+       problem. </span><span style='font-family:"Segoe UI Emoji";font-size:
+       36.0pt'>&#129302;</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt;color:#1F2328'>When
+       comparing batch sizes, beware the distinction between an example budget/</span><a
+       href="https://developers.google.com/machine-learning/glossary#epoch"><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>epoch</span></a><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt;color:#1F2328'>&nbsp;budget
+       (running all experiments while fixing the number of training example
+       presentations) and a step budget (running all experiments with the
+       number of training steps fixed).</span></li>
+   <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+    margin-bottom:0in'>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+        style='font-family:"Microsoft YaHei";font-size:36.0pt'>Comparing batch
+        sizes with an epoch budget only probes the perfect scaling regime, even
+        when larger batch sizes might still provide a meaningful speedup by
+        reducing the number of training steps required.</span></li>
+   </ul>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Often, the
+       largest batch size supported by the available hardware will be smaller
+       than the critical batch size. Therefore, a good rule of thumb (without
+       running any experiments) is to use the largest batch size possible.</span></li>
+  </ul>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>There is no point
+      in using a larger batch size if it ends up increasing the training time.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:1.125in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:#1F2328'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold'>Changing the batch size requires re-tuning most
+ hyperparameters</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold'>大部分超参数的最优值都是对batch size敏感的。因此，当改变batch
+ size时，一般都需要重新调参。和batch size相关性最强的超参数是优化器超参数（如，学习速率和动量）和正则化超参数，因此，需要对每个batch
+ size单独调参。</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>The optimal values of most
+      hyperparameters are sensitive to the batch size. Therefore, changing the
+      batch size typically requires starting the tuning process all over again.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>The hyperparameters that
+      interact most strongly with the batch size, and therefore are most
+      important to tune separately for each batch size, are the optimizer
+      hyperparameters (e.g. learning rate, momentum) and the regularization
+      hyperparameters.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Keep this in mind when choosing
+      the batch size at the start of a project. If you need to switch to a
+      different batch size later on, it might be difficult, time consuming, and
+      expensive to re-tune everything for the new batch size.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold'>Batch norm如何与batch size相互影响</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'><span lang=zh-CN>一般来说，应该使用与梯度计算不同的 batch size 来计算统计数据。
+ 有关详细讨论，请参阅batch norm部分。</span><span style='font-weight:bold' lang=zh-CN>也就是</span><span
+ style='font-weight:bold' lang=en-US>bessel </span><span style='font-weight:
+ bold' lang=zh-CN>修正吧。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#1F2328'>&nbsp;</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      18pt;margin-bottom:12pt;color:#1F2328' lang=en-US><span style='font-weight:
+      bold;font-family:"Microsoft YaHei";font-size:36.0pt'>1.4 Choosing the
+      initial configuration</span></li>
+  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Before beginning
+       hyperparameter tuning we must determine the starting point. This
+       includes specifying (1) the model configuration (e.g. number of layers),
+       (2) the optimizer hyperparameters (e.g. learning rate), and (3) the
+       number of training steps.</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Determining this
+       initial configuration will require some manually configured training
+       runs and trial-and-error.</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Our guiding
+       principle is to find a simple, relatively fast, relatively
+       low-resource-consumption configuration that obtains a
+       &quot;reasonable&quot; result.</span></li>
+   <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+    margin-bottom:0in'>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+        style='font-family:"Microsoft YaHei";font-size:36.0pt'>&quot;Simple&quot;
+        means avoiding bells and whistles wherever possible; these can always
+        be added later. Even if bells and whistles prove helpful down the road,
+        adding them in the initial configuration risks wasting time tuning
+        unhelpful features and/or baking in unnecessary complications.</span></li>
+    <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+     margin-bottom:0in'>
+     <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+         style='font-family:"Microsoft YaHei";font-size:36.0pt'>For example,
+         start with a constant learning rate before adding fancy decay
+         schedules.</span></li>
+    </ul>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+        style='font-family:"Microsoft YaHei";font-size:36.0pt'>Choosing an
+        initial configuration that is fast and consumes minimal resources will
+        make hyperparameter tuning much more efficient.</span></li>
+    <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+     margin-bottom:0in'>
+     <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+         style='font-family:"Microsoft YaHei";font-size:36.0pt'>For example,
+         start with a smaller model.</span></li>
+    </ul>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+        style='font-family:"Microsoft YaHei";font-size:36.0pt'>&quot;Reasonable&quot;
+        performance depends on the problem, but at minimum means that the
+        trained model performs much better than random chance on the validation
+        set (although it might be bad enough to not be worth deploying).</span></li>
+   </ul>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Choosing the
+       number of training steps involves balancing the following tension:</span></li>
+   <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+    margin-bottom:0in'>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+        style='font-family:"Microsoft YaHei";font-size:36.0pt;color:#1F2328'>On
+        the one hand, training for more steps can improve performance and makes
+        hyperparameter tuning easier (see&nbsp;</span><a
+        href="https://arxiv.org/abs/1811.03600"><span style='font-family:"Microsoft YaHei";
+        font-size:36.0pt'>Shallue et al. 2018</span></a><span style='font-family:
+        "Microsoft YaHei";font-size:36.0pt;color:#1F2328'>).</span></li>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+        style='font-family:"Microsoft YaHei";font-size:36.0pt'>On the other
+        hand, training for fewer steps means that each training run is faster
+        and uses fewer resources, boosting tuning efficiency by reducing the
+        time between cycles and allowing more experiments to be run in
+        parallel. Moreover, if an unnecessarily large step budget is chosen
+        initially, it might be hard to change it down the road, e.g. once the
+        learning rate schedule is tuned for that number of steps.</span></li>
+   </ul>
+  </ul>
+ </ul>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-family:
+ "Microsoft YaHei";font-size:36.0pt;color:#1F2328'>&nbsp;</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:normal'>
+  <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      margin-top:18pt;margin-bottom:12pt;font-weight:bold;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:48.0pt;font-weight:bold;
+      font-style:normal;font-weight:bold;font-family:"Microsoft YaHei";
+      font-size:48.0pt' lang=en-US>A s</span><span style='font-family:"Microsoft YaHei";
+      font-size:48.0pt;font-weight:bold;font-style:normal;font-weight:bold;
+      font-family:"Microsoft YaHei";font-size:48.0pt' lang=zh-CN>cientific
+      approach to improving model performance</span></li>
+ </ol>
+ <p style='margin-top:18pt;margin-bottom:12pt;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:#1F2328'><span style='font-weight:bold' lang=en-US><span
+ style='mso-spacerun:yes'> </span>2.1 </span><span style='font-weight:bold'
+ lang=zh-CN>The incremental tuning strategy</span></p>
+ <p style='margin-top:18pt;margin-bottom:12pt;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'><span style='font-weight:bold' lang=zh-CN>从</span><span
+ style='font-weight:bold' lang=en-US><span style='mso-spacerun:yes'> 
+ </span>baseline</span><span style='font-weight:bold' lang=zh-CN>开始，一点一点地进行改进，在做出改进的同时，建立</span><span
+ style='font-weight:bold' lang=en-US> </span><span style='font-weight:bold'
+ lang=zh-CN>对</span><span style='font-weight:bold' lang=en-US>problem</span><span
+ style='font-weight:bold' lang=zh-CN>以及</span><span style='font-weight:bold'
+ lang=en-US>data</span><span style='font-weight:bold' lang=zh-CN>的</span><span
+ style='font-weight:bold' lang=en-US>insight.</span></p>
+ <p style='margin-top:18pt;margin-bottom:12pt;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'>Summary: Start with a simple configuration and incrementally
+ make improvements while building up insight into the problem. Make sure that
+ any improvement is based on strong evidence to avoid adding unnecessary
+ complexity.</p>
+ <p style='margin-top:18pt;margin-bottom:12pt;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'><span lang=zh-CN>增量调参策略包括</span><span lang=en-US>4</span><span
+ lang=zh-CN>个步骤：</span></p>
+ <p style='margin-top:0pt;margin-bottom:12pt;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'>our incremental tuning strategy involves repeating the
+ following four steps:</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
+  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      color:#1F2328'><span style='font-family:微软雅黑;font-size:36.0pt;font-weight:
+      normal;font-style:normal;font-family:微软雅黑;font-size:36.0pt'>Identify an
+      appropriately-scoped goal for the next round of experiments.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Design and run a set of
+      experiments that makes progress towards this goal.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Learn what we can from the
+      results.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Consider whether to launch the
+      new best configuration.</span></li>
+ </ol>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'>&nbsp;</p>
+ <p style='margin:0in;font-size:36.0pt;color:#1F2328'><span style='font-weight:
+ bold;font-family:"Microsoft YaHei"' lang=en-US>2.2 </span><span
+ style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>Choosing the goal for the
+ next round of experiments</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#1F2328'><span
+ style='font-weight:bold' lang=zh-CN>选择每轮实验的目标，目标的选择以探索</span><span
+ style='font-weight:bold' lang=en-US>exploration</span><span style='font-weight:
+ bold' lang=zh-CN>为主而不是</span><span style='font-weight:bold' lang=en-US>exploitation</span><span
+ style='font-weight:bold' lang=zh-CN>，目的是获得对</span><span style='font-weight:
+ bold' lang=en-US>problem</span><span style='font-weight:bold' lang=zh-CN>的</span><span
+ style='font-weight:bold' lang=en-US>insight</span><span style='font-weight:
+ bold' lang=zh-CN>，也就是Most of the time, our primary goal is to gain insight
+ into the problem</span><span style='font-weight:bold' lang=en-US>.</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#1F2328'>Summary:<span
+ style='font-weight:bold'>&nbsp;</span>Each round of experiments should have a
+ clear goal and be sufficiently narrow in scope that the experiments can
+ actually make progress towards the goal.</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Example goals include:</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:微软雅黑;font-size:36.0pt'>Try a potential improvement to
+       the pipeline (e.g. a new regularizer, preprocessing choice, etc.).</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:微软雅黑;font-size:36.0pt'>Understand the impact of a
+       particular model hyperparameter (e.g. the activation function)</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:微软雅黑;font-size:36.0pt'>Greedily minimize validation
+       error.</span></li>
+  </ul>
+ </ul>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
+ color:#1F2328' lang=en-US><span style='font-weight:bold'>2.3 Designing the
+ next round of experiments</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:#1F2328'><span style='font-weight:bold' lang=zh-CN>确定哪些是</span><span
+ style='font-weight:bold' lang=en-US>scientific</span><span style='font-weight:
+ bold' lang=zh-CN>超参数，冗余超参数，固定超参数。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'>Summary:<span style='font-weight:bold'>&nbsp;</span>Identify
+ which hyperparameters are scientific, nuisance, and fixed hyperparameters for
+ the experimental goal. Create a sequence of studies to compare different
+ values of the scientific hyperparameters while optimizing over the nuisance
+ hyperparameters. Choose the search space of nuisance hyperparameters to
+ balance resource costs with scientific value.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'><span style='font-weight:bold' lang=zh-CN>如果要确定层数多少的影响，层数就是</span><span
+ style='font-weight:bold' lang=en-US>scientific</span><span style='font-weight:
+ bold' lang=zh-CN>超参数，学习率是冗余超参数，当我们调整层数时，不应该固定学习率，而应该选择当前层数下最优的学习率，因为层数和学习率对效果的影响是耦合的，不是独立的。而激活函数是</span><span
+ style='font-weight:bold' lang=en-US>Fixed </span><span style='font-weight:
+ bold' lang=zh-CN>超参数，调整层数时，可以固定激活函数。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'>For example, if our goal is to &quot;determine whether a model
+ with more hidden layers will reduce validation error&quot;, then the number of
+ hidden layers is a scientific hyperparameter.</p>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>The learning rate is a nuisance
+      hyperparameter because we can only fairly compare models with different
+      numbers of hidden layers if the learning rate is tuned separately for
+      each number of layers (</span><span style='font-weight:bold;font-family:
+      微软雅黑;font-size:36.0pt'>the optimal learning rate generally depends on the
+      model architecture</span><span style='font-family:微软雅黑;font-size:36.0pt'>).</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>The activation function could
+      be a fixed hyperparameter if we have determined in prior experiments that
+      the best choice of activation function is not sensitive to model depth,
+      or if we are willing to limit our conclusions about the number of hidden
+      layers to only cover this specific choice of activation function.
+      Alternatively, it could be a nuisance parameter if we are prepared to
+      tune it separately for each number of hidden layers.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>超参数是</span><span style='font-weight:bold'
+ lang=en-US>scientific</span><span style='font-weight:bold' lang=zh-CN>还是</span><span
+ style='font-weight:bold' lang=en-US>nuisance</span><span style='font-weight:
+ bold' lang=zh-CN>还是</span><span style='font-weight:bold' lang=en-US>fixed</span><span
+ style='font-weight:bold' lang=zh-CN>的，取决于我们的实验目标。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Whether
+ a particular hyperparameter is a scientific hyperparameter, nuisance
+ hyperparameter, or fixed hyperparameter is not inherent to that
+ hyperparameter, but changes depending on the experimental goal.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'>For example, the choice of activation function could be a
+ scientific hyperparameter (is ReLU or tanh a better choice for our problem?),
+ a nuisance hyperparameter (is the best 5-layer model better than the best
+ 6-layer model when we allow several different possible activation functions?),
+ or a fixed hyperparameter (for ReLU nets, does adding batch normalization in a
+ particular position help?).</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>当设计下一轮实验时，首先确定</span><span
+ style='font-weight:bold' lang=en-US>scientific </span><span style='font-weight:
+ bold' lang=zh-CN>超参数，暂时把其他所有的超参数作为冗余超参数，当计算资源无限时，把其他所有的超参数作为冗余超参数的好处是so that
+ the conclusions we draw from our experiments are free from caveats about fixed
+ hyperparameter values.</span><span style='font-weight:bold' lang=en-US> </span><span
+ style='font-weight:bold' lang=zh-CN>但是这样的风险是，需要调整的冗余参数越多</span><span
+ style='font-weight:bold' lang=en-US>, </span><span style='font-weight:bold'
+ lang=zh-CN>the greater the risk we fail to tune them sufficiently well for
+ each setting of the scientific hyperparameters and end up reaching the wrong
+ conclusions from our experiments，而且我们也没有无限</span><span style='font-weight:
+ bold' lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>的计算资源</span><span
+ style='font-weight:bold' lang=en-US> </span><span style='font-weight:bold'
+ lang=zh-CN>。因此</span><span style='font-weight:bold' lang=en-US> </span><span
+ style='font-weight:bold' lang=zh-CN>我们选择一些冗余超参数作为</span><span
+ style='font-weight:bold' lang=en-US>fixed </span><span style='font-weight:
+ bold' lang=zh-CN>超参数，选择的原则是：</span><span style='font-weight:bold;color:#1F2328'
+ lang=zh-CN>The more a given nuisance hyperparameter interacts with the
+ scientific hyperparameters, the more damaging it is to fix its value. For
+ example, the best value of the weight decay strength typically depends on the
+ model size, so comparing different model sizes assuming a single specific
+ value of the weight decay would not be very insightful.</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=en-US><span style='mso-spacerun:yes'>  </span></span><span
+ style='font-weight:bold' lang=zh-CN>虽然超参数是</span><span style='font-weight:
+ bold' lang=en-US>scientific</span><span style='font-weight:bold' lang=zh-CN>还是</span><span
+ style='font-weight:bold' lang=en-US>nuisance</span><span style='font-weight:
+ bold' lang=zh-CN>还是</span><span style='font-weight:bold' lang=en-US>fixed</span><span
+ style='font-weight:bold' lang=zh-CN>的，取决于我们的实验目标。但是仍然有一些基本准则可以参考，</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>学习率相关的超参数，opt</span><span
+ style='font-weight:bold' lang=en-US>imizer</span><span style='font-weight:
+ bold' lang=zh-CN>相关的超参数，通常是</span><span style='font-weight:bold' lang=en-US>nuisance</span><span
+ style='font-weight:bold' lang=zh-CN>的</span><span style='font-weight:bold'
+ lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>。因为二者与</span><span
+ style='font-weight:bold' lang=en-US>scientific </span><span style='font-weight:
+ bold' lang=zh-CN>超参数有</span><span style='font-weight:bold' lang=en-US>interact</span><span
+ style='font-weight:bold' lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>Of the various optimizer hyperparameters (e.g. the learning rate,
+ momentum, learning rate schedule parameters, Adam betas etc.), at least some
+ of them will be nuisance </span><span lang=en-US><span
+ style='mso-spacerun:yes'>    </span></span><span lang=zh-CN>hyperparameters
+ because they tend to interact the most with other changes.</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>而Opt</span><span style='font-weight:bold'
+ lang=en-US>imizer</span><span style='font-weight:bold' lang=zh-CN>的选择通常是</span><span
+ style='font-weight:bold' lang=en-US>scientific </span><span style='font-weight:
+ bold' lang=zh-CN>或者</span><span style='font-weight:bold' lang=en-US>fixed</span><span
+ style='font-weight:bold' lang=zh-CN>的，</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'>It is a scientific hyperparameter if our experimental goal
+ involves making fair comparisons between two or more different optimizers
+ (e.g. &quot;determine which optimizer produces the lowest validation error in
+ a given number of steps&quot;).</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>类似的，正则相关的超参数是</span><span
+ style='font-weight:bold' lang=en-US>nuisance</span><span style='font-weight:
+ bold' lang=zh-CN>的，但是是否选择正则以及选择哪种正则，是</span><span style='font-weight:bold'
+ lang=en-US>scientific </span><span style='font-weight:bold' lang=zh-CN>或者</span><span
+ style='font-weight:bold' lang=en-US>fixed</span><span style='font-weight:bold'
+ lang=zh-CN>的。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Hyperparameters
+ introduced by a regularization technique are typically nuisance
+ hyperparameters, but whether or not we include the regularization technique at
+ all is a scientific or fixed hyperparameter.</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>For example, dropout adds code
+      complexity, so when deciding whether to include it we would make &quot;no
+      dropout&quot; vs &quot;dropout&quot; a scientific hyperparameter and the
+      dropout rate a nuisance hyperparameter.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>模型结构的超参数通常是</span><span style='font-weight:
+ bold' lang=en-US>scientific</span><span style='font-weight:bold' lang=zh-CN>或者</span><span
+ style='font-weight:bold' lang=en-US>fixed</span><span style='font-weight:bold'
+ lang=zh-CN>的。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'>Architectural hyperparameters are often scientific or fixed
+ hyperparameters because architecture changes can affect serving and training
+ costs, latency, and memory requirements.</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>For example, the number of
+      layers is typically a scientific or fixed hyperparameter since it tends
+      to have dramatic consequences for training speed and memory usage.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>在某些情况下，nu</span><span style='font-weight:
+ bold' lang=en-US>isance</span><span style='font-weight:bold' lang=zh-CN>和</span><span
+ style='font-weight:bold' lang=en-US>fixed</span><span style='font-weight:bold'
+ lang=zh-CN>超参数的选择取决于</span><span style='font-weight:bold' lang=en-US>scientific</span><span
+ style='font-weight:bold' lang=zh-CN>超参数。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'>For example, suppose we are trying to determine which optimizer
+ out of Nesterov momentum and Adam results in the lowest validation error. The
+ scientific hyperparameter is the&nbsp;optimizer, which takes
+ values&nbsp;{&quot;Nesterov_momentum&quot;, &quot;Adam&quot;}. The
+ value&nbsp;optimizer=&quot;Nesterov_momentum&quot;&nbsp;introduces the
+ nuisance/fixed hyperparameters&nbsp;{learning_rate, momentum}, but the
+ value&nbsp;optimizer=&quot;Adam&quot;&nbsp;introduces the nuisance/fixed
+ hyperparameters&nbsp;{learning_rate, beta1, beta2, epsilon}.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:#1F2328'><span style='font-weight:bold' lang=zh-CN>确定哪些是</span><span
+ style='font-weight:bold' lang=en-US>scientific</span><span style='font-weight:
+ bold' lang=zh-CN>超参数，冗余超参数，固定超参数之后，就可以指定一系列超参数的设置，每个设置称为一个</span><span
+ style='font-weight:bold' lang=en-US>trial</span><span style='font-weight:bold'
+ lang=zh-CN>，具体包括确定超参数的搜索空间，选择</span><span style='font-weight:bold' lang=en-US>trial</span><span
+ style='font-weight:bold' lang=zh-CN>的次数，选择自动搜索算法，或者手动搜索等。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-size:36.0pt;color:#1F2328'><span
+ style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>搜索的目标是确定不同</span><span
+ style='font-weight:bold;font-family:微软雅黑' lang=en-US>scientific</span><span
+ style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>超参数对性能的影响，并时刻保持</span><span
+ style='font-weight:bold;font-family:微软雅黑' lang=en-US>nuisance</span><span
+ style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>参数的最优，从而让不同的</span><span
+ style='font-weight:bold;font-family:微软雅黑' lang=en-US>scientific</span><span
+ style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>超参数的对比变得有意义。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'>The purpose of the studies is to run the pipeline with
+ different values of the scientific hyperparameters, while at the same
+ time&nbsp;&quot;optimizing away&quot;&nbsp;(or &quot;optimizing over&quot;)
+ the nuisance hyperparameters so that comparisons between different values of
+ the scientific hyperparameters are as fair as possible.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold'>一个简单情况的例子：</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'>For example, if our goal is to select the best optimizer out of
+ Nesterov momentum and Adam, we could create one study in
+ which&nbsp;optimizer=&quot;Nesterov_momentum&quot;&nbsp;and the nuisance
+ hyperparameters are&nbsp;{learning_rate, momentum}, and another study in
+ which&nbsp;optimizer=&quot;Adam&quot;&nbsp;and the nuisance hyperparameters
+ are&nbsp;{learning_rate, beta1, beta2, epsilon}. We would compare the two
+ optimizers by selecting the best performing trial from each study.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#1F2328'>We can use any</span><span style='font-weight:bold;
+ color:#1F2328'> gradient-free optimization algorithm, including methods such
+ as Bayesian optimization or evolutionary algorithms,</span><span
+ style='color:#1F2328'> to optimize over the nuisance hyperparameters,
+ although&nbsp;</span><a
+ href="https://github.com/google-research/tuning_playbook?tab=readme-ov-file#why-use-quasi-random-search-instead-of-more-sophisticated-black-box-optimization-algorithms-during-the-exploration-phase-of-tuning">we
+ prefer</a><span style='color:#1F2328'>&nbsp;to use quasi-random search in
+ the&nbsp;</span><a
+ href="https://github.com/google-research/tuning_playbook?tab=readme-ov-file#exploration-vs-exploitation">exploration
+ phase</a><span style='color:#1F2328'>&nbsp;of tuning because of a variety of
+ advantages it has in this setting.</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>复杂情况的例子，把</span><span style='font-weight:
+ bold' lang=en-US>scientific</span><span style='font-weight:bold' lang=zh-CN>参数包括在</span><span
+ style='font-weight:bold' lang=en-US>nuisance</span><span style='font-weight:
+ bold' lang=zh-CN>参数中，一起</span><span style='font-weight:bold' lang=en-US> </span><span
+ style='font-weight:bold' lang=zh-CN>进行参数搜索，此时用随机搜索更好，因为可以保证</span><span
+ style='font-weight:bold' lang=en-US>scientific</span><span style='font-weight:
+ bold' lang=zh-CN>参数被均匀地采样到。</span></p>
+ <p style='margin:0in;margin-left:.375in'><span style='font-family:微软雅黑;
+ font-size:36.0pt'>In the more complicated case where we want to compare a
+ large number of values of the scientific hyperparameters and it is impractical
+ to make that many independent studies, we can include the scientific
+ parameters in the same search space as the nuisance hyperparameters and use a
+ search algorithm to sample values of&nbsp;</span><span style='font-style:italic;
+ font-family:-apple-system;font-size:12.0pt;color:#1F2328;background:white'>both</span><span
+ style='font-family:微软雅黑;font-size:36.0pt'>&nbsp;the scientific and nuisance
+ hyperparameters in a single study.</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#1F2328'>In this case,&nbsp;</span><a
+ href="https://github.com/google-research/tuning_playbook?tab=readme-ov-file#why-use-quasi-random-search-instead-of-more-sophisticated-black-box-optimization-algorithms-during-the-exploration-phase-of-tuning">our
+ preference</a><span style='color:#1F2328'>&nbsp;for using quasi-random search
+ over fancier black-box optimization tools is even stronger, since it ensures
+ that we obtain a relatively uniform sampling of values of the scientific
+ hyperparameters. Regardless of the search algorithm, we need to make sure
+ somehow that it searches the scientific parameters uniformly.</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>进行参数搜索实验时，需要探索足够多的s</span><span
+ style='font-weight:bold' lang=en-US>cientific</span><span style='font-weight:
+ bold' lang=zh-CN>参数，才能获得足够的</span><span style='font-weight:bold' lang=en-US>insight</span><span
+ style='font-weight:bold' lang=zh-CN>，也需要探索足够多</span><span style='font-weight:
+ bold' lang=en-US>nuisance</span><span style='font-weight:bold' lang=zh-CN>参数，才能保证the
+ nuisance hyperparameters 足够好well enough&nbsp;，但是搜索的参数越多，计算资源消耗越大，因此需要平衡。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p><cite style='margin:0in;margin-left:.375in;font-family:Calibri;font-size:
+ 9.0pt;color:#595959'>&nbsp;</cite></p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-size:
+ 36.0pt;color:#1F2328'><span style='font-weight:bold;font-family:微软雅黑'
+ lang=en-US>2.4 </span><span style='font-weight:bold;font-family:微软雅黑'
+ lang=zh-CN>E</span><span style='font-weight:bold;font-family:"Microsoft YaHei"'
+ lang=en-US>xtracting insight from experimental results</span></p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-size:
+ 36.0pt;color:#1F2328'><span style='font-weight:bold;font-family:"Microsoft YaHei"'
+ lang=zh-CN>在实验过程中，除了探索</span><span style='font-weight:bold;font-family:微软雅黑'
+ lang=en-US>scientific</span><span style='font-weight:bold;font-family:微软雅黑'
+ lang=zh-CN>超参数的影响之外，还应该检查一些其他问题。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#1F2328'>Summary:</span>&nbsp;<span style='color:#1F2328'>In
+ addition to trying to achieve the original scientific goal of each group of
+ experiments, go through a checklist of additional questions and, if issues are
+ discovered, revise the experiments and rerun them.</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Before
+ analyzing a given set of experiments to make progress toward their original
+ goal, we should ask ourselves the following additional questions:</p>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>搜索空间足够大吗？</span><a
+      href="https://github.com/google-research/tuning_playbook?tab=readme-ov-file#identifying-bad-search-space-boundaries"><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>Is the search space
+      large enough?</span></a><span style='font-family:微软雅黑;font-size:36.0pt'
+      lang=en-US><span style='mso-spacerun:yes'>  </span></span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>不合适的搜索空间：当最优点位于搜索空间的边界时。A
+ search space is suspicious if the best point sampled from it is close to its
+ boundary. We might find an even better point if we expanded the search range
+ in that direction.</p>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>我们是否从搜索空间中采样了足够多的点？</span><a
+      href="https://github.com/google-research/tuning_playbook?tab=readme-ov-file#not-sampling-enough-points-in-the-search-space"><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Have we sampled enough points
+      from the search space?</span></a></li>
+ </ul>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>通常，很难知道搜索空间的采样是否足够密集。通常会采样我们可以负担得起的东西，并尝试通过实验结果来校准我们对问题的</span><span
+ lang=en-US>insight</span><span lang=zh-CN>。</span></p>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>有多少试验是不可行的</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US> </span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>What fraction of the
+      trials in each study are infeasible (i.e. trials that diverge, get really
+      bad loss values, or fail to run at all because they violate some implicit
+      constraint)?</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>该模型是否存在优化问题？</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US> </span><a
+      href="https://github.com/google-research/tuning_playbook?tab=readme-ov-file#how-can-optimization-failures-be-debugged-and-mitigated"><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>Does the model
+      exhibit optimization issues?</span></a></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>我们可以从最佳试验的训练曲线中学到什么？</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>从训练曲线中能否看出存在过拟合问题？</span><span lang=en-US> </span><span lang=zh-CN>What
+ can we learn from the training curves of the best trials?</span><span
+ lang=en-US> </span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Problematic
+ overfitting occurs when the validation error starts increasing at some point
+ during training.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>如果存在过拟合，那么应该加入正则项来解决些问题并重新运行实验，这样才能公平地比较</span><span lang=en-US>scientific</span><span
+ lang=zh-CN>超参数的影响。If any of the best trials exhibits problematic overfitting,
+ we usually want to re-run the experiment with additional regularization
+ techniques and/or better tune the existing regularization parameters before
+ comparing the values of the scientific hyperparameters.</span><span
+ lang=en-US> </span><span lang=zh-CN>Reducing overfitting is often
+ straightforward using common regularization techniques that add minimal code
+ complexity or extra computation (e.g. dropout, label smoothing, weight decay),
+ so it’s usually no big deal to add one or more of these to the next round of
+ experiments.</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>训练后期的训练或验证误差是否存在高步进方差（high
+ step-to-step variance）？</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>步进方差的最可能原因是批次方差（从每个批次的训练集中随机抽取示例）、小验证集以及在训练后期使用过高的学习率。</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>可能的补救措施包括增加批量大小、获取更多验证数据、使用学习率衰减或使用
+ Polyak 平均。</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>The
+ most likely causes of step-to-step variance are batch variance (from randomly
+ sampling examples from the training set for each batch), small validation
+ sets, and using a learning rate that’s too high late in training.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Possible
+ remedies include increasing the batch size, obtaining more validation data,
+ using learning rate decay, or using Polyak averaging.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>训练结束时试验是否仍在改进？Are
+ the trials still improving at the end of training?</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>如果是，我们可能会从增加训练步骤数或改变学习率计划中受益。</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>If
+ so, this indicates that we are in the &quot;compute bound&quot; regime and we
+ may benefit from increasing the number of training steps or changing the
+ learning rate schedule.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>训练集和验证集的性能在最后的训练步骤之前很早就饱和了吗？Has
+ performance on the training and validation sets saturated long before the
+ final training step?</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>如果是，这表明我们可以减少训练步骤的数量。</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>If
+ so, this indicates that we are in the &quot;not compute-bound&quot; regime and
+ that we may be able to decrease the number of training steps.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>据上述问题的答案，改进最近的研究（或研究组）以改进搜索空间和/或抽样更多试验，或采取其他一些纠正措施。</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=en-US>2.5 </span><span style='font-weight:bold'
+ lang=zh-CN>D</span><span style='font-weight:bold;color:#1F2328' lang=en-US>etermining
+ whether to adopt a training pipeline change or hyperparameter configuration</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'><span style='font-weight:bold'>在决定是否更改我们的模型或训练程序或采用新的超参数配置时，需要这个新的配置是否是真的可以提升效果，还是由其他因素造成的，例如不同的随机种子，不同的随机初始化、训练数据shuffle、丢弃掩码、数据扩充操作的模式以及并行算术操作的顺序，都是试验方差的潜在来源。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'><span style='font-weight:bold'>因此，在采用候选更改之前，请考虑将最佳试验运行 N
+ 次以表征每次运行的试验方差。</span>Therefore, before adopting a candidate change, consider
+ running the best trial N times to characterize the run-to-run trial variance.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F2328'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=en-US>2.6 </span><span style='font-weight:bold'
+ lang=zh-CN>After exploration concludes</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold'>总结：一旦我们完成了对良好搜索空间的探索并决定了应该调整哪些超参数，贝叶斯优化工具就是一个引人注目的选择。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>在某个时候，我们的优先事项将从更多地了解调优问题迁移到生成单一最佳配置以启动或以其他方式使用。</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>在这一点上，应该有一个精确的搜索空间，可以舒适地包含最佳观察试验周围的局部区域，并且已经过充分采样。</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>我们的探索工作应该已经揭示了最重要的要调整的超参数（以及它们的合理范围），我们可以使用这些超参数来构建搜索空间，以使用尽可能大的调整预算进行最终的自动调整研究。</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>由于我们不再关心最大化我们对调优问题的洞察力，因此准随机搜索的许多优势不再适用，应该使用贝叶斯优化工具来自动找到最佳超参数配置。</span><span
+ style='font-weight:bold' lang=en-US>(</span><span style='font-weight:bold'
+ lang=zh-CN>也就是说，先用准随机搜索，再用贝叶斯搜索，类似于先粗排，后精排</span><span style='font-weight:
+ bold' lang=en-US>)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>如果搜索空间包含大量发散点（获得
+ NaN 训练损失或甚至训练损失比均值差很多标准差的点），使用黑盒优化工具来正确处理发散试验很重要（请参阅 Bayesian Optimization
+ with Unknown Constraints 是处理此问题的绝佳方法）。</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>此时，我们还应该考虑检查测试集上的性能。</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>原则上，我们甚至可以将验证集折叠到训练集中，并重新训练通过贝叶斯优化找到的最佳配置。
+ 但是，这仅适用于未来不会针对此特定工作负载发布的情况（例如一次性 Kaggle 竞赛）。</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:normal'>
+  <li value=3 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      margin-top:18pt;margin-bottom:12pt;font-weight:bold;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:48.0pt;font-weight:bold;
+      font-style:normal;font-weight:bold;font-family:"Microsoft YaHei";
+      font-size:48.0pt' lang=en-US>Determining the number of steps for each
+      training run</span><span style='font-family:"Microsoft YaHei";font-size:
+      48.0pt;font-weight:bold;font-style:normal;font-weight:bold;font-family:
+      "Microsoft YaHei";font-size:48.0pt' lang=zh-CN>（这部分没太看懂）</span></li>
+ </ol>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-family:
+ "Microsoft YaHei";font-size:36.0pt;color:#1F2328'><span style='font-weight:
+ bold' lang=zh-CN>无论计算资源是否受限</span><span style='font-weight:bold' lang=en-US> </span><span
+ style='font-weight:bold' lang=zh-CN>，那些增加</span><span style='font-weight:bold'
+ lang=en-US>batch</span><span style='font-weight:bold' lang=zh-CN>之间的梯度方差的</span><span
+ style='font-weight:bold' lang=en-US>method</span><span style='font-weight:
+ bold' lang=zh-CN>，通常会增加</span><span style='font-weight:bold' lang=en-US>training
+ steps</span><span style='font-weight:bold' lang=zh-CN>。比如更小的</span><span
+ style='font-weight:bold' lang=en-US>batchsize</span><span style='font-weight:
+ bold' lang=zh-CN>，数据增强，</span><span style='font-weight:bold' lang=en-US>Dropout</span><span
+ style='font-weight:bold' lang=zh-CN>。</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:"Microsoft YaHei";font-size:36.0pt'>Regardless of
+      whether a given workload is compute-bound or not, methods that increase
+      the variance of the gradients (across batches) will usually result in
+      slower training progress, and thus may increase the number of training
+      steps required to reach a particular validation loss. High gradient
+      variance can be caused by:</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Using a smaller
+       batch size</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Adding data
+       augmentation</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:"Microsoft YaHei";font-size:36.0pt'>Adding some types
+       of regularization (e.g. dropout)</span></li>
+  </ul>
+ </ul>
+ <p style='margin-top:18pt;margin-bottom:12pt;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:#1F2328'><span style='font-weight:bold' lang=en-US>3.1 </span><span
+ style='font-weight:bold' lang=zh-CN>When training is compute-bound</span></p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-family:
+ "Microsoft YaHei";font-size:36.0pt;color:#1F2328'><span lang=zh-CN>当计算资源受限时，在这种情况下，理论上来说，加速训练速度就相当于提高训练</span><span
+ lang=en-US>performance</span><span lang=zh-CN>，the &quot;optimal&quot;
+ training time is always &quot;as long as we can afford.&quot;</span></p>
+ <p style='margin-top:18pt;margin-bottom:12pt;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:#1F2328'><span style='font-weight:bold' lang=en-US>3.2 </span><span
+ style='font-weight:bold' lang=zh-CN>When training is</span><span
+ style='font-weight:bold' lang=en-US> not</span><span style='font-weight:bold'
+ lang=zh-CN> compute-bound</span></p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-size:
+ 36.0pt;color:#1F2328'><span style='font-family:"Microsoft YaHei"'>当计算资源</span><span
+ style='font-family:微软雅黑'>不</span><span style='font-family:"Microsoft YaHei"'>受限时，we
+ can afford to train as long as we would like to, and, at some point, training
+ longer doesn't help much (or even causes problematic overfitting).</span></p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-family:
+ "Microsoft YaHei";font-size:48.0pt;color:#1F2328' lang=en-US>&nbsp;</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:normal'>
+  <li value=4 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      margin-top:18pt;margin-bottom:12pt;font-weight:bold;color:#1F2328'
+      lang=en-US><span style='font-family:"Microsoft YaHei";font-size:48.0pt;
+      font-weight:bold;font-style:normal;font-weight:bold;font-family:"Microsoft YaHei";
+      font-size:48.0pt'>Additional guidance for the training pipeline</span></li>
+ </ol>
+ <p style='margin-top:18pt;margin-bottom:12pt;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:#1F2328'><span style='font-weight:bold' lang=en-US><span
+ style='mso-spacerun:yes'> </span>4.1 </span><span style='font-weight:bold'
+ lang=zh-CN>Optimizing the input pipeline</span></p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-family:
+ 微软雅黑;font-size:36.0pt;color:#1F2328'><span lang=zh-CN>优化输入</span><span
+ lang=en-US>pipeline</span><span lang=zh-CN>。</span></p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-family:
+ 微软雅黑;font-size:36.0pt;color:#1F2328'><span lang=en-US>input</span><span
+ lang=zh-CN>可能存在的问题：</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      18pt;margin-bottom:12pt;color:#1F2328'><span style='font-family:微软雅黑;
+      font-size:36.0pt' lang=zh-CN>数据没有放在一起，导致</span><span style='font-family:
+      微软雅黑;font-size:36.0pt' lang=en-US>IO </span><span style='font-family:
+      微软雅黑;font-size:36.0pt' lang=zh-CN>延迟</span><span style='font-family:微软雅黑;
+      font-size:36.0pt' lang=en-US> </span><span style='font-family:微软雅黑;
+      font-size:36.0pt' lang=zh-CN>，比如从网络中读取数据</span><span style='font-family:
+      微软雅黑;font-size:36.0pt' lang=en-US> </span><span style='font-family:微软雅黑;
+      font-size:36.0pt' lang=zh-CN>。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      18pt;margin-bottom:12pt;color:#1F2328'><span style='font-family:微软雅黑;
+      font-size:36.0pt' lang=zh-CN>处理</span><span style='font-family:微软雅黑;
+      font-size:36.0pt' lang=en-US>Online data</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      18pt;margin-bottom:12pt;color:#1F2328'><span style='font-family:微软雅黑;
+      font-size:36.0pt'>同步问题</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Common causes:</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:微软雅黑;font-size:36.0pt'>Data are not colocated with
+       the training process, causing I/O latency (this might happen when
+       reading training data over a network).</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:微软雅黑;font-size:36.0pt'>Expensive online data
+       preprocessing (consider doing this once offline and saving).</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:微软雅黑;font-size:36.0pt;color:#1F2328'>Unintentional
+       synchronization barriers that interfere with data pipeline prefetching.
+       For example, when synchronizing metrics between the device and host in
+       CommonLoopUtils (</span><a
+       href="https://github.com/google/CommonLoopUtils/blob/fea2518ada8814a78e1492023fd9f00edb0b0568/clu/metrics.py#L291"><span
+       style='font-family:微软雅黑;font-size:36.0pt'>link</span></a><span
+       style='font-family:微软雅黑;font-size:36.0pt;color:#1F2328'>).</span></li>
+  </ul>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Common tips:</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:微软雅黑;font-size:36.0pt;color:#1F2328'>Instrument input
+       pipeline to prefetch examples (e.g.&nbsp;</span><a
+       href="https://www.tensorflow.org/guide/data_performance#prefetching"><span
+       style='font-family:微软雅黑;font-size:36.0pt'>tf.data.Dataset.prefetch</span></a><span
+       style='font-family:微软雅黑;font-size:36.0pt;color:#1F2328'>)</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:微软雅黑;font-size:36.0pt'>Remove unused
+       features/metadata from each as early in the pipeline as possible.</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+       style='font-family:微软雅黑;font-size:36.0pt;color:#1F2328'>Increase the
+       replication of the number of jobs generating examples for the input
+       pipeline. For example, by using the&nbsp;</span><a
+       href="https://www.tensorflow.org/api_docs/python/tf/data/experimental/service"><span
+       style='font-family:微软雅黑;font-size:36.0pt'>tf.data service</span></a><span
+       style='font-family:微软雅黑;font-size:36.0pt;color:#1F2328'>.</span></li>
+  </ul>
+ </ul>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin-top:18pt;margin-bottom:12pt;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:#1F2328' lang=en-US><span style='font-weight:bold'>4.2
+ Evaluating model performance</span></p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-family:
+ "Microsoft YaHei";font-size:36.0pt;color:#1F2328'><span style='font-weight:
+ bold'>测试时，使用比训练时更大的batch size进行评估。以固定的步数间隔而不是时间间隔进行评估。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-style:italic;color:#1F2328'>Summary:</span>&nbsp;<span
+ style='font-style:italic;color:#1F2328'>Run evaluation at larger batch sizes
+ than training. Run evaluations at regular step intervals, not regular time
+ intervals.</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>我们在训练的过程中进行周期性评估以实时管理它的进程，以便于模型检查点选择，这样我们在训练结束后可以检查它的训练曲线。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>最简单的配置是在同一个计算实例中</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>既进行训练又进行周期性评估</span><span
+      style='font-family:微软雅黑;font-size:36.0pt'>，训练和评估交替进行。</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+       6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>在这种情况下，</span><span
+       style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>用于评估的batch
+       size至少要和用于训练的一样大， 因为评估阶段模型的计算量要求会更低</span><span style='font-family:微软雅黑;
+       font-size:36.0pt'>。</span></li>
+  </ul>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>周期性评估应该以</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>固定的步数间隔</span><span
+      style='font-family:微软雅黑;font-size:36.0pt'>进行，而不是时间间隔。</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+       6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>基于时间间隔做出的评估很难演绎成训练曲线，
+       特别是当训练可能会受到训练作业抢占、网络延迟问题等影响时。</span></li>
+  </ul>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>周期性评估的工作</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>没有足够的时间在所有的离线验证集上进行，所以需要你进行一个合理的采样</span><span
+      style='font-family:微软雅黑;font-size:36.0pt'>。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>在构建样本数据集我们考虑一下的因素：</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+       6pt;margin-bottom:0pt'><span style='font-weight:bold;font-family:微软雅黑;
+       font-size:36.0pt'>样本大小</span></li>
+   <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+    margin-bottom:0in'>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+        6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>要保证在这个样本数据集上获得的模型表现和你整个验证集是匹配的。</span></li>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+        6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>这个数据集不能太大，这样才能快速高效的完成模型预测，但是它也要足够大，能够正确地衡量模型效果的改进。</span></li>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+        6pt;margin-bottom:0pt'><span style='font-weight:bold;font-family:微软雅黑;
+        font-size:36.0pt'>It should be large enough to accommodate multiple
+        such evaluations across trials in sequence, and still produce accurate
+        estimates. That is, to avoid adaptively “fitting” to the validation set
+        over time, in a way that doesn’t generalize to a held-out test set.
+        However, this consideration is rarely a practical concern.</span></li>
+   </ul>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+       6pt;margin-bottom:0pt'><span style='font-weight:bold;font-family:微软雅黑;
+       font-size:36.0pt'>不均衡的数据集</span></li>
+   <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+    margin-bottom:0in'>
+    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+        6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>对于一个不均衡的数据，在数量比较少的样本类型上的结果会比较嘈杂。</span></li>
+   </ul>
+  </ul>
+ </ul>
+ <p style='margin-left:1.125in;margin-top:6pt;margin-bottom:0pt;font-family:
+ 微软雅黑;font-size:36.0pt'>对于样本数量较少的数据集，记录正确预测的示例数量，以更深入地了解准确性改进。</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-family:
+ "Microsoft YaHei";font-size:36.0pt;color:#1F2328' lang=en-US><span
+ style='font-weight:bold'>4.3 保存检查点并回溯选择最优</span></p>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>很多深度学习框架都支持模型检查点。模型的当前状态会周期性地保存在你的硬盘中，允许训练作业对计算实例中断具有弹性。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>最好的检查点通常不是最后的检查点，尤其在你的验证集上表现已经不在随着时间提升甚至有点下降的时候。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>建立一个pipeline来保存最好的N个检查点。在训练结束后，模型的选择就是选择训练过程中最好的检查点，我们把它称为</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>retrospective
+      optimal checkpoint selection</span><span style='font-family:微软雅黑;
+      font-size:36.0pt'>。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>early
+      stopping方法通常是没有必要的，因为我们会保存N个最好的检查点。</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-family:
+ "Microsoft YaHei";font-size:36.0pt;color:#1F2328' lang=en-US><span
+ style='font-weight:bold'>4.4 BN的实现细节</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;color:#555666'>Summary:</span>&nbsp;nowadays batch
+ norm can often be replaced with LayerNorm, but in cases where it cannot, there
+ are trickly details when changing the batch size or number of&nbsp;<span
+ style='color:#4EA1DB'>hosts</span>.</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>BN使用均值和方差对batch进行归一化，而在一个多设备的配置环境下，每个设备上的数据都是不一样的。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>使用64大小的
+      batch size进行bn操作的效果在实际上会更好一点。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>将batch
+      size与用于计算BN的严样本数量解耦对于比较batch size很有帮助。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>Ghost
+      BN在每设备batch size&gt; 虚拟batch
+      size的情况并不总是正确处理。在这种情况下，我们实际上需要对每个设备上的batch进行二次采样，以获得正确数量的用于BN的目标。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'
+      lang=en-US>Batchnorm</span><span style='font-family:微软雅黑;font-size:36.0pt'
+      lang=zh-CN>在训练时需要记录</span><span style='font-family:微软雅黑;font-size:36.0pt'
+      lang=en-US>batch</span><span style='font-family:微软雅黑;font-size:36.0pt'
+      lang=zh-CN>的均值，然后计算移动平均</span><span style='font-family:微软雅黑;font-size:
+      36.0pt' lang=en-US>EMA</span><span style='font-family:微软雅黑;font-size:
+      36.0pt' lang=zh-CN>，用于测试中。在多设备的情况下，需要对多个设备上统计的</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>batch</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>均值进行同步，来计算</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>EMA</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，但是通常的</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>batchnorm</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的实现中计算第一个</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>device</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>EMA</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>。Exponential moving
+      averages used in test mode batch norm are just a linear combination of
+      training statistics, so these EMAs only need to be synchronized before
+      saving them in checkpoints. However, some common implementations of batch
+      norm do not synchronize these EMAs and only save the EMA from the first
+      device.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin-top:18pt;margin-bottom:12pt;font-family:"Microsoft YaHei";
+ font-size:36.0pt;color:#1F2328' lang=en-US><span style='font-weight:bold'><span
+ style='mso-spacerun:yes'>  </span>4.5 对多主机pipeline的考虑</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:#555666'><span style='font-weight:bold'>Summary:</span>&nbsp;for
+ logging, evals, RNGs, checkpointing, and data sharding, multi-host training
+ can make it very easy to introduce bugs!</p>
+ <p style='margin-left:.75in;margin-top:0pt;margin-bottom:12pt;font-family:
+ 微软雅黑;font-size:36.0pt;color:#4D4D4D'>多主机的训练方式是更容易引入bug的</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>保证你的pipeline只在一个主机上进行记录和保存操作。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>保证在评估或者保存前，bn已经进行了同步。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>不同主机之间的RNG种子必须是一样的，用于数据洗牌和预处理的种子可以是不一样的。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>在不同主机上的数据文件分片通常可以提高表现。</span></li>
+ </ul>
+ <p style='margin-left:.75in;margin-top:18pt;margin-bottom:12pt;font-family:
+ 微软雅黑;font-size:10.0pt;color:#1F2328'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:normal'>
+  <li value=5 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      margin-top:18pt;margin-bottom:12pt;font-weight:bold;color:#1F2328'
+      lang=en-US><span style='font-family:"Microsoft YaHei";font-size:48.0pt;
+      font-weight:bold;font-style:normal;font-weight:bold;font-family:"Microsoft YaHei";
+      font-size:48.0pt'>FAQs</span></li>
+ </ol>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-family:
+ "Microsoft YaHei";font-size:48.0pt;color:#1F2328'><span style='font-weight:
+ bold'>What is the best learning rate decay schedule family?</span></p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-family:
+ 微软雅黑;font-size:36.0pt;color:#1F2328'><span lang=zh-CN>没有最好的</span><span
+ lang=en-US>learing rate decay shcedule</span><span lang=zh-CN>，但是可以确定的是，不应该固定</span><span
+ lang=en-US>lr</span><span lang=zh-CN>，而应该在训练过程中，保持</span><span lang=en-US>lr</span><span
+ lang=zh-CN>的变化</span><span lang=en-US> </span><span lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Different
+ learning rates work best at different times during the optimization
+ process.&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:Calibri;font-size:11.0pt'>&nbsp;</p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-size:
+ 48.0pt'><span style='font-weight:bold;font-family:微软雅黑'>Which </span><span
+ style='font-weight:bold;font-family:"Microsoft YaHei";color:#1F2328'>learning</span><span
+ style='font-weight:bold;font-family:微软雅黑'> rate decay should I use as a
+ default?</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>线性或</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>cosine</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>都可以</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Our preference is either linear
+      decay or cosine decay, and a bunch of other schedule families are
+      probably good too.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-family:
+ 微软雅黑;font-size:48.0pt'><span style='font-weight:bold'>How should Adam’s
+ hyperparameters be tuned?</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>If &lt; 10 trials in a study,
+      only tune the (base) learning rate.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>If 10-25 trials, tune learning
+      rate and&nbsp;β1.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>If 25+ trials, tune the
+      learning rate,&nbsp;β1&nbsp;and&nbsp;ϵ.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>If one can run substantially
+      more than 25 trials, additionally tune&nbsp;β2.</span></li>
+ </ul>
+ <p style='margin-top:18pt;margin-bottom:12pt;font-family:微软雅黑;font-size:48.0pt'>&nbsp;</p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-family:
+ 微软雅黑;font-size:48.0pt'><span style='font-weight:bold'>Why use quasi-random
+ search instead of more sophisticated black box optimization algorithms during
+ the exploration phase of tuning?</span></p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-family:
+ 微软雅黑;font-size:36.0pt'>什么是准随机数：分布更均匀的随机数。Quasi-random refers to a sequence of
+ numbers that are designed to fill a space more uniformly than purely random
+ sequences. Unlike random numbers, which can cluster and leave gaps,
+ quasi-random numbers are generated using deterministic algorithms that ensure
+ a more even distribution across a defined range. </p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold'>Why shouldn't the batch size be tuned to directly
+ improve validation set performance?</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Changing
+ the batch size without changing any other details of the training pipeline
+ will often affect the validation set performance.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>However,
+ the difference in validation set performance between two batch sizes typically
+ goes away if the training pipeline is optimized independently for each batch
+ size.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>The
+ hyperparameters that interact most strongly with the batch size, and therefore
+ are most important to tune separately for each batch size, are the optimizer
+ hyperparameters (e.g. learning rate, momentum) and the regularization
+ hyperparameters.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Smaller
+ batch sizes introduce more noise into the training algorithm due to sample
+ variance, and this noise can have a regularizing effect. Thus, larger batch
+ sizes can be more prone to overfitting and may require stronger regularization
+ and/or additional regularization techniques.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>In
+ addition, the number of training steps may need to be adjusted when changing
+ the batch size.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Once
+ all these effects are taken into account, there is currently no convincing
+ evidence that the batch size affects the maximum achievable validation
+ performance (see Shallue et al. 2018).</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin-left:.375in;margin-top:18pt;margin-bottom:12pt;font-family:
+ Calibri;font-size:36.0pt;color:#1F2328'>&nbsp;</p>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

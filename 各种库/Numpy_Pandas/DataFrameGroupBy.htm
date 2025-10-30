@@ -1,0 +1,99 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=DataFrameGroupBy.htm>
+<link rel=File-List href="DataFrameGroupBy.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:49.9375in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:2.8312in'>
+
+<p style='margin:0in;font-family:"Calibri Light";font-size:20.0pt;color:#222832'><span
+style='font-weight:bold'>DataFrameGroupBy</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.5979in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:"Microsoft YaHei"'>年</span><span
+style='font-family:Calibri'>3</span><span style='font-family:"Microsoft YaHei"'>月</span><span
+style='font-family:Calibri'>29</span><span style='font-family:"Microsoft YaHei"'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>9:25</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.3652in;margin-left:0in;width:49.9375in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+bold;color:#222832'>DataFrameGroupBy.transform(</span><span style='font-weight:
+bold;font-style:italic;color:#222832'>func</span><span style='font-weight:bold;
+color:#222832'>,&nbsp;</span><span style='font-style:italic;color:#222832'>*</span><span
+style='font-weight:bold;font-style:italic;color:#222832'>args</span><span
+style='font-weight:bold;color:#222832'>,&nbsp;</span><span style='font-weight:
+bold;font-style:italic;color:#222832'>engine</span><span style='font-style:
+italic;color:#222832'>=None</span><span style='font-weight:bold;color:#222832'>,&nbsp;</span><span
+style='font-weight:bold;font-style:italic;color:#222832'>engine_kwargs</span><span
+style='font-style:italic;color:#222832'>=None</span><span style='font-weight:
+bold;color:#222832'>,&nbsp;</span><span style='font-style:italic;color:#222832'>**</span><span
+style='font-weight:bold;font-style:italic;color:#222832'>kwargs</span><span
+style='font-weight:bold;color:#222832'>)</span><a
+href="https://github.com/pandas-dev/pandas/blob/v2.2.3/pandas/core/groupby/generic.py#L1812-L1817"><span
+style='font-weight:bold'>[source]</span></a></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+color:#222832'>Call function producing a same-indexed DataFrame on each group.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+color:#222832'>Returns a DataFrame having the same indexes as the original
+object filled with the transformed values.</p>
+
+<p style='margin:0in;margin-left:.375in;font-size:36.0pt;color:#222832'><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>即</span><span
+style='font-family:Calibri' lang=en-US>groupby</span><span style='font-family:
+"Microsoft YaHei"' lang=zh-CN>后加</span><span style='font-family:Calibri'
+lang=en-US>.transform</span><span style='font-family:"Microsoft YaHei"'
+lang=zh-CN>的结果与原来</span><span style='font-family:Calibri' lang=en-US>dataframe</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
+style='font-family:Calibri' lang=en-US>shape</span><span style='font-family:
+"Microsoft YaHei"' lang=zh-CN>一样，相当于多做了一步</span><span style='font-family:Calibri'
+lang=en-US>merge</span><span style='font-family:"Microsoft YaHei"' lang=zh-CN>的操作，比如</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>df.groupby('gender').transform(count)</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>相当于</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>c =
+df.groupby('gender').count()</span><span style='font-family:"Microsoft YaHei"'
+lang=zh-CN>，然后</span><span style='font-family:"Microsoft YaHei"' lang=en-US>pd.merge(df,
+c,on='gender')</span><span style='font-family:"Microsoft YaHei"' lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:"Microsoft YaHei";
+font-size:36.0pt;color:#222832'>&nbsp;</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

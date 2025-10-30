@@ -1,0 +1,349 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=可变类型.htm>
+<link rel=File-List href="可变类型.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:23.1763in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.6104in;width:1.6458in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'>可变类型</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:.6104in;width:1.7388in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>10</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>16</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>16:33</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:23.1763in'>
+
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold'>Python 中列表是引用传递</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>l=[1,2]</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>def f(x):</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+ lang=en-US>x.append(0)</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+ lang=en-US>return </p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+ lang=en-US>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>执行</span><span style='font-weight:bold'
+ lang=en-US>f(l)</span><span style='font-weight:bold' lang=zh-CN>后，</span><span
+ style='font-weight:bold' lang=en-US>l</span><span style='font-weight:bold'
+ lang=zh-CN>变成</span><span style='font-weight:bold' lang=en-US>[1,2,0]</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:ui-sans-serif;
+ font-size:36.0pt;color:black'>在 Python
+ 中，数据类型按传递方式可分为不可变类型（值传递）和可变类型（引用传递）。其中，可变类型在函数传递时是引用传递，即函数接收的是原对象的引用，修改会影响外部对象。</p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:ui-sans-serif;
+ font-size:36.0pt;color:black'>常见的引用传递（可变类型）&nbsp;包括：</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
+  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      margin-top:6pt;margin-bottom:6pt;color:black'><span style='font-family:
+      ui-sans-serif;font-size:36.0pt;font-weight:normal;font-style:normal;
+      font-family:ui-sans-serif;font-size:36.0pt;color:black;background:#FCFCFC'>列表（list）如&nbsp;</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;font-weight:normal;
+      font-style:normal;font-family:ui-monospace;font-size:36.0pt;color:black;
+      background:#FCFCFC'>[1, 2, 3]</span><span style='font-family:ui-sans-serif;
+      font-size:36.0pt;font-weight:normal;font-style:normal;font-family:ui-sans-serif;
+      font-size:36.0pt;color:black;background:#FCFCFC'>，函数内对列表的修改（如&nbsp;</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;font-weight:normal;
+      font-style:normal;font-family:ui-monospace;font-size:36.0pt;color:black;
+      background:#FCFCFC'>append</span><span style='font-family:ui-sans-serif;
+      font-size:36.0pt;font-weight:normal;font-style:normal;font-family:ui-sans-serif;
+      font-size:36.0pt;color:black;background:#FCFCFC'>、</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;font-weight:normal;
+      font-style:normal;font-family:ui-monospace;font-size:36.0pt;color:black;
+      background:#FCFCFC'>pop</span><span style='font-family:ui-sans-serif;
+      font-size:36.0pt;font-weight:normal;font-style:normal;font-family:ui-sans-serif;
+      font-size:36.0pt;color:black;background:#FCFCFC'>、直接赋值元素）会影响外部列表。<br>
+            </span><span style='font-family:"PingFang SC";font-size:36.0pt;
+      font-weight:normal;font-style:normal;font-family:"PingFang SC";
+      font-size:36.0pt;color:black;background:#FCFCFC'>python<br>
+            </span><span style='font-family:微软雅黑;font-size:36.0pt;font-weight:
+      normal;font-style:normal;font-family:微软雅黑;font-size:36.0pt;color:black;
+      background:#FCFCFC'><br>
+            </span><span style='font-family:Menlo;font-size:36.0pt;font-weight:
+      normal;font-style:normal;font-family:Menlo;font-size:36.0pt;color:black;
+      background:#FCFCFC'>运行</span><span style='font-family:微软雅黑;font-size:
+      36.0pt;font-weight:normal;font-style:normal;font-family:微软雅黑;font-size:
+      36.0pt;color:black;background:#FCFCFC'><br>
+            <br>
+            </span><span style='font-family:ui-monospace;font-size:36.0pt;
+      font-weight:normal;font-style:normal;font-family:ui-monospace;font-size:
+      36.0pt;color:#B15EF2;background:#FCFCFC'>def </span><span
+      style='font-family:ui-monospace;font-size:36.0pt;font-weight:normal;
+      font-style:normal;font-family:ui-monospace;font-size:36.0pt;color:#FF5D4D;
+      background:#FCFCFC'>modify_list</span><span style='font-family:ui-monospace;
+      font-size:36.0pt;font-weight:normal;font-style:normal;font-family:ui-monospace;
+      font-size:36.0pt;color:black;background:#FCFCFC'>(lst):<br>
+            <span style='mso-spacerun:yes'>    </span>lst.append(</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;font-weight:normal;
+      font-style:normal;font-family:ui-monospace;font-size:36.0pt;color:#E54595;
+      background:#FCFCFC'>4</span><span style='font-family:ui-monospace;
+      font-size:36.0pt;font-weight:normal;font-style:normal;font-family:ui-monospace;
+      font-size:36.0pt;color:black;background:#FCFCFC'>)<span
+      style='mso-spacerun:yes'>  </span># 外部列表会被修改<br>
+            </span><span style='font-family:微软雅黑;font-size:36.0pt;font-weight:
+      normal;font-style:normal;font-family:微软雅黑;font-size:36.0pt;color:black;
+      background:#FCFCFC'><br>
+            </span><span style='font-family:ui-monospace;font-size:36.0pt;
+      font-weight:normal;font-style:normal;font-family:ui-monospace;font-size:
+      36.0pt;color:black;background:#FCFCFC'>my_list = [</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;font-weight:normal;
+      font-style:normal;font-family:ui-monospace;font-size:36.0pt;color:#E54595;
+      background:#FCFCFC'>1</span><span style='font-family:ui-monospace;
+      font-size:36.0pt;font-weight:normal;font-style:normal;font-family:ui-monospace;
+      font-size:36.0pt;color:black;background:#FCFCFC'>, </span><span
+      style='font-family:ui-monospace;font-size:36.0pt;font-weight:normal;
+      font-style:normal;font-family:ui-monospace;font-size:36.0pt;color:#E54595;
+      background:#FCFCFC'>2</span><span style='font-family:ui-monospace;
+      font-size:36.0pt;font-weight:normal;font-style:normal;font-family:ui-monospace;
+      font-size:36.0pt;color:black;background:#FCFCFC'>, </span><span
+      style='font-family:ui-monospace;font-size:36.0pt;font-weight:normal;
+      font-style:normal;font-family:ui-monospace;font-size:36.0pt;color:#E54595;
+      background:#FCFCFC'>3</span><span style='font-family:ui-monospace;
+      font-size:36.0pt;font-weight:normal;font-style:normal;font-family:ui-monospace;
+      font-size:36.0pt;color:black;background:#FCFCFC'>]<br>
+            modify_list(my_list)<br>
+            </span><span style='font-family:ui-monospace;font-size:36.0pt;
+      font-weight:normal;font-style:normal;font-family:ui-monospace;font-size:
+      36.0pt;color:#B15EF2;background:#FCFCFC'>print</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;font-weight:normal;
+      font-style:normal;font-family:ui-monospace;font-size:36.0pt;color:black;
+      background:#FCFCFC'>(my_list)<span style='mso-spacerun:yes'>  </span># 输出
+      [1, 2, 3, 4]</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:black'><span style='font-family:ui-sans-serif;
+      font-size:36.0pt;color:black;background:#FCFCFC'>字典（dict）如&nbsp;</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;color:black;background:
+      #FCFCFC'>{&quot;name&quot;: &quot;Alice&quot;}</span><span
+      style='font-family:ui-sans-serif;font-size:36.0pt;color:black;background:
+      #FCFCFC'>，函数内修改字典的键值对会影响外部字典。<br>
+            </span><span style='font-family:"PingFang SC";font-size:36.0pt;
+      color:black;background:#FCFCFC'>python<br>
+            </span><span style='font-family:微软雅黑;font-size:36.0pt;color:black;
+      background:#FCFCFC'><br>
+            </span><span style='font-family:Menlo;font-size:36.0pt;color:black;
+      background:#FCFCFC'>运行</span><span style='font-family:微软雅黑;font-size:
+      36.0pt;color:black;background:#FCFCFC'><br>
+            <br>
+            </span><span style='font-family:ui-monospace;font-size:36.0pt;
+      color:#B15EF2;background:#FCFCFC'>def </span><span style='font-family:
+      ui-monospace;font-size:36.0pt;color:#FF5D4D;background:#FCFCFC'>modify_dict</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;color:black;background:
+      #FCFCFC'>(d):<br>
+            <span style='mso-spacerun:yes'>    </span>d[</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;color:#4DA621;
+      background:#FCFCFC'>&quot;age&quot;</span><span style='font-family:ui-monospace;
+      font-size:36.0pt;color:black;background:#FCFCFC'>] = </span><span
+      style='font-family:ui-monospace;font-size:36.0pt;color:#E54595;
+      background:#FCFCFC'>30</span><span style='font-family:ui-monospace;
+      font-size:36.0pt;color:black;background:#FCFCFC'><span
+      style='mso-spacerun:yes'>  </span># 外部字典会被修改<br>
+            </span><span style='font-family:微软雅黑;font-size:36.0pt;color:black;
+      background:#FCFCFC'><br>
+            </span><span style='font-family:ui-monospace;font-size:36.0pt;
+      color:black;background:#FCFCFC'>my_dict = {</span><span style='font-family:
+      ui-monospace;font-size:36.0pt;color:#4DA621;background:#FCFCFC'>&quot;name&quot;</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;color:black;background:
+      #FCFCFC'>: </span><span style='font-family:ui-monospace;font-size:36.0pt;
+      color:#4DA621;background:#FCFCFC'>&quot;Alice&quot;</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;color:black;background:
+      #FCFCFC'>}<br>
+            modify_dict(my_dict)<br>
+            </span><span style='font-family:ui-monospace;font-size:36.0pt;
+      color:#B15EF2;background:#FCFCFC'>print</span><span style='font-family:
+      ui-monospace;font-size:36.0pt;color:black;background:#FCFCFC'>(my_dict)<span
+      style='mso-spacerun:yes'>  </span># 输出 {&quot;name&quot;:
+      &quot;Alice&quot;, &quot;age&quot;: 30}</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:black'><span style='font-family:ui-sans-serif;
+      font-size:36.0pt;color:black;background:#FCFCFC'>集合（set）如&nbsp;</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;color:black;background:
+      #FCFCFC'>{1, 2, 3}</span><span style='font-family:ui-sans-serif;
+      font-size:36.0pt;color:black;background:#FCFCFC'>，函数内对集合的修改（如&nbsp;</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;color:black;background:
+      #FCFCFC'>add</span><span style='font-family:ui-sans-serif;font-size:36.0pt;
+      color:black;background:#FCFCFC'>、</span><span style='font-family:ui-monospace;
+      font-size:36.0pt;color:black;background:#FCFCFC'>remove</span><span
+      style='font-family:ui-sans-serif;font-size:36.0pt;color:black;background:
+      #FCFCFC'>）会影响外部集合。<br>
+            </span><span style='font-family:"PingFang SC";font-size:36.0pt;
+      color:black;background:#FCFCFC'>python<br>
+            </span><span style='font-family:微软雅黑;font-size:36.0pt;color:black;
+      background:#FCFCFC'><br>
+            </span><span style='font-family:Menlo;font-size:36.0pt;color:black;
+      background:#FCFCFC'>运行</span><span style='font-family:微软雅黑;font-size:
+      36.0pt;color:black;background:#FCFCFC'><br>
+            <br>
+            </span><span style='font-family:ui-monospace;font-size:36.0pt;
+      color:#B15EF2;background:#FCFCFC'>def </span><span style='font-family:
+      ui-monospace;font-size:36.0pt;color:#FF5D4D;background:#FCFCFC'>modify_set</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;color:black;background:
+      #FCFCFC'>(s):<br>
+            <span style='mso-spacerun:yes'>    </span>s.add(</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;color:#E54595;
+      background:#FCFCFC'>4</span><span style='font-family:ui-monospace;
+      font-size:36.0pt;color:black;background:#FCFCFC'>)<span
+      style='mso-spacerun:yes'>  </span># 外部集合会被修改<br>
+            </span><span style='font-family:微软雅黑;font-size:36.0pt;color:black;
+      background:#FCFCFC'><br>
+            </span><span style='font-family:ui-monospace;font-size:36.0pt;
+      color:black;background:#FCFCFC'>my_set = {</span><span style='font-family:
+      ui-monospace;font-size:36.0pt;color:#E54595;background:#FCFCFC'>1</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;color:black;background:
+      #FCFCFC'>, </span><span style='font-family:ui-monospace;font-size:36.0pt;
+      color:#E54595;background:#FCFCFC'>2</span><span style='font-family:ui-monospace;
+      font-size:36.0pt;color:black;background:#FCFCFC'>, </span><span
+      style='font-family:ui-monospace;font-size:36.0pt;color:#E54595;
+      background:#FCFCFC'>3</span><span style='font-family:ui-monospace;
+      font-size:36.0pt;color:black;background:#FCFCFC'>}<br>
+            modify_set(my_set)<br>
+            </span><span style='font-family:ui-monospace;font-size:36.0pt;
+      color:#B15EF2;background:#FCFCFC'>print</span><span style='font-family:
+      ui-monospace;font-size:36.0pt;color:black;background:#FCFCFC'>(my_set)<span
+      style='mso-spacerun:yes'>  </span># 输出 {1, 2, 3, 4}</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:black'><span style='font-family:ui-sans-serif;
+      font-size:36.0pt;color:black;background:#FCFCFC'>自定义对象（class
+      instances）自定义类的实例对象，函数内修改其属性会影响外部对象。<br>
+            </span><span style='font-family:"PingFang SC";font-size:36.0pt;
+      color:black;background:#FCFCFC'>python<br>
+            </span><span style='font-family:微软雅黑;font-size:36.0pt;color:black;
+      background:#FCFCFC'><br>
+            </span><span style='font-family:Menlo;font-size:36.0pt;color:black;
+      background:#FCFCFC'>运行</span><span style='font-family:微软雅黑;font-size:
+      36.0pt;color:black;background:#FCFCFC'><br>
+            </span><span style='font-family:ui-monospace;font-size:36.0pt;
+      color:#B15EF2;background:#FCFCFC'>class</span><span style='font-family:
+      ui-monospace;font-size:36.0pt;color:black;background:#FCFCFC'>
+      Person:<br>
+            <span style='mso-spacerun:yes'>    </span></span><span
+      style='font-family:ui-monospace;font-size:36.0pt;color:#B15EF2;
+      background:#FCFCFC'>def </span><span style='font-family:ui-monospace;
+      font-size:36.0pt;color:#FF5D4D;background:#FCFCFC'>__init__</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;color:black;background:
+      #FCFCFC'>(self, name):<br>
+            <span style='mso-spacerun:yes'>        </span>self.name =
+      name<br>
+            </span><span style='font-family:微软雅黑;font-size:36.0pt;color:black;
+      background:#FCFCFC'><br>
+            </span><span style='font-family:ui-monospace;font-size:36.0pt;
+      color:#B15EF2;background:#FCFCFC'>def </span><span style='font-family:
+      ui-monospace;font-size:36.0pt;color:#FF5D4D;background:#FCFCFC'>modify_person</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;color:black;background:
+      #FCFCFC'>(p):<br>
+            <span style='mso-spacerun:yes'>    </span>p.name = </span><span
+      style='font-family:ui-monospace;font-size:36.0pt;color:#4DA621;
+      background:#FCFCFC'>&quot;Bob&quot;</span><span style='font-family:ui-monospace;
+      font-size:36.0pt;color:black;background:#FCFCFC'><span
+      style='mso-spacerun:yes'>  </span># 外部对象的属性会被修改<br>
+            </span><span style='font-family:微软雅黑;font-size:36.0pt;color:black;
+      background:#FCFCFC'><br>
+            </span><span style='font-family:ui-monospace;font-size:36.0pt;
+      color:black;background:#FCFCFC'>person = Person(</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;color:#4DA621;
+      background:#FCFCFC'>&quot;Alice&quot;</span><span style='font-family:
+      ui-monospace;font-size:36.0pt;color:black;background:#FCFCFC'>)<br>
+            modify_person(person)<br>
+            </span><span style='font-family:ui-monospace;font-size:36.0pt;
+      color:#B15EF2;background:#FCFCFC'>print</span><span style='font-family:
+      ui-monospace;font-size:36.0pt;color:black;background:#FCFCFC'>(person.name)<span
+      style='mso-spacerun:yes'>  </span># 输出 &quot;Bob&quot;</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:black'><span style='font-family:ui-sans-serif;
+      font-size:36.0pt;background:#FCFCFC'>其他可变容器如&nbsp;</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;background:#FCFCFC'>collections</span><span
+      style='font-family:ui-sans-serif;font-size:36.0pt;background:#FCFCFC'>&nbsp;模块中的&nbsp;</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;background:#FCFCFC'>defaultdict</span><span
+      style='font-family:ui-sans-serif;font-size:36.0pt;background:#FCFCFC'>、</span><span
+      style='font-family:ui-monospace;font-size:36.0pt;background:#FCFCFC'>deque</span><span
+      style='font-family:ui-sans-serif;font-size:36.0pt;background:#FCFCFC'>&nbsp;等，本质是可变类型，遵循引用传递。</span></li>
+ </ol>
+ <p style='margin-top:24pt;margin-bottom:9pt;font-family:ui-sans-serif;
+ font-size:36.0pt;color:black'><span style='background:#FCFCFC'>与不可变类型的对比</span></p>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-size:36.0pt;color:black'><span
+ style='font-family:ui-sans-serif'>不可变类型（如</span><span style='font-weight:bold;
+ font-family:ui-sans-serif'>&nbsp;</span><span style='font-weight:bold;
+ font-family:ui-monospace'>int</span><span style='font-weight:bold;font-family:
+ ui-sans-serif'>、</span><span style='font-weight:bold;font-family:ui-monospace'>str</span><span
+ style='font-weight:bold;font-family:ui-sans-serif'>、</span><span
+ style='font-weight:bold;font-family:ui-monospace'>tuple</span><span
+ style='font-weight:bold;font-family:ui-sans-serif'>、</span><span
+ style='font-weight:bold;font-family:ui-monospace'>float</span><span
+ style='font-weight:bold;font-family:ui-sans-serif'>、</span><span
+ style='font-weight:bold;font-family:ui-monospace'>bool</span><span
+ style='font-family:ui-sans-serif'>）是值传递，函数内修改不会影响外部对象（实际是创建了新对象）：</span></p>
+ <p style='margin:0in;font-family:"PingFang SC";font-size:36.0pt;color:black'>python</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:Menlo;font-size:36.0pt;color:black'>运行</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:ui-monospace;font-size:36.0pt'><span
+ style='color:#B15EF2'>def </span><span style='color:#FF5D4D'>modify_int</span><span
+ style='color:black'>(x):<br>
+  <span style='mso-spacerun:yes'>    </span>x = </span><span style='color:#E54595'>100</span><span
+ style='color:black'><span style='mso-spacerun:yes'>  </span># 仅修改局部变量，不影响外部</span></p>
+ <p style='margin:0in;font-family:ui-monospace;font-size:36.0pt'><span
+ style='color:black'>num = </span><span style='color:#E54595'>10</span><span
+ style='color:black'><br>
+  modify_int(num)<br>
+  </span><span style='color:#B15EF2'>print</span><span style='color:black'>(num)<span
+ style='mso-spacerun:yes'>  </span># 输出 10（未被修改）</span></p>
+ <p style='margin-top:24pt;margin-bottom:9pt;font-family:ui-sans-serif;
+ font-size:36.0pt;color:black'><span style='background:#FCFCFC'>核心规律</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      3pt;margin-bottom:0pt;color:black'><span style='font-family:ui-sans-serif;
+      font-size:36.0pt;background:#FCFCFC'>可变类型（可在原地修改）：引用传递，修改影响外部。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      3pt;margin-bottom:0pt;color:black'><span style='font-family:ui-sans-serif;
+      font-size:36.0pt;background:#FCFCFC'>不可变类型（无法原地修改，修改会创建新对象）：值传递，修改不影响外部。</span></li>
+ </ul>
+ <p style='margin-top:6pt;margin-bottom:6pt;font-family:ui-sans-serif;
+ font-size:36.0pt;color:black'>这一特性源于 Python
+ 对内存的管理方式：可变类型支持原地修改，因此无需创建新对象；不可变类型则必须通过创建新对象实现「修改」，因此传递的是值的副本。</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

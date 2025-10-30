@@ -1,0 +1,585 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=Lora.htm>
+<link rel=File-List href="Lora.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:28.4972in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.0215in;width:1.1138in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'><span lang=en-US>L</span><span
+lang=zh-CN>ora</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:.0215in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>6</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>10</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>14:01</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4569in;margin-left:0in;width:20.8944in'>
+
+<p style='margin:0in'><img src="Lora.files/image001.jpg" width=2001
+height=1018></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:2.118in;margin-left:.0215in;width:26.6034in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+bold' lang=zh-CN>前向计算时，原来y</span><span style='font-weight:bold' lang=en-US>=W*x
+,</span><span style='font-weight:bold' lang=zh-CN>加入</span><span
+style='font-weight:bold' lang=en-US>lora</span><span style='font-weight:bold'
+lang=zh-CN>后，</span><span style='font-weight:bold' lang=en-US>y=W*</span><span
+style='font-weight:bold' lang=zh-CN>x</span><span style='font-weight:bold'
+lang=en-US>+BA*X = (W+BA)*x</span><span style='font-weight:bold' lang=zh-CN>，</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+bold' lang=zh-CN>反向传播时，</span><span style='font-weight:bold' lang=en-US>W</span><span
+style='font-weight:bold' lang=zh-CN>的参数冻结，只调整</span><span style='font-weight:
+bold' lang=en-US>B</span><span style='font-weight:bold' lang=zh-CN>和</span><span
+style='font-weight:bold' lang=en-US>A</span><span style='font-weight:bold'
+lang=zh-CN>的参数。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>P</span><span
+lang=zh-CN>y</span><span lang=en-US>torch</span><span lang=zh-CN>实现：</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-weight:bold;color:#1A7F37'>class</span><span style='color:#212121'>
+LoRAParametrization</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'>nn</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>Module</span><span style='color:#0055AA'>):</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-weight:bold;
+color:#1A7F37'>def</span><span style='color:#212121'> __init__</span><span
+style='color:#0055AA'>(</span><span style='color:#212121'>self</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> features_in</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> features_out</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> rank</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#1A7F37'>1</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> alpha</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#1A7F37'>1</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> device</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#BA2121'>'cpu'</span><span
+style='color:#0055AA'>):</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span>super</span><span
+style='color:#0055AA'>()</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>__init__</span><span style='color:#0055AA'>()</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-style:
+italic;color:#59636E'># Section 4.1 of the paper: </span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-style:
+italic;color:#59636E'>#<span style='mso-spacerun:yes'>   </span>We use a random
+Gaussian initialization for A and zero for B, so ∆W = BA is zero at the
+beginning of training</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span>self</span><span
+style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>lora_A
+</span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> nn</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>Parameter</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'>torch</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>zeros</span><span style='color:#0055AA'>((</span><span
+style='color:#212121'>rank</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'>features_out</span><span style='color:#0055AA'>))</span><span
+style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>to</span><span
+style='color:#0055AA'>(</span><span style='color:#212121'>device</span><span
+style='color:#0055AA'>))</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span>self</span><span
+style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>lora_B
+</span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> nn</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>Parameter</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'>torch</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>zeros</span><span style='color:#0055AA'>((</span><span
+style='color:#212121'>features_in</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> rank</span><span style='color:#0055AA'>))</span><span
+style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>to</span><span
+style='color:#0055AA'>(</span><span style='color:#212121'>device</span><span
+style='color:#0055AA'>))</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span>nn</span><span style='font-weight:
+bold;color:#8250DF'>.</span><span style='color:#212121'>init</span><span
+style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>normal_</span><span
+style='color:#0055AA'>(</span><span style='color:#212121'>self</span><span
+style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>lora_A</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> mean</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#1A7F37'>0</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> std</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#1A7F37'>1</span><span
+style='color:#0055AA'>)</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-style:
+italic;color:#59636E'># Section 4.1 of the paper: </span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-style:
+italic;color:#59636E'>#<span style='mso-spacerun:yes'>   </span>We then scale
+∆Wx by α/r , where α is a constant in r. </span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-style:
+italic;color:#59636E'>#<span style='mso-spacerun:yes'>   </span>When optimizing
+with Adam, tuning α is roughly the same as tuning the learning rate if we scale
+the initialization appropriately. </span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-style:
+italic;color:#59636E'>#<span style='mso-spacerun:yes'>   </span>As a result, we
+simply set α to the first r we try and do not tune it. </span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-style:
+italic;color:#59636E'>#<span style='mso-spacerun:yes'>   </span>This scaling
+helps to reduce the need to retune hyperparameters when we vary r.</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span>self</span><span
+style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>scale
+</span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='font-weight:bold;color:#212121'> alpha </span><span style='font-weight:
+bold;color:#8250DF'>/</span><span style='font-weight:bold;color:#212121'> rank</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span>self</span><span
+style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>enabled
+</span><span style='font-weight:bold;color:#8250DF'>= </span><span
+style='font-weight:bold;color:#1A7F37'>True</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-weight:bold;color:#1A7F37'>def</span><span style='color:#212121'>
+forward</span><span style='color:#0055AA'>(</span><span style='color:#212121'>self</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> original_weights</span><span
+style='color:#0055AA'>):</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-weight:
+bold;color:#1A7F37'>if</span><span style='color:#212121'> self</span><span
+style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>enabled</span><span
+style='color:#0055AA'>:</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>            </span></span><span
+style='font-style:italic;color:#59636E'># Return W + (B*A)*scale</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>            </span></span><span
+style='font-weight:bold;color:#1A7F37'>return</span><span style='color:#212121'>
+original_weights </span><span style='font-weight:bold;color:#8250DF'>+</span><span
+style='color:#212121'> torch</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>matmul</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'>self</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>lora_B</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> self</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>lora_A</span><span style='color:#0055AA'>)</span><span
+style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>view</span><span
+style='color:#0055AA'>(</span><span style='color:#212121'>original_weights</span><span
+style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>shape</span><span
+style='color:#0055AA'>) </span><span style='font-weight:bold;color:#8250DF'>*</span><span
+style='font-weight:bold;color:#212121'> self</span><span style='font-weight:
+bold;color:#8250DF'>.</span><span style='font-weight:bold;color:#212121'>scale</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-weight:
+bold;color:#1A7F37'>else</span><span style='color:#0055AA'>:</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>            </span></span><span
+style='font-weight:bold;color:#1A7F37'>return</span><span style='color:#212121'>
+original_weights</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Add the
+parameterization to our network.</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-weight:bold;color:#1A7F37'>import</span><span style='color:#212121'>
+torch.nn.utils.parametrize </span><span style='font-weight:bold;color:#1A7F37'>as</span><span
+style='color:#212121'> parametrize</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-weight:bold;color:#1A7F37'>def</span><span style='color:#212121'>
+linear_layer_parameterization</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'>layer</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> device</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> rank</span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#1A7F37'>1</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> lora_alpha</span><span style='font-weight:bold;
+color:#8250DF'>=</span><span style='color:#1A7F37'>1</span><span
+style='color:#0055AA'>):</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-style:italic;
+color:#59636E'># Only add the parameterization to the weight matrix, ignore the
+Bias</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-style:italic;color:#59636E'># From section 4.2 of the paper:</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-style:italic;
+color:#59636E'>#<span style='mso-spacerun:yes'>   </span>We limit our study to
+only adapting the attention weights for downstream tasks and freeze the MLP
+modules (so they are not trained in downstream tasks) both for simplicity and
+parameter-efficiency.</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-style:italic;
+color:#59636E'>#<span style='mso-spacerun:yes'>   </span>[...]</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-style:italic;
+color:#59636E'>#<span style='mso-spacerun:yes'>   </span>We leave the empirical
+investigation of [...], and biases to a future work.</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span><br>
+<span style='mso-spacerun:yes'>    </span>features_in</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> features_out </span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#212121'>
+layer</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>weight</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>shape<br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-weight:bold;
+color:#1A7F37'>return</span><span style='color:#212121'> LoRAParametrization</span><span
+style='color:#0055AA'>(</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span>features_in</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> features_out</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> rank</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#212121'>rank</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> alpha</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#212121'>lora_alpha</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> device</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#212121'>device<br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#0055AA'>)</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+style='color:#212121'>parametrize</span><span style='font-weight:bold;
+color:#8250DF'>.</span><span style='color:#212121'>register_parametrization</span><span
+style='color:#0055AA'>(</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span>net</span><span style='font-weight:
+bold;color:#8250DF'>.</span><span style='color:#212121'>linear1</span><span
+style='color:#0055AA'>, </span><span style='color:#BA2121'>&quot;weight&quot;</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'>
+linear_layer_parameterization</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'>net</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>linear1</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> device</span><span style='color:#0055AA'>)</span><span
+style='color:#212121'><br>
+</span><span style='color:#0055AA'>)</span><span style='color:#212121'><br>
+parametrize</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>register_parametrization</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span>net</span><span style='font-weight:
+bold;color:#8250DF'>.</span><span style='color:#212121'>linear2</span><span
+style='color:#0055AA'>, </span><span style='color:#BA2121'>&quot;weight&quot;</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'>
+linear_layer_parameterization</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'>net</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>linear2</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> device</span><span style='color:#0055AA'>)</span><span
+style='color:#212121'><br>
+</span><span style='color:#0055AA'>)</span><span style='color:#212121'><br>
+parametrize</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>register_parametrization</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span>net</span><span style='font-weight:
+bold;color:#8250DF'>.</span><span style='color:#212121'>linear3</span><span
+style='color:#0055AA'>, </span><span style='color:#BA2121'>&quot;weight&quot;</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'>
+linear_layer_parameterization</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'>net</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>linear3</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> device</span><span style='color:#0055AA'>)</span><span
+style='color:#212121'><br>
+</span><span style='color:#0055AA'>)</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-weight:bold;color:#1A7F37'>def</span><span style='color:#212121'>
+enable_disable_lora</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'>enabled</span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='font-weight:bold;color:#1A7F37'>True</span><span style='color:#0055AA'>):</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-weight:bold;
+color:#1A7F37'>for</span><span style='color:#212121'> layer </span><span
+style='font-weight:bold;color:#8250DF'>in </span><span style='color:#0055AA'>[</span><span
+style='color:#212121'>net</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>linear1</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> net</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>linear2</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> net</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>linear3</span><span style='color:#0055AA'>]:</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span>layer</span><span
+style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>parametrizations</span><span
+style='color:#0055AA'>[</span><span style='color:#BA2121'>&quot;weight&quot;</span><span
+style='color:#0055AA'>][</span><span style='color:#1A7F37'>0</span><span
+style='color:#0055AA'>]</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>enabled </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> enabled</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Freeze all the
+parameters of the original network and only fine tuning the ones introduced by
+LoRA. Then fine-tune the model on the digit 9 and only for 100 batches.</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-style:italic;color:#59636E'># Freeze the non-Lora parameters</span><span
+style='color:#212121'><br>
+</span><span style='font-weight:bold;color:#1A7F37'>for</span><span
+style='color:#212121'> name</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> param </span><span style='font-weight:bold;color:#8250DF'>in</span><span
+style='color:#212121'> net</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>named_parameters</span><span style='color:#0055AA'>():</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-weight:bold;
+color:#1A7F37'>if </span><span style='color:#BA2121'>'lora' </span><span
+style='font-weight:bold;color:#8250DF'>not in</span><span style='color:#212121'>
+name</span><span style='color:#0055AA'>:</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span>print</span><span
+style='color:#0055AA'>(</span><span style='color:#BA2121'>f'Freezing non-LoRA
+parameter {</span><span style='color:#212121'>name</span><span
+style='color:#BA2121'>}'</span><span style='color:#0055AA'>)</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span>param</span><span
+style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>requires_grad
+</span><span style='font-weight:bold;color:#8250DF'>= </span><span
+style='font-weight:bold;color:#1A7F37'>False</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-style:italic;color:#59636E'># Load the MNIST dataset again, by
+keeping only the digit 9</span><span style='color:#212121'><br>
+mnist_trainset </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> datasets</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>MNIST</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'>root</span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#BA2121'>'./data'</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> train</span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='font-weight:bold;color:#1A7F37'>True</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> download</span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='font-weight:bold;color:#1A7F37'>True</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> transform</span><span style='font-weight:bold;
+color:#8250DF'>=</span><span style='color:#212121'>transform</span><span
+style='color:#0055AA'>)</span><span style='color:#212121'><br>
+exclude_indices </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> mnist_trainset</span><span style='font-weight:bold;
+color:#8250DF'>.</span><span style='color:#212121'>targets </span><span
+style='font-weight:bold;color:#8250DF'>== </span><span style='color:#1A7F37'>9</span><span
+style='color:#212121'><br>
+mnist_trainset</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>data </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> mnist_trainset</span><span style='font-weight:bold;
+color:#8250DF'>.</span><span style='color:#212121'>data</span><span
+style='color:#0055AA'>[</span><span style='color:#212121'>exclude_indices</span><span
+style='color:#0055AA'>]</span><span style='color:#212121'><br>
+mnist_trainset</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>targets </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> mnist_trainset</span><span style='font-weight:bold;
+color:#8250DF'>.</span><span style='color:#212121'>targets</span><span
+style='color:#0055AA'>[</span><span style='color:#212121'>exclude_indices</span><span
+style='color:#0055AA'>]</span><span style='color:#212121'><br>
+</span><span style='font-style:italic;color:#59636E'># Create a dataloader for
+the training</span><span style='color:#212121'><br>
+train_loader </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> torch</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>utils</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>data</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>DataLoader</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'>mnist_trainset</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> batch_size</span><span style='font-weight:bold;
+color:#8250DF'>=</span><span style='color:#1A7F37'>10</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> shuffle</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='font-weight:bold;
+color:#1A7F37'>True</span><span style='color:#0055AA'>)</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-style:italic;color:#59636E'># Train the network with LoRA only on
+the digit 9 and only for 100 batches (hoping that it would improve the
+performance on the digit 9)</span><span style='color:#212121'><br>
+train</span><span style='color:#0055AA'>(</span><span style='color:#212121'>train_loader</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> net</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> epochs</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#1A7F37'>1</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'>
+total_iterations_limit</span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#1A7F37'>100</span><span style='color:#0055AA'>)</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:6.902in;margin-left:.0215in;width:28.4756in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+bold' lang=zh-CN>关于</span><span style='font-weight:bold' lang=en-US>task_type</span><span
+style='font-weight:bold' lang=zh-CN>参数：</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+href="https://discuss.huggingface.co/t/task-type-parameter-of-loraconfig/52879/6">https://discuss.huggingface.co/t/task-type-parameter-of-loraconfig/52879/6</a></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>task</span><span
+lang=en-US>_type</span><span lang=zh-CN>影响的是返回的</span><span lang=en-US>peft
+model</span><span lang=zh-CN>的类型。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>The&nbsp;<span
+style='color:#111111'>task_type</span>&nbsp;parameter is used in the
+superclass&nbsp;<span style='color:#111111'>PeftConfig。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#111111'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#111111'>Late
+reply but I was wondering the same and could not find details in the doc so I
+put an answer here.</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#111111'>Based on
+Peft git repo, it seems that the model class returned
+by&nbsp;get_peft_model(peft_config)</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#111111'>depends
+on this value :</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+href="https://github.com/huggingface/peft/blob/131efba5d48753a3355ecd4f3833ae010a0510d6/src/peft/mapping.py#L82">peft/src/peft/mapping</a><span
+style='color:#111111'>&nbsp;, with the following mapping Line 81 :</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span style='color:
+#353535'>MODEL_TYPE_TO_PEFT_MODEL_MAPPING: </span><span style='color:#B75501'>dict</span><span
+style='color:#353535'>[</span><span style='color:#B75501'>str</span><span
+style='color:#353535'>, </span><span style='color:#B75501'>type</span><span
+style='color:#353535'>[PeftModel]] = {<br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#54790D'>&quot;SEQ_CLS&quot;</span><span
+style='color:#353535'>: PeftModelForSequenceClassification,<br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#54790D'>&quot;SEQ_2_SEQ_LM&quot;</span><span
+style='color:#353535'>: PeftModelForSeq2SeqLM,<br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#54790D'>&quot;CAUSAL_LM&quot;</span><span
+style='color:#353535'>: PeftModelForCausalLM,<br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#54790D'>&quot;TOKEN_CLS&quot;</span><span
+style='color:#353535'>: PeftModelForTokenClassification,<br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#54790D'>&quot;QUESTION_ANS&quot;</span><span
+style='color:#353535'>: PeftModelForQuestionAnswering,<br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#54790D'>&quot;FEATURE_EXTRACTION&quot;</span><span
+style='color:#353535'>: PeftModelForFeatureExtraction,<br>
+}</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#111111'>If you do
+not specify a value, you get a default PeftModel (Lines 210-220)</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span style='color:
+#015692'>if</span><span style='color:#353535'> peft_config.task_type not </span><span
+style='color:#015692'>in</span><span style='color:#353535'>
+MODEL_TYPE_TO_PEFT_MODEL_MAPPING.keys() and not
+peft_config.is_prompt_learning:<br>
+<span style='mso-spacerun:yes'>        </span></span><span style='color:#015692'>return</span><span
+style='color:#353535'> PeftModel(<br>
+<span style='mso-spacerun:yes'>            </span>model,<br>
+<span style='mso-spacerun:yes'>            </span>peft_config,<br>
+<span style='mso-spacerun:yes'>           
+</span>adapter_name=adapter_name,<br>
+<span style='mso-spacerun:yes'>           
+</span>autocast_adapter_dtype=autocast_adapter_dtype,<br>
+<span style='mso-spacerun:yes'>           
+</span>low_cpu_mem_usage=low_cpu_mem_usage,<br>
+<span style='mso-spacerun:yes'>        </span>)</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span style='color:
+#015692'>if</span><span style='color:#353535'>
+peft_config.is_prompt_learning:<br>
+<span style='mso-spacerun:yes'>        </span>peft_config =
+_prepare_prompt_learning_config(peft_config, model_config)<br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#015692'>return</span><span
+style='color:#353535'>
+MODEL_TYPE_TO_PEFT_MODEL_MAPPING[peft_config.task_type](<br>
+<span style='mso-spacerun:yes'>        </span>model, peft_config,
+adapter_name=adapter_name,
+autocast_adapter_dtype=autocast_adapter_dtype<br>
+<span style='mso-spacerun:yes'>    </span>)</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#111111'>Finally
+it seems that in the case where&nbsp;task_type=SEQ_CLS&nbsp;, the classifier
+heads are excluded from LoRA : in peft/src/peft/tuners/tuner_utils:</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span style='color:
+#015692'>if</span><span style='color:#353535'> output_emb </span><span
+style='color:#015692'>is not </span><span style='color:#B75501'>None</span><span
+style='color:#353535'>:<br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-style:
+italic;color:#979797'># ignore the last classification head for text generation
+models</span><span style='color:#353535'><br>
+<span style='mso-spacerun:yes'>        </span>last_module_name = [name </span><span
+style='color:#015692'>for</span><span style='color:#353535'> name, module </span><span
+style='color:#015692'>in</span><span style='color:#353535'>
+model.named_modules() </span><span style='color:#015692'>if</span><span
+style='color:#353535'> module </span><span style='color:#015692'>is</span><span
+style='color:#353535'> output_emb][0]<br>
+<span style='mso-spacerun:yes'>       
+</span>module_names_to_exclude.add(last_module_name)<br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#015692'>elif</span><span
+style='color:#353535'> peft_config.task_type == TaskType.SEQ_CLS:<br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-style:
+italic;color:#979797'># ignore classifier head for classification models (issue
+2027)</span><span style='color:#353535'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-style:
+italic;color:#979797'># there is no fix name for the classifier head, so check
+the common ones</span><span style='color:#353535'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='color:#015692'>for</span><span
+style='color:#353535'> name </span><span style='color:#015692'>in</span><span
+style='color:#353535'> SEQ_CLS_HEAD_NAMES:<br>
+<span style='mso-spacerun:yes'>            </span>cls_head = </span><span
+style='color:#B75501'>getattr</span><span style='color:#353535'>(model, name, </span><span
+style='color:#B75501'>None</span><span style='color:#353535'>)<br>
+<span style='mso-spacerun:yes'>            </span></span><span
+style='color:#015692'>if</span><span style='color:#353535'> cls_head </span><span
+style='color:#015692'>is not </span><span style='color:#B75501'>None</span><span
+style='color:#353535'>:<br>
+<span style='mso-spacerun:yes'>                </span>last_module_name = [name </span><span
+style='color:#015692'>for</span><span style='color:#353535'> name, module </span><span
+style='color:#015692'>in</span><span style='color:#353535'>
+model.named_modules() </span><span style='color:#015692'>if</span><span
+style='color:#353535'> module </span><span style='color:#015692'>is</span><span
+style='color:#353535'> cls_head][0]<br>
+<span style='mso-spacerun:yes'>               
+</span>module_names_to_exclude.add(last_module_name)<br>
+<span style='mso-spacerun:yes'>                </span></span><span
+style='color:#015692'>break</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#111111'>and also
+the number of transformer_submodules increases from 1 to 2 in the case of
+SEQ_2_SEQ_LM (in peft/src/peft/peft_model.py):</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span style='color:
+#015692'>if </span><span style='color:#B75501'>config</span><span
+style='color:#353535'>.num_transformer_submodules is None:<br>
+<span style='mso-spacerun:yes'>            </span></span><span
+style='color:#B75501'>config</span><span style='color:#353535'>.num_transformer_submodules
+= 2 </span><span style='color:#015692'>if </span><span style='color:#B75501'>config</span><span
+style='color:#353535'>.task_type == TaskType.SEQ_2_SEQ_LM </span><span
+style='color:#015692'>else</span><span style='color:#353535'> 1</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

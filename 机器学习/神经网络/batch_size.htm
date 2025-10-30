@@ -1,0 +1,70 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href="batch_size.htm">
+<link rel=File-List href="batch_size.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:19.5534in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.9006in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt' lang=en-US>batch_size</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>6</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>14</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>10:23</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:19.5534in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>batch
+size较小，样本方差较大，此时学习率应该小一点。</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>增大</span><span
+lang=en-US>batch size</span><span lang=zh-CN>，真不一定会缩短训练时间，因为</span><span
+lang=en-US>gpu</span><span lang=zh-CN>利用率本来就是</span><span lang=en-US>100%</span><span
+lang=zh-CN>，而且在</span><span lang=en-US>nlp</span><span lang=zh-CN>中由于对每个</span><span
+lang=en-US>batch</span><span lang=zh-CN>是动态</span><span lang=en-US>pad</span><span
+lang=zh-CN>的，会</span><span lang=en-US>pad</span><span lang=zh-CN>到当前</span><span
+lang=en-US>batch</span><span lang=zh-CN>中最长序列的长度，所以增加</span><span lang=en-US>batch
+size</span><span lang=zh-CN>反而会</span><span lang=en-US>pad</span><span
+lang=zh-CN>更多的</span><span lang=en-US>0</span><span lang=zh-CN>，降低计算效率。</span></p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

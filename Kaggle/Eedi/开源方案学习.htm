@@ -1,0 +1,312 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=开源方案学习.htm>
+<link rel=File-List href="开源方案学习.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:30.4597in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:2.2013in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'>开源方案学习</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.5277in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>6</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>8</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>9:42</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.7277in;margin-left:0in;width:30.4597in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+bold' lang=en-US>R</span><span style='font-weight:bold' lang=zh-CN>et</span><span
+style='font-weight:bold' lang=en-US>rieval:</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:48.0pt'
+lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>第</span><span lang=en-US>2</span><span lang=zh-CN>名用</span><span
+lang=en-US>llm2vec</span><span lang=zh-CN>这个库，用</span><span lang=en-US>S</span><span
+lang=zh-CN>en</span><span lang=en-US>tenceTransform</span><span lang=zh-CN>er</span><span
+lang=en-US>Trainer</span><span lang=zh-CN>训练，但是</span><span lang=en-US>llm2vec</span><span
+lang=zh-CN>这个包太老，自己想办法换成其他的方案。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>用</span><span lang=en-US>F</span><span lang=zh-CN>lag</span><span
+lang=en-US>embedding</span><span lang=zh-CN>微调。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>第</span><span lang=en-US>5</span><span lang=zh-CN>名：</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-family:微软雅黑;font-size:
+     36.0pt'>library: SentenceTransfomer</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-family:微软雅黑;font-size:
+     36.0pt'>model: dunzhang/stella_en_1.5B_v5</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-family:微软雅黑;font-size:
+     36.0pt'>negative mining params</span></li>
+ <ul type=square style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:微软雅黑;
+      font-size:36.0pt'>range_min: 512</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:微软雅黑;
+      font-size:36.0pt'>num_negatives: 2</span></li>
+ </ul>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-family:微软雅黑;font-size:
+     36.0pt'>lora config</span></li>
+ <ul type=square style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:微软雅黑;
+      font-size:36.0pt'>r: 32</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:6pt;color:#3C4043'><span style='font-family:微软雅黑;
+      font-size:36.0pt'>lora_alpha: 64</span></li>
+ </ul>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-family:微软雅黑;font-size:
+     36.0pt'>loss: CachedMultipleNegativesRankingLoss</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:6pt;color:#3C4043'><span style='font-family:微软雅黑;font-size:
+     36.0pt'>epoch: 1</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>第</span><span lang=en-US>8</span><span lang=zh-CN>名和第</span><span
+lang=en-US>11</span><span lang=zh-CN>名，都用tr</span><span lang=en-US>ansformer</span><span
+lang=zh-CN>库的</span><span lang=en-US>Automodel </span><span lang=zh-CN>和自定义</span><span
+lang=en-US>Biencoder</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>第</span><span lang=en-US>4</span><span lang=zh-CN>名用model =
+Qwen2ModelLabel.from_pretrained(model_path, quantization_config=bnb_config)</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:48.0pt'><span
+style='font-weight:bold' lang=zh-CN>第</span><span style='font-weight:bold'
+lang=en-US>11</span><span style='font-weight:bold' lang=zh-CN>名：（重点学习）：</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>自定义</span><span lang=en-US>Trainer</span><span lang=zh-CN>中实现了</span><span
+lang=en-US>evaluate</span><span lang=zh-CN>函数，是不是单独控制</span><span lang=en-US>eval</span><span
+lang=zh-CN>的过程，</span><span lang=en-US>eval</span><span lang=zh-CN>时，</span><span
+lang=en-US>eval_dataset</span><span lang=zh-CN>不经过</span><span lang=en-US>data_collator</span><span
+lang=zh-CN>？</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>关于在训练过程中</span><span lang=en-US>cuda oom</span><span lang=zh-CN>的问题，可能是某个</span><span
+lang=en-US>batch</span><span lang=zh-CN>中有个很长的句子序列，由于</span><span lang=en-US>pad=longest</span><span
+lang=zh-CN>，会将当前</span><span lang=en-US>batch</span><span lang=zh-CN>中所有样本都</span><span
+lang=en-US>pad</span><span lang=zh-CN>到这个最长序列的长度，导致</span><span lang=en-US>oom</span><span
+lang=zh-CN>，解决方法：</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>1.
+硬截断：绝对长度限制</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>方法：在分桶之前，直接丢弃或截断超过安全阈值的样本（核心理念：牺牲少量数据保训练稳定性）</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>python</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>max_safe_length
+= 1024<span style='mso-spacerun:yes'>  </span># 根据你的显存调整（例如 24GB 显存建议 ≤1024）</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>def
+filter_long_samples(example):</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>return len(example[&quot;input_ids&quot;])
+&lt;= max_safe_length</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>dataset
+= dataset.filter(filter_long_samples)<span style='mso-spacerun:yes'>  </span>#
+直接丢弃超长样本</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>#
+或者强制截断（如果语义允许）</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>tokenizer(input_text,
+truncation=True, max_length=max_safe_length)</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>适用场景：长样本是少数异常值，且对任务影响不大时。</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>2.
+动态批处理（Dynamic Batching）</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>原理：根据当前
+batch 的实际序列长度动态调整 batch_size</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>实现方案：</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>python</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>from
+transformers import Trainer, TrainingArguments</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>#
+自定义动态 batch 的 DataCollator</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>class
+DynamicBatchCollator:</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>def __init__(self, tokenizer,
+max_tokens=8192):<span style='mso-spacerun:yes'>  </span># max_tokens =
+batch_size * max_len</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.tokenizer = tokenizer</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.max_tokens = max_tokens</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>def __call__(self, features):</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>features.sort(key=lambda x:
+len(x[&quot;input_ids&quot;]), reverse=True)</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>batches = []</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>current_batch = []</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>current_tokens = 0</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>for feature in features:</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>seq_len =
+len(feature[&quot;input_ids&quot;])</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>if current_tokens + seq_len &gt;
+self.max_tokens:</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>                </span>batches.append(current_batch)</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>                </span>current_batch = []</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>                </span>current_tokens = 0</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>current_batch.append(feature)</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>current_tokens += seq_len</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>if current_batch:</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>batches.append(current_batch)</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span># 对每个小 batch 单独 pad</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>return [self.tokenizer.pad(batch,
+return_tensors=&quot;pt&quot;) for batch in batches]</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'># 在
+Trainer 中使用</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>trainer
+= Trainer(</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>...,</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>   
+</span>data_collator=DynamicBatchCollator(tokenizer, max_tokens=8192),</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>)</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

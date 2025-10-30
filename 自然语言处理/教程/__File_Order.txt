@@ -1,0 +1,8 @@
+Build makemore
+Let's build GPT_ from scratch, in code, spelled out
+[1hr Talk] Intro to Large Language Models
+Let's build the GPT Tokenizer
+Andrej Karpathy微软Build大会
+Let's reproduce GPT-2(124M)
+let's dive deep into chatgpt
+如何使用LLM

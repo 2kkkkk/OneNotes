@@ -1,0 +1,144 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=datasets.htm>
+<link rel=File-List href="datasets.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:38.2388in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.5166in'>
+
+<p style='margin:0in;font-size:20.0pt'><span style='font-family:"Microsoft YaHei Light"'
+lang=zh-CN>da</span><span style='font-family:"Calibri Light"' lang=en-US>tasets</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:"Microsoft YaHei"'>年</span><span
+style='font-family:Calibri'>3</span><span style='font-family:"Microsoft YaHei"'>月</span><span
+style='font-family:Calibri'>29</span><span style='font-family:"Microsoft YaHei"'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>10:30</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.243in;margin-left:0in;width:38.2388in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+href="https://huggingface.co/docs/datasets/index">https://huggingface.co/docs/datasets/index</a></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:36.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>The Trainer
+automatically ignores columns in your dataset which aren’t used by the model.
+For T5 for instance, the model expects input_ids, attention_mask, labels etc.,
+but not “summary”, “document”, “id”. As long as input_ids etc are in your
+dataset, it’s fine. </p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-size:36.0pt;color:#111111'><span style='font-family:
+微软雅黑' lang=zh-CN>&nbsp;</span><span style='font-family:Calibri' lang=en-US>In</span><span
+style='font-family:微软雅黑' lang=zh-CN> general you can have whatever column names
+you want for the text and labels&nbsp;</span><span style='font-style:italic;
+font-family:微软雅黑' lang=zh-CN>before</span><span style='font-family:微软雅黑'
+lang=zh-CN>&nbsp;tokenization - it’s up to you to decide how the text should be
+processed.</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#111111'>once
+you’ve tokenized the text, you shouldn’t need to rename the resulting columns
+like&nbsp;input_ids&nbsp;and&nbsp;attention_mask&nbsp;(and i wouldn’t recommend
+this since it will probably break the&nbsp;Trainer&nbsp;logic).</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='color:
+#111111'>by default, the&nbsp;Trainer&nbsp;looks for the label column
+name&nbsp;labels&nbsp;but you can override this by specifying the value
+of&nbsp;TrainingArguments.label_names:&nbsp;</span><a
+href="https://huggingface.co/transformers/main_classes/trainer.html?highlight=trainer#trainingarguments">Trainer
+— transformers 4.5.0.dev0 documentation</a></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#3C4043'><span
+style='mso-spacerun:yes'>  </span>关于为什么这样构建数据集，就能训练的疑问：</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#3C4043'>ds_train </span><span style='color:#008ABC'>=</span><span
+style='color:#3C4043'> Dataset</span><span style='color:#008ABC'>.</span><span
+style='color:#3C4043'>from_pandas(df_train)</span><span style='color:#008ABC'>.</span><span
+style='color:#3C4043'>select_columns([</span><span style='color:#BB2323'>&quot;anchor&quot;</span><span
+style='color:#3C4043'>, </span><span style='color:#BB2323'>&quot;positive&quot;</span><span
+style='color:#3C4043'>, </span><span style='color:#BB2323'>&quot;negative&quot;</span><span
+style='color:#3C4043'>])</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='color:#3C4043'>model </span><span style='color:#008ABC'>=</span><span
+style='color:#3C4043'> SentenceTransformer(config</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='color:
+#3C4043' lang=en-US><span style='mso-spacerun:yes'> </span></span><span
+style='color:#3C4043' lang=zh-CN><span style='mso-spacerun:yes'> </span>trainer
+</span><span style='color:#008ABC' lang=zh-CN>=</span><span style='color:#3C4043'
+lang=zh-CN> SentenceTransformerTrainer(<br>
+<span style='mso-spacerun:yes'>        </span>model</span><span
+style='color:#008ABC' lang=zh-CN>=</span><span style='color:#3C4043'
+lang=zh-CN>model,<br>
+<span style='mso-spacerun:yes'>        </span>args</span><span
+style='color:#008ABC' lang=zh-CN>=</span><span style='color:#3C4043'
+lang=zh-CN>args,<br>
+<span style='mso-spacerun:yes'>        </span>train_dataset</span><span
+style='color:#008ABC' lang=zh-CN>=</span><span style='color:#3C4043'
+lang=zh-CN>ds_train,<br>
+<span style='mso-spacerun:yes'>        </span>loss</span><span
+style='color:#008ABC' lang=zh-CN>=</span><span style='color:#3C4043'
+lang=zh-CN>loss,<br>
+<span style='mso-spacerun:yes'>    </span>)<br>
+<span style='mso-spacerun:yes'>    </span>trainer</span><span style='color:
+#008ABC' lang=zh-CN>.</span><span style='color:#3C4043' lang=zh-CN>train()</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#3C4043'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-size:36.0pt;color:#3C4043'><span
+style='font-family:微软雅黑' lang=zh-CN>因为是</span><span style='font-family:Calibri'
+lang=en-US>trainer</span><span style='font-family:"Microsoft YaHei"'
+lang=zh-CN>是</span><span style='font-family:微软雅黑' lang=zh-CN>SentenceTransformerTrainer，所以他知道应该要处理</span><span
+style='font-family:Calibri' lang=en-US>dataset</span><span style='font-family:
+"Microsoft YaHei"' lang=zh-CN>中的</span><span style='font-family:Calibri'
+lang=en-US>anchor,positive,negative</span><span style='font-family:"Microsoft YaHei"'
+lang=zh-CN>三列，将其</span><span style='font-family:Calibri' lang=en-US>tokenize</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>等操作，然后传给</span><span
+style='font-family:Calibri' lang=en-US>sentencetransformer</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>。</span></p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

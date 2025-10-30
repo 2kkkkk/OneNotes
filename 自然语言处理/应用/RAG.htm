@@ -1,0 +1,976 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=RAG.htm>
+<link rel=File-List href="RAG.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:29.4055in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.0215in;width:1.1187in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt' lang=en-US>RAG</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:.0215in;width:1.5979in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>8</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>1</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>19:15</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4569in;margin-left:0in;width:28.6083in'>
+
+<p style='margin:0in'><img src="RAG.files/image001.jpg" width=2742 height=1995></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:1.0951in;margin-left:.2715in;width:29.134in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+bold' lang=en-US>1.Q</span><span style='font-weight:bold' lang=zh-CN>u</span><span
+style='font-weight:bold' lang=en-US>ery translation</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold' lang=en-US>Query </span><span style='font-weight:bold'
+lang=zh-CN>tra</span><span style='font-weight:bold' lang=en-US>nslation</span><span
+style='font-weight:bold' lang=zh-CN>是a</span><span style='font-weight:bold'
+lang=en-US>dvanced RAG</span><span style='font-weight:bold' lang=zh-CN>的第一个</span><span
+style='font-weight:bold' lang=en-US>stage</span><span style='font-weight:bold'
+lang=zh-CN>，将用户的原始</span><span style='font-weight:bold' lang=en-US>query</span><span
+style='font-weight:bold' lang=zh-CN>转换成更利于</span><span style='font-weight:bold'
+lang=en-US>retrieval</span><span style='font-weight:bold' lang=zh-CN>的</span><span
+style='font-weight:bold' lang=en-US>query</span><span style='font-weight:bold'
+lang=zh-CN>。用户的</span><span style='font-weight:bold' lang=en-US>query</span><span
+style='font-weight:bold' lang=zh-CN>有可能是</span><span style='font-weight:bold'
+lang=en-US>ambigous</span><span style='font-weight:bold' lang=zh-CN>模糊的，低质量的</span><span
+style='font-weight:bold' lang=en-US>query</span><span style='font-weight:bold'
+lang=zh-CN>是不利于语义搜索的，无法</span><span style='font-weight:bold' lang=en-US>retrieve</span><span
+style='font-weight:bold' lang=zh-CN>到正确的</span><span style='font-weight:bold'
+lang=en-US>documents</span><span style='font-weight:bold' lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold' lang=zh-CN>有几种方式来优化用户q</span><span style='font-weight:
+bold' lang=en-US>uery</span><span style='font-weight:bold' lang=zh-CN>，如下图所示。</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>可以将</span><span lang=en-US>question</span><span lang=zh-CN>分解成子问题，独立解决子问题，更具体的层面</span><span
+lang=en-US> </span><span lang=zh-CN>；可以将问题变为</span><span lang=en-US>higher
+level question</span><span lang=zh-CN>，更抽象的层面；可以将问题进行</span><span lang=en-US>rewrite</span><span
+lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:3.75in'><img src="RAG.files/image002.jpg"
+width=1920 height=762></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:42.0pt'
+lang=en-US><span style='font-weight:bold'>1)Multi query</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold' lang=en-US>T</span><span style='font-weight:bold'
+lang=zh-CN>ran</span><span style='font-weight:bold' lang=en-US>sform a question
+into multiple perspectives</span><span style='font-weight:bold' lang=zh-CN>。将问题进行多个角度的重写，然后</span><span
+style='font-weight:bold' lang=en-US>retrieve on each question</span><span
+style='font-weight:bold' lang=zh-CN>。</span><span lang=zh-CN>目的是提高</span><span
+lang=en-US>retrieve</span><span lang=zh-CN>到正确</span><span lang=en-US>documents</span><span
+lang=zh-CN>的概率。</span></p>
+
+<p style='margin:0in;margin-left:2.625in'><img src="RAG.files/image003.jpg"
+width=2219 height=723></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-weight:bold;color:#1A7F37'>from</span><span style='color:#212121'>
+langchain.prompts </span><span style='font-weight:bold;color:#1A7F37'>import</span><span
+style='color:#212121'> ChatPromptTemplate</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt;
+color:#59636E'><span style='font-style:italic'># Multi Query: Different
+Perspectives</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:black'><span style='font-weight:bold' lang=en-US>#</span><span
+style='font-weight:bold' lang=zh-CN>利用</span><span style='font-weight:bold'
+lang=en-US>LLM</span><span style='font-weight:bold' lang=zh-CN>生成多个</span><span
+style='font-weight:bold' lang=en-US>perspective</span><span style='font-weight:
+bold' lang=zh-CN>的</span><span style='font-weight:bold' lang=en-US>query</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='color:#212121'>template </span><span style='font-weight:bold;color:#8250DF'>=
+</span><span style='color:#BA2121'>&quot;&quot;&quot;You are an AI language
+model assistant. Your task is to generate five </span><span style='color:#212121'><br>
+</span><span style='color:#BA2121'>different versions of the given user
+question to retrieve relevant documents from a vector </span><span
+style='color:#212121'><br>
+</span><span style='color:#BA2121'>database. By generating multiple
+perspectives on the user question, your goal is to help</span><span
+style='color:#212121'><br>
+</span><span style='color:#BA2121'>the user overcome some of the limitations of
+the distance-based similarity search. </span><span style='color:#212121'><br>
+</span><span style='color:#BA2121'>Provide these alternative questions
+separated by newlines. Original question: {question}&quot;&quot;&quot;</span><span
+style='color:#212121'><br>
+prompt_perspectives </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> ChatPromptTemplate</span><span style='font-weight:bold;
+color:#8250DF'>.</span><span style='color:#212121'>from_template</span><span
+style='color:#0055AA'>(</span><span style='color:#212121'>template</span><span
+style='color:#0055AA'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-weight:bold;color:#1A7F37'>from</span><span style='color:#212121'>
+langchain_core.output_parsers </span><span style='font-weight:bold;color:#1A7F37'>import</span><span
+style='color:#212121'> StrOutputParser<br>
+</span><span style='font-weight:bold;color:#1A7F37'>from</span><span
+style='color:#212121'> langchain_openai </span><span style='font-weight:bold;
+color:#1A7F37'>import</span><span style='color:#212121'> ChatOpenAI</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='color:#212121'>generate_queries </span><span style='font-weight:bold;
+color:#8250DF'>= </span><span style='color:#0055AA'>(</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span>prompt_perspectives <br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-weight:bold;
+color:#8250DF'>|</span><span style='color:#212121'> ChatOpenAI</span><span
+style='color:#0055AA'>(</span><span style='color:#212121'>temperature</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#1A7F37'>0</span><span
+style='color:#0055AA'>)</span><span style='color:#212121'> <br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-weight:bold;
+color:#8250DF'>|</span><span style='color:#212121'> StrOutputParser</span><span
+style='color:#0055AA'>()</span><span style='color:#212121'> <br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-weight:bold;
+color:#8250DF'>| </span><span style='color:#0055AA'>(</span><span
+style='font-weight:bold;color:#1A7F37'>lambda</span><span style='color:#212121'>
+x</span><span style='color:#0055AA'>:</span><span style='color:#212121'> x</span><span
+style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>split</span><span
+style='color:#0055AA'>(</span><span style='color:#BA2121'>&quot;\n&quot;</span><span
+style='color:#0055AA'>))</span><span style='color:#212121'><br>
+</span><span style='color:#0055AA'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-weight:bold;color:#1A7F37'>from</span><span style='color:#212121'>
+langchain.load </span><span style='font-weight:bold;color:#1A7F37'>import</span><span
+style='color:#212121'> dumps</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> loads</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:black'><span style='font-weight:bold' lang=en-US>#</span><span
+style='font-weight:bold' lang=zh-CN>多个</span><span style='font-weight:bold'
+lang=en-US>query</span><span style='font-weight:bold' lang=zh-CN>检索出来的</span><span
+style='font-weight:bold' lang=en-US>documents</span><span style='font-weight:
+bold' lang=zh-CN>进行</span><span style='font-weight:bold' lang=en-US>unique_union</span><span
+style='font-weight:bold' lang=zh-CN>合并。</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-weight:bold;color:#1A7F37'>def</span><span style='color:#212121'>
+get_unique_union</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'>documents</span><span style='color:#0055AA'>:</span><span
+style='color:#212121'> list</span><span style='color:#0055AA'>[</span><span
+style='color:#212121'>list</span><span style='color:#0055AA'>]):</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#BA2121'>&quot;&quot;&quot;
+Unique union of retrieved docs &quot;&quot;&quot;</span><span style='color:
+#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-style:italic;
+color:#59636E'># Flatten list of lists, and convert each Document to string</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span>flattened_docs </span><span
+style='font-weight:bold;color:#8250DF'>= </span><span style='color:#0055AA'>[</span><span
+style='color:#212121'>dumps</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'>doc</span><span style='color:#0055AA'>) </span><span
+style='font-weight:bold;color:#1A7F37'>for</span><span style='color:#212121'>
+sublist </span><span style='font-weight:bold;color:#8250DF'>in</span><span
+style='color:#212121'> documents </span><span style='font-weight:bold;
+color:#1A7F37'>for</span><span style='color:#212121'> doc </span><span
+style='font-weight:bold;color:#8250DF'>in</span><span style='color:#212121'>
+sublist</span><span style='color:#0055AA'>]</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-style:italic;
+color:#59636E'># Get unique documents</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span>unique_docs </span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#212121'>
+list</span><span style='color:#0055AA'>(</span><span style='color:#212121'>set</span><span
+style='color:#0055AA'>(</span><span style='color:#212121'>flattened_docs</span><span
+style='color:#0055AA'>))</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-style:italic;
+color:#59636E'># Return</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-weight:bold;
+color:#1A7F37'>return </span><span style='color:#0055AA'>[</span><span
+style='color:#212121'>loads</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'>doc</span><span style='color:#0055AA'>) </span><span
+style='font-weight:bold;color:#1A7F37'>for</span><span style='color:#212121'>
+doc </span><span style='font-weight:bold;color:#8250DF'>in</span><span
+style='color:#212121'> unique_docs</span><span style='color:#0055AA'>]</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-style:italic;color:#59636E'># Retrieve</span><span
+style='color:#212121'><br>
+question </span><span style='font-weight:bold;color:#8250DF'>= </span><span
+style='color:#BA2121'>&quot;What is task decomposition for LLM agents?&quot;</span><span
+style='color:#212121'><br>
+retrieval_chain </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> generate_queries </span><span style='font-weight:bold;
+color:#8250DF'>|</span><span style='color:#212121'> retriever</span><span
+style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>map</span><span
+style='color:#0055AA'>() </span><span style='font-weight:bold;color:#8250DF'>|</span><span
+style='color:#212121'> get_unique_union<br>
+docs </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> retrieval_chain</span><span style='font-weight:bold;
+color:#8250DF'>.</span><span style='color:#212121'>invoke</span><span
+style='color:#0055AA'>({</span><span style='color:#BA2121'>&quot;question&quot;</span><span
+style='color:#0055AA'>:</span><span style='color:#212121'>question</span><span
+style='color:#0055AA'>})</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:42.0pt'><span
+style='font-weight:bold' lang=en-US>2)RAG F</span><span style='font-weight:
+bold' lang=zh-CN>u</span><span style='font-weight:bold' lang=en-US>sion</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold' lang=en-US>multi query</span><span style='font-weight:
+bold' lang=zh-CN>的唯一区别就是多了对检索到的文档进行重要性排序。</span></p>
+
+<p style='margin:0in;margin-left:1.5in'><img src="RAG.files/image004.jpg"
+width=2495 height=713></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-weight:bold;color:#1A7F37'>from</span><span style='color:#212121'>
+langchain.load </span><span style='font-weight:bold;color:#1A7F37'>import</span><span
+style='color:#212121'> dumps</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> loads</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-weight:bold;color:#1A7F37'>def</span><span style='color:#212121'>
+reciprocal_rank_fusion</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'>results</span><span style='color:#0055AA'>:</span><span
+style='color:#212121'> list</span><span style='color:#0055AA'>[</span><span
+style='color:#212121'>list</span><span style='color:#0055AA'>],</span><span
+style='color:#212121'> k</span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#1A7F37'>60</span><span style='color:#0055AA'>):</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#BA2121'>&quot;&quot;&quot;
+Reciprocal_rank_fusion that takes multiple lists of ranked documents </span><span
+style='color:#212121'><br>
+</span><span style='color:#BA2121'><span style='mso-spacerun:yes'>       
+</span>and an optional parameter k used in the RRF formula &quot;&quot;&quot;</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-style:italic;
+color:#59636E'># Initialize a dictionary to hold fused scores for each unique
+document</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span>fused_scores </span><span
+style='font-weight:bold;color:#8250DF'>= </span><span style='color:#0055AA'>{}</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-style:italic;color:#59636E'># Iterate through each list of ranked
+documents</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-weight:bold;
+color:#1A7F37'>for</span><span style='color:#212121'> docs </span><span
+style='font-weight:bold;color:#8250DF'>in</span><span style='color:#212121'>
+results</span><span style='color:#0055AA'>:</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-style:
+italic;color:#59636E'># Iterate through each document in the list, with its
+rank (position in the list)</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-weight:
+bold;color:#1A7F37'>for</span><span style='color:#212121'> rank</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> doc </span><span
+style='font-weight:bold;color:#8250DF'>in</span><span style='color:#212121'>
+enumerate</span><span style='color:#0055AA'>(</span><span style='color:#212121'>docs</span><span
+style='color:#0055AA'>):</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>            </span></span><span
+style='font-style:italic;color:#59636E'># Convert the document to a string
+format to use as a key (assumes documents can be serialized to JSON)</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>            </span>doc_str </span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#212121'>
+dumps</span><span style='color:#0055AA'>(</span><span style='color:#212121'>doc</span><span
+style='color:#0055AA'>)</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>            </span></span><span
+style='font-style:italic;color:#59636E'># If the document is not yet in the
+fused_scores dictionary, add it with an initial score of 0</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>            </span></span><span
+style='font-weight:bold;color:#1A7F37'>if</span><span style='color:#212121'>
+doc_str </span><span style='font-weight:bold;color:#8250DF'>not in</span><span
+style='color:#212121'> fused_scores</span><span style='color:#0055AA'>:</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>                </span>fused_scores</span><span
+style='color:#0055AA'>[</span><span style='color:#212121'>doc_str</span><span
+style='color:#0055AA'>] </span><span style='font-weight:bold;color:#8250DF'>= </span><span
+style='color:#1A7F37'>0</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>            </span></span><span
+style='font-style:italic;color:#59636E'># Retrieve the current score of the
+document, if any</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>            </span>previous_score </span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#212121'>
+fused_scores</span><span style='color:#0055AA'>[</span><span style='color:#212121'>doc_str</span><span
+style='color:#0055AA'>]</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>            </span></span><span
+style='font-style:italic;color:#59636E'># Update the score of the document
+using the RRF formula: 1 / (rank + k)</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>            </span>fused_scores</span><span
+style='color:#0055AA'>[</span><span style='color:#212121'>doc_str</span><span
+style='color:#0055AA'>] </span><span style='font-weight:bold;color:#8250DF'>+= </span><span
+style='color:#1A7F37'>1 </span><span style='font-weight:bold;color:#8250DF'>/ </span><span
+style='color:#0055AA'>(</span><span style='color:#212121'>rank </span><span
+style='font-weight:bold;color:#8250DF'>+</span><span style='color:#212121'> k</span><span
+style='color:#0055AA'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-style:italic;color:#59636E'># Sort the documents based on their
+fused scores in descending order to get the final reranked results</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span>reranked_results </span><span
+style='font-weight:bold;color:#8250DF'>= </span><span style='color:#0055AA'>[</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='color:#0055AA'>(</span><span
+style='color:#212121'>loads</span><span style='color:#0055AA'>(</span><span
+style='color:#212121'>doc</span><span style='color:#0055AA'>),</span><span
+style='color:#212121'> score</span><span style='color:#0055AA'>)</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-weight:
+bold;color:#1A7F37'>for</span><span style='color:#212121'> doc</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'> score </span><span
+style='font-weight:bold;color:#8250DF'>in</span><span style='color:#212121'>
+sorted</span><span style='color:#0055AA'>(</span><span style='color:#212121'>fused_scores</span><span
+style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>items</span><span
+style='color:#0055AA'>(),</span><span style='color:#212121'> key</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='font-weight:bold;
+color:#1A7F37'>lambda</span><span style='color:#212121'> x</span><span
+style='color:#0055AA'>:</span><span style='color:#212121'> x</span><span
+style='color:#0055AA'>[</span><span style='color:#1A7F37'>1</span><span
+style='color:#0055AA'>],</span><span style='color:#212121'> reverse</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='font-weight:bold;
+color:#1A7F37'>True</span><span style='color:#0055AA'>)</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#0055AA'>]</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-style:italic;color:#59636E'># Return the reranked results as a list
+of tuples, each containing the document and its fused score</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-weight:bold;
+color:#1A7F37'>return</span><span style='color:#212121'> reranked_results</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='color:#212121'>retrieval_chain_rag_fusion </span><span style='font-weight:
+bold;color:#8250DF'>=</span><span style='color:#212121'> generate_queries </span><span
+style='font-weight:bold;color:#8250DF'>|</span><span style='color:#212121'>
+retriever</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>map</span><span style='color:#0055AA'>() </span><span
+style='font-weight:bold;color:#8250DF'>|</span><span style='color:#212121'>
+reciprocal_rank_fusion<br>
+docs </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> retrieval_chain_rag_fusion</span><span style='font-weight:
+bold;color:#8250DF'>.</span><span style='color:#212121'>invoke</span><span
+style='color:#0055AA'>({</span><span style='color:#BA2121'>&quot;question&quot;</span><span
+style='color:#0055AA'>:</span><span style='color:#212121'> question</span><span
+style='color:#0055AA'>})</span><span style='color:#212121'><br>
+len</span><span style='color:#0055AA'>(</span><span style='color:#212121'>docs</span><span
+style='color:#0055AA'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:42.0pt'><span
+style='font-weight:bold' lang=en-US>3)D</span><span style='font-weight:bold'
+lang=zh-CN>e</span><span style='font-weight:bold' lang=en-US>composition</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-weight:bold;color:#1A7F37'>from</span><span style='color:#212121'>
+langchain.prompts </span><span style='font-weight:bold;color:#1A7F37'>import</span><span
+style='color:#212121'> ChatPromptTemplate</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-style:italic;color:#59636E'># Decomposition</span><span
+style='color:#212121'><br>
+template </span><span style='font-weight:bold;color:#8250DF'>= </span><span
+style='color:#BA2121'>&quot;&quot;&quot;You are a helpful assistant that
+generates multiple sub-questions related to an input question. \n</span><span
+style='color:#212121'><br>
+</span><span style='color:#BA2121'>The goal is to break down the input into a
+set of sub-problems / sub-questions that can be answers in isolation. \n</span><span
+style='color:#212121'><br>
+</span><span style='color:#BA2121'>Generate multiple search queries related to:
+{question} \n</span><span style='color:#212121'><br>
+</span><span style='color:#BA2121'>Output (3 queries):&quot;&quot;&quot;</span><span
+style='color:#212121'><br>
+prompt_decomposition </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> ChatPromptTemplate</span><span style='font-weight:bold;
+color:#8250DF'>.</span><span style='color:#212121'>from_template</span><span
+style='color:#0055AA'>(</span><span style='color:#212121'>template</span><span
+style='color:#0055AA'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;line-height:12pt;font-family:微软雅黑;
+font-size:36.0pt;color:#0055AA' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#212121'><span style='font-weight:bold' lang=zh-CN>分解成子问题后，后续有</span><span
+style='font-weight:bold' lang=en-US>2</span><span style='font-weight:bold'
+lang=zh-CN>种方式：</span></p>
+
+<p style='margin:0in;margin-left:.75in'><img src="RAG.files/image005.jpg"
+width=2094 height=841></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in'><img src="RAG.files/image006.jpg"
+width=2267 height=749></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:42.0pt'><span
+style='font-weight:bold' lang=en-US>4)S</span><span style='font-weight:bold'
+lang=zh-CN>tep</span><span style='font-weight:bold' lang=en-US> back</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-style:italic;color:#59636E'># Few Shot Examples</span><span
+style='color:#212121'><br>
+</span><span style='font-weight:bold;color:#1A7F37'>from</span><span
+style='color:#212121'> langchain_core.prompts </span><span style='font-weight:
+bold;color:#1A7F37'>import</span><span style='color:#212121'>
+ChatPromptTemplate</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'> FewShotChatMessagePromptTemplate<br>
+examples </span><span style='font-weight:bold;color:#8250DF'>= </span><span
+style='color:#0055AA'>[</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#0055AA'>{</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='color:#BA2121'>&quot;input&quot;</span><span
+style='color:#0055AA'>: </span><span style='color:#BA2121'>&quot;Could the
+members of The Police perform lawful arrests?&quot;</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='color:#BA2121'>&quot;output&quot;</span><span
+style='color:#0055AA'>: </span><span style='color:#BA2121'>&quot;what can the
+members of The Police do?&quot;</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#0055AA'>},</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#0055AA'>{</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='color:#BA2121'>&quot;input&quot;</span><span
+style='color:#0055AA'>: </span><span style='color:#BA2121'>&quot;Jan Sindel’s
+was born in what country?&quot;</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='color:#BA2121'>&quot;output&quot;</span><span
+style='color:#0055AA'>: </span><span style='color:#BA2121'>&quot;what is Jan
+Sindel’s personal history?&quot;</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#0055AA'>},</span><span
+style='color:#212121'><br>
+</span><span style='color:#0055AA'>]</span><span style='color:#212121'><br>
+</span><span style='font-style:italic;color:#59636E'># We now transform these
+to example messages</span><span style='color:#212121'><br>
+example_prompt </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> ChatPromptTemplate</span><span style='font-weight:bold;
+color:#8250DF'>.</span><span style='color:#212121'>from_messages</span><span
+style='color:#0055AA'>(</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#0055AA'>[</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='color:#0055AA'>(</span><span
+style='color:#BA2121'>&quot;human&quot;</span><span style='color:#0055AA'>, </span><span
+style='color:#BA2121'>&quot;{input}&quot;</span><span style='color:#0055AA'>),</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='color:#0055AA'>(</span><span
+style='color:#BA2121'>&quot;ai&quot;</span><span style='color:#0055AA'>, </span><span
+style='color:#BA2121'>&quot;{output}&quot;</span><span style='color:#0055AA'>),</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#0055AA'>]</span><span
+style='color:#212121'><br>
+</span><span style='color:#0055AA'>)</span><span style='color:#212121'><br>
+few_shot_prompt </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> FewShotChatMessagePromptTemplate</span><span
+style='color:#0055AA'>(</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span>example_prompt</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#212121'>example_prompt</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span>examples</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#212121'>examples</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'><br>
+</span><span style='color:#0055AA'>)</span><span style='color:#212121'><br>
+prompt </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> ChatPromptTemplate</span><span style='font-weight:bold;
+color:#8250DF'>.</span><span style='color:#212121'>from_messages</span><span
+style='color:#0055AA'>(</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#0055AA'>[</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='color:#0055AA'>(</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>            </span></span><span
+style='color:#BA2121'>&quot;system&quot;</span><span style='color:#0055AA'>,</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>            </span></span><span
+style='color:#BA2121'>&quot;&quot;&quot;You are an expert at world knowledge.
+Your task is to step back and paraphrase a question to a more generic step-back
+question, which is easier to answer. Here are a few examples:&quot;&quot;&quot;</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='color:#0055AA'>),</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-style:
+italic;color:#59636E'># Few shot examples</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span>few_shot_prompt</span><span
+style='color:#0055AA'>,</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-style:
+italic;color:#59636E'># New question</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='color:#0055AA'>(</span><span
+style='color:#BA2121'>&quot;user&quot;</span><span style='color:#0055AA'>, </span><span
+style='color:#BA2121'>&quot;{question}&quot;</span><span style='color:#0055AA'>),</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#0055AA'>]</span><span
+style='color:#212121'><br>
+</span><span style='color:#0055AA'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='color:#212121'>generate_queries_step_back </span><span style='font-weight:
+bold;color:#8250DF'>=</span><span style='color:#212121'> prompt </span><span
+style='font-weight:bold;color:#8250DF'>|</span><span style='color:#212121'>
+ChatOpenAI</span><span style='color:#0055AA'>(</span><span style='color:#212121'>temperature</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#1A7F37'>0</span><span
+style='color:#0055AA'>) </span><span style='font-weight:bold;color:#8250DF'>|</span><span
+style='color:#212121'> StrOutputParser</span><span style='color:#0055AA'>()</span><span
+style='color:#212121'><br>
+question </span><span style='font-weight:bold;color:#8250DF'>= </span><span
+style='color:#BA2121'>&quot;What is task decomposition for LLM agents?&quot;</span><span
+style='color:#212121'><br>
+generate_queries_step_back</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>invoke</span><span style='color:#0055AA'>({</span><span
+style='color:#BA2121'>&quot;question&quot;</span><span style='color:#0055AA'>:</span><span
+style='color:#212121'> question</span><span style='color:#0055AA'>})</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-style:italic;color:#59636E'># Response prompt </span><span
+style='color:#212121'><br>
+response_prompt_template </span><span style='font-weight:bold;color:#8250DF'>= </span><span
+style='color:#BA2121'>&quot;&quot;&quot;You are an expert of world knowledge. I
+am going to ask you a question. Your response should be comprehensive and not
+contradicted with the following context if they are relevant. Otherwise, ignore
+them if they are not relevant.</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='color:#BA2121'># {normal_context}</span><span style='color:#212121'><br>
+</span><span style='color:#BA2121'># {step_back_context}</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='color:#BA2121'># Original Question: {question}</span><span
+style='color:#212121'><br>
+</span><span style='color:#BA2121'># Answer:&quot;&quot;&quot;</span><span
+style='color:#212121'><br>
+response_prompt </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> ChatPromptTemplate</span><span style='font-weight:bold;
+color:#8250DF'>.</span><span style='color:#212121'>from_template</span><span
+style='color:#0055AA'>(</span><span style='color:#212121'>response_prompt_template</span><span
+style='color:#0055AA'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:black'><span style='font-weight:bold' lang=en-US>#</span><span
+style='font-weight:bold' lang=zh-CN>不但提供</span><span style='font-weight:bold'
+lang=en-US>normal_context(</span><span style='font-weight:bold' lang=zh-CN>原始</span><span
+style='font-weight:bold' lang=en-US>query</span><span style='font-weight:bold'
+lang=zh-CN>的</span><span style='font-weight:bold' lang=en-US>retrieval</span><span
+style='font-weight:bold' lang=zh-CN>结果</span><span style='font-weight:bold'
+lang=en-US>)</span><span style='font-weight:bold' lang=zh-CN>，还提供</span><span
+style='font-weight:bold' lang=en-US>step_</span><span style='font-weight:bold'
+lang=zh-CN>ba</span><span style='font-weight:bold' lang=en-US>ck_context(</span><span
+style='font-weight:bold' lang=zh-CN>s</span><span style='font-weight:bold'
+lang=en-US>tep_back</span><span style='font-weight:bold' lang=zh-CN>问题的</span><span
+style='font-weight:bold' lang=en-US>retrieval</span><span style='font-weight:
+bold' lang=zh-CN>结果</span><span style='font-weight:bold' lang=en-US>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='color:#212121'>chain </span><span style='font-weight:bold;color:#8250DF'>=
+</span><span style='color:#0055AA'>(</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#0055AA'>{</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-style:
+italic;color:#59636E'># Retrieve context using the normal question</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>      </span></span><span style='font-weight:
+bold;color:#212121'><span style='mso-spacerun:yes'>  </span></span><span
+style='font-weight:bold;color:#BA2121'>&quot;normal_context&quot;</span><span
+style='font-weight:bold;color:#0055AA'>:</span><span style='font-weight:bold;
+color:#212121'> RunnableLambda</span><span style='font-weight:bold;color:#0055AA'>(</span><span
+style='font-weight:bold;color:#1A7F37'>lambda</span><span style='font-weight:
+bold;color:#212121'> x</span><span style='font-weight:bold;color:#0055AA'>:</span><span
+style='font-weight:bold;color:#212121'> x</span><span style='font-weight:bold;
+color:#0055AA'>[</span><span style='font-weight:bold;color:#BA2121'>&quot;question&quot;</span><span
+style='font-weight:bold;color:#0055AA'>]) </span><span style='font-weight:bold;
+color:#8250DF'>|</span><span style='font-weight:bold;color:#212121'> retriever</span><span
+style='font-weight:bold;color:#0055AA'>,</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-style:
+italic;color:#59636E'># Retrieve context using the step-back question</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-weight:
+bold;color:#BA2121'>&quot;step_back_context&quot;</span><span style='font-weight:
+bold;color:#0055AA'>:</span><span style='font-weight:bold;color:#212121'>
+generate_queries_step_back </span><span style='font-weight:bold;color:#8250DF'>|</span><span
+style='font-weight:bold;color:#212121'> retriever</span><span style='font-weight:
+bold;color:#0055AA'>,</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='font-style:
+italic;color:#59636E'># Pass on the question</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>        </span></span><span style='color:#BA2121'>&quot;question&quot;</span><span
+style='color:#0055AA'>: </span><span style='font-weight:bold;color:#1A7F37'>lambda</span><span
+style='color:#212121'> x</span><span style='color:#0055AA'>:</span><span
+style='color:#212121'> x</span><span style='color:#0055AA'>[</span><span
+style='color:#BA2121'>&quot;question&quot;</span><span style='color:#0055AA'>],</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='color:#0055AA'>}</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-weight:bold;
+color:#8250DF'>|</span><span style='color:#212121'> response_prompt<br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-weight:bold;
+color:#8250DF'>|</span><span style='color:#212121'> ChatOpenAI</span><span
+style='color:#0055AA'>(</span><span style='color:#212121'>temperature</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#1A7F37'>0</span><span
+style='color:#0055AA'>)</span><span style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span></span><span style='font-weight:bold;
+color:#8250DF'>|</span><span style='color:#212121'> StrOutputParser</span><span
+style='color:#0055AA'>()</span><span style='color:#212121'><br>
+</span><span style='color:#0055AA'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='color:#212121'>chain</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>invoke</span><span style='color:#0055AA'>({</span><span
+style='color:#BA2121'>&quot;question&quot;</span><span style='color:#0055AA'>:</span><span
+style='color:#212121'> question</span><span style='color:#0055AA'>})</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:42.0pt'><span
+style='font-weight:bold' lang=en-US>5)H</span><span style='font-weight:bold'
+lang=zh-CN>y</span><span style='font-weight:bold' lang=en-US>DE</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold' lang=zh-CN>re</span><span style='font-weight:bold'
+lang=en-US>trieval</span><span style='font-weight:bold' lang=zh-CN>时需要计算</span><span
+style='font-weight:bold' lang=en-US>query embedding</span><span
+style='font-weight:bold' lang=zh-CN>和</span><span style='font-weight:bold'
+lang=en-US>documents embedding</span><span style='font-weight:bold' lang=zh-CN>的相似度，但</span><span
+style='font-weight:bold' lang=en-US>query</span><span style='font-weight:bold'
+lang=zh-CN>和</span><span style='font-weight:bold' lang=en-US>documents</span><span
+style='font-weight:bold' lang=zh-CN>可能是很不同的，</span><span style='font-weight:
+bold' lang=en-US>query</span><span style='font-weight:bold' lang=zh-CN>可能很短，</span><span
+style='font-weight:bold' lang=en-US>documents</span><span style='font-weight:
+bold' lang=zh-CN>可能比较长。</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold' lang=zh-CN>将</span><span style='font-weight:bold'
+lang=en-US>query</span><span style='font-weight:bold' lang=zh-CN>转化成一个假设的</span><span
+style='font-weight:bold' lang=en-US>document</span><span style='font-weight:
+bold' lang=zh-CN>，这个假设的</span><span style='font-weight:bold' lang=en-US>document</span><span
+style='font-weight:bold' lang=zh-CN>在</span><span style='font-weight:bold'
+lang=en-US>doc </span><span style='font-weight:bold' lang=zh-CN>空间中和</span><span
+style='font-weight:bold' lang=en-US> target document</span><span
+style='font-weight:bold' lang=zh-CN>更近，更利于</span><span style='font-weight:bold'
+lang=en-US>retrieval</span><span style='font-weight:bold' lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:3.75in'><img src="RAG.files/image007.jpg"
+width=1854 height=1501></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-weight:bold;color:#1A7F37'>from</span><span style='color:#212121'>
+langchain.prompts </span><span style='font-weight:bold;color:#1A7F37'>import</span><span
+style='color:#212121'> ChatPromptTemplate</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt;
+color:#59636E'><span style='font-style:italic'># HyDE document generation</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:black'><span style='font-weight:bold' lang=en-US>#</span><span
+style='font-weight:bold' lang=zh-CN>直接让</span><span style='font-weight:bold'
+lang=en-US>LLM</span><span style='font-weight:bold' lang=zh-CN>根据用户</span><span
+style='font-weight:bold' lang=en-US>que</span><span style='font-weight:bold'
+lang=zh-CN>s</span><span style='font-weight:bold' lang=en-US>tion</span><span
+style='font-weight:bold' lang=zh-CN>生成一篇</span><span style='font-weight:bold'
+lang=en-US>passage</span><span style='font-weight:bold' lang=zh-CN>，然后用这篇</span><span
+style='font-weight:bold' lang=en-US>passage</span><span style='font-weight:
+bold' lang=zh-CN>进行检索</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='color:#212121'>template </span><span style='font-weight:bold;color:#8250DF'>=
+</span><span style='color:#BA2121'>&quot;&quot;&quot;Please write a scientific
+paper passage to answer the question</span><span style='color:#212121'><br>
+</span><span style='color:#BA2121'>Question: {question}</span><span
+style='color:#212121'><br>
+</span><span style='color:#BA2121'>Passage:&quot;&quot;&quot;</span><span
+style='color:#212121'><br>
+prompt_hyde </span><span style='font-weight:bold;color:#8250DF'>=</span><span
+style='color:#212121'> ChatPromptTemplate</span><span style='font-weight:bold;
+color:#8250DF'>.</span><span style='color:#212121'>from_template</span><span
+style='color:#0055AA'>(</span><span style='color:#212121'>template</span><span
+style='color:#0055AA'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-weight:bold;color:#1A7F37'>from</span><span style='color:#212121'>
+langchain_core.output_parsers </span><span style='font-weight:bold;color:#1A7F37'>import</span><span
+style='color:#212121'> StrOutputParser<br>
+</span><span style='font-weight:bold;color:#1A7F37'>from</span><span
+style='color:#212121'> langchain_openai </span><span style='font-weight:bold;
+color:#1A7F37'>import</span><span style='color:#212121'> ChatOpenAI</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='color:#212121'>generate_docs_for_retrieval </span><span
+style='font-weight:bold;color:#8250DF'>= </span><span style='color:#0055AA'>(</span><span
+style='color:#212121'><br>
+<span style='mso-spacerun:yes'>    </span>prompt_hyde </span><span
+style='font-weight:bold;color:#8250DF'>|</span><span style='color:#212121'>
+ChatOpenAI</span><span style='color:#0055AA'>(</span><span style='color:#212121'>temperature</span><span
+style='font-weight:bold;color:#8250DF'>=</span><span style='color:#1A7F37'>0</span><span
+style='color:#0055AA'>) </span><span style='font-weight:bold;color:#8250DF'>|</span><span
+style='color:#212121'> StrOutputParser</span><span style='color:#0055AA'>()</span><span
+style='color:#212121'> <br>
+</span><span style='color:#0055AA'>)</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt'><span
+style='font-style:italic;color:#59636E'># Run</span><span style='color:#212121'><br>
+question </span><span style='font-weight:bold;color:#8250DF'>= </span><span
+style='color:#BA2121'>&quot;What is task decomposition for LLM agents?&quot;</span><span
+style='color:#212121'><br>
+generate_docs_for_retrieval</span><span style='font-weight:bold;color:#8250DF'>.</span><span
+style='color:#212121'>invoke</span><span style='color:#0055AA'>({</span><span
+style='color:#BA2121'>&quot;question&quot;</span><span style='color:#0055AA'>:</span><span
+style='color:#212121'>question</span><span style='color:#0055AA'>})</span></p>
+
+<p style='margin:0in;margin-left:.75in;line-height:12pt;font-family:微软雅黑;
+font-size:28.0pt;color:#0055AA'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+bold' lang=en-US>2.R</span><span style='font-weight:bold' lang=zh-CN>out</span><span
+style='font-weight:bold' lang=en-US>ing</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold' lang=zh-CN>有多个数据库，如图数据库，关系数据库，</span><span
+style='font-weight:bold' lang=en-US>Vector store</span><span style='font-weight:
+bold' lang=zh-CN>等，让</span><span style='font-weight:bold' lang=en-US>LLM</span><span
+style='font-weight:bold' lang=zh-CN>根据用户</span><span style='font-weight:bold'
+lang=en-US>question</span><span style='font-weight:bold' lang=zh-CN>选择对哪个数据库进行</span><span
+style='font-weight:bold' lang=en-US>retrieve</span><span style='font-weight:
+bold' lang=zh-CN>。</span></p>
+
+<p style='margin:0in;line-height:12pt;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+bold' lang=en-US>3.Q</span><span style='font-weight:bold' lang=zh-CN>uery</span><span
+style='font-weight:bold' lang=en-US> Construction</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>将用户</span><span lang=en-US>query</span><span lang=zh-CN>转成数据库的语言，如对于关系数据库需要</span><span
+lang=en-US>text to sql</span><span lang=zh-CN>，对于</span><span lang=en-US>V</span><span
+lang=zh-CN>ec</span><span lang=en-US>tore </span><span lang=zh-CN>stor</span><span
+lang=en-US>e</span><span lang=zh-CN>可以进行</span><span lang=en-US>metadata filter</span><span
+lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold' lang=en-US>self query retriever</span><span
+style='font-weight:bold' lang=zh-CN>：也就是，有时候并不需要进行语义搜索，而是只需要对</span><span
+style='font-weight:bold' lang=en-US>vector store</span><span style='font-weight:
+bold' lang=zh-CN>中的</span><span style='font-weight:bold' lang=en-US>metadata</span><span
+style='font-weight:bold' lang=zh-CN>进行一次</span><span style='font-weight:bold'
+lang=en-US>lookup</span><span style='font-weight:bold' lang=zh-CN>即可。本质上就是进行一次数据库查询操作。</span></p>
+
+<p style='margin:0in;margin-left:.375in'><img src="RAG.files/image008.jpg"
+width=2758 height=994></p>
+
+<p style='margin:0in;line-height:12pt;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+bold' lang=en-US>4.I</span><span style='font-weight:bold' lang=zh-CN>n</span><span
+style='font-weight:bold' lang=en-US>dexing</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold' lang=zh-CN>关于</span><span style='font-weight:bold'
+lang=en-US>In</span><span style='font-weight:bold' lang=zh-CN>d</span><span
+style='font-weight:bold' lang=en-US>exing</span><span style='font-weight:bold'
+lang=zh-CN>，</span><span style='font-weight:bold' lang=en-US>I</span><span
+style='font-weight:bold' lang=zh-CN>n</span><span style='font-weight:bold'
+lang=en-US>dexing</span><span style='font-weight:bold' lang=zh-CN>是根据</span><span
+style='font-weight:bold' lang=en-US>query</span><span style='font-weight:bold'
+lang=zh-CN>，从数据库中检索出相关</span><span style='font-weight:bold' lang=en-US>documents</span><span
+style='font-weight:bold' lang=zh-CN>的这部分操作，可以看成是初步的</span><span
+style='font-weight:bold' lang=en-US>retrieval</span><span style='font-weight:
+bold' lang=zh-CN>。而re</span><span style='font-weight:bold' lang=en-US>trieval</span><span
+style='font-weight:bold' lang=zh-CN>是根据</span><span style='font-weight:bold'
+lang=en-US>indexing</span><span style='font-weight:bold' lang=zh-CN>的结果，进一步加工的操作，如对初步检索出来的do</span><span
+style='font-weight:bold' lang=en-US>cuments</span><span style='font-weight:
+bold' lang=zh-CN>进行</span><span style='font-weight:bold' lang=en-US>ranking,
+refinement,</span><span style='font-weight:bold' lang=zh-CN>再检索等等。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑'><span
+style='font-weight:bold;font-size:36.0pt' lang=zh-CN><br>
+</span><span style='font-weight:bold;font-size:42.0pt' lang=en-US>1)</span><span
+style='font-weight:bold;font-size:36.0pt' lang=zh-CN>Multi-representation
+Indexing</span></p>
+
+<p style='margin:0in;margin-left:1.125in'><img src="RAG.files/image009.jpg"
+width=2447 height=986></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>将</span><span style='font-weight:bold' lang=zh-CN>原始文档进行</span><span
+style='font-weight:bold' lang=en-US>summary</span><span style='font-weight:
+bold' lang=zh-CN>或</span><span style='font-weight:bold' lang=en-US>dis</span><span
+style='font-weight:bold' lang=zh-CN>ti</span><span style='font-weight:bold'
+lang=en-US>llation</span><span style='font-weight:bold' lang=zh-CN>，</span><span
+lang=zh-CN>用</span><span lang=en-US>summary</span><span lang=zh-CN>的</span><span
+lang=en-US>embedding</span><span lang=zh-CN>和</span><span lang=en-US>query
+embedding</span><span lang=zh-CN>进行匹配。</span></p>
+
+<p style='margin-left:.375in;margin-top:10pt;margin-bottom:14pt;font-family:
+微软雅黑'><span style='font-weight:bold;font-size:42.0pt' lang=en-US>2)</span><span
+style='font-weight:bold;font-size:36.0pt' lang=zh-CN>RAPTOR</span></p>
+
+<p style='margin:0in;margin-left:3.0in'><img src="RAG.files/image010.jpg"
+width=2214 height=1702></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑'><span
+style='font-weight:bold;font-size:42.0pt' lang=en-US>3)</span><span
+style='font-weight:bold;font-size:36.0pt' lang=zh-CN> ColBERT，还有</span><span
+style='font-weight:bold;font-size:36.0pt' lang=en-US>BGE</span><span
+style='font-weight:bold;font-size:36.0pt' lang=zh-CN>用的</span><span
+style='font-weight:bold;font-size:36.0pt' lang=en-US>sparse , multi , hybrid
+retrieval</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='background:white'>RAGatouille makes it as simple to use ColBERT.</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='background:white'>ColBERT generates a contextually influenced vector for
+each token in the passages.</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='background:white'>ColBERT similarly generates vectors for each token in
+the query.</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+style='background:white' lang=zh-CN>Then, the score of each document is the sum
+of the maximum similarity of each query embedding to any of the document
+embeddings</span><span style='background:white' lang=en-US>.</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+style='font-weight:bold'>5.CRAG</span></p>
+
+<p style='margin:0in;margin-left:1.875in'><img src="RAG.files/image011.jpg"
+width=2223 height=1302></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>CRAG
+主要透過「Retrieval Evaluator (檢索評估器)」與「Knowledge Refinement (知識精練)」兩個方法來實現更好的回應結果。</p>
+
+<ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#282828'><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt;background:white'>Retrieval
+     Evaluator（檢索評估器）<br>
+          </span><span style='font-family:微软雅黑;font-size:36.0pt;background:
+     white'>用於評估針對特定問題檢索到的文件的整體品質。它還會利用網路搜索作為輔助工具，進一步提升檢索結果的品質。評估答案分為「正確」（correct）、「模糊」（Ambiguous）、「錯誤」（Incorrect）三種情況。對於「正確」的情況，直接進行知識精練，抽取關鍵資訊。針對「錯誤」的資訊，則利用網路檢索來擴充知識量。針對「模糊」的知識，結合前面兩種操作來提供答案的穩健性及精準度。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#282828'><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt;background:white'>Knowledge
+     Refinement（知識精練）<br>
+          </span><span style='font-family:微软雅黑;font-size:36.0pt;background:
+     white'>先將文件進行分解再重新組合，以便深入挖掘文件中的核心知識點。利用自訂規則將文件進行分解，並由檢索評估器來衡量其相關性。最後將剩餘的相關知識重新整合。</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold'>CRAG的发生在retrieval阶段的最后开始，即当我们获得到了近似的document（或者说relevant
+snippets）之后。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>然后我们会进入一个额外的环节，叫Knowledge
+Correction。在这里呢我们会先对retrieval得到的每一个相关切片snippets进行evaluate，评估一下我们获取到的snippet是不是对问的问题有效？（此处重点：evaluator也是一个LLM）</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>然后会有三种情况：</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>Correct：那就直接进行RAG的正常流程。（不过图中是加了进一步的优化）</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>Incorrect：那就直接丢弃掉原来的document，直接去web里搜索相关信息</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>Ambiguous：对于模糊不清的，就两种方式都要</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>那么在最后的generation部分，也是根据三种不同的情况分别做处理。</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>Correct：那现在就直接拼接问题和相关文档</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>Incorrect：那现在就直接拼接问题和web获取的信息</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>Ambiguous：，那现在就拼接三个加起来</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:42.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:42.0pt'><span
+style='font-weight:bold' lang=en-US>L</span><span style='font-weight:bold'
+lang=zh-CN>a</span><span style='font-weight:bold' lang=en-US>ngchain</span><span
+style='font-weight:bold' lang=zh-CN>版流程图：</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:42.0pt'><span
+style='font-weight:bold' lang=zh-CN>简单一句话，如果检索的</span><span style='font-weight:
+bold' lang=en-US>doc</span><span style='font-weight:bold' lang=zh-CN>不相关，就进行</span><span
+style='font-weight:bold' lang=en-US>web search</span><span style='font-weight:
+bold' lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:3.0in'><img src="RAG.files/image012.png"
+width=2009 height=927></p>
+
+<p style='margin:0in;margin-left:.375in;line-height:12pt;font-family:微软雅黑;
+font-size:48.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+bold' lang=en-US>6.S</span><span style='font-weight:bold' lang=zh-CN>elf</span><span
+style='font-weight:bold' lang=en-US>-RAG</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>和CRAG的核心都是self-reflective，即当我发现结果不是那么有效时，我要通过环回溯到之前的步骤去优化。</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>和CRAG不一样的是，selfRAG的流程是从</span><span lang=en-US>R</span><span
+lang=zh-CN>e</span><span lang=en-US>trieve node</span><span lang=zh-CN>就开始进行的，大概流程：</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:2.25in'><img src="RAG.files/image013.png"
+width=1832 height=734></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;line-height:12pt;font-family:微软雅黑;
+font-size:48.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;line-height:12pt;font-family:微软雅黑;font-size:48.0pt'
+lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;line-height:12pt;font-family:微软雅黑;font-size:48.0pt'
+lang=en-US>&nbsp;</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

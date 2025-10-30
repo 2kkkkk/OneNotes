@@ -1,0 +1,274 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href="Score%20base%20diffusion%20models.htm">
+<link rel=File-List href="Score%20base%20diffusion%20models.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:29.8388in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:4.2791in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'><span lang=en-US>S</span><span
+lang=zh-CN>core</span><span lang=en-US> base diffusion models</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>9</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>12</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>14:44</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.9604in;margin-left:.8659in;width:28.9729in'>
+
+<blockquote style='margin:0in;font-size:36.0pt;color:#595959'><span
+style='font-style:italic;font-family:微软雅黑' lang=zh-CN>参考视频</span><span
+style='font-style:italic;font-family:Calibri' lang=en-US> </span><span
+style='font-style:italic;font-family:微软雅黑' lang=zh-CN>：</span><a
+href="https://www.youtube.com/watch?v=lUljxdkolK8"><span style='font-style:
+italic;font-family:Calibri' lang=zh-CN>https://www.youtube.com/watch?v=lUljxdkolK8</span></a></blockquote>
+
+<blockquote style='margin:0in;font-family:Calibri;font-size:11.0pt;color:#595959'>&nbsp;</blockquote>
+
+<blockquote style='margin:0in;font-family:Calibri;font-size:11.0pt;color:#595959'>&nbsp;</blockquote>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>从另一个角度，另一种数学框架，来看扩散过程。</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+bold' lang=zh-CN>随机可微方程</span><span style='font-weight:bold' lang=en-US>SDE</span><span
+style='font-weight:bold' lang=zh-CN>：</span><span style='font-weight:bold'
+lang=en-US>dx=f(x,t)dt + g(t)dW</span><span lang=zh-CN>，其中</span><span
+lang=en-US>f(x,t)</span><span lang=zh-CN>是确定的，被称为</span><span lang=en-US>drift</span><span
+lang=zh-CN>，即漂流的大方向。而</span><span lang=en-US>dW</span><span lang=zh-CN>是不确定的，随机的抖动，</span><span
+lang=en-US>g(t)</span><span lang=zh-CN>表示抖动的强度</span><span lang=en-US>,</span><span
+lang=zh-CN>被称为</span><span lang=en-US>diffusion coefficients</span><span
+lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:2.25in'><img
+src="Score%20base%20diffusion%20models.files/image001.jpg" width=1877
+height=826></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>1</span><span
+lang=zh-CN>）可微表现在：</span><span lang=en-US>it relates variable x to its change
+over time t</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>2)</span><span
+lang=zh-CN><span style='mso-spacerun:yes'>  </span>随机表现在：第二项是一个布朗运动，</span><span
+lang=en-US>which is random</span><span lang=zh-CN>。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>现在来看</span><span
+lang=en-US>DDPM</span><span lang=zh-CN>对应的</span><span lang=en-US>drift</span><span
+lang=zh-CN>和</span><span lang=en-US>diffusion cofficients</span><span
+lang=zh-CN>的具体形式是什么。</span></p>
+
+<p style='margin:0in;margin-left:5.25in'><img
+src="Score%20base%20diffusion%20models.files/image002.jpg" width=1295
+height=1266></p>
+
+<p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>推导过程省略，最后的结果如下图所示</p>
+
+<p style='margin:0in;margin-left:4.875in'><img
+src="Score%20base%20diffusion%20models.files/image003.jpg" width=1261
+height=1085></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-size:36.0pt'><span style='font-family:微软雅黑'
+lang=zh-CN>其中，</span><span style='font-family:微软雅黑' lang=en-US>dW = </span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:t>&#120598;</m:t></m:r><m:r><m:t>(</m:t></m:r><m:r><m:t>&#119905;</m:t></m:r><m:r><m:t>)</m:t></m:r><m:rad><m:radPr><m:degHide m:val="on"/><m:ctrlPr/></m:radPr><m:deg/><m:e><m:r><m:t>&#119889;&#119905;</m:t></m:r></m:e></m:rad></m:oMath><![endif]--><![if !msEquation]><img
+src="Score%20base%20diffusion%20models.files/image004.png" width=768
+height=125><![endif]></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>这个式子的物理意义是，第一项</span><span
+style='font-weight:bold' lang=en-US>drift term </span><span lang=zh-CN>的作用是</span><span
+lang=en-US> pulls datapoints to the origin,</span><span lang=zh-CN>第二项</span><span
+style='font-weight:bold' lang=en-US>diffusion term</span><span lang=zh-CN>的作用是</span><span
+lang=en-US>spreads them out, preventing datapoints from collapsing to a single
+point.</span><span style='font-weight:bold' lang=zh-CN>这和我们</span><span
+style='font-weight:bold' lang=en-US>DDPM</span><span style='font-weight:bold'
+lang=zh-CN>中的前向过程是一样的：将任意图片变成完全噪声图片（将任一原始分布变成高斯分布）。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;margin-left:1.125in'><img
+src="Score%20base%20diffusion%20models.files/image005.png" width=2307
+height=980></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>那么，如果我们可以</span><span
+lang=en-US>reverse </span><span lang=zh-CN>这个</span><span lang=en-US>SDE</span><span
+lang=zh-CN>方程，我们就能从噪声图像中恢复原始图像了。上世纪</span><span lang=en-US>80</span><span
+lang=zh-CN>年代的工作告诉我们，</span><span lang=en-US>under mild conditions, any forward
+SDE has a corresponding reverse SDE</span><span lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:3.0in'><img
+src="Score%20base%20diffusion%20models.files/image006.jpg" width=2006
+height=836></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:2.625in'><img
+src="Score%20base%20diffusion%20models.files/image007.jpg" width=2039
+height=884></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-size:36.0pt'><span style='font-family:微软雅黑'
+lang=zh-CN>在上图的式子中，我们唯一不知道的是紫色那一项，</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>∇</m:t></m:r></m:e><m:sub><m:r><m:t>&#119909;</m:t></m:r></m:sub></m:sSub><m:r><m:t>&#119897;&#119900;&#119892;</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:r><m:t>(</m:t></m:r><m:r><m:t>&#119909;</m:t></m:r><m:r><m:t>)</m:t></m:r></m:oMath><![endif]--><span
+style='font-family:微软雅黑' lang=zh-CN>，即得分函数</span><span style='font-family:微软雅黑'
+lang=en-US>score functions</span><span style='font-family:微软雅黑' lang=zh-CN>，什么是</span><span
+style='font-family:微软雅黑' lang=en-US>score funcitons</span><span
+style='font-family:微软雅黑' lang=zh-CN>呢？</span><![if !msEquation]><img
+src="Score%20base%20diffusion%20models.files/image008.png" width=4011
+height=125><![endif]></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>假设有一个分布，样本集中分布在紫色区域，这个分布的</span><span
+lang=en-US>score function is a function that</span><span style='font-weight:
+bold' lang=en-US> assigns to every point in space<span
+style='mso-spacerun:yes'>  </span>a</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US><span
+style='font-weight:bold'><span style='mso-spacerun:yes'> </span>vector</span>
+pointing toward regions of higher porbability. In other words, it tells us
+which direction the density increases </p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+bold' lang=en-US>fastest. </span><span lang=zh-CN>可以把</span><span lang=en-US>score
+function</span><span lang=zh-CN>比作为一个</span><span style='font-weight:bold'
+lang=zh-CN>罗盘，总是指向高密度区域。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:3.0in'><img
+src="Score%20base%20diffusion%20models.files/image009.jpg" width=1908
+height=975></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>在</span><span
+lang=en-US>diffusion</span><span lang=zh-CN>刚开始的阶段，由于原始分布没有经过太多的扰动，分布是很</span><span
+lang=en-US>clean</span><span lang=zh-CN>的，此时</span><span lang=en-US>score
+funtion</span><span lang=zh-CN>也是</span><span lang=en-US>sharp</span><span
+lang=zh-CN>的，如上图所示。而随着</span><span lang=en-US>diffusion</span><span lang=zh-CN>的进行（加入越来越多的</span><span
+lang=en-US>noise</span><span lang=zh-CN>），分布越来越像高斯分布，</span><span lang=en-US>score
+funtion</span><span lang=zh-CN>也变得</span><span lang=en-US>smooth</span><span
+lang=zh-CN>了，如下图所示。</span></p>
+
+<p style='margin:0in;margin-left:1.875in'><img
+src="Score%20base%20diffusion%20models.files/image010.jpg" width=2191
+height=1175></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>我们需要得到每一步的</span><span
+lang=en-US>score function</span><span lang=zh-CN>才能</span><span lang=en-US>reverse
+SDE</span><span lang=zh-CN>，我们用神经网络来学习。神经网络通常是</span><span lang=en-US>Unet</span><span
+lang=zh-CN>，输入是</span><span lang=en-US>xt</span><span lang=zh-CN>，和</span><span
+lang=en-US>t</span><span lang=zh-CN>，输出是此时的</span><span lang=en-US>score
+funtion</span><span lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:1.875in'><img
+src="Score%20base%20diffusion%20models.files/image011.jpg" width=2165
+height=782></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>训练的目标就是，我们想让</span><span
+lang=en-US>Unet</span><span lang=zh-CN>输出的</span><span lang=en-US>score
+function</span><span lang=zh-CN>和真实的</span><span lang=en-US>score function</span><span
+lang=zh-CN>越接近越好：</span></p>
+
+<p style='margin:0in;margin-left:3.375in'><img
+src="Score%20base%20diffusion%20models.files/image012.jpg" width=1676
+height=673></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-size:36.0pt'><span style='font-family:微软雅黑'
+lang=zh-CN>其中，</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>∇</m:t></m:r></m:e><m:sub><m:r><m:t>&#119909;</m:t></m:r></m:sub></m:sSub><m:r><m:t>&#119897;&#119900;&#119892;</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>t</m:t></m:r></m:sub></m:sSub></m:e><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>0</m:t></m:r></m:sub></m:sSub></m:e></m:d><m:r><m:t>=</m:t></m:r><m:r><m:t>−</m:t></m:r><m:f><m:fPr><m:ctrlPr/></m:fPr><m:num><m:r><m:t>&#120598;</m:t></m:r></m:num><m:den><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#120573;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub></m:den></m:f></m:oMath><![endif]--><span
+style='font-family:微软雅黑' lang=zh-CN>，具体推导省略。</span><![if !msEquation]><img
+src="Score%20base%20diffusion%20models.files/image013.png" width=1547
+height=139><![endif]></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:3.75in'><img
+src="Score%20base%20diffusion%20models.files/image014.jpg" width=1478
+height=875></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>从上图中看出，</span><span
+lang=en-US>DDPM</span><span lang=zh-CN>和</span><span lang=en-US>score match </span><span
+lang=zh-CN>这两种方法的</span><span lang=en-US>loss</span><span lang=zh-CN>是不同的，</span><span
+style='font-weight:bold' lang=zh-CN>因为</span><span style='font-weight:bold'
+lang=en-US>DDPM</span><span style='font-weight:bold' lang=zh-CN>是预测每一步的噪声，</span><span
+style='font-weight:bold' lang=en-US>score match</span><span style='font-weight:
+bold' lang=zh-CN>预测的是每一步的</span><span style='font-weight:bold' lang=en-US>score
+Function</span><span style='font-weight:bold' lang=zh-CN>。但是这两种方法都可以用来生成新的样本。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>最后，有了</span><span
+lang=en-US>score function</span><span lang=zh-CN>之后</span><span lang=en-US> </span><span
+lang=zh-CN>，也就有了</span><span lang=en-US>reverse SDE</span><span lang=zh-CN>方程，但是</span><span
+lang=en-US>reverse SDE</span><span lang=zh-CN>方程是连续的形式，我们需要对其进行离散化来生成新图片，离散化有很多方法，是一个被广泛研究的领域，最常用的是</span><span
+lang=en-US>Euler-Maruyama</span><span lang=zh-CN>离散化，</span></p>
+
+<p style='margin:0in;margin-left:2.625in'><img
+src="Score%20base%20diffusion%20models.files/image015.jpg" width=2006
+height=743></p>
+
+<p style='margin:0in;margin-left:2.625in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>总结下</span><span
+lang=en-US>DDPM</span><span lang=zh-CN>和</span><span lang=en-US>score match </span><span
+lang=zh-CN>这两种方法的不同</span></p>
+
+<p style='margin:0in;margin-left:2.625in'><img
+src="Score%20base%20diffusion%20models.files/image016.jpg" width=2255
+height=1192></p>
+
+<p style='margin:0in;margin-left:1.875in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>score
+based diffusion</span><span lang=zh-CN>更</span><span lang=en-US>general</span><span
+lang=zh-CN>，可以选择不同的</span><span lang=en-US>SDE</span><span lang=zh-CN>方程，也可以用其他的离散化方法。</span></p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

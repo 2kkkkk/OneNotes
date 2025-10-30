@@ -1,0 +1,449 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=反向传播实现.htm>
+<link rel=File-List href="反向传播实现.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:38.6513in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:2.2013in'>
+
+<p style='margin:0in;font-family:"Microsoft YaHei Light";font-size:20.0pt'>反向传播实现</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:"Microsoft YaHei"'>年</span><span
+style='font-family:Calibri'>3</span><span style='font-family:"Microsoft YaHei"'>月</span><span
+style='font-family:Calibri'>14</span><span style='font-family:"Microsoft YaHei"'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>16:09</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:2.1798in;margin-left:2.8333in;width:35.818in'>
+
+<p style='margin:0in;font-family:Calibri;font-size:36.0pt'>&nbsp;</p>
+
+<p><code style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'
+lang=zh-CN>class Value:</span><span style='font-family:Consolas' lang=en-US><span
+style='mso-spacerun:yes'>   </span></span><span style='font-weight:bold;
+font-family:Consolas;color:#C00000' lang=zh-CN>value</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei Light";color:#C00000'
+lang=zh-CN>相当于</span><span style='font-weight:bold;font-family:Consolas;
+color:#C00000' lang=zh-CN>Tensor</span><span style='font-weight:bold;
+font-family:"Microsoft YaHei Light";color:#C00000' lang=zh-CN>类</span><span
+style='font-family:Calibri;color:#C00000' lang=en-US> </span></code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>&quot;&quot;&quot; stores a single scalar
+value and its gradient &quot;&quot;&quot;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>def __init__(self, data, _children=(),
+_op=''):</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.data = data</code></p>
+
+<p><code style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'
+lang=zh-CN><span style='mso-spacerun:yes'>        </span>self.grad = 0</span><span
+style='font-family:Consolas' lang=en-US><span style='mso-spacerun:yes'>      
+</span></span><span style='font-weight:bold;font-family:Consolas;color:#C00000'
+lang=zh-CN>tensor</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+color:#C00000' lang=zh-CN>需要存储梯度grad</span></code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span># internal variables used for autograd
+graph construction</code></p>
+
+<p><code style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'
+lang=zh-CN><span style='mso-spacerun:yes'>        </span>self._backward =
+lambda: None</span><span style='font-family:"Microsoft YaHei"' lang=zh-CN>。</span><span
+style='font-family:Calibri' lang=en-US><span style='mso-spacerun:yes'>     
+</span></span><span style='font-family:Consolas' lang=zh-CN><span
+style='mso-spacerun:yes'> </span></span><span style='font-weight:bold;
+font-family:Consolas;color:#C00000' lang=zh-CN>tensor</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei Light";color:#C00000'
+lang=zh-CN>需要定义</span><span style='font-weight:bold;font-family:Consolas;
+color:#C00000' lang=zh-CN>backward</span><span style='font-weight:bold;
+font-family:"Microsoft YaHei Light";color:#C00000' lang=zh-CN>函数</span></code></p>
+
+<p><code style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'
+lang=zh-CN><span style='mso-spacerun:yes'>        </span>self._prev =
+set(_children)</span><span style='font-family:"Microsoft YaHei"' lang=zh-CN>。</span><span
+style='font-family:Calibri' lang=en-US><span
+style='mso-spacerun:yes'>            </span></span><span style='font-weight:
+bold;font-family:Consolas;color:#C00000' lang=zh-CN>tensor</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei";color:#C00000'
+lang=zh-CN>需要存储它的孩子节点</span></code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self._op = _op # the op that produced
+this node, for graphviz / debugging / etc</code></p>
+
+<p><code style='margin:0in;margin-left:1.875in;font-family:Consolas;font-size:
+36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>def __add__(self, other):</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>other = other if isinstance(other,
+Value) else Value(other)</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>out = Value(self.data + other.data,
+(self, other), '+')</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>def _backward():</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>self.grad += out.grad</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>other.grad += out.grad</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>out._backward = _backward</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>return out</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'
+lang=zh-CN><span style='mso-spacerun:yes'>    </span>def __mul__(self, other):</span><span
+style='font-family:Consolas' lang=en-US><span style='mso-spacerun:yes'>  
+</span></span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+color:#C00000' lang=en-US>每个加减乘除、</span><span style='font-weight:bold;
+font-family:Consolas;color:#C00000' lang=en-US>tanh</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei";color:#C00000'
+lang=en-US>等操作都会生成新的</span><span style='font-weight:bold;font-family:Consolas;
+color:#C00000' lang=en-US>tensor, </span><span style='font-weight:bold;
+font-family:"Microsoft YaHei";color:#C00000' lang=zh-CN>即</span><span
+style='font-weight:bold;font-family:Consolas;color:#C00000' lang=en-US>return
+out </span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+color:#C00000' lang=zh-CN>中的</span><span style='font-weight:bold;font-family:
+Consolas;color:#C00000' lang=en-US>out.</span></code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>other = other if isinstance(other,
+Value) else Value(other)</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>out = Value(self.data * other.data,
+(self, other), '*')</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'
+lang=zh-CN><span style='mso-spacerun:yes'>        </span>def _backward():</span><span
+style='font-family:Consolas' lang=en-US><span style='mso-spacerun:yes'>  
+</span></span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+color:#C00000' lang=zh-CN>每次生成新</span><span style='font-weight:bold;font-family:
+Consolas;color:#C00000' lang=zh-CN>tensor</span><span style='font-weight:bold;
+font-family:"Microsoft YaHei";color:#C00000' lang=zh-CN>的时候会定义</span><span
+style='font-weight:bold;font-family:Consolas;color:#C00000' lang=zh-CN>backward</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei";color:#C00000'
+lang=zh-CN>函数，</span><span style='font-weight:bold;font-family:Calibri;
+color:#C00000' lang=zh-CN>backward</span><span style='font-weight:bold;
+font-family:"Microsoft YaHei";color:#C00000' lang=zh-CN>函数的功能是根据</span><span
+style='font-weight:bold;font-family:Consolas;color:#C00000' lang=en-US>out </span><span
+style='font-weight:bold;font-family:Calibri;color:#C00000' lang=zh-CN>tensor</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei";color:#C00000'
+lang=zh-CN>的梯度更新其所有</span><span style='font-weight:bold;font-family:Calibri;
+color:#C00000' lang=zh-CN>children</span><span style='font-weight:bold;
+font-family:Calibri;color:#C00000' lang=en-US> tensor</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei";color:#C00000'
+lang=en-US>的梯度</span></code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>self.grad += other.data * out.grad</code></p>
+
+<p><code style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'
+lang=zh-CN><span style='mso-spacerun:yes'>            </span>other.grad +=
+self.data * out.grad</span><span style='font-family:Consolas' lang=en-US><span
+style='mso-spacerun:yes'>  </span></span><span style='font-weight:bold;
+font-family:"Microsoft YaHei";color:#C00000' lang=en-US>注意</span><span
+style='font-weight:bold;font-family:"Apple Color Emoji";color:#C00000'
+lang=en-US>⚠️</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+color:#C00000' lang=en-US>更新梯度是</span><span style='font-weight:bold;font-family:
+Consolas;color:#C00000' lang=en-US>+=</span><span style='font-weight:bold;
+font-family:"Microsoft YaHei";color:#C00000' lang=zh-CN>，不是</span><span
+style='font-weight:bold;font-family:Consolas;color:#C00000' lang=en-US>=,</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei";color:#C00000'
+lang=en-US>因为一个子</span><span style='font-weight:bold;font-family:Consolas;
+color:#C00000' lang=en-US>tensor</span><span style='font-weight:bold;
+font-family:"Microsoft YaHei";color:#C00000' lang=en-US>可能会被多次更新</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei";color:#C00000'
+lang=zh-CN>，如图所示，比如</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+color:#C00000' lang=en-US>x = a+a</span><span style='font-weight:bold;
+font-family:"Microsoft YaHei";color:#C00000' lang=zh-CN>，</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei";color:#C00000'
+lang=en-US>tensor a</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+color:#C00000' lang=zh-CN>会被更新两次。也正是因为是</span><span style='font-weight:bold;
+font-family:Consolas;color:#C00000' lang=en-US>+=</span><span style='font-weight:
+bold;font-family:"Microsoft YaHei";color:#C00000' lang=zh-CN>，所以每个batch</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei";color:#C00000'
+lang=en-US> </span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+color:#C00000' lang=zh-CN>backward之前需要zerograd，</span><span style='font-weight:
+bold;font-family:"Microsoft YaHei";color:#C00000' lang=en-US> </span><span
+style='font-weight:bold;font-family:"Microsoft YaHei";color:#C00000'
+lang=zh-CN>否则会一直累加。（至于为什么可以简单地累加，我是理解是当</span><span style='font-weight:bold;
+font-family:"Microsoft YaHei";color:#C00000' lang=en-US>learning rate</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei";color:#C00000'
+lang=zh-CN>足够小，可以用累加的方式近似。）</span></code></p>
+
+<p><code style='margin:0in;font-size:36.0pt;color:#C00000'><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US><span
+style='mso-spacerun:yes'>                                                                                               
+</span></span><span style='font-weight:bold;font-family:"Apple Color Emoji"'
+lang=en-US>⚠️</span><span style='font-weight:bold;font-family:"Microsoft YaHei"'
+lang=en-US>孩子tensor的梯度= out tensor对该孩子tensor的梯度 * out tensor</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>的梯度</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>(链式法则)</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>，即</span></code></p>
+
+<p><code style='margin:0in;margin-left:11.25in;font-family:"Microsoft YaHei";
+font-size:36.0pt' lang=en-US><span
+style='mso-spacerun:yes'>                         </span><span
+style='font-weight:bold;color:#C00000'><span
+style='mso-spacerun:yes'> </span>self.grad += other.data * out.grad</span></code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>out._backward = _backward</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>return out</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>def __pow__(self, other):</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>assert isinstance(other, (int, float)),
+&quot;only supporting int/float powers for now&quot;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>out = Value(self.data**other, (self,),
+f'**{other}')</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>def _backward():</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>self.grad += (other *
+self.data**(other-1)) * out.grad</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>out._backward = _backward</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>return out</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>def relu(self):</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>out = Value(0 if self.data &lt; 0 else
+self.data, (self,), 'ReLU')</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>def _backward():</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>self.grad += (out.data &gt; 0) *
+out.grad</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>out._backward = _backward</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>return out</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>def backward(self):</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'
+lang=zh-CN><span style='mso-spacerun:yes'>        </span># topological order
+all of the children in the graph</span><span style='font-family:Consolas'
+lang=en-US><span style='mso-spacerun:yes'>   </span></span><span
+style='font-family:"Microsoft YaHei"' lang=en-US># </span><span
+style='font-weight:bold;font-family:"Microsoft YaHei";color:#C00000'
+lang=zh-CN>对计算图中的所有</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+color:#C00000' lang=en-US>tensor</span><span style='font-weight:bold;
+font-family:"Microsoft YaHei";color:#C00000' lang=zh-CN>节点做拓扑排序</span></code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>topo = []</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>visited = set()</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>def build_topo(v):</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>if v not in visited:</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>                </span>visited.add(v)</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>                </span>for child in v._prev:</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>                    </span>build_topo(child)</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>                </span>topo.append(v)</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>build_topo(self)</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span># go one variable at a time and apply
+the chain rule to get its gradient</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>self.grad = 1</code></p>
+
+<p><code style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'
+lang=zh-CN><span style='mso-spacerun:yes'>        </span>for v in
+reversed(topo):</span><span style='font-family:Consolas' lang=en-US><span
+style='mso-spacerun:yes'>      </span></span><span style='font-family:"Microsoft YaHei"'
+lang=en-US># </span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+color:#C00000' lang=zh-CN>对拓扑排序好的节点，从后向前遍历</span><span style='font-weight:bold;
+font-family:"Microsoft YaHei";color:#C00000' lang=en-US>tensor</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei";color:#C00000'
+lang=zh-CN>节点，调用该节点的</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+color:#C00000' lang=en-US>backward</span><span style='font-weight:bold;
+font-family:"Microsoft YaHei";color:#C00000' lang=zh-CN>函数。</span></code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>            </span>v._backward()</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>def __neg__(self): # -self</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>return self * -1</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>def __radd__(self, other): # other + self</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>return self + other</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>def __sub__(self, other): # self - other</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>return self + (-other)</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>def __rsub__(self, other): # other - self</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>return other + (-self)</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>def __rmul__(self, other): # other * self</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>return self * other</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>def __truediv__(self, other): # self /
+other</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>return self * other**-1</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>def __rtruediv__(self, other): # other /
+self</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>return other * self**-1</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>def __repr__(self):</code></p>
+
+<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+style='mso-spacerun:yes'>        </span>return f&quot;Value(data={self.data},
+grad={self.grad})&quot;</code></p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

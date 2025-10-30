@@ -1,0 +1,1069 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href="Stable%20diffusion代码.htm">
+<link rel=File-List href="Stable%20diffusion代码.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:28.3312in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:3.1645in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'><span lang=en-US>S</span><span
+lang=zh-CN>tab</span><span lang=en-US>le diffusion</span><span lang=zh-CN>代码</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>9</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>15</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>16:36</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.5277in;margin-left:.3763in;width:27.9548in'>
+
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <p style='margin:0in;font-family:Inter;font-size:36.0pt'>在看代码前需明确两个关键前提：</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:bold;font-style:normal'>
+  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold;color:black'><span style='font-family:微软雅黑;font-size:
+      36.0pt;font-weight:bold;font-style:normal;font-weight:bold;font-family:
+      微软雅黑;font-size:36.0pt;color:black'>输入对象</span><span style='font-family:
+      微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal;font-weight:
+      normal;font-family:微软雅黑;font-size:36.0pt;color:black'>：代码处理的是「VAE 下采样后的
+      latent」（而非原始图像）。Stable Diffusion 中，原始图像（如 256×256）会被 VAE 压缩为 1/8 分辨率（如
+      32×32）、4 通道的 latent，因此代码中所有特征图的分辨率均以「H/8, W/8」为基准。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      6pt;margin-bottom:0pt;font-weight:bold;color:black'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt;color:black'>核心目标</span><span
+      style='font-weight:normal;font-family:微软雅黑;font-size:36.0pt;color:black'>：扩散模型的训练目标是「预测噪声」——
+      前向扩散时给干净 latent 加随机噪声，模型需根据「噪声
+      latent（xt）、时间步（t）、条件（context）」预测出加在上面的真实噪声，反向去噪时用预测噪声恢复干净 latent。</span></li>
+ </ol>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>总结：关键的是理解UNET_AttentionBlock中的交叉注意力部分，把图片看成是序列的列式，在</span><span
+ style='font-weight:bold' lang=en-US>NLP</span><span style='font-weight:bold'
+ lang=zh-CN>中序列的长度是一段话中</span><span style='font-weight:bold' lang=en-US>token</span><span
+ style='font-weight:bold' lang=zh-CN>的数量，在这里序列的长度相当于是图片的</span><span
+ style='font-weight:bold' lang=en-US>H*W</span><span style='font-weight:bold'
+ lang=zh-CN>，图片的通道数相当于是特征的维度，即</span><span style='font-weight:bold' lang=en-US>token
+ embedding</span><span style='font-weight:bold' lang=zh-CN>的长度。</span></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>import torch</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>from torch
+ import nn</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>from
+ torch.nn import functional as F</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>from
+ attention import SelfAttention, CrossAttention</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>class
+ TimeEmbedding(nn.Module):</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def __init__(self, n_embd):</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>super().__init__()</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.linear_1 = nn.Linear(n_embd, 4 *
+ n_embd)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.linear_2 = nn.Linear(4 * n_embd,
+ 4 * n_embd)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'
+ lang=zh-CN><span style='mso-spacerun:yes'>    </span>def forward(self, x):</span><span
+ style='font-family:Consolas' lang=en-US> </span><span style='font-family:Consolas;
+ background:lime;mso-highlight:lime' lang=zh-CN># x: (1, 320) </span><span
+ style='font-family:微软雅黑;background:lime;mso-highlight:lime' lang=zh-CN>→</span><span
+ style='font-family:Consolas;background:lime;mso-highlight:lime' lang=zh-CN> t</span><span
+ style='font-family:微软雅黑;background:lime;mso-highlight:lime' lang=zh-CN>的初始嵌入（通常是正弦余弦编码</span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># x: (1, 320)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># (1, 320) -&gt; (1, 1280)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x = self.linear_1(x)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># (1, 1280) -&gt; (1, 1280)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x = F.silu(x) </code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># (1, 1280) -&gt; (1, 1280)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x = self.linear_2(x)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'
+ lang=zh-CN><span style='mso-spacerun:yes'>        </span>return x</span><span
+ style='font-family:Consolas;background:lime;mso-highlight:lime' lang=en-US> </span><span
+ style='font-family:Consolas;background:lime;mso-highlight:lime' lang=zh-CN># </span><span
+ style='font-family:微软雅黑;background:lime;mso-highlight:lime' lang=zh-CN>输出：</span><span
+ style='font-family:Consolas;background:lime;mso-highlight:lime' lang=zh-CN>(1,
+ 1280)</span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>残差块是 UNET
+ 的「基本特征变换单元」，负责：1）调整特征通道数；2）将时间嵌入注入空间特征；3）通过残差连接避免梯度消失。</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'>class
+ UNET_ResidualBlock(nn.Module):</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>    </span>def __init__(self, in_channels,
+ out_channels, n_time=1280):<span style='mso-spacerun:yes'>  </span>#
+ n_time=TimeEmbedding</span><span style='font-family:微软雅黑'>输出维度</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>super().__init__()</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># </span><span style='font-family:
+ 微软雅黑'>第一分支：特征图处理</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>self.groupnorm_feature =
+ nn.GroupNorm(32, in_channels)<span style='mso-spacerun:yes'>  </span># </span><span
+ style='font-family:微软雅黑'>分组归一化（</span><span style='font-family:Consolas'>32</span><span
+ style='font-family:微软雅黑'>组，适合小批量）</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>self.conv_feature =
+ nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1)<span
+ style='mso-spacerun:yes'>  </span></span><span style='font-family:Consolas;
+ background:lime;mso-highlight:lime'># 3</span><span style='font-family:微软雅黑;
+ background:lime;mso-highlight:lime'>×</span><span style='font-family:Consolas;
+ background:lime;mso-highlight:lime'>3</span><span style='font-family:微软雅黑;
+ background:lime;mso-highlight:lime'>卷积（不改变分辨率）</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># </span><span style='font-family:
+ 微软雅黑'>第二分支：时间嵌入处理</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>self.linear_time = nn.Linear(n_time,
+ out_channels)<span style='mso-spacerun:yes'>  </span># </span><span
+ style='font-family:微软雅黑'>时间嵌入→与特征通道数一致</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># </span><span style='font-family:
+ 微软雅黑'>第三分支：融合后处理</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.groupnorm_merged =
+ nn.GroupNorm(32, out_channels)</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.conv_merged =
+ nn.Conv2d(out_channels, out_channels, kernel_size=3, padding=1)</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># </span><span style='font-family:
+ 微软雅黑'>残差连接：若通道数不同，用</span><span style='font-family:Consolas'>1</span><span
+ style='font-family:微软雅黑'>×</span><span style='font-family:Consolas'>1</span><span
+ style='font-family:微软雅黑'>卷积调整</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.residual_layer = nn.Identity() if
+ in_channels == out_channels else nn.Conv2d(in_channels, out_channels,
+ kernel_size=1)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def forward(self, feature, time):<span
+ style='mso-spacerun:yes'>  </span># feature: (B, in_ch, H, W); time: (1, 1280)</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>residue = feature<span
+ style='mso-spacerun:yes'>  </span># </span><span style='font-family:微软雅黑'>保存残差</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># 1. </span><span style='font-family:
+ 微软雅黑'>处理特征图</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>feature =
+ self.groupnorm_feature(feature)<span style='mso-spacerun:yes'>  </span># </span><span
+ style='font-family:微软雅黑'>归一化</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>feature = F.silu(feature)<span
+ style='mso-spacerun:yes'>  </span># </span><span style='font-family:微软雅黑'>激活</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>feature = self.conv_feature(feature)</span><span
+ style='font-family:Consolas;background:lime;mso-highlight:lime'><span
+ style='mso-spacerun:yes'>  </span># </span><span style='font-family:微软雅黑;
+ background:lime;mso-highlight:lime'>通道数：</span><span style='font-family:Consolas;
+ background:lime;mso-highlight:lime'>in</span><span style='font-family:微软雅黑;
+ background:lime;mso-highlight:lime'>→</span><span style='font-family:Consolas;
+ background:lime;mso-highlight:lime'>out</span><span style='font-family:微软雅黑;
+ background:lime;mso-highlight:lime'>（分辨率不变）</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># 2. </span><span style='font-family:
+ 微软雅黑'>处理时间嵌入，并与特征图广播相加</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>time = F.silu(time)<span
+ style='mso-spacerun:yes'>  </span># </span><span style='font-family:微软雅黑'>时间嵌入激活</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>time = self.linear_time(time)<span
+ style='mso-spacerun:yes'>  </span># </span><span style='font-family:微软雅黑'>时间嵌入：</span><span
+ style='font-family:Consolas'>1280</span><span style='font-family:微软雅黑'>→</span><span
+ style='font-family:Consolas'>out_ch</span><span style='font-family:微软雅黑'>（</span><span
+ style='font-family:Consolas'>(1, out_ch)</span><span style='font-family:微软雅黑'>）</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'
+ lang=zh-CN><span style='mso-spacerun:yes'>        </span>merged = feature +
+ time.unsqueeze(-1).unsqueeze(-1)<span style='mso-spacerun:yes'>  </span></span><span
+ style='font-family:Consolas;background:lime;mso-highlight:lime' lang=zh-CN># </span><span
+ style='font-family:微软雅黑;background:lime;mso-highlight:lime' lang=zh-CN>时间嵌入扩维为</span><span
+ style='font-family:Consolas;background:lime;mso-highlight:lime' lang=zh-CN>(1,
+ out_ch, 1, 1)</span><span style='font-family:微软雅黑;background:lime;mso-highlight:
+ lime' lang=zh-CN>，与特征图广播相加</span><span style='font-family:Consolas;background:
+ lime;mso-highlight:lime' lang=en-US>,<span style='mso-spacerun:yes'>  </span></span><span
+ style='font-family:微软雅黑;background:lime;mso-highlight:lime' lang=zh-CN>时间信息注入：通过</span><span
+ style='font-family:Consolas;background:lime;mso-highlight:lime' lang=zh-CN>time.unsqueeze(-1).unsqueeze(-1)</span><span
+ style='font-family:微软雅黑;background:lime;mso-highlight:lime' lang=zh-CN>将时间向量（</span><span
+ style='font-family:Consolas;background:lime;mso-highlight:lime' lang=zh-CN>1,
+ out_ch</span><span style='font-family:微软雅黑;background:lime;mso-highlight:lime'
+ lang=zh-CN>）扩维为（</span><span style='font-family:Consolas;background:lime;
+ mso-highlight:lime' lang=zh-CN>1, out_ch, 1, 1</span><span style='font-family:
+ 微软雅黑;background:lime;mso-highlight:lime' lang=zh-CN>），可与任意分辨率的特征图（</span><span
+ style='font-family:Consolas;background:lime;mso-highlight:lime' lang=zh-CN>B,
+ out_ch, H, W</span><span style='font-family:微软雅黑;background:lime;mso-highlight:
+ lime' lang=zh-CN>）广播相加，实现「时间信息→空间特征」的融合。</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># 3. </span><span style='font-family:
+ 微软雅黑'>融合后进一步处理</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>merged = self.groupnorm_merged(merged)</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>merged = F.silu(merged)</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>merged = self.conv_merged(merged)</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># 4. </span><span style='font-family:
+ 微软雅黑'>残差连接：输入残差</span><span style='font-family:Consolas'> + </span><span
+ style='font-family:微软雅黑'>处理后特征</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>return merged +
+ self.residual_layer(residue)</p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-weight:bold;
+ font-family:微软雅黑;background:lime;mso-highlight:lime'>注意力块是扩散模型捕捉「空间依赖」和「条件依赖」的核心，包含自注意力（</span><span
+ style='font-weight:bold;font-family:Consolas;background:lime;mso-highlight:
+ lime'>Self-Attention</span><span style='font-weight:bold;font-family:微软雅黑;
+ background:lime;mso-highlight:lime'>） 和交叉注意力（</span><span style='font-weight:
+ bold;font-family:Consolas;background:lime;mso-highlight:lime'>Cross-Attention</span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'>）
+ ：</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-weight:bold;
+ font-family:微软雅黑;background:lime;mso-highlight:lime'>自注意力：捕捉</span><span
+ style='font-weight:bold;font-family:Consolas;background:lime;mso-highlight:
+ lime'> latent </span><span style='font-weight:bold;font-family:微软雅黑;
+ background:lime;mso-highlight:lime'>内部像素间的空间关联（如 “猫的耳朵” 与 “猫的脸” 的位置关系）；</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-weight:bold;
+ font-family:微软雅黑;background:lime;mso-highlight:lime'>交叉注意力：让</span><span
+ style='font-weight:bold;font-family:Consolas;background:lime;mso-highlight:
+ lime'> latent </span><span style='font-weight:bold;font-family:微软雅黑;
+ background:lime;mso-highlight:lime'>特征与条件信息（如文本</span><span style='font-weight:
+ bold;font-family:Consolas;background:lime;mso-highlight:lime'> embedding</span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'>）对齐（如
+ “红色玫瑰” 的文本</span><span style='font-weight:bold;font-family:Consolas;
+ background:lime;mso-highlight:lime'> embedding </span><span style='font-weight:
+ bold;font-family:微软雅黑;background:lime;mso-highlight:lime'>引导生成红色花瓣）。</span></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'>class
+ UNET_AttentionBlock(nn.Module):</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>    </span>def __init__(self, n_head: int, n_embd:
+ int, d_context=768):<span style='mso-spacerun:yes'>  </span># d_context=</span><span
+ style='font-family:微软雅黑'>文本</span><span style='font-family:Consolas'>embedding</span><span
+ style='font-family:微软雅黑'>维度（如</span><span style='font-family:Consolas'>CLIP</span><span
+ style='font-family:微软雅黑'>的</span><span style='font-family:Consolas'>768</span><span
+ style='font-family:微软雅黑'>）</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>super().__init__()</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>self.channels = n_head * n_embd<span
+ style='mso-spacerun:yes'>  </span># </span><span style='font-family:微软雅黑'>注意力总维度（多头注意力：</span><span
+ style='font-family:Consolas'>head</span><span style='font-family:微软雅黑'>数×单头维度）</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># </span><span style='font-family:
+ 微软雅黑'>输入处理</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.groupnorm = nn.GroupNorm(32,
+ self.channels)</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>self.conv_input =
+ nn.Conv2d(self.channels, self.channels, kernel_size=1)<span
+ style='mso-spacerun:yes'>  </span># 1</span><span style='font-family:微软雅黑'>×</span><span
+ style='font-family:Consolas'>1</span><span style='font-family:微软雅黑'>卷积调整特征</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># </span><span style='font-family:
+ 微软雅黑'>自注意力分支</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.layernorm_1 =
+ nn.LayerNorm(self.channels)</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>self.attention_1 =
+ SelfAttention(n_head, self.channels)<span style='mso-spacerun:yes'>  </span># </span><span
+ style='font-family:微软雅黑'>自注意力（无外部条件）</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># </span><span style='font-family:
+ 微软雅黑'>交叉注意力分支</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.layernorm_2 =
+ nn.LayerNorm(self.channels)</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>self.attention_2 =
+ CrossAttention(n_head, self.channels, d_context)<span
+ style='mso-spacerun:yes'>  </span># </span><span style='font-family:微软雅黑'>交叉注意力（需</span><span
+ style='font-family:Consolas'>context</span><span style='font-family:微软雅黑'>）</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># FFN</span><span style='font-family:
+ 微软雅黑'>分支（</span><span style='font-family:Consolas'>GeGLU</span><span
+ style='font-family:微软雅黑'>激活）</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.layernorm_3 =
+ nn.LayerNorm(self.channels)</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>self.linear_geglu_1 =
+ nn.Linear(self.channels, 4 * self.channels * 2)<span
+ style='mso-spacerun:yes'>  </span># </span><span style='font-family:微软雅黑'>输出分两部分（</span><span
+ style='font-family:Consolas'>x</span><span style='font-family:微软雅黑'>和</span><span
+ style='font-family:Consolas'>gate</span><span style='font-family:微软雅黑'>）</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.linear_geglu_2 = nn.Linear(4 *
+ self.channels, self.channels)</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># </span><span style='font-family:
+ 微软雅黑'>输出处理</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.conv_output =
+ nn.Conv2d(self.channels, self.channels, kernel_size=1)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>    </span>def forward(self, x, context):<span
+ style='mso-spacerun:yes'>  </span># x: (B, C, H, W); context: (B, SeqLen, 768)</span><span
+ style='font-family:微软雅黑'>（如文本</span><span style='font-family:Consolas'>embedding</span><span
+ style='font-family:微软雅黑'>）</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>residue_long = x<span
+ style='mso-spacerun:yes'>  </span># </span><span style='font-family:微软雅黑'>保存初始残差（跨整个注意力块）</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># 1. </span><span style='font-family:
+ 微软雅黑'>输入归一化与卷积</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x = self.groupnorm(x)</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x = self.conv_input(x)</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># 2. </span><span style='font-family:
+ 微软雅黑'>特征图→序列：</span><span style='font-family:Consolas'>(B, C, H, W) </span><span
+ style='font-family:微软雅黑'>→</span><span style='font-family:Consolas'> (B, H</span><span
+ style='font-family:微软雅黑'>×</span><span style='font-family:Consolas'>W, C)</span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'>（注意力需序列格式）</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>n, c, h, w = x.shape</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>x = x.view(n, c, h * w).transpose(-1,
+ -2)<span style='mso-spacerun:yes'>  </span></span><span style='font-weight:
+ bold;font-family:Consolas;background:lime;mso-highlight:lime'># </span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'>转置后：</span><span
+ style='font-weight:bold;font-family:Consolas;background:lime;mso-highlight:
+ lime'>(B, H</span><span style='font-weight:bold;font-family:微软雅黑;background:
+ lime;mso-highlight:lime'>×</span><span style='font-weight:bold;font-family:
+ Consolas;background:lime;mso-highlight:lime'>W, C)</span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'>，</span><span
+ style='font-weight:bold;font-family:Consolas;background:lime;mso-highlight:
+ lime'>H</span><span style='font-weight:bold;font-family:微软雅黑;background:lime;
+ mso-highlight:lime'>×</span><span style='font-weight:bold;font-family:Consolas;
+ background:lime;mso-highlight:lime'>W=</span><span style='font-weight:bold;
+ font-family:微软雅黑;background:lime;mso-highlight:lime'>序列长度，</span><span
+ style='font-weight:bold;font-family:Consolas;background:lime;mso-highlight:
+ lime'>C=</span><span style='font-weight:bold;font-family:微软雅黑;background:lime;
+ mso-highlight:lime'>特征维度</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># 3. </span><span style='font-family:
+ 微软雅黑'>自注意力（带残差）</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>residue_short = x<span
+ style='mso-spacerun:yes'>  </span># </span><span style='font-family:微软雅黑'>短残差（仅跨自注意力）</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x = self.layernorm_1(x)</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>x = self.attention_1(x)<span
+ style='mso-spacerun:yes'>  </span></span><span style='font-weight:bold;
+ font-family:Consolas;background:lime;mso-highlight:lime'># </span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'>自注意力：</span><span
+ style='font-weight:bold;font-family:Consolas;background:lime;mso-highlight:
+ lime'>(B, H</span><span style='font-weight:bold;font-family:微软雅黑;background:
+ lime;mso-highlight:lime'>×</span><span style='font-weight:bold;font-family:
+ Consolas;background:lime;mso-highlight:lime'>W, C) </span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'>→</span><span
+ style='font-weight:bold;font-family:Consolas;background:lime;mso-highlight:
+ lime'> (B, H</span><span style='font-weight:bold;font-family:微软雅黑;background:
+ lime;mso-highlight:lime'>×</span><span style='font-weight:bold;font-family:
+ Consolas;background:lime;mso-highlight:lime'>W, C)</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x += residue_short</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># 4. </span><span style='font-family:
+ 微软雅黑'>交叉注意力（带残差）</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>residue_short = x</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x = self.layernorm_2(x)</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>x = self.attention_2(x, context) </span><span
+ style='font-weight:bold;font-family:Consolas;background:lime;mso-highlight:
+ lime'><span style='mso-spacerun:yes'> </span># </span><span style='font-weight:
+ bold;font-family:微软雅黑;background:lime;mso-highlight:lime'>交叉注意力：用</span><span
+ style='font-weight:bold;font-family:Consolas;background:lime;mso-highlight:
+ lime'>context</span><span style='font-weight:bold;font-family:微软雅黑;background:
+ lime;mso-highlight:lime'>引导</span><span style='font-weight:bold;font-family:
+ Consolas;background:lime;mso-highlight:lime'>x</span><span style='font-weight:
+ bold;font-family:微软雅黑;background:lime;mso-highlight:lime'>（如文本→图像特征）</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x += residue_short</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># 5. FFN</span><span style='font-family:
+ 微软雅黑'>（</span><span style='font-family:Consolas'>GeGLU</span><span
+ style='font-family:微软雅黑'>激活，带残差）</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>residue_short = x</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x = self.layernorm_3(x)</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># GeGLU</span><span style='font-family:
+ 微软雅黑'>计算：</span><span style='font-family:Consolas'>split</span><span
+ style='font-family:微软雅黑'>成</span><span style='font-family:Consolas'>x</span><span
+ style='font-family:微软雅黑'>和</span><span style='font-family:Consolas'>gate</span><span
+ style='font-family:微软雅黑'>，</span><span style='font-family:Consolas'>x *
+ gelu(gate)</span><span style='font-family:微软雅黑'>（比</span><span
+ style='font-family:Consolas'>ReLU</span><span style='font-family:微软雅黑'>更高效的激活）</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>x, gate =
+ self.linear_geglu_1(x).chunk(2, dim=-1)<span style='mso-spacerun:yes'> 
+ </span># </span><span style='font-family:微软雅黑'>分成两部分：</span><span
+ style='font-family:Consolas'>(B, H</span><span style='font-family:微软雅黑'>×</span><span
+ style='font-family:Consolas'>W, 4C) </span><span style='font-family:微软雅黑'>和</span><span
+ style='font-family:Consolas'> (B, H</span><span style='font-family:微软雅黑'>×</span><span
+ style='font-family:Consolas'>W, 4C)</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>x = x * F.gelu(gate)<span
+ style='mso-spacerun:yes'>  </span># GeGLU</span><span style='font-family:微软雅黑'>核心操作</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>x = self.linear_geglu_2(x)<span
+ style='mso-spacerun:yes'>  </span># 4C</span><span style='font-family:微软雅黑'>→</span><span
+ style='font-family:Consolas'>C</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x += residue_short</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># 6. </span><span style='font-family:
+ 微软雅黑'>序列→特征图：</span><span style='font-family:Consolas'>(B, H</span><span
+ style='font-family:微软雅黑'>×</span><span style='font-family:Consolas'>W, C) </span><span
+ style='font-family:微软雅黑'>→</span><span style='font-family:Consolas'> (B, C, H,
+ W)</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x = x.transpose(-1, -2).view(n, c, h,
+ w)</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># 7. </span><span style='font-family:
+ 微软雅黑'>最终残差连接（初始输入</span><span style='font-family:Consolas'> + </span><span
+ style='font-family:微软雅黑'>注意力块输出）</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>return self.conv_output(x) +
+ residue_long</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:black'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>形状转换原因：注意力机制（如
+ Transformer）的输入格式是「(批量，序列长度，特征维度)」，而 UNET 的特征是「(批量，通道数，高，宽)」，因此需将「高 × 宽」
+ flatten 为序列长度，通道数作为特征维度。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:black'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>CrossAttention 的
+ context 来源：通常是 CLIP 模型输出的文本 embedding（如 Stable Diffusion 中，文本 “a cat” 会被 CLIP
+ 编码为 (1, 77, 768)，77 是最大文本长度，768 是特征维度）。</span></p>
+ <p><code style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:black'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:black'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:black'>&nbsp;</code></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>解码器</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>decoder</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>需通过上采样恢复
+ latent 分辨率（从 H/64→H/8），此模块用「最近邻插值」实现高效上采样，再用 3×3 卷积调整特征，避免插值后的模糊。而enco</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>der</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>部分不需要</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>downsample</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>模块，因为分辨率降低是直接通过</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=en-US>conv2d</span><span
+ style='font-weight:bold;background:lime;mso-highlight:lime' lang=zh-CN>卷积实现的。</span></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'>class
+ Upsample(nn.Module):</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def __init__(self, channels):</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>super().__init__()</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.conv = nn.Conv2d(channels,
+ channels, kernel_size=3, padding=1)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def forward(self, x):<span
+ style='mso-spacerun:yes'>  </span># x: (B, C, H, W)</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span># </span><span style='font-family:
+ 微软雅黑'>最近邻插值：</span><span style='font-family:Consolas'>H</span><span
+ style='font-family:微软雅黑'>和</span><span style='font-family:Consolas'>W</span><span
+ style='font-family:微软雅黑'>翻倍（如</span><span style='font-family:Consolas'>H/32</span><span
+ style='font-family:微软雅黑'>→</span><span style='font-family:Consolas'>H/16</span><span
+ style='font-family:微软雅黑'>）</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x = F.interpolate(x, scale_factor=2,
+ mode='nearest')</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>return self.conv(x)<span
+ style='mso-spacerun:yes'>  </span># 3</span><span style='font-family:微软雅黑'>×</span><span
+ style='font-family:Consolas'>3</span><span style='font-family:微软雅黑'>卷积：保持通道数，优化插值后的特征</span></p>
+ <p><code style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>class
+ SwitchSequential(nn.Sequential):</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def forward(self, x, context, time):</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>for layer in self:</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>if isinstance(layer,
+ UNET_AttentionBlock):</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>x = layer(x, context)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>elif isinstance(layer,
+ UNET_ResidualBlock):</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>x = layer(x, time)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>else:</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>                </span>x = layer(x)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>return x</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-weight:bold;
+ font-family:Consolas;background:lime;mso-highlight:lime'>UNET </span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'>是扩散模型的核心网络，采用「编码器</span><span
+ style='font-weight:bold;font-family:Consolas;background:lime;mso-highlight:
+ lime'> - </span><span style='font-weight:bold;font-family:微软雅黑;background:
+ lime;mso-highlight:lime'>瓶颈</span><span style='font-weight:bold;font-family:
+ Consolas;background:lime;mso-highlight:lime'> - </span><span style='font-weight:
+ bold;font-family:微软雅黑;background:lime;mso-highlight:lime'>解码器」的对称结构，通过「下采样（编码器）提取全局特征→瓶颈层处理抽象特征→上采样（解码器）恢复细节</span><span
+ style='font-weight:bold;font-family:Consolas;background:lime;mso-highlight:
+ lime'> + </span><span style='font-weight:bold;font-family:微软雅黑;background:
+ lime;mso-highlight:lime'>跳跃连接（</span><span style='font-weight:bold;font-family:
+ Consolas;background:lime;mso-highlight:lime'>skip connection</span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'>）补充细节」实现噪声预测。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>结构逻辑（结合代码）</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-weight:bold;
+ font-family:Consolas;background:lime;mso-highlight:lime'>UNET </span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'>的输入是</span><span
+ style='font-weight:bold;font-family:Consolas;background:lime;mso-highlight:
+ lime'>latent (B, 4, H/8, W/8)</span><span style='font-weight:bold;font-family:
+ 微软雅黑;background:lime;mso-highlight:lime'>，输出是</span><span style='font-weight:
+ bold;font-family:Consolas;background:lime;mso-highlight:lime'>(B, 320, H/8,
+ W/8)</span><span style='font-weight:bold;font-family:微软雅黑;background:lime;
+ mso-highlight:lime'>（后续由</span><span style='font-weight:bold;font-family:Consolas;
+ background:lime;mso-highlight:lime'>UNET_OutputLayer</span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'>转成</span><span
+ style='font-weight:bold;font-family:Consolas;background:lime;mso-highlight:
+ lime'> 4 </span><span style='font-weight:bold;font-family:微软雅黑;background:
+ lime;mso-highlight:lime'>通道噪声）。</span></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>class
+ UNET(nn.Module):</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def __init__(self):</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>super().__init__()</code></p>
+ <p><code style='margin:0in;margin-left:2.25in;font-family:"Microsoft YaHei";
+ font-size:36.0pt' lang=en-US><span style='font-weight:bold;background:lime;
+ mso-highlight:lime'>#</span></code></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:"Microsoft YaHei";
+ font-size:36.0pt'><span style='font-weight:bold;background:lime;mso-highlight:
+ lime'>1. 编码器（encoders）：下采样 + 增通道，提取全局特征</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:"Microsoft YaHei";
+ font-size:36.0pt'><span style='font-weight:bold;background:lime;mso-highlight:
+ lime'>编码器通过「ResidualBlock+AttentionBlock」处理特征，再用stride=2的卷积下采样（分辨率减半），同时收集每个层的输出作为「跳跃连接（skip_connections）」，供解码器使用。</span></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.encoders = nn.ModuleList([</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 4, Height / 8,
+ Width / 8) -&gt; (Batch_Size, 320, Height / 8, Width / 8)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>SwitchSequential(nn.Conv2d(4, 320,
+ kernel_size=3, padding=1)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 320, Height / 8,
+ Width / 8) -&gt; # (Batch_Size, 320, Height / 8, Width / 8) -&gt; (Batch_Size,
+ 320, Height / 8, Width / 8)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(320, 320), UNET_AttentionBlock(8,
+ 40)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 320, Height / 8,
+ Width / 8) -&gt; # (Batch_Size, 320, Height / 8, Width / 8) -&gt; (Batch_Size,
+ 320, Height / 8, Width / 8)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(320, 320), UNET_AttentionBlock(8,
+ 40)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 320, Height / 8,
+ Width / 8) -&gt; (Batch_Size, 320, Height / 16, Width / 16)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>SwitchSequential(nn.Conv2d(320,
+ 320, kernel_size=3, stride=2, padding=1)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 320, Height / 16,
+ Width / 16) -&gt; (Batch_Size, 640, Height / 16, Width / 16) -&gt;
+ (Batch_Size, 640, Height / 16, Width / 16)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(320, 640), UNET_AttentionBlock(8,
+ 80)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 640, Height / 16,
+ Width / 16) -&gt; (Batch_Size, 640, Height / 16, Width / 16) -&gt;
+ (Batch_Size, 640, Height / 16, Width / 16)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(640, 640), UNET_AttentionBlock(8,
+ 80)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 640, Height / 16,
+ Width / 16) -&gt; (Batch_Size, 640, Height / 32, Width / 32)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>SwitchSequential(nn.Conv2d(640,
+ 640, kernel_size=3, stride=2, padding=1)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 640, Height / 32,
+ Width / 32) -&gt; (Batch_Size, 1280, Height / 32, Width / 32) -&gt;
+ (Batch_Size, 1280, Height / 32, Width / 32)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(640, 1280), UNET_AttentionBlock(8,
+ 160)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 1280, Height / 32,
+ Width / 32) -&gt; (Batch_Size, 1280, Height / 32, Width / 32) -&gt;
+ (Batch_Size, 1280, Height / 32, Width / 32)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(1280, 1280), UNET_AttentionBlock(8,
+ 160)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 1280, Height / 32,
+ Width / 32) -&gt; (Batch_Size, 1280, Height / 64, Width / 64)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>SwitchSequential(nn.Conv2d(1280,
+ 1280, kernel_size=3, stride=2, padding=1)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 1280, Height / 64,
+ Width / 64) -&gt; (Batch_Size, 1280, Height / 64, Width / 64)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(1280, 1280)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 1280, Height / 64,
+ Width / 64) -&gt; (Batch_Size, 1280, Height / 64, Width / 64)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(1280, 1280)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>])</code></p>
+ <p><code style='margin:0in;margin-left:2.25in;font-family:"Microsoft YaHei";
+ font-size:36.0pt' lang=en-US><span style='font-weight:bold;background:lime;
+ mso-highlight:lime'>#</span></code></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:"Microsoft YaHei";
+ font-size:36.0pt'><span style='font-weight:bold;background:lime;mso-highlight:
+ lime'>2. 瓶颈层（bottleneck）：分辨率最低，处理抽象特征</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:"Microsoft YaHei";
+ font-size:36.0pt'><span style='font-weight:bold;background:lime;mso-highlight:
+ lime'>瓶颈层是编码器的终点、解码器的起点，分辨率最低（H/64）、通道数最高（1280），仅用「ResidualBlock+AttentionBlock+ResidualBlock」处理最抽象的全局特征（计算成本最低，适合全局依赖捕捉）。</span></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.bottleneck = SwitchSequential(</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 1280, Height / 64,
+ Width / 64) -&gt; (Batch_Size, 1280, Height / 64, Width / 64)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>UNET_ResidualBlock(1280, 1280), </code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 1280, Height / 64,
+ Width / 64) -&gt; (Batch_Size, 1280, Height / 64, Width / 64)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>UNET_AttentionBlock(8, 160), </code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 1280, Height / 64,
+ Width / 64) -&gt; (Batch_Size, 1280, Height / 64, Width / 64)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>UNET_ResidualBlock(1280, 1280), </code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>)</code></p>
+ <p><code style='margin:0in;font-size:36.0pt'><span style='font-weight:bold;
+ font-family:Consolas;background:lime;mso-highlight:lime' lang=zh-CN><span
+ style='mso-spacerun:yes'>        </span></span><span style='font-weight:bold;
+ font-family:"Microsoft YaHei";background:lime;mso-highlight:lime' lang=en-US>#</span></code></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:"Microsoft YaHei";
+ font-size:36.0pt'><span style='font-weight:bold;background:lime;mso-highlight:
+ lime'>3. 解码器（decoders）：上采样 + 减通道，恢复细节</span></p>
+ <p style='margin:0in;margin-left:2.25in;font-family:"Microsoft YaHei";
+ font-size:36.0pt'><span style='font-weight:bold;background:lime;mso-highlight:
+ lime'>解码器与编码器对称，每个模块先将「当前特征」与「编码器对应层的
+ skip_connections」拼接（torch.cat，通道数相加），补充下采样丢失的细节，再通过「ResidualBlock+AttentionBlock」处理，最后用Upsample上采样（分辨率翻倍）。</span></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.decoders = nn.ModuleList([</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 2560, Height / 64,
+ Width / 64) -&gt; (Batch_Size, 1280, Height / 64, Width / 64)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(2560, 1280)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 2560, Height / 64,
+ Width / 64) -&gt; (Batch_Size, 1280, Height / 64, Width / 64)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(2560, 1280)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 2560, Height / 64,
+ Width / 64) -&gt; (Batch_Size, 1280, Height / 64, Width / 64) -&gt;
+ (Batch_Size, 1280, Height / 32, Width / 32) </code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(2560, 1280), Upsample(1280)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 2560, Height / 32,
+ Width / 32) -&gt; (Batch_Size, 1280, Height / 32, Width / 32) -&gt;
+ (Batch_Size, 1280, Height / 32, Width / 32)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(2560, 1280), UNET_AttentionBlock(8,
+ 160)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 2560, Height / 32,
+ Width / 32) -&gt; (Batch_Size, 1280, Height / 32, Width / 32) -&gt;
+ (Batch_Size, 1280, Height / 32, Width / 32)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(2560, 1280), UNET_AttentionBlock(8,
+ 160)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 1920, Height / 32,
+ Width / 32) -&gt; (Batch_Size, 1280, Height / 32, Width / 32) -&gt;
+ (Batch_Size, 1280, Height / 32, Width / 32) -&gt; (Batch_Size, 1280, Height /
+ 16, Width / 16)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(1920, 1280), UNET_AttentionBlock(8,
+ 160), Upsample(1280)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 1920, Height / 16,
+ Width / 16) -&gt; (Batch_Size, 640, Height / 16, Width / 16) -&gt;
+ (Batch_Size, 640, Height / 16, Width / 16)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(1920, 640), UNET_AttentionBlock(8,
+ 80)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 1280, Height / 16,
+ Width / 16) -&gt; (Batch_Size, 640, Height / 16, Width / 16) -&gt;
+ (Batch_Size, 640, Height / 16, Width / 16)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(1280, 640), UNET_AttentionBlock(8,
+ 80)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 960, Height / 16,
+ Width / 16) -&gt; (Batch_Size, 640, Height / 16, Width / 16) -&gt;
+ (Batch_Size, 640, Height / 16, Width / 16) -&gt; (Batch_Size, 640, Height / 8,
+ Width / 8)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(960, 640), UNET_AttentionBlock(8,
+ 80), Upsample(640)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 960, Height / 8,
+ Width / 8) -&gt; (Batch_Size, 320, Height / 8, Width / 8) -&gt; (Batch_Size,
+ 320, Height / 8, Width / 8)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(960, 320), UNET_AttentionBlock(8,
+ 40)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 640, Height / 8,
+ Width / 8) -&gt; (Batch_Size, 320, Height / 8, Width / 8) -&gt; (Batch_Size,
+ 320, Height / 8, Width / 8)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(640, 320), UNET_AttentionBlock(8,
+ 40)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># (Batch_Size, 640, Height / 8,
+ Width / 8) -&gt; (Batch_Size, 320, Height / 8, Width / 8) -&gt; (Batch_Size,
+ 320, Height / 8, Width / 8)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>           
+ </span>SwitchSequential(UNET_ResidualBlock(640, 320), UNET_AttentionBlock(8,
+ 40)),</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>])</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def forward(self, x, context, time):</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># x: (Batch_Size, 4, Height / 8, Width
+ / 8)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># context: (Batch_Size, Seq_Len, Dim) </code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># time: (1, 1280)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>skip_connections = []</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>for layers in self.encoders:</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>x = layers(x, context, time)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>skip_connections.append(x)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>x = self.bottleneck(x, context, time)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>for layers in self.decoders:</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span># Since we always concat with the
+ skip connection of the encoder, the number of features increases before being
+ sent to the decoder's layer</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>x = torch.cat((x,
+ skip_connections.pop()), dim=1) </code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>            </span>x = layers(x, context, time)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>return x</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold;background:lime;mso-highlight:lime'>将 UNET 解码器输出的 320
+ 通道特征图，转成与输入 latent 一致的 4 通道（预测噪声的通道数需与 latent 相同）。</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'>class
+ UNET_OutputLayer(nn.Module):</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>    </span>def __init__(self, in_channels,
+ out_channels):<span style='mso-spacerun:yes'>  </span># in=320</span><span
+ style='font-family:微软雅黑'>，</span><span style='font-family:Consolas'>out=4</span></p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>super().__init__()</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.groupnorm = nn.GroupNorm(32,
+ in_channels)</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.conv = nn.Conv2d(in_channels,
+ out_channels, kernel_size=3, padding=1)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def forward(self, x):<span
+ style='mso-spacerun:yes'>  </span># x: (B, 320, H/8, W/8)</p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>x = self.groupnorm(x)<span
+ style='mso-spacerun:yes'>  </span># </span><span style='font-family:微软雅黑'>归一化</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>x = F.silu(x)<span
+ style='mso-spacerun:yes'>          </span># </span><span style='font-family:
+ 微软雅黑'>激活</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>x = self.conv(x)<span
+ style='mso-spacerun:yes'>       </span># 320</span><span style='font-family:
+ 微软雅黑'>→</span><span style='font-family:Consolas'>4</span><span
+ style='font-family:微软雅黑'>通道（分辨率不变）</span></p>
+ <p style='margin:0in;font-size:36.0pt'><span style='font-family:Consolas'><span
+ style='mso-spacerun:yes'>        </span>return x<span
+ style='mso-spacerun:yes'>  </span># </span><span style='font-family:微软雅黑'>输出：</span><span
+ style='font-family:Consolas'>(B, 4, H/8, W/8) </span><span style='font-family:
+ 微软雅黑'>→ 预测的噪声</span></p>
+ <p><code style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</code></p>
+ <p style='margin:0in'><span style='font-weight:bold;font-family:微软雅黑;
+ font-size:36.0pt;background:lime;mso-highlight:lime'>将「时间嵌入→UNET
+ 特征处理→输出噪声」的全流程封装为</span><span style='font-weight:bold;font-family:Menlo;
+ font-size:12.0pt;background:lime;mso-highlight:lime'>Diffusion</span><span
+ style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt;background:lime;
+ mso-highlight:lime'>类，是训练和推理的统一入口。</span></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>class
+ Diffusion(nn.Module):</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def __init__(self):</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>super().__init__()</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.time_embedding =
+ TimeEmbedding(320)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.unet = UNET()</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>self.final = UNET_OutputLayer(320, 4)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>    </span>def forward(self, latent, context, time):</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># latent: (Batch_Size, 4, Height / 8,
+ Width / 8)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># context: (Batch_Size, Seq_Len, Dim)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># time: (1, 320)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># (1, 320) -&gt; (1, 1280)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>time = self.time_embedding(time)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># (Batch, 4, Height / 8, Width / 8)
+ -&gt; (Batch, 320, Height / 8, Width / 8)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>output = self.unet(latent, context,
+ time)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># (Batch, 320, Height / 8, Width / 8)
+ -&gt; (Batch, 4, Height / 8, Width / 8)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>output = self.final(output)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span></code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span># (Batch, 4, Height / 8, Width / 8)</code></p>
+ <p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>        </span>return output</code></p>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

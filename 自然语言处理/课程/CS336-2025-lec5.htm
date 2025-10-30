@@ -1,0 +1,206 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=CS336-2025-lec5.htm>
+<link rel=File-List href="CS336-2025-lec5.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:22.6284in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.2361in;width:2.7958in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt' lang=en-US>CS336-2025-lec5</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:.2361in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>10</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>9:56</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:22.6284in'>
+
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+ style='font-weight:bold'>GPU</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+ <p style='margin:0in;margin-left:2.25in'><img
+ src="CS336-2025-lec5.files/image001.jpg" width=1583 height=781></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>GPU</span><span
+ lang=zh-CN>有很多的</span><span lang=en-US>SM</span><span lang=zh-CN>组成，</span><span
+ lang=en-US>SM</span><span lang=zh-CN>是</span><span lang=en-US>stream
+ multiprocesser</span><span lang=zh-CN>，</span><span style='font-weight:bold'
+ lang=zh-CN>即上图中的绿色区域</span><span lang=zh-CN>。每个</span><span lang=en-US>SM</span><span
+ lang=zh-CN>有多个</span><span lang=en-US>SP</span><span lang=zh-CN>，si</span><span
+ lang=en-US>ngle processer.</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>memory</span><span
+ lang=zh-CN>越靠近</span><span lang=en-US>SM</span><span lang=zh-CN>，传输速度越快，</span><span
+ lang=en-US>L1</span><span lang=zh-CN>和</span><span lang=en-US>shared memory</span><span
+ lang=zh-CN>在</span><span lang=en-US>SM</span><span lang=zh-CN>内部，而</span><span
+ lang=en-US>L2 cache</span><span lang=zh-CN>在</span><span lang=en-US>SM</span><span
+ lang=zh-CN>旁边</span><span lang=en-US> </span><span lang=zh-CN>，即</span><span
+ style='font-weight:bold' lang=zh-CN>上图中的蓝色区域</span><span lang=zh-CN>。而</span><span
+ lang=en-US>G</span><span lang=zh-CN>lo</span><span lang=en-US>bal memory</span><span
+ lang=zh-CN>在</span><span lang=en-US>GPU</span><span lang=zh-CN>的旁边</span><span
+ lang=en-US> </span><span lang=zh-CN>，上图中实物图</span><span style='font-weight:
+ bold' lang=en-US>GPU</span><span style='font-weight:bold' lang=zh-CN>的左右两列小方块就是</span><span
+ lang=en-US>VRAM</span><span lang=zh-CN>，ve</span><span lang=en-US>dio memory</span><span
+ lang=zh-CN>，</span><span style='font-weight:bold' lang=zh-CN>也就是显存</span><span
+ lang=en-US> </span><span lang=zh-CN>。显存和</span><span lang=en-US>GPU</span><span
+ lang=zh-CN>的传输通过</span><span lang=en-US>HBM</span><span lang=zh-CN>，即上图中的最上面的黄色小方块。计算速度的进步要快于显存传输速度的进步，显存传输成为</span><span
+ lang=en-US>GPU</span><span lang=zh-CN>运算速度的主要瓶颈。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>TPU</span><span
+ lang=zh-CN>的架构和</span><span lang=en-US>GPU</span><span lang=zh-CN>有相似之处，内部有专门处理向量和矩阵的单元，</span><span
+ lang=en-US>VPU</span><span lang=zh-CN>和</span><span lang=en-US>MPU</span></p>
+ <p style='margin:0in;margin-left:.375in'><img
+ src="CS336-2025-lec5.files/image002.jpg" width=1617 height=636></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>GPU</span><span
+ lang=zh-CN>是</span><span lang=en-US>SIMT</span><span lang=zh-CN>架构，</span><span
+ lang=en-US>S</span><span lang=zh-CN>in</span><span lang=en-US>gle instruction
+ multiple thread</span><span lang=zh-CN>，也就是线程束</span><span lang=en-US>warp</span><span
+ lang=zh-CN>中多个</span><span lang=en-US>thread</span><span lang=zh-CN>执行同一个指令，因此，下图中的指令效率是很低的，</span></p>
+ <p style='margin:0in;margin-left:1.125in'><img
+ src="CS336-2025-lec5.files/image003.jpg" width=1980 height=556></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>GPU</span><span
+ lang=zh-CN>加速</span><span lang=en-US>T</span><span lang=zh-CN>ric</span><span
+ lang=en-US>k: </span><span style='font-weight:bold' lang=zh-CN>总之一个原则</span><span
+ style='font-weight:bold' lang=en-US> </span><span style='font-weight:bold'
+ lang=zh-CN>，减少和</span><span style='font-weight:bold' lang=en-US>global memory</span><span
+ style='font-weight:bold' lang=zh-CN>的通信。</span></p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
+  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
+      normal;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>降低精度</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
+      normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US> </span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>K</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>er</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>nel fusion</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，即</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>torch.compile</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，一口气计算完成后再传输到</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>global memory</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>中</span></li>
+ </ol>
+ <p style='margin:0in;margin-left:1.5in'><img
+ src="CS336-2025-lec5.files/image004.jpg" width=1560 height=776></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+ lang=en-US>&nbsp;</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
+  <li value=3 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
+      normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US>R</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
+      normal;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>e</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
+      normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US>computation</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
+      normal;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，也就是梯度检查点，不存储激活值，因为前向传播需要存储到显存，反向传播时需要读取显存，而</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
+      normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US>memory access</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
+      normal;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的速度慢，还不如再重新计算。同时，也可以节省显存，防止</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
+      normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US>OOM</span><span
+      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
+      normal;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>M</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>e</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>mory coalescing</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，一次性读取多个字节，而不是一个一个取。类似，一次性把话说完，别一会说一句，过一会又说一句。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>T</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>il</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>ing</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，分块。对于矩阵相乘，原始做法是每个</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>thread</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>独立地按行或按列取数，这样每个数被重复读取了多次，如下图，</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>M0,0</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>被</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>thread0</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>0</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>和</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>thread0</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>1</span><span
+      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>取了两次，</span></li>
+ </ol>
+ <p style='margin:0in;margin-left:.375in'><img
+ src="CS336-2025-lec5.files/image005.jpg" width=1654 height=638></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>分块后，一次性取一小块，即</span><span lang=en-US>M0,0 M0,1 M1,0 M1,1</span><span
+ lang=zh-CN>这一小块和</span><span lang=en-US>N0,0 N0,1 N1,0 N1,1</span><span
+ lang=zh-CN>这一小块进行相乘，</span></p>
+ <p style='margin:0in;margin-left:2.25in'><img
+ src="CS336-2025-lec5.files/image006.jpg" width=1393 height=633></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>假设两个</span><span style='font-weight:bold'
+ lang=en-US>N*N</span><span style='font-weight:bold' lang=zh-CN>矩阵相乘，原始做法，每个矩阵中的元素，从</span><span
+ style='font-weight:bold' lang=en-US>global memory</span><span
+ style='font-weight:bold' lang=zh-CN>中读取</span><span style='font-weight:bold'
+ lang=en-US>N</span><span style='font-weight:bold' lang=zh-CN>次，而分块后，需要从</span><span
+ style='font-weight:bold' lang=en-US>global memory</span><span
+ style='font-weight:bold' lang=zh-CN>中读取</span><span style='font-weight:bold'
+ lang=en-US>N/T</span><span style='font-weight:bold' lang=zh-CN>次，再从</span><span
+ style='font-weight:bold' lang=en-US>shared memory</span><span
+ style='font-weight:bold' lang=zh-CN>，即</span><span style='font-weight:bold'
+ lang=en-US>tile</span><span style='font-weight:bold' lang=zh-CN>内部读取</span><span
+ style='font-weight:bold' lang=en-US>T</span><span style='font-weight:bold'
+ lang=zh-CN>次。</span></p>
+ <p style='margin:0in;margin-left:.75in'><img
+ src="CS336-2025-lec5.files/image007.jpg" width=1612 height=787></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:42.0pt' lang=en-US><span
+ style='font-weight:bold'>Flash Attention</span></p>
+ <p style='margin:0in;margin-left:2.25in'><img
+ src="CS336-2025-lec5.files/image008.jpg" width=1503 height=852></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>第一部分是对</span><span
+ lang=en-US>Q,K,V</span><span lang=zh-CN>进行分块</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>第二部分是在线</span><span
+ lang=en-US>softmax</span><span lang=zh-CN>，原始的</span><span lang=en-US>softmax</span><span
+ lang=zh-CN>需要所有</span><span lang=en-US>tile</span><span lang=zh-CN>计算完后，才能得到每个</span><span
+ lang=en-US>tile</span><span lang=zh-CN>的</span><span lang=en-US>softmax</span><span
+ lang=zh-CN>值，在线</span><span lang=en-US>softmax</span><span lang=zh-CN>不需要。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=vllm多进程报错.htm>
+<link rel=File-List href="vllm多进程报错.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:26.9923in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:2.4777in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'><span lang=zh-CN>vll</span><span
+lang=en-US>m</span><span lang=zh-CN>多进程报错</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.5979in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>7</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>4</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>15:58</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:26.9923in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>如果直接运行</span><span
+lang=en-US>python test.py</span><span lang=zh-CN>时报</span><span lang=en-US>vllm</span><span
+lang=zh-CN>的多进程错误，</span><span style='text-decoration:line-through' lang=zh-CN>可能是</span><span
+style='text-decoration:line-through' lang=en-US>vllm</span><span
+style='text-decoration:line-through' lang=zh-CN>版本和</span><span
+style='text-decoration:line-through' lang=en-US>torch</span><span
+style='text-decoration:line-through' lang=zh-CN>版本的问题。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='text-decoration:
+line-through' lang=zh-CN>如果</span><span style='text-decoration:line-through'
+lang=en-US>vllm</span><span style='text-decoration:line-through' lang=zh-CN>版本是</span><span
+style='text-decoration:line-through' lang=en-US>0.9.1</span><span
+style='text-decoration:line-through' lang=zh-CN>，</span><span style='text-decoration:
+line-through' lang=en-US>pip install vllm</span><span style='text-decoration:
+line-through' lang=zh-CN>时，会自动安装兼容的</span><span style='text-decoration:line-through'
+lang=en-US>torch</span><span style='text-decoration:line-through' lang=zh-CN>版本</span><span
+style='text-decoration:line-through' lang=en-US>2.7.0</span><span
+style='text-decoration:line-through' lang=zh-CN>，但是会报多进程错。换下面的版本就好了</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='text-decoration:
+line-through'>pip install vllm==0.8.5</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='text-decoration:
+line-through'>pip install logits-processor-zoo==0.1.10</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='text-decoration:
+line-through'>pip install triton==3.2.0</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='text-decoration:
+line-through'>pip install torch==2.6.0 torchvision==0.21.0 --index-url </span><a
+href="https://download.pytorch.org/whl/cu124"><span style='text-decoration:
+line-through'>https://download.pytorch.org/whl/cu124</span></a></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+bold'>好像不是版本的问题。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+bold'>加上if __name__ == '__main__':就好了&gt; </span></p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,180 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href="Extractive%20QA.htm">
+<link rel=File-List href="Extractive%20QA.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:28.1298in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:2.3159in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt' lang=en-US>Extractive
+QA</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.5979in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>8</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>2</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>15:24</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4777in;margin-left:.25in;width:27.8798in'>
+
+<p style='margin-top:6pt;margin-bottom:6pt;font-family:微软雅黑;font-size:48.0pt;
+color:#163156'><span style='font-weight:bold;background:white'>What Is
+Extractive Question Answering?</span></p>
+
+<p style='margin-left:.375in;margin-top:0pt;margin-bottom:9pt;font-family:微软雅黑;
+font-size:36.0pt'><span style='color:#2E4667;background:white'>Chatbots and
+generative models are widely adopted in different applications today, but the
+information they provide is not always reliable. (You can read more about how
+we use them in our post&nbsp;</span><a
+href="https://www.ontotext.com/blog/enhancing-knowledge-discovery-implementing-retrieval-augmented-generation/"><span
+style='background:white'>Enhancing Knowledge Discovery: Implementing Retrieval
+Augmented Generation with Ontotext Technologies</span></a><span
+style='color:#2E4667;background:white'>.)&nbsp;Usually, they operate in a
+“closed book” setting, which means that such systems are trying to provide an
+answer based on the general knowledge about the world.&nbsp;</span></p>
+
+<p style='margin-left:.375in;margin-top:0pt;margin-bottom:9pt;font-family:微软雅黑;
+font-size:36.0pt;color:#2E4667'><span style='background:white'>However, in
+sensitive domains and applications</span><span style='font-weight:bold;
+background:white'> such answers are not reliable enough.</span><span
+style='background:white'> We would like to be able to extract the information
+from the source as if highlighting relevant passages or phrases in a book. The
+latter approach is called Extractive Question Answering (QA)&nbsp;and although
+it’s not talked about as often nowadays as the generative approach to the
+problem, it can provide valuable insights and help structure data.&nbsp;</span></p>
+
+<p style='margin:0in;margin-left:2.25in'><img
+src="Extractive%20QA.files/image001.jpg" width=2180 height=973></p>
+
+<p style='margin-top:0pt;margin-bottom:9pt;font-family:微软雅黑;font-size:36.0pt;
+color:#2E4667'>&nbsp;</p>
+
+<p style='margin-left:.375in;margin-top:0pt;margin-bottom:9pt;font-family:微软雅黑;
+font-size:36.0pt;color:#2E4667'><span style='font-weight:bold;background:white'>We
+would not yet trust large language models (LLM) to answer such sensitive
+questions, but finding the exact response in the trustworthy source is quite
+helpful in this case.</span></p>
+
+<p style='margin-left:.375in;margin-top:0pt;margin-bottom:9pt;font-family:微软雅黑;
+font-size:36.0pt;color:#2E4667'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+color:#2E4667'><span style='background:white'>In contrast to Generative QA that
+tries to formulate the answer with its own words, Extractive QA is like
+highlighting the answer in the given text. From a practical perspective,
+applying generative models to such tasks is more expensive in terms of computation
+and less precise due to the non-deterministic nature of its output.</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>The
+task of Extractive QA requires a deeper understanding of the context to
+identify the most relevant passage that directly addresses the user’s question.
+The scope of the questions is almost unlimited as long as the answer is present
+in the text. If it isn’t, the model will return an empty output. The resulting
+pipeline can be easily applied to the questions that were not seen during the
+training phase. With a single model we can extract any kind of information
+within the same domain. It’s usually robust with respect to the way the
+questions are formulated, allowing users smoother interaction.</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin-top:0pt;margin-bottom:9pt;font-family:微软雅黑;font-size:48.0pt;
+color:#2E4667'><span style='font-weight:bold;background:white'>transformers.pipeline</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+color:#2E4667'><span style='background:white'>task (str) — The task defining
+which pipeline will be returned. Currently accepted tasks are:</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:black'><span style='font-weight:bold;background:white' lang=zh-CN>其中和</span><span
+style='font-weight:bold;background:white' lang=en-US>extractive qa</span><span
+style='font-weight:bold;background:white' lang=zh-CN>相关的有：</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#2E4667'><span style='background:white'>&quot;</span><span
+style='font-weight:bold;background:white'>document-question-answering&quot;:</span><span
+style='background:white'> will return a DocumentQuestionAnsweringPipeline.</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#2E4667'><span style='background:white'>&quot;</span><span
+style='font-weight:bold;background:white'>question-answering&quot;:</span><span
+style='background:white'> will return a QuestionAnsweringPipeline.</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+color:#2E4667'><span style='background:white'>&quot;</span><span
+style='font-weight:bold;background:white'>table-question-answering&quot;</span><span
+style='background:white'>: will return a TableQuestionAnsweringPipeline.</span></p>
+
+<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'>from
+transformers import pipeline</p>
+
+<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'>oracle
+= pipeline(model=&quot;google/tapas-base-finetuned-wtq&quot;)</p>
+
+<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'>table
+= {</p>
+
+<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>&quot;Repository&quot;:
+[&quot;Transformers&quot;, &quot;Datasets&quot;, &quot;Tokenizers&quot;],</p>
+
+<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>&quot;Stars&quot;: [&quot;36542&quot;,
+&quot;4512&quot;, &quot;3934&quot;],</p>
+
+<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>&quot;Contributors&quot;: [&quot;651&quot;,
+&quot;77&quot;, &quot;34&quot;],</p>
+
+<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'>    </span>&quot;Programming language&quot;:
+[&quot;Python&quot;, &quot;Python&quot;, &quot;Rust, Python and NodeJS&quot;],</p>
+
+<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'>}</p>
+
+<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'>oracle(query=&quot;How
+many stars does the transformers repository have?&quot;, table=table)</p>
+
+<p style='margin-left:.375in;margin-top:0pt;margin-bottom:9pt;font-family:微软雅黑;
+font-size:48.0pt;color:#2E4667'>&nbsp;</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

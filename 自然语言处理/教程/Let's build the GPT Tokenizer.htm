@@ -1,0 +1,650 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File
+href="Let's%20build%20the%20GPT%20Tokenizer.htm">
+<link rel=File-List
+href="Let's%20build%20the%20GPT%20Tokenizer.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:28.8416in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.0715in;width:4.6243in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt;color:#0F0F0F'><span
+style='font-weight:bold'>Let's build the GPT Tokenizer</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:.0715in;width:1.6687in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>5</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>29</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>17:39</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:28.8416in'>
+
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#1F1F1F'><span
+ style='font-weight:bold' lang=en-US>T</span><span style='font-weight:bold'
+ lang=zh-CN>ok</span><span style='font-weight:bold' lang=en-US>enizer is a
+ completely separate object from LLM.</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#1F1F1F' lang=zh-CN>Tokenization </span><span lang=zh-CN>是</span><span
+ lang=en-US>LLM</span><span lang=zh-CN>的基础，很多</span><span lang=en-US>LLM</span><span
+ lang=zh-CN>的问题其实跟</span><span lang=en-US>tokenization</span><span lang=zh-CN>有关。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'>Tokenization is at the heart of much weirdness of LLMs. Do not
+ brush it off.</p>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Why can't LLM spell
+      words?&nbsp;</span><span style='font-weight:bold;font-family:微软雅黑;
+      font-size:36.0pt'>Tokenization</span><span style='font-family:微软雅黑;
+      font-size:36.0pt'>.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:5.625in'><img
+ src="Let's%20build%20the%20GPT%20Tokenizer.files/image001.jpg" width=1065
+ height=673></p>
+ <p style='margin:0in;margin-left:1.5in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'><span lang=zh-CN>同样的</span><span lang=en-US>E</span><span
+ lang=zh-CN>gg，但是有不同的</span><span lang=en-US>token</span><span lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:1.5in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'><span lang=zh-CN>而且有些</span><span lang=en-US>token</span><span
+ lang=zh-CN>的长度特别长，例如</span><span lang=en-US>.DefaultCellStyle</span></p>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Why can't LLM do super simple
+      string processing tasks like reversing a string?&nbsp;</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Tokenization</span><span
+      style='font-family:微软雅黑;font-size:36.0pt'>.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:1.875in'><img
+ src="Let's%20build%20the%20GPT%20Tokenizer.files/image002.jpg" width=2112
+ height=988></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'><span lang=en-US><span style='mso-spacerun:yes'> </span></span><span
+ lang=zh-CN>让</span><span lang=en-US>LLM</span><span lang=zh-CN>数</span><span
+ lang=en-US>.DefaultCellStyle</span><span lang=zh-CN>有几个字母</span><span
+ lang=en-US>l</span><span lang=zh-CN>，由于</span><span lang=en-US>.DefaultCellStyle</span><span
+ lang=zh-CN>整个被分为一个</span><span lang=en-US>token</span><span lang=zh-CN>，所以</span><span
+ lang=en-US>LLM</span><span lang=zh-CN>很难回答正确。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'><span lang=en-US><span style='mso-spacerun:yes'> </span></span><span
+ lang=zh-CN>同时，让</span><span lang=en-US>LLM</span><span lang=zh-CN>将</span><span
+ lang=en-US>.DefaultCellStyle</span><span lang=zh-CN>倒序输出，</span><span
+ lang=en-US>LLM</span><span lang=zh-CN>也无法完成。</span></p>
+ <p style='margin:0in;margin-left:5.625in'><img
+ src="Let's%20build%20the%20GPT%20Tokenizer.files/image003.jpg" width=1641
+ height=1384></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'><span lang=en-US><span style='mso-spacerun:yes'>  </span></span><span
+ style='font-weight:bold' lang=zh-CN>倒序输出可以通过先让</span><span style='font-weight:
+ bold' lang=en-US>LLM</span><span style='font-weight:bold' lang=zh-CN>用空格分隔，再倒序输出。</span><span
+ style='font-weight:bold' lang=en-US>(</span><span style='font-weight:bold'
+ lang=zh-CN>这个思想，比如</span><span style='font-weight:bold' lang=en-US>few shot
+ prompt, think step by step</span><span style='font-weight:bold' lang=zh-CN>等技巧，都是想方设法让</span><span
+ style='font-weight:bold' lang=en-US>LLM</span><span style='font-weight:bold'
+ lang=zh-CN>能输出我们想要的答案。</span><span style='font-weight:bold' lang=en-US>)</span></p>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Why is LLM worse at non-English
+      languages (e.g. Japanese)?&nbsp;</span><span style='font-weight:bold;
+      font-family:微软雅黑;font-size:36.0pt'>Tokenization</span><span
+      style='font-family:微软雅黑;font-size:36.0pt'>.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:2.625in'><img
+ src="Let's%20build%20the%20GPT%20Tokenizer.files/image004.jpg" width=2046
+ height=643></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:2.625in'><img
+ src="Let's%20build%20the%20GPT%20Tokenizer.files/image005.jpg" width=1956
+ height=656></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'>&nbsp;</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>同样的一句话，翻译成英文和中文，英文经过分词后的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>token</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>要少于中文的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>token</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，也就是中文的序列长度要更长，而</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>T</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>ran</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>sformer</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的输入序列是有限的，因此，假设</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>T</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>ran</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>sformer</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>输入序列长度是</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>1024</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，对于英文来说，</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>1024</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>个英文</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>token</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>能表达的话要比</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>1024</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>个中文</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>token</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>能表达的多。</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>tokenizer</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的训练数据，英文的数据更多。</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'>&nbsp;</p>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Why is LLM bad at simple
+      arithmetic?&nbsp;</span><span style='font-weight:bold;font-family:微软雅黑;
+      font-size:36.0pt'>Tokenization</span><span style='font-family:微软雅黑;
+      font-size:36.0pt'>.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:4.875in'><img
+ src="Let's%20build%20the%20GPT%20Tokenizer.files/image006.jpg" width=1137
+ height=509></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'><span lang=zh-CN>一个数具体是被</span><span lang=en-US>tokenize</span><span
+ lang=zh-CN>成几部分，是非常不确定的，取决于</span><span lang=en-US>tokenizer</span><span
+ lang=zh-CN>训练时的数据。</span><span lang=en-US>sentencepiece</span><span
+ lang=zh-CN>可以将所有数字先全部分开，从而避免这个问题。</span></p>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Why did GPT-2 have more than
+      necessary trouble coding in Python?&nbsp;</span><span style='font-weight:
+      bold;font-family:微软雅黑;font-size:36.0pt'>Tokenization</span><span
+      style='font-family:微软雅黑;font-size:36.0pt'>.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:4.875in'><img
+ src="Let's%20build%20the%20GPT%20Tokenizer.files/image007.jpg" width=1469
+ height=1076></p>
+ <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'><span lang=zh-CN>pyt</span><span lang=en-US>hon</span><span
+ style='font-weight:bold' lang=zh-CN>代码中有很多缩进，即空格符，</span><span lang=zh-CN>每个空格都是一个</span><span
+ lang=en-US>token</span><span lang=zh-CN>，这会极大地浪费</span><span lang=en-US>T</span><span
+ lang=zh-CN>ra</span><span lang=en-US>nsformer</span><span lang=zh-CN>的</span><span
+ lang=en-US>context length.</span></p>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Why did my LLM abruptly halt
+      when it sees the string &quot;&lt;|endoftext|&gt;&quot;?&nbsp;</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Tokenization</span><span
+      style='font-family:微软雅黑;font-size:36.0pt'>.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'><span lang=en-US><span style='mso-spacerun:yes'>   </span></span><span
+ style='font-weight:bold' lang=zh-CN>这个例子好搞笑</span><span style='font-weight:
+ bold' lang=en-US>^_^</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;font-size:36.0pt;
+      color:#1F1F1F'><img
+      src="Let's%20build%20the%20GPT%20Tokenizer.files/image008.jpg"
+      width=1734 height=1222></li>
+ </ul>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>What is this weird warning I
+      get about a &quot;trailing whitespace&quot;?&nbsp;</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Tokenization</span><span
+      style='font-family:微软雅黑;font-size:36.0pt'>.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'><span lang=en-US><span style='mso-spacerun:yes'>   </span>GPT</span><span
+ lang=zh-CN>的很多</span><span lang=en-US>token</span><span lang=zh-CN>是以空格开始的，例如假设</span><span
+ lang=en-US>H</span><span lang=zh-CN>ow</span><span lang=en-US> are you? Oh my
+ god. </span><span lang=zh-CN>这句话出现在训练数据中，经过</span><span lang=en-US>tokenize</span><span
+ lang=zh-CN>之后</span><span lang=en-US>,</span><span lang=zh-CN>空格</span><span
+ lang=en-US>+O</span><span lang=zh-CN>是一个</span><span lang=en-US>token</span><span
+ lang=zh-CN>，而不是</span><span lang=en-US>O</span><span lang=zh-CN>是一个</span><span
+ lang=en-US>token</span><span lang=zh-CN>，如果用户输入</span><span lang=en-US>H</span><span
+ lang=zh-CN>ow</span><span lang=en-US> are you?+</span><span lang=zh-CN>空格，那么就会和训练数据的分布不一致（训练数据的分布是</span><span
+ lang=en-US>How are you?</span><span lang=zh-CN>后面接“空格</span><span lang=en-US>+O</span><span
+ lang=zh-CN>”这个</span><span lang=en-US>token</span><span lang=zh-CN>，而用户的输入是</span><span
+ lang=en-US>How are you?+</span><span lang=zh-CN>空格，也就是说</span><span
+ lang=en-US>LLM</span><span lang=zh-CN>没有在训练数据中见过。）</span></p>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Why the LLM break if I ask it
+      about &quot;SolidGoldMagikarp&quot;?&nbsp;</span><span style='font-weight:
+      bold;font-family:微软雅黑;font-size:36.0pt'>Tokenization</span><span
+      style='font-family:微软雅黑;font-size:36.0pt'>.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Why should I prefer to use YAML
+      over JSON with LLMs?&nbsp;</span><span style='font-weight:bold;
+      font-family:微软雅黑;font-size:36.0pt'>Tokenization</span><span
+      style='font-family:微软雅黑;font-size:36.0pt'>.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Why is LLM not actually
+      end-to-end language modeling?&nbsp;</span><span style='font-weight:bold;
+      font-family:微软雅黑;font-size:36.0pt'>Tokenization</span><span
+      style='font-family:微软雅黑;font-size:36.0pt'>.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>What is the real root of
+      suffering?&nbsp;</span><span style='font-weight:bold;font-family:微软雅黑;
+      font-size:36.0pt'>Tokenization</span><span style='font-family:微软雅黑;
+      font-size:36.0pt'>.</span></li>
+ </ul>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>关于v</span><span style='font-weight:bold'
+ lang=en-US>ocab </span><span style='font-weight:bold' lang=zh-CN>s</span><span
+ style='font-weight:bold' lang=en-US>ize</span><span style='font-weight:bold'
+ lang=zh-CN>的问题，</span><span style='font-weight:bold' lang=en-US>vocab </span><span
+ style='font-weight:bold' lang=zh-CN>s</span><span style='font-weight:bold'
+ lang=en-US>ize</span><span style='font-weight:bold' lang=zh-CN>越大，同样的一段话，经过分词处理后的</span><span
+ style='font-weight:bold' lang=en-US>token</span><span style='font-weight:bold'
+ lang=zh-CN>越少，</span><span style='font-weight:bold' lang=en-US>Transfomer</span><span
+ style='font-weight:bold' lang=zh-CN>就可以关注更多的内容，但是to</span><span
+ style='font-weight:bold' lang=en-US>ken </span><span style='font-weight:bold'
+ lang=zh-CN>em</span><span style='font-weight:bold' lang=en-US>bedding</span><span
+ style='font-weight:bold' lang=zh-CN>的长度也会增加，导致最后</span><span style='font-weight:
+ bold' lang=en-US>softmax</span><span style='font-weight:bold' lang=zh-CN>层的计算量增加。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>每个字符</span><span
+ lang=en-US>character</span><span lang=zh-CN>都有一个Uni</span><span lang=en-US>code</span><span
+ lang=zh-CN>，字符串可以通过</span><span lang=en-US>utf-8</span><span lang=zh-CN>编码，即只用</span><span
+ lang=en-US>8</span><span lang=zh-CN>位数来进行表示。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&gt;&gt;&gt;
+ s = &quot;i love djfsj sdjfklowe，是槈未经对方是否&quot;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>&gt;&gt;&gt; list(s.encode('utf-8'))</span><span lang=en-US> </span><span
+ style='font-weight:bold' lang=en-US><span
+ style='mso-spacerun:yes'> </span>#uft-8</span><span style='font-weight:bold'
+ lang=zh-CN>编码，最大的数</span><span style='font-weight:bold' lang=en-US>256</span><span
+ style='font-weight:bold' lang=zh-CN>，编码后的</span><span style='font-weight:bold'
+ lang=en-US>list</span><span style='font-weight:bold' lang=zh-CN>长度要大于等于用</span><span
+ style='font-weight:bold' lang=en-US>unicode</span><span style='font-weight:
+ bold' lang=zh-CN>表示的</span><span style='font-weight:bold' lang=en-US>list</span><span
+ style='font-weight:bold' lang=zh-CN>长度</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>[105,
+ 32, 108, 111, 118, 101, 32, 100, 106, 102, 115, 106, 32, 115, 100, 106, 102,
+ 107, 108, 111, 119, 101, 239, 188, 140, 230, 152, 175, 230, 167, 136, 230,
+ 156, 170, 231, 187, 143, 229, 175, 185, 230, 150, 185, 230, 152, 175, 229,
+ 144, 166]</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>&gt;&gt;&gt; [ord(i) for i in s]</span><span style='font-weight:
+ bold' lang=en-US><span style='mso-spacerun:yes'>  </span>#unicode</span><span
+ style='font-weight:bold' lang=zh-CN>码，每个字符对应一个</span><span style='font-weight:
+ bold' lang=en-US>unicode</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>[105,
+ 32, 108, 111, 118, 101, 32, 100, 106, 102, 115, 106, 32, 115, 100, 106, 102,
+ 107, 108, 111, 119, 101, 65292, 26159, 27080, 26410, 32463, 23545, 26041,
+ 26159, 21542]</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>我们不能直接用</span><span style='font-weight:
+ bold' lang=en-US>unicoder</span><span style='font-weight:bold' lang=zh-CN>码即单个字符来表示每个</span><span
+ style='font-weight:bold' lang=en-US>token</span><span style='font-weight:bold'
+ lang=zh-CN>，因为这样的话，</span><span style='font-weight:bold' lang=en-US>1..vocab </span><span
+ style='font-weight:bold' lang=zh-CN>s</span><span style='font-weight:bold'
+ lang=en-US>ize</span><span style='font-weight:bold' lang=zh-CN>会很大，</span><span
+ style='font-weight:bold' lang=en-US>unicode</span><span style='font-weight:
+ bold' lang=zh-CN>最大是</span><span style='font-weight:bold' lang=en-US>15</span><span
+ style='font-weight:bold' lang=zh-CN>w。</span><span style='font-weight:bold'
+ lang=en-US>2.</span><span style='font-weight:bold' lang=zh-CN>有些</span><span
+ style='font-weight:bold' lang=en-US>character</span><span style='font-weight:
+ bold' lang=zh-CN>出现次数很多，而大部分</span><span style='font-weight:bold' lang=en-US>character</span><span
+ style='font-weight:bold' lang=zh-CN>很少出现，导致计算效率低。</span><span
+ style='font-weight:bold' lang=en-US>3.</span><span style='font-weight:bold'
+ lang=zh-CN>经过分词后的</span><span style='font-weight:bold' lang=en-US>token</span><span
+ style='font-weight:bold' lang=zh-CN>也很多，因为每个字母都是一个</span><span
+ style='font-weight:bold' lang=en-US>token</span><span style='font-weight:bold'
+ lang=zh-CN>，而</span><span style='font-weight:bold' lang=en-US>transformers</span><span
+ style='font-weight:bold' lang=zh-CN>的输入长度是有限</span><span style='font-weight:
+ bold' lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>的。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>我们也不能直接用</span><span style='font-weight:
+ bold' lang=en-US>uft-8</span><span style='font-weight:bold' lang=zh-CN>编码的结果来进行</span><span
+ style='font-weight:bold' lang=en-US>tokenization</span><span style='font-weight:
+ bold' lang=zh-CN>，因为这样的话，</span><span style='font-weight:bold' lang=en-US>1.vocab
+ </span><span style='font-weight:bold' lang=zh-CN>s</span><span
+ style='font-weight:bold' lang=en-US>ize</span><span style='font-weight:bold'
+ lang=zh-CN>会非常小，为</span><span style='font-weight:bold' lang=en-US>256</span><span
+ style='font-weight:bold' lang=zh-CN>。</span><span style='font-weight:bold'
+ lang=en-US> 2.</span><span style='font-weight:bold' lang=zh-CN>经过分词后的</span><span
+ style='font-weight:bold' lang=en-US>token</span><span style='font-weight:bold'
+ lang=zh-CN>会非常非常多，比字母还多，因为一个字母可能被分为多个</span><span style='font-weight:bold'
+ lang=en-US>token</span><span style='font-weight:bold' lang=zh-CN>。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold'>Byte-pair encoding</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Suppose
+ the data to be encoded is:[8]</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>1</span><span lang=zh-CN>）第一步</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>aaabdaaabac</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>The
+ byte pair &quot;aa&quot; occurs most often, so it will be replaced by a byte
+ that is not used in the data, such as &quot;Z&quot;. Now there is the
+ following data and replacement table:</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>2</span><span lang=zh-CN>）第二步</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>ZabdZabac</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Z=aa</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Then
+ the process is repeated with byte pair &quot;ab&quot;, replacing it with
+ &quot;Y&quot;:</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>3</span><span lang=zh-CN>）第三步</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>ZYdZYac</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Y=ab</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Z=aa</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>The
+ only literal byte pair left occurs only once, and the encoding might stop
+ here. Alternatively, the process could continue with recursive byte-pair
+ encoding, replacing &quot;ZY&quot; with &quot;X&quot;:</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>4</span><span lang=zh-CN>）第四步</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>XdXac</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>X=ZY</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Y=ab</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Z=aa</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>This
+ data cannot be compressed further by byte-pair encoding because there are no
+ pairs of bytes that occur more than once.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold'>To decompress the data, simply perform the
+ replacements in the reverse order</span>.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>我们从</span><span lang=en-US>utf-8</span><span lang=zh-CN>编码后的结果出发，最初的</span><span
+ lang=en-US>vocab_size=256</span><span lang=zh-CN>，然后迭代地进行这个过程。所以</span><span
+ lang=en-US>B</span><span lang=zh-CN>y</span><span lang=en-US>te-pair</span><span
+ lang=zh-CN>中的</span><span lang=en-US>byte</span><span lang=zh-CN>指的就是先用</span><span
+ lang=en-US>uft-8</span><span lang=zh-CN>编码，</span><span lang=en-US>vocab_size</span><span
+ lang=zh-CN>是</span><span lang=en-US>256</span><span lang=zh-CN>，即一个字节</span><span
+ lang=en-US>byte</span><span lang=zh-CN>。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>用于训练</span><span lang=en-US>tokenizer</span><span lang=zh-CN>的数据和训练</span><span
+ lang=en-US>llm</span><span lang=zh-CN>的数据是不一样的，</span><span style='font-weight:
+ bold' lang=zh-CN>如果用于训练</span><span style='font-weight:bold' lang=en-US>tokenizer</span><span
+ style='font-weight:bold' lang=zh-CN>的数据中ja</span><span style='font-weight:
+ bold' lang=en-US>panese</span><span style='font-weight:bold' lang=zh-CN>的数据更多，意味着更多的jap</span><span
+ style='font-weight:bold' lang=en-US>anese token</span><span style='font-weight:
+ bold' lang=zh-CN>会被</span><span style='font-weight:bold' lang=en-US>merge</span><span
+ style='font-weight:bold' lang=zh-CN>（因为</span><span style='font-weight:bold'
+ lang=en-US>japanese token pair</span><span style='font-weight:bold'
+ lang=zh-CN>的出现次数更多），那么j</span><span style='font-weight:bold' lang=en-US>apanese</span><span
+ style='font-weight:bold' lang=zh-CN>句子经过</span><span style='font-weight:bold'
+ lang=en-US>tokenize</span><span style='font-weight:bold' lang=zh-CN>后的</span><span
+ style='font-weight:bold' lang=en-US>sequence length</span><span
+ style='font-weight:bold' lang=zh-CN>会更短，也就会更有利于</span><span style='font-weight:
+ bold' lang=en-US>japanese</span><span style='font-weight:bold' lang=zh-CN>的训练</span><span
+ lang=zh-CN>（因为</span><span lang=en-US>transformer</span><span lang=zh-CN>能关注到更长的</span><span
+ lang=en-US>japanese</span><span lang=zh-CN>句子。）</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>需要注意的是，不是所有的</span><span style='font-weight:
+ bold' lang=en-US>token sequence </span><span style='font-weight:bold'
+ lang=zh-CN>都是有效的</span><span style='font-weight:bold' lang=en-US>utf-8</span><span
+ style='font-weight:bold' lang=zh-CN>格式。</span><span lang=zh-CN>我的理解：</span><span
+ style='text-decoration:line-through' lang=zh-CN>每个</span><span
+ style='text-decoration:line-through' lang=en-US>character</span><span
+ style='text-decoration:line-through' lang=zh-CN>可能会被表示成多个</span><span
+ style='text-decoration:line-through' lang=en-US>utf-8</span><span
+ style='text-decoration:line-through' lang=zh-CN>码，例如“好”的</span><span
+ style='text-decoration:line-through' lang=en-US>uft-8</span><span
+ style='text-decoration:line-through' lang=zh-CN>码是\xef\xbc\x8c</span><span
+ style='text-decoration:line-through' lang=en-US> </span><span
+ style='text-decoration:line-through' lang=zh-CN>“在”的</span><span
+ style='text-decoration:line-through' lang=en-US>uft-8</span><span
+ style='text-decoration:line-through' lang=zh-CN>码是\xe6\x96\xb9，那么如果\x8c和\xe6被</span><span
+ style='text-decoration:line-through' lang=en-US>merge</span><span
+ style='text-decoration:line-through' lang=zh-CN>成新的</span><span
+ style='text-decoration:line-through' lang=en-US>token</span><span
+ style='text-decoration:line-through' lang=zh-CN>，也就是说这个</span><span
+ style='text-decoration:line-through' lang=en-US>token</span><span
+ style='text-decoration:line-through' lang=zh-CN>是</span><span
+ style='text-decoration:line-through' lang=en-US> </span><span
+ style='text-decoration:line-through' lang=zh-CN>\x8c\xe6，但是</span><span
+ style='text-decoration:line-through' lang=en-US> </span><span
+ style='text-decoration:line-through' lang=zh-CN>\x8c\xe6这两个</span><span
+ style='text-decoration:line-through' lang=en-US>uft-8</span><span
+ style='text-decoration:line-through' lang=zh-CN>码，不一定符合</span><span
+ style='text-decoration:line-through' lang=en-US>utf-8</span><span
+ style='text-decoration:line-through' lang=zh-CN>的数据格式要求，即b'</span><span
+ style='text-decoration:line-through' lang=en-US> </span><span
+ style='text-decoration:line-through' lang=zh-CN>\x8c\xe6'.decode('utf-8')时会报错。</span><span
+ lang=en-US><span style='mso-spacerun:yes'>  </span></span><span lang=zh-CN>不是这样的，不可能出现</span><span
+ lang=en-US> </span><span lang=zh-CN>\x8c\xe6这种情况，因为\xef\xbc\x8c的出现次数一定比</span><span
+ lang=en-US> </span><span lang=zh-CN>\x8c\xe6多（“好”单独出现的次数一定比“好在”出现的次数多。）</span><span
+ style='font-weight:bold' lang=zh-CN>真正的原因是：假设某个字符的</span><span
+ style='font-weight:bold' lang=en-US>utf8</span><span style='font-weight:bold'
+ lang=zh-CN>是：\xef\xbc\x</span><span style='font-weight:bold' lang=en-US>80</span><span
+ style='font-weight:bold' lang=zh-CN>，那么\x</span><span style='font-weight:bold'
+ lang=en-US>80</span><span style='font-weight:bold' lang=zh-CN>可能成为新的</span><span
+ style='font-weight:bold' lang=en-US>token</span><span style='font-weight:bold'
+ lang=zh-CN>，但是\x</span><span style='font-weight:bold' lang=en-US>80</span><span
+ style='font-weight:bold' lang=zh-CN>无法被解码。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>总结：原始的</span><span style='font-weight:
+ bold' lang=en-US>vocab_size</span><span style='font-weight:bold' lang=zh-CN>是</span><span
+ style='font-weight:bold' lang=en-US>256</span><span style='font-weight:bold'
+ lang=zh-CN>（其实不是</span><span style='font-weight:bold' lang=en-US>256</span><span
+ style='font-weight:bold' lang=zh-CN>，比</span><span style='font-weight:bold'
+ lang=en-US>256</span><span style='font-weight:bold' lang=zh-CN>要小，因为</span><span
+ style='font-weight:bold' lang=en-US>utf-8</span><span style='font-weight:bold'
+ lang=zh-CN>要满足一定的数据格式，如下图），例如</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&gt;&gt;&gt;
+ b'\x80'.decode('utf-8')</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Traceback
+ (most recent call last):</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='mso-spacerun:yes'>  </span>File &quot;&lt;stdin&gt;&quot;, line 1, in
+ &lt;module&gt;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>UnicodeDecodeError:
+ 'utf-8' codec can't decode byte 0x80 in position 0: invalid start byte</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>因为\x80</span><span style='font-weight:
+ bold' lang=en-US>=10000000</span><span style='font-weight:bold' lang=zh-CN>，不满足</span><span
+ style='font-weight:bold' lang=en-US>utf-8</span><span style='font-weight:bold'
+ lang=zh-CN>的数据格式要求！（如果第一位是</span><span style='font-weight:bold' lang=en-US>1</span><span
+ style='font-weight:bold' lang=zh-CN>，第二位也要是</span><span style='font-weight:
+ bold' lang=en-US>1</span><span style='font-weight:bold' lang=zh-CN>）</span></p>
+ <p style='margin:0in;margin-left:3.0in'><img
+ src="Let's%20build%20the%20GPT%20Tokenizer.files/image009.jpg" width=1879
+ height=588></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=zh-CN>，每个</span><span style='font-weight:bold'
+ lang=en-US>token id</span><span style='font-weight:bold' lang=zh-CN>都用一个字节表示，例如</span><span
+ style='font-weight:bold' lang=en-US> </span><span style='font-weight:bold'
+ lang=zh-CN>\x8c，共</span><span style='font-weight:bold' lang=en-US>16*16=256</span><span
+ style='font-weight:bold' lang=zh-CN>个</span><span style='font-weight:bold'
+ lang=en-US>token</span><span style='font-weight:bold' lang=zh-CN>，经过训练后的会生成新的</span><span
+ style='font-weight:bold' lang=en-US>token</span><span style='font-weight:bold'
+ lang=zh-CN>，vo</span><span style='font-weight:bold' lang=en-US>cab_size</span><span
+ style='font-weight:bold' lang=zh-CN>也随之增大，新的</span><span style='font-weight:
+ bold' lang=en-US>token</span><span style='font-weight:bold' lang=zh-CN>是原始</span><span
+ style='font-weight:bold' lang=en-US>256</span><span style='font-weight:bold'
+ lang=zh-CN>个</span><span style='font-weight:bold' lang=en-US>token</span><span
+ style='font-weight:bold' lang=zh-CN>的组合，例如：</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='font-weight:bold' lang=en-US><span style='mso-spacerun:yes'> </span></span><span
+ style='font-weight:bold' lang=zh-CN>\x8c\x</span><span style='font-weight:
+ bold' lang=en-US>1</span><span style='font-weight:bold' lang=zh-CN>c，\x8</span><span
+ style='font-weight:bold' lang=en-US>2</span><span style='font-weight:bold'
+ lang=zh-CN>\x</span><span style='font-weight:bold' lang=en-US>2</span><span
+ style='font-weight:bold' lang=zh-CN>c\x</span><span style='font-weight:bold'
+ lang=en-US>4</span><span style='font-weight:bold' lang=zh-CN>c\x</span><span
+ style='font-weight:bold' lang=en-US>13</span><span style='font-weight:bold'
+ lang=zh-CN>，新</span><span style='font-weight:bold' lang=en-US>token</span><span
+ style='font-weight:bold' lang=zh-CN>具体由几个原始</span><span style='font-weight:
+ bold' lang=en-US>token</span><span style='font-weight:bold' lang=zh-CN>组合？不一定，可能是</span><span
+ style='font-weight:bold' lang=en-US>2</span><span style='font-weight:bold'
+ lang=zh-CN>个，可能是</span><span style='font-weight:bold' lang=en-US>3</span><span
+ style='font-weight:bold' lang=zh-CN>个，可能是</span><span style='font-weight:bold'
+ lang=en-US>100</span><span style='font-weight:bold' lang=zh-CN>个</span><span
+ style='font-weight:bold' lang=en-US>…….</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>BPE</span><span
+ lang=zh-CN>有个问题是，单词后面经常跟着标点符号，例如</span><span lang=en-US>dog. dog? dog! </span><span
+ lang=zh-CN>如果把</span><span lang=en-US>dog</span><span lang=zh-CN>和！连在一起作为</span><span
+ lang=en-US>token</span><span lang=zh-CN>，那么不符合语义，所以</span><span lang=en-US>GPT2</span><span
+ lang=zh-CN>先将句子进行正则匹配，根据正则表达式把句子分为多个</span><span lang=en-US>chunk</span><span
+ lang=zh-CN>，对每个</span><span lang=en-US>chunk</span><span lang=zh-CN>进行统计然后合并，所以永远不会出现</span><span
+ lang=en-US>dog</span><span lang=zh-CN>后面跟着！这种情况，因为</span><span lang=en-US>dog</span><span
+ lang=zh-CN>和！在不同的</span><span lang=en-US>chunk</span><span lang=zh-CN>中。</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#9723B4'>import</span><span style='color:black'> regex </span><span
+ style='color:#9723B4'>as</span><span style='color:black'> re</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:black'>gpt2pat = re.</span><span style='color:#6A5221'>compile</span><span
+ style='color:black'>(r</span><span style='color:#A31515'>&quot;&quot;&quot;'s|'t|'re|'ve|'m|'ll|'d|
+ ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+&quot;&quot;&quot;</span><span
+ style='color:black'>)</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+ style='color:#6A5221'>print</span><span style='color:black'>(re.findall(gpt2pat,
+ </span><span style='color:#A31515'>&quot;Hello've world123 how's are
+ you!!!?&quot;</span><span style='color:black'>))</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ color:black' lang=en-US>#['Hello', &quot;'ve&quot;, ' world', '123', ' how',
+ &quot;'s&quot;, ' are', ' you', '!!!?']</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>一个</span><span
+ lang=en-US>tokenizer</span><span lang=zh-CN>只需要</span><span lang=en-US>2</span><span
+ lang=zh-CN>个文件，一个</span><span lang=en-US>vocab.json</span><span lang=zh-CN>，一个</span><span
+ lang=en-US>merge.json</span><span lang=zh-CN>，</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>merge.json</span><span lang=zh-CN>即</span></p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>X=ZY</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>Y=ab</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>Z=aa</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>编码时按照从下往上的顺序，解码时按照从上往下的顺序</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+ style='font-weight:bold'>SentencePiece</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'><span style='font-weight:bold'>The big difference</span>:
+ sentencepiece runs BPE on the Unicode code points directly! It then has an
+ option&nbsp;character_coverage&nbsp;for what to do with very very rare
+ codepoints that appear very few times, and it either maps them onto an UNK
+ token, or if&nbsp;byte_fallback&nbsp;is turned on, it encodes them with utf-8
+ and then encodes the raw bytes instead.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'>TLDR:</p>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>tiktoken encodes to utf-8 and
+      then BPEs bytes</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>sentencepiece BPEs the code
+      points and optionally falls back to utf-8 bytes for rare code points
+      (rarity is determined by character_coverage hyperparameter), which then
+      get translated to byte tokens.</span></li>
+ </ul>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'>(Personally I think the tiktoken way is a lot cleaner...)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=en-US>Sentencepiece </span><span lang=zh-CN>直接对</span><span lang=en-US>unicode
+ code point</span><span lang=zh-CN>进行</span><span lang=en-US>BPE</span><span
+ lang=zh-CN>，也就是对按照</span><span lang=en-US>character</span><span lang=zh-CN>进行</span><span
+ lang=en-US>BPE</span><span lang=zh-CN>，当遇到稀有的</span><span lang=en-US>character</span><span
+ lang=zh-CN>时，</span><span style='color:#1F1F1F' lang=zh-CN>if&nbsp;byte_fallback&nbsp;is
+ turned on, 用</span><span style='color:#1F1F1F' lang=en-US>uft-8</span><span
+ style='color:#1F1F1F' lang=zh-CN>码进行代替</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ color:#1F1F1F'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ style='font-weight:bold' lang=en-US>SolidGoldMagikarp</span><span
+ style='font-weight:bold' lang=zh-CN>问题</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ lang=zh-CN>由于用于训练</span><span lang=en-US>tokenizer</span><span lang=zh-CN>的数据集和训练</span><span
+ lang=en-US> LLM</span><span lang=zh-CN>的训练集是不同的，用于训练</span><span lang=en-US>tokenizer</span><span
+ lang=zh-CN>的数据包含了</span><span lang=en-US>reddit</span><span lang=zh-CN>的数据，</span><span
+ lang=en-US>SolidGoldMagikarp</span><span lang=zh-CN>是</span><span lang=en-US>reddit</span><span
+ lang=zh-CN>的用户名，并且出现了很多次，因为被</span><span lang=en-US>merge</span><span
+ lang=zh-CN>成了一个</span><span lang=en-US>token</span><span lang=zh-CN>，但是训练</span><span
+ lang=en-US>LLM</span><span lang=zh-CN>时的数据集，从来没有出现</span><span lang=en-US>reddit</span><span
+ lang=zh-CN>上的这个用户名，因此</span><span lang=en-US>SolidGoldMagikarp</span><span
+ lang=zh-CN>这个</span><span lang=en-US>token</span><span lang=zh-CN>的</span><span
+ lang=en-US>embedding</span><span lang=zh-CN>仍然是随机的，初始化的，没有训练过的，所以当用户输入和</span><span
+ lang=en-US>SolidGoldMagikarp</span><span lang=zh-CN>相关的</span><span
+ lang=en-US>prompt</span><span lang=zh-CN>时，</span><span lang=en-US>LLM</span><span
+ lang=zh-CN>会失控。</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt;color:#1F1F1F'><span
+ style='font-weight:bold'>Final recommendations</span></p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Don't brush off tokenization. A
+      lot of footguns and sharp edges here. Security issues. Safety issues.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>Eternal glory to anyone who can
+      delete tokenization as a required step in LLMs.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+      style='font-family:微软雅黑;font-size:36.0pt'>In your own application:</span></li>
+  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+   margin-bottom:0in'>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+       style='font-family:微软雅黑;font-size:36.0pt'>Maybe you can just re-use the
+       GPT-4 tokens and tiktoken?</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+       style='font-family:微软雅黑;font-size:36.0pt'>If you're training a vocab, ok
+       to use BPE with sentencepiece. Careful with the million settings.</span></li>
+   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F1F1F'><span
+       style='font-family:微软雅黑;font-size:36.0pt'>Switch to minbpe once it is as
+       efficient as sentencepiece :)</span></li>
+  </ul>
+ </ul>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>

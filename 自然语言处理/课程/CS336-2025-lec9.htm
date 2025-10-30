@@ -1,0 +1,229 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=CS336-2025-lec9.htm>
+<link rel=File-List href="CS336-2025-lec9.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:24.6777in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:2.7958in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt' lang=en-US>CS336-2025-lec9</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.7388in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
+style='font-family:Calibri'>10</span><span style='font-family:微软雅黑'>月</span><span
+style='font-family:Calibri'>28</span><span style='font-family:微软雅黑'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>16:19</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:24.6777in'>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+style='font-weight:bold'>Scaling laws</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>大模型的训练成本是很高的，直接在</span><span
+lang=en-US>big models tune hyperparameters</span><span lang=zh-CN>这种方式不可行。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+bold' lang=zh-CN>新的方法是</span><span style='font-weight:bold' lang=en-US>tune on
+small models, extrapolate to large ones</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+bold' lang=zh-CN>也就是通过实验，得到模型效果和数据量、模型</span><span style='font-weight:bold'
+lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>超参数等的关系，这个关系就是</span><span
+style='font-weight:bold' lang=en-US>scaling laws</span><span style='font-weight:
+bold' lang=zh-CN>，然后就可以根据这个</span><span style='font-weight:bold' lang=en-US>scaling
+laws</span><span style='font-weight:bold' lang=zh-CN>直接选择最优的。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+bold' lang=en-US>1.</span><span style='font-weight:bold' lang=zh-CN>数据的影响</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold' lang=zh-CN>即</span><span style='font-weight:bold'
+lang=en-US>Data scaling laws</span><span style='font-weight:bold' lang=zh-CN>：</span><span
+style='font-weight:bold' lang=en-US> simple formula that maps datasize to
+error.</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>数据肯定是越多越好。</p>
+
+<p style='margin:0in;margin-left:.375in'><img
+src="CS336-2025-lec9.files/image001.jpg" width=2004 height=377></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>从上图这两张</span><span lang=en-US>scaling laws</span><span lang=zh-CN>的实验可以看出，</span><span
+lang=en-US>training data size</span><span lang=zh-CN>越大，</span><span
+lang=en-US>error</span><span lang=zh-CN>越小。</span><span lang=en-US>data</span><span
+lang=zh-CN>越</span><span lang=en-US>diverse</span><span lang=zh-CN>，</span><span
+lang=en-US>error</span><span lang=zh-CN>越小。</span></p>
+
+<p style='margin:0in;margin-left:3.375in'><img
+src="CS336-2025-lec9.files/image002.jpg" width=1172 height=1021></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>从上图这张</span><span lang=en-US>scaling laws</span><span lang=zh-CN>可以看出，当数据有限时，需要用重复数据训练模型，随着重复越来越多的数据，收益会迅速递减（后面的</span><span
+lang=en-US>epoch</span><span lang=zh-CN>中，</span><span lang=en-US>los</span><span
+lang=zh-CN>s下降的明显没有前面几个Epoc</span><span lang=en-US>h</span><span lang=zh-CN>快）。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+bold' lang=en-US>2.</span><span style='font-weight:bold' lang=zh-CN>模型的影响</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'> </span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>我们可以通过</span><span lang=en-US>scaling laws</span><span lang=zh-CN>来选择模型的超参数，</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>•<span
+style='font-weight:bold'>Architecture</span>，是用LSTMs vs Transformers哪种架构</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>•<span
+style='font-weight:bold'>Optimizer</span>，是用Adam vs SGD哪种优化器</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold'>•Aspect ratio / depth</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='font-weight:bold'>•Batch size</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+style='mso-spacerun:yes'> </span></p>
+
+<p style='margin:0in;margin-left:3.0in'><img
+src="CS336-2025-lec9.files/image003.jpg" width=1628 height=694></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>从上图可以看出，</span><span lang=en-US>T</span><span lang=zh-CN>ra</span><span
+lang=en-US>nsformer</span><span lang=zh-CN>确实比</span><span lang=en-US>LSTM</span><span
+lang=zh-CN>好，全面胜出。也可以对比其他架构的模型。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:2.625in'><img
+src="CS336-2025-lec9.files/image004.jpg" width=1591 height=813></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>从上图可以看出，也是</span><span lang=en-US>Adam</span><span lang=zh-CN>好于</span><span
+lang=en-US>SGD</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;margin-left:2.625in'><img
+src="CS336-2025-lec9.files/image005.jpg" width=1466 height=1015></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:3.0in'><img
+src="CS336-2025-lec9.files/image006.jpg" width=1556 height=888></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>可以看到，关于</span><span lang=en-US>batchsize</span><span lang=zh-CN>的选择是有一个</span><span
+lang=en-US>critical batch</span><span lang=zh-CN>，在这之前，性能随着</span><span
+lang=en-US>batchsize</span><span lang=zh-CN>线性增加，在这之后，性能不变甚至下降，即</span><span
+lang=en-US>batchsize</span><span lang=zh-CN>过大，噪声会过大（极端情况下，只用一个</span><span
+lang=en-US>batch</span><span lang=zh-CN>训练的话，噪声比多</span><span lang=en-US>batch</span><span
+lang=zh-CN>要大）。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>需要注意的是，s</span><span lang=en-US>caling laws</span><span lang=zh-CN>的纵轴可以是</span><span
+lang=en-US>loss</span><span lang=zh-CN>，也可以是下游任务的指标，如准确率等。那么纵轴从</span><span
+lang=en-US>loss</span><span lang=zh-CN>换为下游任务的评估指标时，</span><span lang=en-US>scaling
+laws</span><span lang=zh-CN>可能是不同的。</span><span lang=en-US> </span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;margin-left:2.25in'><img
+src="CS336-2025-lec9.files/image007.jpg" width=1550 height=888></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+lang=zh-CN>关于</span><span lang=en-US>token</span><span lang=zh-CN>数量和模型大小之间的</span><span
+lang=en-US>scaling laws</span><span lang=zh-CN>，</span><span style='font-weight:
+bold' lang=zh-CN>大约是每个参数</span><span style='font-weight:bold' lang=en-US>20</span><span
+style='font-weight:bold' lang=zh-CN>个</span><span style='font-weight:bold'
+lang=en-US>token</span><span style='font-weight:bold' lang=zh-CN>来进行训练。但是我们一般是进行</span><span
+style='font-weight:bold' lang=en-US>overtrain</span><span style='font-weight:
+bold' lang=zh-CN>，因为对于</span><span style='font-weight:bold' lang=en-US>LLM</span><span
+style='font-weight:bold' lang=zh-CN>来说，主要是用它来进行推理，因此，我们用多于每个参数</span><span
+style='font-weight:bold' lang=en-US>20</span><span style='font-weight:bold'
+lang=zh-CN>个</span><span style='font-weight:bold' lang=en-US>token</span><span
+style='font-weight:bold' lang=zh-CN>的配置来训练，</span><span lang=zh-CN>这样虽然用更多的t</span><span
+lang=en-US>oken</span><span lang=zh-CN>训练的增益增加得不如之前快，但还是有增益的，值得我们去进行训练。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>But
+most of the compute in a real deployment is inference.. <span style='font-weight:
+bold'>So we should ‘over’ train</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>•GPT3
+– 2 tokens / param</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>•Chinchilla
+– 20 tokens / param</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>•LLaMA65B
+– 22 tokens / param</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>•Llama
+2 70B – 29 tokens / param</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>•Mistral
+7B – 110 tokens / param</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>•Llama
+3 70B – 215 tokens / param</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>The
+more usage we expect, the more it becomes worth it to pay the upfront cost</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>
