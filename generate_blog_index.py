@@ -4,18 +4,18 @@ from datetime import datetime
 
 def generate_blog_index(root_dir='.'):
     """
-    生成三级目录结构的博客导航索引页面，添加视口设置解决缩放问题
+    生成三级目录结构的博客导航索引页面，支持动态高度和展开/折叠功能
     
     Args:
         root_dir: 根目录路径，默认为当前目录
     """
     
-    # HTML页面模板 - 添加了强制视口设置和缩放重置
+    # HTML页面模板
     html_template = '''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的知识库</title>
     <style>
         :root {{
@@ -39,17 +39,12 @@ def generate_blog_index(root_dir='.'):
             color: #333;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
-            /* 添加缩放重置 */
-            zoom: 1;
-            -moz-transform: scale(1);
-            -moz-transform-origin: 0 0;
         }}
         
         .container {{
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            zoom: 1; /* 确保容器不缩放 */
         }}
         
         .header {{
@@ -89,7 +84,7 @@ def generate_blog_index(root_dir='.'):
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 25px;
             margin-bottom: 40px;
-            align-items: start;
+            align-items: start; /* 确保卡片顶部对齐 */
         }}
         
         .main-category {{
@@ -98,6 +93,7 @@ def generate_blog_index(root_dir='.'):
             box-shadow: var(--shadow);
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* 移除固定高度，让内容决定高度 */
             display: flex;
             flex-direction: column;
         }}
@@ -112,6 +108,7 @@ def generate_blog_index(root_dir='.'):
             color: white;
             padding: 20px;
             position: relative;
+            /* 头部固定，不随内容变化 */
             flex-shrink: 0;
         }}
         
@@ -134,6 +131,7 @@ def generate_blog_index(root_dir='.'):
         
         .category-content {{
             padding: 0;
+            /* 内容区域自适应高度 */
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -143,6 +141,7 @@ def generate_blog_index(root_dir='.'):
             padding: 15px 20px;
             border-bottom: 1px solid var(--border-color);
             transition: background-color 0.2s;
+            /* 子分类也使用flex布局 */
             display: flex;
             flex-direction: column;
         }}
@@ -167,6 +166,7 @@ def generate_blog_index(root_dir='.'):
         .notes-list {{
             list-style: none;
             padding-left: 10px;
+            /* 笔记列表自适应 */
             flex-grow: 1;
         }}
         
@@ -210,7 +210,7 @@ def generate_blog_index(root_dir='.'):
             display: flex;
             align-items: center;
             gap: 5px;
-            align-self: flex-start;
+            align-self: flex-start; /* 按钮左对齐 */
         }}
         
         .toggle-btn:hover {{
@@ -261,8 +261,9 @@ def generate_blog_index(root_dir='.'):
             font-style: italic;
         }}
         
+        /* 新增：根据内容量添加不同样式类 */
         .content-small {{
-            /* 内容较少的大类卡片 */
+            /* 内容较少的大类卡片 - 不需要特殊处理，因为高度自适应 */
         }}
         
         .content-medium {{
@@ -271,6 +272,7 @@ def generate_blog_index(root_dir='.'):
         
         .content-large {{
             /* 内容较多的大类卡片 */
+            /* 可以添加最大高度和滚动，但这里我们选择完全自适应 */
         }}
         
         @media (max-width: 768px) {{
@@ -323,25 +325,8 @@ def generate_blog_index(root_dir='.'):
     </div>
 
     <script>
-        // 强制重置页面缩放
+        // 展开/折叠功能
         document.addEventListener('DOMContentLoaded', function() {{
-            // 重置视口缩放
-            if (window.visualViewport) {{
-                window.visualViewport.scale = 1;
-            }}
-            
-            // 重置变换
-            document.body.style.transform = 'scale(1)';
-            
-            // 重置缩放级别（如果浏览器支持）
-            if (window.devicePixelRatio && window.devicePixelRatio !== 1) {{
-                // 尝试重置DPI缩放
-                const meta = document.querySelector('meta[name="viewport"]');
-                if (meta) {{
-                    meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
-                }}
-            }}
-            
             // 为所有切换按钮添加点击事件
             document.querySelectorAll('.toggle-btn').forEach(button => {{
                 button.addEventListener('click', function() {{
@@ -359,16 +344,6 @@ def generate_blog_index(root_dir='.'):
                     }}
                 }});
             }});
-        }});
-        
-        // 监听页面缩放变化并尝试重置
-        window.addEventListener('resize', function() {{
-            // 检测可能的缩放变化
-            const detectedScale = window.outerWidth / window.innerWidth;
-            if (Math.abs(detectedScale - 1) > 0.1) {{
-                // 检测到缩放，尝试重置
-                document.body.style.zoom = 1;
-            }}
         }});
     </script>
 </body>
@@ -568,7 +543,6 @@ def generate_blog_index(root_dir='.'):
     print("  ✅ 响应式网格布局")
     print("  ✅ 悬停动画效果")
     print("  ✅ 统计信息面板")
-    print("  ✅ 缩放重置功能 - 解决浏览器缩放记忆问题")
     print("  ✅ 现代化美观设计")
 
 def scan_and_preview(root_dir='.'):
