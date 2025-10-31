@@ -10,19 +10,19 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="Reasoning.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:22.35in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:11.2812in'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:.2361in;width:1.9263in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.9263in'>
 
 <p style='margin:0in;font-family:微软雅黑;font-size:20.0pt' lang=en-US>Reasoning</p>
 
 </div>
 
-<div style='direction:ltr;margin-top:.0423in;margin-left:.2361in;width:1.7388in'>
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.7388in'>
 
 <p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
 Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
@@ -33,197 +33,254 @@ style='font-family:Calibri'>15</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.4569in;margin-left:0in;width:22.35in'>
+<div style='direction:ltr;margin-top:.4569in;margin-left:0in;width:11.2812in'>
 
-<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;margin-left:2.25in'><img
- src="Reasoning.files/image001.jpg" width=1454 height=610></p>
- <p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>llm</span><span
- lang=zh-CN>的推理指的是，在输入和输出之间，的</span><span style='font-weight:bold' lang=en-US>intermediate
- tokens</span><span lang=zh-CN>。所以说，</span><span style='font-weight:bold'
- lang=zh-CN>这里的</span><span style='font-weight:bold' lang=en-US>reasoning</span><span
- style='font-weight:bold' lang=zh-CN>和人类真正的推理是不同的！！</span><span lang=en-US> </span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
- <p style='margin:0in;margin-left:1.125in'><img
- src="Reasoning.files/image002.jpg" width=1568 height=692></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>那么，为什么</span><span
- lang=en-US>llm</span><span lang=zh-CN>需要推理呢，或者说需要中间</span><span lang=en-US>token</span><span
- lang=zh-CN>呢？</span></p>
- <p style='margin:0in;margin-left:1.5in'><img src="Reasoning.files/image003.jpg"
- width=1564 height=575></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>一个直觉的回答是，人类进行回答时，也需要进行思考，思考的过程就是中间</span><span
- lang=en-US>token</span><span lang=zh-CN>。但是</span><span style='font-weight:
- bold' lang=en-US>llm</span><span style='font-weight:bold' lang=zh-CN>只是概率模型，不是人类。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>真正的答案是：对于一个</span><span
- lang=en-US>size</span><span lang=zh-CN>为</span><span lang=en-US>T</span><span
- lang=zh-CN>的布尔电路可以解决的问题，</span><span lang=en-US>constant-size transformers</span><span
- lang=zh-CN>需要</span><span lang=en-US>O(T)</span><span lang=zh-CN>个</span><span
- lang=en-US>token</span><span lang=zh-CN>来解决（斯坦福的一项研究，从理论的角度来解释推理）。（</span><span
- style='font-weight:bold' lang=zh-CN>深度不够，长度来凑</span><span lang=zh-CN>）</span></p>
- <p style='margin:0in;margin-left:3.0in'><img src="Reasoning.files/image004.jpg"
- width=1403 height=472></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>只进行预训练的</span><span
- lang=en-US>llm</span><span lang=zh-CN>也是有推理能力的。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>Pretrained
- llm are ready to reason. All we need is<span style='mso-spacerun:yes'> 
- </span>decoding.</p>
- <p style='margin:0in;margin-left:1.125in'><img
- src="Reasoning.files/image005.jpg" width=1667 height=662></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>从上图看出，如果是</span><span
- lang=en-US>greedy decoding</span><span lang=zh-CN>，那么没有</span><span
- lang=en-US>reasoning</span><span lang=zh-CN>的过程，而如果不用</span><span lang=en-US>greedy
- decoding</span><span lang=zh-CN>，进行多次采样</span><span lang=en-US> </span><span
- lang=zh-CN>，那么会生成具有</span><span lang=en-US>reasoing</span><span lang=zh-CN>的</span><span
- lang=en-US>response</span><span lang=zh-CN>，并且答案是正确的。</span><span
- style='font-weight:bold' lang=zh-CN>而且在这些具有</span><span style='font-weight:
- bold' lang=en-US>reasoing</span><span style='font-weight:bold' lang=zh-CN>的</span><span
- style='font-weight:bold' lang=en-US>response</span><span style='font-weight:
- bold' lang=zh-CN>中，答案</span><span style='font-weight:bold' lang=en-US>token</span><span
- style='font-weight:bold' lang=zh-CN>的置信度是很高的，</span><span lang=zh-CN>高于</span><span
- lang=en-US>greedy decoding</span><span lang=zh-CN>的答案</span><span lang=en-US>token</span><span
- lang=zh-CN>的置信度。（什么是</span><span lang=en-US>greedy decoding, </span><span
- lang=zh-CN>即</span><span lang=en-US>argmax(answer|problem))</span><span
- lang=zh-CN>）</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>因此，我们可以不用</span><span
- lang=en-US>greedy decoding</span><span lang=zh-CN>，而是用</span><span lang=en-US>chain-of-thought
- decoding</span><span lang=zh-CN>，也就是选择答案</span><span lang=en-US>token</span><span
- lang=zh-CN>置信度最高的</span><span lang=en-US>response</span><span lang=zh-CN>，而不是选择下一个</span><span
- lang=en-US>token</span><span lang=zh-CN>概率最高的。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:1.875in'><img
- src="Reasoning.files/image006.jpg" width=1395 height=528></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>chain-of-thought
- decoding</span><span lang=zh-CN>是在</span><span lang=en-US>decoding</span><span
- lang=zh-CN>阶段进行的，需要采样多个</span><span lang=en-US>response</span><span
- lang=zh-CN>。我们能不能直接改变模型的输出分布，让具有</span><span lang=en-US>reasoning </span><span
- lang=zh-CN>的</span><span lang=en-US>response</span><span lang=zh-CN>排在前面呢。如果这种</span><span
- lang=en-US>response</span><span lang=zh-CN>排在前面，那么就可以使用</span><span
- lang=en-US>greedy decoding</span><span lang=zh-CN>了。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>cha</span><span
- lang=en-US>in of thought prompting</span><span lang=zh-CN>（在</span><span
- lang=en-US>prompt</span><span lang=zh-CN>中加入</span><span lang=en-US>let's
- think step by step</span><span lang=zh-CN>，或者加入</span><span lang=en-US>few
- shot examples</span><span lang=zh-CN>在这里也属于这个范畴）就是相当于改变了输出分布，即通过改变</span><span
- lang=en-US>output=f(x)</span><span lang=zh-CN>中的</span><span lang=en-US>x</span><span
- lang=zh-CN>，来改变输出，将具有</span><span lang=en-US>reasoning</span><span lang=zh-CN>的</span><span
- lang=en-US>response</span><span lang=zh-CN>的概率推到顶部。这也是为什么</span><span
- lang=en-US>cot prompting</span><span lang=zh-CN>有用的原因。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>但是通过改变</span><span
- lang=en-US>prompt</span><span lang=zh-CN>（</span><span lang=en-US>llm</span><span
- lang=zh-CN>是一个函数</span><span lang=en-US>f(x)</span><span lang=zh-CN>，</span><span
- style='font-weight:bold' lang=zh-CN>改变</span><span style='font-weight:bold'
- lang=en-US>f(x)</span><span style='font-weight:bold' lang=zh-CN>中的</span><span
- style='font-weight:bold' lang=en-US>x</span><span lang=zh-CN>）这种方式，虽然简单，但是需要我们设计合适的</span><span
- lang=en-US>task-specific examples</span><span lang=zh-CN>，并不通用（只加入</span><span
- lang=en-US>lets think step by step</span><span lang=zh-CN>效果一般），</span></p>
- <p style='margin:0in;margin-left:1.5in'><img src="Reasoning.files/image007.jpg"
- width=1278 height=459></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>那么就要改变</span><span
- lang=en-US>f(x)</span><span lang=zh-CN>中的</span><span lang=en-US>f</span><span
- lang=zh-CN>，可以通过</span><span lang=en-US>SFT</span><span lang=zh-CN>，su</span><span
- lang=en-US>pervised finetuning</span></p>
- <p style='margin:0in;margin-left:1.5in'><img src="Reasoning.files/image008.jpg"
- width=1726 height=426></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>但是</span><span
- lang=en-US>SFT</span><span lang=zh-CN>并不能很好的泛化，并且</span><span lang=en-US>scaling
- dees help too much(don’t<span style='mso-spacerun:yes'>  </span>scale blindly
- ,once the paradigm is wrong , no matter how you scale, it doesn't work)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>SFT</span><span
- lang=zh-CN>为什么不能泛化呢？原因在于用</span><span style='font-weight:bold' lang=zh-CN>人类标注的数据进行训练</span><span
- lang=zh-CN>。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>所以，用</span><span
- lang=en-US>model</span><span lang=zh-CN>自己生成的解决方案来训练模型，而不是用人类标注的解决方案来训练模型。</span></p>
- <p style='margin:0in;margin-left:1.5in'><img src="Reasoning.files/image009.jpg"
- width=1475 height=329></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>例如</span><span
- style='font-weight:bold' lang=zh-CN>对于数学问题，我们只知道正确答案，不知道解题过程，让模型自己生成带有</span><span
- style='font-weight:bold' lang=en-US>reasoning</span><span style='font-weight:
- bold' lang=zh-CN>的</span><span style='font-weight:bold' lang=en-US>response(</span><span
- style='font-weight:bold' lang=zh-CN>解题过程</span><span style='font-weight:bold'
- lang=en-US>)</span><span style='font-weight:bold' lang=zh-CN>，然后选出具有正确答案的</span><span
- style='font-weight:bold' lang=en-US>response</span><span style='font-weight:
- bold' lang=zh-CN>，作为训练数据</span><span lang=zh-CN>。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>原始的</span><span
- lang=en-US>SFT</span><span lang=zh-CN>，是用人类标注数据，现在只是将</span><span lang=en-US>SFT</span><span
- lang=zh-CN>中的人类标注数据换成</span><span lang=en-US>model</span><span lang=zh-CN>自己生成的数据，其他地方和</span><span
- lang=en-US>SFT</span><span lang=zh-CN>没有区别。</span><span lang=en-US>(</span><span
- style='font-weight:bold' lang=en-US>RL</span><span style='font-weight:bold'
- lang=zh-CN>是生成一个</span><span style='font-weight:bold' lang=en-US>response</span><span
- style='font-weight:bold' lang=zh-CN>，会对这个</span><span style='font-weight:bold'
- lang=en-US>response</span><span style='font-weight:bold' lang=zh-CN>输出一个</span><span
- style='font-weight:bold' lang=en-US>reward</span><span style='font-weight:
- bold' lang=zh-CN>，然而根据</span><span style='font-weight:bold' lang=en-US>reward</span><span
- style='font-weight:bold' lang=zh-CN>调整模型参数，是动态的过程。如果只是将</span><span
- style='font-weight:bold' lang=en-US>SFT</span><span style='font-weight:bold'
- lang=zh-CN>中的人类标注数据换成</span><span style='font-weight:bold' lang=en-US>model</span><span
- style='font-weight:bold' lang=zh-CN>生成的数据，是静态的。</span><span style='font-weight:
- bold' lang=en-US>)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>RL </span><span
- lang=zh-CN>fin</span><span lang=en-US>etuning</span><span lang=zh-CN>只是重复这个过程：</span></p>
- <p style='margin:0in;margin-left:1.5in'><img src="Reasoning.files/image010.jpg"
- width=1653 height=652></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>为什么用</span><span
- lang=en-US>model</span><span lang=zh-CN>自己生成的数据要好于人类标注的数据？</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>D</span><span
- lang=zh-CN>i</span><span lang=en-US>rectly optimize what we want!</span></p>
- <p style='margin:0in;margin-left:1.875in'><img
- src="Reasoning.files/image011.jpg" width=1331 height=396></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>由于我们的</span><span
- lang=en-US>model</span><span lang=zh-CN>是概率模型，所以我们的目标是</span><span lang=en-US>maximize
- r</span><span lang=zh-CN>（正确率，</span><span lang=en-US>reward</span><span
- lang=zh-CN>，</span><span lang=en-US>bleu…</span><span lang=zh-CN>任何指标）的期望值，为了得到期望值，我们需要采样，</span><span
- style='font-weight:bold' lang=zh-CN>这也是为什么有策略梯度的原因。</span></p>
- <p style='margin:0in;margin-left:2.25in'><img
- src="Reasoning.files/image012.jpg" width=1488 height=422></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>并不是所有任务都是</span><span
- lang=en-US>verifiable</span><span lang=zh-CN>，如</span><span lang=en-US>creative
- writing.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>RL </span><span
- lang=zh-CN>fin</span><span lang=en-US>etuning</span><span lang=zh-CN>很好，但是还有两个技巧可以继续提升</span></p>
- <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
-  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US>A</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>gg</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US>regation</span></li>
- </ol>
- <p style='margin:0in;margin-left:2.625in'><img
- src="Reasoning.files/image013.png" width=1211 height=558></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:2.25in'><img
- src="Reasoning.files/image014.png" width=1408 height=640></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=zh-CN>也就是边缘化，或者说多次采样，求和（选频率最高的那个</span><span lang=en-US>answer</span><span
- lang=zh-CN>）</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.75in'><img src="Reasoning.files/image015.jpg"
- width=1627 height=867></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>这个技巧，对答案准确率的提升很大！</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>2.R</span><span
- lang=zh-CN>et</span><span lang=en-US>rieval</span></p>
- <p style='margin:0in;margin-left:2.625in'><img
- src="Reasoning.files/image016.png" width=1361 height=589></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
- style='font-weight:bold'>Summary</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US>&nbsp;</p>
- <p style='margin:0in;margin-left:2.625in'><img
- src="Reasoning.files/image017.jpg" width=1274 height=460></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US>&nbsp;</p>
-</ul>
+<p style='margin:0in;margin-left:2.25in'><img src="Reasoning.files/image001.jpg"
+width=569 height=238></p>
+
+<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>llm</span><span
+lang=zh-CN>的推理指的是，在输入和输出之间，的</span><span style='font-weight:bold' lang=en-US>intermediate
+tokens</span><span lang=zh-CN>。所以说，</span><span style='font-weight:bold'
+lang=zh-CN>这里的</span><span style='font-weight:bold' lang=en-US>reasoning</span><span
+style='font-weight:bold' lang=zh-CN>和人类真正的推理是不同的！！</span><span lang=en-US> </span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;margin-left:1.125in'><img
+src="Reasoning.files/image002.jpg" width=724 height=319></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>那么，为什么</span><span
+lang=en-US>llm</span><span lang=zh-CN>需要推理呢，或者说需要中间</span><span lang=en-US>token</span><span
+lang=zh-CN>呢？</span></p>
+
+<p style='margin:0in;margin-left:1.5in'><img src="Reasoning.files/image003.jpg"
+width=796 height=292></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>一个直觉的回答是，人类进行回答时，也需要进行思考，思考的过程就是中间</span><span
+lang=en-US>token</span><span lang=zh-CN>。但是</span><span style='font-weight:
+bold' lang=en-US>llm</span><span style='font-weight:bold' lang=zh-CN>只是概率模型，不是人类。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>真正的答案是：对于一个</span><span
+lang=en-US>size</span><span lang=zh-CN>为</span><span lang=en-US>T</span><span
+lang=zh-CN>的布尔电路可以解决的问题，</span><span lang=en-US>constant-size transformers</span><span
+lang=zh-CN>需要</span><span lang=en-US>O(T)</span><span lang=zh-CN>个</span><span
+lang=en-US>token</span><span lang=zh-CN>来解决（斯坦福的一项研究，从理论的角度来解释推理）。（</span><span
+style='font-weight:bold' lang=zh-CN>深度不够，长度来凑</span><span lang=zh-CN>）</span></p>
+
+<p style='margin:0in;margin-left:3.0in'><img src="Reasoning.files/image004.jpg"
+width=639 height=215></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>只进行预训练的</span><span
+lang=en-US>llm</span><span lang=zh-CN>也是有推理能力的。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>Pretrained
+llm are ready to reason. All we need is<span style='mso-spacerun:yes'> 
+</span>decoding.</p>
+
+<p style='margin:0in;margin-left:1.125in'><img
+src="Reasoning.files/image005.jpg" width=854 height=339></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>从上图看出，如果是</span><span
+lang=en-US>greedy decoding</span><span lang=zh-CN>，那么没有</span><span lang=en-US>reasoning</span><span
+lang=zh-CN>的过程，而如果不用</span><span lang=en-US>greedy decoding</span><span
+lang=zh-CN>，进行多次采样</span><span lang=en-US> </span><span lang=zh-CN>，那么会生成具有</span><span
+lang=en-US>reasoing</span><span lang=zh-CN>的</span><span lang=en-US>response</span><span
+lang=zh-CN>，并且答案是正确的。</span><span style='font-weight:bold' lang=zh-CN>而且在这些具有</span><span
+style='font-weight:bold' lang=en-US>reasoing</span><span style='font-weight:
+bold' lang=zh-CN>的</span><span style='font-weight:bold' lang=en-US>response</span><span
+style='font-weight:bold' lang=zh-CN>中，答案</span><span style='font-weight:bold'
+lang=en-US>token</span><span style='font-weight:bold' lang=zh-CN>的置信度是很高的，</span><span
+lang=zh-CN>高于</span><span lang=en-US>greedy decoding</span><span lang=zh-CN>的答案</span><span
+lang=en-US>token</span><span lang=zh-CN>的置信度。（什么是</span><span lang=en-US>greedy
+decoding, </span><span lang=zh-CN>即</span><span lang=en-US>argmax(answer|problem))</span><span
+lang=zh-CN>）</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>因此，我们可以不用</span><span
+lang=en-US>greedy decoding</span><span lang=zh-CN>，而是用</span><span lang=en-US>chain-of-thought
+decoding</span><span lang=zh-CN>，也就是选择答案</span><span lang=en-US>token</span><span
+lang=zh-CN>置信度最高的</span><span lang=en-US>response</span><span lang=zh-CN>，而不是选择下一个</span><span
+lang=en-US>token</span><span lang=zh-CN>概率最高的。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:1.875in'><img
+src="Reasoning.files/image006.jpg" width=627 height=237></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>chain-of-thought
+decoding</span><span lang=zh-CN>是在</span><span lang=en-US>decoding</span><span
+lang=zh-CN>阶段进行的，需要采样多个</span><span lang=en-US>response</span><span lang=zh-CN>。我们能不能直接改变模型的输出分布，让具有</span><span
+lang=en-US>reasoning </span><span lang=zh-CN>的</span><span lang=en-US>response</span><span
+lang=zh-CN>排在前面呢。如果这种</span><span lang=en-US>response</span><span lang=zh-CN>排在前面，那么就可以使用</span><span
+lang=en-US>greedy decoding</span><span lang=zh-CN>了。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>cha</span><span
+lang=en-US>in of thought prompting</span><span lang=zh-CN>（在</span><span
+lang=en-US>prompt</span><span lang=zh-CN>中加入</span><span lang=en-US>let's think
+step by step</span><span lang=zh-CN>，或者加入</span><span lang=en-US>few shot
+examples</span><span lang=zh-CN>在这里也属于这个范畴）就是相当于改变了输出分布，即通过改变</span><span
+lang=en-US>output=f(x)</span><span lang=zh-CN>中的</span><span lang=en-US>x</span><span
+lang=zh-CN>，来改变输出，将具有</span><span lang=en-US>reasoning</span><span lang=zh-CN>的</span><span
+lang=en-US>response</span><span lang=zh-CN>的概率推到顶部。这也是为什么</span><span
+lang=en-US>cot prompting</span><span lang=zh-CN>有用的原因。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>但是通过改变</span><span
+lang=en-US>prompt</span><span lang=zh-CN>（</span><span lang=en-US>llm</span><span
+lang=zh-CN>是一个函数</span><span lang=en-US>f(x)</span><span lang=zh-CN>，</span><span
+style='font-weight:bold' lang=zh-CN>改变</span><span style='font-weight:bold'
+lang=en-US>f(x)</span><span style='font-weight:bold' lang=zh-CN>中的</span><span
+style='font-weight:bold' lang=en-US>x</span><span lang=zh-CN>）这种方式，虽然简单，但是需要我们设计合适的</span><span
+lang=en-US>task-specific examples</span><span lang=zh-CN>，并不通用（只加入</span><span
+lang=en-US>lets think step by step</span><span lang=zh-CN>效果一般），</span></p>
+
+<p style='margin:0in;margin-left:1.5in'><img src="Reasoning.files/image007.jpg"
+width=640 height=230></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>那么就要改变</span><span
+lang=en-US>f(x)</span><span lang=zh-CN>中的</span><span lang=en-US>f</span><span
+lang=zh-CN>，可以通过</span><span lang=en-US>SFT</span><span lang=zh-CN>，su</span><span
+lang=en-US>pervised finetuning</span></p>
+
+<p style='margin:0in;margin-left:1.5in'><img src="Reasoning.files/image008.jpg"
+width=707 height=174></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>但是</span><span
+lang=en-US>SFT</span><span lang=zh-CN>并不能很好的泛化，并且</span><span lang=en-US>scaling
+dees help too much(don’t<span style='mso-spacerun:yes'>  </span>scale blindly
+,once the paradigm is wrong , no matter how you scale, it doesn't work)</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>SFT</span><span
+lang=zh-CN>为什么不能泛化呢？原因在于用</span><span style='font-weight:bold' lang=zh-CN>人类标注的数据进行训练</span><span
+lang=zh-CN>。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>所以，用</span><span
+lang=en-US>model</span><span lang=zh-CN>自己生成的解决方案来训练模型，而不是用人类标注的解决方案来训练模型。</span></p>
+
+<p style='margin:0in;margin-left:1.5in'><img src="Reasoning.files/image009.jpg"
+width=824 height=183></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>例如</span><span
+style='font-weight:bold' lang=zh-CN>对于数学问题，我们只知道正确答案，不知道解题过程，让模型自己生成带有</span><span
+style='font-weight:bold' lang=en-US>reasoning</span><span style='font-weight:
+bold' lang=zh-CN>的</span><span style='font-weight:bold' lang=en-US>response(</span><span
+style='font-weight:bold' lang=zh-CN>解题过程</span><span style='font-weight:bold'
+lang=en-US>)</span><span style='font-weight:bold' lang=zh-CN>，然后选出具有正确答案的</span><span
+style='font-weight:bold' lang=en-US>response</span><span style='font-weight:
+bold' lang=zh-CN>，作为训练数据</span><span lang=zh-CN>。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>原始的</span><span
+lang=en-US>SFT</span><span lang=zh-CN>，是用人类标注数据，现在只是将</span><span lang=en-US>SFT</span><span
+lang=zh-CN>中的人类标注数据换成</span><span lang=en-US>model</span><span lang=zh-CN>自己生成的数据，其他地方和</span><span
+lang=en-US>SFT</span><span lang=zh-CN>没有区别。</span><span lang=en-US>(</span><span
+style='font-weight:bold' lang=en-US>RL</span><span style='font-weight:bold'
+lang=zh-CN>是生成一个</span><span style='font-weight:bold' lang=en-US>response</span><span
+style='font-weight:bold' lang=zh-CN>，会对这个</span><span style='font-weight:bold'
+lang=en-US>response</span><span style='font-weight:bold' lang=zh-CN>输出一个</span><span
+style='font-weight:bold' lang=en-US>reward</span><span style='font-weight:bold'
+lang=zh-CN>，然而根据</span><span style='font-weight:bold' lang=en-US>reward</span><span
+style='font-weight:bold' lang=zh-CN>调整模型参数，是动态的过程。如果只是将</span><span
+style='font-weight:bold' lang=en-US>SFT</span><span style='font-weight:bold'
+lang=zh-CN>中的人类标注数据换成</span><span style='font-weight:bold' lang=en-US>model</span><span
+style='font-weight:bold' lang=zh-CN>生成的数据，是静态的。</span><span style='font-weight:
+bold' lang=en-US>)</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>RL </span><span
+lang=zh-CN>fin</span><span lang=en-US>etuning</span><span lang=zh-CN>只是重复这个过程：</span></p>
+
+<p style='margin:0in;margin-left:1.5in'><img src="Reasoning.files/image010.jpg"
+width=674 height=266></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>为什么用</span><span
+lang=en-US>model</span><span lang=zh-CN>自己生成的数据要好于人类标注的数据？</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>D</span><span
+lang=zh-CN>i</span><span lang=en-US>rectly optimize what we want!</span></p>
+
+<p style='margin:0in;margin-left:1.875in'><img
+src="Reasoning.files/image011.jpg" width=630 height=188></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>由于我们的</span><span
+lang=en-US>model</span><span lang=zh-CN>是概率模型，所以我们的目标是</span><span lang=en-US>maximize
+r</span><span lang=zh-CN>（正确率，</span><span lang=en-US>reward</span><span
+lang=zh-CN>，</span><span lang=en-US>bleu…</span><span lang=zh-CN>任何指标）的期望值，为了得到期望值，我们需要采样，</span><span
+style='font-weight:bold' lang=zh-CN>这也是为什么有策略梯度的原因。</span></p>
+
+<p style='margin:0in;margin-left:2.25in'><img src="Reasoning.files/image012.jpg"
+width=590 height=167></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>并不是所有任务都是</span><span
+lang=en-US>verifiable</span><span lang=zh-CN>，如</span><span lang=en-US>creative
+writing.</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>RL </span><span
+lang=zh-CN>fin</span><span lang=en-US>etuning</span><span lang=zh-CN>很好，但是还有两个技巧可以继续提升</span></p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=en-US>A</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>gg</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=en-US>regation</span></li>
+</ol>
+
+<p style='margin:0in;margin-left:2.625in'><img
+src="Reasoning.files/image013.png" width=389 height=179></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:2.25in'><img src="Reasoning.files/image014.png"
+width=500 height=227></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=zh-CN>也就是边缘化，或者说多次采样，求和（选频率最高的那个</span><span lang=en-US>answer</span><span
+lang=zh-CN>）</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in'><img src="Reasoning.files/image015.jpg"
+width=535 height=285></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>这个技巧，对答案准确率的提升很大！</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>2.R</span><span
+lang=zh-CN>et</span><span lang=en-US>rieval</span></p>
+
+<p style='margin:0in;margin-left:2.625in'><img
+src="Reasoning.files/image016.png" width=670 height=290></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US><span
+style='font-weight:bold'>Summary</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;margin-left:2.625in'><img
+src="Reasoning.files/image017.jpg" width=502 height=181></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
 
 </div>
 

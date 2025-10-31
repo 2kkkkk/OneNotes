@@ -10,20 +10,20 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="Catboost.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:23.2381in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:22.8062in'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:.4243in;width:1.7402in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.7402in'>
 
 <p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'><span lang=en-US>C</span><span
 lang=zh-CN>at</span><span lang=en-US>boost</span></p>
 
 </div>
 
-<div style='direction:ltr;margin-top:.0423in;margin-left:.4243in;width:1.6687in'>
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
 
 <p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
 Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
@@ -34,583 +34,672 @@ style='font-family:Calibri'>30</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:23.2381in'>
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:22.8062in'>
 
-<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
- style='font-weight:bold' lang=en-US>1.</span><span style='font-weight:bold'
- lang=zh-CN>类别特征的处理</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=en-US>1)one-hot</span><span lang=zh-CN>，但是当类别数量过多时，如</span><span
- lang=en-US>user_id</span><span lang=zh-CN>，会出现维度灾难。</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=en-US>2</span><span lang=zh-CN>）</span><span lang=en-US>target encodeing</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=en-US>3</span><span lang=zh-CN>）在</span><span lang=en-US>L</span><span
- lang=zh-CN>ight</span><span lang=en-US>gbm</span><span lang=zh-CN>中：</span></p>
- <p style='margin-left:1.125in;margin-top:24pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span style='font-weight:bold;
- background:white'>核心思想：用“数据”代替“类别名”</span></p>
- <p style='margin-left:1.125in;margin-top:12pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span style='background:white'>在梯度提升树中，分裂节点时需要找到一个特征和一个阈值，使得分裂后的数据集的损失函数降低最多。对于数值特征，这很直接：对特征值排序，然后找到一个切分点（例如：年龄
- &lt;= 30）。</span></p>
- <p style='margin-left:1.125in;margin-top:12pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span style='background:white'>但对于类别特征（例如：城市
- = {北京， 上海， 广州，
- 深圳}），你不能直接对类别名进行排序（“北京”和“上海”没有大小关系）。因此，必须找到一种方法将类别特征“转换”成某种可以排序的数值。</span></p>
- <p style='margin-left:1.125in;margin-top:24pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span style='font-weight:bold;
- background:white'>LightGBM的方法：基于梯度的统计量</span></p>
- <p style='margin-left:1.125in;margin-top:12pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span style='background:white'>LightGBM采用的是一种非常流行且有效的方法，叫做&nbsp;“梯度统计”&nbsp;或&nbsp;“均值编码”&nbsp;的在线变体。</span></p>
- <p style='margin-left:1.125in;margin-top:12pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span style='background:white'>具体是什么意思？</span></p>
- <ol type=i style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:28.0pt;font-weight:normal;font-style:normal'>
-  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      color:#0F1115'><span style='font-family:quote-cjk-patch;font-size:28.0pt;
-      font-weight:normal;font-style:normal;font-family:quote-cjk-patch;
-      font-size:28.0pt;background:white'>什么是梯度？</span></li>
- </ol>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>在梯度提升的每一步，我们都在拟合一个新的弱学习器（一棵树）来纠正之前模型的错误。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>对于每一个样本，我们都可以计算其损失函数关于当前模型预测值的梯度（对于回归问题，梯度大致就是残差；对于二分类，有特定的形式）。这个梯度表示了“为了降低这个样本的损失，我们的新模型应该往哪个方向预测”。</span></li>
- </ul>
- <ol type=i style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:28.0pt;font-weight:normal;font-style:normal'>
-  <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      color:#0F1115'><span style='font-family:quote-cjk-patch;font-size:28.0pt;
-      font-weight:normal;font-style:normal;font-family:quote-cjk-patch;
-      font-size:28.0pt;background:white'>如何用于类别特征？</span></li>
- </ol>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>假设我们有一个类别特征“城市”，现在要考虑根据“城市”来分裂节点。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>传统的均值编码是：用整个训练集上，目标变量的均值来代表一个类别（例如，北京的用户平均购买金额是1.2万元）。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>LightGBM的梯度统计方法是：在当前模型下</span><span
-      style='font-weight:bold;font-family:quote-cjk-patch;font-size:28.0pt;
-      background:white'>，用该节点内（注意：是当前要分裂的节点，不是全局）</span><span style='font-family:
-      quote-cjk-patch;font-size:28.0pt;background:white'>样本梯度的均值（或某种统计量）来代表一个类别。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>简单来说：</span><span
-      style='font-weight:bold;font-family:quote-cjk-patch;font-size:28.0pt;
-      background:white'>它不是用“目标变量的平均值”，而是用“当前模型残差（梯度）的平均值”来给每个类别打分。</span></li>
- </ul>
- <ol type=i style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:28.0pt;font-weight:normal;font-style:normal'>
-  <li value=3 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      color:#0F1115'><span style='font-family:quote-cjk-patch;font-size:28.0pt;
-      font-weight:normal;font-style:normal;font-family:quote-cjk-patch;
-      font-size:28.0pt;background:white'>分裂过程：</span></li>
- </ol>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>对于节点上的所有样本，遍历每个类别特征。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>对于某个类别特征（如“城市”），计算每个城市类别（北京、上海...）对应的梯度统计量（比如，梯度均值）。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>然后，按照这个梯度统计量的大小对类别进行排序。比如，计算出来：</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-weight:bold;font-family:quote-cjk-patch;font-size:28.0pt;
-      background:white'>北京： 梯度均值 = 0.1</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-weight:bold;font-family:quote-cjk-patch;font-size:28.0pt;
-      background:white'>上海： 梯度均值 = 0.5</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-weight:bold;font-family:quote-cjk-patch;font-size:28.0pt;
-      background:white'>广州： 梯度均值 = -0.2</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-weight:bold;font-family:quote-cjk-patch;font-size:28.0pt;
-      background:white'>深圳： 梯度均值 = 0.3</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>排序后，类别顺序可能是：广州(-0.2)
-      -&gt; 北京(0.1) -&gt; 深圳(0.3) -&gt; 上海(0.5)。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>现在，类别特征被转化成了一个可以排序的“伪数值特征”。分裂时，就可以像数值特征一样，寻找最佳的分割点。例如，分裂规则可能是：城市
-      in {广州， 北京}&nbsp;vs&nbsp;城市 in {深圳， 上海}。</span></li>
- </ul>
- <p style='margin-left:1.125in;margin-top:24pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span style='font-weight:bold;
- background:white'>CatBoost论文指出的问题</span></p>
- <p style='margin-left:1.125in;margin-top:12pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span style='background:white'>现在再回头看CatBoost论文中指出的两个问题就非常清晰了：</span></p>
- <ol type=i style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:28.0pt;font-weight:normal;font-style:normal'>
-  <li value=4 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      color:#0F1115'><span style='font-family:quote-cjk-patch;font-size:28.0pt;
-      font-weight:normal;font-style:normal;font-family:quote-cjk-patch;
-      font-size:28.0pt;background:white'>计算时间长：<br>
-            “计算每个类别在每一步的统计量”</span></li>
- </ol>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>因为每构建一棵树，在每个节点分裂时，对于每一个类别特征，都需要重新计算所有出现类别的梯度统计量。对于高基数（类别非常多）的特征，这个排序和统计的计算成本非常高。</span></li>
- </ul>
- <ol type=i style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:28.0pt;font-weight:normal;font-style:normal'>
-  <li value=5 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      color:#0F1115'><span style='font-family:quote-cjk-patch;font-size:28.0pt;
-      font-weight:normal;font-style:normal;font-family:quote-cjk-patch;
-      font-size:28.0pt;background:white'>内存消耗大：<br>
-            “存储哪个类别属于哪个节点”</span></li>
- </ol>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>一旦按照梯度统计量排序并完成了分裂，树的结构就记录了“哪些类别被分到了左子树，哪些被分到了右子树”。例如，上面的例子中，规则就是&nbsp;城市
-      in {广州， 北京}。LightGBM需要存储这个类别集合，对于高基数特征，存储这些集合会消耗大量内存。</span></li>
- </ul>
- <p style='margin-left:1.125in;margin-top:24pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span style='font-weight:bold;
- background:white'>LightGBM的解决方案及其新问题</span></p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>解决方案：为了缓解上述问题，LightGBM会将那些出现频率很低的尾部类别&nbsp;合并成一个集群。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>新问题：丢失信息。把“乌鲁木齐”、“拉萨”这样罕见的类别和“太原”合并成一个“其他”类别，无疑会损失这些类别本身特有的信息。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:28.0pt;background:
-      white' lang=en-US>L</span><span style='font-weight:bold;font-family:微软雅黑;
-      font-size:28.0pt;background:white' lang=zh-CN>ight</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:28.0pt;background:
-      white' lang=en-US>GBM</span><span style='font-weight:bold;font-family:
-      微软雅黑;font-size:28.0pt;background:white' lang=zh-CN>论文中作者也提到最好将高基数类别转换为数值特征。所以</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:28.0pt;background:
-      white' lang=en-US>T</span><span style='font-weight:bold;font-family:微软雅黑;
-      font-size:28.0pt;background:white' lang=zh-CN>ar</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:28.0pt;background:
-      white' lang=en-US>get encoding</span><span style='font-weight:bold;
-      font-family:微软雅黑;font-size:28.0pt;background:white' lang=zh-CN>似乎是最有效的处理高基数类别特征的方法。</span></li>
- </ul>
- <p style='margin-left:1.125in;margin-top:24pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span style='font-weight:bold;
- background:white'>对比CatBoost的TS方法</span></p>
- <p style='margin-left:1.125in;margin-top:12pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span style='background:white'>论文最后一句是关键：</span></p>
- <p style='margin:0in;margin-left:1.125in;font-family:quote-cjk-patch;
- font-size:28.0pt;color:#0F1115'><span style='background:white'>“Note that TS
- features require calculating and storing only one number per one category.”</span></p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>TS&nbsp;是
-      Target Statistics（目标统计）的缩写，是CatBoost的核心技术之一。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>它的意思是：在数据预处理阶段，对每个类别，计算一个唯一的、全局的数值来代替它（例如，基于目标变量的期望值）。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>优势：</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>计算：这个数值只需要在训练开始前计算一次，之后这个特征就被当作数值特征来处理。避免了LGB在每棵树每个节点都要重新计算的开销。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>内存：不需要存储复杂的类别集合分裂规则，只需要存储一个转换后的数值，内存占用小。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;color:#0F1115;
-      background:white'>挑战：</span><span style='font-weight:bold;font-family:
-      quote-cjk-patch;font-size:28.0pt;color:black;background:white'>TS方法本身最大的挑战是目标泄漏&nbsp;和过拟合，因为你在用目标y的信息来构造特征。这正是CatBoost论文重点解决的问题，它通过一种“有序”的编码方式巧妙地避免了这个问题。</span></li>
- </ul>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:28.0pt;
- color:black'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
- style='font-weight:bold' lang=en-US>2.T</span><span style='font-weight:bold'
- lang=zh-CN>ar</span><span style='font-weight:bold' lang=en-US>get statistics</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=en-US><span style='mso-spacerun:yes'> </span>T</span><span
- style='font-weight:bold' lang=zh-CN>ar</span><span style='font-weight:bold'
- lang=en-US>get encoding</span><span style='font-weight:bold' lang=zh-CN>是很容易产生目标泄漏的，比如某个类别只有一个取值，那么此时用目标进行编码的话，其实几乎相当于直接用目标列作为特征列。</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
- lang=en-US><span style='font-weight:bold'>1)greedy </span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
- lang=en-US><span style='font-weight:bold'>2)hold-out</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
- lang=en-US><span style='font-weight:bold'>3)leave one out</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
- lang=en-US><span style='font-weight:bold'>4)ordered </span></p>
- <p style='margin-left:.75in;margin-top:12pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:36.0pt;color:#0F1115'><span style='background:white'>这是CatBoost的创新核心，它巧妙地借鉴了时间序列验证的思想，并将其应用于任意数据集，完美地解决了上述所有问题。</span></p>
- <p style='margin-left:.75in;margin-top:12pt;margin-bottom:12pt;font-size:36.0pt;
- color:#0F1115'><span style='font-family:quote-cjk-patch;background:white'
- lang=zh-CN>核心洞察：将数据集想象成一个时间序列。在预测&nbsp;</span><span style='font-family:微软雅黑;
- background:white' lang=en-US> </span><span style='font-style:italic;
- font-family:KaTeX_Math;background:white' lang=zh-CN>t</span><span
- style='font-family:quote-cjk-patch;background:white' lang=zh-CN>&nbsp;时刻的值时，你只能使用&nbsp;</span><span
- style='font-family:KaTeX_Main;background:white' lang=zh-CN>t−1</span><span
- style='font-style:italic;font-family:微软雅黑;background:white' lang=en-US> </span><span
- style='font-family:quote-cjk-patch;background:white' lang=zh-CN>时刻及之前的信息。</span></p>
- <p style='margin-left:.75in;margin-top:12pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:36.0pt;color:#0F1115'><span style='background:white'>具体实现
- - 引入“虚拟时间”（Artificial Time）：</span></p>
- <p style='margin:0in;margin-left:.75in;font-size:36.0pt;color:#0F1115'><span
- style='font-family:quote-cjk-patch;background:white' lang=zh-CN>随机排列：对整个训练数据集进行</span><span
- style='font-weight:bold;font-family:quote-cjk-patch;background:white'
- lang=zh-CN>一次随机排序（Pe</span><span style='font-family:quote-cjk-patch;
- background:white' lang=zh-CN>rmutation），生成一个“虚拟时间”顺序。假设排序后的样本索引是&nbsp;</span><span
- style='font-family:KaTeX_Main;background:white' lang=zh-CN>σ(1),σ(2),...,σ(n)</span><span
- style='font-style:italic;font-family:微软雅黑;background:white' lang=en-US> </span><span
- style='font-family:quote-cjk-patch;background:white' lang=zh-CN>。</span></p>
- <p style='margin:0in;margin-left:.75in;font-size:36.0pt;color:#0F1115'><span
- style='font-family:quote-cjk-patch;background:white'>有序编码：对于每个样本&nbsp;</span><span
- style='font-family:KaTeX_Main;background:white'>i</span><span
- style='font-family:quote-cjk-patch;background:white'>（在虚拟时间顺序中），</span><span
- style='font-weight:bold;font-family:quote-cjk-patch;background:white'>计算其类别特征编码时，只使用“过去”的样本（即排在它前面的样本）</span><span
- style='font-family:quote-cjk-patch;background:white'>。</span></p>
- <p style='margin-left:.75in;margin-top:12pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:36.0pt;color:#0F1115'><span style='background:white'>为什么
- Ordered TS 是完美的？</span></p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>解决目标泄漏：在计算样本&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>i</span><span
-      style='font-style:italic;font-family:KaTeX_Math;font-size:36.0pt;
-      background:white'>i</span><span style='font-family:quote-cjk-patch;
-      font-size:36.0pt;background:white'>&nbsp;的编码时，完全没有使用样本&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>i</span><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>&nbsp;本身及其“未来”的信息。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>解决条件偏移：</span></li>
- </ul>
- <p style='margin:0in;margin-left:1.125in;font-size:36.0pt;color:#0F1115'><span
- style='font-family:quote-cjk-patch;background:white'>训练时：对于第&nbsp;</span><span
- style='font-style:italic;font-family:KaTeX_Math;background:white'>i</span><span
- style='font-family:quote-cjk-patch;background:white'>&nbsp;个样本，我们使用前&nbsp;</span><span
- style='font-family:KaTeX_Main;background:white'>i−1</span><span
- style='font-family:quote-cjk-patch;background:white'>个样本来计算其编码。</span></p>
- <p style='margin:0in;margin-left:1.125in;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>推理时：对于一个新样本，我们使用整个训练集来计算其编码。</span></p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>这看起来又产生了分布不一致？但CatBoost在训练模型本身时，也采用了同样的“有序”原则，这被称为&nbsp;“Ordered
-      Boosting”。</span></li>
- </ul>
- <p style='margin-left:.75in;margin-top:12pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:36.0pt;color:#0F1115'><span style='background:white'>Ordered
- Boosting 简介：</span></p>
- <p style='margin-left:.75in;margin-top:12pt;margin-bottom:12pt;font-size:36.0pt;
- color:#0F1115'><span style='font-family:quote-cjk-patch;background:white'
- lang=zh-CN>在梯度提升的每一步，</span><span style='font-weight:bold;font-family:quote-cjk-patch;
- background:white' lang=zh-CN>当计算第&nbsp;</span><span style='font-weight:bold;
- font-family:KaTeX_Main;background:white' lang=zh-CN>i</span><span
- style='font-weight:bold;font-family:quote-cjk-patch;background:white'
- lang=zh-CN>&nbsp;个样本的梯度时，只使用前&nbsp;</span><span style='font-weight:bold;
- font-family:KaTeX_Main;background:white' lang=zh-CN>i−1</span><span
- style='font-weight:bold;font-style:italic;font-family:微软雅黑;background:white'
- lang=en-US> </span><span style='font-weight:bold;font-family:quote-cjk-patch;
- background:white' lang=zh-CN>&nbsp;个样本训练的模型来计算。</span><span style='font-family:
- quote-cjk-patch;background:white' lang=zh-CN>这样就保证了训练过程和编码过程处于完全相同的条件下，彻底消除了条件偏移。</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
- style='font-weight:bold' lang=en-US>3.P</span><span style='font-weight:bold'
- lang=zh-CN>re</span><span style='font-weight:bold' lang=en-US>diction shift</span></p>
- <p style='margin-left:.375in;margin-top:12pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:36.0pt;color:#0F1115'><span style='background:white'>当计算样本1的梯度时：</span></p>
- <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>模型&nbsp;F_{t-1}&nbsp;是用
-      {样本1,2,3,4} 训练的</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>但&nbsp;</span><span
-      style='font-weight:bold;font-family:quote-cjk-patch;font-size:36.0pt;
-      background:white'>F_{t-1}&nbsp;已经见过样本1本身</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>因此</span><span
-      style='font-weight:bold;font-family:quote-cjk-patch;font-size:36.0pt;
-      background:white'>计算出的梯度是有偏的</span><span style='font-family:quote-cjk-patch;
-      font-size:36.0pt;background:white'>，不能反映模型在未见过的样本上的真实表现</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
- color:#0F1115'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold'>Prediction Shift的本质：</span></p>
- <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt'>根本原因：</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>用相同的数据既训练模型又计算梯度</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt'>表现形式：训练时的梯度分布不能代表测试时的真实梯度分布</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt'>后果：基学习器过度拟合有偏信号，最终模型泛化能力下降</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt'>解决方案：</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Ordered
-      Boosting确保每个样本的梯度都用没看过该样本的模型计算</span></li>
- </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:normal'>
-  <li value=4 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      font-weight:bold'><span style='font-family:微软雅黑;font-size:48.0pt;
-      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
-      font-size:48.0pt' lang=en-US>Ord</span><span style='font-family:微软雅黑;
-      font-size:48.0pt;font-weight:bold;font-style:normal;font-weight:bold;
-      font-family:微软雅黑;font-size:48.0pt' lang=zh-CN>ered Boosting</span></li>
- </ol>
- <p style='margin:0in;margin-left:3.375in'><img
- src="Catboost.files/image001.jpg" width=1263 height=1676></p>
- <p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
- style='font-family:微软雅黑' lang=zh-CN>上图是</span><span style='font-family:微软雅黑'
- lang=en-US>catboost</span><span style='font-family:微软雅黑' lang=zh-CN>如何构建每一棵树的算法，在每轮构建新树之前，先选择一种样本排序方式σr</span><span
- style='font-family:KaTeX_Main' lang=zh-CN>​</span><span style='font-family:
- quote-cjk-patch' lang=zh-CN>，然后用当前的支持模型</span><span style='font-family:微软雅黑'
- lang=en-US>M</span><span style='font-family:微软雅黑' lang=zh-CN>和真实标签</span><span
- style='font-family:微软雅黑' lang=en-US>y</span><span style='font-family:微软雅黑'
- lang=zh-CN>，计算出每个样本的梯度</span><span style='font-family:微软雅黑' lang=en-US>/</span><span
- style='font-family:微软雅黑' lang=zh-CN>残差，即上图中的</span><span style='font-weight:
- bold;font-family:微软雅黑' lang=en-US>G</span><span style='font-weight:bold;
- font-family:微软雅黑' lang=zh-CN>和下图中的</span><span style='font-weight:bold;
- font-family:微软雅黑' lang=en-US>Residuals</span><span style='font-weight:bold;
- font-family:微软雅黑' lang=zh-CN>，</span><span style='font-family:微软雅黑'
- lang=zh-CN>然后开始构建新树。</span></p>
- <p style='margin:0in;margin-left:1.125in'><img
- src="Catboost.files/image002.jpg" width=1881 height=822></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold'>具体的确定树结构（寻找最优特征分裂点）的流程，详见：https://www.youtube.com/watch?v=3Bg2XRFOTzg&amp;t=317s</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=zh-CN>这张图中的</span><span style='font-weight:bold'
- lang=en-US>predictions</span><span style='font-weight:bold' lang=zh-CN>列就是支持模型</span><span
- style='font-weight:bold' lang=en-US>M_(r,j)</span><span lang=zh-CN>，对每一个样本排序</span><span
- lang=en-US>r</span><span lang=zh-CN>（上图相当于是一种排序），每一个样本</span><span lang=en-US>j</span><span
- lang=zh-CN>，都有一个</span><span lang=en-US>prediction</span><span lang=zh-CN>，表示的是在样本排序</span><span
- lang=en-US>r</span><span lang=zh-CN>下，用样本</span><span lang=en-US>0</span><span
- lang=zh-CN>到样本</span><span lang=en-US>j</span><span lang=zh-CN>训练出的模型的预测值，即支持模型</span><span
- lang=en-US>M_(r,j)</span><span lang=zh-CN>的预测值。</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=zh-CN>有了支持模型</span><span lang=en-US>M_(r,j)</span><span lang=zh-CN>的预测值p</span><span
- lang=en-US>redictions</span><span lang=zh-CN>列，和真实标签</span><span lang=en-US>heigth</span><span
- lang=zh-CN>列，就可以计算出每个样本的梯度</span><span lang=en-US>/</span><span lang=zh-CN>残差，即</span><span
- lang=en-US>residuals</span><span lang=zh-CN>列。</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>下面来看如何构建一棵新树。首先是树结构的确定，即特征分裂点的寻找。</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=en-US>catboost</span><span lang=zh-CN>是对称树，从算法中看出，</span><span
- style='font-weight:bold' lang=zh-CN>是一层一层的构建</span><span style='font-weight:
- bold' lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>，从树桩开始。在每一层，对所有的特征候选分裂点，按照排好序后的样本顺序，进行如下操作：将样本</span><span
- style='font-weight:bold' lang=en-US>i</span><span style='font-weight:bold'
- lang=zh-CN>根据当前树结构分到叶子节点</span><span style='font-weight:bold' lang=en-US>leaf_x</span><span
- style='font-weight:bold' lang=zh-CN>中，并记下样本</span><span style='font-weight:
- bold' lang=en-US>i</span><span style='font-weight:bold' lang=zh-CN>的梯度和le</span><span
- style='font-weight:bold' lang=en-US>af_x</span><span style='font-weight:bold'
- lang=zh-CN>当前的输出值（</span><span style='font-weight:bold' lang=en-US>leaf output</span><span
- style='font-weight:bold' lang=zh-CN>），记下后，再用加入样本</span><span style='font-weight:
- bold' lang=en-US>i</span><span style='font-weight:bold' lang=zh-CN>后的梯度更新叶子节点</span><span
- style='font-weight:bold' lang=en-US>leaf_x</span><span style='font-weight:
- bold' lang=zh-CN>的输出值，</span><span style='font-weight:bold' lang=en-US>leaf_x</span><span
- style='font-weight:bold' lang=zh-CN>新的输出值</span><span style='font-weight:bold'
- lang=en-US> = </span><span style='font-weight:bold' lang=zh-CN>加上样本</span><span
- style='font-weight:bold' lang=en-US>i</span><span style='font-weight:bold'
- lang=zh-CN>后叶子节点</span><span style='font-weight:bold' lang=en-US>leaf_x</span><span
- style='font-weight:bold' lang=zh-CN>中所有样本的梯度的平均值。</span><span
- style='font-weight:bold' lang=en-US>leaf_output</span><span style='font-weight:
- bold' lang=zh-CN>列是按样本顺序一个一个生成的，即算法图中的Δ。</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=zh-CN>有了</span><span style='font-weight:bold' lang=zh-CN>Δ列（</span><span
- style='font-weight:bold' lang=en-US>leaf_output</span><span style='font-weight:
- bold' lang=zh-CN>列）之后</span><span style='font-weight:bold' lang=en-US> </span><span
- style='font-weight:bold' lang=zh-CN>，计算Δ和梯度</span><span style='font-weight:
- bold' lang=en-US>G</span><span style='font-weight:bold' lang=zh-CN>（</span><span
- style='font-weight:bold' lang=en-US>residuals</span><span style='font-weight:
- bold' lang=zh-CN>列）的余弦相似度，选择余弦相似度最大的作为最优分裂点。这样一层一层，就确定了树结构</span><span
- style='font-weight:bold' lang=en-US> </span><span style='font-weight:bold'
- lang=zh-CN>。</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=zh-CN>确定了树结构之后</span><span lang=en-US> </span><span lang=zh-CN>，对</span><span
- style='font-weight:bold' lang=zh-CN>所有排序方式下的支持模型</span><span lang=zh-CN>进行更新，</span></p>
- <p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
- style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>从算法中也可以看出，是两层</span><span
- style='font-weight:bold;font-family:微软雅黑' lang=en-US>for</span><span
- style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>循环，对每种排序</span><span
- style='font-weight:bold;font-family:KaTeX_Main;color:#0F1115;background:white'
- lang=zh-CN>σ</span><span style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>，每个样本i，都更新支持模型对排序</span><span
- style='font-weight:bold;font-family:KaTeX_Main;color:#0F1115;background:white'
- lang=zh-CN>σ</span><span style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>下样本</span><span
- style='font-weight:bold;font-family:微软雅黑' lang=en-US>i</span><span
- style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>的预测值。</span></p>
- <p style='margin:0in;margin-left:1.875in'><img
- src="Catboost.files/image003.jpg" width=1523 height=603></p>
- <p style='margin-left:.375in;margin-top:12pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:36.0pt;color:#0F1115'><span style='background:white'>CatBoost通过支持模型来构建每棵树，其核心过程如下：</span></p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>支持模型的作用：在Ordered
-      Boosting模式下，CatBoost会维护一组支持模型&nbsp;</span><span style='font-family:KaTeX_Main;
-      font-size:36.0pt;background:white'>Mr,j</span><span style='font-family:
-      quote-cjk-patch;font-size:36.0pt;background:white'>，其中&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>r</span><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>&nbsp;代表排列的索引，</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>j</span><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>&nbsp;代表在这个排列中前&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>j</span><span
-      style='font-style:italic;font-family:KaTeX_Math;font-size:36.0pt;
-      background:white'>j</span><span style='font-family:quote-cjk-patch;
-      font-size:36.0pt;background:white'>个样本。支持模型&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>Mr,j</span><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>的含义是基于排列&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>σr</span><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>&nbsp;中前&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>j</span><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>&nbsp;个样本训练得到的模型状态。它的核心任务是提供无偏的梯度估计。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>如何构建树结构：在每次迭代&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>t</span><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>&nbsp;要构建新树&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>Tt</span><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>时，算法会随机选择一个排列&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>σ</span><span
-      style='font-style:italic;font-family:KaTeX_Math;font-size:36.0pt;
-      background:white'>r</span><span style='font-family:KaTeX_Main;font-size:
-      36.0pt;background:white'>​</span><span style='font-family:quote-cjk-patch;
-      font-size:36.0pt;background:white'>，然后利用对应的支持模型来计算梯度。具体来说，对于排列中的样本&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>i</span><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>，使用支持模型&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>Mr,σr(i)−1</span><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>（即用排在&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>i</span><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>&nbsp;之前的样本训练的模型）来计算其梯度&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>gradr,σr(i)−1(i)</span><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>，<br>
-            这确保了在计算样本&nbsp;</span><span style='font-family:KaTeX_Main;
-      font-size:36.0pt;background:white'>i</span><span style='font-style:italic;
-      font-family:KaTeX_Math;font-size:36.0pt;background:white'>i</span><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>&nbsp;的梯度时，模型没有见过样本&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>i</span><span
-      style='font-style:italic;font-family:KaTeX_Math;font-size:36.0pt;
-      background:white'>i</span><span style='font-family:quote-cjk-patch;
-      font-size:36.0pt;background:white'>&nbsp;本身，从而得到无偏的梯度估计。这棵树的结构（即分裂规则）&nbsp;就是依据这些无偏梯度学习到的。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>更新支持模型：一旦新的树结构&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>Tt​</span><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>&nbsp;确定，CatBoost并不会只更新一个最终模型，而是会用这棵树的树结构去更新所有的支持模型。这就是图中“用树结构&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>Tt</span><span
-      style='font-style:italic;font-family:KaTeX_Math;font-size:36.0pt;
-      background:white'>Tt</span><span style='font-family:KaTeX_Main;
-      font-size:36.0pt;background:white'>​</span><span style='font-family:quote-cjk-patch;
-      font-size:36.0pt;background:white'>&nbsp;更新所有支持模型”这一步。对于每一个支持模型&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>Mr′,j</span><span
-      style='font-style:italic;font-family:KaTeX_Math;font-size:36.0pt;
-      background:white'>Mr</span><span style='font-family:KaTeX_Main;
-      font-size:36.0pt;background:white'>′,</span><span style='font-style:italic;
-      font-family:KaTeX_Math;font-size:36.0pt;background:white'>j</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>​</span><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>，都会根据其对应的排列&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>σr′</span><span
-      style='font-style:italic;font-family:KaTeX_Math;font-size:36.0pt;
-      background:white'>σr</span><span style='font-family:KaTeX_Main;
-      font-size:36.0pt;background:white'>′​</span><span style='font-family:
-      quote-cjk-patch;font-size:36.0pt;background:white'>&nbsp;和前&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>j</span><span
-      style='font-style:italic;font-family:KaTeX_Math;font-size:36.0pt;
-      background:white'>j</span><span style='font-family:quote-cjk-patch;
-      font-size:36.0pt;background:white'>&nbsp;个样本，计算出&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>Tt</span><span
-      style='font-style:italic;font-family:KaTeX_Math;font-size:36.0pt;
-      background:white'>Tt</span><span style='font-family:KaTeX_Main;
-      font-size:36.0pt;background:white'>​</span><span style='font-family:quote-cjk-patch;
-      font-size:36.0pt;background:white'>&nbsp;在这组特定数据上对应的叶子节点值，然后更新&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>Mr′,j</span><span
-      style='font-style:italic;font-family:KaTeX_Math;font-size:36.0pt;
-      background:white'>Mr</span><span style='font-family:KaTeX_Main;
-      font-size:36.0pt;background:white'>′,</span><span style='font-style:italic;
-      font-family:KaTeX_Math;font-size:36.0pt;background:white'>j</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>​</span><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>&nbsp;。这样，所有支持模型都共享同一棵树结构&nbsp;</span><span
-      style='font-family:KaTeX_Main;font-size:36.0pt;background:white'>Tt</span><span
-      style='font-style:italic;font-family:KaTeX_Math;font-size:36.0pt;
-      background:white'>Tt</span><span style='font-family:KaTeX_Main;
-      font-size:36.0pt;background:white'>​</span><span style='font-family:quote-cjk-patch;
-      font-size:36.0pt;background:white'>，但各自拥有基于自身数据计算的叶子节点值。</span></li>
- </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.75in'><img src="Catboost.files/image004.jpg"
- width=2020 height=748></p>
- <p style='margin-left:.375in;margin-top:24pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;
- background:white'>训练期间——树结构与支持模型的更新</span></p>
- <p style='margin-left:.75in;margin-top:12pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:36.0pt;color:#0F1115'><span style='background:white'>这段话描述的是在训练过程中，</span><span
- style='font-weight:bold;background:white'>当一棵树的结构&nbsp;T_t&nbsp;被确定后，如何用它来更新所有支持模型。</span></p>
- <p style='margin-left:.75in;margin-top:12pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:36.0pt;color:#0F1115'><span style='background:white'>核心要点：</span></p>
- <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>统一的树结构：&nbsp;在每次迭代&nbsp;t，算法只构建一个树结构&nbsp;T_t。这个结构定义了从根节点到叶子节点的所有分裂规则（例如，第一层按“年龄&lt;30”分裂，第二层按“收入&gt;50k”分裂）。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>个性化的叶子值：&nbsp;这个统一的树结构&nbsp;T_t&nbsp;被添加到每一个支持模型&nbsp;M_{r',
-      j}&nbsp;中。但是，对于不同的&nbsp;(r', j)&nbsp;组合，这棵树的叶子节点的值是不同的。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>原因：&nbsp;每个支持模型&nbsp;M_{r',
-      j}&nbsp;是基于不同数据子集（排列&nbsp;σ_{r'}&nbsp;的前&nbsp;j&nbsp;个样本）的模型状态。因此，对于同一个叶子节点（例如，“年龄&lt;30
-      &amp; 收入&gt;50k”），不同的支持模型&nbsp;M_{r',
-      j}&nbsp;会根据各自所见的数据子集计算出的梯度统计量，来赋予该节点不同的输出值。</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold'>总结：
- 在训练时，树结构是全局共享的，但叶子值是针对每个支持模型局部计算的。这是一种高效的工程近似，用一套“骨架”适配了多个模型状态。</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in'><img src="Catboost.files/image005.jpg"
- width=2025 height=340></p>
- <p style='margin-left:.375in;margin-top:24pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;
- background:white'>训练结束后——最终模型的确定与预测</span></p>
- <p style='margin-left:.375in;margin-top:12pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;
- background:white'>这段话描述的是在所有树都构建完成后，如何确定最终用于预测的模型&nbsp;F&nbsp;的叶子值，以及如何进行推理。</span></p>
- <p style='margin-left:.375in;margin-top:12pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:36.0pt;color:#0F1115'><span style='background:white'>核心要点：</span></p>
- <p style='margin:0in;margin-left:.375in;font-size:36.0pt;color:#0F1115'><span
- style='font-family:quote-cjk-patch;background:white' lang=en-US>1</span><span
- style='font-family:quote-cjk-patch;background:white' lang=zh-CN>）</span><span
- style='font-weight:bold;font-family:quote-cjk-patch;background:white'
- lang=zh-CN>最终模型的叶子值：</span><span style='font-family:quote-cjk-patch;
- background:white' lang=zh-CN>&nbsp;最终模型&nbsp;F&nbsp;是由所有树&nbsp;T_1, T_2, ...,
- T_T&nbsp;叠加而成的。对于&nbsp;F&nbsp;中的每一棵树，其叶子节点的值是通过标准的梯度提升程序计算的</span><span
- style='font-family:微软雅黑;background:white' lang=en-US>(</span><span
- style='font-weight:bold;font-family:微软雅黑;background:white' lang=zh-CN>也就是直接计算损失函数最小值对应的叶子节点取值？</span><span
- style='font-family:微软雅黑;background:white' lang=en-US>)</span><span
- style='font-family:quote-cjk-patch;background:white' lang=zh-CN>。这与之前支持模型的更新是两回事。</span></p>
- <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>这里使用的是另一个独立的排列&nbsp;σ_0&nbsp;来计算TS，以确保评估最终模型叶子值时使用的是无偏统计量。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>训练样本&nbsp;i&nbsp;根据其在&nbsp;σ_0&nbsp;下的TS值，被分配到叶子节点&nbsp;leaf_0(i)。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>然后，基于落入每个叶子节点的样本的梯度和二阶导数（对于平方损失就是样本数量），按照GBDT的标准公式（如&nbsp;-sum_gradients
-      / (sum_hessians + lambda)）计算该叶子节点的最终输出值。</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white' lang=en-US>2</span><span
- style='background:white' lang=zh-CN>）</span><span style='font-weight:bold;
- background:white' lang=zh-CN>推理时的TS处理：</span><span style='background:white'
- lang=zh-CN>&nbsp;当使用训练好的最终模型&nbsp;F&nbsp;对新样本进行预测时，对于新样本中的类别特征，我们使用整个训练数据集来计算其TS值。这与训练最终模型时使用排列&nbsp;σ_0&nbsp;是不同的。</span></p>
- <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>这是因为在推理时，我们没有“未来”数据的概念。为了获得最稳定的估计，我们使用全部可用的训练数据来计算每个类别对应的TS值。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>这个在全部训练集上计算得到的TS映射关系，是在模型序列化（保存）时就已经计算好并存储的。</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold' lang=en-US>1.</span><span style='font-weight:bold' lang=zh-CN>类别特征的处理</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=en-US>1)one-hot</span><span lang=zh-CN>，但是当类别数量过多时，如</span><span
+lang=en-US>user_id</span><span lang=zh-CN>，会出现维度灾难。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=en-US>2</span><span lang=zh-CN>）</span><span lang=en-US>target encodeing</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=en-US>3</span><span lang=zh-CN>）在</span><span lang=en-US>L</span><span
+lang=zh-CN>ight</span><span lang=en-US>gbm</span><span lang=zh-CN>中：</span></p>
+
+<p style='margin-left:1.125in;margin-top:24pt;margin-bottom:12pt;line-height:
+21pt;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
+style='font-weight:bold;background:white'>核心思想：用“数据”代替“类别名”</span></p>
+
+<p style='margin-left:1.125in;margin-top:12pt;margin-bottom:12pt;font-family:
+quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>在梯度提升树中，分裂节点时需要找到一个特征和一个阈值，使得分裂后的数据集的损失函数降低最多。对于数值特征，这很直接：对特征值排序，然后找到一个切分点（例如：年龄
+&lt;= 30）。</span></p>
+
+<p style='margin-left:1.125in;margin-top:12pt;margin-bottom:12pt;font-family:
+quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>但对于类别特征（例如：城市
+= {北京， 上海， 广州，
+深圳}），你不能直接对类别名进行排序（“北京”和“上海”没有大小关系）。因此，必须找到一种方法将类别特征“转换”成某种可以排序的数值。</span></p>
+
+<p style='margin-left:1.125in;margin-top:24pt;margin-bottom:12pt;line-height:
+21pt;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
+style='font-weight:bold;background:white'>LightGBM的方法：基于梯度的统计量</span></p>
+
+<p style='margin-left:1.125in;margin-top:12pt;margin-bottom:12pt;font-family:
+quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>LightGBM采用的是一种非常流行且有效的方法，叫做&nbsp;“梯度统计”&nbsp;或&nbsp;“均值编码”&nbsp;的在线变体。</span></p>
+
+<p style='margin-left:1.125in;margin-top:12pt;margin-bottom:12pt;font-family:
+quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>具体是什么意思？</span></p>
+
+<ol type=i style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+     color:#0F1115'><span style='font-family:quote-cjk-patch;font-size:12.0pt;
+     font-weight:normal;font-style:normal;font-family:quote-cjk-patch;
+     font-size:12.0pt;background:white'>什么是梯度？</span></li>
+</ol>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>在梯度提升的每一步，我们都在拟合一个新的弱学习器（一棵树）来纠正之前模型的错误。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>对于每一个样本，我们都可以计算其损失函数关于当前模型预测值的梯度（对于回归问题，梯度大致就是残差；对于二分类，有特定的形式）。这个梯度表示了“为了降低这个样本的损失，我们的新模型应该往哪个方向预测”。</span></li>
 </ul>
+
+<ol type=i style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
+ <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+     color:#0F1115'><span style='font-family:quote-cjk-patch;font-size:12.0pt;
+     font-weight:normal;font-style:normal;font-family:quote-cjk-patch;
+     font-size:12.0pt;background:white'>如何用于类别特征？</span></li>
+</ol>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>假设我们有一个类别特征“城市”，现在要考虑根据“城市”来分裂节点。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>传统的均值编码是：用整个训练集上，目标变量的均值来代表一个类别（例如，北京的用户平均购买金额是1.2万元）。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>LightGBM的梯度统计方法是：在当前模型下</span><span
+     style='font-weight:bold;font-family:quote-cjk-patch;font-size:12.0pt;
+     background:white'>，用该节点内（注意：是当前要分裂的节点，不是全局）</span><span style='font-family:
+     quote-cjk-patch;font-size:12.0pt;background:white'>样本梯度的均值（或某种统计量）来代表一个类别。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>简单来说：</span><span
+     style='font-weight:bold;font-family:quote-cjk-patch;font-size:12.0pt;
+     background:white'>它不是用“目标变量的平均值”，而是用“当前模型残差（梯度）的平均值”来给每个类别打分。</span></li>
+</ul>
+
+<ol type=i style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
+ <li value=3 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+     color:#0F1115'><span style='font-family:quote-cjk-patch;font-size:12.0pt;
+     font-weight:normal;font-style:normal;font-family:quote-cjk-patch;
+     font-size:12.0pt;background:white'>分裂过程：</span></li>
+</ol>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>对于节点上的所有样本，遍历每个类别特征。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>对于某个类别特征（如“城市”），计算每个城市类别（北京、上海...）对应的梯度统计量（比如，梯度均值）。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>然后，按照这个梯度统计量的大小对类别进行排序。比如，计算出来：</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-weight:bold;font-family:quote-cjk-patch;font-size:12.0pt;
+     background:white'>北京： 梯度均值 = 0.1</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-weight:bold;font-family:quote-cjk-patch;font-size:12.0pt;
+     background:white'>上海： 梯度均值 = 0.5</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-weight:bold;font-family:quote-cjk-patch;font-size:12.0pt;
+     background:white'>广州： 梯度均值 = -0.2</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-weight:bold;font-family:quote-cjk-patch;font-size:12.0pt;
+     background:white'>深圳： 梯度均值 = 0.3</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>排序后，类别顺序可能是：广州(-0.2)
+     -&gt; 北京(0.1) -&gt; 深圳(0.3) -&gt; 上海(0.5)。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>现在，类别特征被转化成了一个可以排序的“伪数值特征”。分裂时，就可以像数值特征一样，寻找最佳的分割点。例如，分裂规则可能是：城市
+     in {广州， 北京}&nbsp;vs&nbsp;城市 in {深圳， 上海}。</span></li>
+</ul>
+
+<p style='margin-left:1.125in;margin-top:24pt;margin-bottom:12pt;line-height:
+21pt;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
+style='font-weight:bold;background:white'>CatBoost论文指出的问题</span></p>
+
+<p style='margin-left:1.125in;margin-top:12pt;margin-bottom:12pt;font-family:
+quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>现在再回头看CatBoost论文中指出的两个问题就非常清晰了：</span></p>
+
+<ol type=i style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
+ <li value=4 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+     color:#0F1115'><span style='font-family:quote-cjk-patch;font-size:12.0pt;
+     font-weight:normal;font-style:normal;font-family:quote-cjk-patch;
+     font-size:12.0pt;background:white'>计算时间长：<br>
+          “计算每个类别在每一步的统计量”</span></li>
+</ol>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>因为每构建一棵树，在每个节点分裂时，对于每一个类别特征，都需要重新计算所有出现类别的梯度统计量。对于高基数（类别非常多）的特征，这个排序和统计的计算成本非常高。</span></li>
+</ul>
+
+<ol type=i style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
+ <li value=5 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+     color:#0F1115'><span style='font-family:quote-cjk-patch;font-size:12.0pt;
+     font-weight:normal;font-style:normal;font-family:quote-cjk-patch;
+     font-size:12.0pt;background:white'>内存消耗大：<br>
+          “存储哪个类别属于哪个节点”</span></li>
+</ol>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>一旦按照梯度统计量排序并完成了分裂，树的结构就记录了“哪些类别被分到了左子树，哪些被分到了右子树”。例如，上面的例子中，规则就是&nbsp;城市
+     in {广州， 北京}。LightGBM需要存储这个类别集合，对于高基数特征，存储这些集合会消耗大量内存。</span></li>
+</ul>
+
+<p style='margin-left:1.125in;margin-top:24pt;margin-bottom:12pt;line-height:
+21pt;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
+style='font-weight:bold;background:white'>LightGBM的解决方案及其新问题</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>解决方案：为了缓解上述问题，LightGBM会将那些出现频率很低的尾部类别&nbsp;合并成一个集群。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>新问题：丢失信息。把“乌鲁木齐”、“拉萨”这样罕见的类别和“太原”合并成一个“其他”类别，无疑会损失这些类别本身特有的信息。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt;background:white'
+     lang=en-US>L</span><span style='font-weight:bold;font-family:微软雅黑;
+     font-size:12.0pt;background:white' lang=zh-CN>ight</span><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt;background:white'
+     lang=en-US>GBM</span><span style='font-weight:bold;font-family:微软雅黑;
+     font-size:12.0pt;background:white' lang=zh-CN>论文中作者也提到最好将高基数类别转换为数值特征。所以</span><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt;background:white'
+     lang=en-US>T</span><span style='font-weight:bold;font-family:微软雅黑;
+     font-size:12.0pt;background:white' lang=zh-CN>ar</span><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt;background:white'
+     lang=en-US>get encoding</span><span style='font-weight:bold;font-family:
+     微软雅黑;font-size:12.0pt;background:white' lang=zh-CN>似乎是最有效的处理高基数类别特征的方法。</span></li>
+</ul>
+
+<p style='margin-left:1.125in;margin-top:24pt;margin-bottom:12pt;line-height:
+21pt;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
+style='font-weight:bold;background:white'>对比CatBoost的TS方法</span></p>
+
+<p style='margin-left:1.125in;margin-top:12pt;margin-bottom:12pt;font-family:
+quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>论文最后一句是关键：</span></p>
+
+<p style='margin:0in;margin-left:1.125in;font-family:quote-cjk-patch;
+font-size:12.0pt;color:#0F1115'><span style='background:white'>“Note that TS
+features require calculating and storing only one number per one category.”</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>TS&nbsp;是
+     Target Statistics（目标统计）的缩写，是CatBoost的核心技术之一。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>它的意思是：在数据预处理阶段，对每个类别，计算一个唯一的、全局的数值来代替它（例如，基于目标变量的期望值）。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>优势：</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>计算：这个数值只需要在训练开始前计算一次，之后这个特征就被当作数值特征来处理。避免了LGB在每棵树每个节点都要重新计算的开销。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>内存：不需要存储复杂的类别集合分裂规则，只需要存储一个转换后的数值，内存占用小。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115;
+     background:white'>挑战：</span><span style='font-weight:bold;font-family:
+     quote-cjk-patch;font-size:12.0pt;color:black;background:white'>TS方法本身最大的挑战是目标泄漏&nbsp;和过拟合，因为你在用目标y的信息来构造特征。这正是CatBoost论文重点解决的问题，它通过一种“有序”的编码方式巧妙地避免了这个问题。</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt;
+color:black'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold' lang=en-US>2.T</span><span style='font-weight:bold' lang=zh-CN>ar</span><span
+style='font-weight:bold' lang=en-US>get statistics</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold' lang=en-US><span style='mso-spacerun:yes'> </span>T</span><span
+style='font-weight:bold' lang=zh-CN>ar</span><span style='font-weight:bold'
+lang=en-US>get encoding</span><span style='font-weight:bold' lang=zh-CN>是很容易产生目标泄漏的，比如某个类别只有一个取值，那么此时用目标进行编码的话，其实几乎相当于直接用目标列作为特征列。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'
+lang=en-US><span style='font-weight:bold'>1)greedy </span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'
+lang=en-US><span style='font-weight:bold'>2)hold-out</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'
+lang=en-US><span style='font-weight:bold'>3)leave one out</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'
+lang=en-US><span style='font-weight:bold'>4)ordered </span></p>
+
+<p style='margin-left:.75in;margin-top:12pt;margin-bottom:12pt;font-family:
+quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>这是CatBoost的创新核心，它巧妙地借鉴了时间序列验证的思想，并将其应用于任意数据集，完美地解决了上述所有问题。</span></p>
+
+<p style='margin-left:.75in;margin-top:12pt;margin-bottom:12pt;font-size:12.0pt;
+color:#0F1115'><span style='font-family:quote-cjk-patch;background:white'
+lang=zh-CN>核心洞察：将数据集想象成一个时间序列。在预测&nbsp;</span><span style='font-family:微软雅黑;
+background:white' lang=en-US> </span><span style='font-style:italic;font-family:
+KaTeX_Math;background:white' lang=zh-CN>t</span><span style='font-family:quote-cjk-patch;
+background:white' lang=zh-CN>&nbsp;时刻的值时，你只能使用&nbsp;</span><span
+style='font-family:KaTeX_Main;background:white' lang=zh-CN>t−1</span><span
+style='font-style:italic;font-family:微软雅黑;background:white' lang=en-US> </span><span
+style='font-family:quote-cjk-patch;background:white' lang=zh-CN>时刻及之前的信息。</span></p>
+
+<p style='margin-left:.75in;margin-top:12pt;margin-bottom:12pt;font-family:
+quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>具体实现
+- 引入“虚拟时间”（Artificial Time）：</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-size:12.0pt;color:#0F1115'><span
+style='font-family:quote-cjk-patch;background:white' lang=zh-CN>随机排列：对整个训练数据集进行</span><span
+style='font-weight:bold;font-family:quote-cjk-patch;background:white'
+lang=zh-CN>一次随机排序（Pe</span><span style='font-family:quote-cjk-patch;background:
+white' lang=zh-CN>rmutation），生成一个“虚拟时间”顺序。假设排序后的样本索引是&nbsp;</span><span
+style='font-family:KaTeX_Main;background:white' lang=zh-CN>σ(1),σ(2),...,σ(n)</span><span
+style='font-style:italic;font-family:微软雅黑;background:white' lang=en-US> </span><span
+style='font-family:quote-cjk-patch;background:white' lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-size:12.0pt;color:#0F1115'><span
+style='font-family:quote-cjk-patch;background:white'>有序编码：对于每个样本&nbsp;</span><span
+style='font-family:KaTeX_Main;background:white'>i</span><span style='font-family:
+quote-cjk-patch;background:white'>（在虚拟时间顺序中），</span><span style='font-weight:
+bold;font-family:quote-cjk-patch;background:white'>计算其类别特征编码时，只使用“过去”的样本（即排在它前面的样本）</span><span
+style='font-family:quote-cjk-patch;background:white'>。</span></p>
+
+<p style='margin-left:.75in;margin-top:12pt;margin-bottom:12pt;font-family:
+quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>为什么
+Ordered TS 是完美的？</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>解决目标泄漏：在计算样本&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>i</span><span
+     style='font-style:italic;font-family:KaTeX_Math;font-size:12.0pt;
+     background:white'>i</span><span style='font-family:quote-cjk-patch;
+     font-size:12.0pt;background:white'>&nbsp;的编码时，完全没有使用样本&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>i</span><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>&nbsp;本身及其“未来”的信息。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>解决条件偏移：</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:1.125in;font-size:12.0pt;color:#0F1115'><span
+style='font-family:quote-cjk-patch;background:white'>训练时：对于第&nbsp;</span><span
+style='font-style:italic;font-family:KaTeX_Math;background:white'>i</span><span
+style='font-family:quote-cjk-patch;background:white'>&nbsp;个样本，我们使用前&nbsp;</span><span
+style='font-family:KaTeX_Main;background:white'>i−1</span><span
+style='font-family:quote-cjk-patch;background:white'>个样本来计算其编码。</span></p>
+
+<p style='margin:0in;margin-left:1.125in;font-family:quote-cjk-patch;
+font-size:12.0pt;color:#0F1115'><span style='background:white'>推理时：对于一个新样本，我们使用整个训练集来计算其编码。</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>这看起来又产生了分布不一致？但CatBoost在训练模型本身时，也采用了同样的“有序”原则，这被称为&nbsp;“Ordered
+     Boosting”。</span></li>
+</ul>
+
+<p style='margin-left:.75in;margin-top:12pt;margin-bottom:12pt;font-family:
+quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>Ordered
+Boosting 简介：</span></p>
+
+<p style='margin-left:.75in;margin-top:12pt;margin-bottom:12pt;font-size:12.0pt;
+color:#0F1115'><span style='font-family:quote-cjk-patch;background:white'
+lang=zh-CN>在梯度提升的每一步，</span><span style='font-weight:bold;font-family:quote-cjk-patch;
+background:white' lang=zh-CN>当计算第&nbsp;</span><span style='font-weight:bold;
+font-family:KaTeX_Main;background:white' lang=zh-CN>i</span><span
+style='font-weight:bold;font-family:quote-cjk-patch;background:white'
+lang=zh-CN>&nbsp;个样本的梯度时，只使用前&nbsp;</span><span style='font-weight:bold;
+font-family:KaTeX_Main;background:white' lang=zh-CN>i−1</span><span
+style='font-weight:bold;font-style:italic;font-family:微软雅黑;background:white'
+lang=en-US> </span><span style='font-weight:bold;font-family:quote-cjk-patch;
+background:white' lang=zh-CN>&nbsp;个样本训练的模型来计算。</span><span style='font-family:
+quote-cjk-patch;background:white' lang=zh-CN>这样就保证了训练过程和编码过程处于完全相同的条件下，彻底消除了条件偏移。</span></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold' lang=en-US>3.P</span><span style='font-weight:bold' lang=zh-CN>re</span><span
+style='font-weight:bold' lang=en-US>diction shift</span></p>
+
+<p style='margin-left:.375in;margin-top:12pt;margin-bottom:12pt;font-family:
+quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>当计算样本1的梯度时：</span></p>
+
+<ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>模型&nbsp;F_{t-1}&nbsp;是用
+     {样本1,2,3,4} 训练的</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>但&nbsp;</span><span
+     style='font-weight:bold;font-family:quote-cjk-patch;font-size:12.0pt;
+     background:white'>F_{t-1}&nbsp;已经见过样本1本身</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>因此</span><span
+     style='font-weight:bold;font-family:quote-cjk-patch;font-size:12.0pt;
+     background:white'>计算出的梯度是有偏的</span><span style='font-family:quote-cjk-patch;
+     font-size:12.0pt;background:white'>，不能反映模型在未见过的样本上的真实表现</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt;
+color:#0F1115'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold'>Prediction Shift的本质：</span></p>
+
+<ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt'>根本原因：</span><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>用相同的数据既训练模型又计算梯度</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt'>表现形式：训练时的梯度分布不能代表测试时的真实梯度分布</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt'>后果：基学习器过度拟合有偏信号，最终模型泛化能力下降</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt'>解决方案：</span><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>Ordered
+     Boosting确保每个样本的梯度都用没看过该样本的模型计算</span></li>
+</ul>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:bold;font-style:normal'>
+ <li value=4 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+     font-weight:bold'><span style='font-family:微软雅黑;font-size:12.0pt;
+     font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+     font-size:12.0pt' lang=en-US>Ord</span><span style='font-family:微软雅黑;
+     font-size:12.0pt;font-weight:bold;font-style:normal;font-weight:bold;
+     font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>ered Boosting</span></li>
+</ol>
+
+<p style='margin:0in;margin-left:3.375in'><img src="Catboost.files/image001.jpg"
+width=520 height=690></p>
+
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
+style='font-family:微软雅黑' lang=zh-CN>上图是</span><span style='font-family:微软雅黑'
+lang=en-US>catboost</span><span style='font-family:微软雅黑' lang=zh-CN>如何构建每一棵树的算法，在每轮构建新树之前，先选择一种样本排序方式σr</span><span
+style='font-family:KaTeX_Main' lang=zh-CN>​</span><span style='font-family:
+quote-cjk-patch' lang=zh-CN>，然后用当前的支持模型</span><span style='font-family:微软雅黑'
+lang=en-US>M</span><span style='font-family:微软雅黑' lang=zh-CN>和真实标签</span><span
+style='font-family:微软雅黑' lang=en-US>y</span><span style='font-family:微软雅黑'
+lang=zh-CN>，计算出每个样本的梯度</span><span style='font-family:微软雅黑' lang=en-US>/</span><span
+style='font-family:微软雅黑' lang=zh-CN>残差，即上图中的</span><span style='font-weight:
+bold;font-family:微软雅黑' lang=en-US>G</span><span style='font-weight:bold;
+font-family:微软雅黑' lang=zh-CN>和下图中的</span><span style='font-weight:bold;
+font-family:微软雅黑' lang=en-US>Residuals</span><span style='font-weight:bold;
+font-family:微软雅黑' lang=zh-CN>，</span><span style='font-family:微软雅黑' lang=zh-CN>然后开始构建新树。</span></p>
+
+<p style='margin:0in;margin-left:1.125in'><img src="Catboost.files/image002.jpg"
+width=600 height=262></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold'>具体的确定树结构（寻找最优特征分裂点）的流程，详见：https://www.youtube.com/watch?v=3Bg2XRFOTzg&amp;t=317s</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold' lang=zh-CN>这张图中的</span><span style='font-weight:bold'
+lang=en-US>predictions</span><span style='font-weight:bold' lang=zh-CN>列就是支持模型</span><span
+style='font-weight:bold' lang=en-US>M_(r,j)</span><span lang=zh-CN>，对每一个样本排序</span><span
+lang=en-US>r</span><span lang=zh-CN>（上图相当于是一种排序），每一个样本</span><span lang=en-US>j</span><span
+lang=zh-CN>，都有一个</span><span lang=en-US>prediction</span><span lang=zh-CN>，表示的是在样本排序</span><span
+lang=en-US>r</span><span lang=zh-CN>下，用样本</span><span lang=en-US>0</span><span
+lang=zh-CN>到样本</span><span lang=en-US>j</span><span lang=zh-CN>训练出的模型的预测值，即支持模型</span><span
+lang=en-US>M_(r,j)</span><span lang=zh-CN>的预测值。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=zh-CN>有了支持模型</span><span lang=en-US>M_(r,j)</span><span lang=zh-CN>的预测值p</span><span
+lang=en-US>redictions</span><span lang=zh-CN>列，和真实标签</span><span lang=en-US>heigth</span><span
+lang=zh-CN>列，就可以计算出每个样本的梯度</span><span lang=en-US>/</span><span lang=zh-CN>残差，即</span><span
+lang=en-US>residuals</span><span lang=zh-CN>列。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>下面来看如何构建一棵新树。首先是树结构的确定，即特征分裂点的寻找。</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=en-US>catboost</span><span lang=zh-CN>是对称树，从算法中看出，</span><span
+style='font-weight:bold' lang=zh-CN>是一层一层的构建</span><span style='font-weight:
+bold' lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>，从树桩开始。在每一层，对所有的特征候选分裂点，按照排好序后的样本顺序，进行如下操作：将样本</span><span
+style='font-weight:bold' lang=en-US>i</span><span style='font-weight:bold'
+lang=zh-CN>根据当前树结构分到叶子节点</span><span style='font-weight:bold' lang=en-US>leaf_x</span><span
+style='font-weight:bold' lang=zh-CN>中，并记下样本</span><span style='font-weight:
+bold' lang=en-US>i</span><span style='font-weight:bold' lang=zh-CN>的梯度和le</span><span
+style='font-weight:bold' lang=en-US>af_x</span><span style='font-weight:bold'
+lang=zh-CN>当前的输出值（</span><span style='font-weight:bold' lang=en-US>leaf output</span><span
+style='font-weight:bold' lang=zh-CN>），记下后，再用加入样本</span><span style='font-weight:
+bold' lang=en-US>i</span><span style='font-weight:bold' lang=zh-CN>后的梯度更新叶子节点</span><span
+style='font-weight:bold' lang=en-US>leaf_x</span><span style='font-weight:bold'
+lang=zh-CN>的输出值，</span><span style='font-weight:bold' lang=en-US>leaf_x</span><span
+style='font-weight:bold' lang=zh-CN>新的输出值</span><span style='font-weight:bold'
+lang=en-US> = </span><span style='font-weight:bold' lang=zh-CN>加上样本</span><span
+style='font-weight:bold' lang=en-US>i</span><span style='font-weight:bold'
+lang=zh-CN>后叶子节点</span><span style='font-weight:bold' lang=en-US>leaf_x</span><span
+style='font-weight:bold' lang=zh-CN>中所有样本的梯度的平均值。</span><span style='font-weight:
+bold' lang=en-US>leaf_output</span><span style='font-weight:bold' lang=zh-CN>列是按样本顺序一个一个生成的，即算法图中的Δ。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=zh-CN>有了</span><span style='font-weight:bold' lang=zh-CN>Δ列（</span><span
+style='font-weight:bold' lang=en-US>leaf_output</span><span style='font-weight:
+bold' lang=zh-CN>列）之后</span><span style='font-weight:bold' lang=en-US> </span><span
+style='font-weight:bold' lang=zh-CN>，计算Δ和梯度</span><span style='font-weight:
+bold' lang=en-US>G</span><span style='font-weight:bold' lang=zh-CN>（</span><span
+style='font-weight:bold' lang=en-US>residuals</span><span style='font-weight:
+bold' lang=zh-CN>列）的余弦相似度，选择余弦相似度最大的作为最优分裂点。这样一层一层，就确定了树结构</span><span
+style='font-weight:bold' lang=en-US> </span><span style='font-weight:bold'
+lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=zh-CN>确定了树结构之后</span><span lang=en-US> </span><span lang=zh-CN>，对</span><span
+style='font-weight:bold' lang=zh-CN>所有排序方式下的支持模型</span><span lang=zh-CN>进行更新，</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
+style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>从算法中也可以看出，是两层</span><span
+style='font-weight:bold;font-family:微软雅黑' lang=en-US>for</span><span
+style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>循环，对每种排序</span><span
+style='font-weight:bold;font-family:KaTeX_Main;color:#0F1115;background:white'
+lang=zh-CN>σ</span><span style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>，每个样本i，都更新支持模型对排序</span><span
+style='font-weight:bold;font-family:KaTeX_Main;color:#0F1115;background:white'
+lang=zh-CN>σ</span><span style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>下样本</span><span
+style='font-weight:bold;font-family:微软雅黑' lang=en-US>i</span><span
+style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>的预测值。</span></p>
+
+<p style='margin:0in;margin-left:1.875in'><img src="Catboost.files/image003.jpg"
+width=628 height=248></p>
+
+<p style='margin-left:.375in;margin-top:12pt;margin-bottom:12pt;font-family:
+quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>CatBoost通过支持模型来构建每棵树，其核心过程如下：</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>支持模型的作用：在Ordered
+     Boosting模式下，CatBoost会维护一组支持模型&nbsp;</span><span style='font-family:KaTeX_Main;
+     font-size:12.0pt;background:white'>Mr,j</span><span style='font-family:
+     quote-cjk-patch;font-size:12.0pt;background:white'>，其中&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>r</span><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>&nbsp;代表排列的索引，</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>j</span><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>&nbsp;代表在这个排列中前&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>j</span><span
+     style='font-style:italic;font-family:KaTeX_Math;font-size:12.0pt;
+     background:white'>j</span><span style='font-family:quote-cjk-patch;
+     font-size:12.0pt;background:white'>个样本。支持模型&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>Mr,j</span><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>的含义是基于排列&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>σr</span><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>&nbsp;中前&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>j</span><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>&nbsp;个样本训练得到的模型状态。它的核心任务是提供无偏的梯度估计。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>如何构建树结构：在每次迭代&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>t</span><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>&nbsp;要构建新树&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>Tt</span><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>时，算法会随机选择一个排列&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>σ</span><span
+     style='font-style:italic;font-family:KaTeX_Math;font-size:12.0pt;
+     background:white'>r</span><span style='font-family:KaTeX_Main;font-size:
+     12.0pt;background:white'>​</span><span style='font-family:quote-cjk-patch;
+     font-size:12.0pt;background:white'>，然后利用对应的支持模型来计算梯度。具体来说，对于排列中的样本&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>i</span><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>，使用支持模型&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>Mr,σr(i)−1</span><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>（即用排在&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>i</span><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>&nbsp;之前的样本训练的模型）来计算其梯度&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>gradr,σr(i)−1(i)</span><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>，<br>
+          这确保了在计算样本&nbsp;</span><span style='font-family:KaTeX_Main;font-size:
+     12.0pt;background:white'>i</span><span style='font-style:italic;
+     font-family:KaTeX_Math;font-size:12.0pt;background:white'>i</span><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>&nbsp;的梯度时，模型没有见过样本&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>i</span><span
+     style='font-style:italic;font-family:KaTeX_Math;font-size:12.0pt;
+     background:white'>i</span><span style='font-family:quote-cjk-patch;
+     font-size:12.0pt;background:white'>&nbsp;本身，从而得到无偏的梯度估计。这棵树的结构（即分裂规则）&nbsp;就是依据这些无偏梯度学习到的。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>更新支持模型：一旦新的树结构&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>Tt​</span><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>&nbsp;确定，CatBoost并不会只更新一个最终模型，而是会用这棵树的树结构去更新所有的支持模型。这就是图中“用树结构&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>Tt</span><span
+     style='font-style:italic;font-family:KaTeX_Math;font-size:12.0pt;
+     background:white'>Tt</span><span style='font-family:KaTeX_Main;font-size:
+     12.0pt;background:white'>​</span><span style='font-family:quote-cjk-patch;
+     font-size:12.0pt;background:white'>&nbsp;更新所有支持模型”这一步。对于每一个支持模型&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>Mr′,j</span><span
+     style='font-style:italic;font-family:KaTeX_Math;font-size:12.0pt;
+     background:white'>Mr</span><span style='font-family:KaTeX_Main;font-size:
+     12.0pt;background:white'>′,</span><span style='font-style:italic;
+     font-family:KaTeX_Math;font-size:12.0pt;background:white'>j</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>​</span><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>，都会根据其对应的排列&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>σr′</span><span
+     style='font-style:italic;font-family:KaTeX_Math;font-size:12.0pt;
+     background:white'>σr</span><span style='font-family:KaTeX_Main;font-size:
+     12.0pt;background:white'>′​</span><span style='font-family:quote-cjk-patch;
+     font-size:12.0pt;background:white'>&nbsp;和前&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>j</span><span
+     style='font-style:italic;font-family:KaTeX_Math;font-size:12.0pt;
+     background:white'>j</span><span style='font-family:quote-cjk-patch;
+     font-size:12.0pt;background:white'>&nbsp;个样本，计算出&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>Tt</span><span
+     style='font-style:italic;font-family:KaTeX_Math;font-size:12.0pt;
+     background:white'>Tt</span><span style='font-family:KaTeX_Main;font-size:
+     12.0pt;background:white'>​</span><span style='font-family:quote-cjk-patch;
+     font-size:12.0pt;background:white'>&nbsp;在这组特定数据上对应的叶子节点值，然后更新&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>Mr′,j</span><span
+     style='font-style:italic;font-family:KaTeX_Math;font-size:12.0pt;
+     background:white'>Mr</span><span style='font-family:KaTeX_Main;font-size:
+     12.0pt;background:white'>′,</span><span style='font-style:italic;
+     font-family:KaTeX_Math;font-size:12.0pt;background:white'>j</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>​</span><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>&nbsp;。这样，所有支持模型都共享同一棵树结构&nbsp;</span><span
+     style='font-family:KaTeX_Main;font-size:12.0pt;background:white'>Tt</span><span
+     style='font-style:italic;font-family:KaTeX_Math;font-size:12.0pt;
+     background:white'>Tt</span><span style='font-family:KaTeX_Main;font-size:
+     12.0pt;background:white'>​</span><span style='font-family:quote-cjk-patch;
+     font-size:12.0pt;background:white'>，但各自拥有基于自身数据计算的叶子节点值。</span></li>
+</ul>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in'><img src="Catboost.files/image004.jpg"
+width=897 height=332></p>
+
+<p style='margin-left:.375in;margin-top:24pt;margin-bottom:12pt;line-height:
+21pt;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
+style='font-weight:bold;background:white'>训练期间——树结构与支持模型的更新</span></p>
+
+<p style='margin-left:.75in;margin-top:12pt;margin-bottom:12pt;font-family:
+quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>这段话描述的是在训练过程中，</span><span
+style='font-weight:bold;background:white'>当一棵树的结构&nbsp;T_t&nbsp;被确定后，如何用它来更新所有支持模型。</span></p>
+
+<p style='margin-left:.75in;margin-top:12pt;margin-bottom:12pt;font-family:
+quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>核心要点：</span></p>
+
+<ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>统一的树结构：&nbsp;在每次迭代&nbsp;t，算法只构建一个树结构&nbsp;T_t。这个结构定义了从根节点到叶子节点的所有分裂规则（例如，第一层按“年龄&lt;30”分裂，第二层按“收入&gt;50k”分裂）。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>个性化的叶子值：&nbsp;这个统一的树结构&nbsp;T_t&nbsp;被添加到每一个支持模型&nbsp;M_{r',
+     j}&nbsp;中。但是，对于不同的&nbsp;(r', j)&nbsp;组合，这棵树的叶子节点的值是不同的。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>原因：&nbsp;每个支持模型&nbsp;M_{r',
+     j}&nbsp;是基于不同数据子集（排列&nbsp;σ_{r'}&nbsp;的前&nbsp;j&nbsp;个样本）的模型状态。因此，对于同一个叶子节点（例如，“年龄&lt;30
+     &amp; 收入&gt;50k”），不同的支持模型&nbsp;M_{r',
+     j}&nbsp;会根据各自所见的数据子集计算出的梯度统计量，来赋予该节点不同的输出值。</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold'>总结：
+在训练时，树结构是全局共享的，但叶子值是针对每个支持模型局部计算的。这是一种高效的工程近似，用一套“骨架”适配了多个模型状态。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in'><img src="Catboost.files/image005.jpg"
+width=1108 height=186></p>
+
+<p style='margin-left:.375in;margin-top:24pt;margin-bottom:12pt;line-height:
+21pt;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
+style='font-weight:bold;background:white'>训练结束后——最终模型的确定与预测</span></p>
+
+<p style='margin-left:.375in;margin-top:12pt;margin-bottom:12pt;font-family:
+quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+background:white'>这段话描述的是在所有树都构建完成后，如何确定最终用于预测的模型&nbsp;F&nbsp;的叶子值，以及如何进行推理。</span></p>
+
+<p style='margin-left:.375in;margin-top:12pt;margin-bottom:12pt;font-family:
+quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>核心要点：</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt;color:#0F1115'><span
+style='font-family:quote-cjk-patch;background:white' lang=en-US>1</span><span
+style='font-family:quote-cjk-patch;background:white' lang=zh-CN>）</span><span
+style='font-weight:bold;font-family:quote-cjk-patch;background:white'
+lang=zh-CN>最终模型的叶子值：</span><span style='font-family:quote-cjk-patch;background:
+white' lang=zh-CN>&nbsp;最终模型&nbsp;F&nbsp;是由所有树&nbsp;T_1, T_2, ...,
+T_T&nbsp;叠加而成的。对于&nbsp;F&nbsp;中的每一棵树，其叶子节点的值是通过标准的梯度提升程序计算的</span><span
+style='font-family:微软雅黑;background:white' lang=en-US>(</span><span
+style='font-weight:bold;font-family:微软雅黑;background:white' lang=zh-CN>也就是直接计算损失函数最小值对应的叶子节点取值？</span><span
+style='font-family:微软雅黑;background:white' lang=en-US>)</span><span
+style='font-family:quote-cjk-patch;background:white' lang=zh-CN>。这与之前支持模型的更新是两回事。</span></p>
+
+<ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>这里使用的是另一个独立的排列&nbsp;σ_0&nbsp;来计算TS，以确保评估最终模型叶子值时使用的是无偏统计量。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>训练样本&nbsp;i&nbsp;根据其在&nbsp;σ_0&nbsp;下的TS值，被分配到叶子节点&nbsp;leaf_0(i)。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>然后，基于落入每个叶子节点的样本的梯度和二阶导数（对于平方损失就是样本数量），按照GBDT的标准公式（如&nbsp;-sum_gradients
+     / (sum_hessians + lambda)）计算该叶子节点的最终输出值。</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:quote-cjk-patch;font-size:
+12.0pt;color:#0F1115'><span style='background:white' lang=en-US>2</span><span
+style='background:white' lang=zh-CN>）</span><span style='font-weight:bold;
+background:white' lang=zh-CN>推理时的TS处理：</span><span style='background:white'
+lang=zh-CN>&nbsp;当使用训练好的最终模型&nbsp;F&nbsp;对新样本进行预测时，对于新样本中的类别特征，我们使用整个训练数据集来计算其TS值。这与训练最终模型时使用排列&nbsp;σ_0&nbsp;是不同的。</span></p>
+
+<ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>这是因为在推理时，我们没有“未来”数据的概念。为了获得最稳定的估计，我们使用全部可用的训练数据来计算每个类别对应的TS值。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
+     style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>这个在全部训练集上计算得到的TS映射关系，是在模型序列化（保存）时就已经计算好并存储的。</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
 </div>
 

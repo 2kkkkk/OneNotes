@@ -10,19 +10,19 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="CS336-2025-lec8.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:22.0416in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:7.1152in'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:.4465in;width:2.7958in'>
+<div style='direction:ltr;margin-top:0in;margin-left:.2805in;width:2.7958in'>
 
 <p style='margin:0in;font-family:微软雅黑;font-size:20.0pt' lang=en-US>CS336-2025-lec8</p>
 
 </div>
 
-<div style='direction:ltr;margin-top:.0423in;margin-left:.4465in;width:1.7388in'>
+<div style='direction:ltr;margin-top:.0423in;margin-left:.2805in;width:1.7388in'>
 
 <p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
 Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
@@ -33,110 +33,110 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:22.0416in'>
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:7.1152in'>
 
 <ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold'>并行</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>def </span><span style='color:#6F42C1'>collective_operations</span><span
  style='color:#213547'>():</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'><span style='font-weight:bold'>Collective operations</span>&nbsp;are
  the conceptual primitives used for distributed programming &nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-size:36.0pt'><a
+ <p style='margin:0in;margin-left:.375in;font-size:12.0pt'><a
  href="https://en.wikipedia.org/wiki/Collective_operation"><span
  style='font-family:system-ui'>[article]</span></a></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Collective means that you
+      style='font-family:system-ui;font-size:12.0pt'>Collective means that you
       specify communication pattern across many (e.g., 256) nodes.</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>These are classic in the
+      style='font-family:system-ui;font-size:12.0pt'>These are classic in the
       parallel programming literature from the 1980s.</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Better/faster abstraction
+      style='font-family:system-ui;font-size:12.0pt'>Better/faster abstraction
       than managing point-to-point communication yourself.</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Terminology:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Terminology:</p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-weight:bold;font-family:system-ui;font-size:36.0pt'>World
-      size</span><span style='font-family:system-ui;font-size:36.0pt'>: number
+      style='font-weight:bold;font-family:system-ui;font-size:12.0pt'>World
+      size</span><span style='font-family:system-ui;font-size:12.0pt'>: number
       of devices (e.g., 4)</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-weight:bold;font-family:system-ui;font-size:36.0pt'>Rank</span><span
-      style='font-family:system-ui;font-size:36.0pt'>: a device (e.g., 0, 1, 2,
+      style='font-weight:bold;font-family:system-ui;font-size:12.0pt'>Rank</span><span
+      style='font-family:system-ui;font-size:12.0pt'>: a device (e.g., 0, 1, 2,
       3)</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'>&nbsp;</p>
- <p style='margin:0in'><img src="CS336-2025-lec8.files/image001.jpg" width=728
- height=437></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in'><img src="CS336-2025-lec8.files/image002.jpg" width=778
- height=960></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Way
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in'><img src="CS336-2025-lec8.files/image001.jpg" width=305
+ height=183></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in'><img src="CS336-2025-lec8.files/image002.jpg" width=287
+ height=354></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Way
  to remember the terminology:</p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Reduce: performs some
+      style='font-family:system-ui;font-size:12.0pt'>Reduce: performs some
       associative/commutative operation (</span><span style='font-weight:bold;
-      font-family:system-ui;font-size:36.0pt'>sum, min, max)</span></li>
+      font-family:system-ui;font-size:12.0pt'>sum, min, max)</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Broadcast/scatter is
+      style='font-family:system-ui;font-size:12.0pt'>Broadcast/scatter is
       inverse of gather</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>All: means destination is
+      style='font-family:system-ui;font-size:12.0pt'>All: means destination is
       all devices</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in'><img src="CS336-2025-lec8.files/image003.jpg"
- width=1703 height=659></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in'><img src="CS336-2025-lec8.files/image003.jpg" width=646
+ height=250></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
  lang=zh-CN>上图是家用的多机模式，同一个</span><span lang=en-US>node</span><span lang=zh-CN>下的</span><span
  lang=en-US>GPU</span><span lang=zh-CN>通过</span><span lang=en-US>PCI</span><span
  lang=zh-CN>通信，不同</span><span lang=en-US>node</span><span lang=zh-CN>的</span><span
  lang=en-US>GPU</span><span lang=zh-CN>通过</span><span lang=en-US>E</span><span
  lang=zh-CN>the</span><span lang=en-US>rnet</span><span lang=zh-CN>通信。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'>&nbsp;</p>
- <p style='margin:0in'><img src="CS336-2025-lec8.files/image004.jpg"
- width=1534 height=722></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in'><img src="CS336-2025-lec8.files/image004.jpg" width=517
+ height=243></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
  lang=zh-CN>现代数据中心，</span><span style='font-weight:bold' lang=zh-CN>和家用多机多卡模型不同，</span><span
  lang=zh-CN>通过</span><span lang=en-US>NV</span><span lang=zh-CN>l</span><span
  lang=en-US>ink</span><span lang=zh-CN>和</span><span lang=en-US>NVSwitch</span><span
  lang=zh-CN>通信，而不是通过</span><span lang=en-US>CPU</span><span lang=zh-CN>和</span><span
  lang=en-US>E</span><span lang=zh-CN>th</span><span lang=en-US>ernet</span><span
  lang=zh-CN>通信。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'><span
  style='font-weight:bold'>NVIDIA Collective Communication Library (NCCL)</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>NCCL
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>NCCL
  translates collective operations into low-level packets that are sent between
  GPUs. &nbsp;</p>
- <p style='margin:0in;font-size:36.0pt'><a
+ <p style='margin:0in;font-size:12.0pt'><a
  href="https://www.nvidia.com/en-us/on-demand/session/gtcspring21-s31880/"><span
  style='font-family:system-ui'>[talk]</span></a></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Detects topology of
+      style='font-family:system-ui;font-size:12.0pt'>Detects topology of
       hardware (e.g., number of nodes, switches, NVLink/PCIe)</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Optimizes the path between
+      style='font-family:system-ui;font-size:12.0pt'>Optimizes the path between
       GPUs</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Launches CUDA kernels to
+      style='font-family:system-ui;font-size:12.0pt'>Launches CUDA kernels to
       send/receive data</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-size:36.0pt;color:#213547'><span style='font-weight:
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-size:12.0pt;color:#213547'><span style='font-weight:
  bold;font-family:system-ui' lang=zh-CN>PyTorch distributed library
  (torch.distributed)更高</span><span style='font-weight:bold;font-family:微软雅黑'
  lang=en-US>level</span><span style='font-weight:bold;font-family:微软雅黑'
@@ -144,84 +144,84 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  lang=en-US>nccl,</span><span style='font-weight:bold;font-family:微软雅黑'
  lang=zh-CN>例如直接用dist</span><span style='font-weight:bold;font-family:微软雅黑'
  lang=en-US>.all_gather</span></p>
- <p style='margin:0in;font-size:36.0pt'><a
+ <p style='margin:0in;font-size:12.0pt'><a
  href="https://pytorch.org/docs/stable/distributed.html"><span
  style='font-family:system-ui'>[Documentation]</span></a></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Provides clean interface
+      style='font-family:system-ui;font-size:12.0pt'>Provides clean interface
       for collective operations (e.g.,&nbsp;all_gather_into_tensor)</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Supports multiple backends
+      style='font-family:system-ui;font-size:12.0pt'>Supports multiple backends
       for different hardware: gloo (CPU), nccl (GPU</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt' lang=zh-CN>Also supports
+      style='font-family:system-ui;font-size:12.0pt' lang=zh-CN>Also supports
       higher-level algorithms (e.g.,&nbsp;</span><span style='font-family:微软雅黑;
-      font-size:36.0pt' lang=en-US>FSDP, </span><span style='font-family:system-ui;
-      font-size:36.0pt' lang=zh-CN>FullyShardedDataParallel) [not used in this
+      font-size:12.0pt' lang=en-US>FSDP, </span><span style='font-family:system-ui;
+      font-size:12.0pt' lang=zh-CN>FullyShardedDataParallel) [not used in this
       course]</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>def </span><span style='color:#6F42C1'>collective_operations_main</span><span
  style='color:#213547'>(rank: </span><span style='color:#E36209'>int</span><span
  style='color:#213547'>, world_size: </span><span style='color:#E36209'>int</span><span
  style='color:#213547'>):</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#032F62'>&quot;&quot;&quot;This function is running asynchronously for
  each process (rank = 0, ..., world_size - 1).&quot;&quot;&quot;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>setup(rank, world_size)</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># All-reduce</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>dist.barrier() </span><span style='color:#6A737D'>#
  Waits for all processes to get to this point (in this case, for print
  statements)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>tensor = torch.tensor([</span><span style='color:#005CC5'>0.</span><span
  style='color:#213547'>, </span><span style='color:#005CC5'>1</span><span
  style='color:#213547'>, </span><span style='color:#005CC5'>2</span><span
  style='color:#213547'>, </span><span style='color:#005CC5'>3</span><span
  style='color:#213547'>], device=get_device(rank)) + rank </span><span
  style='color:#6A737D'># Both input and output</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#E36209'>print</span><span style='color:#213547'>(</span><span
  style='color:#032F62'>f&quot;Rank </span><span style='color:#24292E'>{rank}</span><span
  style='color:#032F62'> [before all-reduce]: </span><span style='color:#24292E'>{tensor}</span><span
  style='color:#032F62'>&quot;</span><span style='color:#213547'>, flush=</span><span
  style='color:#005CC5'>True</span><span style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='font-weight:bold;color:#213547'>dist.all_reduce(tensor=tensor,
  op=dist.ReduceOp.SUM, async_op=</span><span style='font-weight:bold;
  color:#005CC5'>False</span><span style='font-weight:bold;color:#213547'>) </span><span
  style='font-weight:bold;color:#6A737D'># Modifies tensor in place</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#E36209'>print</span><span style='color:#213547'>(</span><span
  style='color:#032F62'>f&quot;Rank </span><span style='color:#24292E'>{rank}</span><span
  style='color:#032F62'> [after all-reduce]: </span><span style='color:#24292E'>{tensor}</span><span
  style='color:#032F62'>&quot;</span><span style='color:#213547'>, flush=</span><span
  style='color:#005CC5'>True</span><span style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Reduce-scatter</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>dist.barrier()</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#E36209'>input</span><span style='color:#213547'> =
  torch.arange(world_size, dtype=torch.float32, device=get_device(rank)) + rank </span><span
  style='color:#6A737D'># Input</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>output = torch.empty(</span><span style='color:#005CC5'>1</span><span
  style='color:#213547'>, device=get_device(rank)) </span><span
  style='color:#6A737D'># Allocate output</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#E36209'>print</span><span style='color:#213547'>(</span><span
  style='color:#032F62'>f&quot;Rank </span><span style='color:#24292E'>{rank}</span><span
  style='color:#032F62'> [before reduce-scatter]: input = </span><span
@@ -230,13 +230,13 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  style='color:#24292E'>{output}</span><span style='color:#032F62'>&quot;</span><span
  style='color:#213547'>, flush=</span><span style='color:#005CC5'>True</span><span
  style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>dist.reduce_scatter_tensor(output=output, </span><span
  style='color:#E36209'>input</span><span style='color:#213547'>=</span><span
  style='color:#E36209'>input</span><span style='color:#213547'>,
  op=dist.ReduceOp.SUM, async_op=</span><span style='color:#005CC5'>False</span><span
  style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#E36209'>print</span><span style='color:#213547'>(</span><span
  style='color:#032F62'>f&quot;Rank </span><span style='color:#24292E'>{rank}</span><span
  style='color:#032F62'> [after reduce-scatter]: input = </span><span
@@ -245,20 +245,20 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  style='color:#24292E'>{output}</span><span style='color:#032F62'>&quot;</span><span
  style='color:#213547'>, flush=</span><span style='color:#005CC5'>True</span><span
  style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># All-gather</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>dist.barrier()</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#E36209'>input</span><span style='color:#213547'> = output </span><span
  style='color:#6A737D'># Input is the output of reduce-scatter</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>output = torch.empty(world_size,
  device=get_device(rank)) </span><span style='color:#6A737D'># Allocate output</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#E36209'>print</span><span style='color:#213547'>(</span><span
  style='color:#032F62'>f&quot;Rank </span><span style='color:#24292E'>{rank}</span><span
  style='color:#032F62'> [before all-gather]: input = </span><span
@@ -267,12 +267,12 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  style='color:#24292E'>{output}</span><span style='color:#032F62'>&quot;</span><span
  style='color:#213547'>, flush=</span><span style='color:#005CC5'>True</span><span
  style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>dist.all_gather_into_tensor(output_tensor=output,
  input_tensor=</span><span style='color:#E36209'>input</span><span
  style='color:#213547'>, async_op=</span><span style='color:#005CC5'>False</span><span
  style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#E36209'>print</span><span style='color:#213547'>(</span><span
  style='color:#032F62'>f&quot;Rank </span><span style='color:#24292E'>{rank}</span><span
  style='color:#032F62'> [after all-gather]: input = </span><span
@@ -281,95 +281,95 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  style='color:#24292E'>{output}</span><span style='color:#032F62'>&quot;</span><span
  style='color:#213547'>, flush=</span><span style='color:#005CC5'>True</span><span
  style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>Indeed, all-reduce = reduce-scatter + all-gather!</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>cleanup()</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>def </span><span style='color:#6F42C1'>data_parallelism_main</span><span
  style='color:#213547'>(rank: </span><span style='color:#E36209'>int</span><span
  style='color:#213547'>, world_size: </span><span style='color:#E36209'>int</span><span
  style='color:#213547'>, data: torch.Tensor, num_layers: </span><span
  style='color:#E36209'>int</span><span style='color:#213547'>, num_steps: </span><span
  style='color:#E36209'>int</span><span style='color:#213547'>):</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>setup(rank, world_size)</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Get the slice of data for this rank (in practice, each rank
  should load only its own data)</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>batch_size = data.size(</span><span style='color:#005CC5'>0</span><span
  style='color:#213547'>) </span><span style='color:#6A737D'># @inspect
  batch_size</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>num_dim = data.size(</span><span style='color:#005CC5'>1</span><span
  style='color:#213547'>) </span><span style='color:#6A737D'># @inspect num_dim</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>local_batch_size = int_divide(batch_size, world_size) </span><span
  style='color:#6A737D'># @inspect local_batch_size</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>start_index = rank * local_batch_size </span><span
  style='color:#6A737D'># @inspect start_index</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>end_index = start_index + local_batch_size </span><span
  style='color:#6A737D'># @inspect end_index</span></p>
- <p style='margin:0in;margin-left:.375in;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;margin-left:.375in;font-size:12.0pt;color:#213547'><span
  style='font-weight:bold;font-family:system-ui' lang=zh-CN>data =
  data[start_index:end_index].to(get_device(rank))</span><span style='font-weight:
  bold;font-family:微软雅黑' lang=en-US> #</span><span style='font-weight:bold;
  font-family:微软雅黑' lang=zh-CN>每个</span><span style='font-weight:bold;
  font-family:微软雅黑' lang=en-US>device</span><span style='font-weight:bold;
  font-family:微软雅黑' lang=zh-CN>根据不同的索引取数据</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Create MLP parameters params[0], ..., params[num_layers - 1]
  (each rank has all parameters)</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>params = [get_init_params(num_dim, num_dim, rank) </span><span
  style='color:#D73A49'>for</span><span style='color:#213547'> i </span><span
  style='color:#D73A49'>in </span><span style='color:#E36209'>range</span><span
  style='color:#213547'>(num_layers)]</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>optimizer = torch.optim.AdamW(params, lr=</span><span
  style='color:#005CC5'>1e-3</span><span style='color:#213547'>) </span><span
  style='color:#6A737D'># Each rank has own optimizer state</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>for</span><span style='color:#213547'> step </span><span
  style='color:#D73A49'>in </span><span style='color:#E36209'>range</span><span
  style='color:#213547'>(num_steps):</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Forward pass</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>x = data</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>for</span><span style='color:#213547'> param </span><span
  style='color:#D73A49'>in</span><span style='color:#213547'> params:</span></p>
- <p style='margin:0in;margin-left:1.125in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:1.125in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>x = x @ param</p>
- <p style='margin:0in;margin-left:1.125in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:1.125in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>x = F.gelu(x)</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>loss = x.square().mean() </span><span style='color:#6A737D'>#
  Loss function is average squared magnitude</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Backward pass</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>loss.backward()</p>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'><span style='font-weight:bold'># Sync gradients across workers
  (only difference between standard training and DDP)</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>for</span><span style='color:#213547'> param </span><span
  style='color:#D73A49'>in</span><span style='color:#213547'> params:</span></p>
- <p style='margin:0in;margin-left:1.125in;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:1.125in;font-size:12.0pt'><span
  style='font-weight:bold;font-family:system-ui;color:#213547' lang=zh-CN>dist.all_reduce(tensor=param.grad,
  op=dist.ReduceOp.AVG, async_op=</span><span style='font-weight:bold;
  font-family:system-ui;color:#005CC5' lang=zh-CN>False</span><span
@@ -378,13 +378,13 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=zh-CN>所有参数的梯度进行同步，计算所有</span><span
  style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=en-US>device</span><span
  style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=zh-CN>的梯度平均值。</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Update parameters</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>optimizer.step()</p>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#E36209'>print</span><span style='color:#213547'>(</span><span
  style='color:#032F62'>f&quot;[data_parallelism] Rank </span><span
  style='color:#24292E'>{rank}</span><span style='color:#032F62'>: step = </span><span
@@ -396,87 +396,87 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  style='color:#24292E'>(num_layers)]}</span><span style='color:#032F62'>&quot;</span><span
  style='color:#213547'>, flush=</span><span style='color:#005CC5'>True</span><span
  style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>cleanup()</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold' lang=en-US>T</span><span style='font-weight:bold'
  lang=zh-CN>e</span><span style='font-weight:bold' lang=en-US>nsor parallel</span></p>
- <p style='margin:0in'><img src="CS336-2025-lec8.files/image005.png" width=562
- height=721></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in'><img src="CS336-2025-lec8.files/image005.png" width=195
+ height=250></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'><span
  style='font-weight:bold'>Sharding strategy: each rank gets part of each layer,
  transfer all data/activations</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>def </span><span style='color:#6F42C1'>tensor_parallelism_main</span><span
  style='color:#213547'>(rank: </span><span style='color:#E36209'>int</span><span
  style='color:#213547'>, world_size: </span><span style='color:#E36209'>int</span><span
  style='color:#213547'>, data: torch.Tensor, num_layers: </span><span
  style='color:#E36209'>int</span><span style='color:#213547'>):</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>setup(rank, world_size)</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>data = data.to(get_device(rank))</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>batch_size = data.size(</span><span style='color:#005CC5'>0</span><span
  style='color:#213547'>) </span><span style='color:#6A737D'># @inspect
  batch_size</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>num_dim = data.size(</span><span style='color:#005CC5'>1</span><span
  style='color:#213547'>) </span><span style='color:#6A737D'># @inspect num_dim</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='font-weight:bold;color:#213547'>local_num_dim = int_divide(num_dim,
  world_size) </span><span style='font-weight:bold;color:#6A737D'># Shard
  `num_dim` @inspect local_num_dim</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold' lang=en-US>#</span><span style='font-weight:bold'
  lang=zh-CN>对</span><span style='font-weight:bold' lang=en-US>num_dim</span><span
  style='font-weight:bold' lang=zh-CN>进行切分</span><span style='font-weight:bold'
  lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>，每个</span><span
  style='font-weight:bold' lang=en-US>device</span><span style='font-weight:
  bold' lang=zh-CN>有</span><span style='font-weight:bold' lang=en-US>local_num_dim</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'
  lang=en-US>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Create model (each rank gets 1/world_size of the parameters)</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>params = [get_init_params(num_dim, local_num_dim, rank) </span><span
  style='color:#D73A49'>for</span><span style='color:#213547'> i </span><span
  style='color:#D73A49'>in </span><span style='color:#E36209'>range</span><span
  style='color:#213547'>(num_layers)]</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Forward pass</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>x = data</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>for</span><span style='color:#213547'> i </span><span
  style='color:#D73A49'>in </span><span style='color:#E36209'>range</span><span
  style='color:#213547'>(num_layers):</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Compute activations (batch_size x local_num_dim)</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>x = x @ params[i] </span><span style='color:#6A737D'>#
  Note: this is only on a slice of the parameters</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>x = F.gelu(x)</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Allocate memory for activations (world_size x batch_size x
  local_num_dim)</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>activations = [torch.empty(batch_size, local_num_dim,
  device=get_device(rank)) </span><span style='color:#D73A49'>for</span><span
  style='color:#213547'> _ </span><span style='color:#D73A49'>in </span><span
  style='color:#E36209'>range</span><span style='color:#213547'>(world_size)]</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'><span style='font-weight:bold'># Send activations via all
  gather</span></p>
- <p style='margin:0in;margin-left:.75in;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-size:12.0pt'><span
  style='font-weight:bold;font-family:system-ui;color:#213547' lang=zh-CN>dist.all_gather(tensor_list=activations,
  tensor=x, async_op=</span><span style='font-weight:bold;font-family:system-ui;
  color:#005CC5' lang=zh-CN>False</span><span style='font-weight:bold;
@@ -488,11 +488,11 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=en-US>device</span><span
  style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=zh-CN>的</span><span
  style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=en-US>activations</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'><span style='font-weight:bold'># Concatenate them to get
  batch_size x num_dim</span></p>
- <p style='margin:0in;margin-left:.75in;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-size:12.0pt'><span
  style='font-weight:bold;font-family:system-ui;color:#213547' lang=zh-CN>x =
  torch.cat(activations, dim=</span><span style='font-weight:bold;font-family:
  system-ui;color:#005CC5' lang=zh-CN>1</span><span style='font-weight:bold;
@@ -501,30 +501,30 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  style='mso-spacerun:yes'>  </span>#</span><span style='font-weight:bold;
  font-family:微软雅黑;color:#213547' lang=zh-CN>然后进行</span><span style='font-weight:
  bold;font-family:微软雅黑;color:#213547' lang=en-US>concat</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#E36209'>print</span><span style='color:#213547'>(</span><span
  style='color:#032F62'>f&quot;[tensor_parallelism] Rank </span><span
  style='color:#24292E'>{rank}</span><span style='color:#032F62'>: forward pass
  produced activations </span><span style='color:#24292E'>{summarize_tensor(x)}</span><span
  style='color:#032F62'>&quot;</span><span style='color:#213547'>, flush=</span><span
  style='color:#005CC5'>True</span><span style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Backward pass: homework exercise</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>cleanup()</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US><span
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US><span
  style='font-weight:bold'>Pipeline parallel</span></p>
- <p style='margin:0in'><img src="CS336-2025-lec8.files/image006.png" width=684
- height=877></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Sharding
+ <p style='margin:0in'><img src="CS336-2025-lec8.files/image006.png" width=250
+ height=321></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Sharding
  strategy: each rank gets subset of layers, transfer all data/activations</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>def </span><span style='color:#6F42C1'>pipeline_parallelism_main</span><span
  style='color:#213547'>(rank: </span><span style='color:#E36209'>int</span><span
  style='color:#213547'>, world_size: </span><span style='color:#E36209'>int</span><span
@@ -532,29 +532,29 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  style='color:#E36209'>int</span><span style='color:#213547'>,
  num_micro_batches: </span><span style='color:#E36209'>int</span><span
  style='color:#213547'>):</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>setup(rank, world_size)</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Use all the data</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>data = data.to(get_device(rank))</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>batch_size = data.size(</span><span style='color:#005CC5'>0</span><span
  style='color:#213547'>) </span><span style='color:#6A737D'># @inspect
  batch_size</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>num_dim = data.size(</span><span style='color:#005CC5'>1</span><span
  style='color:#213547'>) </span><span style='color:#6A737D'># @inspect num_dim</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Split up layers</p>
- <p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
  style='font-weight:bold;font-family:system-ui;color:#213547' lang=zh-CN>local_num_layers
  = int_divide(num_layers, world_size) </span><span style='font-weight:bold;
  font-family:system-ui;color:#6A737D' lang=zh-CN># @inspect local_num_layers</span><span
  style='font-weight:bold;font-family:微软雅黑;color:#6A737D' lang=en-US> </span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt;
  color:black'><span style='font-weight:bold' lang=en-US>#</span><span
  style='font-weight:bold' lang=zh-CN>假设整个模型有</span><span style='font-weight:
  bold' lang=en-US>12</span><span style='font-weight:bold' lang=zh-CN>层，</span><span
@@ -562,72 +562,72 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  bold' lang=zh-CN>，那么每个</span><span style='font-weight:bold' lang=en-US>device</span><span
  style='font-weight:bold' lang=zh-CN>有</span><span style='font-weight:bold'
  lang=en-US>3</span><span style='font-weight:bold' lang=zh-CN>层</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Each rank gets a subset of layers</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>local_params = [get_init_params(num_dim, num_dim, rank) </span><span
  style='color:#D73A49'>for</span><span style='color:#213547'> i </span><span
  style='color:#D73A49'>in </span><span style='color:#E36209'>range</span><span
  style='color:#213547'>(local_num_layers)]</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Forward pass</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'><span style='font-weight:bold'># Break up into micro batches to
  minimize the bubble</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>micro_batch_size = int_divide(batch_size,
  num_micro_batches) </span><span style='color:#6A737D'># @inspect
  micro_batch_size</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>if</span><span style='color:#213547'> rank == </span><span
  style='color:#005CC5'>0</span><span style='color:#213547'>:</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># The data</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>micro_batches = data.chunk(chunks=num_micro_batches,
  dim=</span><span style='color:#005CC5'>0</span><span style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>else</span><span style='color:#213547'>:</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Allocate memory for activations</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>micro_batches = [torch.empty(micro_batch_size, num_dim,
  device=get_device(rank)) </span><span style='color:#D73A49'>for</span><span
  style='color:#213547'> _ </span><span style='color:#D73A49'>in </span><span
  style='color:#E36209'>range</span><span style='color:#213547'>(num_micro_batches)]</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>for</span><span style='color:#213547'> x </span><span
  style='color:#D73A49'>in</span><span style='color:#213547'> micro_batches:</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Get activations from previous rank</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>if</span><span style='color:#213547'> rank - </span><span
  style='color:#005CC5'>1</span><span style='color:#213547'> &gt;= </span><span
  style='color:#005CC5'>0</span><span style='color:#213547'>:</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>dist.recv(tensor=x, src=rank - </span><span
  style='color:#005CC5'>1</span><span style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Compute layers assigned to this rank</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>for</span><span style='color:#213547'> param </span><span
  style='color:#D73A49'>in</span><span style='color:#213547'> local_params:</span></p>
- <p style='margin:0in;margin-left:1.125in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:1.125in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>x = x @ param</p>
- <p style='margin:0in;margin-left:1.125in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:1.125in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>x = F.gelu(x)</p>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Send to the next rank</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>if</span><span style='color:#213547'> rank + </span><span
  style='color:#005CC5'>1</span><span style='color:#213547'> &lt; world_size:</span></p>
- <p style='margin:0in;margin-left:1.125in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:1.125in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#E36209'>print</span><span style='color:#213547'>(</span><span
  style='color:#032F62'>f&quot;[pipeline_parallelism] Rank </span><span
  style='color:#24292E'>{rank}</span><span style='color:#032F62'>: sending </span><span
@@ -636,24 +636,24 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  style='color:#005CC5'>1</span><span style='color:#24292E'>}</span><span
  style='color:#032F62'>&quot;</span><span style='color:#213547'>, flush=</span><span
  style='color:#005CC5'>True</span><span style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:1.125in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:1.125in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>dist.send(tensor=x, dst=rank + </span><span
  style='color:#005CC5'>1</span><span style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>Not handled: overlapping communication/computation to eliminate
  pipeline bubbles</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Backward pass: homework exercise</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>cleanup()</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'> </span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
 </ul>
 
 </div>

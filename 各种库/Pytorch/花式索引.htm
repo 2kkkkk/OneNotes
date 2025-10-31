@@ -10,19 +10,19 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="花式索引.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:41.4583in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:16.525in'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:.0715in;width:1.6458in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.6458in'>
 
 <p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'>花式索引</p>
 
 </div>
 
-<div style='direction:ltr;margin-top:.0423in;margin-left:.0715in;width:1.6687in'>
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
 
 <p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
 Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
@@ -33,302 +33,327 @@ style='font-family:Calibri'>11</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:41.4583in'>
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:16.525in'>
 
-<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;font-size:36.0pt'><span style='font-weight:bold;
- font-family:"Segoe UI Symbol"' lang=en-US>★</span><span style='font-weight:
- bold;font-family:Calibri' lang=en-US>Fancy indexing: </span><a
- href="https://jakevdp.github.io/PythonDataScienceHandbook/02.07-fancy-indexing.html"><span
- style='font-weight:bold;font-family:Calibri' lang=zh-CN>https://jakevdp.github.io/PythonDataScienceHandbook/02.07-fancy-indexing.html</span></a></p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
- color:black'><span style='font-weight:bold'>先以一维数组为例，</span></p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
- color:black'>x = [51 92 14 71 60 20 82 86 74 74]</p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
- color:black'>&nbsp;</p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
- color:black'><span lang=zh-CN>ind = [3, 7, 4]<br>
-  </span><span lang=en-US>print(x</span><span lang=zh-CN>[ind]</span><span
- lang=en-US>)</span></p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
- color:black'>array([71, 86, 60])</p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt'><span
- style='color:#333333' lang=zh-CN>ind </span><span style='color:#666666'
- lang=zh-CN>=</span><span style='color:#333333' lang=zh-CN> np</span><span
- style='color:#666666' lang=zh-CN>.</span><span style='color:#333333'
- lang=zh-CN>array([[</span><span style='color:#666666' lang=zh-CN>3</span><span
- style='color:#333333' lang=zh-CN>, </span><span style='color:#666666'
- lang=zh-CN>7</span><span style='color:#333333' lang=zh-CN>],<br>
-  <span style='mso-spacerun:yes'>                </span>[</span><span
- style='color:#666666' lang=zh-CN>4</span><span style='color:#333333'
- lang=zh-CN>, </span><span style='color:#666666' lang=zh-CN>5</span><span
- style='color:#333333' lang=zh-CN>]])<br>
-  </span><span style='color:black' lang=en-US>print(x</span><span
- style='color:black' lang=zh-CN>[ind]</span><span style='color:black'
- lang=en-US>)</span></p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
- color:black' lang=en-US>array([[71, 86],<br>
-  <span style='mso-spacerun:yes'>       </span>[60, 20]])</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
- color:black'>可以看出，<span style='font-weight:bold'>When using fancy indexing,
- the shape of the result reflects the shape of the&nbsp;</span><span
- style='font-weight:bold;font-style:italic'>index arrays</span><span
- style='font-weight:bold'>&nbsp;rather than the shape of the&nbsp;</span><span
- style='font-weight:bold;font-style:italic'>array being indexed</span><span
- style='font-weight:bold'>:</span></p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
- color:black'>&nbsp;</p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
- color:black'><span style='font-weight:bold'>再以多维数组为例：</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:black'><span
- lang=en-US>X = </span><span lang=zh-CN>array(</span></p>
- <p style='margin:0in;margin-left:2.625in;font-family:微软雅黑;font-size:36.0pt;
- color:black'>[[ 0,<span style='mso-spacerun:yes'>  </span>1,<span
- style='mso-spacerun:yes'>  </span>2,<span style='mso-spacerun:yes'> 
- </span>3],<br>
-  <span style='mso-spacerun:yes'> </span>[ 4,<span style='mso-spacerun:yes'> 
- </span>5,<span style='mso-spacerun:yes'>  </span>6,<span
- style='mso-spacerun:yes'>  </span>7],<br>
-  <span style='mso-spacerun:yes'> </span>[ 8,<span style='mso-spacerun:yes'> 
- </span>9, 10, 11]]</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:black'>)</p>
- <p style='margin-top:0pt;margin-bottom:15pt;font-family:微软雅黑;font-size:36.0pt;
- color:black'><span style='font-weight:bold'>Like with standard indexing, the
- first index refers to the row, and the second to the column:</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='color:#333333' lang=zh-CN>row </span><span style='color:#666666'
- lang=zh-CN>=</span><span style='color:#333333' lang=zh-CN> np</span><span
- style='color:#666666' lang=zh-CN>.</span><span style='color:#333333'
- lang=zh-CN>array([</span><span style='color:#666666' lang=zh-CN>0</span><span
- style='color:#333333' lang=zh-CN>, </span><span style='color:#666666'
- lang=zh-CN>1</span><span style='color:#333333' lang=zh-CN>, </span><span
- style='color:#666666' lang=zh-CN>2</span><span style='color:#333333'
- lang=zh-CN>])<br>
-  col </span><span style='color:#666666' lang=zh-CN>=</span><span
- style='color:#333333' lang=zh-CN> np</span><span style='color:#666666'
- lang=zh-CN>.</span><span style='color:#333333' lang=zh-CN>array([</span><span
- style='color:#666666' lang=zh-CN>2</span><span style='color:#333333'
- lang=zh-CN>, </span><span style='color:#666666' lang=zh-CN>1</span><span
- style='color:#333333' lang=zh-CN>, </span><span style='color:#666666'
- lang=zh-CN>3</span><span style='color:#333333' lang=zh-CN>])<br>
-  </span><span style='color:#333333' lang=en-US>print(X</span><span
- style='color:#333333' lang=zh-CN>[row, col]</span><span style='color:#333333'
- lang=en-US>)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:black'>array([
- 2,<span style='mso-spacerun:yes'>  </span>5, 11])</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:black'><span
- style='font-weight:bold' lang=en-US>X</span><span style='font-weight:bold'
- lang=zh-CN>有二维，</span><span style='font-weight:bold' lang=en-US>dim=0</span><span
- style='font-weight:bold' lang=zh-CN>和</span><span style='font-weight:bold'
- lang=en-US>dim=1</span><span style='font-weight:bold' lang=zh-CN>，</span><span
- style='font-weight:bold' lang=en-US>row</span><span style='font-weight:bold'
- lang=zh-CN>是对</span><span style='font-weight:bold' lang=en-US>dim=0</span><span
- style='font-weight:bold' lang=zh-CN>的索引，</span><span style='font-weight:bold'
- lang=en-US>col</span><span style='font-weight:bold' lang=zh-CN>是对</span><span
- style='font-weight:bold' lang=en-US>dim=1</span><span style='font-weight:bold'
- lang=zh-CN>的索引</span><span style='font-weight:bold' lang=en-US> </span><span
- style='font-weight:bold' lang=zh-CN>，</span><span style='font-weight:bold'
- lang=en-US>row</span><span style='font-weight:bold' lang=zh-CN>和</span><span
- style='font-weight:bold' lang=en-US>col</span><span style='font-weight:bold'
- lang=zh-CN>的组合就是对</span><span style='font-weight:bold' lang=en-US>X</span><span
- style='font-weight:bold' lang=zh-CN>的索引。</span></p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt'><span
- style='font-weight:bold;color:black'>Notice that the first value in the result
- is&nbsp;</span><span style='color:#333333'>X[0, 2]</span><span
- style='font-weight:bold;color:black'>, the second is&nbsp;</span><span
- style='color:#333333'>X[1, 1]</span><span style='font-weight:bold;color:black'>,
- and the third is&nbsp;</span><span style='color:#333333'>X[2, 3]</span><span
- style='font-weight:bold;color:black'>. The pairing of indices in fancy
- indexing follows all the broadcasting rules that were mentioned in&nbsp;</span><a
- href="https://jakevdp.github.io/PythonDataScienceHandbook/02.05-computation-on-arrays-broadcasting.html">Computation
- on Arrays: Broadcasting</a><span style='font-weight:bold;color:black'>. So,
- for example, if we combine a column vector and a row vector within the
- indices, we get a two-dimensional result:</span></p>
- <p style='margin:0in;font-size:36.0pt'><span style='font-family:Calibri;
- color:#333333' lang=en-US>print(</span><span style='font-family:"Microsoft YaHei";
- color:#333333' lang=en-US>X</span><span style='font-family:"Microsoft YaHei";
- color:#333333' lang=zh-CN>[row[:, np</span><span style='font-family:"Microsoft YaHei";
- color:#666666' lang=zh-CN>.</span><span style='font-family:"Microsoft YaHei";
- color:#333333' lang=zh-CN>newaxis], col]</span><span style='font-family:"Microsoft YaHei";
- color:#333333' lang=en-US>)</span></p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
- color:black'>array([[ 2,<span style='mso-spacerun:yes'>  </span>1,<span
- style='mso-spacerun:yes'>  </span>3],<br>
-  <span style='mso-spacerun:yes'>       </span>[ 6,<span
- style='mso-spacerun:yes'>  </span>5,<span style='mso-spacerun:yes'> 
- </span>7],<br>
-  <span style='mso-spacerun:yes'>       </span>[10,<span
- style='mso-spacerun:yes'>  </span>9, 11]])</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-size:36.0pt;color:black'><span style='font-weight:
- bold;font-family:"Microsoft YaHei"' lang=zh-CN>总结：假设</span><span
- style='font-weight:bold;font-family:Calibri' lang=en-US>X</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>是一个</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>n</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>维数组，即有</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>n</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>个</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>dim</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>，</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>X</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>shape</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>是</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>(n_dim0,
- n_dim1,…,n_dimn)</span><span style='font-weight:bold;font-family:"Microsoft YaHei"'
- lang=zh-CN>，现在对</span><span style='font-weight:bold;font-family:"Microsoft YaHei"'
- lang=en-US>X</span><span style='font-weight:bold;font-family:"Microsoft YaHei"'
- lang=zh-CN>进行花式索引，</span><span style='font-weight:bold;font-family:"Microsoft YaHei"'
- lang=en-US>X[index_dim0, index_dim1,…, index_dimn]</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>，其中</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US> index_dim1</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>到</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dimn</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>可以省略任意个，但最多只能到</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dimn</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>，如果有</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dim(n+1)</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>，就会报错。</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dim0</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>到</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dimn</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>的可以是任意维数的数组，且</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dim0</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>到</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dimn</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>shape</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>可以不一样（但是必须可以广播），现在假设</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dim0</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>到</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dimn</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>shape</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>都是</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>(a,b,c)</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>，</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dim0</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>中的每个元素表示对</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>X</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>第</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>0</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>维的索引，</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dimn</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>中的每个元素表示对</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>X</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>第</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>n</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>维的索引，将</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dim0,…,Index_dimn</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>的单个元素进行组合，就得到了一个对</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>X</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>中单个元素的索引，由于</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dim0</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>到</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dimn</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>shape</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>都是</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>(a,b,c)</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>，因此一共得到了</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>a*b*c</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>个对</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>X</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>中单个元素的索引。</span></p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
- color:black'>&nbsp;</p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
- color:black'><span style='font-weight:bold'>再总结：</span></p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black'><span
-      style='font-weight:bold;font-family:Calibri;font-size:36.0pt' lang=en-US>X</span><span
-      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
-      lang=zh-CN>是一个</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
-      font-size:36.0pt' lang=en-US>n</span><span style='font-weight:bold;
-      font-family:"Microsoft YaHei";font-size:36.0pt' lang=zh-CN>维数组，对</span><span
-      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
-      lang=en-US>X</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
-      font-size:36.0pt' lang=zh-CN>进行花式索引，</span><span style='font-weight:bold;
-      font-family:"Microsoft YaHei";font-size:36.0pt' lang=en-US>X[index_dim0,
-      index_dim1,…, index_dimn]</span><span style='font-weight:bold;font-family:
-      "Microsoft YaHei";font-size:36.0pt' lang=zh-CN>，得到的结果的</span><span
-      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
-      lang=en-US>shape</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
-      font-size:36.0pt' lang=zh-CN>与</span><span style='font-weight:bold;
-      font-family:"Microsoft YaHei";font-size:36.0pt' lang=en-US>X</span><span
-      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
-      lang=zh-CN>的</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
-      font-size:36.0pt' lang=en-US>shape</span><span style='font-weight:bold;
-      font-family:"Microsoft YaHei";font-size:36.0pt' lang=zh-CN>无关，与</span><span
-      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
-      lang=en-US>index_dim0,…,index_dimn</span><span style='font-weight:bold;
-      font-family:"Microsoft YaHei";font-size:36.0pt' lang=zh-CN>的</span><span
-      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
-      lang=en-US>shape</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
-      font-size:36.0pt' lang=zh-CN>有关，还与花式索引中有几个</span><span style='font-weight:
-      bold;font-family:"Microsoft YaHei";font-size:36.0pt' lang=en-US>index_dim</span><span
-      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
-      lang=zh-CN>有关。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black'><span
-      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
-      lang=zh-CN>假设</span><span style='font-weight:bold;font-family:Calibri;
-      font-size:36.0pt' lang=en-US>X</span><span style='font-weight:bold;
-      font-family:"Microsoft YaHei";font-size:36.0pt' lang=zh-CN>是</span><span
-      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
-      lang=en-US>3</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
-      font-size:36.0pt' lang=zh-CN>维数组，</span><span style='font-weight:bold;
-      font-family:"Microsoft YaHei";font-size:36.0pt' lang=en-US>shape</span><span
-      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
-      lang=zh-CN>是</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
-      font-size:36.0pt' lang=en-US>(66,77,88)</span><span style='font-weight:
-      bold;font-family:"Microsoft YaHei";font-size:36.0pt' lang=zh-CN>，</span><span
-      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
-      lang=en-US>index_dim0</span><span style='font-weight:bold;font-family:
-      "Microsoft YaHei";font-size:36.0pt' lang=zh-CN>，</span><span
-      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
-      lang=en-US>index_dim1</span><span style='font-weight:bold;font-family:
-      "Microsoft YaHei";font-size:36.0pt' lang=zh-CN>，</span><span
-      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
-      lang=en-US>index_dim2</span><span style='font-weight:bold;font-family:
-      "Microsoft YaHei";font-size:36.0pt' lang=zh-CN>的</span><span
-      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
-      lang=en-US>shape</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
-      font-size:36.0pt' lang=zh-CN>都是（</span><span style='font-weight:bold;
-      font-family:"Microsoft YaHei";font-size:36.0pt' lang=en-US>100,200,300,400</span><span
-      style='font-weight:bold;font-family:"Microsoft YaHei";font-size:36.0pt'
-      lang=zh-CN>）</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
-      font-size:36.0pt' lang=en-US>,</span><span style='font-weight:bold;
-      font-family:"Microsoft YaHei";font-size:36.0pt' lang=zh-CN>那么</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:"Microsoft YaHei";
- font-size:36.0pt;color:black'><span style='font-weight:bold' lang=en-US>X[index_dim0,index_dim1,index_dim2]</span><span
- style='font-weight:bold' lang=zh-CN>的</span><span style='font-weight:bold'
- lang=en-US>shape</span><span style='font-weight:bold' lang=zh-CN>是（</span><span
- style='font-weight:bold' lang=en-US>100,200,300,400</span><span
- style='font-weight:bold' lang=zh-CN>），</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:"Microsoft YaHei";
- font-size:36.0pt;color:black'><span style='font-weight:bold' lang=en-US>X[index_dim0,index_dim1]</span><span
- style='font-weight:bold' lang=zh-CN>的</span><span style='font-weight:bold'
- lang=en-US>shape</span><span style='font-weight:bold' lang=zh-CN>是（</span><span
- style='font-weight:bold' lang=en-US>100,200,300,400</span><span
- style='font-weight:bold' lang=zh-CN>，</span><span style='font-weight:bold'
- lang=en-US>88</span><span style='font-weight:bold' lang=zh-CN>），</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:"Microsoft YaHei";
- font-size:36.0pt;color:black'><span style='font-weight:bold' lang=en-US>X[index_dim0]</span><span
- style='font-weight:bold' lang=zh-CN>的</span><span style='font-weight:bold'
- lang=en-US>shape</span><span style='font-weight:bold' lang=zh-CN>是（</span><span
- style='font-weight:bold' lang=en-US>100,200,300,400</span><span
- style='font-weight:bold' lang=zh-CN>，</span><span style='font-weight:bold'
- lang=en-US>77</span><span style='font-weight:bold' lang=zh-CN>，</span><span
- style='font-weight:bold' lang=en-US>88</span><span style='font-weight:bold'
- lang=zh-CN>），</span></p>
+<p style='margin:0in;font-size:12.0pt'><span style='font-weight:bold;
+font-family:"Segoe UI Symbol"' lang=en-US>★</span><span style='font-weight:
+bold;font-family:Calibri' lang=en-US>Fancy indexing: </span><a
+href="https://jakevdp.github.io/PythonDataScienceHandbook/02.07-fancy-indexing.html"><span
+style='font-weight:bold;font-family:Calibri' lang=zh-CN>https://jakevdp.github.io/PythonDataScienceHandbook/02.07-fancy-indexing.html</span></a></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:black'><span
+style='font-weight:bold'>先以一维数组为例，</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:black'>x
+= [51 92 14 71 60 20 82 86 74 74]</p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:black'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:black'><span
+lang=zh-CN>ind = [3, 7, 4]<br>
+</span><span lang=en-US>print(x</span><span lang=zh-CN>[ind]</span><span
+lang=en-US>)</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:black'>array([71,
+86, 60])</p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt'><span
+style='color:#333333' lang=zh-CN>ind </span><span style='color:#666666'
+lang=zh-CN>=</span><span style='color:#333333' lang=zh-CN> np</span><span
+style='color:#666666' lang=zh-CN>.</span><span style='color:#333333'
+lang=zh-CN>array([[</span><span style='color:#666666' lang=zh-CN>3</span><span
+style='color:#333333' lang=zh-CN>, </span><span style='color:#666666'
+lang=zh-CN>7</span><span style='color:#333333' lang=zh-CN>],<br>
+<span style='mso-spacerun:yes'>                </span>[</span><span
+style='color:#666666' lang=zh-CN>4</span><span style='color:#333333'
+lang=zh-CN>, </span><span style='color:#666666' lang=zh-CN>5</span><span
+style='color:#333333' lang=zh-CN>]])<br>
+</span><span style='color:black' lang=en-US>print(x</span><span
+style='color:black' lang=zh-CN>[ind]</span><span style='color:black'
+lang=en-US>)</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:black'
+lang=en-US>array([[71, 86],<br>
+<span style='mso-spacerun:yes'>       </span>[60, 20]])</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:black'>可以看出，<span
+style='font-weight:bold'>When using fancy indexing, the shape of the result
+reflects the shape of the&nbsp;</span><span style='font-weight:bold;font-style:
+italic'>index arrays</span><span style='font-weight:bold'>&nbsp;rather than the
+shape of the&nbsp;</span><span style='font-weight:bold;font-style:italic'>array
+being indexed</span><span style='font-weight:bold'>:</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:black'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:black'><span
+style='font-weight:bold'>再以多维数组为例：</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:black'><span
+lang=en-US>X = </span><span lang=zh-CN>array(</span></p>
+
+<p style='margin:0in;margin-left:2.625in;font-family:微软雅黑;font-size:12.0pt;
+color:black'>[[ 0,<span style='mso-spacerun:yes'>  </span>1,<span
+style='mso-spacerun:yes'>  </span>2,<span style='mso-spacerun:yes'> 
+</span>3],<br>
+<span style='mso-spacerun:yes'> </span>[ 4,<span style='mso-spacerun:yes'> 
+</span>5,<span style='mso-spacerun:yes'>  </span>6,<span
+style='mso-spacerun:yes'>  </span>7],<br>
+<span style='mso-spacerun:yes'> </span>[ 8,<span style='mso-spacerun:yes'> 
+</span>9, 10, 11]]</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:black'>)</p>
+
+<p style='margin-top:0pt;margin-bottom:15pt;font-family:微软雅黑;font-size:12.0pt;
+color:black'><span style='font-weight:bold'>Like with standard indexing, the
+first index refers to the row, and the second to the column:</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='color:
+#333333' lang=zh-CN>row </span><span style='color:#666666' lang=zh-CN>=</span><span
+style='color:#333333' lang=zh-CN> np</span><span style='color:#666666'
+lang=zh-CN>.</span><span style='color:#333333' lang=zh-CN>array([</span><span
+style='color:#666666' lang=zh-CN>0</span><span style='color:#333333'
+lang=zh-CN>, </span><span style='color:#666666' lang=zh-CN>1</span><span
+style='color:#333333' lang=zh-CN>, </span><span style='color:#666666'
+lang=zh-CN>2</span><span style='color:#333333' lang=zh-CN>])<br>
+col </span><span style='color:#666666' lang=zh-CN>=</span><span
+style='color:#333333' lang=zh-CN> np</span><span style='color:#666666'
+lang=zh-CN>.</span><span style='color:#333333' lang=zh-CN>array([</span><span
+style='color:#666666' lang=zh-CN>2</span><span style='color:#333333'
+lang=zh-CN>, </span><span style='color:#666666' lang=zh-CN>1</span><span
+style='color:#333333' lang=zh-CN>, </span><span style='color:#666666'
+lang=zh-CN>3</span><span style='color:#333333' lang=zh-CN>])<br>
+</span><span style='color:#333333' lang=en-US>print(X</span><span
+style='color:#333333' lang=zh-CN>[row, col]</span><span style='color:#333333'
+lang=en-US>)</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:black'>array([
+2,<span style='mso-spacerun:yes'>  </span>5, 11])</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:black'><span
+style='font-weight:bold' lang=en-US>X</span><span style='font-weight:bold'
+lang=zh-CN>有二维，</span><span style='font-weight:bold' lang=en-US>dim=0</span><span
+style='font-weight:bold' lang=zh-CN>和</span><span style='font-weight:bold'
+lang=en-US>dim=1</span><span style='font-weight:bold' lang=zh-CN>，</span><span
+style='font-weight:bold' lang=en-US>row</span><span style='font-weight:bold'
+lang=zh-CN>是对</span><span style='font-weight:bold' lang=en-US>dim=0</span><span
+style='font-weight:bold' lang=zh-CN>的索引，</span><span style='font-weight:bold'
+lang=en-US>col</span><span style='font-weight:bold' lang=zh-CN>是对</span><span
+style='font-weight:bold' lang=en-US>dim=1</span><span style='font-weight:bold'
+lang=zh-CN>的索引</span><span style='font-weight:bold' lang=en-US> </span><span
+style='font-weight:bold' lang=zh-CN>，</span><span style='font-weight:bold'
+lang=en-US>row</span><span style='font-weight:bold' lang=zh-CN>和</span><span
+style='font-weight:bold' lang=en-US>col</span><span style='font-weight:bold'
+lang=zh-CN>的组合就是对</span><span style='font-weight:bold' lang=en-US>X</span><span
+style='font-weight:bold' lang=zh-CN>的索引。</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt'><span
+style='font-weight:bold;color:black'>Notice that the first value in the result
+is&nbsp;</span><span style='color:#333333'>X[0, 2]</span><span
+style='font-weight:bold;color:black'>, the second is&nbsp;</span><span
+style='color:#333333'>X[1, 1]</span><span style='font-weight:bold;color:black'>,
+and the third is&nbsp;</span><span style='color:#333333'>X[2, 3]</span><span
+style='font-weight:bold;color:black'>. The pairing of indices in fancy indexing
+follows all the broadcasting rules that were mentioned in&nbsp;</span><a
+href="https://jakevdp.github.io/PythonDataScienceHandbook/02.05-computation-on-arrays-broadcasting.html">Computation
+on Arrays: Broadcasting</a><span style='font-weight:bold;color:black'>. So, for
+example, if we combine a column vector and a row vector within the indices, we
+get a two-dimensional result:</span></p>
+
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:Calibri;
+color:#333333' lang=en-US>print(</span><span style='font-family:"Microsoft YaHei";
+color:#333333' lang=en-US>X</span><span style='font-family:"Microsoft YaHei";
+color:#333333' lang=zh-CN>[row[:, np</span><span style='font-family:"Microsoft YaHei";
+color:#666666' lang=zh-CN>.</span><span style='font-family:"Microsoft YaHei";
+color:#333333' lang=zh-CN>newaxis], col]</span><span style='font-family:"Microsoft YaHei";
+color:#333333' lang=en-US>)</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:black'>array([[
+2,<span style='mso-spacerun:yes'>  </span>1,<span style='mso-spacerun:yes'> 
+</span>3],<br>
+<span style='mso-spacerun:yes'>       </span>[ 6,<span
+style='mso-spacerun:yes'>  </span>5,<span style='mso-spacerun:yes'> 
+</span>7],<br>
+<span style='mso-spacerun:yes'>       </span>[10,<span
+style='mso-spacerun:yes'>  </span>9, 11]])</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-size:12.0pt;color:black'><span style='font-weight:
+bold;font-family:"Microsoft YaHei"' lang=zh-CN>总结：假设</span><span
+style='font-weight:bold;font-family:Calibri' lang=en-US>X</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>是一个</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>n</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>维数组，即有</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>n</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>个</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>dim</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>，</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>X</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>shape</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>是</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>(n_dim0,
+n_dim1,…,n_dimn)</span><span style='font-weight:bold;font-family:"Microsoft YaHei"'
+lang=zh-CN>，现在对</span><span style='font-weight:bold;font-family:"Microsoft YaHei"'
+lang=en-US>X</span><span style='font-weight:bold;font-family:"Microsoft YaHei"'
+lang=zh-CN>进行花式索引，</span><span style='font-weight:bold;font-family:"Microsoft YaHei"'
+lang=en-US>X[index_dim0, index_dim1,…, index_dimn]</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>，其中</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US> index_dim1</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>到</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dimn</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>可以省略任意个，但最多只能到</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dimn</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>，如果有</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dim(n+1)</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>，就会报错。</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dim0</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>到</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dimn</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>的可以是任意维数的数组，且</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dim0</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>到</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dimn</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>shape</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>可以不一样（但是必须可以广播），现在假设</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dim0</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>到</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dimn</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>shape</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>都是</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>(a,b,c)</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>，</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dim0</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>中的每个元素表示对</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>X</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>第</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>0</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>维的索引，</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dimn</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>中的每个元素表示对</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>X</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>第</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>n</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>维的索引，将</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dim0,…,Index_dimn</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>的单个元素进行组合，就得到了一个对</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>X</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>中单个元素的索引，由于</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dim0</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>到</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>index_dimn</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>shape</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>都是</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>(a,b,c)</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>，因此一共得到了</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>a*b*c</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>个对</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>X</span><span
+style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>中单个元素的索引。</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:black'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:black'><span
+style='font-weight:bold'>再总结：</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black'><span
+     style='font-weight:bold;font-family:Calibri;font-size:12.0pt' lang=en-US>X</span><span
+     style='font-weight:bold;font-family:"Microsoft YaHei";font-size:12.0pt'
+     lang=zh-CN>是一个</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+     font-size:12.0pt' lang=en-US>n</span><span style='font-weight:bold;
+     font-family:"Microsoft YaHei";font-size:12.0pt' lang=zh-CN>维数组，对</span><span
+     style='font-weight:bold;font-family:"Microsoft YaHei";font-size:12.0pt'
+     lang=en-US>X</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+     font-size:12.0pt' lang=zh-CN>进行花式索引，</span><span style='font-weight:bold;
+     font-family:"Microsoft YaHei";font-size:12.0pt' lang=en-US>X[index_dim0,
+     index_dim1,…, index_dimn]</span><span style='font-weight:bold;font-family:
+     "Microsoft YaHei";font-size:12.0pt' lang=zh-CN>，得到的结果的</span><span
+     style='font-weight:bold;font-family:"Microsoft YaHei";font-size:12.0pt'
+     lang=en-US>shape</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+     font-size:12.0pt' lang=zh-CN>与</span><span style='font-weight:bold;
+     font-family:"Microsoft YaHei";font-size:12.0pt' lang=en-US>X</span><span
+     style='font-weight:bold;font-family:"Microsoft YaHei";font-size:12.0pt'
+     lang=zh-CN>的</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+     font-size:12.0pt' lang=en-US>shape</span><span style='font-weight:bold;
+     font-family:"Microsoft YaHei";font-size:12.0pt' lang=zh-CN>无关，与</span><span
+     style='font-weight:bold;font-family:"Microsoft YaHei";font-size:12.0pt'
+     lang=en-US>index_dim0,…,index_dimn</span><span style='font-weight:bold;
+     font-family:"Microsoft YaHei";font-size:12.0pt' lang=zh-CN>的</span><span
+     style='font-weight:bold;font-family:"Microsoft YaHei";font-size:12.0pt'
+     lang=en-US>shape</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+     font-size:12.0pt' lang=zh-CN>有关，还与花式索引中有几个</span><span style='font-weight:
+     bold;font-family:"Microsoft YaHei";font-size:12.0pt' lang=en-US>index_dim</span><span
+     style='font-weight:bold;font-family:"Microsoft YaHei";font-size:12.0pt'
+     lang=zh-CN>有关。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:black'><span
+     style='font-weight:bold;font-family:"Microsoft YaHei";font-size:12.0pt'
+     lang=zh-CN>假设</span><span style='font-weight:bold;font-family:Calibri;
+     font-size:12.0pt' lang=en-US>X</span><span style='font-weight:bold;
+     font-family:"Microsoft YaHei";font-size:12.0pt' lang=zh-CN>是</span><span
+     style='font-weight:bold;font-family:"Microsoft YaHei";font-size:12.0pt'
+     lang=en-US>3</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+     font-size:12.0pt' lang=zh-CN>维数组，</span><span style='font-weight:bold;
+     font-family:"Microsoft YaHei";font-size:12.0pt' lang=en-US>shape</span><span
+     style='font-weight:bold;font-family:"Microsoft YaHei";font-size:12.0pt'
+     lang=zh-CN>是</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+     font-size:12.0pt' lang=en-US>(66,77,88)</span><span style='font-weight:
+     bold;font-family:"Microsoft YaHei";font-size:12.0pt' lang=zh-CN>，</span><span
+     style='font-weight:bold;font-family:"Microsoft YaHei";font-size:12.0pt'
+     lang=en-US>index_dim0</span><span style='font-weight:bold;font-family:
+     "Microsoft YaHei";font-size:12.0pt' lang=zh-CN>，</span><span
+     style='font-weight:bold;font-family:"Microsoft YaHei";font-size:12.0pt'
+     lang=en-US>index_dim1</span><span style='font-weight:bold;font-family:
+     "Microsoft YaHei";font-size:12.0pt' lang=zh-CN>，</span><span
+     style='font-weight:bold;font-family:"Microsoft YaHei";font-size:12.0pt'
+     lang=en-US>index_dim2</span><span style='font-weight:bold;font-family:
+     "Microsoft YaHei";font-size:12.0pt' lang=zh-CN>的</span><span
+     style='font-weight:bold;font-family:"Microsoft YaHei";font-size:12.0pt'
+     lang=en-US>shape</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+     font-size:12.0pt' lang=zh-CN>都是（</span><span style='font-weight:bold;
+     font-family:"Microsoft YaHei";font-size:12.0pt' lang=en-US>100,200,300,400</span><span
+     style='font-weight:bold;font-family:"Microsoft YaHei";font-size:12.0pt'
+     lang=zh-CN>）</span><span style='font-weight:bold;font-family:"Microsoft YaHei";
+     font-size:12.0pt' lang=en-US>,</span><span style='font-weight:bold;
+     font-family:"Microsoft YaHei";font-size:12.0pt' lang=zh-CN>那么</span></li>
 </ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:"Microsoft YaHei";
+font-size:12.0pt;color:black'><span style='font-weight:bold' lang=en-US>X[index_dim0,index_dim1,index_dim2]</span><span
+style='font-weight:bold' lang=zh-CN>的</span><span style='font-weight:bold'
+lang=en-US>shape</span><span style='font-weight:bold' lang=zh-CN>是（</span><span
+style='font-weight:bold' lang=en-US>100,200,300,400</span><span
+style='font-weight:bold' lang=zh-CN>），</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:"Microsoft YaHei";
+font-size:12.0pt;color:black'><span style='font-weight:bold' lang=en-US>X[index_dim0,index_dim1]</span><span
+style='font-weight:bold' lang=zh-CN>的</span><span style='font-weight:bold'
+lang=en-US>shape</span><span style='font-weight:bold' lang=zh-CN>是（</span><span
+style='font-weight:bold' lang=en-US>100,200,300,400</span><span
+style='font-weight:bold' lang=zh-CN>，</span><span style='font-weight:bold'
+lang=en-US>88</span><span style='font-weight:bold' lang=zh-CN>），</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:"Microsoft YaHei";
+font-size:12.0pt;color:black'><span style='font-weight:bold' lang=en-US>X[index_dim0]</span><span
+style='font-weight:bold' lang=zh-CN>的</span><span style='font-weight:bold'
+lang=en-US>shape</span><span style='font-weight:bold' lang=zh-CN>是（</span><span
+style='font-weight:bold' lang=en-US>100,200,300,400</span><span
+style='font-weight:bold' lang=zh-CN>，</span><span style='font-weight:bold'
+lang=en-US>77</span><span style='font-weight:bold' lang=zh-CN>，</span><span
+style='font-weight:bold' lang=en-US>88</span><span style='font-weight:bold'
+lang=zh-CN>），</span></p>
 
 </div>
 

@@ -10,11 +10,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="CS336-2025-lec1.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:30.0465in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:13.9666in'>
 
 <div style='direction:ltr;margin-top:0in;margin-left:0in;width:2.7958in'>
 
@@ -33,19 +33,19 @@ style='font-family:Calibri'>25</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.5277in;margin-left:.6493in;width:29.3972in'>
+<div style='direction:ltr;margin-top:.5277in;margin-left:.6493in;width:13.3173in'>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold'>Overview, tokenization</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:5.625in'><img
-src="CS336-2025-lec1.files/image001.jpg" width=1290 height=723></p>
+<p style='margin:0in;margin-left:1.125in'><img
+src="CS336-2025-lec1.files/image001.jpg" width=507 height=284></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>当参数量较小时，</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>当参数量较小时，</span><span
 lang=en-US>MLP</span><span lang=zh-CN>和</span><span lang=en-US>MHA</span><span
 lang=zh-CN>的</span><span lang=en-US>FLOPS</span><span lang=zh-CN>计算量大致相当，但是当参数量很大时，</span><span
 lang=en-US>MLP</span><span lang=zh-CN>的</span><span lang=en-US>FLOPS</span><span
@@ -53,98 +53,98 @@ lang=zh-CN>占主导地位。所以</span><span style='font-weight:bold' lang=zh
 style='font-weight:bold' lang=en-US>ATTENTION</span><span style='font-weight:
 bold' lang=zh-CN>运算对于大模型的好处要小于小模型。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>大模型训练时具有涌现现象，在训练到某个</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>大模型训练时具有涌现现象，在训练到某个</span><span
 lang=en-US>FLOPs</span><span lang=zh-CN>数量以前，指标一直很低，但是到了某一步之后，指标突然增加。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>优化大模型的计算效率很重要，因为资源是有限的，有限的</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>优化大模型的计算效率很重要，因为资源是有限的，有限的</span><span
 lang=en-US>GPU</span><span lang=zh-CN>，有限的显存，有限的数据，有限的时间等。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>A rule
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>A rule
 of thumb: </span><span lang=zh-CN>训练所需要的</span><span lang=en-US>token</span><span
 lang=zh-CN>数量大致是模型参数量的</span><span lang=en-US>20</span><span lang=zh-CN>倍，即</span><span
 lang=en-US>1B</span><span lang=zh-CN>的模型需要在</span><span lang=en-US>20B</span><span
 lang=zh-CN>的</span><span lang=en-US>tokens</span><span lang=zh-CN>上训练。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>对齐</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>对齐</span><span
 lang=en-US>Alignment: </span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'
 lang=en-US>base model is good at completing next token, <span style='font-weight:
 bold'>Alignment makes the model actual useful.</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>对齐的目标：</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>对齐的目标：</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'
 lang=en-US>1. Get the language model to follow instructions.</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'
 lang=en-US>2. Tune the style, format, tone, etc.</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'
 lang=en-US>3. Safety, refuse harmful questions</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>对齐的两个阶段：</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>对齐的两个阶段：</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=en-US>1.SFT</span><span lang=zh-CN>，微调模型使得</span><span lang=en-US>p(response|prompt)
 </span><span lang=zh-CN>概率最大化，基本和预训练一样。</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'
 lang=en-US>2.learning from feedback</p>
 
-<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=en-US>1</span><span lang=zh-CN>）偏好数据，</span><span lang=en-US> A</span><span
 lang=zh-CN>和</span><span lang=en-US>B</span><span lang=zh-CN>哪个好</span></p>
 
-<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=en-US>2) verifiers , </span><span lang=zh-CN>如</span><span lang=en-US>llm
 as judge</span></p>
 
-<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=en-US>3)</span><span lang=zh-CN>算法：</span><span lang=en-US>PPO </span><span
 style='font-weight:bold' lang=en-US>DPO(</span><span style='font-weight:bold'
 lang=zh-CN>仅适用于偏好数据</span><span style='font-weight:bold' lang=en-US>)</span><span
 lang=en-US> GRPO</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Byte Pair Encoding
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>Byte Pair Encoding
 (BPE)</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Basic
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>Basic
 idea: train the tokenizer on raw text to automatically determine the
 vocabulary.</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>    </span>Intuition: common sequences of characters
 are represented by a single token, rare sequences are represented by many
 tokens.</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=zh-CN><span style='mso-spacerun:yes'>    </span>The GPT-2 paper used</span><span
 style='font-weight:bold' lang=zh-CN> word-based tokenization（</span><span
 style='font-weight:bold' lang=en-US>pre tokenization</span><span
 style='font-weight:bold' lang=zh-CN>）</span><span lang=zh-CN> to break up the
 text into inital segments and run the original BPE algorithm on each segment.</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>    </span>Sketch: start with each byte as a token,
 and successively merge the most common pair of adjacent tokens.</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'
 lang=en-US>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
 
 </div>
 

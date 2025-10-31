@@ -10,20 +10,20 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="总结.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:32.0118in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:8.4736in'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:.4465in;width:1.2201in'>
+<div style='direction:ltr;margin-top:0in;margin-left:.2805in;width:1.2201in'>
 
 <p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'><span lang=zh-CN>总结</span><span
 lang=en-US> </span></p>
 
 </div>
 
-<div style='direction:ltr;margin-top:.0423in;margin-left:.4465in;width:1.6687in'>
+<div style='direction:ltr;margin-top:.0423in;margin-left:.2805in;width:1.6687in'>
 
 <p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
 Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
@@ -34,81 +34,81 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:32.0118in'>
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:8.4736in'>
 
 <ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>Jane street</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>The
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>The
  competition dataset comprises a set of timeseries with 79 features and 9
  responders, anonymized but representing real market data. The goal of the
  competition is to forecast one of these responders, i.e., <span
  style='background:#F3F4F4'>responder_6</span>, for up to six months in the
  future.</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>My story</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>读了public
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>读了public
  notebook后，决定</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>1）用Public
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>1）用Public
  notebook现成代码训练xgb lgb cbt ，建立CV策略</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>2）use NN</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>3）Online
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>2）use NN</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>3）Online
  learning</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>4）不用lag特征，因为看评论感觉lag特征没有用</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>4）不用lag特征，因为看评论感觉lag特征没有用</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>CV部分：</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>看了别人的EDA，在date_id=676之前，每个date有849个time_id，而在date_id=676之后
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>看了别人的EDA，在date_id=676之前，每个date有849个time_id，而在date_id=676之后
  ，每个date有968个time_id，所以我打算根据这个特点并结合模型训练的数据量建立CV，将数据分为3份：</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>1）date_id
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>1）date_id
  0-500训练集，date_id 500-676验证集（因为private test的数据是未来6个月，所以验证集先选择120天左右的数据）</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>2）date_id
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>2）date_id
  677-1100训练集，date_id 1101-1221验证集</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>3）date_id
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>3）date_id
  1101-1577训练集，date_id 1578-1698验证集</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>分别用这三份数据训练了xgb,lgb,cbt，发现用数据集3）训练的模型得分最高（我分析，因为数据本身就是non-stationary的，所以不一定训练数据越多越好，越靠近当前date的数据越有用，所以要用online
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>分别用这三份数据训练了xgb,lgb,cbt，发现用数据集3）训练的模型得分最高（我分析，因为数据本身就是non-stationary的，所以不一定训练数据越多越好，越靠近当前date的数据越有用，所以要用online
  learning），而且多模型平均得分比单模型好，所以我决定：</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>1）加入lag特征（虽然作用不大，但是还是加上吧）</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>2）要预测未来6个月，只用offline
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>1）加入lag特征（虽然作用不大，但是还是加上吧）</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>2）要预测未来6个月，只用offline
  model不行，要用online learning</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>3）看了public
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>3）看了public
  notebook，决定尝试FT-Transformer和tabm</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>4）模型ensemble可以提高得分且robust</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>5）试试post
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>4）模型ensemble可以提高得分且robust</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>5）试试post
  process</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>新的CV策略：用date_id=1100天到1668天做训练集，1668-1698天做验证集，训练
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>新的CV策略：用date_id=1100天到1668天做训练集，1668-1698天做验证集，训练
  xgb,lgb,cbt，得到best n_iter。然后再用1100-1698所有数据训练，n_iter保持不变或者稍微多一些。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>Online Learning 部分：</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>参考了public
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>参考了public
  的online learning
  notebook，Lightgbm的策略是每20天训练一次模型，训练集为当前date的前300天数据，n_iter固定为60，lr固定为0.1，特征用重要性top45的特征，不用全部的特征，不然会超出1分钟的时间限制。但是lgb的在线学习并没有提高public
  score。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>NN的策略是每n天（n=1,n=5,n=20,都试了）用前n天的数据反向传播，更新参数，lr
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>NN的策略是每n天（n=1,n=5,n=20,都试了）用前n天的数据反向传播，更新参数，lr
  = 1e-4，epoch=1，但是没有提升，而且只要是lr稍微大一点，epoch稍微多一点，分数就会下降较多，看评论分析可能是用了batchnorm的原因？</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>模型部分：</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>尝试了NN模型中用前一天lag的agg
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>尝试了NN模型中用前一天lag的agg
  特征，但是得分下降了，所以不打算用了。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>自己写了FT-Transformer的代码，但是提交后得分不高，放弃了。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>public的tabm得分也不高。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>看了public
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>自己写了FT-Transformer的代码，但是提交后得分不高，放弃了。</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>public的tabm得分也不高。</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>看了public
  EDA，发现feature09 feature10 feature11这3个是类别特征，所以把public的NN代码改成加入category
  embedding的版本，但是得分没有提升，放弃了，改为把3个类别特征直接舍弃，score能提升0.0001。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>public
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>public
  notebook中加了Ridge regression也能提升，我也打算在online
  learning部分加上，策略跟lgb一样，训练数据改为当前date前100天，不然会oom。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>单个NN得分不如5-fold的nn
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>单个NN得分不如5-fold的nn
  ensemble得分高，所以打算用3fold nn ensemble。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>最后的xgb打算用public的，因为得分比我的高，而且感觉也比较robust。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>最后的版本：public
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>最后的xgb打算用public的，因为得分比我的高，而且感觉也比较robust。</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>最后的版本：public
  xgb + 我的xgb lgb cbt + 我的3-fold nn + online lgb + online ridge</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>Winner solutions</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>- What is the key to a successful sequence model?</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><a
  href="https://www.kaggle.com/competitions/jane-street-real-time-market-data-forecasting/discussion/556859">https://www.kaggle.com/competitions/jane-street-real-time-market-data-forecasting/discussion/556859</a></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>1:
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>1:
  Feeding <span style='font-weight:bold'>one date_id of data as one batch</span>
  is the most important part for the successful sequence model in this
  competition (could be the key to break 0.009) 2: Designing modules or features
@@ -118,176 +118,176 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  training could be the key to break 0.011 (just my guess from the shared
  solutions) 4: No idea how to break 0.012 or even 0.013 (probably smarter
  online learning strategy instead of date_id by date_id online training)…</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>- [Public LB 6th] solution（有代码）</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><a
  href="https://www.kaggle.com/competitions/jane-street-real-time-market-data-forecasting/discussion/556542">https://www.kaggle.com/competitions/jane-street-real-time-market-data-forecasting/discussion/556542</a></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='color:#333333'>Link to the code </span><a
  href="https://github.com/evgeniavolkova/kagglejanestreet">https://github.com/evgeniavolkova/kagglejanestreet</a><span
  style='color:#333333'> Link to the submission notebook </span><a
  href="https://www.kaggle.com/code/eivolkova/public-6th-place?scriptVersionId=217330222">https://www.kaggle.com/code/eivolkova/public-6th-place?scriptVersionId=217330222</a></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>一个date_id是一个batch</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>一个date_id是一个batch</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>1. Cross-validation</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>I used a
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>I used a
  time-series CV with <span style='font-weight:bold'>two folds. The validation
  size was set to 200 dates, as in the public dataset. It correlated well with
  the public LB scores. Additionally, the model from the first fold was tested
  on the last 200 dates with a 200-day gap to simulate the private dataset scenario.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>Model</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>Time-series
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>Time-series
  GRU with sequence equal to one day. I ended up with two slightly different
  architectures:</p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
-      style='font-family:微软雅黑;font-size:36.0pt'>3-layer GRU</span></li>
+      style='font-family:微软雅黑;font-size:12.0pt'>3-layer GRU</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
-      style='font-family:微软雅黑;font-size:36.0pt'>1-layer GRU followed by 2
+      style='font-family:微软雅黑;font-size:12.0pt'>1-layer GRU followed by 2
       linear layers with ReLU activation and dropout.</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>The
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>The
  second model worked better than the first model on CV (+0.001), but the first
  model still contributed to the ensemble, so I kept it.</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>MLP,
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>MLP,
  time-series transformers, cross-symbol attention and embeddings didn't work
  for me.</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>Feature engeneering</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>I used
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>I used
  all original features except for three categorical ones (features 09–11). I
  also selected 16 features that showed a high correlation with the target and
  created two groups of additional features:</p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
-      style='font-family:微软雅黑;font-size:36.0pt'>Market averages: Averages per </span><span
-      style='font-family:微软雅黑;font-size:36.0pt;background:#F3F4F4'>date_id</span><span
-      style='font-family:微软雅黑;font-size:36.0pt'> and </span><span
-      style='font-family:微软雅黑;font-size:36.0pt;background:#F3F4F4'>time_id</span><span
-      style='font-family:微软雅黑;font-size:36.0pt'>.</span></li>
+      style='font-family:微软雅黑;font-size:12.0pt'>Market averages: Averages per </span><span
+      style='font-family:微软雅黑;font-size:12.0pt;background:#F3F4F4'>date_id</span><span
+      style='font-family:微软雅黑;font-size:12.0pt'> and </span><span
+      style='font-family:微软雅黑;font-size:12.0pt;background:#F3F4F4'>time_id</span><span
+      style='font-family:微软雅黑;font-size:12.0pt'>.</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
-      style='font-family:微软雅黑;font-size:36.0pt'>Rolling statistics: Rolling
+      style='font-family:微软雅黑;font-size:12.0pt'>Rolling statistics: Rolling
       averages and standard deviations over the last 1000 </span><span
-      style='font-family:微软雅黑;font-size:36.0pt;background:#F3F4F4'>time_id</span><span
-      style='font-family:微软雅黑;font-size:36.0pt'>s for each symbol.</span></li>
+      style='font-family:微软雅黑;font-size:12.0pt;background:#F3F4F4'>time_id</span><span
+      style='font-family:微软雅黑;font-size:12.0pt'>s for each symbol.</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>Besides
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>Besides
  that, I added <span style='background:#F3F4F4'>time_id</span> as a feature.</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>I used 4
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>I used 4
  responders as <span style='font-weight:bold'>auxiliary targets</span>: <span
  style='background:#F3F4F4'>responder_7</span> and <span style='background:
  #F3F4F4'>responder_8</span>, and two calculated ones:</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>Online Learning</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>During
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>During
  inference, when new data with targets becomes available, I perform one forward
  pass to update the model weights with a learning rate of 0.0003. This approach
  significantly improved the model’s performance on CV (+0.008). Interestingly,
  for an MLP model, the score without online learning was higher than for the
  GRU, but lower with online learning.</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>Updates
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>Updates
  are performed only with the <span style='background:#F3F4F4'>responder_6</span>
  loss, without auxiliary targets.</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>- Tricks to make CatBoost online training great
  again~</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><a
  href="https://www.kaggle.com/competitions/jane-street-real-time-market-data-forecasting/discussion/556544">https://www.kaggle.com/competitions/jane-street-real-time-market-data-forecasting/discussion/556544</a></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>Trick # 1: You don't need to train the model from
  scratch in one shot, instead you could divide it into multiple trainings.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#AA5500'
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#AA5500'
  lang=x-none># version 1: train model in one go</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='color:black'>train_data </span><span style='color:#981A1A'>= </span><span
  style='color:black'>Pool(train[features_cbt],train[target_col])</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='color:black'>cbt_model </span><span style='color:#981A1A'>= </span><span
  style='color:black'>cbt.CatBoostRegressor(</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;iterations=1500,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;learning_rate=0.03,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;depth=9,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;l2_leaf_reg=0.066,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;bagging_temperature=0.71,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;random_strength=3.6,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;random_seed=42,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;task_type='GPU',</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;loss_function='RMSE',</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none>)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none>)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='color:black'>cbt_model.fit(train_data, silent</span><span
  style='color:#981A1A'>=</span><span style='color:#770088'>True</span>)</p>
- <p style='margin:0in;font-family:Arial;font-size:36.0pt' lang=x-none>​</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#AA5500'
+ <p style='margin:0in;font-family:Arial;font-size:12.0pt' lang=x-none>​</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#AA5500'
  lang=x-none>#version 2: divide train into 5 times</p>
- <p style='margin:0in;font-family:Arial;font-size:36.0pt' lang=x-none>​</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:Arial;font-size:12.0pt' lang=x-none>​</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='color:black'>cbt_model </span><span style='color:#981A1A'>=</span> []</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='color:#770088'>for </span><span style='color:black'>i </span><span
  style='color:#770088'>in </span><span style='color:#3300AA'>range</span>(<span
  style='color:#116644'>5</span>):</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;<span style='color:#770088'>if </span><span
  style='color:black'>i </span><span style='color:#981A1A'>&gt; </span><span
  style='color:#116644'>0</span>:</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;score_increase = cbt_model_i.predict(train[features_cbt])</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;train_scores_current
  = train_scores_current + score_increase</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;<span style='color:#770088'>else</span>:</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;train_scores_current
  = None</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='color:black'>train_data </span><span style='color:#981A1A'>= </span><span
  style='color:black'>Pool(train[features_cbt],train[target_col], baseline</span><span
  style='color:#981A1A'>=</span><span style='color:black'>train_scores_current)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='color:black'>cbt_model_i </span><span style='color:#981A1A'>= </span><span
  style='color:black'>cbt.CatBoostRegressor(</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;iterations=300,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;learning_rate=0.03,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;depth=9,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;l2_leaf_reg=0.066,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;bagging_temperature=0.71,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;random_strength=3.6,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;random_seed=42,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;task_type='GPU',</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;loss_function='RMSE',</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none>)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none>)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='color:black'>cbt_model_i.fit(train_data, silent</span><span
  style='color:#981A1A'>=</span><span style='color:#770088'>True</span>)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='color:black'>cbt_model.append(cbt_model_i)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>Trick # 2: You don't need to all the data points from
  each date_id, but sample a portion.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>For each
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>For each
  date_id, there are 968 different time_ids from date_id: 677, and for each
  (date_id, time_id), there is tons of symbol_ids, one assumption here is there
  might be a lot of redundant info here for GBDT model training. So what I tried
@@ -295,26 +295,26 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  using only the most recent 600 date_ids. Interestingly, I almost got the
  similar model performance, compared to using all the datapoints (still last
  600 date_ids wihtout sampling)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>Using those two tricks together with others (anomaly
  removal and post-process namely uncertainty estimation), I could build a
  catboost online training pipeline using last 600 days with 180 features while
  training freq every 7 days to achieve 0.008+ LB score.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>- Some final remarks</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><a
  href="https://www.kaggle.com/competitions/jane-street-real-time-market-data-forecasting/discussion/556686">https://www.kaggle.com/competitions/jane-street-real-time-market-data-forecasting/discussion/556686</a></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>用了Encoder
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>用了Encoder
  + decoder + GRU 的architecture。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>关键问题，数据non-stationary的解决办法：</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>关键问题，数据non-stationary的解决办法：</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>Normalization</span> I tried various schemes: signed
  log transform, global norm, Yeo–Johnson (with fixed/trainable lambda),
  quantile transform, and EMA with trainable momentum. My takeaway? It doesn’t
  really matter. The main benefit is numerical stability. Given the non-stationary
  nature of the signal, I expected Yeo–Johnson or EMA to perform better, as they
  can adapt quickly to distribution shifts, but…</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>Hyperparameters</span> Most optimizers in TensorFlow
  (Adam, AdaMax, etc.) use some form of momentum—they combine and weight
  gradients from the last N steps to stabilize training (the specifics vary, but
@@ -323,22 +323,22 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  the model to keep updating gradients based on outdated patterns. <span
  style='font-weight:bold'>So, I set the “beta” parameters of Adam to reasonably
  low values, reducing the effective window size to 2-5 days.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>这点我看懂了。将Adam中的beta参数设置地很小，因为pytorch默认参数是0.9和0.999,</span><span
  style='font-weight:bold;font-style:italic'>betas=(0.9, 0.999)</span><span
  style='font-weight:bold'>,
  也就相当于计算过去10天的梯度移动平均和过去1000天的梯度平方的移动平均，这对于non-stationary太多了。</span>太细了。。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>- [Public LB 26th] TabM, AutoencoderMLP with online
  training &amp; GBDT offline models （有代码）</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><a
  href="https://www.kaggle.com/competitions/jane-street-real-time-market-data-forecasting/discussion/556610">https://www.kaggle.com/competitions/jane-street-real-time-market-data-forecasting/discussion/556610</a></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='color:#333333'>TabM training code </span><a
  href="https://www.kaggle.com/code/i2nfinit3y/jane-street-tabm-training?scriptVersionId=217873214">https://www.kaggle.com/code/i2nfinit3y/jane-street-tabm-training?scriptVersionId=217873214</a><span
  style='color:#333333'> Single TabM online learning : </span><a
  href="https://www.kaggle.com/code/i2nfinit3y/jane-street-tabm-online-learning">https://www.kaggle.com/code/i2nfinit3y/jane-street-tabm-online-learning</a></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold;color:#333333'>Inference Code</span><span
  style='color:#333333'>: You can access our inference code </span><a
  href="https://www.kaggle.com/code/chronoscop/fork-of-jane-street-rmf-final-submission?scriptVersionId=218125086">here</a><span
@@ -347,9 +347,9 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  GitHub </span><a
  href="https://github.com/chronoscop/JS-Public-LB-26th-training-code">here</a><span
  style='color:#333333'>.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>Online
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>Online
  TabM + AutoencoderMLP + offline gbdt ridge</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='color:#333333'>Our final solution of 0.0092 lb is ensembling NN models
  with online learning , GBDT offline models and a ridge model. My part is
  mainly for TabM model and some GBDT models, which is what I am gonna to talk
@@ -358,427 +358,427 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  style='color:#333333'> 's part and </span><a
  href="https://www.kaggle.com/chronoscop">@chronoscop</a><span
  style='color:#333333'> is in charge of one of XGB.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>1. Cross-Validation</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>I simply
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>I simply
  used the last 120 dates as my validation and it shows good correlations with
  LB.</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>- [Public LB 12th] Competition Wrap-up: （Private掉到29
  2025-3-26）</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><a
  href="https://www.kaggle.com/competitions/jane-street-real-time-market-data-forecasting/discussion/556548">https://www.kaggle.com/competitions/jane-street-real-time-market-data-forecasting/discussion/556548</a></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
-      style='font-family:微软雅黑;font-size:36.0pt'>For models, I designed two
+      style='font-family:微软雅黑;font-size:12.0pt'>For models, I designed two
       different architectures using basic ingredients including GRU, MLP and </span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Transformer
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>Transformer
       (symbol-wise attention).</span><span style='font-family:微软雅黑;font-size:
-      36.0pt'> Under each architecture, feature maps were ensemble in two ways,
+      12.0pt'> Under each architecture, feature maps were ensemble in two ways,
       resulting in 4 different models.</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
-      style='font-family:微软雅黑;font-size:36.0pt;color:#333333'>Features are the
+      style='font-family:微软雅黑;font-size:12.0pt;color:#333333'>Features are the
       79 raw features excluding </span><span style='font-family:微软雅黑;
-      font-size:36.0pt;color:#333333;background:#F3F4F4'>9, 10, 11</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;color:#333333'>, </span><span
-      style='font-family:微软雅黑;font-size:36.0pt;color:#333333;background:#F3F4F4'>time_id</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;color:#333333'>, </span><span
-      style='font-family:微软雅黑;font-size:36.0pt;color:#333333;background:#F3F4F4'>weights</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;color:#333333'>, as well as mean
+      font-size:12.0pt;color:#333333;background:#F3F4F4'>9, 10, 11</span><span
+      style='font-family:微软雅黑;font-size:12.0pt;color:#333333'>, </span><span
+      style='font-family:微软雅黑;font-size:12.0pt;color:#333333;background:#F3F4F4'>time_id</span><span
+      style='font-family:微软雅黑;font-size:12.0pt;color:#333333'>, </span><span
+      style='font-family:微软雅黑;font-size:12.0pt;color:#333333;background:#F3F4F4'>weights</span><span
+      style='font-family:微软雅黑;font-size:12.0pt;color:#333333'>, as well as mean
       and std of the lagged responders. Missing values were filled with zeros.
       All responders were used as targets (instead of only Responder_6). As </span><a
       href="https://www.kaggle.com/eivolkova"><span style='font-family:微软雅黑;
-      font-size:36.0pt'>@eivolkova</span></a><span style='font-family:微软雅黑;
-      font-size:36.0pt;color:#333333'> pointed out, using auxiliary targets can
+      font-size:12.0pt'>@eivolkova</span></a><span style='font-family:微软雅黑;
+      font-size:12.0pt;color:#333333'> pointed out, using auxiliary targets can
       greatly boost both CV &amp; LB.</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
-      style='font-family:微软雅黑;font-size:36.0pt'>Models were validated using the
+      style='font-family:微软雅黑;font-size:12.0pt'>Models were validated using the
       last 120 days, with both offline and online mode. Training sets includes
       three settings, i.e. 978 days, 800 days and 600 days. Eventually only
       models trained with the 978 and 800 days were used in the final ensemble
       (8 models).</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt;color:#333333'>Online
-      learning</span><span style='font-family:微软雅黑;font-size:36.0pt;color:#333333'>
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt;color:#333333'>Online
+      learning</span><span style='font-family:微软雅黑;font-size:12.0pt;color:#333333'>
       was designed to update the model on a daily basis, using a similar
       setting as the training. Unlike </span><a
       href="https://www.kaggle.com/eivolkova"><span style='font-family:微软雅黑;
-      font-size:36.0pt'>@eivolkova</span></a><span style='font-family:微软雅黑;
-      font-size:36.0pt;color:#333333'> 's solution, I did not differentiate the
+      font-size:12.0pt'>@eivolkova</span></a><span style='font-family:微软雅黑;
+      font-size:12.0pt;color:#333333'> 's solution, I did not differentiate the
       responder_6 loss and auxiliary targets loss during the online update. The
       model updating is quite fast. It was about 0.5~0.7 sec per model per day.
       A full online training using every 120 or 200 days could further boost
       the score, however I did not implement it as it will complicate the whole
       pipeline quite a lot. The major concern is the 1-min limit.</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>- Symbol Cross-Attention Animations（有一点代码）</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>I used
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>I used
  batches of <span style='font-weight:bold'>(Symbol, Time, Feature)</span>, one
  batch per day.</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>对于Attention层来说，输入shape是#
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>对于Attention层来说，输入shape是#
  Shape: (B, L, FT)，输出shape还是# Shape: (B, L, FT)，区别在于新的# Shape: (B, L,
  FT)是经过attention了其他symbol之后得到的。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='color:#770088'>class </span><span style='color:blue'>SymbolCrossAttention</span>(nn.Module):</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;<span style='color:#770088'>def </span><span
  style='color:blue'>__init__</span>(<span style='color:#0055AA'>self</span>, feature_dim,
  projection_dim):</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#3300AA'>super</span>(SymbolCrossAttention, <span
  style='color:#0055AA'>self</span>).__init__()</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#0055AA'>self</span>.feature_dim = feature_dim</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#0055AA'>self</span>.projection_dim = projection_dim</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#AA5500'># Learnable projections for computing similarity</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;mlp_hidden_dim = 256</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#AA5500'># Define MLP for queries</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;layers = [nn.Linear(feature_dim,
  mlp_hidden_dim), nn.ReLU()]</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#770088'>for </span><span style='color:black'>_ </span><span
  style='color:#770088'>in </span><span style='color:#3300AA'>range</span>(<span
  style='color:#116644'>0</span>): &nbsp;<span style='color:#AA5500'># Add
  hidden layers</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;layers.extend([nn.Linear(mlp_hidden_dim,
  mlp_hidden_dim), nn.ReLU()])</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;layers.append(nn.Linear(mlp_hidden_dim,
  projection_dim, bias=False))</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#0055AA'>self</span>.query_proj = nn.Sequential(<span
  style='color:#981A1A'>*</span><span style='color:black'>layers)</span></p>
- <p style='margin:0in;font-family:Arial;font-size:36.0pt' lang=x-none>​</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:Arial;font-size:12.0pt' lang=x-none>​</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#AA5500'># Define MLP for keys (can share weights with queries if
  desired)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;layers = [nn.Linear(feature_dim,
  mlp_hidden_dim), nn.ReLU()]</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#770088'>for </span><span style='color:black'>_ </span><span
  style='color:#770088'>in </span><span style='color:#3300AA'>range</span>(<span
  style='color:#116644'>0</span>): &nbsp;<span style='color:#AA5500'># Add
  hidden layers</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;layers.extend([nn.Linear(mlp_hidden_dim,
  mlp_hidden_dim), nn.ReLU()])</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;layers.append(nn.Linear(mlp_hidden_dim,
  projection_dim, bias=False))</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#0055AA'>self</span>.key_proj = nn.Sequential(<span
  style='color:#981A1A'>*</span><span style='color:black'>layers)</span></p>
- <p style='margin:0in;font-family:Arial;font-size:36.0pt' lang=x-none>​</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:Arial;font-size:12.0pt' lang=x-none>​</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;<span style='color:#770088'>def </span><span
  style='color:blue'>forward</span>(<span style='color:#0055AA'>self</span>, x):</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#AA5500'># Input shape: (B, L, FT)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;B, L, FT = x.shape</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#770088'>assert </span><span style='color:black'>FT </span><span
  style='color:#981A1A'>== </span><span style='color:#0055AA'>self</span>.feature_dim,
  <span style='color:#AA1111'>&quot;Feature dimension mismatch&quot;</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#AA5500'># Project features into the high-dimensional space</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;queries = self.query_proj(x)
  &nbsp;<span style='color:#AA5500'># Shape: (B, L, P)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;keys = self.key_proj(x)
  &nbsp; &nbsp; &nbsp;<span style='color:#AA5500'># Shape: (B, L, P)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#AA5500'># Compute similarity scores for all timesteps in
  parallel</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#AA5500'># Step 1: Reshape for batch-level interaction</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;queries = queries.permute(<span
  style='color:#116644'>1</span>, <span style='color:#116644'>0</span>, <span
  style='color:#116644'>2</span>) &nbsp;<span style='color:#AA5500'># Shape: (L,
  B, P)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;keys = keys.permute(<span
  style='color:#116644'>1</span>, <span style='color:#116644'>0</span>, <span
  style='color:#116644'>2</span>) &nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#AA5500'># Shape: (L, B, P)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#AA5500'># Step 2: Compute similarity matrix: (L, B, B)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;similarity = torch.bmm(queries,
  keys.transpose(<span style='color:#116644'>1</span>, <span style='color:#116644'>2</span>))
  &nbsp;<span style='color:#AA5500'># Dot product: (L, B, B)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#AA5500'># Step 3: Scale the similarity scores by 1 / sqrt(P)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;similarity = similarity
  / (<span style='color:#0055AA'>self</span>.projection_dim ** 0.5) &nbsp;<span
  style='color:#AA5500'># Scale by sqrt(P)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#AA5500'># Step 3: Normalize with softmax over rows</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;attention_weights =
  F.softmax(similarity, dim=-1) &nbsp;<span style='color:#AA5500'># Shape: (L,
  B, B)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#AA5500'># Step 4: Compute weighted sum of features</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#AA5500'># Reshape original features for batch-level interaction</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;x = x.permute(<span
  style='color:#116644'>1</span>, <span style='color:#116644'>0</span>, <span
  style='color:#116644'>2</span>) &nbsp;<span style='color:#AA5500'># Shape: (L,
  B, FT)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;result = torch.bmm(attention_weights,
  x) &nbsp;<span style='color:#AA5500'># Weighted sum: (L, B, FT)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#AA5500'># Step 5: Reshape back to original shape</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;result = result.permute(<span
  style='color:#116644'>1</span>, <span style='color:#116644'>0</span>, <span
  style='color:#116644'>2</span>) &nbsp;<span style='color:#AA5500'># Shape: (B,
  L, FT)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#770088'>return </span><span style='color:black'>result</span></p>
- <p style='margin:0in;font-family:Arial;font-size:36.0pt' lang=x-none>​</p>
- <p style='margin:0in;font-family:Arial;font-size:36.0pt' lang=x-none>​</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#AA5500'
+ <p style='margin:0in;font-family:Arial;font-size:12.0pt' lang=x-none>​</p>
+ <p style='margin:0in;font-family:Arial;font-size:12.0pt' lang=x-none>​</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#AA5500'
  lang=x-none># Main model: __init__</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#0055AA'>self</span>.batch_attention = SymbolCrossAttention(feature_dim,
  projection_dim)</p>
- <p style='margin:0in;font-family:Arial;font-size:36.0pt' lang=x-none>​</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#AA5500'
+ <p style='margin:0in;font-family:Arial;font-size:12.0pt' lang=x-none>​</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#AA5500'
  lang=x-none># Main model: in forward()</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;attention_result =
  self.batch_attention(features)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;features = torch.cat([</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;features,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;attention_result,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;features
  - attention_result,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp;<span
  style='mso-spacerun:yes'>  </span>], dim=-1)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>- Lightgbm online training ideas</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>和catboost那个一样，关键在于分阶段训练，每阶段的Init_score用保存好的上一阶段的score，这样就不需要从头开始预测score了。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>A couple
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>和catboost那个一样，关键在于分阶段训练，每阶段的Init_score用保存好的上一阶段的score，这样就不需要从头开始预测score了。</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>A couple
  of issues with lightgbm in the online learning settings that I managed to
  solve were:</p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
-      style='font-family:微软雅黑;font-size:36.0pt'>the lack of timeout parameter
+      style='font-family:微软雅黑;font-size:12.0pt'>the lack of timeout parameter
       in the training function</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
-      style='font-family:微软雅黑;font-size:36.0pt'>the linear increase in startup
+      style='font-family:微软雅黑;font-size:12.0pt'>the linear increase in startup
       time when continuing a partial training.</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>Timeout</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>The
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>The
  timeout issue is solvable with a simple callback</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>``</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>class
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>``</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>class
  LGBMTimeoutCallback:</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'> </span>&nbsp;<span style='mso-spacerun:yes'> 
  </span>def __init__(self, timeout=None):</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp;<span
  style='mso-spacerun:yes'>  </span>self.timeout = timeout</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp;<span
  style='mso-spacerun:yes'>  </span>self.t0 = time.time_ns()</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'> </span>&nbsp;<span style='mso-spacerun:yes'> 
  </span>def __call__(self, env):</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp;<span
  style='mso-spacerun:yes'>  </span>dt = (time.time_ns() - self.t0) / 1e9</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp;<span
  style='mso-spacerun:yes'>  </span>if self.timeout is not None and dt &gt;=
  self.timeout:</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span
  style='mso-spacerun:yes'>  </span>raise
  lightgbm.EarlyStopException(env.iteration,<span style='mso-spacerun:yes'> 
  </span>env.evaluation_result_list)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>Partial training</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>The
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>The
  continuation of partial training is a bit trickier. Let's compare with a
  simple implementation</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none>```</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none>```</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='color:black'>dataset </span><span style='color:#981A1A'>= </span><span
  style='color:black'>lightgbm.Dataset(data</span><span style='color:#981A1A'>=</span><span
  style='color:black'>x, label</span><span style='color:#981A1A'>=</span><span
  style='color:black'>y, free_raw_data</span><span style='color:#981A1A'>=</span><span
  style='color:#770088'>False</span>)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='color:black'>model </span><span style='color:#981A1A'>= </span><span
  style='color:#770088'>None</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='color:#770088'>for </span><span style='color:black'>_ </span><span
  style='color:#770088'>in </span><span style='color:#3300AA'>range</span>(<span
  style='color:#116644'>10</span>):</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;model = lightgbm.train(</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;params=params,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;train_set=dataset,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;num_boost_round=10,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;init_model=model,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;keep_training_booster=True</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp;<span style='mso-spacerun:yes'> 
  </span>)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none>```</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>A
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none>```</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>A
  possible solution is to provide a custom <span style='background:#F3F4F4'>Dataset</span>
  implementation and manually update the <span style='background:#F3F4F4'>init_score</span>
  adding only the score of the latest trees, <span style='font-weight:bold'>instead
  of recomputing for all the trees every time</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none>```</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none>```</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='color:#770088'>class </span><span style='color:blue'>LGBMDataset</span>(lightgbm.Dataset):</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;<span style='color:#770088'>def </span><span
  style='color:blue'>_set_init_score_by_predictor</span>(<span style='color:
  #0055AA'>self</span>, predictor, data, used_indices):</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#770088'>if </span><span style='color:#0055AA'>self</span>.init_score
  is None:</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#770088'>return </span><span style='color:#3300AA'>super</span>()._set_init_score_by_predictor(predictor,
  data, used_indices)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;<span
  style='color:#770088'>return </span><span style='color:#0055AA'>self</span></p>
- <p style='margin:0in;font-family:Arial;font-size:36.0pt' lang=x-none>​</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:Arial;font-size:12.0pt' lang=x-none>​</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='color:black'>dataset </span><span style='color:#981A1A'>= </span><span
  style='color:black'>LGBMDataset(data</span><span style='color:#981A1A'>=</span><span
  style='color:black'>x, label</span><span style='color:#981A1A'>=</span><span
  style='color:black'>y, free_raw_data</span><span style='color:#981A1A'>=</span><span
  style='color:#770088'>False</span>)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='color:black'>model </span><span style='color:#981A1A'>= </span><span
  style='color:#770088'>None</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='color:#770088'>for </span><span style='color:black'>_ </span><span
  style='color:#770088'>in </span><span style='color:#3300AA'>range</span>(<span
  style='color:#116644'>10</span>):</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;num_trees_before = 0 if model is
  None else model.num_trees()</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;model = lightgbm.train(</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;params=params,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;train_set=dataset,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;num_boost_round=10,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;init_model=model,</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;keep_training_booster=True</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp;<span style='mso-spacerun:yes'> 
  </span>)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;init_score = model.predict(dataset.data,
  start_iteration=num_trees_before)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;<span style='color:#770088'>if </span><span
  style='color:black'>dataset.init_score </span><span style='color:#770088'>is
  not None</span>:</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp; &nbsp; &nbsp;init_score = dataset.init_score
  + init_score.reshape(dataset.init_score.shape)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none><span
  style='mso-spacerun:yes'> </span>&nbsp; &nbsp;dataset.set_init_score(init_score)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=x-none>```</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=x-none>```</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>- [Public LB 13th] Our Journey to 0.0096</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><a
  href="https://www.kaggle.com/competitions/jane-street-real-time-market-data-forecasting/discussion/556701">https://www.kaggle.com/competitions/jane-street-real-time-market-data-forecasting/discussion/556701</a></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>post的字太多了。。先不看</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>post的字太多了。。先不看</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>- [Public LB 17th] Solution</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><a
  href="https://www.kaggle.com/competitions/jane-street-real-time-market-data-forecasting/discussion/556541">https://www.kaggle.com/competitions/jane-street-real-time-market-data-forecasting/discussion/556541</a></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>Model Architecture</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>Architecture
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>Architecture
  consisted of a 50/50 ensemble between 3 layers transformer encoder with
  attention over all symbol_id and 3 layers transformer encoder with attention
  over all time_id and learnable positional encoding. I also used GELU
  activations to prevent dead neurons caused by ReLU so during online learning
  parameters could come back into play if necessary. Also tried SiLU and PReLU
  but GELU was best.</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>Features</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='background:#F3F4F4'>features = [f'feature_{i:02d}' for i in range(0,
  79)] + ['time_id', 'weight']</span>. Also added signed log features for train
  stability. I originally tried hand picking which features I should use the log
  version for and which should have the original version but eventually gave up
  and passed in all original and all log features to the model.</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>Feature里加了Log
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>Feature里加了Log
  feature。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>Online Learning (main score boost)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>At first
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>At first
  I tried a simple idea of doing a single update step on the latest day of data
  given by the API. This barely helped. I then ran an experiment to see how much
  I could improve my score on the last 20-30 days of validation data if I fine
@@ -790,11 +790,11 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
  is trained 7 times on each new day (7 &quot;epochs&quot;). I used lr=1e-4
  instead of the original 1e-3 and everything else about the setup is exactly
  the same as my original train setup.</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'>刚开始用最新一天的数据训练，效果不行。后改为用前7天的数据训练
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'>刚开始用最新一天的数据训练，效果不行。后改为用前7天的数据训练
  （应该是一个epoch），学习率由原来的1e-3变为1e-4。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>关于在线学习的optimizer在哪定义？</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>For the online part, I noticed that 1) using one
  optimizer initialized at the beginning, versus 2) define a new optimizer at
  each day, make a big difference. 2) performs much better, about ~0.001

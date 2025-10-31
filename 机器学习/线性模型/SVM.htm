@@ -10,11 +10,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="SVM.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:23.3472in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:22.3472in'>
 
 <div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.1548in'>
 
@@ -33,81 +33,93 @@ style='font-family:Calibri'>25</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.7277in;margin-left:.1784in;width:23.1687in'>
+<div style='direction:ltr;margin-top:.7277in;margin-left:.25in;width:22.0972in'>
 
-<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.75in'><img src="SVM.files/image001.jpg"
- width=1847 height=999></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>SVM</span><span
- lang=zh-CN>：</span><span lang=en-US>max margin classifier</span><span
- lang=zh-CN>，分为硬间隔和软间隔，软间隔允许分错，但是每分错一个样本，需要进行惩罚。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in'><img src="SVM.files/image002.jpg" width=2092
- height=1049></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>SVM</span><span
- lang=zh-CN>对二分类的类别进行了约定，</span><span style='font-weight:bold' lang=en-US>+1</span><span
- style='font-weight:bold' lang=zh-CN>和</span><span style='font-weight:bold'
- lang=en-US>-1</span><span style='font-weight:bold' lang=zh-CN>。</span><span
- lang=zh-CN>这样约定后，在数学上，</span><span lang=en-US>decision boundary</span><span
- lang=zh-CN>就是</span><span lang=en-US>wx+b=0</span><span lang=zh-CN>，</span><span
- lang=en-US>+1</span><span lang=zh-CN>类别的支持向量是落在</span><span lang=en-US>wx+b=1</span><span
- lang=zh-CN>这个超平面的所有样本，</span><span lang=en-US>-1</span><span lang=zh-CN>类别的支持向量是落在</span><span
- lang=en-US>wx+b=-1</span><span lang=zh-CN>这个超平面的所有样本，并且</span><span
- lang=en-US>margin =1/||w||</span><span lang=zh-CN>。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>ma</span><span
- lang=en-US>x margin &lt;==&gt;min</span><span lang=zh-CN>i</span><span
- lang=en-US>mize ||w||</span><span lang=zh-CN>，但是需要满足约束条件：</span><span
- lang=en-US>y_i(w*x_i+b)&gt;=1</span><span lang=zh-CN>，（这个约束条件保证超平面能正确分类样本），也就是说，</span><span
- style='font-weight:bold' lang=zh-CN>硬</span><span style='font-weight:bold'
- lang=en-US>SVM</span><span style='font-weight:bold' lang=zh-CN>的Loss是</span><span
- style='font-weight:bold' lang=en-US>||w||</span><span style='font-weight:bold'
- lang=zh-CN>。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in'><img src="SVM.files/image003.jpg"
- width=2179 height=1193></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=zh-CN><br>
-  软间隔</span><span lang=en-US>SVM</span><span lang=zh-CN>的</span><span
- lang=en-US>loss</span><span lang=zh-CN>是</span><span lang=en-US>hinge loss</span><span
- lang=zh-CN>，</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>如果样本被正确分类且到决策边界</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>decision boundary</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的距离大于支持向量到</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>decision boundary</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的距离</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US> </span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>loss</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>是</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>0</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>如果样本被错误分类，那么</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>loss</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>大于</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>1</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>如果样本被正确分类，但是样本到决策边界的距离小于支持向量到决策边界的距离，虽然被正确分类，也会有</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>loss</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，此时</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>loss</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>小于</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>1</span></li>
- </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>除了</span><span
- lang=en-US>hinge loss</span><span lang=zh-CN>，软</span><span lang=en-US>svm</span><span
- lang=zh-CN>还引入</span><span lang=en-US> </span><span lang=zh-CN>了硬</span><span
- lang=en-US>svm</span><span lang=zh-CN>的</span><span lang=en-US>loss</span><span
- lang=zh-CN>，</span><span lang=en-US>||w||^2</span><span lang=zh-CN>，并通过超参数</span><span
- lang=en-US>lambda</span><span lang=zh-CN>控制二者的平衡。</span></p>
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in'><img src="SVM.files/image001.jpg"
+width=540 height=292></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>SVM</span><span
+lang=zh-CN>：</span><span lang=en-US>max margin classifier</span><span
+lang=zh-CN>，分为硬间隔和软间隔，软间隔允许分错，但是每分错一个样本，需要进行惩罚。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in'><img src="SVM.files/image002.jpg"
+width=505 height=253></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>SVM</span><span
+lang=zh-CN>对二分类的类别进行了约定，</span><span style='font-weight:bold' lang=en-US>+1</span><span
+style='font-weight:bold' lang=zh-CN>和</span><span style='font-weight:bold'
+lang=en-US>-1</span><span style='font-weight:bold' lang=zh-CN>。</span><span
+lang=zh-CN>这样约定后，在数学上，</span><span lang=en-US>decision boundary</span><span
+lang=zh-CN>就是</span><span lang=en-US>wx+b=0</span><span lang=zh-CN>，</span><span
+lang=en-US>+1</span><span lang=zh-CN>类别的支持向量是落在</span><span lang=en-US>wx+b=1</span><span
+lang=zh-CN>这个超平面的所有样本，</span><span lang=en-US>-1</span><span lang=zh-CN>类别的支持向量是落在</span><span
+lang=en-US>wx+b=-1</span><span lang=zh-CN>这个超平面的所有样本，并且</span><span lang=en-US>margin
+=1/||w||</span><span lang=zh-CN>。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>ma</span><span
+lang=en-US>x margin &lt;==&gt;min</span><span lang=zh-CN>i</span><span
+lang=en-US>mize ||w||</span><span lang=zh-CN>，但是需要满足约束条件：</span><span
+lang=en-US>y_i(w*x_i+b)&gt;=1</span><span lang=zh-CN>，（这个约束条件保证超平面能正确分类样本），也就是说，</span><span
+style='font-weight:bold' lang=zh-CN>硬</span><span style='font-weight:bold'
+lang=en-US>SVM</span><span style='font-weight:bold' lang=zh-CN>的Loss是</span><span
+style='font-weight:bold' lang=en-US>||w||</span><span style='font-weight:bold'
+lang=zh-CN>。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in'><img src="SVM.files/image003.jpg"
+width=543 height=298></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=zh-CN><br>
+软间隔</span><span lang=en-US>SVM</span><span lang=zh-CN>的</span><span lang=en-US>loss</span><span
+lang=zh-CN>是</span><span lang=en-US>hinge loss</span><span lang=zh-CN>，</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>如果样本被正确分类且到决策边界</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>decision boundary</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>的距离大于支持向量到</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>decision boundary</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>的距离</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US> </span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>，</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>loss</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>是</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>0</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>如果样本被错误分类，那么</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>loss</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>大于</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>1</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>如果样本被正确分类，但是样本到决策边界的距离小于支持向量到决策边界的距离，虽然被正确分类，也会有</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>loss</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>，此时</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>loss</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>小于</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>1</span></li>
 </ul>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>除了</span><span
+lang=en-US>hinge loss</span><span lang=zh-CN>，软</span><span lang=en-US>svm</span><span
+lang=zh-CN>还引入</span><span lang=en-US> </span><span lang=zh-CN>了硬</span><span
+lang=en-US>svm</span><span lang=zh-CN>的</span><span lang=en-US>loss</span><span
+lang=zh-CN>，</span><span lang=en-US>||w||^2</span><span lang=zh-CN>，并通过超参数</span><span
+lang=en-US>lambda</span><span lang=zh-CN>控制二者的平衡。</span></p>
 
 </div>
 

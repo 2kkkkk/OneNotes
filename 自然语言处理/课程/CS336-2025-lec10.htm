@@ -10,19 +10,19 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="CS336-2025-lec10.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:22.6097in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:8.6583in'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:.6104in;width:2.9583in'>
+<div style='direction:ltr;margin-top:0in;margin-left:.3354in;width:2.9583in'>
 
 <p style='margin:0in;font-family:微软雅黑;font-size:20.0pt' lang=en-US>CS336-2025-lec10</p>
 
 </div>
 
-<div style='direction:ltr;margin-top:.0423in;margin-left:.6104in;width:1.7388in'>
+<div style='direction:ltr;margin-top:.0423in;margin-left:.3354in;width:1.7388in'>
 
 <p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
 Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
@@ -33,52 +33,52 @@ style='font-family:Calibri'>29</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:22.6097in'>
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:8.6583in'>
 
 <ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold' lang=en-US>I</span><span style='font-weight:bold'
  lang=zh-CN>n</span><span style='font-weight:bold' lang=en-US>ference</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Inference: given a
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>Inference: given a
  fixed model, generate responses given prompts</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Metrics:</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Metrics:</p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Time-to-first-token
+      style='font-family:system-ui;font-size:12.0pt'>Time-to-first-token
       (TTFT): how long user waits before any generation happens (matters for
       interactive applications)</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Latency (seconds/token):
+      style='font-family:system-ui;font-size:12.0pt'>Latency (seconds/token):
       how fast tokens appear for a user (matters for interactive applications)</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Throughput
+      style='font-family:system-ui;font-size:12.0pt'>Throughput
       (tokens/second): useful for batch processing applications</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Key
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Key
  considerations in efficiency:</p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Training (supervised): you
+      style='font-family:system-ui;font-size:12.0pt'>Training (supervised): you
       see all tokens, can parallelize over sequence (matmul in Transformer)</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Inference: you have to
+      style='font-family:system-ui;font-size:12.0pt'>Inference: you have to
       generate sequentially, can't parallelize, so harder to fully utilize
       compute</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'><span
  style='font-weight:bold'>KV cache</span>: for every sequence (B), token (S),
  layer (L), head (K), store an H-dimensional vector</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Two stages of
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>Two stages of
  inference:</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold' lang=zh-CN>推理时的</span><span style='font-weight:bold'
  lang=en-US>2</span><span style='font-weight:bold' lang=zh-CN>个步骤，先是对</span><span
  style='font-weight:bold' lang=en-US>p</span><span style='font-weight:bold'
@@ -89,25 +89,25 @@ style='font-family:Calibri'>29</span><span style='font-family:微软雅黑'>日<
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Prefill</span><span
-      style='font-family:微软雅黑;font-size:36.0pt'>: given a prompt, encode into
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>Prefill</span><span
+      style='font-family:微软雅黑;font-size:12.0pt'>: given a prompt, encode into
       vectors (parallelizable like in training)</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Generation</span><span
-      style='font-family:微软雅黑;font-size:36.0pt'>: generate new response tokens
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>Generation</span><span
+      style='font-family:微软雅黑;font-size:12.0pt'>: generate new response tokens
       (sequential)</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Let's compute the
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>Let's compute the
  FLOPs and memory IO for<span style='font-weight:bold'> both the MLP and
  attention layers.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'>    </span>S is the number of tokens we're
  conditioning on, T is the number of tokens we're generating.</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'>    </span>Later, we'll specialize to prefill (T = S)
  and generation (T = 1).</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold' lang=zh-CN>对于</span><span style='font-weight:bold'
  lang=en-US>MLP</span><span style='font-weight:bold' lang=zh-CN>来说，推理时可以通过增加</span><span
  style='font-weight:bold' lang=en-US>batchsize</span><span style='font-weight:
@@ -117,29 +117,29 @@ style='font-family:Calibri'>29</span><span style='font-family:微软雅黑'>日<
  bold' lang=zh-CN>然后同时进行</span><span style='font-weight:bold' lang=en-US>prefill</span><span
  style='font-weight:bold' lang=zh-CN>和</span><span style='font-weight:bold'
  lang=en-US>generatio</span><span style='font-weight:bold' lang=zh-CN>n。</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>For
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>For
  the two stages:</p>
  <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
+  0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
   <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      color:#213547'><span style='font-family:system-ui;font-size:36.0pt;
+      color:#213547'><span style='font-family:system-ui;font-size:12.0pt;
       font-weight:normal;font-style:normal;font-family:system-ui;font-size:
-      36.0pt'>Prefill: easy to make compute-limited (good) by making B T large
+      12.0pt'>Prefill: easy to make compute-limited (good) by making B T large
       enough</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Generation:</span></li>
+      style='font-family:system-ui;font-size:12.0pt'>Generation:</span></li>
  </ol>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Generating one token at a
+      style='font-family:system-ui;font-size:12.0pt'>Generating one token at a
       time (T = 1)</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>B is number of concurrent
+      style='font-family:system-ui;font-size:12.0pt'>B is number of concurrent
       requests, hard to make large enough</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
  style='font-weight:bold' lang=zh-CN>对于</span><span style='font-weight:bold'
  lang=en-US>attention</span><span style='font-weight:bold' lang=zh-CN>来说，无法通过增加</span><span
  style='font-weight:bold' lang=en-US>batchsize</span><span style='font-weight:
@@ -149,91 +149,91 @@ style='font-family:Calibri'>29</span><span style='font-family:微软雅黑'>日<
  style='font-weight:bold' lang=en-US>atchisize</span><span style='font-weight:
  bold' lang=zh-CN>，相应的</span><span style='font-weight:bold' lang=en-US>kv cache</span><span
  style='font-weight:bold' lang=zh-CN>也增加了。</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Unlike
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Unlike
  MLPs, no dependence on B, so batching doesn't help。</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Why?</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Why?</p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>In MLP layers, every
+      style='font-family:system-ui;font-size:12.0pt'>In MLP layers, every
       sequence hits the same MLP weights (Wup, Wgate, Wdown don't depend on B)</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-weight:bold;font-family:system-ui;font-size:36.0pt'>In
+      style='font-weight:bold;font-family:system-ui;font-size:12.0pt'>In
       attention layers, every sequence has its own vectors KV cache (Q, K, V
       all depend on B)</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Summary</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Summary</p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Prefill is
+      style='font-family:system-ui;font-size:12.0pt'>Prefill is
       compute-limited, generation is memory-limited</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-weight:bold;font-family:system-ui;font-size:36.0pt'>MLP
+      style='font-weight:bold;font-family:system-ui;font-size:12.0pt'>MLP
       intensity is B (requires concurrent requests), attention intensity is 1
       (impossible to improve)</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Tradeoff between
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>Tradeoff between
  latency and throughput:</p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>Smaller batch sizes
+      style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>Smaller batch sizes
       yields better latency but worse throughput，</span><span style='font-weight:
-      bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>小的</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>batchsize</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>latency</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>变小了，但是吞吐量变小</span></li>
+      bold;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>小的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=en-US>batchsize</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>，</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=en-US>latency</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>变小了，但是吞吐量变小</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>Larger batch sizes
+      style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>Larger batch sizes
       yields better throughput but worse latency，</span><span style='font-weight:
-      bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>大的</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>batchsize</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>latency</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>变大了，但是吞吐量变大</span></li>
+      bold;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>大的</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=en-US>batchsize</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>，</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=en-US>latency</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>变大了，但是吞吐量变大</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'> </span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Easy parallelism: if
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>Easy parallelism: if
  you launch M copies of the model, latency is the same, throughput increases by
  M!</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>Harder
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>Harder
  parallelism: shard the model and the </span><span style='font-weight:bold'
  lang=zh-CN>KV cache</span><span lang=zh-CN><span style='mso-spacerun:yes'> 
  </span>[Scaling book chapter on Transformers]</span><span lang=en-US> </span><span
  style='font-weight:bold' lang=en-US>kv cache</span><span style='font-weight:
  bold' lang=zh-CN>也要进行</span><span style='font-weight:bold' lang=en-US>shard</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:42.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold'>如何提升推理速度？</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold' lang=en-US>1.</span><span style='font-weight:bold'
  lang=zh-CN>减少k</span><span style='font-weight:bold' lang=en-US>v cache</span></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Goal: reduce the KV cache
+      style='font-family:system-ui;font-size:12.0pt'>Goal: reduce the KV cache
       size (since inference is memory-limited) without hurting accuracy</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Lower-dimensional KV cache
+      style='font-family:system-ui;font-size:12.0pt'>Lower-dimensional KV cache
       (GQA, MLA, shared KV cache)</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Local attention on some of
+      style='font-family:system-ui;font-size:12.0pt'>Local attention on some of
       the layers</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>推理的主要瓶颈是k</span><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>推理的主要瓶颈是k</span><span
  lang=en-US>v </span><span lang=zh-CN>cac</span><span lang=en-US>he</span><span
  lang=zh-CN>，</span><span lang=en-US>memory limited</span><span lang=zh-CN>，所以内存占用越小，速度越快（因为涉及和</span><span
  lang=en-US>HBM</span><span lang=zh-CN>的传输），速度与内存直接相关。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>MQA</span><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>MQA</span><span
  lang=zh-CN>和</span><span lang=en-US>GQA</span><span lang=zh-CN>，</span><span
  lang=en-US>n</span><span lang=zh-CN>个头的</span><span lang=en-US>query</span><span
  lang=zh-CN>对应单个或</span><span lang=en-US>m</span><span lang=zh-CN>（</span><span
@@ -243,33 +243,33 @@ style='font-family:Calibri'>29</span><span style='font-family:微软雅黑'>日<
  lang=zh-CN>个头的</span><span lang=en-US>key</span><span lang=zh-CN>和</span><span
  lang=en-US>value</span><span lang=zh-CN>了，只存一个头的</span><span lang=en-US>key</span><span
  lang=zh-CN>和</span><span lang=en-US>value</span><span lang=zh-CN>就行了。</span></p>
- <p style='margin:0in;margin-left:1.125in'><img
- src="CS336-2025-lec10.files/image001.jpg" width=1763 height=568></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>除了速度提升，减少</span><span
+ <p style='margin:0in;margin-left:.375in'><img
+ src="CS336-2025-lec10.files/image001.jpg" width=730 height=235></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>除了速度提升，减少</span><span
  lang=en-US>kv-cache</span><span lang=zh-CN>的另一个附带好处是，内存占用更小了，同样大小的内存可以装入更大的</span><span
  lang=en-US>batchsize</span><span lang=zh-CN>，这样进一步提高了</span><span lang=en-US>throughput</span><span
  lang=zh-CN>。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold' lang=en-US>D</span><span style='font-weight:bold'
  lang=zh-CN>eep</span><span style='font-weight:bold' lang=en-US>seek MLA</span></p>
  <p style='margin:0in'><img src="CS336-2025-lec10.files/image002.jpg"
- width=1934 height=605></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Key
+ width=723 height=226></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Key
  idea: project down each key and value vector from N*H dimensions to C
  dimensions</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>DeepSeek
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>DeepSeek
  v2: reduce N*H = 16384 to C = 512</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Wrinkle:
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Wrinkle:
  MLA is not compatible with RoPE, so need to add additional 64 dimensions for
  RoPE, so 512 + 64 = 576 total dimensions</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Latency/throughput
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Latency/throughput
  improvements follow similarly from the KV cache reduction as argued earlier</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold'>Cross-layer attention (CLA)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold' lang=en-US>GQA</span><span style='font-weight:bold'
  lang=zh-CN>是在不同的</span><span style='font-weight:bold' lang=en-US>heads</span><span
  style='font-weight:bold' lang=zh-CN>之间共享</span><span style='font-weight:bold'
@@ -279,115 +279,115 @@ style='font-family:Calibri'>29</span><span style='font-family:微软雅黑'>日<
  style='font-weight:bold' lang=zh-CN>是在不同的层之间共享</span><span style='font-weight:
  bold' lang=en-US>key</span><span style='font-weight:bold' lang=zh-CN>和</span><span
  style='font-weight:bold' lang=en-US>value</span></p>
- <p style='margin:0in;margin-left:1.875in'><img
- src="CS336-2025-lec10.files/image003.jpg" width=1335 height=1372></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Idea:
+ <p style='margin:0in;margin-left:.375in'><img
+ src="CS336-2025-lec10.files/image003.jpg" width=487 height=500></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Idea:
  share KVs across&nbsp;<span style='font-weight:bold'>layers</span>&nbsp;(just
  as GQA shares KVs across heads)</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Empirically
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Empirically
  improves the pareto frontier of accuracy and KV cache size (latency and
  throughput)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold' lang=en-US>L</span><span style='font-weight:bold'
  lang=zh-CN>o</span><span style='font-weight:bold' lang=en-US>cal</span><span
  style='font-weight:bold' lang=zh-CN> attention </span><span style='font-weight:
  bold' lang=en-US><span style='mso-spacerun:yes'> </span></span></p>
  <p style='margin:0in'><img src="CS336-2025-lec10.files/image004.jpg"
- width=1856 height=479></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Idea:
+ width=788 height=203></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Idea:
  just look at the local context, which is most relevant for modeling</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Effective
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Effective
  context scales linearly with the number of layers</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>KV
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>KV
  cache is independent of sequence length!</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'>  </span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold'>总结：</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold'>Taking shortcuts (lossy)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN><span
  style='mso-spacerun:yes'>    </span></span><span lang=en-US>1.</span><span
  lang=zh-CN>reduce_kv_cache_size()</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN><span
  style='mso-spacerun:yes'>    </span></span><span lang=en-US>2.</span><span
  lang=zh-CN>alternatives_to_the_transformer() ：</span><span style='font-weight:
  bold' lang=zh-CN>State-space models，</span><span style='font-weight:bold'
  lang=en-US>D</span><span style='font-weight:bold' lang=zh-CN>iff</span><span
  style='font-weight:bold' lang=en-US>usion </span><span style='font-weight:
  bold' lang=zh-CN>mo</span><span style='font-weight:bold' lang=en-US>dels</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN><span
  style='mso-spacerun:yes'>    </span></span><span lang=en-US>3.</span><span
  lang=zh-CN>quantization()</span><span lang=en-US> : </span><span
  style='font-weight:bold' lang=zh-CN>LLM.int8()</span><span style='font-weight:
  bold' lang=en-US> , </span><span style='font-weight:bold' lang=zh-CN>Activation-aware
  quantization</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN><span
  style='mso-spacerun:yes'>    </span></span><span lang=en-US>4.</span><span
  lang=zh-CN>model_pruning()</span><span lang=en-US>:<span
  style='mso-spacerun:yes'>  </span></span><span lang=zh-CN>Key idea: just rip
  out parts of an expensive model to make it cheaper</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'>    </span>...and then fix it up.</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'>   </span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'>    </span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold'>Use shortcuts but double check (lossless)</span></p>
- <p style='margin:0in;font-size:36.0pt'><span style='font-family:微软雅黑'
+ <p style='margin:0in;font-size:12.0pt'><span style='font-family:微软雅黑'
  lang=zh-CN><span style='mso-spacerun:yes'>    </span>speculative_sampling</span><span
  style='font-family:微软雅黑' lang=en-US>:<span style='mso-spacerun:yes'>  </span></span><span
  style='font-weight:bold;font-family:system-ui;color:#213547' lang=zh-CN>In
  other words, checking is faster than generation.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'>    </span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold'>Handling dynamic workloads</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Batching over
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>Batching over
  sequences in live traffic is tricky because:</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'>    </span>Requests arrive at different times
  (waiting for batch is bad for early requests)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'>    </span>Sequences have shared prefixes (e.g.,
  system prompts, generating multiple samples</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US><span
  style='mso-spacerun:yes'>    </span></span><span lang=zh-CN>Sequences have
  different lengths (padding is inefficient)</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'> </span>continuous_batching()</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN><span
  style='mso-spacerun:yes'> </span>paged_attention()</span><span lang=en-US>:<span
  style='mso-spacerun:yes'>  </span></span><span style='font-weight:bold'
  lang=zh-CN>PageAttention 是一种通过借鉴操作系统分页和内存共享思想，来高效管理LLM推理过程中KV
  Cache的技术。它是vLLM推理引擎的核心，能极大地提升GPU内存利用率和请求吞吐量。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Other
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Other
  vLLM optimizations:</p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Kernel to fuse block read
+      style='font-family:system-ui;font-size:12.0pt'>Kernel to fuse block read
       and attention (reduce kernel launch overhead)</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Use latest kernels
+      style='font-family:system-ui;font-size:12.0pt'>Use latest kernels
       (FlashAttention, FlashDecoding)</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Use CUDA graphs to avoid
+      style='font-family:system-ui;font-size:12.0pt'>Use CUDA graphs to avoid
       kernel launch overhead</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p><cite style='margin:0in;font-family:Calibri;font-size:9.0pt;color:#595959'>&nbsp;</cite></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#595959'>&nbsp;</cite></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 </ul>
 
 </div>

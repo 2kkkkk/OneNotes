@@ -10,11 +10,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="激活函数.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:23.9097in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:19.6569in'>
 
 <div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.6458in'>
 
@@ -33,167 +33,167 @@ style='font-family:Calibri'>15</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:1.1777in;margin-left:.8659in;width:23.0437in'>
+<div style='direction:ltr;margin-top:1.1777in;margin-left:.8659in;width:18.7909in'>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=en-US>1. Rel</span><span style='font-weight:bold' lang=zh-CN>u</span></p>
 
 <p style='margin:0in;margin-left:1.875in'><img src="激活函数.files/image001.jpg"
-width=1502 height=803></p>
+width=534 height=285></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>ReLU优点</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>ReLU优点</p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:微软雅黑'>(1) 计算高效</span><span
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:微软雅黑'>(1) 计算高效</span><span
 style='font-family:Arial'>​​</span><span style='font-family:微软雅黑'>：ReLU
 的计算仅需判断输入是否大于零，没有复杂的指数运算（如 Sigmoid/Tanh），因此在训练和推理时速度极快</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:Arial'>​​</span><span
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'>(2) 缓解梯度消失问题</span><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'>：传统激活函数（如
 Sigmoid）在输入较大或较小时会进入“饱和区”，梯度接近零，导致反向传播时梯度消失（Vanishing Gradient，ReLU
 在正区间（x&gt;0）的梯度恒为 1，避免了梯度消失问题，使得深层网络更容易训练</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>ReLU缺点</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>ReLU缺点</p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:Arial'>​​</span><span
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'> (1) 神经元失活（Dead Neurons）</span><span style='font-family:
 Arial'>​​</span><span style='font-family:微软雅黑'>:当输入为负数时，ReLU
 的梯度为零。如果某个神经元在训练中始终输出负数（例如权重初始化不当或学习率过高），其梯度将永远为零，导致该神经元永久失效（“死亡”）, 这种现象称为 </span><span
 style='font-family:Arial'>​​</span><span style='font-family:微软雅黑'>Dying ReLU
 Problem</span><span style='font-family:Arial'>​​</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US><span
 style='font-weight:bold'>2. GeLU</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
 <p style='margin:0in;margin-left:1.125in'><img src="激活函数.files/image002.jpg"
-width=1864 height=548></p>
+width=644 height=189></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>GELU的理解</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>GELU的理解</p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:微软雅黑'>概率视角</span><span
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:微软雅黑'>概率视角</span><span
 style='font-family:Arial'>​​</span><span style='font-family:微软雅黑'>：GELU将输入 x
 的激活权重与其在正态分布中的概率相关联。例如：</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold'>当 x 较大时，神经元以高概率被激活（输出接近 x）</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold'>当 x 较小时，神经元以低概率被激活（输出接近0）</span></p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:Arial'>​​</span><span
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'>随机正则化</span><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'>：GELU的非线性可以被视为一种“自适应Dropout”，其权重由输入自身决定，而非固定概率。</span></p>
 
 <p style='margin:0in;margin-left:1.125in'><img src="激活函数.files/image003.jpg"
-width=1717 height=965></p>
+width=661 height=371></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>GELU优点</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>GELU优点</p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:微软雅黑'>平滑性</span><span
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:微软雅黑'>平滑性</span><span
 style='font-family:Arial'>​​</span><span style='font-family:微软雅黑'>：GELU在输入接近零时是</span><span
 style='font-family:Arial'>​​</span><span style='font-family:微软雅黑'>连续可导</span><span
 style='font-family:Arial'>​​</span><span style='font-family:微软雅黑'>的（与ReLU的硬截断不同），这使得梯度更新更稳定</span></p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:Arial'>​​</span><span
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'>自适应激活</span><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'>：激活权重 Φ(x) 随输入动态调整，能更好地捕捉复杂模式</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>GELU缺点</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>GELU缺点</p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:微软雅黑'>计算成本较高</span><span
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:微软雅黑'>计算成本较高</span><span
 style='font-family:Arial'>​​</span><span style='font-family:微软雅黑'>: 精确计算 Φ(x)
 需要积分运算，尽管近似方法（如tanh或Sigmoid）可以缓解这一问题</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US><span
 style='font-weight:bold'>3. Swish</span></p>
 
 <p style='margin:0in;margin-left:.75in'><img src="激活函数.files/image004.jpg"
-width=1995 height=1043></p>
+width=861 height=450></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Swish的理解</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>Swish的理解</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Swish 对输入 x 进行 Sigmoid
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>Swish 对输入 x 进行 Sigmoid
 加权，输出范围为 (−0.278,+∞)</p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:微软雅黑'>当 β→0
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:微软雅黑'>当 β→0
 时，Swish 退化为线性函数 x / 2</span><span style='font-family:Arial'>​</span></p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:微软雅黑'>当 β→+∞
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:微软雅黑'>当 β→+∞
 时，Swish 趋近于 ReLU（x</span><span style='font-family:"Cambria Math"'>⋅</span><span
 style='font-family:微软雅黑'>σ(βx)≈x</span><span style='font-family:"Cambria Math"'>⋅</span><span
 style='font-family:微软雅黑'>阶跃函数）</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Swish的优点</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>Swish的优点</p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:微软雅黑'>平滑非单调性（Smooth
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:微软雅黑'>平滑非单调性（Smooth
 Non-Monotonicity）</span><span style='font-family:Arial'>​​</span></p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:微软雅黑'>---</span><span
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:微软雅黑'>---</span><span
 style='font-family:Arial'>​​</span><span style='font-family:微软雅黑'>非单调性</span><span
 style='font-family:Arial'>​​</span><span style='font-family:微软雅黑'>：当 x&lt;0
 时，Swish 可能先减小后增大，与 ReLU 的硬截断不同</span></p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:Arial'>​​</span><span
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'>----平滑性</span><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'>：Swish 处处可导，梯度变化连续，缓解了 ReLU 在 x=0 处的梯度突变问题</span></p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:Arial'>​​</span><span
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'>自适应性</span><span style='font-family:Arial'>​​</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>----通过调整 β，Swish
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>----通过调整 β，Swish
 可以灵活适应不同任务：</p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:Arial'>​​</span><span
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'>----大 β</span><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'>：接近 ReLU，适合需要稀疏激活的任务（如分类）</span></p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:Arial'>​​</span><span
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'>----小 β</span><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'>：接近线性，适合需要保留更多信息的任务（如回归）</span></p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:Arial'>​​</span><span
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'> 缓解梯度消失</span><span style='font-family:Arial'>​​</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>----在负区间（x&lt;0），Swish
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>----在负区间（x&lt;0），Swish
 的梯度非零，避免了 ReLU 的“神经元死亡”问题</p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:Arial'>​​</span><span
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'>输出非零中心化</span><span style='font-family:Arial'>​​</span></p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:微软雅黑'>----Swish
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:微软雅黑'>----Swish
 的输出均值为正（类似 ReLU），可能需搭配 </span><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'>Batch Normalization</span><span style='font-family:
 Arial'>​​</span><span style='font-family:微软雅黑'> 使用以加速训练</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Swish的缺点</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>Swish的缺点</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>计算成本略高于 ReLU（需计算
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>计算成本略高于 ReLU（需计算
 Sigmoid）</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US><span
 style='font-weight:bold'>4. SiLU</span></p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-family:微软雅黑'>SiLU（Sigmoid
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:微软雅黑'>SiLU（Sigmoid
 Linear Unit）</span><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'>，也称为 </span><span style='font-family:Arial'>​​</span><span
 style='font-family:微软雅黑'>Swish-1</span><span style='font-family:Arial'>​​</span><span
@@ -204,17 +204,17 @@ style='font-family:微软雅黑'>ReLU 稀疏激活特性</span><span style='font
 style='font-family:微软雅黑'> 的激活函数，</span><span style='font-family:-apple-system;
 color:#191B1F;background:white'>它由 ​​Swish 激活函数​​ 的特定形式演化而来（固定参数 β=1）</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=en-US>5. </span><span style='font-weight:bold' lang=zh-CN>门控机制</span></p>
 
 <p style='margin:0in;margin-left:1.5in'><img src="激活函数.files/image005.jpg"
-width=1768 height=877></p>
+width=680 height=337></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
 </div>
 

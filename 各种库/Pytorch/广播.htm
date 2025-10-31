@@ -10,19 +10,19 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="广播.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:32.7854in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:11.1354in'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:.0715in;width:1.0902in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.0902in'>
 
 <p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'>广播</p>
 
 </div>
 
-<div style='direction:ltr;margin-top:.0423in;margin-left:.0715in;width:1.6687in'>
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
 
 <p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
 Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
@@ -33,173 +33,195 @@ style='font-family:Calibri'>11</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:32.7854in'>
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:11.1354in'>
 
-<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;font-size:36.0pt;color:#2E75B5'><span style='font-family:
- "Segoe UI Symbol"' lang=en-US>★</span><span style='font-family:Calibri'
- lang=en-US>Py</span><span style='font-family:"Microsoft YaHei"' lang=en-US>torch</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>中的广播：</span></p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
- color:#2E75B5'>In short, if a PyTorch <span style='font-weight:bold'>operation</span>
- supports broadcast, then its Tensor arguments can be automatically expanded to
- be of equal sizes (without making copies of the data).</p>
- <p style='margin:0in;font-family:Calibri;font-size:11.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
- color:#2E75B5'>Two tensors are “broadcastable” if the following rules hold:</p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#2E75B5'><span
-      style='font-family:"Microsoft YaHei";font-size:36.0pt'>Each tensor has at
-      least one dimension.</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#2E75B5'><span
-      style='font-family:"Microsoft YaHei";font-size:36.0pt'>When iterating
-      over the dimension sizes, starting at the </span><span style='font-weight:
-      bold;font-family:"Microsoft YaHei";font-size:36.0pt'>trailing</span><span
-      style='font-family:"Microsoft YaHei";font-size:36.0pt'> dimension, the
-      dimension sizes must either be equal, one of them is 1, or one of them
-      does not exist.</span></li>
- </ul>
- <p style='margin:0in;font-family:Calibri;font-size:11.0pt'>&nbsp;</p>
- <p><cite style='margin:0in;font-family:Calibri;font-size:9.0pt;color:#595959'>&nbsp;</cite></p>
- <p style='margin:0in;font-size:36.0pt;color:#2E75B5'><span style='font-family:
- 微软雅黑' lang=zh-CN>也就是说，当两个</span><span style='font-family:Calibri' lang=en-US>tensor</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
- style='font-family:Calibri' lang=en-US>shape</span><span style='font-family:
- "Microsoft YaHei"' lang=zh-CN>不一样时，进行</span><span style='font-family:Calibri'
- lang=en-US>operation</span><span style='font-family:"Microsoft YaHei"'
- lang=zh-CN>时可以将两个</span><span style='font-family:Calibri' lang=en-US>tensor</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>shape</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>变成一致的，然后做</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>element wise</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>operation</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>。需要注意的是，在广播时，</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>pytorch</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>将两个</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>tensor</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>右对齐，也就是从最后一个维度开始对齐，按照从右往左的顺序。</span></p>
- <p style='margin:0in;font-size:36.0pt;color:#2E75B5'><span style='font-family:
- "Microsoft YaHei"' lang=zh-CN>所以，需要对</span><span style='font-family:Calibri'
- lang=en-US>tensor</span><span style='font-family:"Microsoft YaHei"'
- lang=zh-CN>的</span><span style='font-family:"Microsoft YaHei"' lang=en-US>shape</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>引起足够的关注。</span></p>
- <p style='margin:0in;font-size:36.0pt;color:#2E75B5'><span style='font-family:
- "Microsoft YaHei"' lang=zh-CN>在</span><span style='font-family:Calibri'
- lang=en-US>B</span><span style='font-family:"Microsoft YaHei"' lang=en-US>igram</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>算法中，</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>C</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>是一个</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>27*27</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>的矩阵，</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>C[i,j]</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>表示第一个字母是</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>i</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>时，第二个字母是</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>j</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>的计数。当对</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>C</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>的每一行归一化时，需要统计每一行</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>count</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>Sum</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>值</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US> </span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>，然后用</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>C[i,j]</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>除以</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>Sum</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>值，得到当第一个字母是</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>i</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>时，第二个字母是</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>j</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>的概率，即</span></p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
- color:#2E75B5'><span lang=en-US>P =C/ C.sum(axis=1,keep_dim=True)</span><span
- lang=zh-CN>，此时如果不加</span><span lang=en-US>keep_dim=True, C.sum(axis=1</span><span
- lang=zh-CN>）</span><span lang=en-US>shape</span><span lang=zh-CN>为</span><span
- lang=en-US>27, </span><span lang=zh-CN>当</span><span lang=en-US>C/C.sum(axis=1</span><span
- lang=zh-CN>）时，由于二者的</span><span lang=en-US>shape</span><span lang=zh-CN>不一样，会进行广播，而广播是右对齐，</span><span
- lang=en-US>C.sum(axis=1</span><span lang=zh-CN>）的</span><span lang=en-US>shape</span><span
- lang=zh-CN>会首先变为</span><span lang=en-US>(1,27)</span><span lang=zh-CN>，然后把这个</span><span
- lang=en-US>1</span><span lang=zh-CN>行</span><span lang=en-US>27</span><span
- lang=zh-CN>列的</span><span lang=en-US>tensor</span><span lang=zh-CN>复制</span><span
- lang=en-US>27</span><span lang=zh-CN>次，变成</span><span lang=en-US>(27*27)</span><span
- lang=zh-CN>，最后</span><span lang=en-US>element wise</span><span lang=zh-CN>相除。此时虽然代码能跑通，但是计算得到的</span><span
- lang=en-US>P</span><span lang=zh-CN>每一行的概率之和并不是</span><span lang=en-US>1</span><span
- lang=zh-CN>。</span></p>
- <p style='margin:0in;font-size:36.0pt;color:#2E75B5'><span style='font-family:
- "Microsoft YaHei"' lang=zh-CN>假设</span><span style='font-family:Calibri'
- lang=en-US>C</span><span style='font-family:"Microsoft YaHei"' lang=zh-CN>是一个</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>26*27</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>的矩阵，那么如果不加</span><span
- style='font-family:"Microsoft YaHei"' lang=en-US>keep_dim=True,<span
- style='mso-spacerun:yes'>  </span>P =C/ C.sum(axis=1)</span><span
- style='font-family:"Microsoft YaHei"' lang=zh-CN>压根不会跑通，会报错。</span></p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt;
- color:#2E75B5'>&nbsp;</p>
+<p style='margin:0in;font-size:12.0pt;color:#2E75B5'><span style='font-family:
+"Segoe UI Symbol"' lang=en-US>★</span><span style='font-family:Calibri'
+lang=en-US>Py</span><span style='font-family:"Microsoft YaHei"' lang=en-US>torch</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>中的广播：</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:#2E75B5'>In
+short, if a PyTorch <span style='font-weight:bold'>operation</span> supports
+broadcast, then its Tensor arguments can be automatically expanded to be of
+equal sizes (without making copies of the data).</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:#2E75B5'>Two
+tensors are “broadcastable” if the following rules hold:</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#2E75B5'><span
+     style='font-family:"Microsoft YaHei";font-size:12.0pt'>Each tensor has at
+     least one dimension.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#2E75B5'><span
+     style='font-family:"Microsoft YaHei";font-size:12.0pt'>When iterating over
+     the dimension sizes, starting at the </span><span style='font-weight:bold;
+     font-family:"Microsoft YaHei";font-size:12.0pt'>trailing</span><span
+     style='font-family:"Microsoft YaHei";font-size:12.0pt'> dimension, the
+     dimension sizes must either be equal, one of them is 1, or one of them
+     does not exist.</span></li>
 </ul>
 
-</div>
+<p style='margin:0in;font-family:Calibri;font-size:12.0pt'>&nbsp;</p>
 
-<div style='direction:ltr;margin-top:.5229in;margin-left:0in;width:31.7638in'>
+<p><cite style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#595959'>&nbsp;</cite></p>
 
-<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;font-size:36.0pt'><span style='font-weight:bold;
- font-family:微软雅黑' lang=zh-CN>★对</span><span style='font-weight:bold;
- font-family:Calibri' lang=en-US>T</span><span style='font-weight:bold;
- font-family:"Microsoft YaHei"' lang=en-US>ensor</span><span style='font-weight:
- bold;font-family:"Microsoft YaHei"' lang=zh-CN>作</span><span style='font-weight:
- bold;font-family:"Microsoft YaHei"' lang=en-US>inplace</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>操作可以提高效率，如</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>W/=5</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=zh-CN>，而不是</span><span
- style='font-weight:bold;font-family:"Microsoft YaHei"' lang=en-US>W=W/5</span></p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt'
- lang=en-US>&nbsp;</p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt'><span
- style='font-weight:bold'>矩阵相乘就是并行地计算向量点积</span></p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt'><span
- style='font-weight:bold' lang=en-US>torch.tensor</span><span style='font-weight:
- bold' lang=zh-CN>和</span><span style='font-weight:bold' lang=en-US>torch.Tensor</span><span
- style='font-weight:bold' lang=zh-CN>的区别：</span></p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:"Microsoft YaHei";font-size:36.0pt'>在 PyTorch
-      中，torch.Tensor&nbsp;和&nbsp;torch.tensor&nbsp;都用于生成新的张量，但它们有一些关键的区别。</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:"Microsoft YaHei";
- font-size:36.0pt'>torch.Tensor它是默认张量类型&nbsp;torch.FloatTensor&nbsp;的别名。使用&nbsp;torch.Tensor&nbsp;创建的张量默认是单精度浮点类型。</p>
- <p style='margin-left:.375in;margin-top:0pt;margin-bottom:6pt;font-family:
- Calibri;font-size:11.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:Calibri;font-size:11.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:Calibri;font-size:11.0pt'>&nbsp;</p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#444444'><span
-      style='font-family:"Microsoft YaHei";font-size:36.0pt'>torch.tensor&nbsp;是一个
-      Python 函数，其原型为：</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:"Microsoft YaHei";
- font-size:36.0pt'><span lang=zh-CN>torch.tensor(data, dtype=</span><span
- style='color:#106EBE' lang=zh-CN>None</span><span lang=zh-CN>, device=</span><span
- style='color:#106EBE' lang=zh-CN>None</span><span lang=zh-CN>, requires_grad=</span><span
- style='color:#106EBE' lang=zh-CN>False</span><span lang=zh-CN>)</span><span
- lang=en-US> </span></p>
- <p style='margin-left:.375in;margin-top:0pt;margin-bottom:6pt;font-family:
- Calibri;font-size:11.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:"Microsoft YaHei";
- font-size:36.0pt;color:#444444'>其中，data&nbsp;可以是列表、元组、数组、标量等类型。torch.tensor&nbsp;会从&nbsp;data&nbsp;中的数据部分做拷贝（而不是直接引用），并根据原始数据类型生成相应的&nbsp;torch.LongTensor、torch.FloatTensor&nbsp;或&nbsp;torch.DoubleTensor</p>
- <p style='margin:0in;margin-left:.375in;line-height:16pt;font-family:"Microsoft YaHei";
- font-size:36.0pt;color:#444444'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#444444'><span
- style='font-weight:bold' lang=en-US>W.grad=None</span><span style='font-weight:
- bold' lang=zh-CN>等价于</span><span style='font-weight:bold' lang=en-US>W.grad=0</span><span
- style='font-weight:bold' lang=zh-CN>，且更高效。</span></p>
+<p style='margin:0in;font-size:12.0pt;color:#2E75B5'><span style='font-family:
+微软雅黑' lang=zh-CN>也就是说，当两个</span><span style='font-family:Calibri' lang=en-US>tensor</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
+style='font-family:Calibri' lang=en-US>shape</span><span style='font-family:
+"Microsoft YaHei"' lang=zh-CN>不一样时，进行</span><span style='font-family:Calibri'
+lang=en-US>operation</span><span style='font-family:"Microsoft YaHei"'
+lang=zh-CN>时可以将两个</span><span style='font-family:Calibri' lang=en-US>tensor</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>shape</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>变成一致的，然后做</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>element wise</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>operation</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>。需要注意的是，在广播时，</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>pytorch</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>将两个</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>tensor</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>右对齐，也就是从最后一个维度开始对齐，按照从右往左的顺序。</span></p>
+
+<p style='margin:0in;font-size:12.0pt;color:#2E75B5'><span style='font-family:
+"Microsoft YaHei"' lang=zh-CN>所以，需要对</span><span style='font-family:Calibri'
+lang=en-US>tensor</span><span style='font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>shape</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>引起足够的关注。</span></p>
+
+<p style='margin:0in;font-size:12.0pt;color:#2E75B5'><span style='font-family:
+"Microsoft YaHei"' lang=zh-CN>在</span><span style='font-family:Calibri'
+lang=en-US>B</span><span style='font-family:"Microsoft YaHei"' lang=en-US>igram</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>算法中，</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>C</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>是一个</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>27*27</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>的矩阵，</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>C[i,j]</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>表示第一个字母是</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>i</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>时，第二个字母是</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>j</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>的计数。当对</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>C</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>的每一行归一化时，需要统计每一行</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>count</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>的</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>Sum</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>值</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US> </span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>，然后用</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>C[i,j]</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>除以</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>Sum</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>值，得到当第一个字母是</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>i</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>时，第二个字母是</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>j</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>的概率，即</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:#2E75B5'><span
+lang=en-US>P =C/ C.sum(axis=1,keep_dim=True)</span><span lang=zh-CN>，此时如果不加</span><span
+lang=en-US>keep_dim=True, C.sum(axis=1</span><span lang=zh-CN>）</span><span
+lang=en-US>shape</span><span lang=zh-CN>为</span><span lang=en-US>27, </span><span
+lang=zh-CN>当</span><span lang=en-US>C/C.sum(axis=1</span><span lang=zh-CN>）时，由于二者的</span><span
+lang=en-US>shape</span><span lang=zh-CN>不一样，会进行广播，而广播是右对齐，</span><span
+lang=en-US>C.sum(axis=1</span><span lang=zh-CN>）的</span><span lang=en-US>shape</span><span
+lang=zh-CN>会首先变为</span><span lang=en-US>(1,27)</span><span lang=zh-CN>，然后把这个</span><span
+lang=en-US>1</span><span lang=zh-CN>行</span><span lang=en-US>27</span><span
+lang=zh-CN>列的</span><span lang=en-US>tensor</span><span lang=zh-CN>复制</span><span
+lang=en-US>27</span><span lang=zh-CN>次，变成</span><span lang=en-US>(27*27)</span><span
+lang=zh-CN>，最后</span><span lang=en-US>element wise</span><span lang=zh-CN>相除。此时虽然代码能跑通，但是计算得到的</span><span
+lang=en-US>P</span><span lang=zh-CN>每一行的概率之和并不是</span><span lang=en-US>1</span><span
+lang=zh-CN>。</span></p>
+
+<p style='margin:0in;font-size:12.0pt;color:#2E75B5'><span style='font-family:
+"Microsoft YaHei"' lang=zh-CN>假设</span><span style='font-family:Calibri'
+lang=en-US>C</span><span style='font-family:"Microsoft YaHei"' lang=zh-CN>是一个</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>26*27</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>的矩阵，那么如果不加</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>keep_dim=True,<span
+style='mso-spacerun:yes'>  </span>P =C/ C.sum(axis=1)</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>压根不会跑通，会报错。</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:#2E75B5'>&nbsp;</p>
+
+<p style='margin:0in;font-size:12.0pt'><span style='font-weight:bold;
+font-family:微软雅黑' lang=zh-CN>★对</span><span style='font-weight:bold;font-family:
+Calibri' lang=en-US>T</span><span style='font-weight:bold;font-family:"Microsoft YaHei"'
+lang=en-US>ensor</span><span style='font-weight:bold;font-family:"Microsoft YaHei"'
+lang=zh-CN>作</span><span style='font-weight:bold;font-family:"Microsoft YaHei"'
+lang=en-US>inplace</span><span style='font-weight:bold;font-family:"Microsoft YaHei"'
+lang=zh-CN>操作可以提高效率，如</span><span style='font-weight:bold;font-family:"Microsoft YaHei"'
+lang=en-US>W/=5</span><span style='font-weight:bold;font-family:"Microsoft YaHei"'
+lang=zh-CN>，而不是</span><span style='font-weight:bold;font-family:"Microsoft YaHei"'
+lang=en-US>W=W/5</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt'
+lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt'><span
+style='font-weight:bold'>矩阵相乘就是并行地计算向量点积</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt'><span
+style='font-weight:bold' lang=en-US>torch.tensor</span><span style='font-weight:
+bold' lang=zh-CN>和</span><span style='font-weight:bold' lang=en-US>torch.Tensor</span><span
+style='font-weight:bold' lang=zh-CN>的区别：</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:"Microsoft YaHei";font-size:12.0pt'>在 PyTorch
+     中，torch.Tensor&nbsp;和&nbsp;torch.tensor&nbsp;都用于生成新的张量，但它们有一些关键的区别。</span></li>
 </ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:"Microsoft YaHei";
+font-size:12.0pt'>torch.Tensor它是默认张量类型&nbsp;torch.FloatTensor&nbsp;的别名。使用&nbsp;torch.Tensor&nbsp;创建的张量默认是单精度浮点类型。</p>
+
+<p style='margin-left:.375in;margin-top:0pt;margin-bottom:6pt;font-family:Calibri;
+font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:Calibri;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:Calibri;font-size:12.0pt'>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;line-height:
+     16pt;color:#444444'><span style='font-family:"Microsoft YaHei";font-size:
+     12.0pt'>torch.tensor&nbsp;是一个 Python 函数，其原型为：</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:"Microsoft YaHei";
+font-size:12.0pt'><span lang=zh-CN>torch.tensor(data, dtype=</span><span
+style='color:#106EBE' lang=zh-CN>None</span><span lang=zh-CN>, device=</span><span
+style='color:#106EBE' lang=zh-CN>None</span><span lang=zh-CN>, requires_grad=</span><span
+style='color:#106EBE' lang=zh-CN>False</span><span lang=zh-CN>)</span><span
+lang=en-US> </span></p>
+
+<p style='margin-left:.375in;margin-top:0pt;margin-bottom:6pt;font-family:Calibri;
+font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;line-height:16pt;font-family:"Microsoft YaHei";
+font-size:12.0pt;color:#444444'>其中，data&nbsp;可以是列表、元组、数组、标量等类型。torch.tensor&nbsp;会从&nbsp;data&nbsp;中的数据部分做拷贝（而不是直接引用），并根据原始数据类型生成相应的&nbsp;torch.LongTensor、torch.FloatTensor&nbsp;或&nbsp;torch.DoubleTensor</p>
+
+<p style='margin:0in;margin-left:.375in;line-height:16pt;font-family:"Microsoft YaHei";
+font-size:12.0pt;color:#444444'>&nbsp;</p>
+
+<p style='margin:0in;line-height:16pt;font-family:微软雅黑;font-size:12.0pt;
+color:#444444'><span style='font-weight:bold' lang=en-US>W.grad=None</span><span
+style='font-weight:bold' lang=zh-CN>等价于</span><span style='font-weight:bold'
+lang=en-US>W.grad=0</span><span style='font-weight:bold' lang=zh-CN>，且更高效。</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:#2E75B5'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt;color:#2E75B5'>&nbsp;</p>
 
 </div>
 

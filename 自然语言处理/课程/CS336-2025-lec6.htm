@@ -10,19 +10,19 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="CS336-2025-lec6.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:26.4131in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:9.7277in'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:.6104in;width:2.7958in'>
+<div style='direction:ltr;margin-top:0in;margin-left:.3354in;width:2.7958in'>
 
 <p style='margin:0in;font-family:微软雅黑;font-size:20.0pt' lang=en-US>CS336-2025-lec6</p>
 
 </div>
 
-<div style='direction:ltr;margin-top:.0423in;margin-left:.6104in;width:1.7388in'>
+<div style='direction:ltr;margin-top:.0423in;margin-left:.3354in;width:1.7388in'>
 
 <p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
 Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
@@ -33,30 +33,30 @@ style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:26.4131in'>
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:9.7277in'>
 
 <ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
  style='font-weight:bold' lang=en-US>K</span><span style='font-weight:bold'
  lang=zh-CN>er</span><span style='font-weight:bold' lang=en-US>nels,Triton</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'><span
  style='font-weight:bold'>两个函数</span></p>
- <p style='margin:0in;font-size:36.0pt'><span style='font-weight:bold;
+ <p style='margin:0in;font-size:12.0pt'><span style='font-weight:bold;
  font-family:system-ui;color:#213547' lang=zh-CN>benchmarking() </span><span
  style='font-weight:bold;font-family:system-ui;color:#6A737D' lang=zh-CN># How
  long does it take?</span><span style='font-weight:bold;font-family:微软雅黑;
  color:#6A737D' lang=en-US> </span><span style='font-weight:bold;font-family:
  微软雅黑;color:#6A737D' lang=zh-CN>检查总的执行时间</span></p>
- <p style='margin:0in;font-size:36.0pt'><span style='font-weight:bold;
+ <p style='margin:0in;font-size:12.0pt'><span style='font-weight:bold;
  font-family:system-ui;color:#213547' lang=zh-CN>profiling() </span><span
  style='font-weight:bold;font-family:system-ui;color:#6A737D' lang=zh-CN>#
  Where time is being spent?</span><span style='font-weight:bold;font-family:
  微软雅黑;color:#6A737D' lang=en-US> </span><span style='font-weight:bold;
  font-family:微软雅黑;color:#6A737D' lang=zh-CN>检查具体每一个步骤的执行时间</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#6A737D'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#6A737D'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#6A737D'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#6A737D'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>def </span><span style='color:#6F42C1'>benchmark</span><span
  style='color:#213547'>(description: </span><span style='color:#E36209'>str</span><span
  style='color:#213547'>, run: </span><span style='color:#D73A49'>Callable</span><span
@@ -65,70 +65,70 @@ style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日<
  style='color:#213547'>, num_trials: </span><span style='color:#E36209'>int</span><span
  style='color:#213547'> = </span><span style='color:#005CC5'>3</span><span
  style='color:#213547'>):</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#032F62'>&quot;&quot;&quot;Benchmark `func` by running it `num_trials`,
  and return all the times.&quot;&quot;&quot;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Warmup: first times might be slower due to compilation,
  things not cached.</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Since we will run the kernel multiple times, the timing that
  matters is steady state.</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>for</span><span style='color:#213547'> _ </span><span
  style='color:#D73A49'>in </span><span style='color:#E36209'>range</span><span
  style='color:#213547'>(num_warmups):</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>run()</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>if</span><span style='color:#213547'>
  torch.cuda.is_available():</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>torch.cuda.synchronize() </span><span style='color:#6A737D'>#
  Wait for CUDA threads to finish (important!)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Time it for real now!</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>times: </span><span style='color:#E36209'>list</span><span
  style='color:#213547'>[</span><span style='color:#E36209'>float</span><span
  style='color:#213547'>] = [] </span><span style='color:#6A737D'># @inspect
  times, @inspect description</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>for</span><span style='color:#213547'> trial </span><span
  style='color:#D73A49'>in </span><span style='color:#E36209'>range</span><span
  style='color:#213547'>(num_trials): </span><span style='color:#6A737D'># Do it
  multiple times to capture variance</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>start_time = time.time()</p>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>run() </span><span style='color:#6A737D'># Actually
  perform computation</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>if</span><span style='color:#213547'>
  torch.cuda.is_available():</span></p>
- <p style='margin:0in;margin-left:1.125in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:1.125in;font-family:system-ui;font-size:12.0pt'><span
  style='font-weight:bold;color:#213547'>torch.cuda.synchronize() </span><span
  style='font-weight:bold;color:#6A737D'># Wait for CUDA threads to finish
  (important!)</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>end_time = time.time()</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>times.append((end_time - start_time) * </span><span
  style='color:#005CC5'>1000</span><span style='color:#213547'>) </span><span
  style='color:#6A737D'># @inspect times</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='font-weight:bold;color:#213547'>mean_time = mean(times) </span><span
  style='font-weight:bold;color:#6A737D'># @inspect mean_time</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>return</span><span style='color:#213547'> mean_time</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:9.0pt;color:#595959'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#595959'><span
  style='mso-spacerun:yes'> </span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>def </span><span style='color:#6F42C1'>profile</span><span
  style='color:#213547'>(description: </span><span style='color:#E36209'>str</span><span
  style='color:#213547'>, run: </span><span style='color:#D73A49'>Callable</span><span
@@ -137,9 +137,9 @@ style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日<
  style='color:#213547'>, with_stack: </span><span style='color:#E36209'>bool</span><span
  style='color:#213547'> = </span><span style='color:#005CC5'>False</span><span
  style='color:#213547'>):</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Warmup</p>
- <p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
  style='font-family:微软雅黑;color:#6A737D' lang=en-US># </span><span
  style='font-weight:bold;font-family:微软雅黑;color:black' lang=zh-CN>用</span><span
  style='font-weight:bold;font-family:微软雅黑;color:black' lang=en-US>pytorch</span><span
@@ -147,91 +147,91 @@ style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日<
  style='font-weight:bold;font-family:system-ui;color:#213547' lang=zh-CN>
  torch.profiler</span><span style='font-weight:bold;font-family:微软雅黑;
  color:black' lang=zh-CN>来检查每个步骤执行的时间</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>for</span><span style='color:#213547'> _ </span><span
  style='color:#D73A49'>in </span><span style='color:#E36209'>range</span><span
  style='color:#213547'>(num_warmups):</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>run()</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>if</span><span style='color:#213547'>
  torch.cuda.is_available():</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>torch.cuda.synchronize() </span><span style='color:#6A737D'>#
  Wait for CUDA threads to finish (important!)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Run the code with the profiler</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>with</span><span style='color:#213547'>
  torch.profiler.profile(</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA],</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Output stack trace for visualization</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>with_stack=with_stack,</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Needed to export stack trace for visualization</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>experimental_config=torch._C._profiler._ExperimentalConfig(verbose=</span><span
  style='color:#005CC5'>True</span><span style='color:#213547'>)) </span><span
  style='color:#D73A49'>as</span><span style='color:#213547'> prof:</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt;
  color:#213547'>&nbsp;</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>run()</p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>if</span><span style='color:#213547'>
  torch.cuda.is_available():</span></p>
- <p style='margin:0in;margin-left:1.125in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:1.125in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>torch.cuda.synchronize() </span><span style='color:#6A737D'>#
  Wait for CUDA threads to finish (important!)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Print out table</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>table = prof.key_averages().table(sort_by=</span><span
  style='color:#032F62'>&quot;cuda_time_total&quot;</span><span
  style='color:#213547'>,</span></p>
- <p style='margin:0in;margin-left:1.875in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:1.875in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>max_name_column_width=</span><span style='color:#005CC5'>80</span><span
  style='color:#213547'>,</span></p>
- <p style='margin:0in;margin-left:1.875in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:1.875in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>row_limit=</span><span style='color:#005CC5'>10</span><span
  style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'>#text(f&quot;## {description}&quot;)</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'>#text(table, verbatim=True)</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Write stack trace visualization</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>if</span><span style='color:#213547'> with_stack:</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>text_path = </span><span style='color:#032F62'>f&quot;var/stacks_</span><span
  style='color:#24292E'>{description}</span><span style='color:#032F62'>.txt&quot;</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>svg_path = </span><span style='color:#032F62'>f&quot;var/stacks_</span><span
  style='color:#24292E'>{description}</span><span style='color:#032F62'>.svg&quot;</span></p>
- <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.75in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>prof.export_stacks(text_path, </span><span
  style='color:#032F62'>&quot;self_cuda_time_total&quot;</span><span
  style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>return</span><span style='color:#213547'> table</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt;
  color:#213547'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt;
  color:#213547'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
  style='font-weight:bold' lang=zh-CN>执行</span><span style='font-weight:bold'
  lang=en-US>profile</span><span style='font-weight:bold' lang=zh-CN>的结果：</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'><span
  style='font-weight:bold'>matmul(dim=128)</span></p>
- <p style='margin:0in;font-size:36.0pt'><span style='font-family:微软雅黑'><br>
+ <p style='margin:0in;font-size:12.0pt'><span style='font-family:微软雅黑'><br>
   </span><span style='font-family:system-ui;color:#213547'><span
  style='mso-spacerun:yes'>                                                                       
  </span>Name<span style='mso-spacerun:yes'>    </span>Self CPU %<span
@@ -243,10 +243,10 @@ style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日<
  style='mso-spacerun:yes'>    </span>CUDA total<span style='mso-spacerun:yes'> 
  </span>CUDA time avg<span style='mso-spacerun:yes'>    </span># of Calls<span
  style='mso-spacerun:yes'>  </span></span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>&nbsp;</p>
- <p style='margin:0in;font-size:36.0pt'><span style='font-family:微软雅黑'><br>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-size:12.0pt'><span style='font-family:微软雅黑'><br>
   </span><span style='font-family:system-ui;color:#213547'>&nbsp;</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'><span
  style='mso-spacerun:yes'>                                                              
  </span><span style='font-weight:bold'><span
  style='mso-spacerun:yes'> </span>aten::matmul</span><span
@@ -261,8 +261,8 @@ style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日<
  style='mso-spacerun:yes'>       </span>4.992us<span
  style='mso-spacerun:yes'>             </span>1<span style='mso-spacerun:yes'> 
  </span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'><span
  style='mso-spacerun:yes'>                                                                   
  </span><span style='font-weight:bold'>aten::mm</span><span
  style='mso-spacerun:yes'>        </span>42.40%<span
@@ -276,7 +276,7 @@ style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日<
  style='mso-spacerun:yes'>       </span>4.992us<span
  style='mso-spacerun:yes'>             </span>1<span style='mso-spacerun:yes'> 
  </span></p>
- <p style='margin:0in;font-size:36.0pt;color:#213547'><span style='font-weight:
+ <p style='margin:0in;font-size:12.0pt;color:#213547'><span style='font-weight:
  bold;font-family:system-ui' lang=zh-CN>&nbsp;</span><span style='font-weight:
  bold;font-family:微软雅黑' lang=en-US>(cuda </span><span style='font-weight:bold;
  font-family:微软雅黑' lang=zh-CN>ke</span><span style='font-weight:bold;
@@ -296,7 +296,7 @@ style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日<
  style='mso-spacerun:yes'>       </span>4.992us<span
  style='mso-spacerun:yes'>             </span>1<span style='mso-spacerun:yes'> 
  </span>&nbsp;</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'><span
  style='mso-spacerun:yes'>                                                     
  </span><span style='font-weight:bold'><span
  style='mso-spacerun:yes'> </span>cudaFuncGetAttributes</span><span
@@ -311,8 +311,8 @@ style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日<
  style='mso-spacerun:yes'>       </span>0.000us<span
  style='mso-spacerun:yes'>             </span>1<span style='mso-spacerun:yes'> 
  </span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'><span
  style='mso-spacerun:yes'>                                                       
  </span><span style='font-weight:bold'><span
  style='mso-spacerun:yes'> </span>cudaLaunchKernelExC</span><span
@@ -327,8 +327,8 @@ style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日<
  style='mso-spacerun:yes'>       </span>0.000us<span
  style='mso-spacerun:yes'>             </span>1<span style='mso-spacerun:yes'> 
  </span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'><span
  style='mso-spacerun:yes'>                                                      
  </span><span style='font-weight:bold'>cudaDeviceSynchronize</span><span
  style='mso-spacerun:yes'>         </span>1.76%<span
@@ -342,91 +342,93 @@ style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日<
  style='mso-spacerun:yes'>       </span>0.000us<span
  style='mso-spacerun:yes'>             </span>2<span style='mso-spacerun:yes'> 
  </span></p>
- <p style='margin:0in;font-size:36.0pt'><span style='font-family:system-ui;
+ <p style='margin:0in;font-size:12.0pt'><span style='font-family:system-ui;
  color:#213547'>&nbsp;</span><span style='font-family:微软雅黑'><br>
   </span><span style='font-family:system-ui;color:#213547'>&nbsp;Self CPU time
  total: 421.136usSelf CUDA time total: 4.992us</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold' lang=zh-CN>不同</span><span style='font-weight:bold'
  lang=en-US>di</span><span style='font-weight:bold' lang=zh-CN>m的矩阵乘法，调用的</span><span
  style='font-weight:bold' lang=en-US>cuda kernel</span><span style='font-weight:
  bold' lang=zh-CN>是不同的。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'
  lang=en-US>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
  lang=en-US>CPU</span><span lang=zh-CN>不断发送</span><span lang=en-US>kernel</span><span
  lang=zh-CN>到</span><span lang=en-US>gpu</span><span lang=zh-CN>中，不需要等待</span><span
  lang=en-US>gpu</span><span lang=zh-CN>执行完，再发送下一个</span><span lang=en-US>kernel</span><span
  lang=zh-CN>。如果加入了</span><span lang=en-US>print(loss)</span><span lang=zh-CN>这种操作（或</span><span
  lang=en-US>cuda.sychronize</span><span lang=zh-CN>），</span><span lang=en-US>cpu</span><span
  lang=zh-CN>需要等待</span><span lang=en-US>gpu</span><span lang=zh-CN>执行完的结果，才能继续。</span></p>
- <p style='margin-left:.75in;margin-top:24pt;margin-bottom:9pt;font-family:
- ui-sans-serif;font-size:36.0pt;color:black'><span style='background:#FCFCFC'>1.
- CPU 发送 Kernel 到 GPU 的默认行为：异步执行</span></p>
- <p style='margin-left:.75in;margin-top:6pt;margin-bottom:6pt;font-family:ui-sans-serif;
- font-size:36.0pt;color:black'>在深度学习框架（如 PyTorch、TensorFlow）中，<span
- style='font-weight:bold'>当 CPU 调用 GPU 操作（如矩阵乘法、卷积，即 “Kernel”）时，默认是异步的：</span></p>
+ <p style='margin-left:.75in;margin-top:24pt;margin-bottom:9pt;line-height:
+ 18pt;font-family:ui-sans-serif;font-size:12.0pt;color:black'><span
+ style='background:#FCFCFC'>1. CPU 发送 Kernel 到 GPU 的默认行为：异步执行</span></p>
+ <p style='margin-left:.75in;margin-top:6pt;margin-bottom:6pt;line-height:21pt;
+ font-family:ui-sans-serif;font-size:12.0pt;color:black'>在深度学习框架（如
+ PyTorch、TensorFlow）中，<span style='font-weight:bold'>当 CPU 调用 GPU 操作（如矩阵乘法、卷积，即
+ “Kernel”）时，默认是异步的：</span></p>
  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
-      3pt;margin-bottom:0pt;color:black'><span style='font-family:ui-sans-serif;
-      font-size:36.0pt;background:#FCFCFC'>C</span><span style='font-weight:
-      bold;font-family:ui-sans-serif;font-size:36.0pt;background:#FCFCFC'>PU
-      只需将 Kernel 任务 “提交” 到 GPU 的任务队列中，无需等待 GPU 实际执行完该 Kernel，就可以继续执行后续的 CPU
-      代码（包括发送下一个 Kernel 到 GPU）。</span></li>
+      3pt;margin-bottom:0pt;line-height:21pt;color:black'><span
+      style='font-family:ui-sans-serif;font-size:12.0pt;background:#FCFCFC'>C</span><span
+      style='font-weight:bold;font-family:ui-sans-serif;font-size:12.0pt;
+      background:#FCFCFC'>PU 只需将 Kernel 任务 “提交” 到 GPU 的任务队列中，无需等待 GPU 实际执行完该
+      Kernel，就可以继续执行后续的 CPU 代码（包括发送下一个 Kernel 到 GPU）。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
-      3pt;margin-bottom:0pt;color:black'><span style='font-family:ui-sans-serif;
-      font-size:36.0pt;background:#FCFCFC'>这种机制充分利用了 CPU 和 GPU 的并行性：GPU
-      在执行计算时，CPU 可以同时准备下一个任务，提高整体效率。</span></li>
+      3pt;margin-bottom:0pt;line-height:21pt;color:black'><span
+      style='font-family:ui-sans-serif;font-size:12.0pt;background:#FCFCFC'>这种机制充分利用了
+      CPU 和 GPU 的并行性：GPU 在执行计算时，CPU 可以同时准备下一个任务，提高整体效率。</span></li>
  </ul>
- <p style='margin-left:.75in;margin-top:24pt;margin-bottom:9pt;font-size:36.0pt;
- color:black'><span style='font-family:ui-sans-serif;background:#FCFCFC'>2.
- 同步操作（如</span><span style='font-family:ui-monospace;background:#FCFCFC'>print(loss)</span><span
- style='font-family:ui-sans-serif;background:#FCFCFC'>或</span><span
- style='font-family:ui-monospace;background:#FCFCFC'>cuda.synchronize()</span><span
- style='font-family:ui-sans-serif;background:#FCFCFC'>）会强制等待 GPU 执行完成</span></p>
- <p style='margin-left:.75in;margin-top:6pt;margin-bottom:6pt;font-family:ui-sans-serif;
- font-size:36.0pt;color:black'>当代码中出现需要CPU 获取 GPU 计算结果的操作时，CPU 必须等待 GPU
- 完成所有已提交的任务，才能获取结果并继续执行，这就是 “同步”：</p>
+ <p style='margin-left:.75in;margin-top:24pt;margin-bottom:9pt;line-height:
+ 18pt;font-size:12.0pt;color:black'><span style='font-family:ui-sans-serif;
+ background:#FCFCFC'>2. 同步操作（如</span><span style='font-family:ui-monospace;
+ background:#FCFCFC'>print(loss)</span><span style='font-family:ui-sans-serif;
+ background:#FCFCFC'>或</span><span style='font-family:ui-monospace;background:
+ #FCFCFC'>cuda.synchronize()</span><span style='font-family:ui-sans-serif;
+ background:#FCFCFC'>）会强制等待 GPU 执行完成</span></p>
+ <p style='margin-left:.75in;margin-top:6pt;margin-bottom:6pt;line-height:21pt;
+ font-family:ui-sans-serif;font-size:12.0pt;color:black'>当代码中出现需要CPU 获取 GPU
+ 计算结果的操作时，CPU 必须等待 GPU 完成所有已提交的任务，才能获取结果并继续执行，这就是 “同步”：</p>
  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
-      3pt;margin-bottom:0pt;color:black'><span style='font-family:ui-monospace;
-      font-size:36.0pt;background:#FCFCFC'>print(loss)</span><span
-      style='font-family:ui-sans-serif;font-size:36.0pt;background:#FCFCFC'>：</span><span
-      style='font-family:ui-monospace;font-size:36.0pt;background:#FCFCFC'>loss</span><span
-      style='font-family:ui-sans-serif;font-size:36.0pt;background:#FCFCFC'>通常是
-      GPU 上的张量（如</span><span style='font-family:ui-monospace;font-size:36.0pt;
+      3pt;margin-bottom:0pt;line-height:21pt;color:black'><span
+      style='font-family:ui-monospace;font-size:12.0pt;background:#FCFCFC'>print(loss)</span><span
+      style='font-family:ui-sans-serif;font-size:12.0pt;background:#FCFCFC'>：</span><span
+      style='font-family:ui-monospace;font-size:12.0pt;background:#FCFCFC'>loss</span><span
+      style='font-family:ui-sans-serif;font-size:12.0pt;background:#FCFCFC'>通常是
+      GPU 上的张量（如</span><span style='font-family:ui-monospace;font-size:12.0pt;
       background:#FCFCFC'>loss.device</span><span style='font-family:ui-sans-serif;
-      font-size:36.0pt;background:#FCFCFC'>为</span><span style='font-family:
-      ui-monospace;font-size:36.0pt;background:#FCFCFC'>cuda</span><span
-      style='font-family:ui-sans-serif;font-size:36.0pt;background:#FCFCFC'>）。当
-      CPU 执行</span><span style='font-family:ui-monospace;font-size:36.0pt;
+      font-size:12.0pt;background:#FCFCFC'>为</span><span style='font-family:
+      ui-monospace;font-size:12.0pt;background:#FCFCFC'>cuda</span><span
+      style='font-family:ui-sans-serif;font-size:12.0pt;background:#FCFCFC'>）。当
+      CPU 执行</span><span style='font-family:ui-monospace;font-size:12.0pt;
       background:#FCFCFC'>print(loss)</span><span style='font-family:ui-sans-serif;
-      font-size:36.0pt;background:#FCFCFC'>时，需要先将 GPU 上的</span><span
-      style='font-family:ui-monospace;font-size:36.0pt;background:#FCFCFC'>loss</span><span
-      style='font-family:ui-sans-serif;font-size:36.0pt;background:#FCFCFC'>值复制到
+      font-size:12.0pt;background:#FCFCFC'>时，需要先将 GPU 上的</span><span
+      style='font-family:ui-monospace;font-size:12.0pt;background:#FCFCFC'>loss</span><span
+      style='font-family:ui-sans-serif;font-size:12.0pt;background:#FCFCFC'>值复制到
       CPU 内存中，这个过程必须等待</span><span style='font-family:ui-monospace;font-size:
-      36.0pt;background:#FCFCFC'>loss</span><span style='font-family:ui-sans-serif;
-      font-size:36.0pt;background:#FCFCFC'>对应的计算（如前向传播、损失计算）在 GPU
+      12.0pt;background:#FCFCFC'>loss</span><span style='font-family:ui-sans-serif;
+      font-size:12.0pt;background:#FCFCFC'>对应的计算（如前向传播、损失计算）在 GPU
       上完成，否则无法获取有效结果。因此，</span><span style='font-family:ui-monospace;
-      font-size:36.0pt;background:#FCFCFC'>print(loss)</span><span
-      style='font-family:ui-sans-serif;font-size:36.0pt;background:#FCFCFC'>会隐含同步操作。</span></li>
+      font-size:12.0pt;background:#FCFCFC'>print(loss)</span><span
+      style='font-family:ui-sans-serif;font-size:12.0pt;background:#FCFCFC'>会隐含同步操作。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
-      3pt;margin-bottom:0pt;color:black'><span style='font-family:ui-monospace;
-      font-size:36.0pt;background:#FCFCFC'>cuda.synchronize()</span><span
-      style='font-family:ui-sans-serif;font-size:36.0pt;background:#FCFCFC'>：这是显式的同步函数，会强制
+      3pt;margin-bottom:0pt;line-height:21pt;color:black'><span
+      style='font-family:ui-monospace;font-size:12.0pt;background:#FCFCFC'>cuda.synchronize()</span><span
+      style='font-family:ui-sans-serif;font-size:12.0pt;background:#FCFCFC'>：这是显式的同步函数，会强制
       CPU 等待 GPU 完成所有已提交的任务后再继续，常用于精确控制执行顺序或计时（避免因异步导致的时间测量误差）。</span></li>
  </ul>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p><cite style='margin:0in;margin-left:.75in;font-size:36.0pt;color:#595959'><span
+ <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p><cite style='margin:0in;margin-left:.75in;font-size:12.0pt;color:#595959'><span
  style='font-family:Aptos'>来自</span><span style='font-family:Calibri'> &lt;</span><a
  href="https://www.doubao.com/chat/24863282932688386"><span style='font-family:
  Calibri'>https://www.doubao.com/chat/24863282932688386</span></a><span
  style='font-family:Calibri'>&gt; </span></cite></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
  <div style='direction:ltr'>
  <table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
   border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
@@ -434,191 +436,191 @@ style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日<
   <tr>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
    width:1.6652in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'><span style='font-weight:bold'>GPU</span></p>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'><span style='font-weight:bold'>GPU</span></p>
    </td>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
    width:3.5305in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'><span style='font-weight:bold'>整个工厂</span></p>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'><span style='font-weight:bold'>整个工厂</span></p>
    </td>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
-   width:20.4347in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'><span style='font-weight:bold'>拥有所有的生产资源。</span></p>
+   width:4.025in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'><span style='font-weight:bold'>拥有所有的生产资源。</span></p>
    </td>
   </tr>
   <tr>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
    width:1.6652in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>SM</p>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'>SM</p>
    </td>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
    width:3.5305in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>一条生产线</p>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'>一条生产线</p>
    </td>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
-   width:20.4631in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>一条生产线有多个工位（CUDA Cores）、一个共享的工具柜（Shared Memory）和一条传送带（Warp
-   Scheduler）。</p>
+   width:4.1201in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'>一条生产线有多个工位（CUDA Cores）、一个共享的工具柜（Shared
+   Memory）和一条传送带（Warp Scheduler）。</p>
    </td>
   </tr>
   <tr>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
    width:1.6652in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>Block</p>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'>Block</p>
    </td>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
    width:3.5305in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>一个任务包</p>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'>一个任务包</p>
    </td>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
-   width:20.4631in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>例如“组装100辆自行车”的任务包。这个包被完整地分配到一条生产线上，包内的工人可以互相传递零件（通过Shared
+   width:4.1381in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'>例如“组装100辆自行车”的任务包。这个包被完整地分配到一条生产线上，包内的工人可以互相传递零件（通过Shared
    Memory通信）。</p>
    </td>
   </tr>
   <tr>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
    width:1.6652in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>Warp</p>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'>Warp</p>
    </td>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
    width:3.5305in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>一组32个工人</p>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'>一组32个工人</p>
    </td>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
-   width:20.4631in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>这是最关键的比喻。这32个工人被绑在一起，必须同时做完全相同的动作。如果其中一个人需要做不同的动作（如装铃铛），其他31个人也得等着他，或者陪他一起做，导致效率低下（这就是分支发散）。</p>
+   width:4.1402in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'>这是最关键的比喻。这32个工人被绑在一起，必须同时做完全相同的动作。如果其中一个人需要做不同的动作（如装铃铛），其他31个人也得等着他，或者陪他一起做，导致效率低下（这就是分支发散）。</p>
    </td>
   </tr>
   <tr>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
    width:1.6652in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>Thread</p>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'>Thread</p>
    </td>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
    width:3.5305in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>单个工人</p>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'>单个工人</p>
    </td>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
-   width:20.4347in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>每个工人负责组装一辆完整的自行车（处理一个数据元素）。</p>
+   width:4.1381in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'>每个工人负责组装一辆完整的自行车（处理一个数据元素）。</p>
    </td>
   </tr>
   <tr>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
-   width:1.6805in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>Stream</p>
+   width:1.6652in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'>Stream</p>
    </td>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
    width:3.5305in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>任务调度单</p>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'>任务调度单</p>
    </td>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
-   width:20.4631in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>普通的Stream：一个调度单，上面的任务必须按顺序执行。</p>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>多个Stream：多个独立的调度单，可以同时下发给工厂，让不同的生产线同时处理不同的任务，极大提升工厂的吞吐量。</p>
+   width:4.1381in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'>普通的Stream：一个调度单，上面的任务必须按顺序执行。</p>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'>多个Stream：多个独立的调度单，可以同时下发给工厂，让不同的生产线同时处理不同的任务，极大提升工厂的吞吐量。</p>
    </td>
   </tr>
  </table>
  </div>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='mso-spacerun:yes'> </span></p>
  <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
+  0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
   <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      color:#0F1115'><span style='font-family:quote-cjk-patch;font-size:36.0pt;
+      color:#0F1115'><span style='font-family:quote-cjk-patch;font-size:12.0pt;
       font-weight:normal;font-style:normal;font-family:quote-cjk-patch;
-      font-size:36.0pt;background:white'>接单（启动Kernel）：总部（CPU）下达一个宏大的生产任务“组装10000辆自行车”（启动一个Kernel）。</span></li>
+      font-size:12.0pt;background:white'>接单（启动Kernel）：总部（CPU）下达一个宏大的生产任务“组装10000辆自行车”（启动一个Kernel）。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>任务分包（Grid
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>任务分包（Grid
       &amp;
       Block）：工厂经理将任务分成100个“任务包”（Block），每个包负责组装100辆自行车（每个Block有100个Thread）。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>产线分配（Block
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>产线分配（Block
       to
       SM）：调度中心将100个任务包分配给工厂里的10条生产线（SM）。每条生产线可能同时接收2-3个任务包，具体取决于生产线上的空间和工具是否够用。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>小组划分（Block
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>小组划分（Block
       to
       Warp）：一条生产线收到一个任务包（100个工人）后，立刻将他们分成3个小组（Warp）：前两个小组满员（各32人），最后一个小组只有36人（但为了管理，也按32人小组来对待，但有4个工位是空闲的，这就是Warp浪费）。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>流水线执行（Warp
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>流水线执行（Warp
       Scheduling）：</span></li>
   <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
    margin-bottom:0in'>
    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-       style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>小组长（Warp
+       style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>小组长（Warp
        Scheduler）让第一组的32个工人同时去拧螺丝（执行一条指令）。</span></li>
    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-       style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>当他们需要去仓库取新零件时（访问全局内存，高延迟），小组长不会让他们干等着，而是立刻切换到第二组工人，让他们去装车座（执行另一条指令）。</span></li>
+       style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>当他们需要去仓库取新零件时（访问全局内存，高延迟），小组长不会让他们干等着，而是立刻切换到第二组工人，让他们去装车座（执行另一条指令）。</span></li>
    <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-       style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>通过这种快速的小组切换，生产线始终保持着忙碌，完美地隐藏了“取零件”的等待时间。</span></li>
+       style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>通过这种快速的小组切换，生产线始终保持着忙碌，完美地隐藏了“取零件”的等待时间。</span></li>
   </ul>
  </ol>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold' lang=zh-CN>手动编写</span><span style='font-weight:bold'
  lang=en-US>Gelu</span><span style='font-weight:bold' lang=zh-CN>的</span><span
  style='font-weight:bold' lang=en-US>cuda kernel</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>CUDA
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>CUDA
  is an extension of C/C++ with APIs for managing GPUs.</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Simplified
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Simplified
  picture: write f(i), CUDA kernel computes f(i) for all i.</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Grid:
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Grid:
  collection of thread blocks: numBlocks = (2, 4), blockDim = (1, 8)</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Thread
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Thread
  block: collection of threads: blockIdx = (0, 1)</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Thread:
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Thread:
  single unit of operation: threadIdx = (0, 3).</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>You
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>You
  write code that a thread execute, using (blockIdx, blockDim, threadIdx) to
  determine what to do.</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Set
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Set
  CUDA_LAUNCH_BLOCKING so that if there are errors, CUDA will tell you what went
  wrong.</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>os.environ[</span><span style='color:#032F62'>&quot;CUDA_LAUNCH_BLOCKING&quot;</span><span
  style='color:#213547'>] = </span><span style='color:#032F62'>&quot;1&quot;</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'><span
  style='font-weight:bold'>The&nbsp;load_inline&nbsp;function makes it
  convenient to write CUDA code and bind it to a Python module for immediate
  use.</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#6A737D'>#
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#6A737D'>#
  CUDA code: has the full logic</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>cuda_gelu_src = </span><span style='color:#E36209'>open</span><span
  style='color:#213547'>(</span><span style='color:#032F62'>&quot;gelu.cu&quot;</span><span
  style='color:#213547'>).read()</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>#include
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>#include
  &lt;math.h&gt;#include &lt;torch/extension.h&gt;#include
  &lt;c10/cuda/CUDAException.h&gt;<span style='font-weight:bold'>global</span>
  void gelu_kernel(float* in, float* out, int num_elements) {</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>//
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>//
  Get the index into the tensor</p>
- <p style='margin:0in;font-size:36.0pt;color:#213547'><span style='font-family:
+ <p style='margin:0in;font-size:12.0pt;color:#213547'><span style='font-family:
  system-ui' lang=zh-CN>int i = </span><span style='font-weight:bold;font-family:
  system-ui' lang=zh-CN>blockIdx.x * blockDim.x + threadIdx.x;</span><span
  style='font-weight:bold;font-family:微软雅黑' lang=en-US><span
@@ -641,191 +643,193 @@ style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日<
   0pt' title="" summary="">
   <tr>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
-   width:2.5833in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-size:36.0pt'><span style='font-weight:bold;
-   font-family:微软雅黑' lang=en-US>b</span><span style='font-weight:bold;
-   font-family:Menlo;color:#0F1115;background:#EBEEF2' lang=zh-CN>lockIdx.x</span></p>
+   width:.9958in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-size:12.0pt'><span
+   style='font-weight:bold;font-family:微软雅黑' lang=en-US>b</span><span
+   style='font-weight:bold;font-family:Menlo;color:#0F1115;background:#EBEEF2'
+   lang=zh-CN>lockIdx.x</span></p>
    </td>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
-   width:7.0881in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'><span style='font-weight:bold'>组装100辆自行车的任务包ID</span></p>
+   width:2.4979in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'><span style='font-weight:bold'>组装100辆自行车的任务包ID</span></p>
    </td>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
-   width:14.4562in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'><span style='font-weight:bold'>✅&nbsp;完全正确。这是Block在Grid中的索引，标识是第几个任务包。</span></p>
-   </td>
-  </tr>
-  <tr>
-   <td style='border-width:0pt;background-color:white;vertical-align:top;
-   width:2.5833in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:Menlo;font-size:36.0pt;color:#0F1115'><span
-   style='font-weight:bold;background:#EBEEF2'>blockDim.x</span></p>
-   </td>
-   <td style='border-width:0pt;background-color:white;vertical-align:top;
-   width:7.1076in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'><span style='font-weight:bold'>每个任务包中包含的thread数量</span></p>
-   </td>
-   <td style='border-width:0pt;background-color:white;vertical-align:top;
-   width:14.3527in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'><span style='font-weight:bold'>✅&nbsp;完全正确。在代码中这是1024，即每个Block有1024个线程。</span></p>
+   width:4.9111in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'><span style='font-weight:bold'>✅&nbsp;完全正确。这是Block在Grid中的索引，标识是第几个任务包。</span></p>
    </td>
   </tr>
   <tr>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
-   width:2.6027in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:Menlo;font-size:36.0pt;color:#0F1115'><span
-   style='font-weight:bold;background:#EBEEF2'>threadIdx.x</span></p>
+   width:.9958in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:Menlo;font-size:12.0pt;
+   color:#0F1115'><span style='font-weight:bold;background:#EBEEF2'>blockDim.x</span></p>
    </td>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
-   width:7.0881in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'><span style='font-weight:bold'>warp中的thread id</span></p>
+   width:2.5173in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'><span style='font-weight:bold'>每个任务包中包含的thread数量</span></p>
    </td>
    <td style='border-width:0pt;background-color:white;vertical-align:top;
-   width:14.3048in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'><span style='font-weight:bold'>⚠️&nbsp;需要修正：这是Block内的thread
+   width:4.8069in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'><span style='font-weight:bold'>✅&nbsp;完全正确。在代码中这是1024，即每个Block有1024个线程。</span></p>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-width:0pt;background-color:white;vertical-align:top;
+   width:1.0152in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:Menlo;font-size:12.0pt;
+   color:#0F1115'><span style='font-weight:bold;background:#EBEEF2'>threadIdx.x</span></p>
+   </td>
+   <td style='border-width:0pt;background-color:white;vertical-align:top;
+   width:2.4979in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'><span style='font-weight:bold'>warp中的thread
+   id</span></p>
+   </td>
+   <td style='border-width:0pt;background-color:white;vertical-align:top;
+   width:4.7895in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt;color:#0F1115'><span style='font-weight:bold'>⚠️&nbsp;需要修正：这是Block内的thread
    id，不是warp内的id。</span></p>
    </td>
   </tr>
  </table>
  </div>
- <p style='margin:0in;font-family:quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span
+ <p style='margin:0in;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
  style='font-weight:bold'>全局工人编号 = 任务包ID × 每包工人数 + 包内工人ID</span></p>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:28.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>例如：</span></p>
+ font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>例如：</span></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-weight:bold;font-family:quote-cjk-patch;font-size:28.0pt;
+      style='font-weight:bold;font-family:quote-cjk-patch;font-size:12.0pt;
       background:white'>任务包2的第100个工人：i = 2 × 1024 + 100 = 2148</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-weight:bold;font-family:quote-cjk-patch;font-size:28.0pt;
+      style='font-weight:bold;font-family:quote-cjk-patch;font-size:12.0pt;
       background:white'>任务包4的第50个工人：i = 4 × 1024 + 50 = 4146</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'>&nbsp;</p>
- <p><cite style='margin:0in;font-size:28.0pt;color:#595959'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p><cite style='margin:0in;font-size:12.0pt;color:#595959'><span
  style='font-weight:bold;font-family:Aptos'>来自</span><span style='font-weight:
  bold;font-family:Calibri'> &lt;</span><a
  href="https://chat.deepseek.com/a/chat/s/94c85ecb-8e1d-4708-ba6b-0a00d1aa558d"><span
  style='font-weight:bold;font-family:Calibri'>https://chat.deepseek.com/a/chat/s/94c85ecb-8e1d-4708-ba6b-0a00d1aa558d</span></a><span
  style='font-weight:bold;font-family:Calibri'>&gt; </span></cite></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>if
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>if
  (i &lt; num_elements) {<span style='mso-spacerun:yes'>  </span>// To handle
  the case when n &lt; numBlocks * blockDim</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'><span
  style='mso-spacerun:yes'>    </span>// Do the actual computation</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'><span
  style='font-weight:bold'><span style='mso-spacerun:yes'>    </span>out[i] =
  0.5 * in[i] * (1.0 + tanh(0.79788456 * (in[i] + 0.044715 * in[i] * in[i] *
  in[i])));</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>}</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>}inline
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>}</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>}inline
  unsigned int cdiv(unsigned int a, unsigned int b) {</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>//
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>//
  Compute ceil(a / b)</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>return
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>return
  (a + b - 1) / b;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>}torch::Tensor
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>}torch::Tensor
  gelu(torch::Tensor x) {</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>TORCH_CHECK(x.device().is_cuda());</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>TORCH_CHECK(x.is_contiguous());</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>//
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>TORCH_CHECK(x.device().is_cuda());</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>TORCH_CHECK(x.is_contiguous());</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>//
  Allocate empty tensor</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>torch::Tensor
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>torch::Tensor
  y = torch::empty_like(x);</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>//
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>//
  Determine grid (elements divided into blocks)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>int
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>int
  num_elements = x.numel();</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>int
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>int
  block_size = 1024;<span style='mso-spacerun:yes'>  </span>// Number of threads</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>int
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>int
  num_blocks = cdiv(num_elements, block_size);</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>//
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>//
  Launch the kernel</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>gelu_kernel&lt;&lt;&lt;num_blocks,
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>gelu_kernel&lt;&lt;&lt;num_blocks,
  block_size&gt;&gt;&gt;(x.data_ptr&lt;float&gt;(), y.data_ptr&lt;float&gt;(),
  num_elements);</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>C10_CUDA_KERNEL_LAUNCH_CHECK();<span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>C10_CUDA_KERNEL_LAUNCH_CHECK();<span
  style='mso-spacerun:yes'>  </span>// Catch errors immediately</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>return
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>return
  y;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>}</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#6A737D'>#
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>}</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#6A737D'>#
  C++ code: defines the gelu function</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>cpp_gelu_src = </span><span style='color:#032F62'>&quot;torch::Tensor
  gelu(torch::Tensor x);&quot;</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Compile
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Compile
  the CUDA code and bind it to a Python module.</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>ensure_directory_exists(</span><span style='color:#032F62'>&quot;var/cuda_gelu&quot;</span><span
  style='color:#213547'>)</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>if not</span><span style='color:#213547'>
  torch.cuda.is_available():</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>return </span><span style='color:#005CC5'>None</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>module
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>module
  = load_inline(</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>cuda_sources=[cuda_gelu_src],</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>cpp_sources=[cpp_gelu_src],</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>cuda_sources=[cuda_gelu_src],</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>cpp_sources=[cpp_gelu_src],</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>functions=[</span><span style='color:#032F62'>&quot;gelu&quot;</span><span
  style='color:#213547'>],</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>extra_cflags=[</span><span style='color:#032F62'>&quot;-O2&quot;</span><span
  style='color:#213547'>],</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>verbose=</span><span style='color:#005CC5'>True</span><span
  style='color:#213547'>,</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>name=</span><span style='color:#032F62'>&quot;inline_gelu&quot;</span><span
  style='color:#213547'>,</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>build_directory=</span><span style='color:#032F62'>&quot;var/cuda_gelu&quot;</span><span
  style='color:#213547'>,</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>)</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>cuda_gelu = </span><span style='color:#E36209'>getattr</span><span
  style='color:#213547'>(module, </span><span style='color:#032F62'>&quot;gelu&quot;</span><span
  style='color:#213547'>)</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>return</span><span style='color:#213547'> cuda_gelu</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
  style='font-weight:bold' lang=zh-CN>所以说，对于</span><span style='font-weight:
  bold' lang=en-US>gelu</span><span style='font-weight:bold' lang=zh-CN>函数，如果你不直接调用</span><span
  style='font-weight:bold' lang=en-US>torch</span><span style='font-weight:bold'
  lang=zh-CN>的官方函数</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold'>torch.nn.functional.gelu(x, approximate=</span><span
  style='font-weight:bold;color:#032F62;background:white'>&quot;tanh&quot;</span><span
  style='font-weight:bold'>)，而是自己写一个函数</span></p>
- <p style='margin:0in;font-size:36.0pt'><span style='font-weight:bold;
+ <p style='margin:0in;font-size:12.0pt'><span style='font-weight:bold;
  font-family:system-ui;color:#D73A49' lang=zh-CN>return </span><span
  style='font-weight:bold;font-family:system-ui;color:#005CC5' lang=zh-CN>0.5</span><span
  style='font-weight:bold;font-family:system-ui;color:#213547' lang=zh-CN> * x *
@@ -859,7 +863,7 @@ style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日<
  style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=en-US>kernel
  fusion</span><span style='font-weight:bold;font-family:微软雅黑;color:#213547'
  lang=zh-CN>，达到和官方函数相近的执行速度。</span></p>
- <p style='margin:0in;font-size:36.0pt'><span style='font-weight:bold;
+ <p style='margin:0in;font-size:12.0pt'><span style='font-weight:bold;
  font-family:quote-cjk-patch;color:#0F1115' lang=zh-CN>✅&nbsp;</span><span
  style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=zh-CN>to</span><span
  style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=en-US>rch.compile</span><span
@@ -867,47 +871,47 @@ style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日<
  style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=en-US>kernel
  fusion</span><span style='font-weight:bold;font-family:微软雅黑;color:#213547'
  lang=zh-CN>。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#213547'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt;color:#213547'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt;color:#213547'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
  style='font-weight:bold' lang=en-US>T</span><span style='font-weight:bold'
  lang=zh-CN>ri</span><span style='font-weight:bold' lang=en-US>ton</span></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Developed
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Developed
  by OpenAI in 2021 &nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><a
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><a
  href="https://openai.com/research/triton">https://openai.com/research/triton</a></p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#213547'>Make
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Make
  GPU programming more accessible</p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Write in Python</span></li>
+      style='font-family:system-ui;font-size:12.0pt'>Write in Python</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
-      style='font-family:system-ui;font-size:36.0pt'>Think about thread blocks
+      style='font-family:system-ui;font-size:12.0pt'>Think about thread blocks
       rather than threads</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt;color:#213547'
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'
  lang=en-US>&nbsp;</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt;color:#005CC5'>@triton.jit</p>
- <p style='margin:0in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#005CC5'>@triton.jit</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#D73A49'>def </span><span style='color:#6F42C1'>triton_gelu_kernel</span><span
  style='color:#213547'>(x_ptr, y_ptr, num_elements, BLOCK_SIZE: tl.constexpr):</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Input is at `x_ptr` and output is at `y_ptr`</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># | Block 0 | Block 1 | ... |</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># BLOCK_SIZE num_elements</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>pid = tl.program_id(axis=</span><span style='color:#005CC5'>0</span><span
  style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>block_start = pid * BLOCK_SIZE</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Indices where this thread block should operate</p>
- <p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
  style='font-weight:bold;font-family:system-ui;color:#213547' lang=zh-CN>offsets
  = block_start + tl.arange(</span><span style='font-weight:bold;font-family:
  system-ui;color:#005CC5' lang=zh-CN>0</span><span style='font-weight:bold;
@@ -924,113 +928,127 @@ style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日<
  style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=zh-CN>，</span><span
  style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=en-US>offsets</span><span
  style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=zh-CN>是一个向量</span></p>
- <p style='margin-left:.375in;margin-top:24pt;margin-bottom:12pt;font-family:
- quote-cjk-patch;font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;
- background:white'>Triton vs CUDA 的关键区别</span></p>
+ <p style='margin-left:.375in;margin-top:24pt;margin-bottom:12pt;line-height:
+ 21pt;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
+ style='font-weight:bold;background:white'>Triton vs CUDA 的关键区别</span></p>
  <div style='direction:ltr'>
  <table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
   border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
   0pt;margin-left:.3333in' title="" summary="">
   <tr>
-   <td style='border-width:0pt;vertical-align:top;width:2.202in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>特性</p>
+   <td style='border-width:0pt;vertical-align:top;width:.8687in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>特性</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:5.2395in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>CUDA</p>
+   <td style='border-width:0pt;vertical-align:top;width:1.8812in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>CUDA</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:7.0319in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>Triton</p>
-   </td>
-  </tr>
-  <tr>
-   <td style='border-width:0pt;vertical-align:top;width:2.2215in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>编程粒度</p>
-   </td>
-   <td style='border-width:0pt;vertical-align:top;width:5.259in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>Thread-level（线程级）</p>
-   </td>
-   <td style='border-width:0pt;vertical-align:top;width:6.993in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>Block-level（块级）</p>
+   <td style='border-width:0pt;vertical-align:top;width:2.3479in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>Triton</p>
    </td>
   </tr>
   <tr>
-   <td style='border-width:0pt;vertical-align:top;width:2.2215in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>索引方式</p>
+   <td style='border-width:0pt;vertical-align:top;width:.8881in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>编程粒度</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:5.2395in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-size:36.0pt'><span style='font-family:Menlo;
-   background:#EBEEF2'>threadIdx.x</span><span style='font-family:quote-cjk-patch'>（标量）</span></p>
+   <td style='border-width:0pt;vertical-align:top;width:1.9006in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>Thread-level（线程级）</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:7.1638in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-size:36.0pt'><span style='font-family:Menlo;
-   background:#EBEEF2'>tl.arange(0, BLOCK_SIZE)</span><span style='font-family:
-   quote-cjk-patch'>（向量）</span></p>
-   </td>
-  </tr>
-  <tr>
-   <td style='border-width:0pt;vertical-align:top;width:2.2215in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>数据加载</p>
-   </td>
-   <td style='border-width:0pt;vertical-align:top;width:5.2395in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>每个线程加载1个元素</p>
-   </td>
-   <td style='border-width:0pt;vertical-align:top;width:7.0597in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>整个block一次性加载一批元素</p>
+   <td style='border-width:0pt;vertical-align:top;width:2.3097in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>Block-level（块级）</p>
    </td>
   </tr>
   <tr>
-   <td style='border-width:0pt;vertical-align:top;width:2.2215in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>操作单位</p>
+   <td style='border-width:0pt;vertical-align:top;width:.8881in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>索引方式</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:5.2395in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>标量操作</p>
+   <td style='border-width:0pt;vertical-align:top;width:1.8812in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-size:12.0pt'><span
+   style='font-family:Menlo;background:#EBEEF2'>threadIdx.x</span><span
+   style='font-family:quote-cjk-patch'>（标量）</span></p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:7.0125in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>向量化操作</p>
+   <td style='border-width:0pt;vertical-align:top;width:2.4798in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-size:12.0pt'><span
+   style='font-family:Menlo;background:#EBEEF2'>tl.arange(0, BLOCK_SIZE)</span><span
+   style='font-family:quote-cjk-patch'>（向量）</span></p>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-width:0pt;vertical-align:top;width:.8881in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>数据加载</p>
+   </td>
+   <td style='border-width:0pt;vertical-align:top;width:1.8812in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>每个线程加载1个元素</p>
+   </td>
+   <td style='border-width:0pt;vertical-align:top;width:2.3763in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>整个block一次性加载一批元素</p>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-width:0pt;vertical-align:top;width:.8881in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>操作单位</p>
+   </td>
+   <td style='border-width:0pt;vertical-align:top;width:1.8812in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>标量操作</p>
+   </td>
+   <td style='border-width:0pt;vertical-align:top;width:2.3284in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>向量化操作</p>
    </td>
   </tr>
  </table>
  </div>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Handle boundary</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>mask = offsets &lt; num_elements</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Read</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>x = tl.load(x_ptr + offsets, mask=mask)</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Approx gelu is 0.5 * x * (1 + tanh(sqrt(2/pi) * (x + 0.044715
  * x^3)))</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Compute (tl.tanh doesn't exist, use tanh(a) = (exp(2a) - 1) /
  (exp(2a) + 1)</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>a = </span><span style='color:#005CC5'>0.79788456</span><span
  style='color:#213547'> * (x + </span><span style='color:#005CC5'>0.044715</span><span
  style='color:#213547'> * x * x * x)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>exp = tl.exp(</span><span style='color:#005CC5'>2</span><span
  style='color:#213547'> * a)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>tanh = (exp - </span><span style='color:#005CC5'>1</span><span
  style='color:#213547'>) / (exp + </span><span style='color:#005CC5'>1</span><span
  style='color:#213547'>)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt'><span
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
  style='color:#213547'>y = </span><span style='color:#005CC5'>0.5</span><span
  style='color:#213547'> * x * (</span><span style='color:#005CC5'>1</span><span
  style='color:#213547'> + tanh)</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#6A737D'># Store</p>
- <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:36.0pt;
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
  color:#213547'>tl.store(y_ptr + offsets, y, mask=mask)</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt;color:#213547'
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'
  lang=en-US>&nbsp;</p>
 </ul>
 

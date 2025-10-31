@@ -1,4 +1,5 @@
-Lasso regression
+Lasso regression-1
+Lasso regression-2
 Ridge regression
 Logistic regression
 SVM

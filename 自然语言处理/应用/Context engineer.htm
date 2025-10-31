@@ -10,20 +10,20 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="Context%20engineer.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:23.8111in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:12.8743in'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:.0715in;width:2.8291in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:2.8291in'>
 
 <p style='margin:0in;font-family:微软雅黑;font-size:20.0pt' lang=en-US>Context
 engineer</p>
 
 </div>
 
-<div style='direction:ltr;margin-top:.0423in;margin-left:.0715in;width:1.6687in'>
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
 
 <p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
 Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
@@ -34,500 +34,628 @@ style='font-family:Calibri'>9</span><span style='font-family:微软雅黑'>日</
 
 </div>
 
-<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:23.8111in'>
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:12.8743in'>
 
-<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:1.125in'><img
- src="Context%20engineer.files/image001.jpg" width=1654 height=815></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='background:white'>What is context engineering?</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='background:white'>Context engineering is</span><span style='font-weight:
- bold;background:white'> building dynamic systems to provide the right
- information and tools in the right format</span><span style='background:white'>
- such that the LLM can plausibly accomplish the task.</span></p>
- <p><cite style='margin:0in;font-size:36.0pt;color:#595959'><span
- style='font-family:Aptos'>来自</span><span style='font-family:Calibri'> &lt;</span><a
- href="https://blog.langchain.com/the-rise-of-context-engineering/"><span
- style='font-family:Calibri'>https://blog.langchain.com/the-rise-of-context-engineering/</span></a><span
- style='font-family:Calibri'>&gt; </span></cite></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=zh-CN>在正确的时间，用正确的</span><span style='font-weight:
- bold' lang=en-US>format</span><span style='font-weight:bold' lang=zh-CN>提供给</span><span
- style='font-weight:bold' lang=en-US>llm</span><span style='font-weight:bold'
- lang=zh-CN>正确的信息。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold;background:white'>Context engineering is a system</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='background:white'>Complex agents likely get context from many sources.
- Context can come from the developer of the application, the user, previous
- interactions, tool calls, or other external data. Pulling these all together
- involves a complex system.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold;background:white'>This system is dynamic</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='background:white'>Many of these pieces of context can come in
- dynamically. As such, the logic for constructing the final prompt needs to be
- dynamic as well. It is not just a static prompt.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold;background:white'>You need the right information</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='background:white'>A common reason agentic systems don’t perform is they
- just don’t have the right context. LLMs cannot read minds - you need to give
- them the right information. Garbage in, garbage out.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold;background:white'>You need the right tools</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='background:white'>It may not always be the case that the LLM will be
- able to solve the task just based solely on the inputs. In these situations,
- if you want to empower the LLM to do so, you will want to make sure that it
- has the right tools. These could be tools to look up more information, take
- actions, or anything in between. Giving the LLM the right tools is just as
- important as giving it the right information.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold;background:white'>The format matters</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='background:white'>Just like communicating with humans, how you
- communicate with LLMs matters. A short but descriptive error message will go a
- lot further a large JSON blob. This also applies to tools. What the input
- parameters to your tools are matters a lot when making sure that LLMs can use
- them.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold;background:white' lang=zh-CN>Can it plausibly
- accomplish the task?</span><span style='font-weight:bold;background:white'
- lang=en-US><span style='mso-spacerun:yes'>  </span></span><span
- style='font-weight:bold;background:white' lang=zh-CN>你需要明确的是，</span><span
- style='font-weight:bold;background:white' lang=en-US>LLM</span><span
- style='font-weight:bold;background:white' lang=zh-CN>到底能不能根据提供的信息，完成任务。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='background:white'>This is a great question to be asking as you think
- about context engineering. It reinforces that LLMs are not mind readers - you
- need to set them up for success. It also helps separate the failure modes. Is
- it failing because you haven’t given it the right information or tools? Or
- does it have all the right information and it just messed up? These failure
- modes have very different ways to fix them.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p><cite style='margin:0in;font-size:36.0pt;color:#595959'><span
- style='font-family:Aptos'>来自</span><span style='font-family:Calibri'> &lt;</span><a
- href="https://blog.langchain.com/the-rise-of-context-engineering/"><span
- style='font-family:Calibri'>https://blog.langchain.com/the-rise-of-context-engineering/</span></a><span
- style='font-family:Calibri'>&gt; </span></cite></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑'><span style='font-weight:bold;
- font-size:48.0pt' lang=zh-CN>How Long Contexts Fail</span><span
- style='font-weight:bold;font-size:48.0pt' lang=en-US> </span><a
- href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html"><span
- style='font-size:36.0pt' lang=zh-CN>https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html</span></a></p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Context
-      Poisoning</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Context
- Poisoning is when a hallucination or other error makes it into the context,
- where it is repeatedly referenced.</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>The
- Deep Mind team called out context poisoning in the Gemini 2.5 technical
- report, which we broke down last week. When playing Pokémon, the Gemini agent
- would occasionally hallucinate while playing, poisoning its context:</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>比如有多轮对话，其中某一轮对话可以存在幻觉，那么这个幻觉可能会随着对话的进行而继续传播。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Context
-      Distraction</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Context
- Distraction is when a context grows so long that the model over-focuses on the
- context, neglecting what it learned during training.</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>In
- this agentic setup, it was observed that as the context grew significantly
- beyond 100k tokens, the agent showed a tendency toward favoring r<span
- style='font-weight:bold'>epeating actions from its vast history rather than
- synthesizing novel plans.</span>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=zh-CN>当</span><span lang=en-US>context</span><span lang=zh-CN>超长时，</span><span
- lang=en-US>llm</span><span lang=zh-CN>倾向于重复</span><span lang=en-US>context</span><span
- lang=zh-CN>中的内容，而不是采取新的行动。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Context
-      Confusion</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=zh-CN>当提供给</span><span style='font-weight:bold'
- lang=en-US>llm</span><span style='font-weight:bold' lang=zh-CN>的</span><span
- style='font-weight:bold' lang=en-US>tool</span><span style='font-weight:bold'
- lang=zh-CN>（</span><span style='font-weight:bold' lang=en-US>with tool
- description</span><span style='font-weight:bold' lang=zh-CN>）非常多，</span><span
- style='font-weight:bold' lang=en-US>llm</span><span style='font-weight:bold'
- lang=zh-CN>很难选择正确的</span><span style='font-weight:bold' lang=en-US>tool</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=zh-CN>The Berkeley Function-Calling Leaderboard is a tool-use benchmark
- that evaluates the ability of models to effectively use tools to respond to
- prompts. Now on its 3rd version, the leaderboard shows that</span><span
- style='font-weight:bold' lang=zh-CN> every model performs worse when provided
- with more than one too</span><span style='font-weight:bold' lang=en-US>l</span><span
- lang=zh-CN>. Further, the Berkeley team, “designed scenarios where none of the
- provided functions are relevant…we expect the model’s output to be no function
- call.” Yet, all models will occasionally call tools that aren’t relevant.</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>When
- the team gave a quantized (compressed) Llama 3.1 8b a query with all 46 tools
- it failed, even though the context was well within the 16k context window. <span
- style='font-weight:bold'>But when they only gave the model 19 tools, it
- succeeded.</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=zh-CN>不要提供过多的</span><span lang=en-US>tool</span><span lang=zh-CN>给</span><span
- lang=en-US>llm</span><span lang=zh-CN>，一般</span><span lang=en-US>10-15</span><span
- lang=zh-CN>个是合适的。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Context Clash</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Context
- Clash is when you accrue new information and tools in your context that
- conflicts with other information in the context.</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>This
- is a more problematic version of Context Confusion: the bad context here isn’t
- irrelevant, it directly conflicts with other information in the prompt.</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=zh-CN>（题外话：推理模型的</span><span style='font-weight:
- bold' lang=en-US>prompt</span><span style='font-weight:bold' lang=zh-CN>和非推理模型的</span><span
- style='font-weight:bold' lang=en-US>prompt</span><span style='font-weight:
- bold' lang=zh-CN>是不同的。）</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Think
- of it this way: sometimes, you might sit down and type paragraphs into ChatGPT
- or Claude before you hit enter, considering every necessary detail. Other
- times, you might start with a simple prompt, then add further details when the
- chatbot’s answer isn’t satisfactory. The Microsoft/Salesforce team modified
- benchmark prompts to look like these multistep exchanges:</p>
- <p style='margin:0in;margin-left:.375in'><img
- src="Context%20engineer.files/image002.jpg" width=2240 height=561></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>All
- the information from the prompt on the left side is contained within the
- several messages on the right side, which would be played out in multiple chat
- rounds.</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>The
- sharded prompts yielded dramatically worse results, with an average drop of
- 39%. And the team tested a range of models – OpenAI’s vaunted o3’s score
- dropped from 98.1 to 64.1.</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>The
- answer is Context Confusion: the assembled context, containing the entirety of
- the chat exchange, <span style='font-weight:bold'>contains early attempts by
- the model to answer the challenge before it has all the information.</span>
- These<span style='font-weight:bold'> incorrect answers remain present in the
- context and influence the model when it generates its final answer.</span> The
- team writes:</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>We
- find that LLMs often make assumptions in early turns and prematurely attempt
- to generate final solutions, on which they overly rely.<span style='font-weight:
- bold'> In simpler terms, we discover that when LLMs take a wrong turn in a
- conversation, they get lost and do not recover.</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=zh-CN>也就是说，和一次性提供给</span><span style='font-weight:
- bold' lang=en-US>llm</span><span style='font-weight:bold' lang=zh-CN>所有信息相比，把信息分片多次提供给</span><span
- style='font-weight:bold' lang=en-US>llm</span><span style='font-weight:bold'
- lang=zh-CN>的方式效果要差，这是因为第</span><span style='font-weight:bold' lang=en-US>2</span><span
- style='font-weight:bold' lang=zh-CN>种方式，</span><span style='font-weight:bold'
- lang=en-US>llm</span><span style='font-weight:bold' lang=zh-CN>每轮会根据有限的</span><span
- style='font-weight:bold' lang=en-US>context</span><span style='font-weight:
- bold' lang=zh-CN>作出回应，这些回应可能是不正确的（因为</span><span style='font-weight:bold'
- lang=en-US>context</span><span style='font-weight:bold' lang=zh-CN>的信息有限）而这些回应又包含在整体</span><span
- style='font-weight:bold' lang=en-US>context</span><span style='font-weight:
- bold' lang=zh-CN>中继续提供给下一轮的</span><span style='font-weight:bold' lang=en-US>llm</span><span
- style='font-weight:bold' lang=zh-CN>使用，也就是</span><span style='font-weight:
- bold' lang=en-US>llm</span><span style='font-weight:bold' lang=zh-CN>在前面几轮的决策会影响后面的</span><span
- style='font-weight:bold' lang=en-US>context</span><span style='font-weight:
- bold' lang=zh-CN>，进而影响后面的决策。</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑'><span style='font-weight:bold;
- font-size:48.0pt' lang=zh-CN>How to Fix Your Context</span><span
- style='font-weight:bold;font-size:48.0pt' lang=en-US> </span><a
- href="https://www.dbreunig.com/2025/06/26/how-to-fix-your-context.html"><span
- style='font-size:36.0pt' lang=zh-CN>https://www.dbreunig.com/2025/06/26/how-to-fix-your-context.html</span></a></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>RAG</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Retrieval-Augmented
- Generation (RAG) is the act of selectively adding relevant information to help
- the LLM generate a better response.</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=zh-CN>用</span><span style='font-weight:bold'
- lang=en-US>RAG</span><span style='font-weight:bold' lang=zh-CN>来选择相关的信息，帮助</span><span
- style='font-weight:bold' lang=en-US>llm</span><span style='font-weight:bold'
- lang=zh-CN>生成</span><span style='font-weight:bold' lang=en-US>better response</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Tool Loadout</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Tool
- Loadout is the act of selecting only relevant tool definitions to add to your
- context.</p>
- <p style='margin:0in;margin-left:.375in'><span style='font-family:微软雅黑;
- font-size:36.0pt'>Perhaps the simplest way to select tools is to </span><span
- style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>apply RAG to your
- tool descriptions</span><span style='font-family:微软雅黑;font-size:36.0pt'>. This
- is exactly what Tiantian Gan and Qiyao Sun did, which they detail in their
- paper, “</span><a href="https://arxiv.org/abs/2505.03275"><span
- style='font-family:charter;font-size:15.0pt;background:white'>RAG MCP</span></a><span
- style='font-family:微软雅黑;font-size:36.0pt'>.” By storing their tool
- descriptions in a vector database, they’re able to select the most relevant
- tools given an input prompt.</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=zh-CN>选择最相关的</span><span style='font-weight:
- bold' lang=en-US>tool</span><span style='font-weight:bold' lang=zh-CN>，最简单的方式可以将</span><span
- style='font-weight:bold' lang=en-US>rag</span><span style='font-weight:bold'
- lang=zh-CN>作用于</span><span style='font-weight:bold' lang=en-US>tool
- description</span><span style='font-weight:bold' lang=zh-CN>。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>C</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>ontext
-      Quarantine隔离</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Context
- Quarantine is the act of isolating contexts in their own dedicated threads,
- each used separately by one or more LLMs.</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=en-US>Context</span><span style='font-weight:
- bold' lang=zh-CN>隔离，不同的</span><span style='font-weight:bold' lang=en-US>llm</span><span
- style='font-weight:bold' lang=zh-CN>用不同的</span><span style='font-weight:bold'
- lang=en-US>context</span><span style='font-weight:bold' lang=zh-CN>。如将任务分给多个</span><span
- style='font-weight:bold' lang=en-US>sub agent</span><span style='font-weight:
- bold' lang=zh-CN>，每个</span><span style='font-weight:bold' lang=en-US>sub agent</span><span
- style='font-weight:bold' lang=zh-CN>有自己独立的</span><span style='font-weight:
- bold' lang=en-US>context window</span><span style='font-weight:bold'
- lang=zh-CN>。</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Context
-      Pruning</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Context
- Pruning is the act of removing irrelevant or otherwise unneeded information
- from the context.</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Context
-      Summarization</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Context
- Summarization is the act of boiling down an accrued context into a condensed
- summary.</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Context
- Summarization first appeared as a tool for dealing with smaller context
- windows. As your chat session came close to exceeding the maximum context
- length, a summary would be generated and a new thread would begin. Chatbot
- users did this manually, in ChatGPT or Claude, asking the bot to generate a
- short recap which would then be pasted into a new session.</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Context
-      Offloading</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Context
- Offloading is the act of storing information outside the LLM’s context,
- usually via a tool that stores and manages the data.</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=zh-CN>为</span><span style='font-weight:bold'
- lang=en-US>agent</span><span style='font-weight:bold' lang=zh-CN>创建</span><span
- style='font-weight:bold' lang=en-US>short-term</span><span style='font-weight:
- bold' lang=zh-CN>或</span><span style='font-weight:bold' lang=en-US>long-term
- memory system</span><span style='font-weight:bold' lang=zh-CN>。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑'><span style='font-weight:bold;
- font-size:48.0pt' lang=zh-CN>Context Engineering</span><span style='font-weight:
- bold;font-size:48.0pt' lang=en-US> </span><a
- href="https://blog.langchain.com/context-engineering-for-agents/"><span
- style='font-size:36.0pt' lang=zh-CN>https://blog.langchain.com/context-engineering-for-agents/</span></a></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=en-US>Context engineering</span><span lang=zh-CN>对于</span><span
- lang=en-US>agent</span><span lang=zh-CN>尤其重要，因为</span><span lang=en-US>agent</span><span
- lang=zh-CN>通常调用很多次</span><span lang=en-US>tool</span><span lang=zh-CN>，因此</span><span
- lang=en-US>agent</span><span lang=zh-CN>的</span><span lang=en-US>context</span><span
- lang=zh-CN>通常会很长。</span></p>
- <p style='margin:0in;margin-left:.375in'><span style='font-family:微软雅黑;
- font-size:36.0pt'>Agents need context to perform tasks. Context engineering is
- the art and science of filling the context window with just the right
- information at each step of an agent’s trajectory. In this post, we break down
- some common strategies —&nbsp;</span><span style='font-weight:bold;font-family:
- "Source Sans Pro";font-size:15.0pt;background:white'>write, select, compress,
- and isolate —</span><span style='font-family:微软雅黑;font-size:36.0pt'>&nbsp;for
- context engineering by reviewing various popular agents and papers. We then
- explain how LangGraph is designed to support them!</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='mso-spacerun:yes'> </span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>We
- group common strategies for agent context engineering into four buckets — <span
- style='font-weight:bold'>write, select, compress, and isolate</span> — and
- give examples of each from review of some popular agent products and papers.
- We then explain how LangGraph is designed to support them!</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:1.125in'><img
- src="Context%20engineer.files/image003.jpg" width=1934 height=797></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US><span
-      style='mso-spacerun:yes'> </span></span><span style='font-weight:bold;
-      font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>Write</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>-
- Writing context means saving it outside the context window to help an agent
- perform a task.</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>-
- When humans solve tasks, we take notes and remember things for future, related
- tasks</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=zh-CN>像人类一样，找个草稿本（</span><span lang=en-US>scratchpad</span><span
- lang=zh-CN>）记下一些事情，然后用脑子（</span><span lang=en-US>long-term memory</span><span
- lang=zh-CN>）记住关键内容，并时刻更新</span><span lang=en-US>memory</span><span lang=zh-CN>。</span></p>
- <p style='margin:0in;margin-left:3.375in'><img
- src="Context%20engineer.files/image004.jpg" width=1522 height=844></p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Select</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=en-US>- </span><span lang=zh-CN>Selecting context means pulling it into
- the context window to help an agent perform a task.*</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=zh-CN>从</span><span lang=en-US>scratchpad</span><span lang=zh-CN>中选最相关的</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=zh-CN>从</span><span lang=en-US>memory</span><span lang=zh-CN>中选</span><span
- lang=en-US>…</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=zh-CN>从</span><span lang=en-US>Tools</span><span lang=zh-CN>中选最相关的</span><span
- lang=en-US>tool</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=zh-CN>从</span><span lang=en-US>knowledge</span><span lang=zh-CN>中选最相关的，如</span><span
- lang=en-US>code agent </span><span lang=zh-CN>中进行</span><span lang=en-US>rag</span><span
- lang=zh-CN>时，</span><span style='font-weight:bold' lang=zh-CN>进行</span><span
- style='font-weight:bold' lang=en-US>chunking</span><span style='font-weight:
- bold' lang=zh-CN>时，每个</span><span style='font-weight:bold' lang=en-US>chunk</span><span
- style='font-weight:bold' lang=zh-CN>是一个完整的函数或类，而不是连续的代码。</span></p>
- <p style='margin:0in;margin-left:2.25in'><img
- src="Context%20engineer.files/image005.jpg" width=1694 height=1065></p>
- <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:2.25in'><img
- src="Context%20engineer.files/image006.png" width=1803 height=943></p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Compress</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>-
- *Compressing context involves <span style='font-weight:bold'>retaining only
- the tokens required to perform a tas</span>k.*</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>**Summarization**</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>-
- Claude Code “auto compact” <a
- href="https://docs.anthropic.com/en/docs/claude-code/costs">https://docs.anthropic.com/en/docs/claude-code/costs</a></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>-
- Completed work sections <a
- href="https://www.anthropic.com/engineering/built-multi-agent-research-system">https://www.anthropic.com/engineering/built-multi-agent-research-system</a></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>-
- Passing context to linear sub-agents <a
- href="https://cognition.ai/blog/dont-build-multi-agents">https://cognition.ai/blog/dont-build-multi-agents</a></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>Isolate</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>-
- *Isolating context involves splitting it up to help an agent perform a task.*</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=zh-CN>将一个问题分成子</span><span lang=en-US>topic</span><span lang=zh-CN>这种任务，天然适合</span><span
- lang=en-US>sub agent</span><span lang=zh-CN>这种架构</span><span lang=en-US> </span><span
- lang=zh-CN>，每个</span><span lang=en-US>sub agent</span><span lang=zh-CN>有自己独立的</span><span
- lang=en-US>context</span><span lang=zh-CN>。</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
- style='font-weight:bold'>Context Engineering + LangGraph</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold'>Scratchpad</span></p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><a
-      href="https://langchain-ai.github.io/langgraph/concepts/persistence/"><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>Checkpointing</span></a><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN> to persist </span><a
-      href="https://langchain-ai.github.io/langgraph/concepts/low_level/#state"><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>agent state</span></a><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN> across a session</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US> </span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>其实就是</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>agent
-      state</span><span style='font-weight:bold;font-family:微软雅黑;font-size:
-      36.0pt' lang=zh-CN>类</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold'>Memory</span></p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><a
-      href="https://langchain-ai.github.io/langgraph/concepts/memory/#long-term-memory"><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>Long-term memory</span></a><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN> to persist context </span><span
-      style='font-style:italic;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>across
-      many sessions</span><span style='font-style:italic;font-family:微软雅黑;
-      font-size:36.0pt' lang=en-US> ,<span style='mso-spacerun:yes'>    </span></span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>memory</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>就是持久化，可以</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>across
-      </span><span style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'
-      lang=zh-CN>不同的</span><span style='font-weight:bold;font-family:微软雅黑;
-      font-size:36.0pt' lang=en-US>session</span><span style='font-weight:bold;
-      font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，存储用户偏好之类的东西</span></li>
- </ul>
- <p style='margin:0in;margin-left:1.5in'><img
- src="Context%20engineer.files/image007.jpg" width=1818 height=412></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:1.125in'><img
+src="Context%20engineer.files/image001.jpg" width=525 height=258></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='background:
+white'>What is context engineering?</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='background:
+white'>Context engineering is</span><span style='font-weight:bold;background:
+white'> building dynamic systems to provide the right information and tools in
+the right format</span><span style='background:white'> such that the LLM can
+plausibly accomplish the task.</span></p>
+
+<p><cite style='margin:0in;font-size:12.0pt;color:#595959'><span
+style='font-family:Aptos'>来自</span><span style='font-family:Calibri'> &lt;</span><a
+href="https://blog.langchain.com/the-rise-of-context-engineering/"><span
+style='font-family:Calibri'>https://blog.langchain.com/the-rise-of-context-engineering/</span></a><span
+style='font-family:Calibri'>&gt; </span></cite></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold' lang=zh-CN>在正确的时间，用正确的</span><span style='font-weight:bold' lang=en-US>format</span><span
+style='font-weight:bold' lang=zh-CN>提供给</span><span style='font-weight:bold'
+lang=en-US>llm</span><span style='font-weight:bold' lang=zh-CN>正确的信息。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold;background:white'>Context engineering is a system</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='background:
+white'>Complex agents likely get context from many sources. Context can come
+from the developer of the application, the user, previous interactions, tool
+calls, or other external data. Pulling these all together involves a complex
+system.</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold;background:white'>This system is dynamic</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='background:
+white'>Many of these pieces of context can come in dynamically. As such, the
+logic for constructing the final prompt needs to be dynamic as well. It is not
+just a static prompt.</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold;background:white'>You need the right information</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='background:
+white'>A common reason agentic systems don’t perform is they just don’t have
+the right context. LLMs cannot read minds - you need to give them the right
+information. Garbage in, garbage out.</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold;background:white'>You need the right tools</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='background:
+white'>It may not always be the case that the LLM will be able to solve the
+task just based solely on the inputs. In these situations, if you want to
+empower the LLM to do so, you will want to make sure that it has the right
+tools. These could be tools to look up more information, take actions, or
+anything in between. Giving the LLM the right tools is just as important as
+giving it the right information.</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold;background:white'>The format matters</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='background:
+white'>Just like communicating with humans, how you communicate with LLMs
+matters. A short but descriptive error message will go a lot further a large
+JSON blob. This also applies to tools. What the input parameters to your tools
+are matters a lot when making sure that LLMs can use them.</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold;background:white' lang=zh-CN>Can it plausibly accomplish the task?</span><span
+style='font-weight:bold;background:white' lang=en-US><span
+style='mso-spacerun:yes'>  </span></span><span style='font-weight:bold;
+background:white' lang=zh-CN>你需要明确的是，</span><span style='font-weight:bold;
+background:white' lang=en-US>LLM</span><span style='font-weight:bold;
+background:white' lang=zh-CN>到底能不能根据提供的信息，完成任务。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='background:
+white'>This is a great question to be asking as you think about context
+engineering. It reinforces that LLMs are not mind readers - you need to set
+them up for success. It also helps separate the failure modes. Is it failing
+because you haven’t given it the right information or tools? Or does it have
+all the right information and it just messed up? These failure modes have very
+different ways to fix them.</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p><cite style='margin:0in;font-size:12.0pt;color:#595959'><span
+style='font-family:Aptos'>来自</span><span style='font-family:Calibri'> &lt;</span><a
+href="https://blog.langchain.com/the-rise-of-context-engineering/"><span
+style='font-family:Calibri'>https://blog.langchain.com/the-rise-of-context-engineering/</span></a><span
+style='font-family:Calibri'>&gt; </span></cite></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold' lang=zh-CN>How Long Contexts Fail</span><span style='font-weight:bold'
+lang=en-US> </span><a
+href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html"><span
+lang=zh-CN>https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html</span></a></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>Context
+     Poisoning</span></li>
 </ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>Context
+Poisoning is when a hallucination or other error makes it into the context,
+where it is repeatedly referenced.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>The
+Deep Mind team called out context poisoning in the Gemini 2.5 technical report,
+which we broke down last week. When playing Pokémon, the Gemini agent would
+occasionally hallucinate while playing, poisoning its context:</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>比如有多轮对话，其中某一轮对话可以存在幻觉，那么这个幻觉可能会随着对话的进行而继续传播。</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>Context
+     Distraction</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>Context
+Distraction is when a context grows so long that the model over-focuses on the
+context, neglecting what it learned during training.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>In
+this agentic setup, it was observed that as the context grew significantly
+beyond 100k tokens, the agent showed a tendency toward favoring r<span
+style='font-weight:bold'>epeating actions from its vast history rather than
+synthesizing novel plans.</span>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=zh-CN>当</span><span lang=en-US>context</span><span lang=zh-CN>超长时，</span><span
+lang=en-US>llm</span><span lang=zh-CN>倾向于重复</span><span lang=en-US>context</span><span
+lang=zh-CN>中的内容，而不是采取新的行动。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>Context
+     Confusion</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold' lang=zh-CN>当提供给</span><span style='font-weight:bold'
+lang=en-US>llm</span><span style='font-weight:bold' lang=zh-CN>的</span><span
+style='font-weight:bold' lang=en-US>tool</span><span style='font-weight:bold'
+lang=zh-CN>（</span><span style='font-weight:bold' lang=en-US>with tool
+description</span><span style='font-weight:bold' lang=zh-CN>）非常多，</span><span
+style='font-weight:bold' lang=en-US>llm</span><span style='font-weight:bold'
+lang=zh-CN>很难选择正确的</span><span style='font-weight:bold' lang=en-US>tool</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=zh-CN>The Berkeley Function-Calling Leaderboard is a tool-use benchmark
+that evaluates the ability of models to effectively use tools to respond to
+prompts. Now on its 3rd version, the leaderboard shows that</span><span
+style='font-weight:bold' lang=zh-CN> every model performs worse when provided
+with more than one too</span><span style='font-weight:bold' lang=en-US>l</span><span
+lang=zh-CN>. Further, the Berkeley team, “designed scenarios where none of the
+provided functions are relevant…we expect the model’s output to be no function
+call.” Yet, all models will occasionally call tools that aren’t relevant.</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>When
+the team gave a quantized (compressed) Llama 3.1 8b a query with all 46 tools
+it failed, even though the context was well within the 16k context window. <span
+style='font-weight:bold'>But when they only gave the model 19 tools, it
+succeeded.</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=zh-CN>不要提供过多的</span><span lang=en-US>tool</span><span lang=zh-CN>给</span><span
+lang=en-US>llm</span><span lang=zh-CN>，一般</span><span lang=en-US>10-15</span><span
+lang=zh-CN>个是合适的。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>Context Clash</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>Context
+Clash is when you accrue new information and tools in your context that
+conflicts with other information in the context.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>This
+is a more problematic version of Context Confusion: the bad context here isn’t
+irrelevant, it directly conflicts with other information in the prompt.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold' lang=zh-CN>（题外话：推理模型的</span><span style='font-weight:
+bold' lang=en-US>prompt</span><span style='font-weight:bold' lang=zh-CN>和非推理模型的</span><span
+style='font-weight:bold' lang=en-US>prompt</span><span style='font-weight:bold'
+lang=zh-CN>是不同的。）</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>Think
+of it this way: sometimes, you might sit down and type paragraphs into ChatGPT
+or Claude before you hit enter, considering every necessary detail. Other
+times, you might start with a simple prompt, then add further details when the
+chatbot’s answer isn’t satisfactory. The Microsoft/Salesforce team modified
+benchmark prompts to look like these multistep exchanges:</p>
+
+<p style='margin:0in;margin-left:.375in'><img
+src="Context%20engineer.files/image002.jpg" width=718 height=179></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>All
+the information from the prompt on the left side is contained within the
+several messages on the right side, which would be played out in multiple chat
+rounds.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>The
+sharded prompts yielded dramatically worse results, with an average drop of
+39%. And the team tested a range of models – OpenAI’s vaunted o3’s score
+dropped from 98.1 to 64.1.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>The
+answer is Context Confusion: the assembled context, containing the entirety of
+the chat exchange, <span style='font-weight:bold'>contains early attempts by
+the model to answer the challenge before it has all the information.</span>
+These<span style='font-weight:bold'> incorrect answers remain present in the
+context and influence the model when it generates its final answer.</span> The
+team writes:</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>We
+find that LLMs often make assumptions in early turns and prematurely attempt to
+generate final solutions, on which they overly rely.<span style='font-weight:
+bold'> In simpler terms, we discover that when LLMs take a wrong turn in a
+conversation, they get lost and do not recover.</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold' lang=zh-CN>也就是说，和一次性提供给</span><span style='font-weight:
+bold' lang=en-US>llm</span><span style='font-weight:bold' lang=zh-CN>所有信息相比，把信息分片多次提供给</span><span
+style='font-weight:bold' lang=en-US>llm</span><span style='font-weight:bold'
+lang=zh-CN>的方式效果要差，这是因为第</span><span style='font-weight:bold' lang=en-US>2</span><span
+style='font-weight:bold' lang=zh-CN>种方式，</span><span style='font-weight:bold'
+lang=en-US>llm</span><span style='font-weight:bold' lang=zh-CN>每轮会根据有限的</span><span
+style='font-weight:bold' lang=en-US>context</span><span style='font-weight:
+bold' lang=zh-CN>作出回应，这些回应可能是不正确的（因为</span><span style='font-weight:bold'
+lang=en-US>context</span><span style='font-weight:bold' lang=zh-CN>的信息有限）而这些回应又包含在整体</span><span
+style='font-weight:bold' lang=en-US>context</span><span style='font-weight:
+bold' lang=zh-CN>中继续提供给下一轮的</span><span style='font-weight:bold' lang=en-US>llm</span><span
+style='font-weight:bold' lang=zh-CN>使用，也就是</span><span style='font-weight:bold'
+lang=en-US>llm</span><span style='font-weight:bold' lang=zh-CN>在前面几轮的决策会影响后面的</span><span
+style='font-weight:bold' lang=en-US>context</span><span style='font-weight:
+bold' lang=zh-CN>，进而影响后面的决策。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold' lang=zh-CN>How to Fix Your Context</span><span style='font-weight:bold'
+lang=en-US> </span><a
+href="https://www.dbreunig.com/2025/06/26/how-to-fix-your-context.html"><span
+lang=zh-CN>https://www.dbreunig.com/2025/06/26/how-to-fix-your-context.html</span></a></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>RAG</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>Retrieval-Augmented
+Generation (RAG) is the act of selectively adding relevant information to help
+the LLM generate a better response.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold' lang=zh-CN>用</span><span style='font-weight:bold'
+lang=en-US>RAG</span><span style='font-weight:bold' lang=zh-CN>来选择相关的信息，帮助</span><span
+style='font-weight:bold' lang=en-US>llm</span><span style='font-weight:bold'
+lang=zh-CN>生成</span><span style='font-weight:bold' lang=en-US>better response</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>Tool Loadout</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>Tool
+Loadout is the act of selecting only relevant tool definitions to add to your
+context.</p>
+
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
+style='font-family:微软雅黑'>Perhaps the simplest way to select tools is to </span><span
+style='font-weight:bold;font-family:微软雅黑'>apply RAG to your tool descriptions</span><span
+style='font-family:微软雅黑'>. This is exactly what Tiantian Gan and Qiyao Sun did,
+which they detail in their paper, “</span><a
+href="https://arxiv.org/abs/2505.03275"><span style='font-family:charter;
+background:white'>RAG MCP</span></a><span style='font-family:微软雅黑'>.” By
+storing their tool descriptions in a vector database, they’re able to select
+the most relevant tools given an input prompt.</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold' lang=zh-CN>选择最相关的</span><span style='font-weight:bold'
+lang=en-US>tool</span><span style='font-weight:bold' lang=zh-CN>，最简单的方式可以将</span><span
+style='font-weight:bold' lang=en-US>rag</span><span style='font-weight:bold'
+lang=zh-CN>作用于</span><span style='font-weight:bold' lang=en-US>tool description</span><span
+style='font-weight:bold' lang=zh-CN>。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=en-US>C</span><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>ontext
+     Quarantine隔离</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>Context
+Quarantine is the act of isolating contexts in their own dedicated threads,
+each used separately by one or more LLMs.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold' lang=en-US>Context</span><span style='font-weight:
+bold' lang=zh-CN>隔离，不同的</span><span style='font-weight:bold' lang=en-US>llm</span><span
+style='font-weight:bold' lang=zh-CN>用不同的</span><span style='font-weight:bold'
+lang=en-US>context</span><span style='font-weight:bold' lang=zh-CN>。如将任务分给多个</span><span
+style='font-weight:bold' lang=en-US>sub agent</span><span style='font-weight:
+bold' lang=zh-CN>，每个</span><span style='font-weight:bold' lang=en-US>sub agent</span><span
+style='font-weight:bold' lang=zh-CN>有自己独立的</span><span style='font-weight:bold'
+lang=en-US>context window</span><span style='font-weight:bold' lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>Context Pruning</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>Context
+Pruning is the act of removing irrelevant or otherwise unneeded information
+from the context.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>Context
+     Summarization</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>Context
+Summarization is the act of boiling down an accrued context into a condensed
+summary.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>Context
+Summarization first appeared as a tool for dealing with smaller context
+windows. As your chat session came close to exceeding the maximum context
+length, a summary would be generated and a new thread would begin. Chatbot
+users did this manually, in ChatGPT or Claude, asking the bot to generate a
+short recap which would then be pasted into a new session.</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>Context
+     Offloading</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>Context
+Offloading is the act of storing information outside the LLM’s context, usually
+via a tool that stores and manages the data.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold' lang=zh-CN>为</span><span style='font-weight:bold'
+lang=en-US>agent</span><span style='font-weight:bold' lang=zh-CN>创建</span><span
+style='font-weight:bold' lang=en-US>short-term</span><span style='font-weight:
+bold' lang=zh-CN>或</span><span style='font-weight:bold' lang=en-US>long-term
+memory system</span><span style='font-weight:bold' lang=zh-CN>。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold' lang=zh-CN>Context Engineering</span><span style='font-weight:bold'
+lang=en-US> </span><a
+href="https://blog.langchain.com/context-engineering-for-agents/"><span
+lang=zh-CN>https://blog.langchain.com/context-engineering-for-agents/</span></a></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=en-US>Context engineering</span><span lang=zh-CN>对于</span><span
+lang=en-US>agent</span><span lang=zh-CN>尤其重要，因为</span><span lang=en-US>agent</span><span
+lang=zh-CN>通常调用很多次</span><span lang=en-US>tool</span><span lang=zh-CN>，因此</span><span
+lang=en-US>agent</span><span lang=zh-CN>的</span><span lang=en-US>context</span><span
+lang=zh-CN>通常会很长。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
+style='font-family:微软雅黑'>Agents need context to perform tasks. Context
+engineering is the art and science of filling the context window with just the
+right information at each step of an agent’s trajectory. In this post, we break
+down some common strategies —&nbsp;</span><span style='font-weight:bold;
+font-family:"Source Sans Pro";background:white'>write, select, compress, and
+isolate —</span><span style='font-family:微软雅黑'>&nbsp;for context engineering by
+reviewing various popular agents and papers. We then explain how LangGraph is
+designed to support them!</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='mso-spacerun:yes'> </span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>We
+group common strategies for agent context engineering into four buckets — <span
+style='font-weight:bold'>write, select, compress, and isolate</span> — and give
+examples of each from review of some popular agent products and papers. We then
+explain how LangGraph is designed to support them!</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:1.125in'><img
+src="Context%20engineer.files/image003.jpg" width=739 height=304></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=en-US><span
+     style='mso-spacerun:yes'> </span></span><span style='font-weight:bold;
+     font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>Write</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>-
+Writing context means saving it outside the context window to help an agent
+perform a task.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>-
+When humans solve tasks, we take notes and remember things for future, related
+tasks</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=zh-CN>像人类一样，找个草稿本（</span><span lang=en-US>scratchpad</span><span
+lang=zh-CN>）记下一些事情，然后用脑子（</span><span lang=en-US>long-term memory</span><span
+lang=zh-CN>）记住关键内容，并时刻更新</span><span lang=en-US>memory</span><span lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:3.375in'><img
+src="Context%20engineer.files/image004.jpg" width=479 height=265></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>Select</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=en-US>- </span><span lang=zh-CN>Selecting context means pulling it into
+the context window to help an agent perform a task.*</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=zh-CN>从</span><span lang=en-US>scratchpad</span><span lang=zh-CN>中选最相关的</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=zh-CN>从</span><span lang=en-US>memory</span><span lang=zh-CN>中选</span><span
+lang=en-US>…</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=zh-CN>从</span><span lang=en-US>Tools</span><span lang=zh-CN>中选最相关的</span><span
+lang=en-US>tool</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=zh-CN>从</span><span lang=en-US>knowledge</span><span lang=zh-CN>中选最相关的，如</span><span
+lang=en-US>code agent </span><span lang=zh-CN>中进行</span><span lang=en-US>rag</span><span
+lang=zh-CN>时，</span><span style='font-weight:bold' lang=zh-CN>进行</span><span
+style='font-weight:bold' lang=en-US>chunking</span><span style='font-weight:
+bold' lang=zh-CN>时，每个</span><span style='font-weight:bold' lang=en-US>chunk</span><span
+style='font-weight:bold' lang=zh-CN>是一个完整的函数或类，而不是连续的代码。</span></p>
+
+<p style='margin:0in;margin-left:2.25in'><img
+src="Context%20engineer.files/image005.jpg" width=578 height=364></p>
+
+<p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:2.25in'><img
+src="Context%20engineer.files/image006.png" width=628 height=328></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>Compress</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>-
+*Compressing context involves <span style='font-weight:bold'>retaining only the
+tokens required to perform a tas</span>k.*</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>**Summarization**</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>-
+Claude Code “auto compact” <a
+href="https://docs.anthropic.com/en/docs/claude-code/costs">https://docs.anthropic.com/en/docs/claude-code/costs</a></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>-
+Completed work sections <a
+href="https://www.anthropic.com/engineering/built-multi-agent-research-system">https://www.anthropic.com/engineering/built-multi-agent-research-system</a></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>-
+Passing context to linear sub-agents <a
+href="https://cognition.ai/blog/dont-build-multi-agents">https://cognition.ai/blog/dont-build-multi-agents</a></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>Isolate</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>-
+*Isolating context involves splitting it up to help an agent perform a task.*</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=zh-CN>将一个问题分成子</span><span lang=en-US>topic</span><span lang=zh-CN>这种任务，天然适合</span><span
+lang=en-US>sub agent</span><span lang=zh-CN>这种架构</span><span lang=en-US> </span><span
+lang=zh-CN>，每个</span><span lang=en-US>sub agent</span><span lang=zh-CN>有自己独立的</span><span
+lang=en-US>context</span><span lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold'>Context Engineering + LangGraph</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold'>Scratchpad</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><a
+     href="https://langchain-ai.github.io/langgraph/concepts/persistence/"><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>Checkpointing</span></a><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN> to persist </span><a
+     href="https://langchain-ai.github.io/langgraph/concepts/low_level/#state"><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>agent state</span></a><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN> across a session</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US> </span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>，</span><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>其实就是</span><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=en-US>agent
+     state</span><span style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'
+     lang=zh-CN>类</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold'>Memory</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><a
+     href="https://langchain-ai.github.io/langgraph/concepts/memory/#long-term-memory"><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>Long-term memory</span></a><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN> to persist context </span><span
+     style='font-style:italic;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>across
+     many sessions</span><span style='font-style:italic;font-family:微软雅黑;
+     font-size:12.0pt' lang=en-US> ,<span style='mso-spacerun:yes'>    </span></span><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=en-US>memory</span><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>就是持久化，可以</span><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=en-US>across
+     </span><span style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'
+     lang=zh-CN>不同的</span><span style='font-weight:bold;font-family:微软雅黑;
+     font-size:12.0pt' lang=en-US>session</span><span style='font-weight:bold;
+     font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>，存储用户偏好之类的东西</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:1.5in'><img
+src="Context%20engineer.files/image007.jpg" width=892 height=202></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
 </div>
 

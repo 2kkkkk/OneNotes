@@ -10,11 +10,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="DDPM.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:30.0062in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:27.1625in'>
 
 <div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.3993in'>
 
@@ -33,17 +33,17 @@ style='font-family:Calibri'>7</span><span style='font-family:微软雅黑'>日</
 
 </div>
 
-<div style='direction:ltr;margin-top:1.1777in;margin-left:.6493in;width:29.3569in'>
+<div style='direction:ltr;margin-top:1.1777in;margin-left:.6493in;width:26.5131in'>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US><span
 style='font-weight:bold'>DDPM:</span></p>
 
 <p style='margin:0in;margin-left:2.25in'><img src="DDPM.files/image001.jpg"
-width=2109 height=965></p>
+width=379 height=173></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=zh-CN>假设我们的数据是人脸数据，这个数据存在一个分布</span><span lang=en-US>p(x)</span><span
 lang=zh-CN>，但是我们不知道这个分布</span><span lang=en-US>p(x</span><span lang=zh-CN>）的具体形式，甚至</span><span
 lang=en-US>p(x)</span><span lang=zh-CN>有可能是不存在的。但是我们仍然希望能生成新的数据，</span><span
@@ -51,41 +51,41 @@ lang=en-US>e.g.</span><span lang=zh-CN>从</span><span lang=en-US>p(x)</span><sp
 lang=zh-CN>这个分布中采样</span><span lang=en-US> </span><span lang=zh-CN>。那么如何在不知道</span><span
 lang=en-US>p(x)</span><span lang=zh-CN>分布的情况下，从这个分布中采样呢？</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>扩散模型通过<span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>扩散模型通过<span
 style='font-weight:bold'>从图片中去掉高斯噪声</span>来解决这个问题。</p>
 
-<p style='margin:0in;margin-left:3.375in'><img src="DDPM.files/image002.jpg"
-width=2061 height=759></p>
+<p style='margin:0in;margin-left:2.25in'><img src="DDPM.files/image002.jpg"
+width=388 height=143></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:微软雅黑' lang=zh-CN>对原始图片，逐步地增加随机噪声，最后得到完全随机噪声的图片，然后训练模型，</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119904;</m:t></m:r></m:e><m:sub><m:r><m:t>&#120579;</m:t></m:r></m:sub></m:sSub></m:oMath><![endif]--><span
 style='font-family:微软雅黑' lang=zh-CN>，逐步地去掉图片中的噪声，恢复图片。</span><![if !msEquation]><img
-src="DDPM.files/image003.png" width=4121 height=125><![endif]></p>
+src="DDPM.files/image003.png" width=1435 height=42><![endif]></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='font-weight:bold'>数学形式推导：</span></p>
 
-<p style='margin:0in;margin-left:5.625in'><img src="DDPM.files/image004.jpg"
-width=1362 height=1176></p>
+<p style='margin:0in;margin-left:2.625in'><img src="DDPM.files/image004.jpg"
+width=290 height=250></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>1</m:t></m:r></m:sub></m:sSub><m:r><m:t>=</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>0</m:t></m:r></m:sub></m:sSub><m:r><m:t>+</m:t></m:r><m:r><m:t>&#120573;</m:t></m:r><m:r><m:t>∙</m:t></m:r><m:r><m:t>&#120598;</m:t></m:r></m:oMath><![endif]--><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>1</m:t></m:r></m:sub></m:sSub><m:r><m:t>=</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>0</m:t></m:r></m:sub></m:sSub><m:r><m:t>+</m:t></m:r><m:r><m:t>&#120573;</m:t></m:r><m:r><m:t>∙</m:t></m:r><m:r><m:t>&#120598;</m:t></m:r></m:oMath><![endif]--><span
 style='font-family:微软雅黑' lang=zh-CN>，那么条件概率</span><span style='font-family:
 微软雅黑' lang=en-US>q(x1|x0)</span><span style='font-family:微软雅黑' lang=zh-CN>就是一个均值为</span><span
 style='font-family:微软雅黑' lang=en-US>x0</span><span style='font-family:微软雅黑'
 lang=zh-CN>，方差为</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:t>&#120573;</m:t></m:r></m:oMath><![endif]--><span
 style='font-family:微软雅黑' lang=zh-CN>的高斯分布</span><![if !msEquation]><img
-src="DDPM.files/image005.png" width=2597 height=125><![endif]></p>
+src="DDPM.files/image005.png" width=927 height=42><![endif]></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:9.0in'><img src="DDPM.files/image006.jpg"
-width=585 height=102></p>
+<p style='margin:0in;margin-left:3.375in'><img src="DDPM.files/image006.jpg"
+width=144 height=25></p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:微软雅黑' lang=zh-CN>所以，r</span><span style='font-family:微软雅黑'
 lang=en-US>ather than seeing this as adding noise to x0, we can just imagine </span><span
 style='font-family:微软雅黑' lang=zh-CN>x</span><span style='font-family:微软雅黑'
@@ -94,14 +94,14 @@ style='font-family:微软雅黑' lang=en-US> we take a sample from a </span><spa
 style='font-family:微软雅黑' lang=zh-CN>均值</span><span style='font-family:微软雅黑'
 lang=en-US>x0</span><span style='font-family:微软雅黑' lang=zh-CN>，方差为</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:t>&#120573;</m:t></m:r></m:oMath><![endif]--><span
 style='font-family:微软雅黑' lang=zh-CN>的高斯分布，</span><![if !msEquation]><img
-src="DDPM.files/image007.png" width=4188 height=248><![endif]></p>
+src="DDPM.files/image007.png" width=1596 height=42><![endif]></p>
 
-<p style='margin:0in;margin-left:5.625in'><img src="DDPM.files/image008.jpg"
-width=1498 height=1077></p>
+<p style='margin:0in;margin-left:2.625in'><img src="DDPM.files/image008.jpg"
+width=373 height=268></p>
 
-<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:微软雅黑' lang=zh-CN>同理，</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>2</m:t></m:r></m:sub></m:sSub><m:r><m:t>=</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>0</m:t></m:r></m:sub></m:sSub><m:r><m:t>+</m:t></m:r><m:r><m:t>2</m:t></m:r><m:r><m:t>&#120573;</m:t></m:r><m:r><m:t>∙</m:t></m:r><m:r><m:t>&#120598;</m:t></m:r></m:oMath><![endif]--><span
 style='font-family:微软雅黑' lang=zh-CN>，那么条件概率</span><span style='font-family:
 微软雅黑' lang=en-US>q(x</span><span style='font-family:"Cambria Math"' lang=en-US>2</span><span
@@ -110,15 +110,15 @@ lang=zh-CN>就是一个均值为</span><span style='font-family:微软雅黑' la
 style='font-family:微软雅黑' lang=zh-CN>，方差为</span><span style='font-family:"Cambria Math"'
 lang=en-US>2</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:t>&#120573;</m:t></m:r></m:oMath><![endif]--><span
 style='font-family:微软雅黑' lang=zh-CN>的高斯分布，</span><![if !msEquation]><img
-src="DDPM.files/image009.png" width=2956 height=125><![endif]></p>
+src="DDPM.files/image009.png" width=1047 height=42><![endif]></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=zh-CN>对于时刻</span><span lang=en-US>t</span><span lang=zh-CN>，</span></p>
 
-<p style='margin:0in;margin-left:4.5in'><img src="DDPM.files/image010.jpg"
-width=1751 height=839></p>
+<p style='margin:0in;margin-left:1.875in'><img src="DDPM.files/image010.jpg"
+width=548 height=263></p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:微软雅黑' lang=zh-CN>这样的问题是，我们希望时刻</span><span style='font-family:
 微软雅黑' lang=en-US>t</span><span style='font-family:微软雅黑' lang=zh-CN>的图片是一个均值为</span><span
 style='font-family:微软雅黑' lang=en-US>0</span><span style='font-family:微软雅黑'
@@ -128,21 +128,21 @@ style='font-family:微软雅黑' lang=zh-CN>，</span><!--[if gte msEquation 12]
 style='font-family:微软雅黑' lang=zh-CN>，意味着均值一直是</span><span style='font-family:
 "Cambria Math"' lang=en-US>x0</span><span style='font-family:SimSun'
 lang=zh-CN>，</span><span style='font-family:微软雅黑' lang=zh-CN>方差随着t一直增加，因此，我们需要重新定义这个扩散过程。</span><![if !msEquation]><img
-src="DDPM.files/image011.png" width=4186 height=248><![endif]></p>
+src="DDPM.files/image011.png" width=2107 height=42><![endif]></p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:微软雅黑' lang=zh-CN>很显然，我们需要改变每一步分布的均值，我们在</span><span
 style='font-family:微软雅黑' lang=en-US>x</span><span style='font-family:微软雅黑'
 lang=zh-CN>前面加一个衰减系数</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:rad><m:radPr><m:degHide m:val="on"/><m:ctrlPr/></m:radPr><m:deg/><m:e><m:r><m:t>1</m:t></m:r><m:r><m:t>−</m:t></m:r><m:r><m:t>&#120573;</m:t></m:r></m:e></m:rad></m:oMath><![endif]--><span
 style='font-family:微软雅黑' lang=zh-CN>，</span><![if !msEquation]><img
-src="DDPM.files/image012.png" width=2654 height=125><![endif]></p>
+src="DDPM.files/image012.png" width=946 height=42><![endif]></p>
 
-<p style='margin:0in;margin-left:6.0in'><img src="DDPM.files/image013.jpg"
-width=1535 height=946></p>
+<p style='margin:0in;margin-left:2.625in'><img src="DDPM.files/image013.jpg"
+width=470 height=290></p>
 
-<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:微软雅黑' lang=zh-CN>于是，</span><span style='font-family:微软雅黑'
 lang=en-US>q(x</span><span style='font-family:微软雅黑' lang=zh-CN>t</span><span
 style='font-family:微软雅黑' lang=en-US>|x0)</span><span style='font-family:微软雅黑'
@@ -155,38 +155,38 @@ style='font-family:微软雅黑' lang=zh-CN>趋于无穷时，这个分布的均
 style='font-family:微软雅黑' lang=en-US>0</span><span style='font-family:微软雅黑'
 lang=zh-CN>，方差收敛到</span><span style='font-family:微软雅黑' lang=en-US>1</span><span
 style='font-family:微软雅黑' lang=zh-CN>，是一个标准正态分布。</span><![if !msEquation]><img
-src="DDPM.files/image014.png" width=4186 height=248><![endif]></p>
+src="DDPM.files/image014.png" width=1746 height=42><![endif]></p>
 
-<p style='margin:0in;margin-left:6.375in'><img src="DDPM.files/image015.jpg"
-width=1383 height=499></p>
+<p style='margin:0in;margin-left:1.875in'><img src="DDPM.files/image015.jpg"
+width=632 height=228></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:微软雅黑' lang=zh-CN>在实际中，</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:t>&#120573;</m:t></m:r></m:oMath><![endif]--><span
 style='font-family:微软雅黑' lang=zh-CN>在每步时是变化的，有一个</span><span style='font-family:
 "Cambria Math"' lang=en-US>schedule</span><span style='font-family:SimSun'
 lang=zh-CN>，而不</span><span style='font-family:微软雅黑' lang=zh-CN>是固定的，那么</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#120572;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub></m:oMath><![endif]--><span
 style='font-family:微软雅黑' lang=zh-CN>的公式就变成了下图形式，</span><![if !msEquation]><img
-src="DDPM.files/image016.png" width=3288 height=125><![endif]></p>
+src="DDPM.files/image016.png" width=1157 height=42><![endif]></p>
 
-<p style='margin:0in;margin-left:6.375in'><img src="DDPM.files/image017.jpg"
-width=1462 height=540></p>
+<p style='margin:0in;margin-left:2.25in'><img src="DDPM.files/image017.jpg"
+width=635 height=235></p>
 
-<p style='margin:0in;margin-left:1.5in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:1.5in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>现在，我们定义了一个扩散过程：将一个任意分布变成标准正态分布，</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>现在，我们定义了一个扩散过程：将一个任意分布变成标准正态分布，</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=zh-CN>那么如何训练一个神经网络来</span><span lang=en-US>reverse</span><span lang=zh-CN>这个扩散过程呢？</span></p>
 
-<p style='margin:0in;margin-left:3.75in'><img src="DDPM.files/image018.jpg"
-width=1779 height=961></p>
+<p style='margin:0in;margin-left:1.875in'><img src="DDPM.files/image018.jpg"
+width=578 height=312></p>
 
 <p style='margin:0in;margin-left:.375in;font-family:"Cambria Math";font-size:
-36.0pt' lang="x-IV_mathan">&nbsp;</p>
+12.0pt' lang="x-IV_mathan">&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#120579;</m:t></m:r></m:sub></m:sSub><m:r><m:t>(</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r><m:r><m:t>−1</m:t></m:r></m:sub></m:sSub><m:r><m:t>|</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:r><m:t>)</m:t></m:r></m:oMath><![endif]--><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#120579;</m:t></m:r></m:sub></m:sSub><m:r><m:t>(</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r><m:r><m:t>−1</m:t></m:r></m:sub></m:sSub><m:r><m:t>|</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:r><m:t>)</m:t></m:r></m:oMath><![endif]--><span
 style='text-decoration:line-through;font-family:微软雅黑' lang=zh-CN>中的</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:t>&#120579;</m:t></m:r></m:oMath><![endif]--><span
 style='text-decoration:line-through;font-family:微软雅黑' lang=zh-CN>就是神经网络中的参数，也就是说，输入一张图片到神经网络，然后神经网络输出另一张图片，</span><span
 style='font-weight:bold;text-decoration:line-through;font-family:微软雅黑'
@@ -198,60 +198,60 @@ style='font-family:微软雅黑' lang=zh-CN>中的</span><!--[if gte msEquation 
 style='font-family:微软雅黑' lang=zh-CN>就是这个分布的参数，</span><span style='font-weight:
 bold;font-family:微软雅黑' lang=zh-CN>神经网络拟合的就是这个分布的参数</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:t>&#120637;</m:t></m:r></m:oMath><![endif]--><span
 style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>。</span><![if !msEquation]><img
-src="DDPM.files/image019.png" width=4186 height=248><![endif]></p>
+src="DDPM.files/image019.png" width=2707 height=42><![endif]></p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:微软雅黑' lang=zh-CN>那么，如何训练这个神经网络呢？</span><span
 style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>极大似然！或者说</span><span
 style='font-family:微软雅黑' lang=en-US>minimize the negative log likelihood of
 producing a sample</span><span style='font-weight:bold;font-family:微软雅黑'
 lang=en-US> using our nn model. </span><span style='font-family:微软雅黑'
 lang=zh-CN>即</span><span style='font-family:微软雅黑' lang=en-US>minimize </span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:t>−</m:t></m:r><m:r><m:t>&#119845;&#119848;&#119840;</m:t></m:r><m:r><m:t>⁡</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119953;</m:t></m:r></m:e><m:sub><m:r><m:t>&#120637;</m:t></m:r></m:sub></m:sSub><m:r><m:t>(</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119961;</m:t></m:r></m:e><m:sub><m:r><m:t>&#120782;</m:t></m:r></m:sub></m:sSub><m:r><m:t>)</m:t></m:r></m:oMath><![endif]--><![if !msEquation]><img
-src="DDPM.files/image020.png" width=4186 height=248><![endif]></p>
+src="DDPM.files/image020.png" width=1850 height=42><![endif]></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=zh-CN>描述由x</span><span lang=en-US>0</span><span lang=zh-CN>到从</span><span
 lang=en-US>x1</span><span lang=zh-CN>到x</span><span lang=en-US>T</span><span
 lang=zh-CN>所有变量的</span><span style='font-weight:bold' lang=zh-CN>联合概率分布表示了整个前向加噪过程：</span></p>
 
-<p style='margin:0in;margin-left:4.5in'><img src="DDPM.files/image021.jpg"
-width=1922 height=640></p>
+<p style='margin:0in;margin-left:1.875in'><img src="DDPM.files/image021.jpg"
+width=680 height=226></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>同理，<span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>同理，<span
 style='font-weight:bold'>逆向去噪过程的联合概率分布</span>，可以写成：</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:3.375in'><img src="DDPM.files/image022.jpg"
-width=2220 height=353></p>
+<p style='margin:0in;margin-left:.75in'><img src="DDPM.files/image022.jpg"
+width=1098 height=174></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=zh-CN>从公式可以看出，逆向去噪过程并</span><span style='font-weight:bold' lang=zh-CN>没有</span><span
 style='font-weight:bold' lang=en-US>conditioned</span><span style='font-weight:
 bold' lang=zh-CN>（前向过程</span><span style='font-weight:bold' lang=en-US>conditioned
 on x0</span><span lang=zh-CN>），这和实际相符，逆向过程直接从一张高斯噪声图片开始，不需要任何先验，而前向过程要求输入</span><span
 lang=en-US>x0</span><span lang=zh-CN>。</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=zh-CN>有了分布之后，现在才看如何得到似然函数的表达式，w</span><span lang=en-US>hen dealing with
 joint probabilities, a useful first step is often to marginalize the
 distribution with respect to other variables, </span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'
 lang=en-US>&nbsp;</p>
 
-<p style='margin:0in;margin-left:5.625in'><img src="DDPM.files/image023.jpg"
-width=1559 height=189></p>
+<p style='margin:0in;margin-left:1.875in'><img src="DDPM.files/image023.jpg"
+width=707 height=86></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:微软雅黑' lang=zh-CN>但是我们能用上面这个式子计算得到</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:t>−</m:t></m:r><m:r><m:t>&#119845;&#119848;</m:t></m:r><m:func><m:funcPr><m:ctrlPr/></m:funcPr><m:fName><m:r><m:t>&#119840;</m:t></m:r></m:fName><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119953;</m:t></m:r></m:e><m:sub><m:r><m:t>&#120637;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119961;</m:t></m:r></m:e><m:sub><m:r><m:t>&#120782;</m:t></m:r></m:sub></m:sSub></m:e></m:d></m:e></m:func></m:oMath><![endif]--><span
 style='font-family:微软雅黑' lang=zh-CN>吗？答案是并不能。上面这个式子表示</span><span
 style='font-family:微软雅黑' lang=en-US> </span><span style='font-family:微软雅黑'
@@ -264,36 +264,36 @@ style='font-family:微软雅黑' lang=en-US>sum over all possible paths capable 
 generating it</span><span style='font-family:微软雅黑' lang=zh-CN>，如下图所示，这是</span><span
 style='font-family:微软雅黑' lang=en-US>intractable</span><span style='font-family:
 微软雅黑' lang=zh-CN>的。</span><![if !msEquation]><img src="DDPM.files/image024.png"
-width=4186 height=248><![endif]></p>
+width=2697 height=42><![endif]></p>
 
-<p style='margin:0in;margin-left:7.5in'><img src="DDPM.files/image025.jpg"
-width=1064 height=657></p>
+<p style='margin:0in;margin-left:2.625in'><img src="DDPM.files/image025.jpg"
+width=513 height=317></p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:微软雅黑' lang=zh-CN>我们用一个</span><span style='font-family:微软雅黑'
 lang=en-US>trick</span><span style='font-family:微软雅黑' lang=zh-CN>，分子分母同乘以前向过程的联合概率分布，并写成期望的形式，由于</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:t>−</m:t></m:r><m:r><m:t>&#119845;&#119848;</m:t></m:r><m:func><m:funcPr><m:ctrlPr/></m:funcPr><m:fName><m:r><m:t>&#119840;</m:t></m:r></m:fName><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119953;</m:t></m:r></m:e><m:sub><m:r><m:t>&#120637;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119961;</m:t></m:r></m:e><m:sub><m:r><m:t>&#120782;</m:t></m:r></m:sub></m:sSub></m:e></m:d></m:e></m:func></m:oMath><![endif]--><span
 style='font-family:微软雅黑' lang=zh-CN>是</span><span style='font-family:微软雅黑'
 lang=en-US>convex</span><span style='font-family:微软雅黑' lang=zh-CN>的，我们可以应用</span><span
 style='font-family:微软雅黑' lang=en-US>jeson</span><span style='font-family:微软雅黑'
 lang=zh-CN>不等式，如下图所示，</span><![if !msEquation]><img
-src="DDPM.files/image026.png" width=4186 height=248><![endif]></p>
+src="DDPM.files/image026.png" width=1736 height=42><![endif]></p>
 
-<p style='margin:0in;margin-left:5.625in'><img src="DDPM.files/image027.jpg"
-width=1545 height=923></p>
+<p style='margin:0in;margin-left:2.25in'><img src="DDPM.files/image027.jpg"
+width=542 height=324></p>
 
-<p style='margin:0in;margin-left:5.625in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:5.625in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=zh-CN>这样，就得到了似然函数的上界</span><span lang=en-US>ELBO</span><span lang=zh-CN>，将</span><span
 lang=en-US>ELBO</span><span lang=zh-CN>进行重写，（推导过程详见</span><span lang=en-US>DDPM</span><span
 lang=zh-CN>论文补充材料），</span></p>
 
-<p style='margin:0in;margin-left:3.75in'><img src="DDPM.files/image028.jpg"
-width=2094 height=443></p>
+<p style='margin:0in;margin-left:1.875in'><img src="DDPM.files/image028.jpg"
+width=605 height=128></p>
 
-<p style='margin:0in;margin-left:6.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:6.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:微软雅黑' lang=zh-CN>上式也就只剩下中间的的</span><span style='font-family:
 微软雅黑' lang=en-US>KL</span><span style='font-family:微软雅黑' lang=zh-CN>散度了，其中</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:t>&#119902;</m:t></m:r><m:r><m:t>(</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r><m:r><m:t>−1</m:t></m:r></m:sub></m:sSub><m:r><m:t>|</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:r><m:t>,</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>0</m:t></m:r></m:sub></m:sSub><m:r><m:t>)</m:t></m:r></m:oMath><![endif]--><span
 style='font-family:微软雅黑' lang=zh-CN>是真实后验，这里的</span><span style='font-family:
@@ -313,413 +313,413 @@ style='font-family:微软雅黑' lang=zh-CN>，我们的目标就是恢复</span
 style='font-family:微软雅黑' lang=en-US>x0</span><span style='font-family:微软雅黑'
 lang=zh-CN>，从上图可以看出，</span><span style='font-weight:bold;font-family:微软雅黑'
 lang=zh-CN>训练的目标是让神经网络拟合一个分布来逼近真实后验分布，</span><![if !msEquation]><img
-src="DDPM.files/image029.png" width=4186 height=619><![endif]></p>
+src="DDPM.files/image029.png" width=3779 height=83><![endif]></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:4.875in'><img src="DDPM.files/image030.jpg"
-width=1875 height=979></p>
+<p style='margin:0in;margin-left:1.125in'><img src="DDPM.files/image030.jpg"
+width=694 height=362></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:t>&#119902;</m:t></m:r><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r><m:r><m:t>−1</m:t></m:r></m:sub></m:sSub></m:e><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:r><m:t>,</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>0</m:t></m:r></m:sub></m:sSub></m:e></m:d></m:oMath><![endif]--><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:r><m:t>&#119902;</m:t></m:r><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r><m:r><m:t>−1</m:t></m:r></m:sub></m:sSub></m:e><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:r><m:t>,</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:t>0</m:t></m:r></m:sub></m:sSub></m:e></m:d></m:oMath><![endif]--><span
 style='font-family:微软雅黑' lang=zh-CN>这个分布是高斯的，具体推导省略，那么我们也选择</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:func><m:funcPr><m:ctrlPr/></m:funcPr><m:fName/><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119953;</m:t></m:r></m:e><m:sub><m:r><m:t>&#120637;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119961;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119957;</m:t></m:r><m:r><m:t>−</m:t></m:r><m:r><m:t>&#120783;</m:t></m:r></m:sub></m:sSub><m:r><m:t>|</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119961;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119957;</m:t></m:r></m:sub></m:sSub></m:e></m:d></m:e></m:func></m:oMath><![endif]--><span
 style='font-family:微软雅黑' lang=zh-CN>是一个高斯分布的形式，原因</span><span style='font-family:
 微软雅黑' lang=en-US>1</span><span style='font-family:微软雅黑' lang=zh-CN>）前向过程是高斯的，所以逆向过程也是高斯分布，更合理，</span><span
 style='font-family:微软雅黑' lang=en-US>2</span><span style='font-family:微软雅黑'
 lang=zh-CN>）高斯分布简洁。于是，我们的神经网络就要拟合这个高斯分布的均值和方差，在实际应用中，通常固定这个分布的方差，只需要拟合均值，也就是让两个分布的均值越接近越好。</span><![if !msEquation]><img
-src="DDPM.files/image031.png" width=4186 height=372><![endif]></p>
+src="DDPM.files/image031.png" width=3777 height=42><![endif]></p>
 
-<p style='margin:0in;margin-left:3.375in'><img src="DDPM.files/image032.jpg"
-width=1832 height=1024></p>
+<p style='margin:0in;margin-left:1.5in'><img src="DDPM.files/image032.jpg"
+width=645 height=360></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>训练的目标也就是拟合每一步的分布的均值，<span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>训练的目标也就是拟合每一步的分布的均值，<span
 style='font-weight:bold'>使得每一步的均值更接近真实后验分布的均值</span></p>
 
-<p style='margin:0in;margin-left:2.25in'><img src="DDPM.files/image033.jpg"
-width=2099 height=965></p>
+<p style='margin:0in;margin-left:1.125in'><img src="DDPM.files/image033.jpg"
+width=726 height=334></p>
 
-<p style='margin:0in;margin-left:1.875in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:1.875in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>于是，损失函数就变成了下图的形式</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>于是，损失函数就变成了下图的形式</p>
 
-<p style='margin:0in;margin-left:5.25in'><img src="DDPM.files/image034.jpg"
-width=1556 height=836></p>
+<p style='margin:0in;margin-left:2.25in'><img src="DDPM.files/image034.jpg"
+width=574 height=308></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>将均值换成误差的形式，重写成下图</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>将均值换成误差的形式，重写成下图</p>
 
-<p style='margin:0in;margin-left:3.375in'><img src="DDPM.files/image035.png"
-width=2171 height=824></p>
+<p style='margin:0in;margin-left:2.25in'><img src="DDPM.files/image035.png"
+width=679 height=257></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=zh-CN>神经网络的拟合目标就变成了第</span><span lang=en-US>t</span><span lang=zh-CN>步时的加的噪声，并对所有</span><span
 lang=en-US>t</span><span lang=zh-CN>求和。在实际应用中，通常随机挑选出</span><span lang=en-US>t</span><span
 lang=zh-CN>，而不是对所有的</span><span lang=en-US>t</span><span lang=zh-CN>拟合，最终</span><span
 lang=en-US> </span><span lang=zh-CN>的收敛效果是一样的。</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='font-weight:bold'>训练代码：</span></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>import torch</code></p>
+12.0pt'>import torch</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>import deepinv</code></p>
+12.0pt'>import deepinv</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>from torchvision import datasets, transforms</code></p>
+12.0pt'>from torchvision import datasets, transforms</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>device = &quot;cuda&quot;</code></p>
+12.0pt'>device = &quot;cuda&quot;</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>batch_size = 32</code></p>
+12.0pt'>batch_size = 32</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>image_size = 32</code></p>
+12.0pt'>image_size = 32</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>transform = transforms.Compose(</code></p>
+12.0pt'>transform = transforms.Compose(</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>[</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>[</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>       
+12.0pt'><span style='mso-spacerun:yes'>       
 </span>transforms.Resize(image_size),</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>transforms.ToTensor(),</code></p>
+12.0pt'><span style='mso-spacerun:yes'>        </span>transforms.ToTensor(),</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>       
+12.0pt'><span style='mso-spacerun:yes'>       
 </span>transforms.Normalize((0.0,), (1.0,)),</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>]</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>]</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>)</code></p>
+12.0pt'>)</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>train_loader = torch.utils.data.DataLoader(</code></p>
+12.0pt'>train_loader = torch.utils.data.DataLoader(</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>   
+12.0pt'><span style='mso-spacerun:yes'>   
 </span>datasets.MNIST(root=&quot;./data&quot;, train=True, download=True,
 transform=transform),</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>batch_size=batch_size,</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>batch_size=batch_size,</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>shuffle=True,</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>shuffle=True,</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>)</code></p>
+12.0pt'>)</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>lr = 1e-4</code></p>
+12.0pt'>lr = 1e-4</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>epochs = 100</code></p>
+12.0pt'>epochs = 100</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>model = deepinv.models.DiffUNet(in_channels=1, out_channels=1,
+12.0pt'>model = deepinv.models.DiffUNet(in_channels=1, out_channels=1,
 pretrained=None).to(</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>device</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>device</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>)</code></p>
+12.0pt'>)</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>optimizer = torch.optim.Adam(model.parameters(), lr=lr)</code></p>
+12.0pt'>optimizer = torch.optim.Adam(model.parameters(), lr=lr)</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>mse = deepinv.loss.MSE()</code></p>
+12.0pt'>mse = deepinv.loss.MSE()</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>beta_start = 1e-4</code></p>
+12.0pt'>beta_start = 1e-4</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>beta_end = 0.02</code></p>
+12.0pt'>beta_end = 0.02</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>timesteps = 1000</code></p>
+12.0pt'>timesteps = 1000</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>betas = torch.linspace(beta_start, beta_end, timesteps, device=device)</code></p>
+12.0pt'>betas = torch.linspace(beta_start, beta_end, timesteps, device=device)</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>alphas = 1.0 - betas</code></p>
+12.0pt'>alphas = 1.0 - betas</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>alphas_cumprod = torch.cumprod(alphas, dim=0)</code></p>
+12.0pt'>alphas_cumprod = torch.cumprod(alphas, dim=0)</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>sqrt_alphas_cumprod = torch.sqrt(alphas_cumprod)</code></p>
+12.0pt'>sqrt_alphas_cumprod = torch.sqrt(alphas_cumprod)</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>sqrt_one_minus_alphas_cumprod = torch.sqrt(1.0 - alphas_cumprod)</code></p>
+12.0pt'>sqrt_one_minus_alphas_cumprod = torch.sqrt(1.0 - alphas_cumprod)</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>for epoch in range(epochs):</code></p>
+12.0pt'>for epoch in range(epochs):</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>model.train()</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>model.train()</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>for data, _ in train_loader:</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>for data, _ in train_loader:</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>imgs = data.to(device)</code></p>
+12.0pt'><span style='mso-spacerun:yes'>        </span>imgs = data.to(device)</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>noise =
+12.0pt'><span style='mso-spacerun:yes'>        </span>noise =
 torch.randn_like(imgs)</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>t = torch.randint(0,
+12.0pt'><span style='mso-spacerun:yes'>        </span>t = torch.randint(0,
 timesteps, (imgs.size(0),), device=device)</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>noised_imgs = (</code></p>
+12.0pt'><span style='mso-spacerun:yes'>        </span>noised_imgs = (</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>           
+12.0pt'><span style='mso-spacerun:yes'>           
 </span>sqrt_alphas_cumprod[t, None, None, None] * imgs</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>            </span>+
+12.0pt'><span style='mso-spacerun:yes'>            </span>+
 sqrt_one_minus_alphas_cumprod[t, None, None, None] * noise</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>)</code></p>
+12.0pt'><span style='mso-spacerun:yes'>        </span>)</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>optimizer.zero_grad()</code></p>
+12.0pt'><span style='mso-spacerun:yes'>        </span>optimizer.zero_grad()</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>estimated_noise =
+12.0pt'><span style='mso-spacerun:yes'>        </span>estimated_noise =
 model(noised_imgs, t, type_t=&quot;timestep&quot;)</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>loss =
+12.0pt'><span style='mso-spacerun:yes'>        </span>loss =
 mse(estimated_noise, noise)</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>loss.backward()</code></p>
+12.0pt'><span style='mso-spacerun:yes'>        </span>loss.backward()</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>optimizer.step()</code></p>
+12.0pt'><span style='mso-spacerun:yes'>        </span>optimizer.step()</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>torch.save(</code></p>
+12.0pt'>torch.save(</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>model.state_dict(),</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>model.state_dict(),</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>   
+12.0pt'><span style='mso-spacerun:yes'>   
 </span>&quot;trained_diffusion_model.pth&quot;,</code></p>
 
 <p><code style='margin:0in;margin-left:.75in;font-family:Consolas;font-size:
-36.0pt'>)</code></p>
+12.0pt'>)</code></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold'>推理代码：</span></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>import torch</code></p>
+12.0pt'>import torch</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>import deepinv</code></p>
+12.0pt'>import deepinv</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>from pathlib import Path</code></p>
+12.0pt'>from pathlib import Path</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>device = &quot;cuda&quot;</code></p>
+12.0pt'>device = &quot;cuda&quot;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>image_size = 32</code></p>
+12.0pt'>image_size = 32</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>checkpoint_path = &quot;./checkpoints/trained_diffusion_model.pth&quot;</code></p>
+12.0pt'>checkpoint_path = &quot;./checkpoints/trained_diffusion_model.pth&quot;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>model = deepinv.models.DiffUNet(</code></p>
+12.0pt'>model = deepinv.models.DiffUNet(</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>in_channels=1,
+12.0pt'><span style='mso-spacerun:yes'>    </span>in_channels=1,
 out_channels=1, pretrained=Path(checkpoint_path)</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>).to(device)</code></p>
+12.0pt'>).to(device)</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>beta_start = 1e-4</code></p>
+12.0pt'>beta_start = 1e-4</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>beta_end = 0.02</code></p>
+12.0pt'>beta_end = 0.02</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>timesteps = 1000</code></p>
+12.0pt'>timesteps = 1000</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>betas = torch.linspace(beta_start, beta_end, timesteps, device=device)</code></p>
+12.0pt'>betas = torch.linspace(beta_start, beta_end, timesteps, device=device)</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>alphas = 1.0 - betas</code></p>
+12.0pt'>alphas = 1.0 - betas</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>alphas_cumprod = torch.cumprod(alphas, dim=0)</code></p>
+12.0pt'>alphas_cumprod = torch.cumprod(alphas, dim=0)</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>sqrt_alphas_cumprod = torch.sqrt(alphas_cumprod)</code></p>
+12.0pt'>sqrt_alphas_cumprod = torch.sqrt(alphas_cumprod)</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>sqrt_one_minus_alphas_cumprod = torch.sqrt(1.0 - alphas_cumprod)</code></p>
+12.0pt'>sqrt_one_minus_alphas_cumprod = torch.sqrt(1.0 - alphas_cumprod)</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>model.eval()</code></p>
+12.0pt'>model.eval()</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>n_samples = 32</code></p>
+12.0pt'>n_samples = 32</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>with torch.no_grad():</code></p>
+12.0pt'>with torch.no_grad():</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>x = torch.randn(n_samples, 1,
+12.0pt'><span style='mso-spacerun:yes'>    </span>x = torch.randn(n_samples, 1,
 image_size, image_size).to(device)</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>for t in
+12.0pt'><span style='mso-spacerun:yes'>    </span>for t in
 reversed(range(timesteps)):</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>t_tensor =
+12.0pt'><span style='mso-spacerun:yes'>        </span>t_tensor =
 torch.ones(n_samples, device=device).long() * t</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>predicted_noise =
+12.0pt'><span style='mso-spacerun:yes'>        </span>predicted_noise =
 model(x, t_tensor, type_t=&quot;timestep&quot;)</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>alpha = alphas[t]</code></p>
+12.0pt'><span style='mso-spacerun:yes'>        </span>alpha = alphas[t]</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>alpha_cumprod =
+12.0pt'><span style='mso-spacerun:yes'>        </span>alpha_cumprod =
 alphas_cumprod[t]</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>beta = betas[t]</code></p>
+12.0pt'><span style='mso-spacerun:yes'>        </span>beta = betas[t]</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>if t &gt; 0:</code></p>
+12.0pt'><span style='mso-spacerun:yes'>        </span>if t &gt; 0:</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>            </span>noise =
+12.0pt'><span style='mso-spacerun:yes'>            </span>noise =
 torch.randn_like(x)</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>else:</code></p>
+12.0pt'><span style='mso-spacerun:yes'>        </span>else:</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>            </span>noise = 0</code></p>
+12.0pt'><span style='mso-spacerun:yes'>            </span>noise = 0</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>x = (1 /
+12.0pt'><span style='mso-spacerun:yes'>        </span>x = (1 /
 torch.sqrt(alpha)) * (</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>            </span>x - (beta /
+12.0pt'><span style='mso-spacerun:yes'>            </span>x - (beta /
 torch.sqrt(1 - alpha_cumprod)) * predicted_noise</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>) + torch.sqrt(beta) *
+12.0pt'><span style='mso-spacerun:yes'>        </span>) + torch.sqrt(beta) *
 noise</code></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
 </div>
 

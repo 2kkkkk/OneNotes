@@ -10,20 +10,20 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="KL散度.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:25.0472in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:20.2756in'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:.0215in;width:1.4097in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.4097in'>
 
 <p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'><span lang=en-US>KL</span><span
 lang=zh-CN>散度</span></p>
 
 </div>
 
-<div style='direction:ltr;margin-top:.0423in;margin-left:.0215in;width:1.6687in'>
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
 
 <p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
 Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
@@ -34,22 +34,20 @@ style='font-family:Calibri'>31</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.4569in;margin-left:0in;width:19.9152in'>
+<div style='direction:ltr;margin-top:.7062in;margin-left:.2291in;width:20.0465in'>
 
-<p style='margin:0in'><img src="KL散度.files/image001.png" width=1907 height=967></p>
+<p style='margin:0in'><img src="KL散度.files/image001.png" width=570 height=289></p>
 
-</div>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
 
-<div style='direction:ltr;margin-top:.1388in;margin-left:0in;width:25.0472in'>
-
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>1. </span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>1. </span><span
 lang=zh-CN>自信息（惊喜）：概率的倒数</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>2. </span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>2. </span><span
 lang=zh-CN>熵（惊喜的平均值，信息量）：概率</span><span lang=en-US>*</span><span lang=zh-CN>惊喜，用于</span><span
 style='font-weight:bold' lang=zh-CN>衡量分布的不确定性大小。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>3.</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>3.</span><span
 lang=zh-CN>交叉熵（</span><span lang=en-US> wrong belief</span><span lang=zh-CN>下的惊喜的平均值，用另一个分布进行编码的信息损失量）：</span><span
 lang=en-US>H(P,Q)</span><span lang=zh-CN>是</span><span lang=en-US>P</span><span
 lang=zh-CN>的概率</span><span lang=en-US>*Q</span><span lang=zh-CN>的惊喜值，</span><span
@@ -61,57 +59,57 @@ style='font-weight:bold' lang=zh-CN>是不同的。</span><span lang=en-US> </sp
 style='font-weight:bold' lang=zh-CN>交叉熵也没有对称性。</span></p>
 
 <p><code style='margin:0in;margin-left:1.125in;font-family:Consolas;font-size:
-36.0pt'>input = torch.tensor([[ 1.1973,<span style='mso-spacerun:yes'> 
+12.0pt'>input = torch.tensor([[ 1.1973,<span style='mso-spacerun:yes'> 
 </span>0.7670, -0.2514,<span style='mso-spacerun:yes'>  </span>1.6228,
 -1.4611],</code></p>
 
 <p><code style='margin:0in;margin-left:1.125in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>[ 0.5193,<span
+12.0pt'><span style='mso-spacerun:yes'>        </span>[ 0.5193,<span
 style='mso-spacerun:yes'>  </span>0.6425, -1.0573, -0.4303,<span
 style='mso-spacerun:yes'>  </span>0.2234],</code></p>
 
 <p><code style='margin:0in;margin-left:1.125in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>[ 1.4941, -2.3918,<span
+12.0pt'><span style='mso-spacerun:yes'>        </span>[ 1.4941, -2.3918,<span
 style='mso-spacerun:yes'>  </span>0.3820,<span style='mso-spacerun:yes'> 
 </span>1.0978, -0.6612]], requires_grad=False)</code></p>
 
 <p><code style='margin:0in;margin-left:1.125in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:1.125in;font-family:Consolas;font-size:
-36.0pt'>target = torch.tensor([[0.0626, 0.2186, 0.3879, 0.2348, 0.0960],</code></p>
+12.0pt'>target = torch.tensor([[0.0626, 0.2186, 0.3879, 0.2348, 0.0960],</code></p>
 
 <p><code style='margin:0in;margin-left:1.125in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>[0.1350, 0.5222, 0.0936,
+12.0pt'><span style='mso-spacerun:yes'>        </span>[0.1350, 0.5222, 0.0936,
 0.1046, 0.1446],</code></p>
 
 <p><code style='margin:0in;margin-left:1.125in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>[0.0925, 0.1738, 0.2922,
+12.0pt'><span style='mso-spacerun:yes'>        </span>[0.0925, 0.1738, 0.2922,
 0.1807, 0.2607]], requires_grad=False)</code></p>
 
-<p><code style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</code></p>
+<p><code style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:1.125in;font-family:Consolas;font-size:
-36.0pt'>loss = nn.CrossEntropyLoss()</code></p>
+12.0pt'>loss = nn.CrossEntropyLoss()</code></p>
 
 <p><code style='margin:0in;margin-left:1.125in;font-family:Consolas;font-size:
-36.0pt'>loss(input, target),loss(target, input)</code></p>
+12.0pt'>loss(input, target),loss(target, input)</code></p>
 
-<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:1.125in;font-family:微软雅黑;font-size:12.0pt'><span
 style='font-weight:bold'>(tensor(1.9742), tensor(0.8449))</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>4.KL</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>4.KL</span><span
 lang=zh-CN>散度：</span><span style='font-weight:bold' lang=zh-CN>和距离不同，</span><span
 style='font-weight:bold' lang=en-US>KL</span><span style='font-weight:bold'
 lang=zh-CN>散度没有对称性，</span><span lang=en-US>KL(P|Q) = H(P,Q)-H(Q)</span><span
 lang=zh-CN>，</span><span lang=en-US>KL(Q|P) = H(Q,P)-H(P)</span><span
 lang=zh-CN>，分为前向和后向。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>对于离散分布的</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>对于离散分布的</span><span
 lang=en-US>KL</span><span lang=zh-CN>散度，需要对所有可能的结果求和，对于语言模型来说，这些可能的结果是</span><span
 lang=en-US>vocab</span><span lang=zh-CN>中的所有的</span><span lang=en-US>token</span><span
 lang=zh-CN>，而现代模型可以拥有超过</span><span lang=en-US>20</span><span lang=zh-CN>万个</span><span
@@ -119,34 +117,33 @@ lang=en-US>token</span><span lang=zh-CN>的</span><span lang=en-US>vocab</span><
 lang=zh-CN>；对于连续分布来说，除非是高斯分布，否则</span><span lang=en-US> </span><span
 lang=zh-CN>没有闭式解。因此需要一种有效估计</span><span lang=en-US>KL</span><span lang=zh-CN>散度的方法，</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>将</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>将</span><span
 lang=en-US>KL</span><span lang=zh-CN>散度写成期望的形式，然后用蒙特卡洛采样，用平均值来估计</span><span
 lang=en-US>KL</span><span lang=zh-CN>散度。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in'><img src="KL散度.files/image002.jpg" width=2105 height=638></p>
+<p style='margin:0in'><img src="KL散度.files/image002.jpg" width=621 height=188></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>这个估计是无偏的，即偏差很小，但方差很大，如下图所示，</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>这个估计是无偏的，即偏差很小，但方差很大，如下图所示，</p>
 
-<p style='margin:0in'><img src="KL散度.files/image003.jpg" width=2086 height=692></p>
+<p style='margin:0in'><img src="KL散度.files/image003.jpg" width=612 height=203></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>换一种估计方式，偏差大，方差小</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>换一种估计方式，偏差大，方差小</p>
 
-<p style='margin:0in'><img src="KL散度.files/image004.png" width=2147 height=995></p>
+<p style='margin:0in'><img src="KL散度.files/image004.png" width=623 height=289></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>再换一种估计方式，此时偏差和方差都很小，</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>再换一种估计方式，此时偏差和方差都很小，</p>
 
-<p style='margin:0in'><img src="KL散度.files/image005.jpg" width=2185
-height=1177></p>
+<p style='margin:0in'><img src="KL散度.files/image005.jpg" width=627 height=338></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
 </div>
 

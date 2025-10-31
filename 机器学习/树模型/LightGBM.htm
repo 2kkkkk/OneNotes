@@ -10,20 +10,20 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="LightGBM.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:23.8784in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:23.5194in'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:.6104in;width:1.8562in'>
+<div style='direction:ltr;margin-top:0in;margin-left:.3354in;width:1.8562in'>
 
 <p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'><span lang=en-US>L</span><span
 lang=zh-CN>ight</span><span lang=en-US>GBM</span></p>
 
 </div>
 
-<div style='direction:ltr;margin-top:.0423in;margin-left:.6104in;width:1.5979in'>
+<div style='direction:ltr;margin-top:.0423in;margin-left:.3354in;width:1.5979in'>
 
 <p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
 Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
@@ -34,133 +34,137 @@ style='font-family:Calibri'>25</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:23.8784in'>
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:23.5194in'>
 
 <ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold' lang=en-US>LGB</span><span style='font-weight:bold'
  lang=zh-CN>的分桶策略：</span></p>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>LightGBM的特征分桶（Binning）是&nbsp;在整个模型训练之前，预处理阶段一次性完成的。也就是说：</span></p>
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>LightGBM的特征分桶（Binning）是&nbsp;在整个模型训练之前，预处理阶段一次性完成的。也就是说：</span></p>
  <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
+  0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
   <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      color:#0F1115'><span style='font-family:quote-cjk-patch;font-size:36.0pt;
+      color:#0F1115'><span style='font-family:quote-cjk-patch;font-size:12.0pt;
       font-weight:normal;font-style:normal;font-family:quote-cjk-patch;
-      font-size:36.0pt;background:white'>不是在每次构建树之前进行分桶。</span></li>
+      font-size:12.0pt;background:white'>不是在每次构建树之前进行分桶。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>更不是在每次分裂之后进行分桶。</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>更不是在每次分裂之后进行分桶。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>分桶完成后，在整个训练过程中，每个特征的桶边界都是固定不变的。</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>分桶完成后，在整个训练过程中，每个特征的桶边界都是固定不变的。</span></li>
  </ol>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>这是一种“一次分桶，全程使用”的策略，这也是其高效的关键原因之一。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>LightGBM使用的不是等宽分桶（每个桶的数值范围固定），而是采用了一种基于分位数的近似算法，<span
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>这是一种“一次分桶，全程使用”的策略，这也是其高效的关键原因之一。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>LightGBM使用的不是等宽分桶（每个桶的数值范围固定），而是采用了一种基于分位数的近似算法，<span
  style='font-weight:bold'>力求让每个桶里的样本数量尽量均匀</span>。但它又不仅仅是简单的分位数，还做了很多工程优化。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>算法会设定一个最大桶数
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>算法会设定一个最大桶数
  max_bin（默认是255）。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>它的目标是<span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>它的目标是<span
  style='font-weight:bold'>将排序后的特征值分布划分为最多 max_bin 个桶</span>，并确定 max_bin - 1
  个切割点（桶边界）。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>这个过程是自适应的，因为它完全依赖于当前特征值的实际分布。<span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>这个过程是自适应的，因为它完全依赖于当前特征值的实际分布。<span
  style='font-weight:bold'>对于分布密集的区域，桶的宽度会较窄；对于分布稀疏的区域（如长尾部分），桶的宽度会较宽</span>。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#0F1115'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#0F1115'><span
  style='font-weight:bold;background:lime;mso-highlight:lime'>特征分桶（binning，即确定桶的边界）和直方图构建（histogram
  construction，即累积统计信息）是两个不同的步骤！！！！</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
  <p style='margin:0in;margin-left:3.0in'><img src="LightGBM.files/image001.jpg"
- width=1477 height=1540></p>
- <p style='margin-top:24pt;margin-bottom:12pt;font-size:36.0pt;color:#0F1115'><span
- style='font-weight:bold;font-family:quote-cjk-patch;background:white'
- lang=zh-CN>1. 特征分桶（Binning）是训练前一次性完成的，特征分桶的结果即</span><span style='font-weight:
- bold;font-family:quote-cjk-patch;background:lime;mso-highlight:lime'
- lang=zh-CN>I.f[k][j].bin，指示了第</span><span style='font-weight:bold;font-family:
- 微软雅黑;background:lime;mso-highlight:lime' lang=en-US>j</span><span
+ width=456 height=476></p>
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:21pt;font-size:12.0pt;
+ color:#0F1115'><span style='font-weight:bold;font-family:quote-cjk-patch;
+ background:white' lang=zh-CN>1. 特征分桶（Binning）是训练前一次性完成的，特征分桶的结果即</span><span
+ style='font-weight:bold;font-family:quote-cjk-patch;background:lime;
+ mso-highlight:lime' lang=zh-CN>I.f[k][j].bin，指示了第</span><span
  style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
- lang=zh-CN>个样本，第k个特征的</span><span style='font-weight:bold;font-family:微软雅黑;
- background:lime;mso-highlight:lime' lang=en-US>bin</span></p>
+ lang=en-US>j</span><span style='font-weight:bold;font-family:微软雅黑;background:
+ lime;mso-highlight:lime' lang=zh-CN>个样本，第k个特征的</span><span style='font-weight:
+ bold;font-family:微软雅黑;background:lime;mso-highlight:lime' lang=en-US>bin</span></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>时机：在真正开始构建第一棵决策树之前，LightGBM会对整个训练数据集进行预处理，为每个特征计算桶的边界（bin
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>时机：在真正开始构建第一棵决策树之前，LightGBM会对整个训练数据集进行预处理，为每个特征计算桶的边界（bin
       edges）。这个过程只发生一次。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>目的：将连续特征值离散化为固定的桶索引（例如，0到255之间的整数）。桶边界基于特征值的分布（如近似分位数）自适应确定。</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>目的：将连续特征值离散化为固定的桶索引（例如，0到255之间的整数）。桶边界基于特征值的分布（如近似分位数）自适应确定。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>结果：每个样本的特征值都被映射到一个固定的桶索引。在您的算法片段中，</span><span
-      style='font-weight:bold;font-family:quote-cjk-patch;font-size:36.0pt;
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>结果：每个样本的特征值都被映射到一个固定的桶索引。在您的算法片段中，</span><span
+      style='font-weight:bold;font-family:quote-cjk-patch;font-size:12.0pt;
       background:lime;mso-highlight:lime'>I.f[k][j].bin&nbsp;就是指特征k的样本j的预计算桶索引。这意味着分桶结果已经存储在训练数据对象I中。</span></li>
  </ul>
- <p style='margin-top:24pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>2.
- 直方图构建（Histogram Construction）是每次分裂时进行的</span></p>
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:21pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+ background:white'>2. 直方图构建（Histogram Construction）是每次分裂时进行的</span></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>时机：在树的每一层，对于每个节点，算法需要为每个特征构建直方图（如Algorithm
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>时机：在树的每一层，对于每个节点，算法需要为每个特征构建直方图（如Algorithm
       1所示）。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>目的：累积当前节点中样本的统计信息（如梯度之和y和样本数n）到每个桶中。直方图是基于预计算的桶索引构建的。</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>目的：累积当前节点中样本的统计信息（如梯度之和y和样本数n）到每个桶中。直方图是基于预计算的桶索引构建的。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>过程：如算法所示，对于每个特征k，遍历当前节点的样本索引usedRows，从</span><span
-      style='font-weight:bold;font-family:quote-cjk-patch;font-size:36.0pt;
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>过程：如算法所示，对于每个特征k，遍历当前节点的样本索引usedRows，从</span><span
+      style='font-weight:bold;font-family:quote-cjk-patch;font-size:12.0pt;
       background:lime;mso-highlight:lime'>I.f[k][j].bin获取桶索引</span><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>，然后更新直方图H的对应桶的统计信息。</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>，然后更新直方图H的对应桶的统计信息。</span></li>
  </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold'>问题：</span>那么xgboost的加权分位数方法之所以慢，就是因为它需要在每次构建树之前（global）或节点分裂之前（local），既计算特征分桶，又构建直方图，而lightgbm只需要构建直方图就行了。我的理解
  对吗</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold' lang=en-US>deepseek</span><span style='font-weight:
  bold' lang=zh-CN>回答：</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>您的理<span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>您的理<span
  style='font-weight:bold'>解非常准确，完全正确！&nbsp;这正</span>是两个算法在效率上产生差异的核心原因。</p>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:28.0pt;color:#0F1115'><span style='background:white'>让我再帮您清晰地总结一下：</span></p>
- <p style='margin-top:24pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:28.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>XGBoost的加权分位数方法为什么相对较慢：</span></p>
- <p style='margin:0in;font-family:quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>让我再帮您清晰地总结一下：</span></p>
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:21pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+ background:white'>XGBoost的加权分位数方法为什么相对较慢：</span></p>
+ <p style='margin:0in;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
  style='background:white'>动态分桶：需要在每次需要候选分裂点时（无论是global每棵树前还是local每个节点前）重新计算分桶边界。</span></p>
- <p style='margin:0in;font-family:quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span
+ <p style='margin:0in;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
  style='background:white'>依据变化：分桶的依据是当前节点样本的二阶梯度分布，这个分布在每棵树、每个节点都不同。</span></p>
- <p style='margin:0in;font-family:quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span
+ <p style='margin:0in;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
  style='background:white'>双重开销：既要计算加权分位数来确定桶边界，又要构建直方图来累积统计量。</span></p>
- <p style='margin-top:24pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:28.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>LightGBM的直方图方法为什么更快：</span></p>
- <p style='margin:0in;font-family:quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:21pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+ background:white'>LightGBM的直方图方法为什么更快：</span></p>
+ <p style='margin:0in;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
  style='background:white'>静态分桶：在整个训练开始前一次性完成分桶，桶边界固定不变。</span></p>
- <p style='margin:0in;font-family:quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span
+ <p style='margin:0in;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
  style='background:white'>依据固定：分桶只依赖于特征值的原始分布，与梯度无关。</span></p>
- <p style='margin:0in;font-family:quote-cjk-patch;font-size:28.0pt;color:#0F1115'><span
+ <p style='margin:0in;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
  style='background:white'>单一开销：在节点分裂时，只需要构建直方图（简单的整数累加操作），无需重新分桶。</span></p>
- <p style='margin-top:24pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:28.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>更形象的比喻：</span></p>
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:21pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+ background:white'>更形象的比喻：</span></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>XGBoost（加权分位数）：像是一个厨师每次做菜时，都要根据食材的新鲜度（梯度）重新调整切菜的刀法（分桶边界），然后再切菜。</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>XGBoost（加权分位数）：像是一个厨师每次做菜时，都要根据食材的新鲜度（梯度）重新调整切菜的刀法（分桶边界），然后再切菜。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>LightGBM（直方图）：像是提前准备好了一套标准尺寸的切菜模具（固定分桶），每次做菜时直接把食材放进模具里按压即可。</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>LightGBM（直方图）：像是提前准备好了一套标准尺寸的切菜模具（固定分桶），每次做菜时直接把食材放进模具里按压即可。</span></li>
  </ul>
- <p style='margin-top:24pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:28.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>补充说明：</span></p>
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:21pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+ background:white'>补充说明：</span></p>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:28.0pt;color:#0F1115'><span style='background:white'>XGBoost也意识到了这个问题，因此在实践中：</span></p>
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>XGBoost也意识到了这个问题，因此在实践中：</span></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>通常使用全局模式（global）&nbsp;而非局部模式（local），即在构建每棵树之前计算一次候选分裂点，而不是在每个节点都计算。</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>通常使用全局模式（global）&nbsp;而非局部模式（local），即在构建每棵树之前计算一次候选分裂点，而不是在每个节点都计算。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:28.0pt;background:white'>即使这样，每棵树前的重新分桶开销仍然比LightGBM的整个训练前一次性分桶要大得多。</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>即使这样，每棵树前的重新分桶开销仍然比LightGBM的整个训练前一次性分桶要大得多。</span></li>
  </ul>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:28.0pt;color:#0F1115'><span style='background:white'>您的理解抓住了问题的本质：LightGBm通过将昂贵的&quot;分桶&quot;操作从训练循环中移出，变为一次性预处理，从而获得了巨大的效率优势。&nbsp;而XGBoost的加权分位数虽然理论更优美，但计算开销确实更大。</span></p>
- <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:28.0pt;
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>您的理解抓住了问题的本质：LightGBm通过将昂贵的&quot;分桶&quot;操作从训练循环中移出，变为一次性预处理，从而获得了巨大的效率优势。&nbsp;而XGBoost的加权分位数虽然理论更优美，但计算开销确实更大。</span></p>
+ <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:12.0pt;
  color:#0F1115'>&nbsp;</p>
- <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:12.0pt'><span
  lang=zh-CN>It costs </span><span style='font-weight:bold' lang=zh-CN>O(#data ×
  #feature)</span><span lang=zh-CN> for </span><span style='font-weight:bold'
  lang=zh-CN>histogram building</span><span lang=zh-CN> and O(#bin × #feature)
@@ -178,9 +182,9 @@ style='font-family:Calibri'>25</span><span style='font-family:微软雅黑'>日<
  lang=en-US> </span><span style='font-weight:bold;color:#0F1115;background:
  white' lang=zh-CN>log </span><span style='font-weight:bold' lang=zh-CN>#data</span><span
  style='font-weight:bold;color:#0F1115;background:white' lang=zh-CN>)。</span></p>
- <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:28.0pt;
+ <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:12.0pt;
  color:#0F1115'>&nbsp;</p>
- <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:12.0pt'><span
  style='color:#0F1115;background:white' lang=en-US>LGB</span><span
  style='color:#0F1115;background:white' lang=zh-CN>首先通过一次性特征分桶，省去了频繁的特征分桶计算</span><span
  style='font-weight:bold;color:#0F1115;background:white' lang=zh-CN>O(</span><span
@@ -195,11 +199,11 @@ style='font-family:Calibri'>25</span><span style='font-family:微软雅黑'>日<
  style='font-weight:bold;color:#0F1115;background:white' lang=en-US>EFB</span><span
  style='font-weight:bold;color:#0F1115;background:white' lang=zh-CN>，进一步减少</span><span
  lang=zh-CN> #data or #feature样本和特征数量，来加速。</span></p>
- <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:48.0pt'
+ <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:12.0pt'
  lang=en-US><span style='font-weight:bold'>GOSS</span></p>
- <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:12.0pt'><span
  lang=zh-CN>GOSS keeps all the instances with large gradients and performs
  random sampling on the instances with small gradients. In order to compensate
  the influence to the data distribution, when computing the information gain,
@@ -212,158 +216,163 @@ style='font-family:Calibri'>25</span><span style='font-family:微软雅黑'>日<
  calculating the information gain. By doing so, we put more focus on the
  under-trained instances without changing the original data distribution by
  much.</span></p>
- <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:12.0pt'><span
  lang=zh-CN>对大梯度样本采样a</span><span lang=en-US>%</span><span lang=zh-CN>，对小梯度样本理论上也应该采样</span><span
  lang=en-US> a%</span><span lang=zh-CN>，但是小梯度的样本数量可能很多，想采样</span><span
  lang=en-US> </span><span lang=zh-CN>比例大于a</span><span lang=en-US>%</span><span
  lang=zh-CN>，但是就改变了大梯度样本数量和小梯度样本数量的比例了，所以乘以1−a</span><span lang=en-US>/</span><span
  lang=zh-CN> b </span><span lang=en-US>,</span><span lang=zh-CN>不改变分布。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold' lang=en-US>1. </span><span style='font-weight:bold'
  lang=zh-CN>采样是在每棵树学习之前进行的。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>从算法伪代码可以看出：</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>外层循环 for i = 1 to d do
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>从算法伪代码可以看出：</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>外层循环 for i = 1 to d do
  对应 boosting 的迭代次数（即树的个数）</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>在每轮迭代开始时，先计算当前模型的预测
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>在每轮迭代开始时，先计算当前模型的预测
  preds 和梯度 g</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>然后立即进行基于梯度的采样操作</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>所以GOSS是每棵树前都重新采样，而不是一次性采样后所有树都用同样的子集。</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>然后立即进行基于梯度的采样操作</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>所以GOSS是每棵树前都重新采样，而不是一次性采样后所有树都用同样的子集。</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold'>2. w[randSet] 的作用（核心机制）</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>w[randSet] ×= fact
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>w[randSet] ×= fact
  这一行是GOSS算法的关键补偿机制，它的作用非常重要：</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>问题背景：</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>我们保留了全部大梯度样本（topSet）</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>但只随机采样了一小部分小梯度样本（randSet，比例为b）</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>如果直接这样训练，会严重高估大梯度样本的贡献，扭曲数据分布</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>解决方案：权重补偿</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>对随机采样的小梯度样本，通过乘以权重因子
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>问题背景：</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>我们保留了全部大梯度样本（topSet）</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>但只随机采样了一小部分小梯度样本（randSet，比例为b）</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>如果直接这样训练，会严重高估大梯度样本的贡献，扭曲数据分布</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>解决方案：权重补偿</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>对随机采样的小梯度样本，通过乘以权重因子
  fact = (1-a)/b 来补偿</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>数学原理：让小梯度样本的&quot;有效数量&quot;恢复到大致的原始比例</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>具体计算例子：</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>假设有1000个样本，设置 a=0.1,
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>数学原理：让小梯度样本的&quot;有效数量&quot;恢复到大致的原始比例</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>具体计算例子：</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>假设有1000个样本，设置 a=0.1,
  b=0.2：</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>topN = 0.1 × 1000 =
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>topN = 0.1 × 1000 =
  100（保留全部100个大梯度样本）</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>randN = 0.2 × 1000 =
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>randN = 0.2 × 1000 =
  200（从900个小梯度样本中随机取200个）</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>fact = (1-0.1)/0.2 =
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>fact = (1-0.1)/0.2 =
  4.5</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>补偿效果：</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>大梯度样本：100个，权重都为1 →
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>补偿效果：</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>大梯度样本：100个，权重都为1 →
  有效数量 = 100</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>小梯度样本：200个，每个权重4.5 →
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>小梯度样本：200个，每个权重4.5 →
  有效数量 ≈ 200 × 4.5 = 900</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>这样大梯度:小梯度的比例就从 100:200
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>这样大梯度:小梯度的比例就从 100:200
  恢复到了接近原始的 100:900</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>3. 权重在训练中的使用</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>在伪代码的最后一行：</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>python</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>newModel ←
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>3. 权重在训练中的使用</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>在伪代码的最后一行：</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>python</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>newModel ←
  L(I[usedSet], −g[usedSet], w[usedSet])</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>权重 w[usedSet] 会传递给弱学习器
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>权重 w[usedSet] 会传递给弱学习器
  L（通常是决策树），在以下地方使用：</p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>计算梯度统计量：构建直方图时，梯度值会乘以样本权重</span></li>
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>计算梯度统计量：构建直方图时，梯度值会乘以样本权重</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>计算信息增益：分裂点评估时考虑权重</span></li>
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>计算信息增益：分裂点评估时考虑权重</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt'>计算叶节点值：叶节点的输出值计算也考虑权重</span></li>
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt'>计算叶节点值：叶节点的输出值计算也考虑权重</span></li>
  </ul>
- <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:48.0pt'
+ <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:12.0pt'
  lang=en-US><span style='font-weight:bold'>EFB</span></p>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>EFB是LightGBM的三大核心创新之一（另外两个是GOSS和直方图算法），它专门针对高维稀疏特征进行优化，能够显著减少特征数量，提升训练速度。</span></p>
- <p style='margin-top:24pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>1.
- EFB要解决什么问题？</span></p>
- <p style='margin-top:24pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>高维数据的挑战：</span></p>
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>EFB是LightGBM的三大核心创新之一（另外两个是GOSS和直方图算法），它专门针对高维稀疏特征进行优化，能够显著减少特征数量，提升训练速度。</span></p>
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:24pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+ background:white'>1. EFB要解决什么问题？</span></p>
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:21pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+ background:white'>高维数据的挑战：</span></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>特征维度可能达到数万甚至数百万（如one-hot编码后的类别特征）</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>特征维度可能达到数万甚至数百万（如one-hot编码后的类别特征）</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>但很多特征是互斥的（exclusive）
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>但很多特征是互斥的（exclusive）
       - 即它们不会同时取非零值</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>传统方法需要为每个特征单独处理，计算开销大</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>传统方法需要为每个特征单独处理，计算开销大</span></li>
  </ul>
- <p style='margin-top:24pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>典型例子：One-Hot编码</span></p>
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:21pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+ background:white'>典型例子：One-Hot编码</span></p>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>假设有&quot;城市&quot;特征，取值为{北京,上海,广州,深圳}，one-hot编码后得到4个特征：</span></p>
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>假设有&quot;城市&quot;特征，取值为{北京,上海,广州,深圳}，one-hot编码后得到4个特征：</span></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>城市_北京:
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>城市_北京:
       [1,0,0,0]</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>城市_上海:
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>城市_上海:
       [0,1,0,0]</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>城市_广州:
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>城市_广州:
       [0,0,1,0]</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>城市_深圳:
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>城市_深圳:
       [0,0,0,1]</span></li>
  </ul>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>这些特征是互斥的&nbsp;-
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>这些特征是互斥的&nbsp;-
  每个样本只有一个城市，所以只有一个特征为1，其他为0。</span></p>
- <p style='margin-top:24pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>2.
- EFB的核心思想</span></p>
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:24pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+ background:white'>2. EFB的核心思想</span></p>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>将互斥的特征捆绑（bundle）成一个新的复合特征，从而减少特征数量。</span></p>
- <p style='margin-top:24pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>基本概念：</span></p>
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>将互斥的特征捆绑（bundle）成一个新的复合特征，从而减少特征数量。</span></p>
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:21pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+ background:white'>基本概念：</span></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>互斥特征：在任意样本中，最多只有一个特征取非零值</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>互斥特征：在任意样本中，最多只有一个特征取非零值</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>特征捆绑：将多个互斥特征合并成一个特征</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>特征捆绑：将多个互斥特征合并成一个特征</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>偏移量：为每个原始特征在捆绑特征中分配不同的数值区间</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>偏移量：为每个原始特征在捆绑特征中分配不同的数值区间</span></li>
  </ul>
- <p style='margin-top:24pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>3.
- EFB的具体实现步骤</span></p>
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:24pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+ background:white'>3. EFB的具体实现步骤</span></p>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>EFB算法分为两个主要阶段：</span></p>
- <p style='margin-top:24pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>阶段一：寻找可捆绑的特征对（图着色问题）</span></p>
- <p style='margin-top:12pt;margin-bottom:6pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>步骤1: 构建冲突图</span></p>
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>EFB算法分为两个主要阶段：</span></p>
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:21pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+ background:white'>阶段一：寻找可捆绑的特征对（图着色问题）</span></p>
+ <p style='margin-top:12pt;margin-bottom:6pt;line-height:21pt;font-family:quote-cjk-patch;
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>步骤1: 构建冲突图</span></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>将每个特征视为图的一个节点</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>将每个特征视为图的一个节点</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>如果两个特征不是互斥的（即存在样本中同时取非零值），则在它们之间添加边</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>如果两个特征不是互斥的（即存在样本中同时取非零值），则在它们之间添加边</span></li>
  </ul>
- <p style='margin-top:12pt;margin-bottom:6pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>步骤2: 图着色问题</span></p>
+ <p style='margin-top:12pt;margin-bottom:6pt;line-height:21pt;font-family:quote-cjk-patch;
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>步骤2: 图着色问题</span></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>问题：用最少的颜色给所有节点着色，相邻节点不能同色</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>问题：用最少的颜色给所有节点着色，相邻节点不能同色</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>每个颜色对应一个特征束（bundle）</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>每个颜色对应一个特征束（bundle）</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-weight:bold;font-family:quote-cjk-patch;font-size:36.0pt;
+      style='font-weight:bold;font-family:quote-cjk-patch;font-size:12.0pt;
       background:white'>由于图着色是NP难问题，LightGBM使用贪心近似算法</span></li>
  </ul>
- <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>步骤3: 贪心捆绑算法</span></p>
- <p style='margin:0in;font-family:Menlo;font-size:36.0pt;color:#0F1115'>python</p>
- <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'><span
+ <p style='margin-top:12pt;margin-bottom:12pt;line-height:21pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>步骤3:
+ 贪心捆绑算法</span></p>
+ <p style='margin:0in;font-family:Menlo;font-size:12.0pt;color:#0F1115'>python</p>
+ <p style='margin:0in;font-family:quote-cjk-patch;font-size:12.0pt'><span
  style='font-weight:bold;font-style:italic;color:#96979D'># 伪代码</span><span
  style='font-weight:bold;color:#0F1115'><br>
   </span><span style='font-weight:bold;color:#B76B01'>1.</span><span
@@ -383,277 +392,323 @@ style='font-family:Calibri'>25</span><span style='font-family:微软雅黑'>日<
  bold;color:#4078F2'>-</span><span style='font-weight:bold;color:#0F1115'>
  否则创建新的特征束</span></p>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>冲突阈值：允许的少量冲突（通常很小，如1-3），因为完全互斥很难保证。</span></p>
- <p style='margin-top:24pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>阶段二：合并特征到捆绑中</span></p>
+ font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>冲突阈值：允许的少量冲突（通常很小，如1-3），因为完全互斥很难保证。</span></p>
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:21pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+ background:white'>阶段二：合并特征到捆绑中</span></p>
+ <p style='margin-top:12pt;margin-bottom:12pt;line-height:21pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>步骤1:
+ 为每个特征分配偏移量</span></p>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>步骤1: 为每个特征分配偏移量</span></p>
- <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>假设要将3个特征捆绑成一个：</span></p>
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>假设要将3个特征捆绑成一个：</span></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>特征A：原始值范围[0,
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>特征A：原始值范围[0,
       10]</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>特征B：原始值范围[0,
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>特征B：原始值范围[0,
       20]</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>特征C：原始值范围[0,
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>特征C：原始值范围[0,
       15]</span></li>
  </ul>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>分配偏移量：</span></p>
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>分配偏移量：</span></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>特征A：使用区间[0,
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>特征A：使用区间[0,
       10]</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>特征B：使用区间[11,
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>特征B：使用区间[11,
       31]（偏移量=10+1=11）</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>特征C：使用区间[32,
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>特征C：使用区间[32,
       47]（偏移量=31+1=32）</span></li>
  </ul>
+ <p style='margin-top:12pt;margin-bottom:12pt;line-height:21pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='background:white'>步骤2:
+ 合并特征值</span></p>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>步骤2: 合并特征值</span></p>
- <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>对于每个样本：</span></p>
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>对于每个样本：</span></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>如果特征A=5，特征B=0，特征C=0
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>如果特征A=5，特征B=0，特征C=0
       → 捆绑特征值=5</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>如果特征A=0，特征B=8，特征C=0
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>如果特征A=0，特征B=8，特征C=0
       → 捆绑特征值=11+8=19</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>如果特征A=0，特征B=0，特征C=12
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>如果特征A=0，特征B=0，特征C=12
       → 捆绑特征值=32+12=44</span></li>
  </ul>
- <p style='margin-top:24pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>4.
- 实际例子说明</span></p>
- <p style='margin-top:24pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>原始数据：</span></p>
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:24pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+ background:white'>4. 实际例子说明</span></p>
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:21pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+ background:white'>原始数据：</span></p>
  <div style='direction:ltr'>
  <table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
   border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
   0pt' title="" summary="">
   <tr>
-   <td style='border-width:0pt;vertical-align:top;width:1.1868in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>样本</p>
+   <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>样本</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:2.4708in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>城市_北京</p>
+   <td style='border-width:0pt;vertical-align:top;width:.9715in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>城市_北京</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:2.4708in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>城市_上海</p>
+   <td style='border-width:0pt;vertical-align:top;width:.9715in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>城市_上海</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:2.4708in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>城市_广州</p>
+   <td style='border-width:0pt;vertical-align:top;width:.9715in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>城市_广州</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:1.1868in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>年龄</p>
+   <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>年龄</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:1.1381in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>收入</p>
-   </td>
-  </tr>
-  <tr>
-   <td style='border-width:0pt;vertical-align:top;width:1.1673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>1</p>
-   </td>
-   <td style='border-width:0pt;vertical-align:top;width:2.4513in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>1</p>
-   </td>
-   <td style='border-width:0pt;vertical-align:top;width:2.4513in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>0</p>
-   </td>
-   <td style='border-width:0pt;vertical-align:top;width:2.4513in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>0</p>
-   </td>
-   <td style='border-width:0pt;vertical-align:top;width:1.1673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>25</p>
-   </td>
-   <td style='border-width:0pt;vertical-align:top;width:1.152in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>5000</p>
+   <td style='border-width:0pt;vertical-align:top;width:.5in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>收入</p>
    </td>
   </tr>
   <tr>
-   <td style='border-width:0pt;vertical-align:top;width:1.1673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>2</p>
+   <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>1</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:2.4513in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>0</p>
+   <td style='border-width:0pt;vertical-align:top;width:.952in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>1</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:2.4513in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>1</p>
+   <td style='border-width:0pt;vertical-align:top;width:.952in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>0</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:2.4513in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>0</p>
+   <td style='border-width:0pt;vertical-align:top;width:.952in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>0</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:1.1673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>30</p>
+   <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>25</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:1.152in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>8000</p>
+   <td style='border-width:0pt;vertical-align:top;width:.5in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>5000</p>
    </td>
   </tr>
   <tr>
-   <td style='border-width:0pt;vertical-align:top;width:1.1673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>3</p>
+   <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>2</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:2.4513in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>0</p>
+   <td style='border-width:0pt;vertical-align:top;width:.952in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>0</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:2.4513in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>0</p>
+   <td style='border-width:0pt;vertical-align:top;width:.952in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>1</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:2.4513in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>1</p>
+   <td style='border-width:0pt;vertical-align:top;width:.952in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>0</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:1.1673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>28</p>
+   <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>30</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:1.152in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>6000</p>
+   <td style='border-width:0pt;vertical-align:top;width:.5in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>8000</p>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>3</p>
+   </td>
+   <td style='border-width:0pt;vertical-align:top;width:.952in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>0</p>
+   </td>
+   <td style='border-width:0pt;vertical-align:top;width:.952in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>0</p>
+   </td>
+   <td style='border-width:0pt;vertical-align:top;width:.952in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>1</p>
+   </td>
+   <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>28</p>
+   </td>
+   <td style='border-width:0pt;vertical-align:top;width:.5in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>6000</p>
    </td>
   </tr>
  </table>
  </div>
- <p style='margin-top:24pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>应用EFB后：</span></p>
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:21pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+ background:white'>应用EFB后：</span></p>
  <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
+  0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
   <li value=4 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      color:#0F1115'><span style='font-family:quote-cjk-patch;font-size:36.0pt;
+      color:#0F1115'><span style='font-family:quote-cjk-patch;font-size:12.0pt;
       font-weight:normal;font-style:normal;font-family:quote-cjk-patch;
-      font-size:36.0pt;background:white'>识别互斥特征：城市相关的三个特征是互斥的</span></li>
+      font-size:12.0pt;background:white'>识别互斥特征：城市相关的三个特征是互斥的</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>创建特征束：将三个城市特征捆绑成一个&quot;城市捆绑&quot;特征</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>创建特征束：将三个城市特征捆绑成一个&quot;城市捆绑&quot;特征</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>分配偏移量：</span></li>
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>分配偏移量：</span></li>
  </ol>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>城市_北京
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>城市_北京
       → 区间[0,1]（值0-1）</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>城市_上海
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>城市_上海
       → 区间[2,3]（值2-3）</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-family:quote-cjk-patch;font-size:36.0pt;background:white'>城市_广州
+      style='font-family:quote-cjk-patch;font-size:12.0pt;background:white'>城市_广州
       → 区间[4,5]（值4-5）</span></li>
  </ul>
- <p style='margin-top:24pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>转换后数据：</span></p>
+ <p style='margin-top:24pt;margin-bottom:12pt;line-height:21pt;font-family:
+ quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;
+ background:white'>转换后数据：</span></p>
  <div style='direction:ltr'>
  <table border=0 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
   border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
   0pt' title="" summary="">
   <tr>
-   <td style='border-width:0pt;vertical-align:top;width:1.1868in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>样本</p>
+   <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>样本</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:2.2215in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>城市捆绑</p>
+   <td style='border-width:0pt;vertical-align:top;width:.8881in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>城市捆绑</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:1.1868in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>年龄</p>
+   <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>年龄</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:1.1381in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>收入</p>
-   </td>
-  </tr>
-  <tr>
-   <td style='border-width:0pt;vertical-align:top;width:1.1673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>1</p>
-   </td>
-   <td style='border-width:0pt;vertical-align:top;width:2.202in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>1</p>
-   </td>
-   <td style='border-width:0pt;vertical-align:top;width:1.1673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>25</p>
-   </td>
-   <td style='border-width:0pt;vertical-align:top;width:1.152in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>5000</p>
+   <td style='border-width:0pt;vertical-align:top;width:.5in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>收入</p>
    </td>
   </tr>
   <tr>
-   <td style='border-width:0pt;vertical-align:top;width:1.1673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>2</p>
+   <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>1</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:2.202in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>3</p>
+   <td style='border-width:0pt;vertical-align:top;width:.8687in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>1</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:1.1673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>30</p>
+   <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>25</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:1.152in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>8000</p>
+   <td style='border-width:0pt;vertical-align:top;width:.5in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>5000</p>
    </td>
   </tr>
   <tr>
-   <td style='border-width:0pt;vertical-align:top;width:1.1673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>3</p>
+   <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>2</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:2.202in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>5</p>
+   <td style='border-width:0pt;vertical-align:top;width:.8687in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>3</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:1.1673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>28</p>
+   <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>30</p>
    </td>
-   <td style='border-width:0pt;vertical-align:top;width:1.152in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt'>6000</p>
+   <td style='border-width:0pt;vertical-align:top;width:.5in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>8000</p>
+   </td>
+  </tr>
+  <tr>
+   <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>3</p>
+   </td>
+   <td style='border-width:0pt;vertical-align:top;width:.8687in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>5</p>
+   </td>
+   <td style='border-width:0pt;vertical-align:top;width:.6673in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>28</p>
+   </td>
+   <td style='border-width:0pt;vertical-align:top;width:.5in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+   <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;
+   font-size:12.0pt'>6000</p>
    </td>
   </tr>
  </table>
  </div>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>特征数量从5个减少到3个！</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>特征数量从5个减少到3个！</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
  style='font-weight:bold'>总结</span></p>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>我们可以将LightGBM的完整训练流程细化为以下几个阶段，EFB处于非常靠前的位置：</span></p>
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>我们可以将LightGBM的完整训练流程细化为以下几个阶段，EFB处于非常靠前的位置：</span></p>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>阶段一：数据预处理（一次性）</span></p>
- <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;color:#0F1115'><span
+ font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>阶段一：数据预处理（一次性）</span></p>
+ <p style='margin:0in;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
  style='background:white' lang=en-US>1 </span><span style='background:white'
  lang=zh-CN>数据加载：读取训练数据。</span></p>
- <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;color:#0F1115'><span
+ <p style='margin:0in;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
  style='background:white' lang=en-US>2 </span><span style='background:white'
  lang=zh-CN>特征分桶（Binning）：为每个连续特征计算直方图的桶边界。</span></p>
- <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;color:#0F1115'><span
+ <p style='margin:0in;font-family:quote-cjk-patch;font-size:12.0pt;color:#0F1115'><span
  style='background:white' lang=en-US>3 </span><span style='background:white'
  lang=zh-CN>Exclusive Feature Bundling (EFB)：识别互斥特征，创建特征束，并为每个原始特征分配偏移量。</span></p>
  <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
   margin-bottom:0in'>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-style:italic;font-family:quote-cjk-patch;font-size:36.0pt;
+      style='font-style:italic;font-family:quote-cjk-patch;font-size:12.0pt;
       background:white'>输入</span><span style='font-family:quote-cjk-patch;
-      font-size:36.0pt;background:white'>：原始特征矩阵。</span></li>
+      font-size:12.0pt;background:white'>：原始特征矩阵。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#0F1115'><span
-      style='font-style:italic;font-family:quote-cjk-patch;font-size:36.0pt;
+      style='font-style:italic;font-family:quote-cjk-patch;font-size:12.0pt;
       background:white'>输出</span><span style='font-family:quote-cjk-patch;
-      font-size:36.0pt;background:white'>：一个“捆绑特征”的映射关系，以及一个新的、特征数量更少的“虚拟”特征矩阵。</span></li>
+      font-size:12.0pt;background:white'>：一个“捆绑特征”的映射关系，以及一个新的、特征数量更少的“虚拟”特征矩阵。</span></li>
  </ul>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>阶段二：Boosting迭代（循环执行）</span></p>
+ font-size:12.0pt;color:#0F1115'><span style='font-weight:bold;background:white'>阶段二：Boosting迭代（循环执行）</span></p>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white' lang=en-US>4 </span><span
+ font-size:12.0pt;color:#0F1115'><span style='background:white' lang=en-US>4 </span><span
  style='background:white' lang=zh-CN>对于每轮迭代（对于每棵树）：</span></p>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>a.&nbsp;计算梯度（如果使用GOSS，则在此步骤后进行采样）。</span></p>
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>a.&nbsp;计算梯度（如果使用GOSS，则在此步骤后进行采样）。</span></p>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>b.&nbsp;构建决策树：在构建树的过程中，当需要为节点寻找最佳分裂特征时，算法会遍历所有特征束。</span></p>
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>b.&nbsp;构建决策树：在构建树的过程中，当需要为节点寻找最佳分裂特征时，算法会遍历所有特征束。</span></p>
  <p style='margin-top:12pt;margin-bottom:12pt;font-family:quote-cjk-patch;
- font-size:36.0pt;color:#0F1115'><span style='background:white'>c.&nbsp;在特征束内部分裂：对于每个特征束，算法会在其内部检查每一个原始特征的最佳分裂点（利用偏移量来区分不同特征的值域）。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:48.0pt'
+ font-size:12.0pt;color:#0F1115'><span style='background:white'>c.&nbsp;在特征束内部分裂：对于每个特征束，算法会在其内部检查每一个原始特征的最佳分裂点（利用偏移量来区分不同特征的值域）。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin-top:12pt;margin-bottom:12pt;font-family:微软雅黑;font-size:12.0pt'
  lang=en-US>&nbsp;</p>
 </ul>
 

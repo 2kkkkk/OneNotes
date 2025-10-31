@@ -10,7 +10,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="CS336-2025-lec2.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
@@ -33,140 +33,656 @@ style='font-family:Calibri'>8</span><span style='font-family:微软雅黑'>日</
 
 </div>
 
-<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:23.8194in'><nobr><img
-src="CS336-2025-lec2.files/image001.png" width=2880 height=1440
-alt="PyTorch, resource accounting&#13;&#10;&#13;&#10;1.&#13;&#10;Question: How long would it take to train a 70B parameter model on 15T tokens on 1024 H100s?&#13;&#10;total_flops = 6 * 70e9 * 15e12 # @inspect total_flops #这里为什么是6，因为前向传播的计算量是2倍参数量*token数量，反向传播的计算量是4倍的参数量*token数量。&#13;&#10;assert h100_flop_per_sec == 1979e12 / 2&#13;&#10;mfu = 0.5&#13;&#10;flops_per_day = h100_flop_per_sec * mfu * 1024 * 60 * 60 * 24 # @inspect flops_per_day&#13;&#10;days = total_flops / flops_per_day # @inspect days&#13;&#10;&#13;&#10;&#13;&#10;Question: What's the largest model that can you can train on 8 H100s using AdamW (naively)?&#13;&#10;"><img
-src="CS336-2025-lec2.files/image002.png" width=550 height=1440
-alt="Question: How long would it take to train a 70B parameter model on 15T tokens on 1024 H100s?&#13;&#10;total_flops = 6 * 70e9 * 15e12 # @inspect total_flops #这里为什么是6，因为前向传播的计算量是2倍参数量*token数量，反向传播的计算量是4倍的参数量*token数量。&#13;&#10;Question: What's the largest model that can you can train on 8 H100s using AdamW (naively)?&#13;&#10;"><br>
-<img src="CS336-2025-lec2.files/image003.png" width=2880 height=1440
-alt="Question: What's the largest model that can you can train on 8 H100s using AdamW (naively)?&#13;&#10;h100_bytes = 80e9 # @inspect h100_bytes&#13;&#10;bytes_per_parameter = 4 + 4 + (4 + 4) # parameters, gradients, optimizer state @inspect bytes_per_parameter&#13;&#10;num_parameters = (h100_bytes * 8) / bytes_per_parameter # @inspect num_parameters&#13;&#10;Caveat 1: we are naively using float32 for parameters and gradients. We could also use bf16 for parameters and gradients (2 + 2) and keep an extra float32 copy of the parameters (4). This doesn't save memory, but is faster. &nbsp;&#13;&#10;﷟HYPERLINK &quot;https://arxiv.org/abs/1910.02054&quot;[Rajbhandari+ 2019]&#13;&#10;Caveat 2: activations are not accounted for (depends on batch size and sequence length).&#13;&#10;&#13;&#10;&#13;&#10;One matrix in the feedforward layer of GPT-3:&#13;&#10;assert get_memory_usage(torch.empty(12288 * 4, 12288)) == 2304 * 1024 * 1024  # 2.3 GB 一个全连接层就是2.3G&#13;&#10;&#13;&#10;&#13;&#10;"><img
-src="CS336-2025-lec2.files/image004.png" width=550 height=1440
-alt="Question: What's the largest model that can you can train on 8 H100s using AdamW (naively)?&#13;&#10;bytes_per_parameter = 4 + 4 + (4 + 4) # parameters, gradients, optimizer state @inspect bytes_per_parameter&#13;&#10;Caveat 1: we are naively using float32 for parameters and gradients. We could also use bf16 for parameters and gradients (2 + 2) and keep an extra float32 copy of the parameters (4). This doesn't save memory, but is faster. &nbsp;&#13;&#10;assert get_memory_usage(torch.empty(12288 * 4, 12288)) == 2304 * 1024 * 1024  # 2.3 GB 一个全连接层就是2.3G&#13;&#10;"><br>
-<img src="CS336-2025-lec2.files/image005.png" width=2880 height=1440
-alt="&#13;&#10;未命名图片.jpg 计算机生成了可选文字:&#10;floatl6&#10;[Wikipedia]&#10;IEEEhalf-precision16-bitfloat&#10;exponent（5bit)&#10;011000&#10;fraction（10bit)&#10;0&#10;15&#10;1&#10;0&#10;0&#10;0&#10;14&#10;9&#10;0&#10;0&#13;&#10;&#13;&#10;未命名图片.jpg 计算机生成了可选文字:&#10;bfloatl6&#10;[Wikipedia]&#10;b到0at16&#10;0&#10;0&#10;1&#10;exponent（8bit)&#10;1111&#10;0&#10;fraction（7bit)&#10;10000&#10;0&#10;7&#10;0&#10;6&#10;0&#10;0&#13;&#10;"><img
-src="CS336-2025-lec2.files/image006.png" width=550 height=1440><br>
-<img src="CS336-2025-lec2.files/image007.png" width=2880 height=1440
-alt="未命名图片.jpg 计算机生成了可选文字:&#10;bfloatl6&#10;[Wikipedia]&#10;b到0at16&#10;0&#10;0&#10;1&#10;exponent（8bit)&#10;1111&#10;0&#10;fraction（7bit)&#10;10000&#10;0&#10;7&#10;0&#10;6&#10;0&#10;0&#13;&#10;Google Brain developed bfloat (brain floating point) in 2018 to address this issue.&#13;&#10; bfloat16 uses the same memory as float16 but has the same dynamic range as float32!&#13;&#10; The only catch is that the resolution is worse, but this matters less for deep learning.&#13;&#10;&#13;&#10;Implications on training:&#13;&#10;Training with float32 works, but requires lots of memory.&#13;&#10;Training with fp8, float16 and even bfloat16 is risky, and you can get instability.(用低精度的数据类型进行训练，可能会不稳定，数值上溢或下溢)&#13;&#10;Solution (later): use mixed precision training, see mixed_precision_training 解决方法是混合精度训练&#13;&#10;"><img
-src="CS336-2025-lec2.files/image008.png" width=550 height=1440
-alt="Google Brain developed bfloat (brain floating point) in 2018 to address this issue.&#13;&#10; bfloat16 uses the same memory as float16 but has the same dynamic range as float32!&#13;&#10; The only catch is that the resolution is worse, but this matters less for deep learning.&#13;&#10;Training with fp8, float16 and even bfloat16 is risky, and you can get instability.(用低精度的数据类型进行训练，可能会不稳定，数值上溢或下溢)&#13;&#10;Solution (later): use mixed precision training, see mixed_precision_training 解决方法是混合精度训练&#13;&#10;"><br>
-<img src="CS336-2025-lec2.files/image009.png" width=2880 height=1440
-alt="Solution (later): use mixed precision training, see mixed_precision_training 解决方法是混合精度训练&#13;&#10;&#13;&#10;2.Tensor&#13;&#10; What are tensors in PyTorch?&#13;&#10;    PyTorch tensors are pointers into allocated memory&#13;&#10;    ...with metadata describing how to get to any element of the tensor. 元信息就是stride，每个维度的步长&#13;&#10;未命名图片.jpg 计算机生成了可选文字:&#10;strideslll&#10;atwo-dimensionaltens-Or&#10;、山de、回&#10;stndes[l]&#10;。000000。、&#10;strides[0]&#10;Underlyingstorage&#13;&#10;"><img
-src="CS336-2025-lec2.files/image010.png" width=550 height=1440
-alt="Solution (later): use mixed precision training, see mixed_precision_training 解决方法是混合精度训练&#13;&#10;    ...with metadata describing how to get to any element of the tensor. 元信息就是stride，每个维度的步长&#13;&#10;"><br>
-<img src="CS336-2025-lec2.files/image011.png" width=2880 height=1440
-alt="未命名图片.jpg 计算机生成了可选文字:&#10;strideslll&#10;atwo-dimensionaltens-Or&#10;、山de、回&#10;stndes[l]&#10;。000000。、&#10;strides[0]&#10;Underlyingstorage&#13;&#10;&#13;&#10;To go to the next row (dim 0), skip 4 elements in storage.&#13;&#10;assert x.stride(0) == 4&#13;&#10;&#13;&#10;To go to the next column (dim 1), skip 1 element in storage.&#13;&#10;assert x.stride(1) == 1&#13;&#10;&#13;&#10;To find an element:&#13;&#10;r, c = 1, 2&#13;&#10;index = r * x.stride(0) + c * x.stride(1) # @inspect index&#13;&#10;"><img
-src="CS336-2025-lec2.files/image006.png" width=550 height=1440><br>
-<img src="CS336-2025-lec2.files/image012.png" width=2880 height=1440
-alt="index = r * x.stride(0) + c * x.stride(1) # @inspect index&#13;&#10;assert index == 6&#13;&#10;&#13;&#10;&#13;&#10;Many operations simply provide a different&nbsp;view&nbsp;of the tensor.&#13;&#10;This does not make a copy, and therefore mutations in one tensor affects the other.大多数tensor的操作都不是复制操作，而是返回了tensor的视图，意味着一个变了，另一个也会变。&#13;&#10;&#13;&#10;Get row 0:&#13;&#10;y = x[0] # @inspect y&#13;&#10;assert torch.equal(y, torch.tensor([1., 2, 3]))&#13;&#10;assert same_storage(x, y)&#13;&#10;&#13;&#10;Get column 1:&#13;&#10;y = x[:, 1] # @inspect y&#13;&#10;"><img
-src="CS336-2025-lec2.files/image013.png" width=550 height=1440
-alt="This does not make a copy, and therefore mutations in one tensor affects the other.大多数tensor的操作都不是复制操作，而是返回了tensor的视图，意味着一个变了，另一个也会变。&#13;&#10;"><br>
-<img src="CS336-2025-lec2.files/image014.png" width=2880 height=1440
-alt="y = x[:, 1] # @inspect y&#13;&#10;assert torch.equal(y, torch.tensor([2, 5]))&#13;&#10;assert same_storage(x, y)&#13;&#10;&#13;&#10;View 2x3 matrix as 3x2 matrix:&#13;&#10;y = x.view(3, 2) # @inspect y&#13;&#10;assert torch.equal(y, torch.tensor([[1, 2], [3, 4], [5, 6]]))&#13;&#10;assert same_storage(x, y)&#13;&#10;&#13;&#10;Transpose the matrix:&#13;&#10;y = x.transpose(1, 0) # @inspect y&#13;&#10;assert torch.equal(y, torch.tensor([[1, 4], [2, 5], [3, 6]]))&#13;&#10;assert same_storage(x, y)&#13;&#10;&#13;&#10;Check that mutating x also mutates y.&#13;&#10;x[0][0] = 100 # @inspect x, @inspect y&#13;&#10;"><img
-src="CS336-2025-lec2.files/image006.png" width=550 height=1440><br>
-<img src="CS336-2025-lec2.files/image015.png" width=2880 height=1440
-alt="x[0][0] = 100 # @inspect x, @inspect y&#13;&#10;assert y[0][0] == 100&#13;&#10;&#13;&#10;Note that some views are non-contiguous entries, which means that further views aren't possible. (view只能对连续张量使用，什么是连续张量，就是数据在内存中的存储位置是连续的，不是跳跃的，如果对tensor进行遍历，只需要按顺序连续访问内存空间即可。reshape不要求tensor连续。)&#13;&#10;x = torch.tensor([[1., 2, 3], [4, 5, 6]]) # @inspect x&#13;&#10;y = x.transpose(1, 0) # @inspect y&#13;&#10;assert not y.is_contiguous()&#13;&#10;try:&#13;&#10;y.view(2, 3)&#13;&#10;assert False&#13;&#10;except RuntimeError as e:&#13;&#10;assert &quot;view size is not compatible with input tensor's size and stride&quot; in str(e)&#13;&#10;&#13;&#10;"><img
-src="CS336-2025-lec2.files/image016.png" width=550 height=1440
-alt="Note that some views are non-contiguous entries, which means that further views aren't possible. (view只能对连续张量使用，什么是连续张量，就是数据在内存中的存储位置是连续的，不是跳跃的，如果对tensor进行遍历，只需要按顺序连续访问内存空间即可。reshape不要求tensor连续。)&#13;&#10;"><br>
-<img src="CS336-2025-lec2.files/image017.png" width=2880 height=1440
-alt="&#13;&#10;One can enforce a tensor to be contiguous first:&#13;&#10;y = x.transpose(1, 0).contiguous().view(2, 3) # @inspect y&#13;&#10;assert not same_storage(x, y)&#13;&#10;&#13;&#10;Views are free, copying take both (additional) memory and compute.&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;Einsum is generalized matrix multiplication with good bookkeeping.爱因斯坦求和主要是方便阅读&#13;&#10;Define two tensors:&#13;&#10;x: Float[torch.Tensor, &quot;batch seq1 hidden&quot;] = torch.ones(2, 3, 4) # @inspect x&#13;&#10;y: Float[torch.Tensor, &quot;batch seq2 hidden&quot;] = torch.ones(2, 3, 4) # @inspect y&#13;&#10;&#13;&#10;Old way:&#13;&#10;z = x @ y.transpose(-2, -1) # batch, sequence, sequence @inspect z&#13;&#10;&#13;&#10;"><img
-src="CS336-2025-lec2.files/image018.png" width=550 height=1440
-alt="Einsum is generalized matrix multiplication with good bookkeeping.爱因斯坦求和主要是方便阅读&#13;&#10;"><br>
-<img src="CS336-2025-lec2.files/image019.png" width=2880 height=1440
-alt="&#13;&#10;New (einops) way:&#13;&#10;z = einsum(x, y, &quot;batch seq1 hidden, batch seq2 hidden -&gt; batch seq1 seq2&quot;) # @inspect z&#13;&#10;&#13;&#10;Dimensions that are not named in the output are summed over.&#13;&#10;&gt; &#13;&#10;&#13;&#10;Computational cost&#13;&#10;3.1 前向传播的计算量&#13;&#10;    A floating-point operation (FLOP) is a basic operation like addition (x + y) or multiplication (x y).加法或乘法算一次FLOP。&#13;&#10;&#13;&#10;As motivation, suppose you have a linear model.&#13;&#10;We have n points&#13;&#10;"><img
-src="CS336-2025-lec2.files/image020.png" width=550 height=1440
-alt="    A floating-point operation (FLOP) is a basic operation like addition (x + y) or multiplication (x y).加法或乘法算一次FLOP。&#13;&#10;"><br>
-<img src="CS336-2025-lec2.files/image021.png" width=2880 height=1440
-alt="We have n points&#13;&#10;Each point is d-dimsional&#13;&#10;The linear model maps each d-dimensional vector to a k outputs&#13;&#10;&#13;&#10;B = 1024&#13;&#10;D = 256&#13;&#10;K = 64&#13;&#10;&#13;&#10;device = get_device()&#13;&#10;x = torch.ones(B, D, device=device)&#13;&#10;w = torch.randn(D, K, device=device)&#13;&#10;y = x @ w&#13;&#10;&#13;&#10;We have one multiplication (x[i][j] * w[j][k]) and one addition per (i, j, k) triple.&#13;&#10;actual_num_flops = 2 * B * D * K  #全连接层的前向计算就是两个矩阵（B, D）和（D,K）做乘法，而矩阵乘法的计算量是 2 * B * D * K（新矩阵的每个元素都经过D次相乘和D-1次相加得到，共有B*K个元素）&#13;&#10;"><img
-src="CS336-2025-lec2.files/image022.png" width=550 height=1440
-alt="actual_num_flops = 2 * B * D * K  #全连接层的前向计算就是两个矩阵（B, D）和（D,K）做乘法，而矩阵乘法的计算量是 2 * B * D * K（新矩阵的每个元素都经过D次相乘和D-1次相加得到，共有B*K个元素）&#13;&#10;"><br>
-<img src="CS336-2025-lec2.files/image023.png" width=2880 height=1440
-alt="actual_num_flops = 2 * B * D * K  #全连接层的前向计算就是两个矩阵（B, D）和（D,K）做乘法，而矩阵乘法的计算量是 2 * B * D * K（新矩阵的每个元素都经过D次相乘和D-1次相加得到，共有B*K个元素）&#13;&#10;&#13;&#10;&#13;&#10;In general, no other operation that you'd encounter in deep learning is as expensive as matrix multiplication for large enough matrices.通常来说，矩阵相乘的计算量是最大的。&#13;&#10;&#13;&#10;Interpretation:&#13;&#10;B is the number of data points&#13;&#10;(D K) is the number of parameters&#13;&#10;FLOPs for forward pass is 2 (# tokens) (# parameters) #前向传播的计算量基本上可以认为是2*token数量*模型参数量。&#13;&#10;It turns out this generalizes to Transformers (to a first-order approximation).&#13;&#10;&#13;&#10;3.2 反向传播的计算量&#13;&#10;"><img
-src="CS336-2025-lec2.files/image024.png" width=550 height=1440
-alt="actual_num_flops = 2 * B * D * K  #全连接层的前向计算就是两个矩阵（B, D）和（D,K）做乘法，而矩阵乘法的计算量是 2 * B * D * K（新矩阵的每个元素都经过D次相乘和D-1次相加得到，共有B*K个元素）&#13;&#10;In general, no other operation that you'd encounter in deep learning is as expensive as matrix multiplication for large enough matrices.通常来说，矩阵相乘的计算量是最大的。&#13;&#10;FLOPs for forward pass is 2 (# tokens) (# parameters) #前向传播的计算量基本上可以认为是2*token数量*模型参数量。&#13;&#10;"><br>
-<img src="CS336-2025-lec2.files/image025.png" width=2880 height=1440
-alt="3.2 反向传播的计算量&#13;&#10;&#13;&#10;#前向传播时，计算loss&#13;&#10;Forward pass: compute loss&#13;&#10;x = torch.tensor([1., 2, 3])&#13;&#10;w = torch.tensor([1., 1, 1], requires_grad=True) # Want gradient&#13;&#10;pred_y = x @ w&#13;&#10;loss = 0.5 * (pred_y - 5).pow(2)&#13;&#10;&#13;&#10;#反向传播时，计算梯度&#13;&#10;Backward pass: compute gradients&#13;&#10;loss.backward()&#13;&#10;assert loss.grad is None&#13;&#10;assert pred_y.grad is None&#13;&#10;assert x.grad is None&#13;&#10;"><img
-src="CS336-2025-lec2.files/image006.png" width=550 height=1440><br>
-<img src="CS336-2025-lec2.files/image026.png" width=2880 height=1440
-alt="assert x.grad is None&#13;&#10;assert torch.equal(w.grad, torch.tensor([1, 2, 3]))&#13;&#10;&#13;&#10;假设我们的model是这样的：&#13;&#10;Model: x --w1--&gt; h1 --w2--&gt; h2 -&gt; loss&#13;&#10;x = torch.ones(B, D, device=device)&#13;&#10;w1 = torch.randn(D, D, device=device, requires_grad=True)&#13;&#10;w2 = torch.randn(D, K, device=device, requires_grad=True)&#13;&#10;&#13;&#10;h1 = x @ w1&#13;&#10;h2 = h1 @ w2&#13;&#10;loss = h2.pow(2).mean()&#13;&#10;&#13;&#10;h1.grad = d loss / d h1&#13;&#10;h2.grad = d loss / d h2&#13;&#10;w1.grad = d loss / d w1&#13;&#10;"><img
-src="CS336-2025-lec2.files/image006.png" width=550 height=1440><br>
-<img src="CS336-2025-lec2.files/image027.png" width=2880 height=1440
-alt="w1.grad = d loss / d w1&#13;&#10;w2.grad = d loss / d w2&#13;&#10;&#13;&#10;以计算w2矩阵的梯度为例，也就是计算w2对loss的影响力，假设已经有了h2.grad，也就是h2对loss的影响力，那么w2矩阵中某个元素对loss的影响力=w2矩阵中这个元素对h2矩阵中某一列中所有元素的影响力*h2矩阵中这一列的元素对loss的影响力，然后求和。计算量和矩阵乘法计算量一样。&#13;&#10;&#13;&#10;h2 = h1 @ w2&#13;&#10;（w2矩阵中每个元素对h2的梯度，也就是w2中每个元素对h2的影响力：w2中每个元素都影响h2的B个元素，也就是一列，所以w2中某个元素对h2的影响力=该元素对h2的B个元素的影响力求和）。&#13;&#10;w2.grad = d loss / d w2 = (d h2 / d w2 )*(d loss/ d h2 )&#13;&#10; w2.grad[j,k] = sum_i h1[i,j] * h2.grad[i,k]&#13;&#10;&#13;&#10;墨迹绘图&#13;&#10;"><img
-src="CS336-2025-lec2.files/image028.png" width=550 height=1440
-alt="以计算w2矩阵的梯度为例，也就是计算w2对loss的影响力，假设已经有了h2.grad，也就是h2对loss的影响力，那么w2矩阵中某个元素对loss的影响力=w2矩阵中这个元素对h2矩阵中某一列中所有元素的影响力*h2矩阵中这一列的元素对loss的影响力，然后求和。计算量和矩阵乘法计算量一样。&#13;&#10;（w2矩阵中每个元素对h2的梯度，也就是w2中每个元素对h2的影响力：w2中每个元素都影响h2的B个元素，也就是一列，所以w2中某个元素对h2的影响力=该元素对h2的B个元素的影响力求和）。&#13;&#10;"><br>
-<img src="CS336-2025-lec2.files/image029.png" width=2880 height=439
-alt="&#13;&#10;关于反向传播时w2梯度的计算量为什么和前向传播时矩阵相乘的计算量相等的画图解释：在前向传播时，h2的每个元素都是由前面4个节点求和得到的，同理，w2的每个元素都影响了后面的3个节点，也就是，w2每个元素的梯度也是要由后面3个节点求和得到，因此，反向传播和前向传播的计算量是相同的。&#13;&#10;墨迹绘图&#13;&#10;"><img
-src="CS336-2025-lec2.files/image030.png" width=550 height=439
-alt="关于反向传播时w2梯度的计算量为什么和前向传播时矩阵相乘的计算量相等的画图解释：在前向传播时，h2的每个元素都是由前面4个节点求和得到的，同理，w2的每个元素都影响了后面的3个节点，也就是，w2每个元素的梯度也是要由后面3个节点求和得到，因此，反向传播和前向传播的计算量是相同的。&#13;&#10;"><br>
-</nobr></div>
+<div style='direction:ltr;margin-top:.4777in;margin-left:.1659in;width:8.8791in'>
 
-<table border=0 cellpadding=0 cellspacing=0 cols=3 valign=top style='direction:
- ltr;border-collapse:collapse;border-width:0pt;margin-top:2.1777in;margin-left:
- 1.3736in;width:15.043in'>
- <tr>
-  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
-  height:1px;font-size:1pt'>
-  <p style='font-size:1pt'>&nbsp;</p>
-  </td>
-  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:5.2847in;
-  height:1px;font-size:1pt'>
-  <p style='font-size:1pt'></p>
-  </td>
-  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:4.4736in;
-  height:1px;font-size:1pt'>
-  <p style='font-size:1pt'></p>
-  </td>
-  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:5.284in;
-  height:1px;font-size:1pt'>
-  <p style='font-size:1pt'></p>
-  </td>
- </tr>
- <tr>
-  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
-  height:.0743in;font-size:1pt'>
-  <p style='font-size:1pt'>&nbsp;</p>
-  </td>
-  <td rowspan=2 valign=top style='vertical-align:top;margin:0in;padding:0pt;
-  width:5.2847in;height:6.3256in'><img src="CS336-2025-lec2.files/image031.png"
-  width=761 height=911
-  alt="墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;"></td>
-  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:4.4736in;
-  height:.0743in;font-size:1pt'>
-  <p style='font-size:1pt'></p>
-  </td>
-  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:5.284in;
-  height:.0743in;font-size:1pt'>
-  <p style='font-size:1pt'></p>
-  </td>
- </tr>
- <tr>
-  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
-  height:6.2506in;font-size:1pt'>
-  <p style='font-size:1pt'>&nbsp;</p>
-  </td>
-  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:4.4736in;
-  height:6.2506in;font-size:1pt'>
-  <p style='font-size:1pt'></p>
-  </td>
-  <td rowspan=2 valign=top style='vertical-align:top;margin:0in;padding:0pt;
-  width:5.2847in;height:6.3256in'><img src="CS336-2025-lec2.files/image032.png"
-  width=761 height=911
-  alt="墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;"></td>
- </tr>
- <tr>
-  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:1px;
-  height:.0743in;font-size:1pt'>
-  <p style='font-size:1pt'>&nbsp;</p>
-  </td>
-  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:5.2847in;
-  height:.0743in;font-size:1pt'>
-  <p style='font-size:1pt'></p>
-  </td>
-  <td valign=top style='vertical-align:top;margin:0in;padding:0pt;width:4.4736in;
-  height:.0743in;font-size:1pt'>
-  <p style='font-size:1pt'></p>
-  </td>
- </tr>
-</table>
+<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
+ style='font-weight:bold'>PyTorch, resource accounting</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US><span
+ style='font-weight:bold'>1.</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'><span
+ style='font-weight:bold'>Question</span>: How long would it take to train a
+ 70B parameter model on 15T tokens on 1024 H100s?</p>
+ <p style='margin:0in;font-size:12.0pt'><span style='font-family:system-ui;
+ color:#213547' lang=zh-CN>total_flops = </span><span style='font-family:system-ui;
+ color:#005CC5' lang=zh-CN>6</span><span style='font-family:system-ui;
+ color:#213547' lang=zh-CN> * </span><span style='font-family:system-ui;
+ color:#005CC5' lang=zh-CN>70e9</span><span style='font-family:system-ui;
+ color:#213547' lang=zh-CN> * </span><span style='font-family:system-ui;
+ color:#005CC5' lang=zh-CN>15e12 </span><span style='font-family:system-ui;
+ color:#6A737D' lang=zh-CN># @inspect total_flops</span><span style='font-family:
+ 微软雅黑;color:#6A737D' lang=en-US> </span><span style='font-weight:bold;
+ font-family:微软雅黑;color:black;background:lime;mso-highlight:lime' lang=en-US>#</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:black;background:lime;
+ mso-highlight:lime' lang=zh-CN>这里为什么是</span><span style='font-weight:bold;
+ font-family:微软雅黑;color:black;background:lime;mso-highlight:lime' lang=en-US>6</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:black;background:lime;
+ mso-highlight:lime' lang=zh-CN>，因为前向传播的计算量是</span><span style='font-weight:
+ bold;font-family:微软雅黑;color:black;background:lime;mso-highlight:lime'
+ lang=en-US>2</span><span style='font-weight:bold;font-family:微软雅黑;color:black;
+ background:lime;mso-highlight:lime' lang=zh-CN>倍参数量</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:black;background:lime;
+ mso-highlight:lime' lang=en-US>*token</span><span style='font-weight:bold;
+ font-family:微软雅黑;color:black;background:lime;mso-highlight:lime' lang=zh-CN>数量，反向传播的计算量是</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:black;background:lime;
+ mso-highlight:lime' lang=en-US>4</span><span style='font-weight:bold;
+ font-family:微软雅黑;color:black;background:lime;mso-highlight:lime' lang=zh-CN>倍的参数量</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:black;background:lime;
+ mso-highlight:lime' lang=en-US>*token</span><span style='font-weight:bold;
+ font-family:微软雅黑;color:black;background:lime;mso-highlight:lime' lang=zh-CN>数量。</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert</span><span style='color:#213547'>
+ h100_flop_per_sec == </span><span style='color:#005CC5'>1979e12</span><span
+ style='color:#213547'> / </span><span style='color:#005CC5'>2</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>mfu = </span><span style='color:#005CC5'>0.5</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>flops_per_day = h100_flop_per_sec * mfu * </span><span
+ style='color:#005CC5'>1024</span><span style='color:#213547'> * </span><span
+ style='color:#005CC5'>60</span><span style='color:#213547'> * </span><span
+ style='color:#005CC5'>60</span><span style='color:#213547'> * </span><span
+ style='color:#005CC5'>24 </span><span style='color:#6A737D'># @inspect
+ flops_per_day</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>days = total_flops / flops_per_day </span><span
+ style='color:#6A737D'># @inspect days</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'><span
+ style='font-weight:bold'>Question</span>: What's the largest model that can
+ you can train on 8 H100s using AdamW (naively)?</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>h100_bytes = </span><span style='color:#005CC5'>80e9 </span><span
+ style='color:#6A737D'># @inspect h100_bytes</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>bytes_per_parameter = </span><span style='color:#005CC5'>4</span><span
+ style='color:#213547'> + </span><span style='color:#005CC5'>4</span><span
+ style='color:#213547'> + (</span><span style='color:#005CC5'>4</span><span
+ style='color:#213547'> + </span><span style='color:#005CC5'>4</span><span
+ style='color:#213547'>) </span><span style='color:#6A737D'># parameters,
+ gradients, optimizer state @inspect bytes_per_parameter</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>num_parameters = (h100_bytes * </span><span
+ style='color:#005CC5'>8</span><span style='color:#213547'>) /
+ bytes_per_parameter </span><span style='color:#6A737D'># @inspect
+ num_parameters</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Caveat
+ 1: we are naively using float32 for parameters and gradients. We could also
+ use bf16 for parameters and gradients (2 + 2) and keep an extra float32 copy
+ of the parameters (4). This doesn't save memory, but is faster. &nbsp;</p>
+ <p style='margin:0in;font-size:12.0pt'><a
+ href="https://arxiv.org/abs/1910.02054"><span style='font-family:system-ui'>[Rajbhandari+
+ 2019]</span></a></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Caveat
+ 2: activations are not accounted for (depends on batch size and sequence
+ length).</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>One
+ matrix in the feedforward layer of GPT-3:</p>
+ <p style='margin:0in;font-size:12.0pt;color:#213547'><span style='font-family:
+ system-ui' lang=zh-CN>assert get_memory_usage(torch.empty(12288 * 4, 12288))
+ == 2304 * 1024 * 1024 </span><span style='font-weight:bold;font-family:system-ui;
+ background:lime;mso-highlight:lime' lang=zh-CN><span
+ style='mso-spacerun:yes'> </span># 2.3 GB</span><span style='font-weight:bold;
+ font-family:微软雅黑;background:lime;mso-highlight:lime' lang=en-US> </span><span
+ style='font-weight:bold;font-family:微软雅黑;background:lime;mso-highlight:lime'
+ lang=zh-CN>一个全连接层就是</span><span style='font-weight:bold;font-family:微软雅黑;
+ background:lime;mso-highlight:lime' lang=en-US>2.3G</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'
+ lang=en-US>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'
+ lang=en-US>&nbsp;</p>
+ <p style='margin:0in'><img src="CS336-2025-lec2.files/image001.jpg" width=329
+ height=112></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in'><img src="CS336-2025-lec2.files/image002.jpg" width=350
+ height=131></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>Google
+ Brain developed bfloat (brain floating point) in 2018 to address this issue.</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
+ style='mso-spacerun:yes'> </span>bfloat16 uses the same memory as float16 but
+ has <span style='font-weight:bold'>the same dynamic range as float32!</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
+ style='font-weight:bold'><span style='mso-spacerun:yes'> </span>The only catch
+ is that the resolution is worse, but this matters less for deep learning.</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>Implications
+ on training:</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
+      style='font-family:微软雅黑;font-size:12.0pt'>Training with float32 works,
+      but requires lots of memory.</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
+      style='font-family:微软雅黑;font-size:12.0pt;color:#213547' lang=zh-CN>Training
+      with fp8, float16 and even bfloat16 is risky, and you can get</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt;color:black'
+      lang=zh-CN> instability.</span><span style='font-weight:bold;font-family:
+      微软雅黑;font-size:12.0pt;color:black' lang=en-US>(</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt;color:black'
+      lang=zh-CN>用低精度的数据类型进行训练，可能会不稳定，数值上溢或下溢</span><span style='font-weight:
+      bold;font-family:微软雅黑;font-size:12.0pt;color:black' lang=en-US>)</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
+      style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>Solution (later): </span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>use
+      mixed precision training</span><span style='font-family:微软雅黑;font-size:
+      12.0pt' lang=zh-CN>, see</span><span style='font-family:微软雅黑;font-size:
+      12.0pt' lang=en-US> </span><span style='font-family:微软雅黑;font-size:12.0pt'
+      lang=zh-CN>mixed_precision_training</span><span style='font-family:微软雅黑;
+      font-size:12.0pt' lang=en-US> </span><span style='font-weight:bold;
+      font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>解决方法是混合精度训练</span></li>
+ </ul>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
+ style='font-weight:bold' lang=en-US>2.T</span><span style='font-weight:bold'
+ lang=zh-CN>en</span><span style='font-weight:bold' lang=en-US>sor</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
+ style='mso-spacerun:yes'> </span>What are tensors in PyTorch?</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
+ style='mso-spacerun:yes'>    </span>PyTorch tensors are pointers into
+ allocated memory</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
+ lang=zh-CN><span style='mso-spacerun:yes'>    </span>...with </span><span
+ style='font-weight:bold' lang=zh-CN>metadata</span><span lang=zh-CN>
+ describing how to get to any element of the tensor.</span><span lang=en-US> </span><span
+ style='font-weight:bold' lang=zh-CN>元信息就是</span><span style='font-weight:bold'
+ lang=en-US>stride</span><span style='font-weight:bold' lang=zh-CN>，每个维度的步长</span></p>
+ <p style='margin:0in;margin-left:.375in'><img
+ src="CS336-2025-lec2.files/image003.jpg" width=629 height=322></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
+ color:#213547'>To go to the next row (dim 0), skip 4 elements in storage.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert</span><span style='color:#213547'> x.stride(</span><span
+ style='color:#005CC5'>0</span><span style='color:#213547'>) == </span><span
+ style='color:#005CC5'>4</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt;
+ color:#005CC5'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
+ color:#213547'>To go to the next column (dim 1), skip 1 element in storage.</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert</span><span style='color:#213547'> x.stride(</span><span
+ style='color:#005CC5'>1</span><span style='color:#213547'>) == </span><span
+ style='color:#005CC5'>1</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt;
+ color:#005CC5'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
+ color:#213547'>To find an element:</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>r, c = </span><span style='color:#005CC5'>1</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>2</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>index = r * x.stride(</span><span style='color:#005CC5'>0</span><span
+ style='color:#213547'>) + c * x.stride(</span><span style='color:#005CC5'>1</span><span
+ style='color:#213547'>) </span><span style='color:#6A737D'># @inspect index</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert</span><span style='color:#213547'> index == </span><span
+ style='color:#005CC5'>6</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>Many
+ operations simply provide a different&nbsp;<span style='font-weight:bold'>view</span>&nbsp;of
+ the tensor.</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
+ style='font-weight:bold' lang=zh-CN>This does not make a copy, and therefore
+ mutations in one tensor affects the other.大多数</span><span style='font-weight:
+ bold' lang=en-US>tensor</span><span style='font-weight:bold' lang=zh-CN>的操作都不是复制操作，而是返回了</span><span
+ style='font-weight:bold' lang=en-US>tensor</span><span style='font-weight:
+ bold' lang=zh-CN>的视图，意味着一个变了，另一个也会变。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Get
+ row 0:</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>y = x[</span><span style='color:#005CC5'>0</span><span
+ style='color:#213547'>] </span><span style='color:#6A737D'># @inspect y</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert</span><span style='color:#213547'> torch.equal(y,
+ torch.tensor([</span><span style='color:#005CC5'>1.</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>2</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>3</span><span
+ style='color:#213547'>]))</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert</span><span style='color:#213547'>
+ same_storage(x, y)</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Get
+ column 1:</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>y = x[:, </span><span style='color:#005CC5'>1</span><span
+ style='color:#213547'>] </span><span style='color:#6A737D'># @inspect y</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert</span><span style='color:#213547'> torch.equal(y,
+ torch.tensor([</span><span style='color:#005CC5'>2</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>5</span><span
+ style='color:#213547'>]))</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert</span><span style='color:#213547'>
+ same_storage(x, y)</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>View
+ 2x3 matrix as 3x2 matrix:</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>y = x.view(</span><span style='color:#005CC5'>3</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>2</span><span
+ style='color:#213547'>) </span><span style='color:#6A737D'># @inspect y</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert</span><span style='color:#213547'> torch.equal(y,
+ torch.tensor([[</span><span style='color:#005CC5'>1</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>2</span><span
+ style='color:#213547'>], [</span><span style='color:#005CC5'>3</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>4</span><span
+ style='color:#213547'>], [</span><span style='color:#005CC5'>5</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>6</span><span
+ style='color:#213547'>]]))</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert</span><span style='color:#213547'>
+ same_storage(x, y)</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Transpose
+ the matrix:</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>y = x.transpose(</span><span style='color:#005CC5'>1</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>0</span><span
+ style='color:#213547'>) </span><span style='color:#6A737D'># @inspect y</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert</span><span style='color:#213547'> torch.equal(y,
+ torch.tensor([[</span><span style='color:#005CC5'>1</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>4</span><span
+ style='color:#213547'>], [</span><span style='color:#005CC5'>2</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>5</span><span
+ style='color:#213547'>], [</span><span style='color:#005CC5'>3</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>6</span><span
+ style='color:#213547'>]]))</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert</span><span style='color:#213547'>
+ same_storage(x, y)</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Check
+ that mutating x also mutates y.</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>x[</span><span style='color:#005CC5'>0</span><span
+ style='color:#213547'>][</span><span style='color:#005CC5'>0</span><span
+ style='color:#213547'>] = </span><span style='color:#005CC5'>100 </span><span
+ style='color:#6A737D'># @inspect x, @inspect y</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert</span><span style='color:#213547'> y[</span><span
+ style='color:#005CC5'>0</span><span style='color:#213547'>][</span><span
+ style='color:#005CC5'>0</span><span style='color:#213547'>] == </span><span
+ style='color:#005CC5'>100</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
+ style='font-weight:bold' lang=zh-CN>Note that some views are non-contiguous
+ entries, which means that further views aren't possible.</span><span
+ style='font-weight:bold' lang=en-US> (view</span><span style='font-weight:
+ bold' lang=zh-CN>只能对连续张量使用，什么是连续张量，就是数据在内存中的存储位置是连续的，不是跳跃的，如果对</span><span
+ style='font-weight:bold' lang=en-US>tensor</span><span style='font-weight:
+ bold' lang=zh-CN>进行遍历，只需要按顺序连续访问内存空间即可。</span><span style='font-weight:bold'
+ lang=en-US>reshape</span><span style='font-weight:bold' lang=zh-CN>不要求</span><span
+ style='font-weight:bold' lang=en-US>tensor</span><span style='font-weight:
+ bold' lang=zh-CN>连续。</span><span style='font-weight:bold' lang=en-US>)</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>x = torch.tensor([[</span><span style='color:#005CC5'>1.</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>2</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>3</span><span
+ style='color:#213547'>], [</span><span style='color:#005CC5'>4</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>5</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>6</span><span
+ style='color:#213547'>]]) </span><span style='color:#6A737D'># @inspect x</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>y = x.transpose(</span><span style='color:#005CC5'>1</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>0</span><span
+ style='color:#213547'>) </span><span style='color:#6A737D'># @inspect y</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert not</span><span style='color:#213547'>
+ y.is_contiguous()</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>try</span><span style='color:#213547'>:</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>y.view(</span><span style='color:#005CC5'>2</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>3</span><span
+ style='color:#213547'>)</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert </span><span style='color:#005CC5'>False</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>except</span><span style='color:#213547'> RuntimeError </span><span
+ style='color:#D73A49'>as</span><span style='color:#213547'> e:</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert </span><span style='color:#032F62'>&quot;view
+ size is not compatible with input tensor's size and stride&quot; </span><span
+ style='color:#D73A49'>in </span><span style='color:#E36209'>str</span><span
+ style='color:#213547'>(e)</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>One
+ can enforce a tensor to be contiguous first:</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>y = x.transpose(</span><span style='color:#005CC5'>1</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>0</span><span
+ style='color:#213547'>).contiguous().view(</span><span style='color:#005CC5'>2</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>3</span><span
+ style='color:#213547'>) </span><span style='color:#6A737D'># @inspect y</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert not</span><span style='color:#213547'>
+ same_storage(x, y)</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Views
+ are free, copying take both (additional) memory and compute.</p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#595959'>&nbsp;</cite></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
+ style='color:#213547' lang=zh-CN>Einsum is generalized matrix multiplication
+ with good bookkeeping</span><span style='color:#213547' lang=en-US>.</span><span
+ style='font-weight:bold;color:#213547' lang=zh-CN>爱因斯坦求和</span><span
+ style='font-weight:bold;color:black' lang=zh-CN>主要是方便阅读</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Define
+ two tensors:</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>x: Float[torch.Tensor, </span><span style='color:#032F62'>&quot;batch
+ seq1 hidden&quot;</span><span style='color:#213547'>] = torch.ones(</span><span
+ style='color:#005CC5'>2</span><span style='color:#213547'>, </span><span
+ style='color:#005CC5'>3</span><span style='color:#213547'>, </span><span
+ style='color:#005CC5'>4</span><span style='color:#213547'>) </span><span
+ style='color:#6A737D'># @inspect x</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>y: Float[torch.Tensor, </span><span style='color:#032F62'>&quot;batch
+ seq2 hidden&quot;</span><span style='color:#213547'>] = torch.ones(</span><span
+ style='color:#005CC5'>2</span><span style='color:#213547'>, </span><span
+ style='color:#005CC5'>3</span><span style='color:#213547'>, </span><span
+ style='color:#005CC5'>4</span><span style='color:#213547'>) </span><span
+ style='color:#6A737D'># @inspect y</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Old
+ way:</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>z = x @ y.transpose(-</span><span style='color:#005CC5'>2</span><span
+ style='color:#213547'>, -</span><span style='color:#005CC5'>1</span><span
+ style='color:#213547'>) </span><span style='color:#6A737D'># batch, sequence,
+ sequence @inspect z</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#6A737D'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>New
+ (einops) way:</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>z = einsum(x, y, </span><span style='color:#032F62'>&quot;batch
+ seq1 hidden, batch seq2 hidden -&gt; batch seq1 seq2&quot;</span><span
+ style='color:#213547'>) </span><span style='color:#6A737D'># @inspect z</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Dimensions
+ that are not named in the output are summed over.</p>
+ <p><cite style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#595959'>&gt;
+ </cite></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:12.0pt;font-weight:bold;font-style:normal'>
+  <li value=3 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+      font-weight:bold'><span style='font-family:微软雅黑;font-size:12.0pt;
+      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+      font-size:12.0pt' lang=en-US>Com</span><span style='font-family:微软雅黑;
+      font-size:12.0pt;font-weight:bold;font-style:normal;font-weight:bold;
+      font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>putational cost</span></li>
+ </ol>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
+ style='font-weight:bold' lang=en-US>3.1 </span><span style='font-weight:bold'
+ lang=zh-CN>前向传播的计算量</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN><span
+ style='mso-spacerun:yes'>    </span>A floating-point operation (FLOP) is a
+ basic operation like addition (x + y) or multiplication (x y).</span><span
+ style='font-weight:bold' lang=zh-CN>加法或乘法算一次</span><span style='font-weight:
+ bold' lang=en-US>FLOP</span><span style='font-weight:bold' lang=zh-CN>。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>As
+ motivation, suppose you have a linear model.</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
+      style='font-family:system-ui;font-size:12.0pt'>We have n points</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
+      style='font-family:system-ui;font-size:12.0pt'>Each point is d-dimsional</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
+      style='font-family:system-ui;font-size:12.0pt'>The linear model maps each
+      d-dimensional vector to a k outputs</span></li>
+ </ul>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>B = </span><span style='color:#005CC5'>1024</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>D = </span><span style='color:#005CC5'>256</span></p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>K = </span><span style='color:#005CC5'>64</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>device
+ = get_device()</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>x =
+ torch.ones(B, D, device=device)</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>w =
+ torch.randn(D, K, device=device)</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>y =
+ x @ w</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>We
+ have one multiplication (x[i][j] * w[j][k]) and one addition per (i, j, k)
+ triple.</p>
+ <p style='margin:0in;font-size:12.0pt'><span style='font-family:system-ui;
+ color:#213547' lang=zh-CN>actual_num_flops = </span><span style='font-family:
+ system-ui;color:#005CC5' lang=zh-CN>2</span><span style='font-family:system-ui;
+ color:#213547' lang=zh-CN> * B * D * K </span><span style='font-weight:bold;
+ font-family:微软雅黑;color:black' lang=en-US><span
+ style='mso-spacerun:yes'> </span>#</span><span style='font-weight:bold;
+ font-family:微软雅黑;color:black' lang=zh-CN>全连接层的前向计算就是两个矩阵（</span><span
+ style='font-weight:bold;font-family:system-ui;color:black' lang=zh-CN>B, D</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:black' lang=zh-CN>）和（</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:black' lang=en-US>D,K</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:black' lang=zh-CN>）做乘法，而矩阵乘法的计算量是
+ </span><span style='font-family:system-ui;color:#005CC5' lang=zh-CN>2</span><span
+ style='font-family:system-ui;color:#213547' lang=zh-CN> * B * D * K（</span><span
+ style='font-weight:bold;font-family:system-ui;color:black' lang=zh-CN>新矩阵的每个元素都经过</span><span
+ style='font-weight:bold;font-family:system-ui;color:black' lang=en-US>D</span><span
+ style='font-weight:bold;font-family:system-ui;color:black' lang=zh-CN>次相乘和</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:black' lang=en-US>D-1</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:black' lang=zh-CN>次相加得到，共有</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:black' lang=en-US>B*K</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:black' lang=zh-CN>个元素</span><span
+ style='font-weight:bold;font-family:system-ui;color:black' lang=zh-CN>）</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>In general, no other operation that you'd encounter in
+ deep learning is as expensive as matrix multiplication for large enough
+ matrices.</span><span style='font-weight:bold;color:black'>通常来说，矩阵相乘的计算量是最大的。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>Interpretation:</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
+      style='font-family:system-ui;font-size:12.0pt'>B is the number of data
+      points</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
+      style='font-family:system-ui;font-size:12.0pt'>(D K) is the number of
+      parameters</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
+      style='font-family:system-ui;font-size:12.0pt' lang=zh-CN>FLOPs for
+      forward pass is</span><span style='font-weight:bold;font-family:system-ui;
+      font-size:12.0pt' lang=zh-CN> 2 (# tokens) (# parameters)</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=en-US> #</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>前向传播的计算量基本上可以认为是</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=en-US>2*token</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>数量</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=en-US>*</span><span
+      style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>模型参数量。</span></li>
+ </ul>
+ <p style='margin:0in;font-family:system-ui;font-size:12.0pt;color:#213547'>It
+ turns out this generalizes to Transformers (to a first-order approximation).</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
+ style='font-weight:bold' lang=en-US>3.2 </span><span style='font-weight:bold'
+ lang=zh-CN>反向传播的计算量</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+ style='font-weight:bold' lang=en-US>#</span><span style='font-weight:bold'
+ lang=zh-CN>前向传播时，计算</span><span style='font-weight:bold' lang=en-US>loss</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
+ color:#213547'>Forward pass: compute loss</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>x = torch.tensor([</span><span style='color:#005CC5'>1.</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>2</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>3</span><span
+ style='color:#213547'>])</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>w = torch.tensor([</span><span style='color:#005CC5'>1.</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>1</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>1</span><span
+ style='color:#213547'>], requires_grad=</span><span style='color:#005CC5'>True</span><span
+ style='color:#213547'>) </span><span style='color:#6A737D'># Want gradient</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
+ color:#213547'>pred_y = x @ w</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>loss = </span><span style='color:#005CC5'>0.5</span><span
+ style='color:#213547'> * (pred_y - </span><span style='color:#005CC5'>5</span><span
+ style='color:#213547'>).</span><span style='color:#E36209'>pow</span><span
+ style='color:#213547'>(</span><span style='color:#005CC5'>2</span><span
+ style='color:#213547'>)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt;
+ color:#213547'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+ style='font-weight:bold' lang=en-US>#</span><span style='font-weight:bold'
+ lang=zh-CN>反向传播时，计算梯度</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
+ color:#213547'>Backward pass: compute gradients</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
+ color:#213547'>loss.backward()</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert</span><span style='color:#213547'> loss.grad </span><span
+ style='color:#D73A49'>is </span><span style='color:#005CC5'>None</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert</span><span style='color:#213547'> pred_y.grad </span><span
+ style='color:#D73A49'>is </span><span style='color:#005CC5'>None</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert</span><span style='color:#213547'> x.grad </span><span
+ style='color:#D73A49'>is </span><span style='color:#005CC5'>None</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#D73A49'>assert</span><span style='color:#213547'>
+ torch.equal(w.grad, torch.tensor([</span><span style='color:#005CC5'>1</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>2</span><span
+ style='color:#213547'>, </span><span style='color:#005CC5'>3</span><span
+ style='color:#213547'>]))</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+ style='font-weight:bold' lang=zh-CN>假设我们的</span><span style='font-weight:bold'
+ lang=en-US>model</span><span style='font-weight:bold' lang=zh-CN>是这样的：</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
+ color:#213547'><span style='font-weight:bold'>Model: x --w1--&gt; h1
+ --w2--&gt; h2 -&gt; loss</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
+ color:#213547'>x = torch.ones(B, D, device=device)</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>w1 = torch.randn(D, D, device=device, requires_grad=</span><span
+ style='color:#005CC5'>True</span><span style='color:#213547'>)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>w2 = torch.randn(D, K, device=device, requires_grad=</span><span
+ style='color:#005CC5'>True</span><span style='color:#213547'>)</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt;
+ color:#213547'>&nbsp;</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
+ color:#213547'>h1 = x @ w1</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt;
+ color:#213547'>h2 = h1 @ w2</p>
+ <p style='margin:0in;margin-left:.375in;font-family:system-ui;font-size:12.0pt'><span
+ style='color:#213547'>loss = h2.</span><span style='color:#E36209'>pow</span><span
+ style='color:#213547'>(</span><span style='color:#005CC5'>2</span><span
+ style='color:#213547'>).mean()</span></p>
+ <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
+      style='font-family:system-ui;font-size:12.0pt'>h1.grad = d loss / d h1</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
+      style='font-family:system-ui;font-size:12.0pt'>h2.grad = d loss / d h2</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
+      style='font-family:system-ui;font-size:12.0pt'>w1.grad = d loss / d w1</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#213547'><span
+      style='font-family:system-ui;font-size:12.0pt'>w2.grad = d loss / d w2</span></li>
+ </ul>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-size:12.0pt'><span style='font-weight:bold;
+ font-family:微软雅黑;color:#213547' lang=zh-CN>以计算</span><span style='font-weight:
+ bold;font-family:微软雅黑;color:#213547' lang=en-US>w2</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=zh-CN>矩阵的梯度为例，也就是计算</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=en-US>w2</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=zh-CN>对</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=en-US>loss</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=zh-CN>的影响力，</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:black;background:white'
+ lang=zh-CN>假设已经有了</span><span style='font-weight:bold;font-family:system-ui;
+ color:black' lang=zh-CN>h2.grad，</span><span style='font-weight:bold;
+ font-family:微软雅黑;color:black' lang=zh-CN>也就是</span><span style='font-weight:
+ bold;font-family:微软雅黑;color:black' lang=en-US>h2</span><span style='font-weight:
+ bold;font-family:微软雅黑;color:black' lang=zh-CN>对</span><span style='font-weight:
+ bold;font-family:微软雅黑;color:black' lang=en-US>loss</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:black' lang=zh-CN>的影响力，那么</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=en-US>w2</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=zh-CN>矩阵中某个元素对</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=en-US>loss</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=zh-CN>的影响力</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=en-US>=w2</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=zh-CN>矩阵中这个元素对</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=en-US>h2</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=zh-CN>矩阵中某一列中所有元素的影响力</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=en-US>*h2</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=zh-CN>矩阵中这一列的元素对</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=en-US>loss</span><span
+ style='font-weight:bold;font-family:微软雅黑;color:#213547' lang=zh-CN>的影响力，然后求和。计算量和矩阵乘法计算量一样。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
+ style='font-weight:bold'>h2 = h1 @ w2</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
+ style='font-weight:bold' lang=zh-CN>（</span><span style='font-weight:bold'
+ lang=en-US>w2</span><span style='font-weight:bold' lang=zh-CN>矩阵中每个元素对</span><span
+ style='font-weight:bold' lang=en-US>h2</span><span style='font-weight:bold'
+ lang=zh-CN>的梯度，也就是</span><span style='font-weight:bold' lang=en-US>w2</span><span
+ style='font-weight:bold' lang=zh-CN>中每个元素对</span><span style='font-weight:
+ bold' lang=en-US>h2</span><span style='font-weight:bold' lang=zh-CN>的影响力：</span><span
+ style='font-weight:bold' lang=en-US>w2</span><span style='font-weight:bold'
+ lang=zh-CN>中每个元素都影响</span><span style='font-weight:bold' lang=en-US>h2</span><span
+ style='font-weight:bold' lang=zh-CN>的</span><span style='font-weight:bold'
+ lang=en-US>B</span><span style='font-weight:bold' lang=zh-CN>个元素，也就是一列，所以</span><span
+ style='font-weight:bold' lang=en-US>w2</span><span style='font-weight:bold'
+ lang=zh-CN>中某个元素对</span><span style='font-weight:bold' lang=en-US>h2</span><span
+ style='font-weight:bold' lang=zh-CN>的影响力</span><span style='font-weight:bold'
+ lang=en-US>=</span><span style='font-weight:bold' lang=zh-CN>该元素对</span><span
+ style='font-weight:bold' lang=en-US>h2</span><span style='font-weight:bold'
+ lang=zh-CN>的</span><span style='font-weight:bold' lang=en-US>B</span><span
+ style='font-weight:bold' lang=zh-CN>个元素的影响力求和）。</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#213547'><span
+ style='background:white' lang=zh-CN>w2.grad = d loss / d w2 = (d h2 / d w2 )</span><span
+ style='background:white' lang=en-US>*</span><span style='background:white'
+ lang=zh-CN>(d loss/ d h2 )</span></p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
+ style='color:#213547;background:white'><span style='mso-spacerun:yes'> </span></span>w2.grad[j,k]
+ = sum_i h1[i,j] * h2.grad[i,k]</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+ <p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
+ style='font-weight:bold' lang=zh-CN>关于反向传播时</span><span style='font-weight:
+ bold' lang=en-US>w2</span><span style='font-weight:bold' lang=zh-CN>梯度的计算量为什么和前向传播时矩阵相乘的计算量相等的画图解释：</span><span
+ lang=zh-CN>在前向传播时，</span><span lang=en-US>h2</span><span lang=zh-CN>的每个元素都是由前面</span><span
+ lang=en-US>4</span><span lang=zh-CN>个节点求和得到的，</span><span style='font-weight:
+ bold' lang=zh-CN>同理，</span><span style='font-weight:bold' lang=en-US>w2</span><span
+ style='font-weight:bold' lang=zh-CN>的每个元素都影响了后面的</span><span style='font-weight:
+ bold' lang=en-US>3</span><span style='font-weight:bold' lang=zh-CN>个节点，也就是，</span><span
+ style='font-weight:bold' lang=en-US>w2</span><span style='font-weight:bold'
+ lang=zh-CN>每个元素的梯度也是要由后面</span><span style='font-weight:bold' lang=en-US>3</span><span
+ style='font-weight:bold' lang=zh-CN>个节点求和得到</span><span lang=zh-CN>，因此，反向传播和前向传播的计算量是相同的。</span></p>
+</ul>
+
+</div>
+
+<div style='direction:ltr;margin-top:103.7541in;margin-left:8.0152in;
+width:3.7354in'><img src="CS336-2025-lec2.files/image004.png" width=538
+height=594 alt="墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;"></div>
+
+<div style='direction:ltr;margin-top:4.102in;margin-left:1.3736in;width:15.043in'><img
+src="CS336-2025-lec2.files/image005.png" width=2166 height=922
+alt="墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;墨迹绘图&#13;&#10;"></div>
 
 <div style='direction:ltr;margin-top:1.077in;margin-left:0in;width:23.8236in'>
 

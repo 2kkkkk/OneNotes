@@ -10,11 +10,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="Random%20forest.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:21.2208in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:15.8166in'>
 
 <div style='direction:ltr;margin-top:0in;margin-left:0in;width:2.5062in'>
 
@@ -34,21 +34,21 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:21.2208in'>
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:15.8166in'>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>树模型很容易过拟合，具有高方差的特点，那么我通过</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>树模型很容易过拟合，具有高方差的特点，那么我通过</span><span
 lang=en-US>bootstrap</span><span lang=zh-CN>自助采样得到多个子数据集，用多个子数据集分别训练树模型，然后进行平均或投票，就可以降低整个模型的方差了，这就是随机森林的思想。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>除了对行采样，为了保证每棵树和其他树的区别性，还对特征列进行采样，使得每棵树更加的</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>除了对行采样，为了保证每棵树和其他树的区别性，还对特征列进行采样，使得每棵树更加的</span><span
 lang=en-US>unique</span><span lang=zh-CN>。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>所以，理论上，</span><span style='font-weight:bold' lang=en-US>RF</span><span
 style='font-weight:bold' lang=zh-CN>中每棵树需要是学习能力强一点的树，因为</span><span
 style='font-weight:bold' lang=en-US>RF</span><span style='font-weight:bold'
 lang=zh-CN>中的集成是降低模型的方差，无法影响模型的偏差，那么要想减少偏差，就得让每棵树的拟合能力强一些（比如深度大一些）。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>而</span><span style='font-weight:bold' lang=en-US>GBDT</span><span
 style='font-weight:bold' lang=zh-CN>中每棵树需要是弱学习器</span><span style='font-weight:
 bold' lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>，因为如果是强学习器，那么每次沿梯度方向更新的步子就迈得大，即使学习率设置地比较小。</span></p>

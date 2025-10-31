@@ -10,11 +10,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="Classifier-free%20Guidance.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:26.175in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:11.8083in'>
 
 <div style='direction:ltr;margin-top:0in;margin-left:0in;width:3.8576in'>
 
@@ -35,194 +35,237 @@ style='font-family:Calibri'>15</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.6791in;margin-left:.593in;width:25.5819in'>
+<div style='direction:ltr;margin-top:.6791in;margin-left:.6493in;width:11.159in'>
 
-<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>初次接触扩散模型时，我们通常首先学习前向过程（从图像到噪声）和后向过程（从噪声到图像）。前向过程的图像通常是由噪声生成的，无需任何特定条件。然而，<span
- style='font-weight:bold'>我们常常希望控制生成的图像，例如只生成狗或猫。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>在这种情况下，我们需要</span><span
- style='font-weight:bold' lang=zh-CN>引入条件控制</span><span style='font-weight:
- bold' lang=en-US> text condition </span><span style='font-weight:bold'
- lang=zh-CN>y</span><span lang=zh-CN>，这需要理解分类器引导和无分类器引导。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
- style='font-weight:bold' lang=zh-CN>Classifier</span><span style='font-weight:
- bold' lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>Guidance</span></p>
- <p style='margin:0in;font-size:36.0pt'><span style='font-family:微软雅黑'
- lang=zh-CN>从</span><span style='font-family:微软雅黑' lang=en-US>score function</span><span
- style='font-family:微软雅黑' lang=zh-CN>的角度，未引入</span><span style='font-family:
- 微软雅黑' lang=en-US> </span><span style='font-family:微软雅黑' lang=zh-CN>条件控制之前，我们需要学习每一步的</span><span
- style='font-family:微软雅黑' lang=en-US>score function</span><span
- style='font-family:微软雅黑' lang=zh-CN>，</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>∇</m:t></m:r></m:e><m:sub><m:r><m:t>&#119909;</m:t></m:r></m:sub></m:sSub><m:r><m:t>&#119897;&#119900;&#119892;</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>t</m:t></m:r></m:sub></m:sSub></m:e></m:d></m:oMath><![endif]--><span
- style='font-family:微软雅黑' lang=zh-CN>，引入条件控制之后，</span><span style='font-family:
- 微软雅黑' lang=en-US>score function</span><span style='font-family:微软雅黑'
- lang=zh-CN>变成了</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>∇</m:t></m:r></m:e><m:sub><m:r><m:t>&#119909;</m:t></m:r></m:sub></m:sSub><m:r><m:t>&#119897;&#119900;&#119892;</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>t</m:t></m:r></m:sub></m:sSub><m:r><m:t>|</m:t></m:r><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>y</m:t></m:r></m:e></m:d></m:oMath><![endif]--><![if !msEquation]><img
- src="Classifier-free%20Guidance.files/image001.png" width=3644 height=248><![endif]></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:1.5in'><img
- src="Classifier-free%20Guidance.files/image002.jpg" width=1849 height=466></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>利用贝叶斯公式，可以分为两项，</p>
- <p style='margin:0in;margin-left:1.5in'><img
- src="Classifier-free%20Guidance.files/image003.jpg" width=1887 height=937></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-size:36.0pt'><span style='font-weight:bold;
- font-family:微软雅黑' lang=zh-CN>上面的</span><span style='font-weight:bold;
- font-family:微软雅黑' lang=en-US>score funtion</span><span style='font-weight:
- bold;font-family:微软雅黑' lang=zh-CN>是推理时的</span><span style='font-weight:bold;
- font-family:微软雅黑' lang=en-US>score function</span><span style='font-weight:
- bold;font-family:微软雅黑' lang=zh-CN>的公式，</span><span style='font-family:微软雅黑'
- lang=zh-CN>由两项组成，一个是原始的</span><span style='font-family:微软雅黑' lang=en-US>score
- funtion </span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>∇</m:t></m:r></m:e><m:sub><m:r><m:t>&#119909;</m:t></m:r></m:sub></m:sSub><m:r><m:t>&#119897;&#119900;&#119892;</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>t</m:t></m:r></m:sub></m:sSub></m:e></m:d></m:oMath><![endif]--><span
- style='font-family:微软雅黑' lang=zh-CN>，第二项是</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>∇</m:t></m:r></m:e><m:sub><m:r><m:t>&#119909;</m:t></m:r></m:sub></m:sSub><m:r><m:t>&#119897;&#119900;&#119892;</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:r><m:t>&#119910;</m:t></m:r><m:r><m:t>|</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>t</m:t></m:r></m:sub></m:sSub></m:e></m:d></m:oMath><![endif]--><span
- style='font-family:微软雅黑' lang=zh-CN>，这一项即</span><span style='font-weight:bold;
- font-family:微软雅黑' lang=en-US>classifier</span><span style='font-weight:bold;
- font-family:微软雅黑' lang=zh-CN>对输入</span><span style='font-weight:bold;
- font-family:微软雅黑' lang=en-US>x</span><span style='font-weight:bold;font-family:
- 微软雅黑' lang=zh-CN>的梯度（而不是对</span><span style='font-weight:bold;font-family:
- "Cambria Math"' lang=en-US>classifier </span><span style='font-weight:bold;
- font-family:SimSun' lang=zh-CN>参数的梯度</span><span style='font-weight:bold;
- font-family:微软雅黑' lang=zh-CN>）</span><![if !msEquation]><img
- src="Classifier-free%20Guidance.files/image004.png" width=3644 height=248><![endif]></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>similar to how
- gradient back-propagation is done during classifier model training, we
- calculate the gradient. <span style='font-weight:bold'>The difference is that,
- while training a classifier model requires obtaining gradients of the weight
- parameters for updating via gradient descent, here we only need to retain the
- gradient with respect to the ‘input’.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>此外，还可以通过引入超参数控制</span><span
- lang=en-US>classifier guaidance</span><span lang=zh-CN>的强度</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:2.25in'><img
- src="Classifier-free%20Guidance.files/image005.jpg" width=1809 height=401></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in'><span style='font-family:微软雅黑;font-size:36.0pt'>Classifier
- Guidance 的核心是：</span><span style='font-weight:bold;font-family:微软雅黑;
- font-size:36.0pt'>通过一个额外训练的分类器</span><span style='font-family:微软雅黑;font-size:
- 36.0pt'>，将 “类别信息” 注入扩散模型的去噪过程。具体来说，它利用贝叶斯公式将 “有条件 score”（给定类别</span><span
- style='font-style:italic;font-family:KaTeX_Math;font-size:10.0pt'>y</span><span
- style='font-family:微软雅黑;font-size:36.0pt'>时的去噪梯度）分解为 “无条件 score”（无类别约束的去噪梯度）和
- “分类器梯度”（类别对噪声样本的判别梯度）的组合，从而</span><span style='font-weight:bold;font-family:
- 微软雅黑;font-size:36.0pt'>在推理时</span><span style='font-family:微软雅黑;font-size:
- 36.0pt'>实现类别引导。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin-top:0pt;margin-bottom:9pt;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold'>训练阶段的 score function</span></p>
- <p style='margin:0in;font-family:Inter;font-size:36.0pt'>Classifier Guidance
- 的训练过程涉及<span style='font-weight:bold'>两个独立的模型</span>：</p>
- <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:bold;font-style:normal'>
-  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      font-weight:bold;color:black'><span style='font-family:微软雅黑;font-size:
-      36.0pt;font-weight:bold;font-style:normal;font-weight:bold;font-family:
-      微软雅黑;font-size:36.0pt;color:black' lang=zh-CN>扩散模型（去噪网络）</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-weight:normal;font-family:微软雅黑;font-size:36.0pt;color:black'
-      lang=zh-CN>：仅训练其拟合</span><span style='font-family:微软雅黑;font-size:36.0pt;
-      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
-      font-size:36.0pt;color:black' lang=zh-CN>无条件 score</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-weight:normal;font-family:微软雅黑;font-size:36.0pt;color:black'
-      lang=zh-CN>，即</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>∇</m:t></m:r></m:e><m:sub><m:r><m:t>&#119909;</m:t></m:r></m:sub></m:sSub><m:r><m:t>&#119897;&#119900;&#119892;</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>t</m:t></m:r></m:sub></m:sSub></m:e></m:d></m:oMath><![endif]--><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-weight:normal;font-family:微软雅黑;font-size:36.0pt;color:black'
-      lang=zh-CN>，扩散模型的训练目标与普通扩散模型一致（仅拟合去噪所需的无条件梯度）。</span><![if !msEquation]><img
-      src="Classifier-free%20Guidance.files/image006.png" width=3590
-      height=248><![endif]></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;font-weight:
-      bold;color:black'><span style='font-weight:bold;font-family:微软雅黑;
-      font-size:36.0pt;color:black'>分类器（Classifier）</span><span
-      style='font-weight:normal;font-family:微软雅黑;font-size:36.0pt;color:black'>：单独训练一个分类器，目标是拟合</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt;color:black'>类别后验概率</span><span
-      style='font-weight:normal;font-family:微软雅黑;font-size:36.0pt;color:black'>(p(y|x_t))。分类器的输入是噪声样本x_t和时间步t，输出是类别y的对数概率。训练目标通常是交叉熵损失（在带噪样本上预测真实类别y）。</span></li>
- </ol>
- <p style='margin-top:0pt;margin-bottom:9pt;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold'>因此，训练阶段的 score function 是分离的：</span></p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>扩散模型的 score function
-      仅包含无条件项</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>∇</m:t></m:r></m:e><m:sub><m:r><m:t>&#119909;</m:t></m:r></m:sub></m:sSub><m:r><m:t>&#119897;&#119900;&#119892;</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>t</m:t></m:r></m:sub></m:sSub></m:e></m:d></m:oMath><![endif]--><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，不涉及分类器；</span><![if !msEquation]><img
-      src="Classifier-free%20Guidance.files/image007.png" width=2436
-      height=125><![endif]></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
-      6pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'
-      lang=zh-CN>分类器的训练目标是拟合\(\log p(y|x_t)\)，其梯度</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>∇</m:t></m:r></m:e><m:sub><m:r><m:t>&#119909;</m:t></m:r></m:sub></m:sSub><m:r><m:t>&#119897;&#119900;&#119892;</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:r><m:t>&#119910;</m:t></m:r><m:r><m:t>|</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>t</m:t></m:r></m:sub></m:sSub></m:e></m:d></m:oMath><![endif]--><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>是</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>在推理阶段才会被使用的
-      “额外信息”，不参与扩散模型的训练。</span><![if !msEquation]><img
-      src="Classifier-free%20Guidance.files/image008.png" width=3590
-      height=248><![endif]></li>
- </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin-top:0pt;margin-bottom:9pt;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold'>关键结论</span></p>
- <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:bold;font-style:normal'>
-  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      font-weight:bold;color:black'><span style='font-family:微软雅黑;font-size:
-      36.0pt;font-weight:bold;font-style:normal;font-weight:bold;font-family:
-      微软雅黑;font-size:36.0pt;color:black'>训练与推理的 score function 不一致</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-weight:normal;font-family:微软雅黑;font-size:36.0pt;color:black'>：</span></li>
-  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-   margin-bottom:0in'>
-   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
-       3pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>训练阶段：扩散模型仅学无条件
-       score\(\nabla_x \log p_t(x_t)\)，分类器单独学\(\log p(y|x_t)\)，两者无交叉；</span></li>
-   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
-       3pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>推理阶段：引导
-       score 是两者的组合（无条件 score + 分类器梯度 × 权重）。</span></li>
-  </ul>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;font-weight:
-      bold;color:black'><span style='font-weight:bold;font-family:微软雅黑;
-      font-size:36.0pt;color:black'>推理阶段必须依赖分类器的梯度</span><span
-      style='font-weight:normal;font-family:微软雅黑;font-size:36.0pt;color:black'>：
-      Classifier Guidance 的核心是通过分类器提供的\(\nabla_x \log
-      p(y|x_t)\)引入类别信息，因此推理时必须调用训练好的分类器，计算其对当前噪声样本\(x_t\)的梯度。</span></li>
- </ol>
- <p style='margin:0in;margin-left:.375in;line-height:21pt;font-family:微软雅黑;
- font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
- style='font-weight:bold'>Classifier-free Guidance</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Classifier-Free
- Guidance的核心是通过<span style='font-weight:bold'>一个隐式分类器来替代显示分类器，而无需直接计算显式分类器及其梯度。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>还是利用贝叶斯公式，</span><span
- lang=en-US>score function</span><span lang=zh-CN>可以写成下图的形式</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:1.125in'><img
- src="Classifier-free%20Guidance.files/image009.jpg" width=1981 height=1019></p>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>上图也是推理时的</span><span
- lang=en-US>score function</span><span lang=zh-CN>，在训练阶段，</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>CFD
- 训练的核心是：让模型在同一网络中，通过 “随机切换条件输入（y&nbsp;或</span><span lang=en-US> </span><span
- lang=zh-CN>空）”，同时拟合</span><span style='font-weight:bold' lang=zh-CN>有条件去噪
- score</span><span lang=zh-CN>和</span><span style='font-weight:bold'
- lang=zh-CN>无条件去噪 score</span><span lang=zh-CN>。</span></p>
- <p><cite style='margin:0in;font-family:Calibri;font-size:9.0pt;color:#595959'>&nbsp;</cite></p>
- <p style='margin:0in;margin-left:1.125in'><img
- src="Classifier-free%20Guidance.files/image010.jpg" width=2232 height=730></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>但是，不论是有条件场景还是无条件场景，神经网络需要拟合的都是第</span><span
- lang=en-US>t</span><span lang=zh-CN>步时的</span><span lang=en-US>score function</span><span
- lang=zh-CN>（或者说是第</span><span lang=en-US>t</span><span lang=zh-CN>步时的噪声），二者的拟合目标是一致的，</span></p>
- <p style='margin:0in;margin-left:3.75in'><img
- src="Classifier-free%20Guidance.files/image011.jpg" width=1255 height=314></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in'><img
- src="Classifier-free%20Guidance.files/image012.jpg" width=2308 height=934></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:1.5in'><img
- src="Classifier-free%20Guidance.files/image013.jpg" width=1992 height=548></p>
- <p style='margin:0in;margin-left:1.5in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.75in'><img
- src="Classifier-free%20Guidance.files/image014.jpg" width=2334 height=789></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>初次接触扩散模型时，我们通常首先学习前向过程（从图像到噪声）和后向过程（从噪声到图像）。前向过程的图像通常是由噪声生成的，无需任何特定条件。然而，<span
+style='font-weight:bold'>我们常常希望控制生成的图像，例如只生成狗或猫。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>在这种情况下，我们需要</span><span
+style='font-weight:bold' lang=zh-CN>引入条件控制</span><span style='font-weight:bold'
+lang=en-US> text condition </span><span style='font-weight:bold' lang=zh-CN>y</span><span
+lang=zh-CN>，这需要理解分类器引导和无分类器引导。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold' lang=zh-CN>Classifier</span><span style='font-weight:bold' lang=en-US> </span><span
+style='font-weight:bold' lang=zh-CN>Guidance</span></p>
+
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:微软雅黑'
+lang=zh-CN>从</span><span style='font-family:微软雅黑' lang=en-US>score function</span><span
+style='font-family:微软雅黑' lang=zh-CN>的角度，未引入</span><span style='font-family:
+微软雅黑' lang=en-US> </span><span style='font-family:微软雅黑' lang=zh-CN>条件控制之前，我们需要学习每一步的</span><span
+style='font-family:微软雅黑' lang=en-US>score function</span><span
+style='font-family:微软雅黑' lang=zh-CN>，</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>∇</m:t></m:r></m:e><m:sub><m:r><m:t>&#119909;</m:t></m:r></m:sub></m:sSub><m:r><m:t>&#119897;&#119900;&#119892;</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>t</m:t></m:r></m:sub></m:sSub></m:e></m:d></m:oMath><![endif]--><span
+style='font-family:微软雅黑' lang=zh-CN>，引入条件控制之后，</span><span style='font-family:
+微软雅黑' lang=en-US>score function</span><span style='font-family:微软雅黑'
+lang=zh-CN>变成了</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>∇</m:t></m:r></m:e><m:sub><m:r><m:t>&#119909;</m:t></m:r></m:sub></m:sSub><m:r><m:t>&#119897;&#119900;&#119892;</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>t</m:t></m:r></m:sub></m:sSub><m:r><m:t>|</m:t></m:r><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>y</m:t></m:r></m:e></m:d></m:oMath><![endif]--><![if !msEquation]><img
+src="Classifier-free%20Guidance.files/image001.png" width=1607 height=72><![endif]></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:1.5in'><img
+src="Classifier-free%20Guidance.files/image002.jpg" width=634 height=160></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>利用贝叶斯公式，可以分为两项，</p>
+
+<p style='margin:0in;margin-left:1.5in'><img
+src="Classifier-free%20Guidance.files/image003.jpg" width=640 height=318></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-size:12.0pt'><span style='font-weight:bold;
+font-family:微软雅黑' lang=zh-CN>上面的</span><span style='font-weight:bold;
+font-family:微软雅黑' lang=en-US>score funtion</span><span style='font-weight:bold;
+font-family:微软雅黑' lang=zh-CN>是推理时的</span><span style='font-weight:bold;
+font-family:微软雅黑' lang=en-US>score function</span><span style='font-weight:
+bold;font-family:微软雅黑' lang=zh-CN>的公式，</span><span style='font-family:微软雅黑'
+lang=zh-CN>由两项组成，一个是原始的</span><span style='font-family:微软雅黑' lang=en-US>score
+funtion </span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>∇</m:t></m:r></m:e><m:sub><m:r><m:t>&#119909;</m:t></m:r></m:sub></m:sSub><m:r><m:t>&#119897;&#119900;&#119892;</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>t</m:t></m:r></m:sub></m:sSub></m:e></m:d></m:oMath><![endif]--><span
+style='font-family:微软雅黑' lang=zh-CN>，第二项是</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>∇</m:t></m:r></m:e><m:sub><m:r><m:t>&#119909;</m:t></m:r></m:sub></m:sSub><m:r><m:t>&#119897;&#119900;&#119892;</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:r><m:t>&#119910;</m:t></m:r><m:r><m:t>|</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>t</m:t></m:r></m:sub></m:sSub></m:e></m:d></m:oMath><![endif]--><span
+style='font-family:微软雅黑' lang=zh-CN>，这一项即</span><span style='font-weight:bold;
+font-family:微软雅黑' lang=en-US>classifier</span><span style='font-weight:bold;
+font-family:微软雅黑' lang=zh-CN>对输入</span><span style='font-weight:bold;
+font-family:微软雅黑' lang=en-US>x</span><span style='font-weight:bold;font-family:
+微软雅黑' lang=zh-CN>的梯度（而不是对</span><span style='font-weight:bold;font-family:"Cambria Math"'
+lang=en-US>classifier </span><span style='font-weight:bold;font-family:SimSun'
+lang=zh-CN>参数的梯度</span><span style='font-weight:bold;font-family:微软雅黑'
+lang=zh-CN>）</span><![if !msEquation]><img
+src="Classifier-free%20Guidance.files/image004.png" width=1617 height=83><![endif]></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>similar to how gradient
+back-propagation is done during classifier model training, we calculate the
+gradient. <span style='font-weight:bold'>The difference is that, while training
+a classifier model requires obtaining gradients of the weight parameters for
+updating via gradient descent, here we only need to retain the gradient with
+respect to the ‘input’.</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>此外，还可以通过引入超参数控制</span><span
+lang=en-US>classifier guaidance</span><span lang=zh-CN>的强度</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:1.5in'><img
+src="Classifier-free%20Guidance.files/image005.jpg" width=624 height=138></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-size:12.0pt'><span style='font-family:微软雅黑'>Classifier
+Guidance 的核心是：</span><span style='font-weight:bold;font-family:微软雅黑'>通过一个额外训练的分类器</span><span
+style='font-family:微软雅黑'>，将 “类别信息” 注入扩散模型的去噪过程。具体来说，它利用贝叶斯公式将 “有条件 score”（给定类别</span><span
+style='font-style:italic;font-family:KaTeX_Math'>y</span><span
+style='font-family:微软雅黑'>时的去噪梯度）分解为 “无条件 score”（无类别约束的去噪梯度）和
+“分类器梯度”（类别对噪声样本的判别梯度）的组合，从而</span><span style='font-weight:bold;font-family:
+微软雅黑'>在推理时</span><span style='font-family:微软雅黑'>实现类别引导。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin-top:0pt;margin-bottom:9pt;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold'>训练阶段的 score function</span></p>
+
+<p style='margin:0in;line-height:21pt;font-family:Inter;font-size:12.0pt'>Classifier
+Guidance 的训练过程涉及<span style='font-weight:bold'>两个独立的模型</span>：</p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:bold;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+     line-height:21pt;font-weight:bold;color:black'><span style='font-family:
+     微软雅黑;font-size:12.0pt;font-weight:bold;font-style:normal;font-weight:bold;
+     font-family:微软雅黑;font-size:12.0pt;color:black' lang=zh-CN>扩散模型（去噪网络）</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-weight:normal;font-family:微软雅黑;font-size:12.0pt;color:black'
+     lang=zh-CN>：仅训练其拟合</span><span style='font-family:微软雅黑;font-size:12.0pt;
+     font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+     font-size:12.0pt;color:black' lang=zh-CN>无条件 score</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-weight:normal;font-family:微软雅黑;font-size:12.0pt;color:black'
+     lang=zh-CN>，即</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>∇</m:t></m:r></m:e><m:sub><m:r><m:t>&#119909;</m:t></m:r></m:sub></m:sSub><m:r><m:t>&#119897;&#119900;&#119892;</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>t</m:t></m:r></m:sub></m:sSub></m:e></m:d></m:oMath><![endif]--><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-weight:normal;font-family:微软雅黑;font-size:12.0pt;color:black'
+     lang=zh-CN>，扩散模型的训练目标与普通扩散模型一致（仅拟合去噪所需的无条件梯度）。</span><![if !msEquation]><img
+     src="Classifier-free%20Guidance.files/image006.png" width=1553 height=85><![endif]></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;line-height:
+     21pt;font-weight:bold;color:black'><span style='font-weight:bold;
+     font-family:微软雅黑;font-size:12.0pt;color:black'>分类器（Classifier）</span><span
+     style='font-weight:normal;font-family:微软雅黑;font-size:12.0pt;color:black'>：单独训练一个分类器，目标是拟合</span><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt;color:black'>类别后验概率</span><span
+     style='font-weight:normal;font-family:微软雅黑;font-size:12.0pt;color:black'>(p(y|x_t))。分类器的输入是噪声样本x_t和时间步t，输出是类别y的对数概率。训练目标通常是交叉熵损失（在带噪样本上预测真实类别y）。</span></li>
+</ol>
+
+<p style='margin-top:0pt;margin-bottom:9pt;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold'>因此，训练阶段的 score function 是分离的：</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;line-height:
+     21pt'><span style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>扩散模型的
+     score function 仅包含无条件项</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>∇</m:t></m:r></m:e><m:sub><m:r><m:t>&#119909;</m:t></m:r></m:sub></m:sSub><m:r><m:t>&#119897;&#119900;&#119892;</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>t</m:t></m:r></m:sub></m:sSub></m:e></m:d></m:oMath><![endif]--><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>，不涉及分类器；</span><![if !msEquation]><img
+     src="Classifier-free%20Guidance.files/image007.png" width=873 height=43><![endif]></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:6pt;
+     margin-bottom:0pt;line-height:21pt'><span style='font-family:微软雅黑;
+     font-size:12.0pt' lang=zh-CN>分类器的训练目标是拟合\(\log p(y|x_t)\)，其梯度</span><!--[if gte msEquation 12]><m:oMath xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>∇</m:t></m:r></m:e><m:sub><m:r><m:t>&#119909;</m:t></m:r></m:sub></m:sSub><m:r><m:t>&#119897;&#119900;&#119892;</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119901;</m:t></m:r></m:e><m:sub><m:r><m:t>&#119905;</m:t></m:r></m:sub></m:sSub><m:d><m:dPr><m:ctrlPr/></m:dPr><m:e><m:r><m:t>&#119910;</m:t></m:r><m:r><m:t>|</m:t></m:r><m:sSub><m:sSubPr><m:ctrlPr/></m:sSubPr><m:e><m:r><m:t>&#119909;</m:t></m:r></m:e><m:sub><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t>t</m:t></m:r></m:sub></m:sSub></m:e></m:d></m:oMath><![endif]--><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>是</span><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>在推理阶段才会被使用的
+     “额外信息”，不参与扩散模型的训练。</span><![if !msEquation]><img
+     src="Classifier-free%20Guidance.files/image008.png" width=1502 height=43><![endif]></li>
 </ul>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin-top:0pt;margin-bottom:9pt;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold'>关键结论</span></p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:bold;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+     line-height:21pt;font-weight:bold;color:black'><span style='font-family:
+     微软雅黑;font-size:12.0pt;font-weight:bold;font-style:normal;font-weight:bold;
+     font-family:微软雅黑;font-size:12.0pt;color:black'>训练与推理的 score function 不一致</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-weight:normal;font-family:微软雅黑;font-size:12.0pt;color:black'>：</span></li>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      3pt;margin-bottom:0pt;line-height:21pt'><span style='font-family:微软雅黑;
+      font-size:12.0pt'>训练阶段：扩散模型仅学无条件 score\(\nabla_x \log
+      p_t(x_t)\)，分类器单独学\(\log p(y|x_t)\)，两者无交叉；</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      3pt;margin-bottom:0pt;line-height:21pt'><span style='font-family:微软雅黑;
+      font-size:12.0pt'>推理阶段：引导 score 是两者的组合（无条件 score + 分类器梯度 × 权重）。</span></li>
+ </ul>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;line-height:
+     21pt;font-weight:bold;color:black'><span style='font-weight:bold;
+     font-family:微软雅黑;font-size:12.0pt;color:black'>推理阶段必须依赖分类器的梯度</span><span
+     style='font-weight:normal;font-family:微软雅黑;font-size:12.0pt;color:black'>：
+     Classifier Guidance 的核心是通过分类器提供的\(\nabla_x \log
+     p(y|x_t)\)引入类别信息，因此推理时必须调用训练好的分类器，计算其对当前噪声样本\(x_t\)的梯度。</span></li>
+</ol>
+
+<p style='margin:0in;margin-left:.375in;line-height:21pt;font-family:微软雅黑;
+font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold'>Classifier-free Guidance</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>Classifier-Free
+Guidance的核心是通过<span style='font-weight:bold'>一个隐式分类器来替代显示分类器，而无需直接计算显式分类器及其梯度。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>还是利用贝叶斯公式，</span><span
+lang=en-US>score function</span><span lang=zh-CN>可以写成下图的形式</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:1.125in'><img
+src="Classifier-free%20Guidance.files/image009.jpg" width=585 height=301></p>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>上图也是推理时的</span><span
+lang=en-US>score function</span><span lang=zh-CN>，在训练阶段，</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>CFD
+训练的核心是：让模型在同一网络中，通过 “随机切换条件输入（y&nbsp;或</span><span lang=en-US> </span><span
+lang=zh-CN>空）”，同时拟合</span><span style='font-weight:bold' lang=zh-CN>有条件去噪 score</span><span
+lang=zh-CN>和</span><span style='font-weight:bold' lang=zh-CN>无条件去噪 score</span><span
+lang=zh-CN>。</span></p>
+
+<p><cite style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#595959'>&nbsp;</cite></p>
+
+<p style='margin:0in;margin-left:1.125in'><img
+src="Classifier-free%20Guidance.files/image010.jpg" width=764 height=250></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>但是，不论是有条件场景还是无条件场景，神经网络需要拟合的都是第</span><span
+lang=en-US>t</span><span lang=zh-CN>步时的</span><span lang=en-US>score function</span><span
+lang=zh-CN>（或者说是第</span><span lang=en-US>t</span><span lang=zh-CN>步时的噪声），二者的拟合目标是一致的，</span></p>
+
+<p style='margin:0in;margin-left:1.875in'><img
+src="Classifier-free%20Guidance.files/image011.jpg" width=684 height=171></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in'><img
+src="Classifier-free%20Guidance.files/image012.jpg" width=1025 height=414></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:1.5in'><img
+src="Classifier-free%20Guidance.files/image013.jpg" width=783 height=215></p>
+
+<p style='margin:0in;margin-left:1.5in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in'><img
+src="Classifier-free%20Guidance.files/image014.jpg" width=968 height=327></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
 </div>
 

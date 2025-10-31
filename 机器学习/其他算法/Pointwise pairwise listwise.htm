@@ -10,20 +10,20 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="Pointwise%20pairwise%20listwise.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:25.6402in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:25.3201in'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:.1743in;width:4.0236in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:4.0236in'>
 
 <p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'><span lang=en-US>P</span><span
 lang=zh-CN>oin</span><span lang=en-US>twise pairwise listwise</span></p>
 
 </div>
 
-<div style='direction:ltr;margin-top:.0423in;margin-left:.1743in;width:1.6687in'>
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
 
 <p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
 Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
@@ -34,364 +34,408 @@ style='font-family:Calibri'>22</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.7277in;margin-left:0in;width:25.6402in'>
+<div style='direction:ltr;margin-top:.7277in;margin-left:.175in;width:25.1451in'>
 
-<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
- style='font-weight:bold' lang=zh-CN>这</span><span style='font-weight:bold'
- lang=en-US>3</span><span style='font-weight:bold' lang=zh-CN>个都是用来</span><span
- style='font-weight:bold' lang=en-US>learn to rank</span><span
- style='font-weight:bold' lang=zh-CN>的，用来训练模型的排序能力的，</span><span
- style='font-weight:bold' lang=en-US>3</span><span style='font-weight:bold'
- lang=zh-CN>种宏观的训练范式，和用的模型是无关的，用</span><span style='font-weight:bold'
- lang=en-US>biencoder</span><span style='font-weight:bold' lang=zh-CN>或者</span><span
- style='font-weight:bold' lang=en-US>crossencoder</span><span style='font-weight:
- bold' lang=zh-CN>理论上都可以。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:normal'>
-  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      font-weight:bold'><span style='font-family:微软雅黑;font-size:48.0pt;
-      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
-      font-size:48.0pt' lang=en-US>P</span><span style='font-family:微软雅黑;
-      font-size:48.0pt;font-weight:bold;font-style:normal;font-weight:bold;
-      font-family:微软雅黑;font-size:48.0pt' lang=zh-CN>oint</span><span
-      style='font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:
-      normal;font-weight:bold;font-family:微软雅黑;font-size:48.0pt' lang=en-US>wise</span></li>
- </ol>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>In
- the pointwise approach, we treat the ranking problem as a simple
- classification task. For each query-document pair, we assign a target label
- that indicates the relevance of the document to the query. For example:</p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt'>Label 1 if the document is
-      relevant.</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt'>Label 0 if the document is not
-      relevant.</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>Using
- our earlier example, the data would look like this:</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>q1,d1→label:
- 1</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>q1,d2→label:
- 0</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>q1,d3→label:
- 1</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>q2,d4→label:
- 0</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>q2,d5→label:
- 1</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'
- lang=en-US>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=en-US>Pointwise</span><span style='font-weight:
- bold' lang=zh-CN>的训练目标是让</span><span style='font-weight:bold' lang=en-US>query</span><span
- style='font-weight:bold' lang=zh-CN>和</span><span style='font-weight:bold'
- lang=en-US>postive doc</span><span style='font-weight:bold' lang=zh-CN>的得分是</span><span
- style='font-weight:bold' lang=en-US>1</span><span style='font-weight:bold'
- lang=zh-CN>，</span><span style='font-weight:bold' lang=en-US>q</span><span
- style='font-weight:bold' lang=zh-CN>uery和</span><span style='font-weight:bold'
- lang=en-US>negative doc</span><span style='font-weight:bold' lang=zh-CN>的得分是</span><span
- style='font-weight:bold' lang=en-US>0</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=en-US>Pointwise</span><span style='font-weight:
- bold' lang=zh-CN>的</span><span style='font-weight:bold' lang=en-US>loss</span><span
- style='font-weight:bold' lang=zh-CN>是</span><span style='font-weight:bold'
- lang=en-US>query </span><span style='font-weight:bold' lang=zh-CN>q和文档</span><span
- style='font-weight:bold' lang=en-US>d</span><span style='font-weight:bold'
- lang=zh-CN>的函数</span><span lang=zh-CN>，即</span><span lang=en-US>L</span><span
- lang=zh-CN>oss</span><span lang=en-US> = L(q,d,y)</span><span lang=zh-CN>，y表示</span><span
- lang=en-US>label</span><span lang=zh-CN>，值为</span><span lang=en-US>0</span><span
- lang=zh-CN>或</span><span lang=en-US>1</span><span lang=zh-CN>，常见的</span><span
- lang=en-US>loss</span><span lang=zh-CN>形式有：</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=zh-CN>二</span><span lang=en-US>/</span><span lang=zh-CN>多分类交叉熵损失，</span><span
- lang=en-US>MSE</span><span lang=zh-CN>，平滑 L1 损失（Smooth L1 Loss），另外，我觉得经典对比损失也是</span><span
- lang=en-US>pointwise</span><span lang=zh-CN>的，因为这里</span><span lang=en-US>loss</span><span
- lang=zh-CN>只用到了</span><span lang=en-US>sample1</span><span lang=zh-CN>和</span><span
- lang=en-US>sample2</span><span lang=zh-CN>，s</span><span lang=en-US>ample1</span><span
- lang=zh-CN>相当于是</span><span lang=en-US>query,sample2</span><span lang=zh-CN>相当于是</span><span
- lang=en-US>d</span><span lang=zh-CN>oc。</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:2.625in'><img
- src="Pointwise%20pairwise%20listwise.files/image001.jpg" width=1654
- height=1065></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:48.0pt'
- lang=en-US>&nbsp;</p>
- <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:normal'>
-  <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      font-weight:bold'><span style='font-family:微软雅黑;font-size:48.0pt;
-      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
-      font-size:48.0pt' lang=en-US>P</span><span style='font-family:微软雅黑;
-      font-size:48.0pt;font-weight:bold;font-style:normal;font-weight:bold;
-      font-family:微软雅黑;font-size:48.0pt' lang=zh-CN>air</span><span
-      style='font-family:微软雅黑;font-size:48.0pt;font-weight:bold;font-style:
-      normal;font-weight:bold;font-family:微软雅黑;font-size:48.0pt' lang=en-US>wise</span></li>
- </ol>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>The
- main drawback of the pointwise approach is that it misses the context in which
- the user interacts with a document. When a user clicks on or finds a document
- relevant, there are often multiple factors at play – one of the most important
- being the neighboring items.</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>For
- instance, if a user clicks on a document, it might not necessarily mean that
- the document is highly relevant.<span style='font-weight:bold'> It could
- simply be that the other documents presented were of poor quality.</span>
- Similarly, if you had shown a different set of documents for the same query,
- the user’s interaction might have been entirely different.</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=en-US>Pairwise</span><span style='font-weight:
- bold' lang=zh-CN>的训练目标是让</span><span style='font-weight:bold' lang=en-US>query</span><span
- style='font-weight:bold' lang=zh-CN>和</span><span style='font-weight:bold'
- lang=en-US>postive doc</span><span style='font-weight:bold' lang=zh-CN>的得分</span><span
- style='font-weight:bold' lang=en-US>/</span><span style='font-weight:bold'
- lang=zh-CN>相似性</span><span style='font-weight:bold' lang=en-US>/</span><span
- style='font-weight:bold' lang=zh-CN>距离</span><span style='font-weight:bold'
- lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>大于</span><span
- style='font-weight:bold' lang=en-US>/</span><span style='font-weight:bold'
- lang=zh-CN>小于</span><span style='font-weight:bold' lang=en-US> q</span><span
- style='font-weight:bold' lang=zh-CN>uery和</span><span style='font-weight:bold'
- lang=en-US>negative doc</span><span style='font-weight:bold' lang=zh-CN>的得分</span><span
- style='font-weight:bold' lang=en-US>/</span><span style='font-weight:bold'
- lang=zh-CN>相似性</span><span style='font-weight:bold' lang=en-US>/</span><span
- style='font-weight:bold' lang=zh-CN>距离</span><span style='font-weight:bold'
- lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>。</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=en-US>Pairwise</span><span style='font-weight:
- bold' lang=zh-CN>的</span><span style='font-weight:bold' lang=en-US>loss</span><span
- style='font-weight:bold' lang=zh-CN>是</span><span style='font-weight:bold'
- lang=en-US>query </span><span style='font-weight:bold' lang=zh-CN>q和文档对</span><span
- style='font-weight:bold' lang=en-US>d1,d2</span><span style='font-weight:bold'
- lang=zh-CN>的函数，即</span><span style='font-weight:bold' lang=en-US>L</span><span
- style='font-weight:bold' lang=zh-CN>oss</span><span style='font-weight:bold'
- lang=en-US> = L(q,d1,d2,y)</span><span style='font-weight:bold' lang=zh-CN>，y表示</span><span
- style='font-weight:bold' lang=en-US>label,</span><span style='font-weight:
- bold' lang=zh-CN>用于指示</span><span style='font-weight:bold' lang=en-US>d1,d2</span><span
- style='font-weight:bold' lang=zh-CN>是</span><span style='font-weight:bold'
- lang=en-US>positve</span><span style='font-weight:bold' lang=zh-CN>还是</span><span
- style='font-weight:bold' lang=en-US>negative</span><span style='font-weight:
- bold' lang=zh-CN>，常见的</span><span style='font-weight:bold' lang=en-US>loss</span><span
- style='font-weight:bold' lang=zh-CN>形式有：</span></p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>交叉熵损失，r</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>anknet</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>用的就是交叉熵损失</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt'>三元损失（单个正例和单个负例），</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=en-US>loss_triplet</span><span lang=zh-CN> = max(0, ||A - P||^2 - ||A -
- N||^2 + </span><span lang=en-US>m</span><span lang=zh-CN>)</span></p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt'>合页损失</span></li>
- </ul>
- <p style='margin:0in;margin-left:1.125in'><img
- src="Pointwise%20pairwise%20listwise.files/image002.jpg" width=1789
- height=278></p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>InfoNCE
-      loss/Multinegativerankingloss</span><span style='font-family:微软雅黑;
-      font-size:36.0pt' lang=zh-CN>：单个正例和多个负例，但还是属于</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>pairwise</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的方式，因为没有对整个排序列表做优化（</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>不优化负样本之间的排序关系</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>）</span></li>
- </ul>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:2.625in'><img
- src="Pointwise%20pairwise%20listwise.files/image003.jpg" width=2014
- height=749></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-size:36.0pt'><span style='font-weight:bold;
- font-family:微软雅黑' lang=en-US>P</span><span style='font-weight:bold;font-family:
- 微软雅黑' lang=zh-CN>air</span><span style='font-weight:bold;font-family:微软雅黑'
- lang=en-US>wise</span><span style='font-weight:bold;font-family:微软雅黑'
- lang=zh-CN>的问题：</span><span style='font-family:微软雅黑' lang=zh-CN>One of the
- main challenges of implementing pairwise models is the&nbsp;</span><span
- style='font-weight:bold;font-family:"Work Sans";color:#2A2A2A;background:white'
- lang=zh-CN>computational complexity</span><span style='font-family:微软雅黑'
- lang=zh-CN>&nbsp;– since we need to compare</span><span style='font-weight:
- bold;font-family:微软雅黑' lang=zh-CN> all possible pairs of documents,</span><span
- style='font-family:微软雅黑' lang=zh-CN> the process scales as </span><span
- style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>O(n²).</span><span
- style='font-family:微软雅黑' lang=zh-CN> Additionally, pairwise methods don’t
- consider the&nbsp;</span><span style='font-weight:bold;font-family:"Work Sans";
- color:#2A2A2A;background:white' lang=zh-CN>global ranking</span><span
- style='font-family:微软雅黑' lang=zh-CN>&nbsp;of documents;&nbsp;</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt' lang=en-US>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
- style='font-weight:bold' lang=en-US>3.L</span><span style='font-weight:bold'
- lang=zh-CN>ist</span><span style='font-weight:bold' lang=en-US>wise</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>In
- listwise ranking, the goal is to optimize the entire list of documents based
- on their relevance to a query. Instead of treating individual documents
- separately, the focus is on the order in which they appear in the list.</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=zh-CN>listwise 的训练目标是让</span><span
- style='font-weight:bold' lang=en-US>query</span><span style='font-weight:bold'
- lang=zh-CN>和候选列表中的</span><span style='font-weight:bold' lang=en-US>doc</span><span
- style='font-weight:bold' lang=zh-CN>的相关性排序符合真实排序。</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=zh-CN>listwise 的</span><span style='font-weight:
- bold' lang=en-US>loss</span><span style='font-weight:bold' lang=zh-CN>是</span><span
- style='font-weight:bold' lang=en-US>query </span><span style='font-weight:
- bold' lang=zh-CN>q和文档列表</span><span style='font-weight:bold' lang=en-US>d1,d2,d3…</span><span
- style='font-weight:bold' lang=zh-CN>的函数，即</span><span style='font-weight:bold'
- lang=en-US>L</span><span style='font-weight:bold' lang=zh-CN>oss</span><span
- style='font-weight:bold' lang=en-US> = L(q,d1,d2,</span><span
- style='font-weight:bold' lang=zh-CN>d</span><span style='font-weight:bold'
- lang=en-US>3,…Y)</span><span style='font-weight:bold' lang=zh-CN>，</span><span
- style='font-weight:bold' lang=en-US>Y</span><span style='font-weight:bold'
- lang=zh-CN>表示</span><span style='font-weight:bold' lang=en-US>label,</span><span
- style='font-weight:bold' lang=zh-CN>也是个列表，常见的</span><span style='font-weight:
- bold' lang=en-US>loss</span><span style='font-weight:bold' lang=zh-CN>形式有：</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>1.
- LambdaRank 损失</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>核心思想：</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>LambdaRank
- 的飞跃： LambdaRank 的作者发现，在计算完这个 Pairwise 的梯度 λ_ij 后，可以直接将其乘以一个与最终评价指标（如
- NDCG（think of it as a way to measure how well the ordering of items matches
- their relevance. It rewards relevant items appearing at the top of the list
- and normalizes the score for easier comparison.））变化量相关的权重。</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>核心创新：
- 如果交换两个文档的位置能导致列表的 NDCG
- 大幅提升（例如，将一个高相关度的文档从底部提到顶部），那么这次交换的“重要性”就很大。因此，LambdaRank 会将对应的梯度 λ_ij
- 乘以一个很大的权重。反之，如果交换对 NDCG 影响很小，权重就小。直接优化排序评价指标，通过计算 “交换两个文档位置对指标的影响”（即 Lambda
- 值），将指标的 “改进空间” 转化为损失，指导模型调整分数。</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=en-US>2.</span><span lang=zh-CN>交叉熵损失，也就是</span></p>
- <p style='margin:0in;margin-left:2.625in'><img
- src="Pointwise%20pairwise%20listwise.files/image004.png" width=1512
- height=697></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
- style='font-weight:bold'>和对比学习的联系</span></p>
- <div style='direction:ltr'>
- <table border=1 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
-  border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
-  1pt' title="" summary="">
-  <tr>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:3.1291in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'><span style='font-weight:bold'>特征</span></p>
-   </td>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:9.0965in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'><span style='font-weight:bold'>传统 LTR Pairwise (如 RankNet)</span></p>
-   </td>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:12.8187in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'><span style='font-weight:bold'>对比学习</span></p>
-   </td>
-  </tr>
-  <tr>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:3.1291in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>目标</p>
-   </td>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:9.1159in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>学习一<span style='font-weight:bold'>个排序函数（Scoring</span>
-   Function），用于对列表中的项目进行排序。</p>
-   </td>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:12.8472in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>学习一个<span style='font-weight:bold'>表征模型（Encoder）</span>，用于将数据映射到具有区分性的嵌入空间。</p>
-   </td>
-  </tr>
-  <tr>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:3.1291in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>输出</p>
-   </td>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:9.0965in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'><span style='font-weight:bold'>一个可解释的分数（Score</span>）。</p>
-   </td>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:12.8187in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'><span style='font-weight:bold'>一个高维的向量（Embedding）。</span></p>
-   </td>
-  </tr>
-  <tr>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:3.1291in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>应用阶段</p>
-   </td>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:9.0965in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>直接用于推理/预测。给定一个新文档，模型打出分，然后排序。</p>
-   </td>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:12.8472in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>通常是一个预训练或表征学习阶段。学好的 Encoder 可以接一个简单的分类头或用于相似度检索。</p>
-   </td>
-  </tr>
-  <tr>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:3.1291in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>监督信号</p>
-   </td>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:9.0965in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'><span style='font-weight:bold'>依赖于明确的、人工标注的相对</span>顺序标签（如
-   DocA 比 DocB 更相关）。</p>
-   </td>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:12.8472in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>通<span style='font-weight:bold'>常依赖于数据本身构造的自监督信号</span>（如一张图的两种增强视图互为正样本，
-   batch 内其他图片为负样本）。</p>
-   </td>
-  </tr>
-  <tr>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:3.1291in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>比较的维度</p>
-   </td>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:9.0965in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>在分数空间进行比较。</p>
-   </td>
-   <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
-   background-color:white;vertical-align:top;width:12.8187in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
-   <p style='margin:0in;font-family:quote-cjk-patch;font-size:36.0pt;
-   color:#0F1115'>在嵌入空间进行比较（通常使用余弦相似度或点积）。</p>
-   </td>
-  </tr>
- </table>
- </div>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold' lang=zh-CN>这</span><span style='font-weight:bold' lang=en-US>3</span><span
+style='font-weight:bold' lang=zh-CN>个都是用来</span><span style='font-weight:bold'
+lang=en-US>learn to rank</span><span style='font-weight:bold' lang=zh-CN>的，用来训练模型的排序能力的，</span><span
+style='font-weight:bold' lang=en-US>3</span><span style='font-weight:bold'
+lang=zh-CN>种宏观的训练范式，和用的模型是无关的，用</span><span style='font-weight:bold'
+lang=en-US>biencoder</span><span style='font-weight:bold' lang=zh-CN>或者</span><span
+style='font-weight:bold' lang=en-US>crossencoder</span><span style='font-weight:
+bold' lang=zh-CN>理论上都可以。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:bold;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+     font-weight:bold'><span style='font-family:微软雅黑;font-size:12.0pt;
+     font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+     font-size:12.0pt' lang=en-US>P</span><span style='font-family:微软雅黑;
+     font-size:12.0pt;font-weight:bold;font-style:normal;font-weight:bold;
+     font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>oint</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:bold;font-style:normal;
+     font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=en-US>wise</span></li>
+</ol>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>In
+the pointwise approach, we treat the ranking problem as a simple classification
+task. For each query-document pair, we assign a target label that indicates the
+relevance of the document to the query. For example:</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt'>Label 1 if the document is
+     relevant.</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt'>Label 0 if the document is not
+     relevant.</span></li>
 </ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>Using
+our earlier example, the data would look like this:</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>q1,d1→label:
+1</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>q1,d2→label:
+0</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>q1,d3→label:
+1</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>q2,d4→label:
+0</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>q2,d5→label:
+1</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'
+lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold' lang=en-US>Pointwise</span><span style='font-weight:
+bold' lang=zh-CN>的训练目标是让</span><span style='font-weight:bold' lang=en-US>query</span><span
+style='font-weight:bold' lang=zh-CN>和</span><span style='font-weight:bold'
+lang=en-US>postive doc</span><span style='font-weight:bold' lang=zh-CN>的得分是</span><span
+style='font-weight:bold' lang=en-US>1</span><span style='font-weight:bold'
+lang=zh-CN>，</span><span style='font-weight:bold' lang=en-US>q</span><span
+style='font-weight:bold' lang=zh-CN>uery和</span><span style='font-weight:bold'
+lang=en-US>negative doc</span><span style='font-weight:bold' lang=zh-CN>的得分是</span><span
+style='font-weight:bold' lang=en-US>0</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold' lang=en-US>Pointwise</span><span style='font-weight:
+bold' lang=zh-CN>的</span><span style='font-weight:bold' lang=en-US>loss</span><span
+style='font-weight:bold' lang=zh-CN>是</span><span style='font-weight:bold'
+lang=en-US>query </span><span style='font-weight:bold' lang=zh-CN>q和文档</span><span
+style='font-weight:bold' lang=en-US>d</span><span style='font-weight:bold'
+lang=zh-CN>的函数</span><span lang=zh-CN>，即</span><span lang=en-US>L</span><span
+lang=zh-CN>oss</span><span lang=en-US> = L(q,d,y)</span><span lang=zh-CN>，y表示</span><span
+lang=en-US>label</span><span lang=zh-CN>，值为</span><span lang=en-US>0</span><span
+lang=zh-CN>或</span><span lang=en-US>1</span><span lang=zh-CN>，常见的</span><span
+lang=en-US>loss</span><span lang=zh-CN>形式有：</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=zh-CN>二</span><span lang=en-US>/</span><span lang=zh-CN>多分类交叉熵损失，</span><span
+lang=en-US>MSE</span><span lang=zh-CN>，平滑 L1 损失（Smooth L1 Loss），另外，我觉得经典对比损失也是</span><span
+lang=en-US>pointwise</span><span lang=zh-CN>的，因为这里</span><span lang=en-US>loss</span><span
+lang=zh-CN>只用到了</span><span lang=en-US>sample1</span><span lang=zh-CN>和</span><span
+lang=en-US>sample2</span><span lang=zh-CN>，s</span><span lang=en-US>ample1</span><span
+lang=zh-CN>相当于是</span><span lang=en-US>query,sample2</span><span lang=zh-CN>相当于是</span><span
+lang=en-US>d</span><span lang=zh-CN>oc。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:2.625in'><img
+src="Pointwise%20pairwise%20listwise.files/image001.jpg" width=518 height=333></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'
+lang=en-US>&nbsp;</p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:bold;font-style:normal'>
+ <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+     font-weight:bold'><span style='font-family:微软雅黑;font-size:12.0pt;
+     font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+     font-size:12.0pt' lang=en-US>P</span><span style='font-family:微软雅黑;
+     font-size:12.0pt;font-weight:bold;font-style:normal;font-weight:bold;
+     font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>air</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:bold;font-style:normal;
+     font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=en-US>wise</span></li>
+</ol>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>The
+main drawback of the pointwise approach is that it misses the context in which
+the user interacts with a document. When a user clicks on or finds a document
+relevant, there are often multiple factors at play – one of the most important
+being the neighboring items.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>For
+instance, if a user clicks on a document, it might not necessarily mean that
+the document is highly relevant.<span style='font-weight:bold'> It could simply
+be that the other documents presented were of poor quality.</span> Similarly,
+if you had shown a different set of documents for the same query, the user’s
+interaction might have been entirely different.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold' lang=en-US>Pairwise</span><span style='font-weight:
+bold' lang=zh-CN>的训练目标是让</span><span style='font-weight:bold' lang=en-US>query</span><span
+style='font-weight:bold' lang=zh-CN>和</span><span style='font-weight:bold'
+lang=en-US>postive doc</span><span style='font-weight:bold' lang=zh-CN>的得分</span><span
+style='font-weight:bold' lang=en-US>/</span><span style='font-weight:bold'
+lang=zh-CN>相似性</span><span style='font-weight:bold' lang=en-US>/</span><span
+style='font-weight:bold' lang=zh-CN>距离</span><span style='font-weight:bold'
+lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>大于</span><span
+style='font-weight:bold' lang=en-US>/</span><span style='font-weight:bold'
+lang=zh-CN>小于</span><span style='font-weight:bold' lang=en-US> q</span><span
+style='font-weight:bold' lang=zh-CN>uery和</span><span style='font-weight:bold'
+lang=en-US>negative doc</span><span style='font-weight:bold' lang=zh-CN>的得分</span><span
+style='font-weight:bold' lang=en-US>/</span><span style='font-weight:bold'
+lang=zh-CN>相似性</span><span style='font-weight:bold' lang=en-US>/</span><span
+style='font-weight:bold' lang=zh-CN>距离</span><span style='font-weight:bold'
+lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold' lang=en-US>Pairwise</span><span style='font-weight:
+bold' lang=zh-CN>的</span><span style='font-weight:bold' lang=en-US>loss</span><span
+style='font-weight:bold' lang=zh-CN>是</span><span style='font-weight:bold'
+lang=en-US>query </span><span style='font-weight:bold' lang=zh-CN>q和文档对</span><span
+style='font-weight:bold' lang=en-US>d1,d2</span><span style='font-weight:bold'
+lang=zh-CN>的函数，即</span><span style='font-weight:bold' lang=en-US>L</span><span
+style='font-weight:bold' lang=zh-CN>oss</span><span style='font-weight:bold'
+lang=en-US> = L(q,d1,d2,y)</span><span style='font-weight:bold' lang=zh-CN>，y表示</span><span
+style='font-weight:bold' lang=en-US>label,</span><span style='font-weight:bold'
+lang=zh-CN>用于指示</span><span style='font-weight:bold' lang=en-US>d1,d2</span><span
+style='font-weight:bold' lang=zh-CN>是</span><span style='font-weight:bold'
+lang=en-US>positve</span><span style='font-weight:bold' lang=zh-CN>还是</span><span
+style='font-weight:bold' lang=en-US>negative</span><span style='font-weight:
+bold' lang=zh-CN>，常见的</span><span style='font-weight:bold' lang=en-US>loss</span><span
+style='font-weight:bold' lang=zh-CN>形式有：</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>交叉熵损失，r</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>anknet</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>用的就是交叉熵损失</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt'>三元损失（单个正例和单个负例），</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=en-US>loss_triplet</span><span lang=zh-CN> = max(0, ||A - P||^2 - ||A -
+N||^2 + </span><span lang=en-US>m</span><span lang=zh-CN>)</span></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt'>合页损失</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:1.125in'><img
+src="Pointwise%20pairwise%20listwise.files/image002.jpg" width=532 height=82></p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>InfoNCE
+     loss/Multinegativerankingloss</span><span style='font-family:微软雅黑;
+     font-size:12.0pt' lang=zh-CN>：单个正例和多个负例，但还是属于</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>pairwise</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>的方式，因为没有对整个排序列表做优化（</span><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>不优化负样本之间的排序关系</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>）</span></li>
+</ul>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in'><img
+src="Pointwise%20pairwise%20listwise.files/image003.jpg" width=803 height=298></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-size:12.0pt'><span style='font-weight:bold;
+font-family:微软雅黑' lang=en-US>P</span><span style='font-weight:bold;font-family:
+微软雅黑' lang=zh-CN>air</span><span style='font-weight:bold;font-family:微软雅黑'
+lang=en-US>wise</span><span style='font-weight:bold;font-family:微软雅黑'
+lang=zh-CN>的问题：</span><span style='font-family:微软雅黑' lang=zh-CN>One of the main
+challenges of implementing pairwise models is the&nbsp;</span><span
+style='font-weight:bold;font-family:"Work Sans";color:#2A2A2A;background:white'
+lang=zh-CN>computational complexity</span><span style='font-family:微软雅黑'
+lang=zh-CN>&nbsp;– since we need to compare</span><span style='font-weight:
+bold;font-family:微软雅黑' lang=zh-CN> all possible pairs of documents,</span><span
+style='font-family:微软雅黑' lang=zh-CN> the process scales as </span><span
+style='font-weight:bold;font-family:微软雅黑' lang=zh-CN>O(n²).</span><span
+style='font-family:微软雅黑' lang=zh-CN> Additionally, pairwise methods don’t
+consider the&nbsp;</span><span style='font-weight:bold;font-family:"Work Sans";
+color:#2A2A2A;background:white' lang=zh-CN>global ranking</span><span
+style='font-family:微软雅黑' lang=zh-CN>&nbsp;of documents;&nbsp;</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold' lang=en-US>3.L</span><span style='font-weight:bold' lang=zh-CN>ist</span><span
+style='font-weight:bold' lang=en-US>wise</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>In
+listwise ranking, the goal is to optimize the entire list of documents based on
+their relevance to a query. Instead of treating individual documents
+separately, the focus is on the order in which they appear in the list.</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold' lang=zh-CN>listwise 的训练目标是让</span><span
+style='font-weight:bold' lang=en-US>query</span><span style='font-weight:bold'
+lang=zh-CN>和候选列表中的</span><span style='font-weight:bold' lang=en-US>doc</span><span
+style='font-weight:bold' lang=zh-CN>的相关性排序符合真实排序。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold' lang=zh-CN>listwise 的</span><span style='font-weight:
+bold' lang=en-US>loss</span><span style='font-weight:bold' lang=zh-CN>是</span><span
+style='font-weight:bold' lang=en-US>query </span><span style='font-weight:bold'
+lang=zh-CN>q和文档列表</span><span style='font-weight:bold' lang=en-US>d1,d2,d3…</span><span
+style='font-weight:bold' lang=zh-CN>的函数，即</span><span style='font-weight:bold'
+lang=en-US>L</span><span style='font-weight:bold' lang=zh-CN>oss</span><span
+style='font-weight:bold' lang=en-US> = L(q,d1,d2,</span><span style='font-weight:
+bold' lang=zh-CN>d</span><span style='font-weight:bold' lang=en-US>3,…Y)</span><span
+style='font-weight:bold' lang=zh-CN>，</span><span style='font-weight:bold'
+lang=en-US>Y</span><span style='font-weight:bold' lang=zh-CN>表示</span><span
+style='font-weight:bold' lang=en-US>label,</span><span style='font-weight:bold'
+lang=zh-CN>也是个列表，常见的</span><span style='font-weight:bold' lang=en-US>loss</span><span
+style='font-weight:bold' lang=zh-CN>形式有：</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>1.
+LambdaRank 损失</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>核心思想：</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>LambdaRank
+的飞跃： LambdaRank 的作者发现，在计算完这个 Pairwise 的梯度 λ_ij 后，可以直接将其乘以一个与最终评价指标（如 NDCG（think
+of it as a way to measure how well the ordering of items matches their
+relevance. It rewards relevant items appearing at the top of the list and
+normalizes the score for easier comparison.））变化量相关的权重。</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>核心创新：
+如果交换两个文档的位置能导致列表的 NDCG 大幅提升（例如，将一个高相关度的文档从底部提到顶部），那么这次交换的“重要性”就很大。因此，LambdaRank
+会将对应的梯度 λ_ij 乘以一个很大的权重。反之，如果交换对 NDCG 影响很小，权重就小。直接优化排序评价指标，通过计算
+“交换两个文档位置对指标的影响”（即 Lambda 值），将指标的 “改进空间” 转化为损失，指导模型调整分数。</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=en-US>2.</span><span lang=zh-CN>交叉熵损失，也就是</span></p>
+
+<p style='margin:0in;margin-left:1.125in'><img
+src="Pointwise%20pairwise%20listwise.files/image004.png" width=617 height=284></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold'>和对比学习的联系</span></p>
+
+<div style='direction:ltr'>
+
+<table border=1 cellpadding=0 cellspacing=0 valign=top style='direction:ltr;
+ border-collapse:collapse;border-style:solid;border-color:#A3A3A3;border-width:
+ 1pt' title="" summary="">
+ <tr>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:3.1291in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'><span style='font-weight:bold'>特征</span></p>
+  </td>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:9.0965in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'><span style='font-weight:bold'>传统 LTR Pairwise (如
+  RankNet)</span></p>
+  </td>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:8.1298in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'><span style='font-weight:bold'>对比学习</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:3.1291in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'>目标</p>
+  </td>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:9.0965in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'>学习一<span style='font-weight:bold'>个排序函数（Scoring</span>
+  Function），用于对列表中的项目进行排序。</p>
+  </td>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:8.1298in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'>学习一个<span style='font-weight:bold'>表征模型（Encoder）</span>，用于将数据映射到具有区分性的嵌入空间。</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:3.1291in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'>输出</p>
+  </td>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:9.0965in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'><span style='font-weight:bold'>一个可解释的分数（Score</span>）。</p>
+  </td>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:8.1298in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'><span style='font-weight:bold'>一个高维的向量（Embedding）。</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:3.1291in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'>应用阶段</p>
+  </td>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:9.0965in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'>直接用于推理/预测。给定一个新文档，模型打出分，然后排序。</p>
+  </td>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:8.1298in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'>通常是一个预训练或表征学习阶段。学好的 Encoder 可以接一个简单的分类头或用于相似度检索。</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:3.1291in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'>监督信号</p>
+  </td>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:9.0965in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'><span style='font-weight:bold'>依赖于明确的、人工标注的相对</span>顺序标签（如
+  DocA 比 DocB 更相关）。</p>
+  </td>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:8.2618in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'>通<span style='font-weight:bold'>常依赖于数据本身构造的自监督信号</span>（如一张图的两种增强视图互为正样本，
+  batch 内其他图片为负样本）。</p>
+  </td>
+ </tr>
+ <tr>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:3.1291in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'>比较的维度</p>
+  </td>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:9.0965in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'>在分数空间进行比较。</p>
+  </td>
+  <td style='border-style:solid;border-color:#A3A3A3;border-width:1pt;
+  background-color:white;vertical-align:top;width:8.1298in;padding:2.0pt 3.0pt 2.0pt 3.0pt'>
+  <p style='margin:0in;line-height:18pt;font-family:quote-cjk-patch;font-size:
+  12.0pt;color:#0F1115'>在嵌入空间进行比较（通常使用余弦相似度或点积）。</p>
+  </td>
+ </tr>
+</table>
+
+</div>
 
 </div>
 

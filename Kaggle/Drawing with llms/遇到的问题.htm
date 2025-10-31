@@ -10,19 +10,19 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="遇到的问题.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:32.552in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:9.1708in'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:.0062in;width:1.9236in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.9236in'>
 
 <p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'>遇到的问题</p>
 
 </div>
 
-<div style='direction:ltr;margin-top:.0423in;margin-left:.0062in;width:1.6687in'>
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
 
 <p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
 Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
@@ -33,281 +33,323 @@ style='font-family:Calibri'>11</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.2277in;margin-left:0in;width:29.3937in'>
+<div style='direction:ltr;margin-top:.2277in;margin-left:0in;width:9.1708in'>
 
-<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=en-US>1.<span style='mso-spacerun:yes'> 
- </span>import vllm</span><span style='font-weight:bold' lang=zh-CN>时报错：</span></p>
- <p style='margin:0in;font-family:-apple-system;font-size:36.0pt;color:#1F2328'><span
- style='background:white'>&nbsp;ImportError:
- /workspace/vllm-abo/vllm/_C.abi3.so: undefined symbol:
- _ZN5torch3jit17parseSchemaOrNameERKSsb</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#1F2328'><span
- style='font-weight:bold;background:white' lang=zh-CN>总结</span><span
- style='font-weight:bold;background:white' lang=en-US>:</span><span
- style='font-weight:bold;background:white' lang=zh-CN>因为</span><span
- style='font-weight:bold;background:white' lang=en-US>vllm</span><span
- style='font-weight:bold;background:white' lang=zh-CN>和</span><span
- style='font-weight:bold;background:white' lang=en-US>torch</span><span
- style='font-weight:bold;background:white' lang=zh-CN>版本不兼容，</span><span
- style='font-weight:bold;background:white' lang=en-US>pip install vllm</span><span
- style='font-weight:bold;background:white' lang=zh-CN>即可</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#1F2328'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#1F2328'><span
- style='font-weight:bold;text-decoration:line-through;background:white'>解决方法：</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#1F2328'><span
- style='text-decoration:line-through;background:white' lang=en-US>torch-cu </span><span
- style='text-decoration:line-through;background:white' lang=zh-CN>版本不对，卸载原有的</span><span
- style='text-decoration:line-through;background:white' lang=en-US>torch</span><span
- style='text-decoration:line-through;background:white' lang=zh-CN>，安装其他版本的</span><span
- style='text-decoration:line-through;background:white' lang=en-US>torch-cu</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#1F2328'><span
- style='text-decoration:line-through;background:white' lang=en-US>kaggle</span><span
- style='text-decoration:line-through;background:white' lang=zh-CN>环境下原来的版本是</span><span
- style='text-decoration:line-through;background:white' lang=en-US>torch2.5.1-cu124</span><span
- style='text-decoration:line-through;background:white' lang=zh-CN>，先卸载，再安装</span><span
- style='text-decoration:line-through;background:white' lang=en-US>torch2.5.1-</span><span
- style='text-decoration:line-through;background:white' lang=zh-CN>cu121</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt;color:#1F2328'><span
- style='text-decoration:line-through;background:white'>!pip uninstall -y torch
- torchvision torchaudio</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt;color:#1F2328'><span
- style='text-decoration:line-through;background:white'>!pip install torch
- torchvision torchaudio --index-url </span><a
- href="https://download.pytorch.org/whl/cu121"><span style='text-decoration:
- line-through;background:white'>https://download.pytorch.org/whl/cu121</span></a></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt;color:#1F2328'><span
- style='text-decoration:line-through;background:white'>!pip show torch</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#1F2328'><span
- style='text-decoration:line-through;background:white'>然后再安装其他库</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
- style='text-decoration:line-through'>!pip install svgwrite</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
- style='text-decoration:line-through'>!pip install cairosvg bitsandbytes</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
- style='text-decoration:line-through'>!pip install
- git+https://github.com/openai/CLIP.git</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
- style='text-decoration:line-through'>!pip install -q opencv-python
- scikit-image pillow</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
- style='text-decoration:line-through'>!pip install vtracer</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
- style='text-decoration:line-through'>!pip install google_re2</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
- style='text-decoration:line-through'>!pip install vllm</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:24.0pt;color:#1F2328'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#1F2328'><span
- style='text-decoration:line-through;background:white' lang=zh-CN>未成功的方法：如果先安装其他库，再卸载并安装</span><span
- style='text-decoration:line-through;background:white' lang=en-US>torch,</span><span
- style='text-decoration:line-through;background:white' lang=zh-CN>最后再安装</span><span
- style='text-decoration:line-through;background:white' lang=en-US> vllm</span><span
- style='text-decoration:line-through;background:white' lang=zh-CN>，还是会报错。必须先卸载并安装</span><span
- style='text-decoration:line-through;background:white' lang=en-US>torch</span><span
- style='text-decoration:line-through;background:white' lang=zh-CN>，可能</span><span
- style='text-decoration:line-through;background:white' lang=en-US> </span><span
- style='text-decoration:line-through;background:white' lang=zh-CN>因为</span><span
- style='text-decoration:line-through;background:white' lang=en-US>torch</span><span
- style='text-decoration:line-through;background:white' lang=zh-CN>是其他库的基础？</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
- style='text-decoration:line-through'>!pip install svgwrite</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
- style='text-decoration:line-through'>!pip install cairosvg bitsandbytes</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
- style='text-decoration:line-through'>!pip install
- git+https://github.com/openai/CLIP.git</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
- style='text-decoration:line-through'>!pip install -q opencv-python
- scikit-image pillow</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
- style='text-decoration:line-through'>!pip install vtracer</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
- style='text-decoration:line-through'>!pip install google_re2</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:24.0pt;color:#1F2328'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt;color:#1F2328'><span
- style='text-decoration:line-through;background:white'>!pip uninstall -y torch
- torchvision torchaudio</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt;color:#1F2328'><span
- style='text-decoration:line-through;background:white'>!pip install torch
- torchvision torchaudio --index-url </span><a
- href="https://download.pytorch.org/whl/cu121"><span style='text-decoration:
- line-through;background:white'>https://download.pytorch.org/whl/cu121</span></a></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt;color:#1F2328'><span
- style='text-decoration:line-through;background:white'>!pip show torch</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:24.0pt;color:#1F2328'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
- style='text-decoration:line-through'>!pip install vllm</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'><span
- style='text-decoration:line-through'>这样不行。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='text-decoration:line-through' lang=zh-CN>总结：</span><span
- style='text-decoration:line-through' lang=en-US>tor</span><span
- style='text-decoration:line-through' lang=zh-CN>c</span><span
- style='text-decoration:line-through' lang=en-US>h-cu</span><span
- style='text-decoration:line-through' lang=zh-CN>版本不对，更换合适的</span><span
- style='text-decoration:line-through' lang=en-US>torch</span><span
- style='text-decoration:line-through' lang=zh-CN>版本。原因可能是</span><span
- style='text-decoration:line-through' lang=en-US>vllm</span><span
- style='text-decoration:line-through' lang=zh-CN>用的</span><span
- style='text-decoration:line-through' lang=en-US>torch</span><span
- style='text-decoration:line-through' lang=zh-CN>版本和</span><span
- style='text-decoration:line-through' lang=en-US>vllm</span><span
- style='text-decoration:line-through' lang=zh-CN>依赖的库用的</span><span
- style='text-decoration:line-through' lang=en-US>torch</span><span
- style='text-decoration:line-through' lang=zh-CN>版本不一致。</span></p>
- <p style='margin:0in;font-family:微软雅黑'><span style='font-weight:bold;
- font-size:36.0pt' lang=zh-CN>更新：</span><span style='font-weight:bold;
- font-size:36.0pt' lang=en-US>import vllm</span><span style='font-weight:bold;
- font-size:36.0pt' lang=zh-CN>的时候会卸载掉旧版本的依赖，例如</span><span style='font-weight:
- bold;font-size:36.0pt' lang=en-US>uninstall torch 2.5.1</span><span
- style='font-weight:bold;font-size:36.0pt' lang=zh-CN>再安装新版本的依赖</span><span
- style='font-weight:bold;font-size:36.0pt' lang=en-US> install torch 2.6.0</span><span
- style='font-weight:bold;font-size:36.0pt' lang=zh-CN>，所以</span><span
- style='font-weight:bold;font-size:28.0pt' lang=zh-CN>!pip install torch
- torchvision torchaudio --index-url </span><a
- href="https://download.pytorch.org/whl/cu121"><span style='font-weight:bold;
- font-size:28.0pt' lang=zh-CN>https://download.pytorch.org/whl/cu121</span></a><span
- style='font-weight:bold;font-size:28.0pt' lang=en-US> </span><span
- style='font-weight:bold;font-size:36.0pt' lang=zh-CN>这个操作是无效的。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#1F2328'><span
- style='background:white'>报错原因：</span></p>
- <p><cite style='margin:0in;font-size:36.0pt;color:#595959'><span
- style='font-weight:bold;font-family:Calibri'><span
- style='mso-spacerun:yes'> </span></span><span style='font-weight:bold;
- font-family:"Microsoft YaHei"'>参考：</span><span style='font-weight:bold;
- font-family:Calibri'>https://github.com/vllm-project/vllm/issues/13608</span></cite></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#1F2328'>&nbsp;</p>
- <p style='margin:0in;font-size:22.0pt'><span style='font-family:微软雅黑'>I had
- the same problem on a GH200 cluster, I think it is caused by a mismatch of
- torch versions used by some libraries. during their installation. To avoid
- this, try to make whatever library you are installing to use the existing
- torch version already installed (e.g., with&nbsp;</span><span
- style='font-family:ui-monospace'>FLASH_ATTENTION_SKIP_CUDA_BUILD=1</span><span
- style='font-family:微软雅黑'>,&nbsp;</span><span style='font-family:ui-monospace'>--no-build-isolation</span><span
- style='font-family:微软雅黑'>). For example, the following is how I was able to
- finally run VLLM without this issue:</span></p>
- <p style='margin:0in;font-family:ui-monospace;font-size:16.0pt;color:#1F2328'><span
- style='background:#F6F8FA'>pip3 install packaging<br>
-  pip3 install wheel</span></p>
- <p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
- font-size:16.0pt;color:#1F2328'><span style='background:#F6F8FA'># install
- torch if you haven't yet<br>
-  pip3 install torch torchvision torchaudio --index-url </span><a
- href="https://download.pytorch.org/whl/cu124"><span style='background:#F6F8FA'>https://download.pytorch.org/whl/cu124</span></a><span
- style='background:#F6F8FA'><br>
-  pip3 install accelerate bitsandbytes datasets evaluate huggingface-hub peft
- tokenizers transformers trl<br>
-  pip3 install ray[default,client]</span></p>
- <p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
- font-size:16.0pt;color:#1F2328'><span style='background:#F6F8FA'>pip3 install
- triton<br>
-  pip3 install nvidia-cutlass</span></p>
- <p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
- font-size:16.0pt;color:#1F2328'><span style='background:#F6F8FA'># flash
- attention, using existing torch<br>
-  NVCC_APPEND_FLAGS='-allow-unsupported-compiler' MAX_JOBS=4
- FLASH_ATTENTION_SKIP_CUDA_BUILD=1 pip3 install flash-attn --no-build-isolation
- --use-pep517</span></p>
- <p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
- font-size:16.0pt;color:#1F2328'><span style='background:#F6F8FA'># VLLM, using
- existing torch<br>
-  git clone </span><a href="https://github.com/vllm-project/vllm.git"><span
- style='background:#F6F8FA'>https://github.com/vllm-project/vllm.git</span></a><span
- style='background:#F6F8FA'><br>
-  cd vllm<br>
-  git checkout ed6e9075d31e32c8548b480a47d1ffb77da1f54c<br>
-  python3 use_existing_torch.py<br>
-  pip3 install -r requirements-build.txt<br>
-  pip3 install --editable . --no-build-isolation<br>
-  cd ../</span></p>
- <p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
- font-size:16.0pt;color:#1F2328'><span style='background:#F6F8FA'># I had some
- isssues with these libraries, maybe you can skip right away to xformers
- installation<br>
-  pip3 uninstall -y $(pip3 list --format=freeze | grep opencv)<br>
-  pip3 install opencv-python-headless<br>
-  pip3 uninstall -y pynvml<br>
-  pip3 install nvidia-ml-py<br>
-  pip3 install compressed-tensors</span></p>
- <p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
- font-size:16.0pt;color:#1F2328'><span style='background:#F6F8FA'># xformers,
- using existing torch<br>
-  git clone </span><a href="https://github.com/facebookresearch/xformers.git"><span
- style='background:#F6F8FA'>https://github.com/facebookresearch/xformers.git</span></a><span
- style='background:#F6F8FA'><br>
-  cd xformers<br>
-  git submodule update --init --recursive<br>
-  MAX_JOBS=4 pip3 install --use-pep517 . --no-build-isolation<br>
-  cd../</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:26.0pt'>I guess the problem is
- that vLLM make use of some compiled library from its dependency that doesn't
- work with the latest pytorch. What I did to resolve this</p>
- <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:16.0pt;font-weight:normal;font-style:normal'>
-  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      color:#1F2328'><span style='font-family:-apple-system;font-size:16.0pt;
-      font-weight:normal;font-style:normal;font-family:-apple-system;
-      font-size:16.0pt;background:white'>install latest pytorch</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
-      style='font-family:-apple-system;font-size:16.0pt;background:white'>download
-      and compile from source these libraries: xformers, flashinfer,
-      flash-attention</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
-      style='font-family:-apple-system;font-size:16.0pt;background:white'>recompile
-      vLLM with full build</span></li>
- </ol>
- <p style='margin:0in;font-family:ui-monospace;font-size:16.0pt;color:#1F2328'><span
- style='background:#F6F8FA'><span style='mso-spacerun:yes'> </span>pip3 install
- --pre torch torchvision torchaudio --index-url </span><a
- href="https://download.pytorch.org/whl/nightly/cu128"><span style='background:
- #F6F8FA'>https://download.pytorch.org/whl/nightly/cu128</span></a><span
- style='background:#F6F8FA'><br>
-  <span style='mso-spacerun:yes'> </span>pip install nvidia-cutlass</span></p>
- <p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
- font-size:16.0pt;color:#1F2328'><span style='background:#F6F8FA'>git clone </span><a
- href="https://github.com/Dao-AILab/flash-attention.git"><span
- style='background:#F6F8FA'>https://github.com/Dao-AILab/flash-attention.git</span></a><span
- style='background:#F6F8FA'><br>
-  <span style='mso-spacerun:yes'>     </span>cd flash-attention<br>
-  <span style='mso-spacerun:yes'>     </span>python setup.py install</span></p>
- <p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
- font-size:16.0pt;color:#1F2328'><span style='background:#F6F8FA'>git clone </span><a
- href="https://github.com/flashinfer-ai/flashinfer.git"><span style='background:
- #F6F8FA'>https://github.com/flashinfer-ai/flashinfer.git</span></a><span
- style='background:#F6F8FA'> --recursive<br>
-  <span style='mso-spacerun:yes'>     </span>cd flashinfer<br>
-  <span style='mso-spacerun:yes'>     </span>FLASHINFER_ENABLE_AOT=1 pip
- install -e . -v --no-deps --no-build-isolati. .<span
- style='mso-spacerun:yes'>  </span></span></p>
- <p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
- font-size:16.0pt;color:#1F2328'><span style='background:#F6F8FA'>git clone </span><a
- href="https://github.com/facebookresearch/xformers.git"><span
- style='background:#F6F8FA'>https://github.com/facebookresearch/xformers.git</span></a><span
- style='background:#F6F8FA'><br>
-  <span style='mso-spacerun:yes'>     </span>cd xformers<br>
-  <span style='mso-spacerun:yes'>     </span>git submodule update --init
- --recursive<br>
-  <span style='mso-spacerun:yes'>     </span>MAX_JOBS=4 pip3 install
- --use-pep517 . --no-build-isolation</span></p>
- <p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
- font-size:16.0pt;color:#1F2328'><span style='background:#F6F8FA'>cd vllm<br>
-  python3 use_existing_torch.py<br>
-  pip3 install -r requirements/build.txt<br>
-  pip3 install --editable . --no-build-isolation</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:24.0pt'>However, for me, I
- have performance issues with pytorch 2.8 and triton, so I switch to using
- Pytorch 2.7 with cuda 12.6, and everything is normal now.</p>
-</ul>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold' lang=en-US>1.<span style='mso-spacerun:yes'>  </span>import vllm</span><span
+style='font-weight:bold' lang=zh-CN>时报错：</span></p>
 
-</div>
+<p style='margin:0in;font-family:-apple-system;font-size:12.0pt;color:#1F2328'><span
+style='background:white'>&nbsp;ImportError:
+/workspace/vllm-abo/vllm/_C.abi3.so: undefined symbol:
+_ZN5torch3jit17parseSchemaOrNameERKSsb</span></p>
 
-<div style='direction:ltr;margin-top:.1527in;margin-left:.0062in;width:32.5458in'>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#1F2328'><span
+style='font-weight:bold;background:white' lang=zh-CN>总结</span><span
+style='font-weight:bold;background:white' lang=en-US>:</span><span
+style='font-weight:bold;background:white' lang=zh-CN>因为</span><span
+style='font-weight:bold;background:white' lang=en-US>vllm</span><span
+style='font-weight:bold;background:white' lang=zh-CN>和</span><span
+style='font-weight:bold;background:white' lang=en-US>torch</span><span
+style='font-weight:bold;background:white' lang=zh-CN>版本不兼容，</span><span
+style='font-weight:bold;background:white' lang=en-US>pip install vllm</span><span
+style='font-weight:bold;background:white' lang=zh-CN>即可</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#1F2328'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#1F2328'><span
+style='font-weight:bold;text-decoration:line-through;background:white'>解决方法：</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#1F2328'><span
+style='text-decoration:line-through;background:white' lang=en-US>torch-cu </span><span
+style='text-decoration:line-through;background:white' lang=zh-CN>版本不对，卸载原有的</span><span
+style='text-decoration:line-through;background:white' lang=en-US>torch</span><span
+style='text-decoration:line-through;background:white' lang=zh-CN>，安装其他版本的</span><span
+style='text-decoration:line-through;background:white' lang=en-US>torch-cu</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#1F2328'><span
+style='text-decoration:line-through;background:white' lang=en-US>kaggle</span><span
+style='text-decoration:line-through;background:white' lang=zh-CN>环境下原来的版本是</span><span
+style='text-decoration:line-through;background:white' lang=en-US>torch2.5.1-cu124</span><span
+style='text-decoration:line-through;background:white' lang=zh-CN>，先卸载，再安装</span><span
+style='text-decoration:line-through;background:white' lang=en-US>torch2.5.1-</span><span
+style='text-decoration:line-through;background:white' lang=zh-CN>cu121</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#1F2328'><span
+style='text-decoration:line-through;background:white'>!pip uninstall -y torch
+torchvision torchaudio</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#1F2328'><span
+style='text-decoration:line-through;background:white'>!pip install torch
+torchvision torchaudio --index-url </span><a
+href="https://download.pytorch.org/whl/cu121"><span style='text-decoration:
+line-through;background:white'>https://download.pytorch.org/whl/cu121</span></a></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#1F2328'><span
+style='text-decoration:line-through;background:white'>!pip show torch</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#1F2328'><span
+style='text-decoration:line-through;background:white'>然后再安装其他库</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='text-decoration:
+line-through'>!pip install svgwrite</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='text-decoration:
+line-through'>!pip install cairosvg bitsandbytes</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='text-decoration:
+line-through'>!pip install git+https://github.com/openai/CLIP.git</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='text-decoration:
+line-through'>!pip install -q opencv-python scikit-image pillow</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='text-decoration:
+line-through'>!pip install vtracer</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='text-decoration:
+line-through'>!pip install google_re2</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='text-decoration:
+line-through'>!pip install vllm</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#1F2328'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#1F2328'><span
+style='text-decoration:line-through;background:white' lang=zh-CN>未成功的方法：如果先安装其他库，再卸载并安装</span><span
+style='text-decoration:line-through;background:white' lang=en-US>torch,</span><span
+style='text-decoration:line-through;background:white' lang=zh-CN>最后再安装</span><span
+style='text-decoration:line-through;background:white' lang=en-US> vllm</span><span
+style='text-decoration:line-through;background:white' lang=zh-CN>，还是会报错。必须先卸载并安装</span><span
+style='text-decoration:line-through;background:white' lang=en-US>torch</span><span
+style='text-decoration:line-through;background:white' lang=zh-CN>，可能</span><span
+style='text-decoration:line-through;background:white' lang=en-US> </span><span
+style='text-decoration:line-through;background:white' lang=zh-CN>因为</span><span
+style='text-decoration:line-through;background:white' lang=en-US>torch</span><span
+style='text-decoration:line-through;background:white' lang=zh-CN>是其他库的基础？</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='text-decoration:
+line-through'>!pip install svgwrite</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='text-decoration:
+line-through'>!pip install cairosvg bitsandbytes</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='text-decoration:
+line-through'>!pip install git+https://github.com/openai/CLIP.git</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='text-decoration:
+line-through'>!pip install -q opencv-python scikit-image pillow</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='text-decoration:
+line-through'>!pip install vtracer</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='text-decoration:
+line-through'>!pip install google_re2</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#1F2328'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#1F2328'><span
+style='text-decoration:line-through;background:white'>!pip uninstall -y torch
+torchvision torchaudio</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#1F2328'><span
+style='text-decoration:line-through;background:white'>!pip install torch
+torchvision torchaudio --index-url </span><a
+href="https://download.pytorch.org/whl/cu121"><span style='text-decoration:
+line-through;background:white'>https://download.pytorch.org/whl/cu121</span></a></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#1F2328'><span
+style='text-decoration:line-through;background:white'>!pip show torch</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#1F2328'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='text-decoration:
+line-through'>!pip install vllm</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='text-decoration:
+line-through'>这样不行。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:11.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='text-decoration:
+line-through' lang=zh-CN>总结：</span><span style='text-decoration:line-through'
+lang=en-US>tor</span><span style='text-decoration:line-through' lang=zh-CN>c</span><span
+style='text-decoration:line-through' lang=en-US>h-cu</span><span
+style='text-decoration:line-through' lang=zh-CN>版本不对，更换合适的</span><span
+style='text-decoration:line-through' lang=en-US>torch</span><span
+style='text-decoration:line-through' lang=zh-CN>版本。原因可能是</span><span
+style='text-decoration:line-through' lang=en-US>vllm</span><span
+style='text-decoration:line-through' lang=zh-CN>用的</span><span
+style='text-decoration:line-through' lang=en-US>torch</span><span
+style='text-decoration:line-through' lang=zh-CN>版本和</span><span
+style='text-decoration:line-through' lang=en-US>vllm</span><span
+style='text-decoration:line-through' lang=zh-CN>依赖的库用的</span><span
+style='text-decoration:line-through' lang=en-US>torch</span><span
+style='text-decoration:line-through' lang=zh-CN>版本不一致。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold' lang=zh-CN>更新：</span><span style='font-weight:bold' lang=en-US>import
+vllm</span><span style='font-weight:bold' lang=zh-CN>的时候会卸载掉旧版本的依赖，例如</span><span
+style='font-weight:bold' lang=en-US>uninstall torch 2.5.1</span><span
+style='font-weight:bold' lang=zh-CN>再安装新版本的依赖</span><span style='font-weight:
+bold' lang=en-US> install torch 2.6.0</span><span style='font-weight:bold'
+lang=zh-CN>，所以!pip install torch torchvision torchaudio --index-url </span><a
+href="https://download.pytorch.org/whl/cu121"><span style='font-weight:bold'
+lang=zh-CN>https://download.pytorch.org/whl/cu121</span></a><span
+style='font-weight:bold' lang=en-US> </span><span style='font-weight:bold'
+lang=zh-CN>这个操作是无效的。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#1F2328'><span
+style='background:white'>报错原因：</span></p>
+
+<p><cite style='margin:0in;font-size:12.0pt;color:#595959'><span
+style='font-weight:bold;font-family:Calibri'><span
+style='mso-spacerun:yes'> </span></span><span style='font-weight:bold;
+font-family:"Microsoft YaHei"'>参考：</span><span style='font-weight:bold;
+font-family:Calibri'>https://github.com/vllm-project/vllm/issues/13608</span></cite></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:20.0pt;color:#1F2328'>&nbsp;</p>
+
+<p style='margin:0in;font-size:8.0pt'><span style='font-family:微软雅黑'>I had the
+same problem on a GH200 cluster, I think it is caused by a mismatch of torch
+versions used by some libraries. during their installation. To avoid this, try
+to make whatever library you are installing to use the existing torch version
+already installed (e.g., with&nbsp;</span><span style='font-family:ui-monospace'>FLASH_ATTENTION_SKIP_CUDA_BUILD=1</span><span
+style='font-family:微软雅黑'>,&nbsp;</span><span style='font-family:ui-monospace'>--no-build-isolation</span><span
+style='font-family:微软雅黑'>). For example, the following is how I was able to
+finally run VLLM without this issue:</span></p>
+
+<p style='margin:0in;font-family:ui-monospace;font-size:8.0pt;color:#1F2328'><span
+style='background:#F6F8FA'>pip3 install packaging<br>
+pip3 install wheel</span></p>
+
+<p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
+font-size:8.0pt;color:#1F2328'><span style='background:#F6F8FA'># install torch
+if you haven't yet<br>
+pip3 install torch torchvision torchaudio --index-url </span><a
+href="https://download.pytorch.org/whl/cu124"><span style='background:#F6F8FA'>https://download.pytorch.org/whl/cu124</span></a><span
+style='background:#F6F8FA'><br>
+pip3 install accelerate bitsandbytes datasets evaluate huggingface-hub peft
+tokenizers transformers trl<br>
+pip3 install ray[default,client]</span></p>
+
+<p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
+font-size:8.0pt;color:#1F2328'><span style='background:#F6F8FA'>pip3 install
+triton<br>
+pip3 install nvidia-cutlass</span></p>
+
+<p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
+font-size:8.0pt;color:#1F2328'><span style='background:#F6F8FA'># flash
+attention, using existing
+torch<br>
+NVCC_APPEND_FLAGS='-allow-unsupported-compiler' MAX_JOBS=4
+FLASH_ATTENTION_SKIP_CUDA_BUILD=1 pip3 install flash-attn --no-build-isolation
+--use-pep517</span></p>
+
+<p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
+font-size:8.0pt;color:#1F2328'><span style='background:#F6F8FA'># VLLM, using
+existing torch<br>
+git clone </span><a href="https://github.com/vllm-project/vllm.git"><span
+style='background:#F6F8FA'>https://github.com/vllm-project/vllm.git</span></a><span
+style='background:#F6F8FA'><br>
+cd vllm<br>
+git checkout ed6e9075d31e32c8548b480a47d1ffb77da1f54c<br>
+python3 use_existing_torch.py<br>
+pip3 install -r requirements-build.txt<br>
+pip3 install --editable . --no-build-isolation<br>
+cd ../</span></p>
+
+<p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
+font-size:8.0pt;color:#1F2328'><span style='background:#F6F8FA'># I had some
+isssues with these libraries, maybe you can skip right away to xformers
+installation<br>
+pip3 uninstall -y $(pip3 list --format=freeze | grep opencv)<br>
+pip3 install opencv-python-headless<br>
+pip3 uninstall -y pynvml<br>
+pip3 install nvidia-ml-py<br>
+pip3 install compressed-tensors</span></p>
+
+<p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
+font-size:8.0pt;color:#1F2328'><span style='background:#F6F8FA'># xformers,
+using existing torch<br>
+git clone </span><a href="https://github.com/facebookresearch/xformers.git"><span
+style='background:#F6F8FA'>https://github.com/facebookresearch/xformers.git</span></a><span
+style='background:#F6F8FA'><br>
+cd xformers<br>
+git submodule update --init --recursive<br>
+MAX_JOBS=4 pip3 install --use-pep517 . --no-build-isolation<br>
+cd../</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:21.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:11.0pt'>I guess the problem is
+that vLLM make use of some compiled library from its dependency that doesn't
+work with the latest pytorch. What I did to resolve this</p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:8.0pt;font-weight:normal;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+     color:#1F2328'><span style='font-family:-apple-system;font-size:8.0pt;
+     font-weight:normal;font-style:normal;font-family:-apple-system;font-size:
+     8.0pt;background:white'>install latest pytorch</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+     style='font-family:-apple-system;font-size:8.0pt;background:white'>download
+     and compile from source these libraries: xformers, flashinfer,
+     flash-attention</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#1F2328'><span
+     style='font-family:-apple-system;font-size:8.0pt;background:white'>recompile
+     vLLM with full build</span></li>
+</ol>
+
+<p style='margin:0in;font-family:ui-monospace;font-size:8.0pt;color:#1F2328'><span
+style='background:#F6F8FA'><span style='mso-spacerun:yes'> </span>pip3 install
+--pre torch torchvision torchaudio --index-url </span><a
+href="https://download.pytorch.org/whl/nightly/cu128"><span style='background:
+#F6F8FA'>https://download.pytorch.org/whl/nightly/cu128</span></a><span
+style='background:#F6F8FA'><br>
+<span style='mso-spacerun:yes'> </span>pip install nvidia-cutlass</span></p>
+
+<p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
+font-size:8.0pt;color:#1F2328'><span style='background:#F6F8FA'>git clone </span><a
+href="https://github.com/Dao-AILab/flash-attention.git"><span style='background:
+#F6F8FA'>https://github.com/Dao-AILab/flash-attention.git</span></a><span
+style='background:#F6F8FA'><br>
+<span style='mso-spacerun:yes'>     </span>cd flash-attention<br>
+<span style='mso-spacerun:yes'>     </span>python setup.py install</span></p>
+
+<p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
+font-size:8.0pt;color:#1F2328'><span style='background:#F6F8FA'>git clone </span><a
+href="https://github.com/flashinfer-ai/flashinfer.git"><span style='background:
+#F6F8FA'>https://github.com/flashinfer-ai/flashinfer.git</span></a><span
+style='background:#F6F8FA'> --recursive<br>
+<span style='mso-spacerun:yes'>     </span>cd flashinfer<br>
+<span style='mso-spacerun:yes'>     </span>FLASHINFER_ENABLE_AOT=1 pip install
+-e . -v --no-deps --no-build-isolati. .<span style='mso-spacerun:yes'>  </span></span></p>
+
+<p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
+font-size:8.0pt;color:#1F2328'><span style='background:#F6F8FA'>git clone </span><a
+href="https://github.com/facebookresearch/xformers.git"><span style='background:
+#F6F8FA'>https://github.com/facebookresearch/xformers.git</span></a><span
+style='background:#F6F8FA'><br>
+<span style='mso-spacerun:yes'>     </span>cd xformers<br>
+<span style='mso-spacerun:yes'>     </span>git submodule update --init
+--recursive<br>
+<span style='mso-spacerun:yes'>     </span>MAX_JOBS=4 pip3 install --use-pep517
+. --no-build-isolation</span></p>
+
+<p style='margin-top:0pt;margin-bottom:12pt;font-family:ui-monospace;
+font-size:8.0pt;color:#1F2328'><span style='background:#F6F8FA'>cd
+vllm<br>
+python3 use_existing_torch.py<br>
+pip3 install -r requirements/build.txt<br>
+pip3 install --editable . --no-build-isolation</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:9.0pt'>However, for me, I have
+performance issues with pytorch 2.8 and triton, so I switch to using Pytorch
+2.7 with cuda 12.6, and everything is normal now.</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:7.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=en-US>2.</span><span style='font-weight:bold' lang=zh-CN>关于</span><span
 style='font-weight:bold' lang=en-US>clip</span><span style='font-weight:bold'
 lang=zh-CN>库以及</span><span style='font-weight:bold' lang=en-US>diffusion</span><span
@@ -315,7 +357,7 @@ style='font-weight:bold' lang=zh-CN>库和</span><span style='font-weight:bold'
 lang=en-US>vllm</span><span style='font-weight:bold' lang=zh-CN>库无法同时使用的</span><span
 style='font-weight:bold' lang=en-US>bug★★★★★</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>首先是我找不到错误在哪，</span><span style='font-weight:bold' lang=en-US>Notebook
 </span><span style='font-weight:bold' lang=zh-CN>在</span><span
 style='font-weight:bold' lang=en-US>interactive </span><span style='font-weight:
@@ -325,42 +367,42 @@ style='font-weight:bold' lang=en-US> </span><span style='font-weight:bold'
 lang=zh-CN>，需要看</span><span style='font-weight:bold' lang=en-US>output</span><span
 style='font-weight:bold' lang=zh-CN>部分。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>因为提交版本时默认会强制执行
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>因为提交版本时默认会强制执行
 kaggle_evaluation.test(package.Model) 。</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>报错信息：</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>报错信息：</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>RuntimeError: An
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>RuntimeError: An
 attempt has been made to start a new process before the current process has
 finished its bootstrapping phase. This probably means that you are not using
 fork to start your child processes and you have forgotten to use the proper
 idiom in the main module:</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>即</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>即</span><span
 lang=en-US>vllm</span><span lang=zh-CN>的</span><span lang=en-US> </span><span
 style='font-weight:bold' lang=en-US>python multiprocess runtime error </span><span
 style='font-weight:bold' lang=zh-CN>，官方有解决方案</span><span lang=zh-CN>：</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><a
 href="https://docs.vllm.ai/en/stable/getting_started/troubleshooting.html">https://docs.vllm.ai/en/stable/getting_started/troubleshooting.html</a></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>github</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>github</span><span
 lang=zh-CN>相关</span><span lang=en-US>issue</span><span lang=zh-CN>：</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><a
 href="https://github.com/vllm-project/vllm/issues/5637">https://github.com/vllm-project/vllm/issues/5637</a></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>但是用</span><span style='font-weight:bold' lang=en-US>if
 main=='__main__' </span><span style='font-weight:bold' lang=zh-CN>包裹后，虽然不报错了，但是是因为压根就没有执行</span><span
 style='font-weight:bold' lang=en-US> llm = vllm.llm()</span><span
 style='font-weight:bold' lang=zh-CN>这条语句，所以不报错。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>另一个</span><span style='font-weight:bold' lang=en-US>notebook</span><span
 style='font-weight:bold' lang=zh-CN>，也用了</span><span style='font-weight:bold'
 lang=en-US>vllm</span><span style='font-weight:bold' lang=zh-CN>，但是没有报错，所以我比较了两个</span><span
@@ -373,7 +415,7 @@ bold' lang=zh-CN>中出现这样的</span><span style='font-weight:bold' lang=en
 style='font-weight:bold' lang=zh-CN>，而没报错的</span><span style='font-weight:bold'
 lang=en-US>notebook</span><span style='font-weight:bold' lang=zh-CN>中没出现，</span></p>
 
-<blockquote style='margin:0in;font-family:Calibri;font-size:36.0pt;color:#595959'><span
+<blockquote style='margin:0in;font-family:Calibri;font-size:12.0pt;color:#595959'><span
 style='font-style:italic'>WARNING 05-12 03:21:27 [utils.py:2382] We must use
 the `spawn` multiprocessing start method. Overriding
 VLLM_WORKER_MULTIPROC_METHOD to 'spawn'. See </span><a
@@ -381,7 +423,7 @@ href="https://docs.vllm.ai/en/latest/getting_started/troubleshooting.html#python
 style='font-style:italic'>https://docs.vllm.ai/en/latest/getting_started/troubleshooting.html#python-multiprocessing</span></a><span
 style='font-style:italic'> for more information. Reason: CUDA is initialized</span></blockquote>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>关键词就是Reason: CUDA is initialized，</span><span
 style='font-weight:bold' lang=en-US>google</span><span style='font-weight:bold'
 lang=zh-CN>后，找到</span><span style='font-weight:bold' lang=en-US>github</span><span
@@ -396,37 +438,37 @@ StableDiffusionPipeline, DDIMScheduler #这句话会initialize cuda，如果</sp
 lang=en-US>cuda is initialized</span><span lang=zh-CN>，这会导致</span><span
 lang=en-US>vllm</span><span lang=zh-CN>报上面出现的错。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>但是我把</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>但是我把</span><span
 lang=en-US>import stablediffusion</span><span lang=zh-CN>这句话放在</span><span
 lang=en-US>vllm.llm()</span><span lang=zh-CN>之后</span><span style='font-weight:
 bold' lang=zh-CN>还是不行，又报了新的错，但还是和</span><span style='font-weight:bold'
 lang=en-US>vllm</span><span style='font-weight:bold' lang=zh-CN>的多进程有关的错误。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:16.0pt'><span style='font-weight:
 bold'>★重点来了！！！！！！</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>当我再查看n</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>当我再查看n</span><span
 lang=en-US>otebook</span><span lang=zh-CN>运行的</span><span lang=en-US>log</span><span
 lang=zh-CN>部分时，我发现了报错的</span><span lang=en-US>notebook</span><span lang=zh-CN>的</span><span
 lang=en-US>log</span><span lang=zh-CN>中有下面两个</span><span lang=en-US>log info</span><span
 lang=zh-CN>：</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>INFO 05-12 08:21:08
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>INFO 05-12 08:21:08
 [importing.py:53] Triton module has been replaced with a placeholder.</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>INFO 05-12 08:21:10
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>INFO 05-12 08:21:10
 [__init__.py:239] Automatically detected platform cuda.</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>而没报错的</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>而没报错的</span><span
 lang=en-US>notebook</span><span lang=zh-CN>的</span><span lang=en-US>log</span><span
 lang=zh-CN>中只有一个</span><span lang=en-US>info</span><span lang=zh-CN>：</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>INFO 05-12 08:21:10
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>INFO 05-12 08:21:10
 [__init__.py:239] Automatically detected platform cuda.</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>这个</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>这个</span><span
 lang=en-US>INFO</span><span lang=zh-CN>是</span><span lang=en-US>import vllm</span><span
 lang=zh-CN>时产生的。我查看了</span><span lang=en-US>notebook</span><span lang=zh-CN>，二者的区别在于</span><span
 lang=en-US>import vllm</span><span lang=zh-CN>的位置不同，没报错的</span><span
@@ -440,16 +482,16 @@ placeholder</span><span lang=en-US> </span><span lang=zh-CN>这条</span><span
 lang=en-US>INFO</span><span lang=zh-CN>，于是我先</span><span lang=en-US>import vllm</span><span
 lang=zh-CN>再</span><span lang=en-US>import </span><span lang=zh-CN>clip，终于问题解决了。。。。。。。。。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:16.0pt'><span style='font-weight:
 bold' lang=zh-CN>总结：这个</span><span style='font-weight:bold' lang=en-US>bug</span><span
 style='font-weight:bold' lang=zh-CN>是关于</span><span style='font-weight:bold'
 lang=en-US>vllm</span><span style='font-weight:bold' lang=zh-CN>的多进程报错，其实包含了两个</span><span
 style='font-weight:bold' lang=en-US>bug</span><span style='font-weight:bold'
 lang=zh-CN>！！！！！！！</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>一个是</span><span style='font-weight:bold' lang=en-US>diffusion</span><span
 style='font-weight:bold' lang=zh-CN>库和</span><span style='font-weight:bold'
 lang=en-US>vllm</span><span style='font-weight:bold' lang=zh-CN>库的不兼容， from
@@ -461,7 +503,7 @@ style='font-weight:bold' lang=en-US>llm_model = vllm.LLM()</span><span
 style='font-weight:bold' lang=zh-CN>，再</span><span style='font-weight:bold'
 lang=en-US>import diffusers.</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>另一个是</span><span style='font-weight:bold' lang=en-US>clip</span><span
 style='font-weight:bold' lang=zh-CN>库和</span><span style='font-weight:bold'
 lang=en-US>vllm</span><span style='font-weight:bold' lang=zh-CN>库的不兼容，</span><span
@@ -477,19 +519,19 @@ style='font-weight:bold' lang=en-US>import vllm</span><span style='font-weight:
 bold' lang=zh-CN>，再运行</span><span style='font-weight:bold' lang=en-US>import
 clip.</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=en-US>PS</span><span style='font-weight:bold' lang=zh-CN>：但是这两个</span><span
 style='font-weight:bold' lang=en-US>bug</span><span style='font-weight:bold'
 lang=zh-CN>在交互时环境中不会出现，只有im</span><span style='font-weight:bold' lang=en-US>port
 </span><span style='font-weight:bold' lang=zh-CN>你的代码包，在另一个进程中运行时会报错，即kaggle_evaluation.test(Model)时会报错。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold;background:red;mso-highlight:red' lang=zh-CN>总结：</span><span
 style='font-weight:bold;background:red;mso-highlight:red' lang=en-US>vllm</span><span
 style='font-weight:bold;background:red;mso-highlight:red' lang=zh-CN>对</span><span
@@ -502,16 +544,11 @@ style='font-weight:bold;background:red;mso-highlight:red' lang=zh-CN>版本才�
 style='font-weight:bold;background:red;mso-highlight:red' lang=en-US>vllm</span><span
 style='font-weight:bold;background:red;mso-highlight:red' lang=zh-CN>的多进程更容易报错。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p><cite style='margin:0in;font-family:Calibri;font-size:9.0pt;color:#595959'>&gt;
-</cite></p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-</div>
-
-<div style='direction:ltr;margin-top:.152in;margin-left:.0062in;width:31.2847in'>
-
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN><span
 style='mso-spacerun:yes'> </span></span><span style='font-weight:bold'
 lang=en-US>3.</span><span style='font-weight:bold' lang=zh-CN>关于</span><span
 style='font-weight:bold' lang=en-US>transformer model.generate</span><span
@@ -521,67 +558,72 @@ style='font-weight:bold' lang=en-US>outputs[0]</span><span style='font-weight:
 bold' lang=zh-CN>。加num_return_sequences参数之后</span><span style='font-weight:
 bold' lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>，生成速度变得特别慢！！！！！！！！！！！</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold'>加num_return_sequences参数：</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>outputs
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>outputs
 =</span><span lang=en-US> </span><span lang=zh-CN>model.generate(</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>        </span>**inputs,</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>        </span>max_new_tokens=512,</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>        </span>do_sample=True,</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>        </span>temperature=0.8,</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>        </span>top_p=0.95,<span
 style='mso-spacerun:yes'>  </span># Add nucleus sampling</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>        </span>num_return_sequences = 2,</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>    </span>)</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>outputs =
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>outputs =
 model.generate(</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>    </span>input_ids=input_ids, max_length=40,
 temperature=0.7, num_return_sequences=3, do_sample=True</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>)<span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>)<span
 style='mso-spacerun:yes'>  </span># generate 3 candidates using sampling</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>for i in range(3):<span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>for i in range(3):<span
 style='mso-spacerun:yes'>  </span>#<span style='mso-spacerun:yes'>  </span>3
 output sequences were generated</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>    </span>print(f&quot;Generated {i}:
 {tokenizer.decode(<span style='font-weight:bold'>outputs[i],</span>
 skip_special_tokens=True)}&quot;)</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold'>不加num_return_sequences参数：</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>outputs =
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>outputs =
 model.generate(max_length=40)<span style='mso-spacerun:yes'>  </span># do
 greedy decoding</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>print(f&quot;Generated:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>print(f&quot;Generated:
 {tokenizer.decode(<span style='font-weight:bold'>outputs[0]</span>,
 skip_special_tokens=True)}&quot;)</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:19.0pt'>&nbsp;</p>
+
+<p><cite style='margin:0in;font-family:Calibri;font-size:6.0pt;color:#595959'>&gt;
+</cite></p>
 
 </div>
 

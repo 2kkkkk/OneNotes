@@ -10,11 +10,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="Roberta.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:27.1861in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:12.9791in'>
 
 <div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.5909in'>
 
@@ -34,60 +34,61 @@ style='font-family:Calibri'>18</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.9604in;margin-left:.3763in;width:26.8097in'>
+<div style='direction:ltr;margin-top:.9604in;margin-left:.6493in;width:12.3298in'>
 
-<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>RoBERTa 由 Facebook
- 提出，核心思路是 “通过优化 BERT 的训练过程和超参数，释放其潜力”，并未改变 BERT 的基础模型结构（仍为 Transformer Encoder
- 堆叠），主要改进包括：</p>
- <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:bold;font-style:normal'>
-  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      font-weight:bold;color:black'><span style='font-family:微软雅黑;font-size:
-      36.0pt;font-weight:bold;font-style:normal;font-weight:bold;font-family:
-      微软雅黑;font-size:36.0pt;color:black'>移除 Next Sentence
-      Prediction（NSP）任务<br>
-            </span><span style='font-family:微软雅黑;font-size:36.0pt;font-weight:
-      normal;font-style:normal;font-weight:normal;font-family:微软雅黑;font-size:
-      36.0pt;color:black'>BERT 中的 NSP
-      任务被证明效果有限（甚至可能引入噪声），因为其设计过于简单（仅判断两句话是否连续），难以有效学习句子级语义关系。RoBERTa 直接移除
-      NSP，仅保留 Masked Language Model（MLM）任务，通过更长的文本序列（单句或多句拼接）让模型自然学习上下文关联。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;font-weight:
-      bold;color:black'><span style='font-weight:bold;font-family:微软雅黑;
-      font-size:36.0pt;color:black'>采用动态掩码（Dynamic Masking）替代静态掩码<br>
-            </span><span style='font-weight:normal;font-family:微软雅黑;font-size:
-      36.0pt;color:black'>BERT 采用 “静态掩码”：在预处理阶段一次性对语料进行掩码，之后每个训练 epoch
-      都使用相同的掩码模式。<br>
-            RoBERTa 改为 “动态掩码”：每个训练 epoch
-      对输入文本重新生成掩码模式，增加了训练的随机性和数据多样性，迫使模型更全面地学习上下文依赖。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;font-weight:
-      bold;color:black'><span style='font-weight:bold;font-family:微软雅黑;
-      font-size:36.0pt;color:black'>增大训练批次（Batch Size）和训练步数<br>
-            </span><span style='font-weight:normal;font-family:微软雅黑;font-size:
-      36.0pt;color:black'>BERT 原始训练的 batch size 为 16/32（较小），RoBERTa 将 batch
-      size 大幅提升至 8192（通过梯度累积实现），并延长训练时间（从 BERT 的 1M 步增至 300K 步，但总计算量更高）。更大的
-      batch size 有助于模型学习更稳定的全局特征，减少过拟合风险。</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;font-weight:
-      bold;color:black'><span style='font-weight:bold;font-family:微软雅黑;
-      font-size:36.0pt;color:black'>使用更多、更丰富的训练数据<br>
-            </span><span style='font-weight:normal;font-family:微软雅黑;font-size:
-      36.0pt;color:black'>BERT 训练数据约 16GB（BookCorpus + Wikipedia），RoBERTa
-      扩展了训练语料，新增了：</span></li>
-  <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-   margin-bottom:0in'>
-   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
-       3pt;margin-bottom:0pt'><span style='font-family:微软雅黑;font-size:36.0pt'>CC-News（约
-       76GB）、OpenWebText（约 38GB）、Stories（约 31GB）等，总数据量增至约
-       160GB，覆盖更广泛的语言场景，提升模型泛化能力。</span></li>
-  </ul>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;font-weight:
-      bold;color:black'><span style='font-weight:bold;font-family:微软雅黑;
-      font-size:36.0pt;color:black'>支持更长的输入序列<br>
-            </span><span style='font-weight:normal;font-family:微软雅黑;font-size:
-      36.0pt;color:black'>BERT 默认输入序列长度为 512 tokens，但实际训练中部分样本使用较短序列（128
-      tokens）。RoBERTa 取消了短序列训练，统一使用 512 tokens 的长序列，更适合处理长文本语义。</span></li>
- </ol>
-</ul>
+<p style='margin:0in;line-height:21pt;font-family:微软雅黑;font-size:12.0pt'>RoBERTa
+由 Facebook 提出，核心思路是 “通过优化 BERT 的训练过程和超参数，释放其潜力”，并未改变 BERT 的基础模型结构（仍为
+Transformer Encoder 堆叠），主要改进包括：</p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:bold;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+     line-height:21pt;font-weight:bold;color:black'><span style='font-family:
+     微软雅黑;font-size:12.0pt;font-weight:bold;font-style:normal;font-weight:bold;
+     font-family:微软雅黑;font-size:12.0pt;color:black'>移除 Next Sentence
+     Prediction（NSP）任务<br>
+          </span><span style='font-family:微软雅黑;font-size:12.0pt;font-weight:
+     normal;font-style:normal;font-weight:normal;font-family:微软雅黑;font-size:
+     12.0pt;color:black'>BERT 中的 NSP
+     任务被证明效果有限（甚至可能引入噪声），因为其设计过于简单（仅判断两句话是否连续），难以有效学习句子级语义关系。RoBERTa 直接移除
+     NSP，仅保留 Masked Language Model（MLM）任务，通过更长的文本序列（单句或多句拼接）让模型自然学习上下文关联。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;line-height:
+     21pt;font-weight:bold;color:black'><span style='font-weight:bold;
+     font-family:微软雅黑;font-size:12.0pt;color:black'>采用动态掩码（Dynamic
+     Masking）替代静态掩码<br>
+          </span><span style='font-weight:normal;font-family:微软雅黑;font-size:
+     12.0pt;color:black'>BERT 采用 “静态掩码”：在预处理阶段一次性对语料进行掩码，之后每个训练 epoch
+     都使用相同的掩码模式。<br>
+          RoBERTa 改为 “动态掩码”：每个训练 epoch
+     对输入文本重新生成掩码模式，增加了训练的随机性和数据多样性，迫使模型更全面地学习上下文依赖。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;line-height:
+     21pt;font-weight:bold;color:black'><span style='font-weight:bold;
+     font-family:微软雅黑;font-size:12.0pt;color:black'>增大训练批次（Batch
+     Size）和训练步数<br>
+          </span><span style='font-weight:normal;font-family:微软雅黑;font-size:
+     12.0pt;color:black'>BERT 原始训练的 batch size 为 16/32（较小），RoBERTa 将 batch size
+     大幅提升至 8192（通过梯度累积实现），并延长训练时间（从 BERT 的 1M 步增至 300K 步，但总计算量更高）。更大的 batch
+     size 有助于模型学习更稳定的全局特征，减少过拟合风险。</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;line-height:
+     21pt;font-weight:bold;color:black'><span style='font-weight:bold;
+     font-family:微软雅黑;font-size:12.0pt;color:black'>使用更多、更丰富的训练数据<br>
+          </span><span style='font-weight:normal;font-family:微软雅黑;font-size:
+     12.0pt;color:black'>BERT 训练数据约 16GB（BookCorpus + Wikipedia），RoBERTa
+     扩展了训练语料，新增了：</span></li>
+ <ul type=circle style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+  margin-bottom:0in'>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle;margin-top:
+      3pt;margin-bottom:0pt;line-height:21pt'><span style='font-family:微软雅黑;
+      font-size:12.0pt'>CC-News（约 76GB）、OpenWebText（约 38GB）、Stories（约
+      31GB）等，总数据量增至约 160GB，覆盖更广泛的语言场景，提升模型泛化能力。</span></li>
+ </ul>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle;line-height:
+     21pt;font-weight:bold;color:black'><span style='font-weight:bold;
+     font-family:微软雅黑;font-size:12.0pt;color:black'>支持更长的输入序列<br>
+          </span><span style='font-weight:normal;font-family:微软雅黑;font-size:
+     12.0pt;color:black'>BERT 默认输入序列长度为 512 tokens，但实际训练中部分样本使用较短序列（128
+     tokens）。RoBERTa 取消了短序列训练，统一使用 512 tokens 的长序列，更适合处理长文本语义。</span></li>
+</ol>
 
 </div>
 

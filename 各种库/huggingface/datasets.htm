@@ -10,11 +10,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="datasets.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:38.2388in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:13.9076in'>
 
 <div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.5166in'>
 
@@ -34,24 +34,24 @@ style='font-family:Calibri'>29</span><span style='font-family:"Microsoft YaHei"'
 
 </div>
 
-<div style='direction:ltr;margin-top:.243in;margin-left:0in;width:38.2388in'>
+<div style='direction:ltr;margin-top:.243in;margin-left:0in;width:13.9076in'>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><a
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><a
 href="https://huggingface.co/docs/datasets/index">https://huggingface.co/docs/datasets/index</a></p>
 
-<p style='margin:0in;font-family:Calibri;font-size:36.0pt' lang=en-US>&nbsp;</p>
+<p style='margin:0in;font-family:Calibri;font-size:12.0pt' lang=en-US>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>The Trainer
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>The Trainer
 automatically ignores columns in your dataset which aren’t used by the model.
 For T5 for instance, the model expects input_ids, attention_mask, labels etc.,
 but not “summary”, “document”, “id”. As long as input_ids etc are in your
 dataset, it’s fine. </p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:Calibri;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-size:36.0pt;color:#111111'><span style='font-family:
+<p style='margin:0in;font-size:12.0pt;color:#111111'><span style='font-family:
 微软雅黑' lang=zh-CN>&nbsp;</span><span style='font-family:Calibri' lang=en-US>In</span><span
 style='font-family:微软雅黑' lang=zh-CN> general you can have whatever column names
 you want for the text and labels&nbsp;</span><span style='font-style:italic;
@@ -59,24 +59,24 @@ font-family:微软雅黑' lang=zh-CN>before</span><span style='font-family:微�
 lang=zh-CN>&nbsp;tokenization - it’s up to you to decide how the text should be
 processed.</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#111111'>once
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#111111'>once
 you’ve tokenized the text, you shouldn’t need to rename the resulting columns
 like&nbsp;input_ids&nbsp;and&nbsp;attention_mask&nbsp;(and i wouldn’t recommend
 this since it will probably break the&nbsp;Trainer&nbsp;logic).</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='color:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='color:
 #111111'>by default, the&nbsp;Trainer&nbsp;looks for the label column
 name&nbsp;labels&nbsp;but you can override this by specifying the value
 of&nbsp;TrainingArguments.label_names:&nbsp;</span><a
 href="https://huggingface.co/transformers/main_classes/trainer.html?highlight=trainer#trainingarguments">Trainer
 — transformers 4.5.0.dev0 documentation</a></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#3C4043'><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#3C4043'><span
 style='mso-spacerun:yes'>  </span>关于为什么这样构建数据集，就能训练的疑问：</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='color:#3C4043'>ds_train </span><span style='color:#008ABC'>=</span><span
 style='color:#3C4043'> Dataset</span><span style='color:#008ABC'>.</span><span
 style='color:#3C4043'>from_pandas(df_train)</span><span style='color:#008ABC'>.</span><span
@@ -85,11 +85,11 @@ style='color:#3C4043'>, </span><span style='color:#BB2323'>&quot;positive&quot;<
 style='color:#3C4043'>, </span><span style='color:#BB2323'>&quot;negative&quot;</span><span
 style='color:#3C4043'>])</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='color:#3C4043'>model </span><span style='color:#008ABC'>=</span><span
 style='color:#3C4043'> SentenceTransformer(config</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='color:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='color:
 #3C4043' lang=en-US><span style='mso-spacerun:yes'> </span></span><span
 style='color:#3C4043' lang=zh-CN><span style='mso-spacerun:yes'> </span>trainer
 </span><span style='color:#008ABC' lang=zh-CN>=</span><span style='color:#3C4043'
@@ -110,9 +110,9 @@ lang=zh-CN>loss,<br>
 <span style='mso-spacerun:yes'>    </span>trainer</span><span style='color:
 #008ABC' lang=zh-CN>.</span><span style='color:#3C4043' lang=zh-CN>train()</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt;color:#3C4043'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt;color:#3C4043'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt;color:#3C4043'><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt;color:#3C4043'><span
 style='font-family:微软雅黑' lang=zh-CN>因为是</span><span style='font-family:Calibri'
 lang=en-US>trainer</span><span style='font-family:"Microsoft YaHei"'
 lang=zh-CN>是</span><span style='font-family:微软雅黑' lang=zh-CN>SentenceTransformerTrainer，所以他知道应该要处理</span><span

@@ -1,5 +1,7 @@
-Transformer
-Rnn Lstm Gru
+Transformer-1
+Transformer-2
+Rnn Lstm Gru -1
+Rnn Lstm Gru -2
 Bi-encoder_ Cross encoder
 Lora
 BGE

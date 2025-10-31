@@ -10,20 +10,20 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="Lora.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:28.4972in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:28.4756in'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:.0215in;width:1.1138in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.1138in'>
 
 <p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'><span lang=en-US>L</span><span
 lang=zh-CN>ora</span></p>
 
 </div>
 
-<div style='direction:ltr;margin-top:.0423in;margin-left:.0215in;width:1.6687in'>
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
 
 <p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
 Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
@@ -34,16 +34,14 @@ style='font-family:Calibri'>10</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.4569in;margin-left:0in;width:20.8944in'>
+<div style='direction:ltr;margin-top:.7069in;margin-left:.5in;width:26.5in'>
 
-<p style='margin:0in'><img src="Lora.files/image001.jpg" width=2001
-height=1018></p>
+<p style='margin:0in;margin-left:1.125in'><img src="Lora.files/image001.jpg"
+width=738 height=375></p>
 
-</div>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<div style='direction:ltr;margin-top:2.118in;margin-left:.0215in;width:26.6034in'>
-
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>前向计算时，原来y</span><span style='font-weight:bold' lang=en-US>=W*x
 ,</span><span style='font-weight:bold' lang=zh-CN>加入</span><span
 style='font-weight:bold' lang=en-US>lora</span><span style='font-weight:bold'
@@ -51,17 +49,17 @@ lang=zh-CN>后，</span><span style='font-weight:bold' lang=en-US>y=W*</span><sp
 style='font-weight:bold' lang=zh-CN>x</span><span style='font-weight:bold'
 lang=en-US>+BA*X = (W+BA)*x</span><span style='font-weight:bold' lang=zh-CN>，</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>反向传播时，</span><span style='font-weight:bold' lang=en-US>W</span><span
 style='font-weight:bold' lang=zh-CN>的参数冻结，只调整</span><span style='font-weight:
 bold' lang=en-US>B</span><span style='font-weight:bold' lang=zh-CN>和</span><span
 style='font-weight:bold' lang=en-US>A</span><span style='font-weight:bold'
 lang=zh-CN>的参数。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>P</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>P</span><span
 lang=zh-CN>y</span><span lang=en-US>torch</span><span lang=zh-CN>实现：</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='font-weight:bold;color:#1A7F37'>class</span><span style='color:#212121'>
 LoRAParametrization</span><span style='color:#0055AA'>(</span><span
 style='color:#212121'>nn</span><span style='font-weight:bold;color:#8250DF'>.</span><span
@@ -154,7 +152,7 @@ style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>enabl
 </span><span style='font-weight:bold;color:#8250DF'>= </span><span
 style='font-weight:bold;color:#1A7F37'>True</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='font-weight:bold;color:#1A7F37'>def</span><span style='color:#212121'>
 forward</span><span style='color:#0055AA'>(</span><span style='color:#212121'>self</span><span
 style='color:#0055AA'>,</span><span style='color:#212121'> original_weights</span><span
@@ -189,19 +187,19 @@ style='color:#212121'><br>
 style='font-weight:bold;color:#1A7F37'>return</span><span style='color:#212121'>
 original_weights</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Add the
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>Add the
 parameterization to our network.</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='font-weight:bold;color:#1A7F37'>import</span><span style='color:#212121'>
 torch.nn.utils.parametrize </span><span style='font-weight:bold;color:#1A7F37'>as</span><span
 style='color:#212121'> parametrize</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='font-weight:bold;color:#1A7F37'>def</span><span style='color:#212121'>
 linear_layer_parameterization</span><span style='color:#0055AA'>(</span><span
 style='color:#212121'>layer</span><span style='color:#0055AA'>,</span><span
@@ -215,7 +213,7 @@ style='color:#0055AA'>):</span><span style='color:#212121'><br>
 color:#59636E'># Only add the parameterization to the weight matrix, ignore the
 Bias</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='font-style:italic;color:#59636E'># From section 4.2 of the paper:</span><span
 style='color:#212121'><br>
 <span style='mso-spacerun:yes'>    </span></span><span style='font-style:italic;
@@ -250,7 +248,7 @@ style='color:#0055AA'>,</span><span style='color:#212121'> device</span><span
 style='font-weight:bold;color:#8250DF'>=</span><span style='color:#212121'>device<br>
 <span style='mso-spacerun:yes'>    </span></span><span style='color:#0055AA'>)</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='color:#212121'>parametrize</span><span style='font-weight:bold;
 color:#8250DF'>.</span><span style='color:#212121'>register_parametrization</span><span
 style='color:#0055AA'>(</span><span style='color:#212121'><br>
@@ -291,7 +289,7 @@ style='color:#212121'> device</span><span style='color:#0055AA'>)</span><span
 style='color:#212121'><br>
 </span><span style='color:#0055AA'>)</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='font-weight:bold;color:#1A7F37'>def</span><span style='color:#212121'>
 enable_disable_lora</span><span style='color:#0055AA'>(</span><span
 style='color:#212121'>enabled</span><span style='font-weight:bold;color:#8250DF'>=</span><span
@@ -315,15 +313,15 @@ style='color:#0055AA'>]</span><span style='font-weight:bold;color:#8250DF'>.</sp
 style='color:#212121'>enabled </span><span style='font-weight:bold;color:#8250DF'>=</span><span
 style='color:#212121'> enabled</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>Freeze all the
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>Freeze all the
 parameters of the original network and only fine tuning the ones introduced by
 LoRA. Then fine-tune the model on the digit 9 and only for 100 batches.</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:28.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='font-style:italic;color:#59636E'># Freeze the non-Lora parameters</span><span
 style='color:#212121'><br>
 </span><span style='font-weight:bold;color:#1A7F37'>for</span><span
@@ -346,7 +344,7 @@ style='font-weight:bold;color:#8250DF'>.</span><span style='color:#212121'>requi
 </span><span style='font-weight:bold;color:#8250DF'>= </span><span
 style='font-weight:bold;color:#1A7F37'>False</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='font-style:italic;color:#59636E'># Load the MNIST dataset again, by
 keeping only the digit 9</span><span style='color:#212121'><br>
 mnist_trainset </span><span style='font-weight:bold;color:#8250DF'>=</span><span
@@ -392,7 +390,7 @@ style='color:#0055AA'>,</span><span style='color:#212121'> shuffle</span><span
 style='font-weight:bold;color:#8250DF'>=</span><span style='font-weight:bold;
 color:#1A7F37'>True</span><span style='color:#0055AA'>)</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:28.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='font-style:italic;color:#59636E'># Train the network with LoRA only on
 the digit 9 and only for 100 batches (hoping that it would improve the
 performance on the digit 9)</span><span style='color:#212121'><br>
@@ -406,7 +404,7 @@ style='color:#1A7F37'>100</span><span style='color:#0055AA'>)</span></p>
 
 </div>
 
-<div style='direction:ltr;margin-top:6.902in;margin-left:.0215in;width:28.4756in'>
+<div style='direction:ltr;margin-top:44.5583in;margin-left:0in;width:28.4756in'>
 
 <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
 bold' lang=zh-CN>关于</span><span style='font-weight:bold' lang=en-US>task_type</span><span

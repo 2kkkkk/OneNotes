@@ -10,19 +10,19 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="XGB.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:23.9479in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:13.4305in'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:.2736in;width:1.0951in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.0951in'>
 
 <p style='margin:0in;font-family:微软雅黑;font-size:20.0pt' lang=en-US>XGB</p>
 
 </div>
 
-<div style='direction:ltr;margin-top:.0423in;margin-left:.2736in;width:1.6687in'>
+<div style='direction:ltr;margin-top:.0423in;margin-left:0in;width:1.6687in'>
 
 <p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
 Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
@@ -33,86 +33,100 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:23.9479in'>
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:13.4305in'>
 
-<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold'>xgboost different from gbdt is, instead of find the
- regression tree structure first and then calculate the leaf nodes value
- c_{tj}，we solve both two parts at one time.</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
-  margin-bottom:0in'>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>XGB</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>通过将树</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>y'</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>用其叶子节点的输出值表示，巧妙地将叶子节点的输出值与损失函数关联起来（先假设树模型已经确定，然后用贪婪方式，Normally
-      it is impossible to enumerate all the possible tree structures q. A
-      greedy algorithm that starts from a single leaf and iteratively adds
-      branches to the tree is used instead）；</span></li>
-  <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>然后，通过对损失函数在第</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>t</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>棵树</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>y'_t</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>处进行二阶泰勒展开，</span><span
-      style='font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>构建了一个一元二次方程，巧妙地确保了叶子节点的输出值就是让损失函数最小的那个值。</span></li>
- </ul>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:2.25in'><img src="XGB.files/image001.jpg"
- width=1658 height=1197></p>
- <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:2.25in'><img src="XGB.files/image002.jpg"
- width=1828 height=1484></p>
- <p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:2.25in'><img src="XGB.files/image003.jpg"
- width=1763 height=1260></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:42.0pt'><span
- style='font-weight:bold'>分裂点寻找方法：</span></p>
- <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:bold;font-style:normal'>
-  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      font-weight:bold'><span style='font-family:微软雅黑;font-size:36.0pt;
-      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
-      font-size:36.0pt' lang=en-US>E</span><span style='font-family:微软雅黑;
-      font-size:36.0pt;font-weight:bold;font-style:normal;font-weight:bold;
-      font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>xa</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:bold;font-style:
-      normal;font-weight:bold;font-family:微软雅黑;font-size:36.0pt' lang=en-US>ct
-      greedy </span><span style='font-family:微软雅黑;font-size:36.0pt;font-weight:
-      bold;font-style:normal;font-weight:bold;font-family:微软雅黑;font-size:36.0pt'
-      lang=zh-CN>方法</span></li>
- </ol>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold'>对特征进行预排序，enumerates over all the possible splits on
- all the features.</span></p>
- <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:bold;font-style:normal'>
-  <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      font-weight:bold'><span style='font-family:微软雅黑;font-size:36.0pt;
-      font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
-      font-size:36.0pt'>近似方法，对特征进行分桶，离散化，分桶的方法用加权分位数，权重为样本的二阶导，它保证每个桶（bucket）里样本的权重和（即二阶梯度之和）是大致相等的。</span></li>
- </ol>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- style='font-weight:bold' lang=zh-CN>这个方法有</span><span style='font-weight:bold'
- lang=en-US>2</span><span style='font-weight:bold' lang=zh-CN>个变体，</span><span
- style='font-weight:bold' lang=en-US> </span><span style='font-weight:bold'
- lang=zh-CN>一种是在每次构建树之前对特征进行分桶，一种是在每次节点分裂之后对特征进行分桶。第</span><span
- style='font-weight:bold' lang=en-US>2</span><span style='font-weight:bold'
- lang=zh-CN>种变体更精确</span><span style='font-weight:bold' lang=en-US> </span><span
- style='font-weight:bold' lang=zh-CN>，但费时。</span></p>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=en-US>T</span><span lang=zh-CN>here are two variants of the algorithm,
- depending on when the proposal is given. </span><span style='font-weight:bold'
- lang=zh-CN>The global variant proposes all the candidate splits during the
- initial phase of tree construction, and uses the same proposals for split
- finding at all levels. The local variant re-proposes after each split. </span></p>
- <p style='margin:0in;margin-left:2.625in'><img src="XGB.files/image004.jpg"
- width=1606 height=1286></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold'>xgboost different from gbdt is, instead of find the regression tree
+structure first and then calculate the leaf nodes value c_{tj}，we solve both
+two parts at one time.</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<ul type=disc style='direction:ltr;unicode-bidi:embed;margin-top:0in;
+ margin-bottom:0in'>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>XGB</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>通过将树</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>y'</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>用其叶子节点的输出值表示，巧妙地将叶子节点的输出值与损失函数关联起来（先假设树模型已经确定，然后用贪婪方式，Normally
+     it is impossible to enumerate all the possible tree structures q. A greedy
+     algorithm that starts from a single leaf and iteratively adds branches to
+     the tree is used instead）；</span></li>
+ <li style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>然后，通过对损失函数在第</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>t</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>棵树</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>y'_t</span><span
+     style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>处进行二阶泰勒展开，</span><span
+     style='font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>构建了一个一元二次方程，巧妙地确保了叶子节点的输出值就是让损失函数最小的那个值。</span></li>
 </ul>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:2.25in'><img src="XGB.files/image001.jpg"
+width=592 height=427></p>
+
+<p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:2.25in'><img src="XGB.files/image002.jpg"
+width=549 height=445></p>
+
+<p style='margin:0in;margin-left:2.25in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:2.25in'><img src="XGB.files/image003.jpg"
+width=591 height=422></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold'>分裂点寻找方法：</span></p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:bold;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+     font-weight:bold'><span style='font-family:微软雅黑;font-size:12.0pt;
+     font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+     font-size:12.0pt' lang=en-US>E</span><span style='font-family:微软雅黑;
+     font-size:12.0pt;font-weight:bold;font-style:normal;font-weight:bold;
+     font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>xa</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:bold;font-style:normal;
+     font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=en-US>ct greedy </span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:bold;font-style:normal;
+     font-weight:bold;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>方法</span></li>
+</ol>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold'>对特征进行预排序，enumerates over all the possible splits on
+all the features.</span></p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:bold;font-style:normal'>
+ <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle;
+     font-weight:bold'><span style='font-family:微软雅黑;font-size:12.0pt;
+     font-weight:bold;font-style:normal;font-weight:bold;font-family:微软雅黑;
+     font-size:12.0pt'>近似方法，对特征进行分桶，离散化，分桶的方法用加权分位数，权重为样本的二阶导，它保证每个桶（bucket）里样本的权重和（即二阶梯度之和）是大致相等的。</span></li>
+</ol>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+style='font-weight:bold' lang=zh-CN>这个方法有</span><span style='font-weight:bold'
+lang=en-US>2</span><span style='font-weight:bold' lang=zh-CN>个变体，</span><span
+style='font-weight:bold' lang=en-US> </span><span style='font-weight:bold'
+lang=zh-CN>一种是在每次构建树之前对特征进行分桶，一种是在每次节点分裂之后对特征进行分桶。第</span><span
+style='font-weight:bold' lang=en-US>2</span><span style='font-weight:bold'
+lang=zh-CN>种变体更精确</span><span style='font-weight:bold' lang=en-US> </span><span
+style='font-weight:bold' lang=zh-CN>，但费时。</span></p>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=en-US>T</span><span lang=zh-CN>here are two variants of the algorithm,
+depending on when the proposal is given. </span><span style='font-weight:bold'
+lang=zh-CN>The global variant proposes all the candidate splits during the
+initial phase of tree construction, and uses the same proposals for split
+finding at all levels. The local variant re-proposes after each split. </span></p>
+
+<p style='margin:0in;margin-left:2.625in'><img src="XGB.files/image004.jpg"
+width=586 height=469></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
 </div>
 

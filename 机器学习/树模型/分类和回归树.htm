@@ -10,11 +10,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="分类和回归树.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:23.6041in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:20.025in'>
 
 <div style='direction:ltr;margin-top:0in;margin-left:0in;width:2.2013in'>
 
@@ -33,20 +33,20 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.9777in;margin-left:.25in;width:23.3541in'>
+<div style='direction:ltr;margin-top:.9777in;margin-left:.25in;width:19.775in'>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold'>分类树</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>用</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>用</span><span
 lang=en-US>GINI </span><span lang=zh-CN>im</span><span lang=en-US>purity </span><span
 lang=zh-CN>（熵、信息增益，其实都是一个东西）来衡量一个叶子节点的纯度（不纯度为</span><span lang=en-US>0</span><span
 lang=zh-CN>，表示这个节点只包含同一个类别的样本），计算公式如下图：</span></p>
 
 <p style='margin:0in;margin-left:2.25in'><img src="分类和回归树.files/image001.jpg"
-width=1653 height=862></p>
+width=612 height=319></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>左节点和右节点中包含的样本数量可能是不同的，所以需要对</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>左节点和右节点中包含的样本数量可能是不同的，所以需要对</span><span
 lang=en-US>gini impurity</span><span lang=zh-CN>乘以一个样本数量相关的权重</span><span
 lang=en-US> </span><span lang=zh-CN>，</span><span style='font-weight:bold'
 lang=zh-CN>某个分裂点的</span><span style='font-weight:bold' lang=en-US>gini </span><span
@@ -57,30 +57,30 @@ style='font-weight:bold' lang=zh-CN>的加权和</span><span lang=zh-CN>，即</
 lang=en-US> </span><span lang=zh-CN>w</span><span lang=en-US>_l*gini_impurity_left_node
 + w_r*gini_impurity_right_node</span><span lang=zh-CN>。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>当节点分裂没有信息增益时（或信息增益没有超过某个阈值），就停止分裂，</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>当节点分裂没有信息增益时（或信息增益没有超过某个阈值），就停止分裂，</span><span
 style='font-weight:bold' lang=zh-CN>每个节点的输出类别</span><span style='font-weight:
 bold' lang=en-US> </span><span style='font-weight:bold' lang=zh-CN>就是该节点中大多数的类别</span><span
 style='font-weight:bold' lang=en-US> </span><span style='font-weight:bold'
 lang=zh-CN>。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>当某个节点中包含的样本数量太少时（比如只有一个样本），</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>当某个节点中包含的样本数量太少时（比如只有一个样本），</span><span
 style='font-weight:bold' lang=zh-CN>此时很有可能过拟合，所以我们限制每个叶子节点中的最少样本数量</span><span
 style='font-weight:bold' lang=en-US> </span><span style='font-weight:bold'
 lang=zh-CN>。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold'>对于特征中的缺失值：</span>均值、中位数、众数填充，或者用其他相关列拟合一个线性模型填充，或者用相似样本的值填充。</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold'>回归树</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=zh-CN>回归树也是遍历所有的特征及分裂点，</span><span style='font-weight:bold' lang=zh-CN>左节点的预测值是左节点中所有数据的</span><span
 style='font-weight:bold' lang=en-US>label</span><span style='font-weight:bold'
 lang=zh-CN>的平均值</span><span lang=zh-CN>，右节点同理，用</span><span lang=en-US>mse</span><span
@@ -88,11 +88,11 @@ lang=zh-CN>而不是</span><span lang=en-US>gini</span><span lang=zh-CN>来评�
 lang=en-US>mse=</span><span lang=zh-CN>左叶子节点的</span><span lang=en-US>mse+</span><span
 lang=zh-CN>右节点的</span><span lang=en-US>mse</span><span lang=zh-CN>。</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
 </div>
 

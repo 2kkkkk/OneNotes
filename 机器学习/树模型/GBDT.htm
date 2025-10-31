@@ -10,11 +10,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="GBDT.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:25.4in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:25.377in'>
 
 <div style='direction:ltr;margin-top:0in;margin-left:0in;width:1.2868in'>
 
@@ -33,36 +33,36 @@ style='font-family:Calibri'>24</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:25.4in'>
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:25.377in'>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>GBM
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>GBM
 (gradient boosting machine)</span><span lang=zh-CN>是一种框架，其中的模型可以用树模型、线性模型，，，都可以，但需要是弱学习器。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>首先，需要定义一个损失函数</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>首先，需要定义一个损失函数</span><span
 lang=en-US>L(y,y')</span><span lang=zh-CN>，</span><span lang=en-US>y'</span><span
 lang=zh-CN>是预测值，</span><span lang=en-US>y</span><span lang=zh-CN>是真实值</span><span
 lang=en-US> </span><span lang=zh-CN>，要求这个损失函数</span><span lang=en-US>L</span><span
 lang=zh-CN>对</span><span lang=en-US>y'</span><span lang=zh-CN>可导，</span></p>
 
-<p style='margin:0in;margin-left:4.125in'><img src="GBDT.files/image001.jpg"
-width=1434 height=1075></p>
+<p style='margin:0in;margin-left:.75in'><img src="GBDT.files/image001.jpg"
+width=355 height=266></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>在刚开始，我们有一个初始模型，它的预测值是</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>在刚开始，我们有一个初始模型，它的预测值是</span><span
 lang=en-US>y'_0</span><span lang=zh-CN>，也就是我们现在的位置是在</span><span lang=en-US>y'_0</span><span
 lang=zh-CN>。我们可以求得损失函数在</span><span lang=en-US>y'_0</span><span lang=zh-CN>处的导数，然后让</span><span
 lang=en-US>y'</span><span lang=zh-CN>朝着负梯度的方向移动一点，这样就可以让损失变小了。这就是</span><span
 lang=en-US>GBM</span><span lang=zh-CN>的思想。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>相比于神经网络，神经网络也是有一个损失函数</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>相比于神经网络，神经网络也是有一个损失函数</span><span
 lang=en-US>L(y,y')</span><span lang=zh-CN>，神经网络的</span><span lang=en-US>y'</span><span
 lang=zh-CN>相当于最后一个神经元的输出。</span><span style='font-weight:bold' lang=zh-CN>其实神经网络和</span><span
 style='font-weight:bold' lang=en-US>GBM</span><span style='font-weight:bold'
 lang=zh-CN>的目标是一样的，都是让</span><span style='font-weight:bold' lang=en-US>y'</span><span
 style='font-weight:bold' lang=zh-CN>朝着负梯度的方向慢慢移动，让损失函数变小。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>区别在于神经网络通过调整网络参数</span><span style='font-weight:bold'
 lang=en-US>W</span><span style='font-weight:bold' lang=zh-CN>，</span><span
 style='font-weight:bold' lang=en-US>W=W+lr*ΔW</span><span style='font-weight:
@@ -74,19 +74,19 @@ lang=zh-CN>加入一个新的值，这个新的值就是梯度方向，也是新
 style='font-weight:bold' lang=en-US>y</span><span style='font-weight:bold'
 lang=zh-CN>’。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold'>A tree has two parts, tree structure(use what features and values to
 split at each node ) and the value of the leaf nodes.</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>According
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>According
 to the GBDT algorithm, GBDT fits the negative gradients of loss function </span><span
 lang=en-US>L</span><span lang=zh-CN> with </span><span style='font-weight:bold'
 lang=zh-CN>**cart regression tree(which use mse loss)** no matter it's a GBDT
@@ -96,9 +96,9 @@ tree sturcture while recalculate the value of the leaf nodes to minimize the
 loss** </span></p>
 
 <p style='margin:0in;margin-left:1.875in'><img src="GBDT.files/image002.jpg"
-width=1573 height=285></p>
+width=529 height=96></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>也就是说，对于</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>也就是说，对于</span><span
 lang=en-US>GBDT</span><span lang=zh-CN>来说，</span><span style='font-weight:bold'
 lang=zh-CN>不论是分类任务还是回归任务，每个</span><span style='font-weight:bold' lang=en-US>y'</span><span
 style='font-weight:bold' lang=zh-CN>都是一个</span><span style='font-weight:bold'
@@ -114,17 +114,17 @@ lang=zh-CN>，并不等价于整体Loss最小，只能保证</span><span style='
 style='font-weight:bold' lang=zh-CN>朝着减少的方向变化。</span><span lang=zh-CN>此时，我们需要保持树的结构不变，重新计算让</span><span
 lang=en-US>loss</span><span lang=zh-CN>最小的叶子节点的输出值。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>xg</span><span style='font-weight:bold' lang=en-US>boost</span><span
 style='font-weight:bold' lang=zh-CN>就解决了这个问题，直接将叶子节点的最优输出值与</span><span
 style='font-weight:bold' lang=en-US>loss</span><span style='font-weight:bold'
 lang=zh-CN>损失函数关联了起来！！！！！！</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=en-US>GBDT</span><span style='font-weight:bold' lang=zh-CN>能保证，加入新的</span><span
 style='font-weight:bold' lang=en-US>y</span><span style='font-weight:bold'
 lang=zh-CN>’这棵树后，这棵树的叶子节点的输出值能让整体损失</span><span style='font-weight:bold;

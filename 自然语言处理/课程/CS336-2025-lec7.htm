@@ -10,11 +10,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="CS336-2025-lec7.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:22.3868in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:8.2138in'>
 
 <div style='direction:ltr;margin-top:0in;margin-left:0in;width:2.7958in'>
 
@@ -33,223 +33,268 @@ style='font-family:Calibri'>23</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.7277in;margin-left:.0138in;width:22.3729in'>
+<div style='direction:ltr;margin-top:.7277in;margin-left:.2291in;width:7.9847in'>
 
-<ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
- style='font-weight:bold'>并行</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
-  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>数据并行（不同</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US>GPU</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>拥有同一个模型，不切分模型参数，而是切分同一个</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US>batch</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>，每个</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US>GPU</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>获得同一个ba</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US>tch</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>的不同部分）</span></li>
-  <ol type=a style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-   0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
-   <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle'
-       lang=en-US><span style='font-family:微软雅黑;font-size:36.0pt;font-weight:
-       normal;font-style:normal;font-family:微软雅黑;font-size:36.0pt'>Naïve data
-       parallel</span></li>
-   <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=en-US><span
-       style='font-family:微软雅黑;font-size:36.0pt'>ZERO LEVEL 1-3</span></li>
-  </ol>
- </ol>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'
- lang=en-US>&nbsp;</p>
- <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
-  <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>模型并行（不同</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US>GPU</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>拥有模型的不同部分）</span></li>
-  <ol type=a style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-   0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
-   <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-       style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-       normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US>P</span><span
-       style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-       normal;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>i</span><span
-       style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-       normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US>peline parallel</span></li>
-   <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=en-US><span
-       style='font-family:微软雅黑;font-size:36.0pt'>Tensor parallel</span></li>
-  </ol>
- </ol>
- <p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:36.0pt'
- lang=en-US>&nbsp;</p>
- <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
-  <li value=3 style='margin-top:0;margin-bottom:0;vertical-align:middle'
-      lang=en-US><span style='font-family:微软雅黑;font-size:36.0pt;font-weight:
-      normal;font-style:normal;font-family:微软雅黑;font-size:36.0pt'>Activation
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold'>并行</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>数据并行（不同</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=en-US>GPU</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>拥有同一个模型，不切分模型参数，而是切分同一个</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=en-US>batch</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>，每个</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=en-US>GPU</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>获得同一个ba</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=en-US>tch</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>的不同部分）</span></li>
+ <ol type=a style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
+  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle'
+      lang=en-US><span style='font-family:微软雅黑;font-size:12.0pt;font-weight:
+      normal;font-style:normal;font-family:微软雅黑;font-size:12.0pt'>Naïve data
       parallel</span></li>
-  <ol type=a style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-   0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
-   <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle'
-       lang=en-US><span style='font-family:微软雅黑;font-size:36.0pt;font-weight:
-       normal;font-style:normal;font-family:微软雅黑;font-size:36.0pt'>Sequential
-       parallel</span></li>
-  </ol>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=en-US><span
+      style='font-family:微软雅黑;font-size:12.0pt'>ZERO LEVEL 1-3</span></li>
  </ol>
- <p style='margin:0in;margin-left:1.125in'><img
- src="CS336-2025-lec7.files/image001.png" width=1812 height=945></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>通过并行，我们想实现什么？</span><span
- lang=en-US>1</span><span lang=zh-CN>）</span><span style='font-weight:bold'
- lang=en-US>L</span><span style='font-weight:bold' lang=zh-CN>ine</span><span
- style='font-weight:bold' lang=en-US>ar memory scaling</span><span lang=zh-CN>，模型的参数量随着</span><span
- lang=en-US>GPU</span><span lang=zh-CN>的增加可以线性增加，如一个</span><span lang=en-US>GPU</span><span
- lang=zh-CN>可以容纳</span><span lang=en-US>16G</span><span lang=zh-CN>的模型，通过并行，使得</span><span
- lang=en-US>2</span><span lang=zh-CN>个</span><span lang=en-US>GPU</span><span
- lang=zh-CN>能容纳</span><span lang=en-US>32G</span><span lang=zh-CN>的模型。</span><span
- lang=en-US>2</span><span lang=zh-CN>）</span><span style='font-weight:bold'
- lang=en-US>L</span><span style='font-weight:bold' lang=zh-CN>in</span><span
- style='font-weight:bold' lang=en-US>ear compute scaling</span><span
- lang=zh-CN>，模型的计算量随着</span><span lang=en-US>GPU</span><span lang=zh-CN>增加线性增加。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:42.0pt' lang=en-US><span
- style='font-weight:bold'>Data parallel</span></p>
- <p style='margin:0in;margin-left:1.125in'><img
- src="CS336-2025-lec7.files/image002.jpg" width=1845 height=912></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>Naïve
- data palrallel</span><span lang=zh-CN>就是将</span><span lang=en-US>B</span><span
- lang=zh-CN>a</span><span lang=en-US>cth</span><span lang=zh-CN>数据分为</span><span
- lang=en-US>M</span><span lang=zh-CN>份到</span><span lang=en-US>M</span><span
- lang=zh-CN>个</span><span lang=en-US>GPU</span><span lang=zh-CN>上，然后在梯度更新时，对参数梯度进行同步。</span><span
- lang=en-US>compute scaling</span><span lang=zh-CN>是线性。通信成本需要进行al</span><span
- lang=en-US>l reduce</span><span lang=zh-CN>操作，成本是</span><span lang=en-US>2</span><span
- lang=zh-CN>倍的模型参数量。</span></p>
- <p style='margin:0in;margin-left:1.875in'><img
- src="CS336-2025-lec7.files/image003.jpg" width=1734 height=519></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>Naïve
- data palrallel</span><span lang=zh-CN>的问题在于</span><span lang=en-US>memory </span><span
- lang=zh-CN>占用，每个</span><span lang=en-US>GPU</span><span lang=zh-CN>上除了存储模型参数，还需要存储</span><span
- lang=en-US>gradients, </span><span lang=zh-CN>m</span><span lang=en-US>aster
- weights, </span><span lang=zh-CN>一阶估计，二阶估计，关键是这些参数在所有的</span><span lang=en-US>GPU</span><span
- lang=zh-CN>上都是重复的，总的内存占用是随着</span><span lang=en-US>GPU</span><span lang=zh-CN>数量增加线性增加的。</span></p>
- <p style='margin:0in;margin-left:1.125in'><img
- src="CS336-2025-lec7.files/image004.jpg" width=1679 height=811></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>最占用显存的是</span><span
- lang=en-US>optimizer </span><span lang=zh-CN>sta</span><span lang=en-US>tes</span><span
- lang=zh-CN>，我们需要在所有</span><span lang=en-US>GPU</span><span lang=zh-CN>上同时拥有参数和梯度，但是我们需要所有</span><span
- lang=en-US>GPU</span><span lang=zh-CN>上都拥有全部的</span><span lang=en-US>optimizer
- state</span><span lang=zh-CN>吗？</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>上图第二行，</span><span
- lang=en-US>P</span><span lang=zh-CN>os</span><span lang=en-US>, </span><span
- lang=zh-CN>通过</span><span lang=en-US>optimizer sharding,</span><span
- lang=zh-CN>可以降低总内存占用至</span><span lang=en-US>31GB</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>上图第</span><span
- lang=en-US>3</span><span lang=zh-CN>行，</span><span lang=en-US>P</span><span
- lang=zh-CN>os</span><span lang=en-US>+g</span><span lang=zh-CN>，在</span><span
- lang=en-US>Pos</span><span lang=zh-CN>的基础上，对</span><span lang=en-US>gradient</span><span
- lang=zh-CN>也进行</span><span lang=en-US>sharding</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>上图第</span><span
- lang=en-US>4</span><span lang=zh-CN>行，</span><span lang=en-US>P</span><span
- lang=zh-CN>os</span><span lang=en-US>+g+p</span><span lang=zh-CN>，在上面的基础上，对</span><span
- lang=en-US>parameter</span><span lang=zh-CN>也进行</span><span lang=en-US>sharding</span><span
- lang=zh-CN>。</span></p>
- <p style='margin:0in;margin-left:1.125in'><img
- src="CS336-2025-lec7.files/image005.jpg" width=1573 height=932></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>ZERO
- stage1</span><span lang=zh-CN>，只对</span><span lang=en-US>optimizer </span><span
- lang=zh-CN>进行</span><span lang=en-US>sharding</span><span lang=zh-CN>，每个</span><span
- lang=en-US>gpu</span><span lang=zh-CN>拥有全部的参数和梯度，但只拥有部分的</span><span
- lang=en-US>optimizer state</span><span lang=zh-CN>，训练时，每个</span><span
- lang=en-US>GPU</span><span lang=zh-CN>用不同数据训练后得到所有参数的梯度，然后进行梯度同步，然后每个</span><span
- lang=en-US>GPU</span><span lang=zh-CN>只对自己拥有的</span><span lang=en-US>optimizer
- state</span><span lang=zh-CN>的那部分参数进行更新，然后再进行参数同步。</span></p>
- <p style='margin:0in;margin-left:1.5in'><img
- src="CS336-2025-lec7.files/image006.jpg" width=1621 height=820></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>ZERO
- stage1</span><span lang=zh-CN>的</span><span style='font-weight:bold'
- lang=zh-CN>通信成本（一次</span><span style='font-weight:bold' lang=en-US>reduce
- scatter </span><span style='font-weight:bold' lang=zh-CN>和一次</span><span
- style='font-weight:bold' lang=en-US>all gather</span><span style='font-weight:
- bold' lang=zh-CN>）和</span><span style='font-weight:bold' lang=en-US>Naïve DDP(</span><span
- style='font-weight:bold' lang=zh-CN>一次</span><span style='font-weight:bold'
- lang=en-US>all reduce)</span><span style='font-weight:bold' lang=zh-CN>是一样的，但是</span><span
- style='font-weight:bold' lang=en-US>memory</span><span style='font-weight:
- bold' lang=zh-CN>节省了很多。</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>ZERO
- stage2</span><span lang=zh-CN>，对梯度进行</span><span lang=en-US>shard</span><span
- lang=zh-CN>，每个</span><span lang=en-US>GPU</span><span lang=zh-CN>拥有一部分参数的梯度</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>ZERO
- stage3</span><span lang=zh-CN>，</span><span lang=en-US>FSDP</span><span
- lang=zh-CN>，对参数也进行</span><span lang=en-US>shard</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>总之，</span><span
- lang=en-US>shard</span><span lang=zh-CN>的东西越多，也就需要增加相应的通信成本。</span></p>
- <p style='margin:0in;margin-left:.375in'><img
- src="CS336-2025-lec7.files/image007.jpg" width=1841 height=770></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:42.0pt'><span
- style='font-weight:bold' lang=en-US>M</span><span style='font-weight:bold'
- lang=zh-CN>odel</span><span style='font-weight:bold' lang=en-US> parallel</span></p>
- <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
+</ol>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'
+lang=en-US>&nbsp;</p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
+ <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>模型并行（不同</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=en-US>GPU</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>拥有模型的不同部分）</span></li>
+ <ol type=a style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
   <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US>P</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>ipe</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US>line parallel</span></li>
+      style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+      normal;font-family:微软雅黑;font-size:12.0pt' lang=en-US>P</span><span
+      style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+      normal;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>i</span><span
+      style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+      normal;font-family:微软雅黑;font-size:12.0pt' lang=en-US>peline parallel</span></li>
+  <li style='margin-top:0;margin-bottom:0;vertical-align:middle' lang=en-US><span
+      style='font-family:微软雅黑;font-size:12.0pt'>Tensor parallel</span></li>
  </ol>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
- <p style='margin:0in;margin-left:1.5in'><img
- src="CS336-2025-lec7.files/image008.jpg" width=1617 height=1060></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>Layer-wise
- </span><span lang=zh-CN>并行的缺点是，</span><span lang=en-US>GPU</span><span
- lang=zh-CN>利用率低，必须等其他</span><span lang=en-US>GPU</span><span lang=zh-CN>计算完成后，当前</span><span
- lang=en-US>GPU</span><span lang=zh-CN>才能开始计算，</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
- <p style='margin:0in;margin-left:.375in'><img
- src="CS336-2025-lec7.files/image009.jpg" width=1851 height=831></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>解决方案是一次处理一个</span><span
- lang=en-US>bacth</span><span lang=zh-CN>，而不是一个样本，</span><span lang=en-US>GPU0</span><span
- lang=zh-CN>处理完当前样本后，马上开始处理下一个样本，这样，中间</span><span lang=en-US>bubble</span><span
- lang=zh-CN>的空闲时间变少了。</span></p>
- <p style='margin:0in;margin-left:.75in'><img
- src="CS336-2025-lec7.files/image010.jpg" width=1931 height=894></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
- <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
-  <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=en-US>Tensor paralle</span><span
-      style='font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:
-      normal;font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>l</span></li>
+</ol>
+
+<p style='margin:0in;margin-left:.75in;font-family:微软雅黑;font-size:12.0pt'
+lang=en-US>&nbsp;</p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
+ <li value=3 style='margin-top:0;margin-bottom:0;vertical-align:middle'
+     lang=en-US><span style='font-family:微软雅黑;font-size:12.0pt;font-weight:
+     normal;font-style:normal;font-family:微软雅黑;font-size:12.0pt'>Activation
+     parallel</span></li>
+ <ol type=a style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+  0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
+  <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle'
+      lang=en-US><span style='font-family:微软雅黑;font-size:12.0pt;font-weight:
+      normal;font-style:normal;font-family:微软雅黑;font-size:12.0pt'>Sequential
+      parallel</span></li>
  </ol>
- <p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
- lang=zh-CN>将大矩阵分成多个小矩阵。和</span><span lang=en-US>layerwise</span><span
- lang=zh-CN>不同，每个</span><span lang=en-US>GPU</span><span lang=zh-CN>都有模型的所有层，但是只有层的一部分</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:48.0pt'><span
- style='font-weight:bold'>总结：</span></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
- <p style='margin:0in'><img src="CS336-2025-lec7.files/image011.jpg"
- width=2063 height=940></p>
- <p style='margin:0in;font-family:微软雅黑;font-size:36.0pt' lang=en-US>&nbsp;</p>
-</ul>
+</ol>
+
+<p style='margin:0in;margin-left:.375in'><img
+src="CS336-2025-lec7.files/image001.png" width=492 height=256></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>通过并行，我们想实现什么？</span><span
+lang=en-US>1</span><span lang=zh-CN>）</span><span style='font-weight:bold'
+lang=en-US>L</span><span style='font-weight:bold' lang=zh-CN>ine</span><span
+style='font-weight:bold' lang=en-US>ar memory scaling</span><span lang=zh-CN>，模型的参数量随着</span><span
+lang=en-US>GPU</span><span lang=zh-CN>的增加可以线性增加，如一个</span><span lang=en-US>GPU</span><span
+lang=zh-CN>可以容纳</span><span lang=en-US>16G</span><span lang=zh-CN>的模型，通过并行，使得</span><span
+lang=en-US>2</span><span lang=zh-CN>个</span><span lang=en-US>GPU</span><span
+lang=zh-CN>能容纳</span><span lang=en-US>32G</span><span lang=zh-CN>的模型。</span><span
+lang=en-US>2</span><span lang=zh-CN>）</span><span style='font-weight:bold'
+lang=en-US>L</span><span style='font-weight:bold' lang=zh-CN>in</span><span
+style='font-weight:bold' lang=en-US>ear compute scaling</span><span lang=zh-CN>，模型的计算量随着</span><span
+lang=en-US>GPU</span><span lang=zh-CN>增加线性增加。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US><span
+style='font-weight:bold'>Data parallel</span></p>
+
+<p style='margin:0in;margin-left:1.125in'><img
+src="CS336-2025-lec7.files/image002.jpg" width=618 height=306></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>Naïve
+data palrallel</span><span lang=zh-CN>就是将</span><span lang=en-US>B</span><span
+lang=zh-CN>a</span><span lang=en-US>cth</span><span lang=zh-CN>数据分为</span><span
+lang=en-US>M</span><span lang=zh-CN>份到</span><span lang=en-US>M</span><span
+lang=zh-CN>个</span><span lang=en-US>GPU</span><span lang=zh-CN>上，然后在梯度更新时，对参数梯度进行同步。</span><span
+lang=en-US>compute scaling</span><span lang=zh-CN>是线性。通信成本需要进行al</span><span
+lang=en-US>l reduce</span><span lang=zh-CN>操作，成本是</span><span lang=en-US>2</span><span
+lang=zh-CN>倍的模型参数量。</span></p>
+
+<p style='margin:0in;margin-left:.375in'><img
+src="CS336-2025-lec7.files/image003.jpg" width=680 height=203></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>Naïve
+data palrallel</span><span lang=zh-CN>的问题在于</span><span lang=en-US>memory </span><span
+lang=zh-CN>占用，每个</span><span lang=en-US>GPU</span><span lang=zh-CN>上除了存储模型参数，还需要存储</span><span
+lang=en-US>gradients, </span><span lang=zh-CN>m</span><span lang=en-US>aster
+weights, </span><span lang=zh-CN>一阶估计，二阶估计，关键是这些参数在所有的</span><span lang=en-US>GPU</span><span
+lang=zh-CN>上都是重复的，总的内存占用是随着</span><span lang=en-US>GPU</span><span lang=zh-CN>数量增加线性增加的。</span></p>
+
+<p style='margin:0in;margin-left:.75in'><img
+src="CS336-2025-lec7.files/image004.jpg" width=653 height=315></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>最占用显存的是</span><span
+lang=en-US>optimizer </span><span lang=zh-CN>sta</span><span lang=en-US>tes</span><span
+lang=zh-CN>，我们需要在所有</span><span lang=en-US>GPU</span><span lang=zh-CN>上同时拥有参数和梯度，但是我们需要所有</span><span
+lang=en-US>GPU</span><span lang=zh-CN>上都拥有全部的</span><span lang=en-US>optimizer
+state</span><span lang=zh-CN>吗？</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>上图第二行，</span><span
+lang=en-US>P</span><span lang=zh-CN>os</span><span lang=en-US>, </span><span
+lang=zh-CN>通过</span><span lang=en-US>optimizer sharding,</span><span
+lang=zh-CN>可以降低总内存占用至</span><span lang=en-US>31GB</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>上图第</span><span
+lang=en-US>3</span><span lang=zh-CN>行，</span><span lang=en-US>P</span><span
+lang=zh-CN>os</span><span lang=en-US>+g</span><span lang=zh-CN>，在</span><span
+lang=en-US>Pos</span><span lang=zh-CN>的基础上，对</span><span lang=en-US>gradient</span><span
+lang=zh-CN>也进行</span><span lang=en-US>sharding</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>上图第</span><span
+lang=en-US>4</span><span lang=zh-CN>行，</span><span lang=en-US>P</span><span
+lang=zh-CN>os</span><span lang=en-US>+g+p</span><span lang=zh-CN>，在上面的基础上，对</span><span
+lang=en-US>parameter</span><span lang=zh-CN>也进行</span><span lang=en-US>sharding</span><span
+lang=zh-CN>。</span></p>
+
+<p style='margin:0in;margin-left:1.125in'><img
+src="CS336-2025-lec7.files/image005.jpg" width=604 height=358></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>ZERO
+stage1</span><span lang=zh-CN>，只对</span><span lang=en-US>optimizer </span><span
+lang=zh-CN>进行</span><span lang=en-US>sharding</span><span lang=zh-CN>，每个</span><span
+lang=en-US>gpu</span><span lang=zh-CN>拥有全部的参数和梯度，但只拥有部分的</span><span
+lang=en-US>optimizer state</span><span lang=zh-CN>，训练时，每个</span><span
+lang=en-US>GPU</span><span lang=zh-CN>用不同数据训练后得到所有参数的梯度，然后进行梯度同步，然后每个</span><span
+lang=en-US>GPU</span><span lang=zh-CN>只对自己拥有的</span><span lang=en-US>optimizer
+state</span><span lang=zh-CN>的那部分参数进行更新，然后再进行参数同步。</span></p>
+
+<p style='margin:0in;margin-left:.75in'><img
+src="CS336-2025-lec7.files/image006.jpg" width=611 height=309></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>ZERO
+stage1</span><span lang=zh-CN>的</span><span style='font-weight:bold'
+lang=zh-CN>通信成本（一次</span><span style='font-weight:bold' lang=en-US>reduce
+scatter </span><span style='font-weight:bold' lang=zh-CN>和一次</span><span
+style='font-weight:bold' lang=en-US>all gather</span><span style='font-weight:
+bold' lang=zh-CN>）和</span><span style='font-weight:bold' lang=en-US>Naïve DDP(</span><span
+style='font-weight:bold' lang=zh-CN>一次</span><span style='font-weight:bold'
+lang=en-US>all reduce)</span><span style='font-weight:bold' lang=zh-CN>是一样的，但是</span><span
+style='font-weight:bold' lang=en-US>memory</span><span style='font-weight:bold'
+lang=zh-CN>节省了很多。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>ZERO
+stage2</span><span lang=zh-CN>，对梯度进行</span><span lang=en-US>shard</span><span
+lang=zh-CN>，每个</span><span lang=en-US>GPU</span><span lang=zh-CN>拥有一部分参数的梯度</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>ZERO
+stage3</span><span lang=zh-CN>，</span><span lang=en-US>FSDP</span><span
+lang=zh-CN>，对参数也进行</span><span lang=en-US>shard</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>总之，</span><span
+lang=en-US>shard</span><span lang=zh-CN>的东西越多，也就需要增加相应的通信成本。</span></p>
+
+<p style='margin:0in;margin-left:.375in'><img
+src="CS336-2025-lec7.files/image007.jpg" width=718 height=300></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold' lang=en-US>M</span><span style='font-weight:bold' lang=zh-CN>odel</span><span
+style='font-weight:bold' lang=en-US> parallel</span></p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
+ <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=en-US>P</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>ipe</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=en-US>line parallel</span></li>
+</ol>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.75in'><img
+src="CS336-2025-lec7.files/image008.jpg" width=462 height=303></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>Layer-wise
+</span><span lang=zh-CN>并行的缺点是，</span><span lang=en-US>GPU</span><span
+lang=zh-CN>利用率低，必须等其他</span><span lang=en-US>GPU</span><span lang=zh-CN>计算完成后，当前</span><span
+lang=en-US>GPU</span><span lang=zh-CN>才能开始计算，</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
+
+<p style='margin:0in;margin-left:.375in'><img
+src="CS336-2025-lec7.files/image009.jpg" width=659 height=296></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>解决方案是一次处理一个</span><span
+lang=en-US>bacth</span><span lang=zh-CN>，而不是一个样本，</span><span lang=en-US>GPU0</span><span
+lang=zh-CN>处理完当前样本后，马上开始处理下一个样本，这样，中间</span><span lang=en-US>bubble</span><span
+lang=zh-CN>的空闲时间变少了。</span></p>
+
+<p style='margin:0in;margin-left:.375in'><img
+src="CS336-2025-lec7.files/image010.jpg" width=641 height=297></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+
+<ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
+ 0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
+ <li value=2 style='margin-top:0;margin-bottom:0;vertical-align:middle'><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=en-US>Tensor paralle</span><span
+     style='font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:
+     normal;font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>l</span></li>
+</ol>
+
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
+lang=zh-CN>将大矩阵分成多个小矩阵。和</span><span lang=en-US>layerwise</span><span
+lang=zh-CN>不同，每个</span><span lang=en-US>GPU</span><span lang=zh-CN>都有模型的所有层，但是只有层的一部分</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
+bold'>总结：</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in'><img src="CS336-2025-lec7.files/image011.jpg" width=653
+height=297></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt' lang=en-US>&nbsp;</p>
 
 </div>
 

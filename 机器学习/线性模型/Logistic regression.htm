@@ -10,11 +10,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="Logistic%20regression.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:29.3861in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:12.8583in'>
 
 <div style='direction:ltr;margin-top:0in;margin-left:0in;width:2.8243in'>
 
@@ -35,12 +35,12 @@ style='font-family:Calibri'>24</span><span style='font-family:"Microsoft YaHei"'
 
 </div>
 
-<div style='direction:ltr;margin-top:.3479in;margin-left:0in;width:29.3861in'>
+<div style='direction:ltr;margin-top:.7277in;margin-left:.4597in;width:12.3986in'>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold'>建模：</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=zh-CN>二分类问题，也就是求二项分布的概率</span><span lang=en-US>p</span><span lang=zh-CN>，由于</span><span
 lang=en-US>p</span><span lang=zh-CN>取值范围是</span><span lang=en-US>[0,1]</span><span
 lang=zh-CN>，而线性模型</span><span lang=en-US>wx+b</span><span lang=zh-CN>的取值范围是</span><span
@@ -52,7 +52,7 @@ lang=zh-CN>，因此，用线性模型来拟合</span><span lang=en-US>log(odds)
 lang=zh-CN>，然后再将</span><span lang=en-US>log(odds)</span><span lang=zh-CN>转换为</span><span
 lang=en-US>p</span><span lang=zh-CN>，就得到了分类概率。</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:微软雅黑' lang=zh-CN>将</span><span style='font-family:Calibri'
 lang=en-US>log(odds)</span><span style='font-family:"Microsoft YaHei"'
 lang=zh-CN>转换为</span><span style='font-family:Calibri' lang=en-US>p</span><span
@@ -63,13 +63,13 @@ style='font-family:"Microsoft YaHei"' lang=en-US>log(odds)</span><span
 style='font-family:"Microsoft YaHei"' lang=zh-CN>也称为</span><span
 style='font-family:"Microsoft YaHei"' lang=en-US>logits.</span></p>
 
-<p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt'
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt'
 lang=en-US>&nbsp;</p>
 
-<p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt'><span
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt'><span
 style='font-weight:bold'>策略（定义损失函数）：</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:"Microsoft YaHei"' lang=zh-CN>用线性回归模型来拟合</span><span
 style='font-family:微软雅黑' lang=en-US>log(odds)</span><span style='font-family:
 微软雅黑' lang=zh-CN>，可以像线性回归一样用</span><span style='font-family:Calibri'
@@ -88,7 +88,7 @@ style='font-family:"Microsoft YaHei"' lang=zh-CN>，也就无法计算</span><sp
 style='font-family:"Microsoft YaHei"' lang=en-US>mse</span><span
 style='font-family:"Microsoft YaHei"' lang=zh-CN>。</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:"Microsoft YaHei"' lang=zh-CN>用似然函数作为</span><span
 style='font-family:Calibri' lang=en-US>loss</span><span style='font-family:
 "Microsoft YaHei"' lang=zh-CN>，用线性模型计算得到的</span><span style='font-family:Calibri'
@@ -104,21 +104,21 @@ style='font-family:SimSun' lang=en-US>,<span style='mso-spacerun:yes'>  
 </span>log(</span><span style='font-family:SimSun' lang=zh-CN>似然</span><span
 style='font-family:SimSun' lang=en-US>)</span><span style='font-family:SimSun'
 lang=zh-CN>即交叉熵损失函数。</span><![if !msEquation]><img
-src="Logistic%20regression.files/image001.png" width=4193 height=248><![endif]></p>
+src="Logistic%20regression.files/image001.png" width=1731 height=74><![endif]></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:SimSun;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:SimSun;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-size:36.0pt'><span style='font-weight:bold;
+<p style='margin:0in;font-size:12.0pt'><span style='font-weight:bold;
 font-family:"Microsoft YaHei"' lang=zh-CN>多分类</span><span style='font-weight:
 bold;font-family:Calibri' lang=en-US>softmax</span><span style='font-weight:
 bold;font-family:"Microsoft YaHei"' lang=zh-CN>回归：</span></p>
 
 <p style='margin:0in;margin-left:.375in;font-family:"Microsoft YaHei";
-font-size:36.0pt'><span lang=zh-CN>同理，多分类即多项式分布，对每个类别</span><span lang=en-US>c</span><span
+font-size:12.0pt'><span lang=zh-CN>同理，多分类即多项式分布，对每个类别</span><span lang=en-US>c</span><span
 lang=zh-CN>，求</span><span lang=en-US>P(c).<span style='mso-spacerun:yes'>  
 </span></span></p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:Calibri' lang=en-US>P</span><span style='font-family:"Microsoft YaHei"'
 lang=zh-CN>（</span><span style='font-family:"Microsoft YaHei"' lang=en-US>c)</span><span
 style='font-family:"Microsoft YaHei"' lang=zh-CN>可以理解为</span><span
@@ -135,9 +135,9 @@ style='font-family:微软雅黑' lang=en-US>log(count)</span><span style='font-f
 style='font-family:SimSun' lang=zh-CN>即</span><span style='font-family:SimSun'
 lang=en-US>logits</span><span style='font-family:SimSun' lang=zh-CN>。</span><span
 style='font-family:微软雅黑' lang=zh-CN>每个类别都对应一个线性模型。</span><![if !msEquation]><img
-src="Logistic%20regression.files/image002.png" width=4193 height=262><![endif]></p>
+src="Logistic%20regression.files/image002.png" width=1731 height=88><![endif]></p>
 
-<p style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:微软雅黑' lang=zh-CN>将</span><span style='font-family:微软雅黑'
 lang=en-US>Log(count)</span><span style='font-family:微软雅黑' lang=zh-CN>转换为</span><span
 style='font-family:微软雅黑' lang=en-US>p</span><span style='font-family:微软雅黑'
@@ -147,9 +147,9 @@ lang=en-US>log(count)</span><span style='font-family:SimSun' lang=zh-CN>即</spa
 style='font-family:SimSun' lang=en-US>logits</span><span style='font-family:
 微软雅黑' lang=zh-CN>。</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>损失函数仍然是似然函数。</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>损失函数仍然是似然函数。</p>
 
 </div>
 

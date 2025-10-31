@@ -10,7 +10,7 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="量化_1.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
@@ -36,9 +36,9 @@ style='font-family:Calibri'>6</span><span style='font-family:微软雅黑'>日</
 
 <div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:20.9743in'>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>量化通常用于推理，训练时建议全精度（FP32/BF16）+梯度裁剪/缩放。</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>量化通常用于推理，训练时建议全精度（FP32/BF16）+梯度裁剪/缩放。</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>但在实际训练的过程中，由于只有</span><span style='font-weight:bold'
 lang=en-US>16G</span><span style='font-weight:bold' lang=zh-CN>显存，如果不量化模型的话，</span><span
 style='font-weight:bold' lang=en-US>batch_size</span><span style='font-weight:
@@ -46,12 +46,12 @@ bold' lang=zh-CN>只有设置很小的数如</span><span style='font-weight:bold
 style='font-weight:bold' lang=zh-CN>，导致</span><span style='font-weight:bold'
 lang=en-US>train_loss</span><span style='font-weight:bold' lang=zh-CN>不稳定。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='text-decoration:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='text-decoration:
 line-through'>不建议同时使用4-bit量化和BF16训练。两者组合极可能导致错误或训练失败。优先选择全精度训练，或仅对推理模型量化。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>如果用SentenceTransformer训练，模型是stella_en_1.5B，量化参数如下，</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>如果用SentenceTransformer训练，模型是stella_en_1.5B，量化参数如下，</span><span
 style='font-weight:bold' lang=zh-CN>当mine_hard_negatives时发现</span><span
 style='font-weight:bold' lang=en-US>positive</span><span style='font-weight:
 bold' lang=zh-CN>的相似度是</span><span style='font-weight:bold' lang=en-US>nan</span><span
@@ -60,7 +60,7 @@ lang=en-US>train_loss</span><span style='font-weight:bold' lang=zh-CN>是</span>
 style='font-weight:bold' lang=en-US>0</span><span style='font-weight:bold'
 lang=zh-CN>。</span></p>
 
-<p style='margin:0in;margin-left:1.5in;font-family:微软雅黑;font-size:28.0pt'>Metric<span
+<p style='margin:0in;margin-left:1.5in;font-family:微软雅黑;font-size:12.0pt'>Metric<span
 style='mso-spacerun:yes'>       </span>Positive<span
 style='mso-spacerun:yes'>       </span>Negative<span
 style='mso-spacerun:yes'>     </span>Difference<br>
@@ -92,85 +92,85 @@ Max<span style='mso-spacerun:yes'>               </span>nan<span
 style='mso-spacerun:yes'>         </span>0.5625<span
 style='mso-spacerun:yes'>            </span>nan</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>       </span>bnb_config = BitsAndBytesConfig(</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>                        </span>load_in_4bit=True,</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>                       
 </span>bnb_4bit_quant_type=&quot;nf4&quot;,</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>                       
 </span>bnb_4bit_compute_dtype=torch.bfloat16,</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=zh-CN><span style='mso-spacerun:yes'>                       
 </span>bnb_4bit_use_double_quant=</span><span lang=en-US>True</span><span
 lang=zh-CN>,</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>                        </span>)</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>        </span>model = SentenceTransformer(</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>                    </span>params.model_name,</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>                    </span>trust_remote_code=True,</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>                    </span>model_kwargs={</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>                       
 </span>&quot;quantization_config&quot;: bnb_config,</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>                        </span>#
 &quot;device_map&quot;: &quot;auto&quot;,</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>                    </span>},</p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 style='mso-spacerun:yes'>                </span>)</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>查找到</span><span style='font-weight:bold' lang=en-US>reddit</span><span
 style='font-weight:bold' lang=zh-CN>上的相关问题：</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=en-US>-</span><span lang=zh-CN>weird, what model is this? Some models use
 special methods that cannot just be </span><span lang=en-US><span
 style='mso-spacerun:yes'>   </span></span><span lang=zh-CN>quanted. But what
 model is it?</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=en-US>-</span><span lang=zh-CN>Stella 1.5 billion。It’s an embedding model.</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=en-US>-</span><span lang=zh-CN>GGUF only really works for chat models, not
 for prediction models like this. Try quanting BERT and the same thing will
 happen.</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>可能是</span><span style='font-weight:bold' lang=en-US>stella</span><span
 style='font-weight:bold' lang=zh-CN>模型的问题，这种模型不能量化，不是</span><span
 style='font-weight:bold' lang=en-US>chat_models</span><span style='font-weight:
 bold' lang=zh-CN>。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
 </div>
 

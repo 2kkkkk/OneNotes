@@ -10,11 +10,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="cuda%20多进程.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:29.7486in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:11.0326in'>
 
 <div style='direction:ltr;margin-top:0in;margin-left:0in;width:2.0923in'>
 
@@ -34,16 +34,16 @@ style='font-family:Calibri'>4</span><span style='font-family:微软雅黑'>日</
 
 </div>
 
-<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:29.7486in'>
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:11.0326in'>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>关于同时用</span><span style='font-weight:bold' lang=en-US>ka</span><span
 style='font-weight:bold' lang=zh-CN>ggl</span><span style='font-weight:bold'
 lang=en-US>e</span><span style='font-weight:bold' lang=zh-CN>的两块</span><span
 style='font-weight:bold' lang=en-US>T4</span><span style='font-weight:bold'
 lang=zh-CN>来进行大模型推理：</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'><span
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'><span
 lang=zh-CN>cu</span><span lang=en-US>da</span><span lang=zh-CN>多进程，必须指定<span
 style='mso-spacerun:yes'>    </span>mp.set_start_method('spawn') ，否则会报</span><span
 lang=en-US>cuda</span><span lang=zh-CN>初始化错误。但是指定了<span
@@ -54,189 +54,189 @@ style='font-weight:bold' lang=en-US>__main__</span><span style='font-weight:
 bold' lang=zh-CN>模块</span><span lang=zh-CN>，开多进程会报错。只能将代码保存为</span><span
 lang=en-US>py</span><span lang=zh-CN>文件，然后执行该py文件。</span></p>
 
-<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>from IPython.core.magic import register_cell_magic</code></p>
+12.0pt'>from IPython.core.magic import register_cell_magic</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>@register_cell_magic</code></p>
+12.0pt'>@register_cell_magic</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>def save2file(line, cell):</code></p>
+12.0pt'>def save2file(line, cell):</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>'save python code block to a
+12.0pt'><span style='mso-spacerun:yes'>    </span>'save python code block to a
 file'</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>with open(line, 'wt') as fd:</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>with open(line, 'wt') as fd:</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>fd.write(cell)</code></p>
+12.0pt'><span style='mso-spacerun:yes'>        </span>fd.write(cell)</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>%%save2file tmp.py</code></p>
+12.0pt'>%%save2file tmp.py</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>import time</code></p>
+12.0pt'>import time</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>import kagglehub</code></p>
+12.0pt'>import kagglehub</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>import torch</code></p>
+12.0pt'>import torch</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>from tqdm import tqdm</code></p>
+12.0pt'>from tqdm import tqdm</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>import multiprocessing as mp</code></p>
+12.0pt'>import multiprocessing as mp</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>from diffusers import StableDiffusionPipeline</code></p>
+12.0pt'>from diffusers import StableDiffusionPipeline</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>def generate_n_images(pipe,prompt,n):</code></p>
+12.0pt'>def generate_n_images(pipe,prompt,n):</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>for i in tqdm(range(n)):</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>for i in tqdm(range(n)):</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>image =
+12.0pt'><span style='mso-spacerun:yes'>        </span>image =
 pipe(prompt).images[0]</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>pass</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>pass</code></p>
 
-<p><code style='margin:0in;font-family:Consolas;font-size:36.0pt'>&nbsp;</code></p>
+<p><code style='margin:0in;font-family:Consolas;font-size:12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>if __name__ == &quot;__main__&quot;:</code></p>
+12.0pt'>if __name__ == &quot;__main__&quot;:</code></p>
 
-<p><code style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p><code style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:Consolas'><span style='mso-spacerun:yes'>   
 </span>mp.set_start_method('spawn')<span style='mso-spacerun:yes'>  </span># </span><span
 style='font-family:微软雅黑'>必须在所有代码之前设置</span></code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>sd_model_path =
+12.0pt'><span style='mso-spacerun:yes'>    </span>sd_model_path =
 kagglehub.model_download('stabilityai/stable-diffusion-v2/PyTorch/1/1')</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>pipe1 =
+12.0pt'><span style='mso-spacerun:yes'>    </span>pipe1 =
 StableDiffusionPipeline.from_pretrained(sd_model_path)</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>pipe1.to('cuda:0')</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>pipe1.to('cuda:0')</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>pipe2 =
+12.0pt'><span style='mso-spacerun:yes'>    </span>pipe2 =
 StableDiffusionPipeline.from_pretrained(sd_model_path)</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>pipe2.to('cuda:1')</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>pipe2.to('cuda:1')</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>prompt = &quot;a lighthouse
+12.0pt'><span style='mso-spacerun:yes'>    </span>prompt = &quot;a lighthouse
 overlooking the ocean&quot;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span></code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span></code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>time1 = time.time()</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>time1 = time.time()</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
-<p><code style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p><code style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:Consolas'><span style='mso-spacerun:yes'>    </span># </span><span
 style='font-family:微软雅黑'>定義線程</span></code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>p_list = []</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>p_list = []</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>p1 =
+12.0pt'><span style='mso-spacerun:yes'>    </span>p1 =
 mp.Process(target=generate_n_images, args=(pipe1, prompt, 2))</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>p_list.append(p1)</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>p_list.append(p1)</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>     </span></code></p>
+12.0pt'><span style='mso-spacerun:yes'>     </span></code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>p2 =
+12.0pt'><span style='mso-spacerun:yes'>    </span>p2 =
 mp.Process(target=generate_n_images, args=(pipe2, prompt, 2))</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>p_list.append(p2)</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>p_list.append(p2)</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span></code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span></code></p>
 
-<p><code style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p><code style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:Consolas'><span style='mso-spacerun:yes'>    </span># </span><span
 style='font-family:微软雅黑'>開始工作</span></code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>for p in p_list:</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>for p in p_list:</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>p.start()</code></p>
+12.0pt'><span style='mso-spacerun:yes'>        </span>p.start()</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>     </span></code></p>
+12.0pt'><span style='mso-spacerun:yes'>     </span></code></p>
 
-<p><code style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p><code style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:Consolas'><span style='mso-spacerun:yes'>    </span># </span><span
 style='font-family:微软雅黑'>調整多程順序</span></code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>for p in p_list:</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>for p in p_list:</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>        </span>p.join()</code></p>
+12.0pt'><span style='mso-spacerun:yes'>        </span>p.join()</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'>&nbsp;</code></p>
+12.0pt'>&nbsp;</code></p>
 
 <p><code style='margin:0in;margin-left:.375in;font-family:Consolas;font-size:
-36.0pt'><span style='mso-spacerun:yes'>    </span>time2 = time.time()</code></p>
+12.0pt'><span style='mso-spacerun:yes'>    </span>time2 = time.time()</code></p>
 
-<p><code style='margin:0in;margin-left:.375in;font-size:36.0pt'><span
+<p><code style='margin:0in;margin-left:.375in;font-size:12.0pt'><span
 style='font-family:Consolas'><span style='mso-spacerun:yes'>   
 </span>print(&quot;</span><span style='font-family:微软雅黑'>计算用时：</span><span
 style='font-family:Consolas'>&quot;, time2 - time1)</span></code></p>
 
-<p><code style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</code></p>
+<p><code style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</code></p>
 
-<p><code style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</code></p>
+<p><code style='margin:0in;margin-left:.375in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</code></p>
 
-<p><code style='margin:0in;font-size:36.0pt'><span style='font-family:"Microsoft YaHei"'
+<p><code style='margin:0in;font-size:12.0pt'><span style='font-family:"Microsoft YaHei"'
 lang=zh-CN>还有个很优雅的做法，在</span><span style='font-family:Consolas' lang=en-US>draw
 with llm</span><span style='font-family:"Microsoft YaHei"' lang=zh-CN>比赛中，第</span><span
 style='font-family:"Microsoft YaHei"' lang=en-US>5</span><span
 style='font-family:"Microsoft YaHei"' lang=zh-CN>名的代码中通过</span></code></p>
 
-<p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt'><span
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt'><span
 style='color:#3C4043'><span style='mso-spacerun:yes'>        </span>os</span><span
 style='color:#008ABC'>.</span><span style='color:#3C4043'>system(</span><span
 style='color:#BB2323'>'CUDA_VISIBLE_DEVICES=0 CONFIG=&quot;0&quot;
@@ -244,10 +244,10 @@ CPU_ONLY=&quot;1&quot; USE_VQA=&quot;0&quot; PORT=&quot;8000&quot;
 AEST_SVG_PATH=&quot;svg_new_0.709.svg&quot; python /tmp/server_cpu_gpu.py
 &amp;'</span><span style='color:#3C4043'>)</span></p>
 
-<p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt'>开了一个服务端进程，然后
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt'>开了一个服务端进程，然后
 </p>
 
-<p style='margin:0in;font-family:"Microsoft YaHei";font-size:36.0pt'><span
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:12.0pt'><span
 style='color:#3C4043'>sdxl_proc </span><span style='color:#008ABC'>=</span><span
 style='color:#3C4043'> mp</span><span style='color:#008ABC'>.</span><span
 style='color:#3C4043'>Process(target</span><span style='color:#008ABC'>=</span><span
@@ -260,7 +260,7 @@ style='color:#BB2323'>/generate_sd_image&quot;</span><span style='color:#3C4043'
 sdxl_queue, vtracer_queue, gpu_queue, </span><span style='color:#666666'>1</span><span
 style='color:#3C4043'>))</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>这样开子进程时就不涉及到</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>这样开子进程时就不涉及到</span><span
 lang=en-US>cuda</span><span lang=zh-CN>了，只需要负责和服务端口通信就行了。不像是</span><span
 lang=en-US> </span><span lang=zh-CN>这种：p1 =
 mp.Process(target=generate_n_images, args=(pipe1, prompt, 2))在</span><span

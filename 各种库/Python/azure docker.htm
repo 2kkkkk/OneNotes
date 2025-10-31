@@ -10,20 +10,20 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="azure%20docker.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:24.743in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:24.3423in'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:.6534in;width:2.2506in'>
+<div style='direction:ltr;margin-top:0in;margin-left:.1833in;width:2.2506in'>
 
 <p style='margin:0in;font-family:微软雅黑;font-size:20.0pt'><span lang=en-US>azure </span><span
 lang=zh-CN>doc</span><span lang=en-US>ker</span></p>
 
 </div>
 
-<div style='direction:ltr;margin-top:.0423in;margin-left:.6534in;width:1.6687in'>
+<div style='direction:ltr;margin-top:.0423in;margin-left:.1833in;width:1.6687in'>
 
 <p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
 Calibri'>2025</span><span style='font-family:微软雅黑'>年</span><span
@@ -34,88 +34,88 @@ style='font-family:Calibri'>19</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:24.743in'>
+<div style='direction:ltr;margin-top:.4777in;margin-left:0in;width:24.3423in'>
 
 <ul style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:0in'>
- <p style='margin:0in;font-family:"Open Sans";font-size:36.0pt;color:#333333'><span
+ <p style='margin:0in;font-family:"Open Sans";font-size:12.0pt;color:#333333'><span
  style='font-weight:bold'>还是用docker部署，这个问题在一些云平台上比较常见，即 Python
  解释器的版本和底层系统库的版本不匹配。</span></p>
  <ol type=1 style='direction:ltr;unicode-bidi:embed;margin-top:0in;margin-bottom:
-  0in;font-family:微软雅黑;font-size:36.0pt;font-weight:normal;font-style:normal'>
+  0in;font-family:微软雅黑;font-size:12.0pt;font-weight:normal;font-style:normal'>
   <li value=1 style='margin-top:0;margin-bottom:0;vertical-align:middle;
-      color:#333333'><span style='font-family:"Open Sans";font-size:36.0pt;
+      color:#333333'><span style='font-family:"Open Sans";font-size:12.0pt;
       font-weight:normal;font-style:normal;font-family:"Open Sans";font-size:
-      36.0pt'>安装Azure cli，在命令行中使用az login登录（az login 会出现错误，Authentication
+      12.0pt'>安装Azure cli，在命令行中使用az login登录（az login 会出现错误，Authentication
       failed against tenant &lt;-guid-&gt; ‘Default Directory’: (pii). Status:
       Response_Status.Status_InteractionRequired, Error code: 3399614476, Tag:
-      557973645，此时用</span><span style='font-family:"Open Sans";font-size:36.0pt;
+      557973645，此时用</span><span style='font-family:"Open Sans";font-size:12.0pt;
       font-weight:bold;font-style:normal;font-weight:bold;font-family:"Open Sans";
-      font-size:36.0pt'>az login --use-device-code这个命令</span><span
-      style='font-family:"Open Sans";font-size:36.0pt;font-weight:normal;
-      font-style:normal;font-family:"Open Sans";font-size:36.0pt'>）</span></li>
+      font-size:12.0pt'>az login --use-device-code这个命令</span><span
+      style='font-family:"Open Sans";font-size:12.0pt;font-weight:normal;
+      font-style:normal;font-family:"Open Sans";font-size:12.0pt'>）</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
-      style='font-family:"Open Sans";font-size:36.0pt'>在</span><span
-      style='font-weight:bold;font-family:"Open Sans";font-size:36.0pt'>网页端创建容器注册表</span><span
-      style='font-family:"Open Sans";font-size:36.0pt'>，可以推送多个docker
+      style='font-family:"Open Sans";font-size:12.0pt'>在</span><span
+      style='font-weight:bold;font-family:"Open Sans";font-size:12.0pt'>网页端创建容器注册表</span><span
+      style='font-family:"Open Sans";font-size:12.0pt'>，可以推送多个docker
       image到一个azure容器注册表中。容器需要image来运行。假设创建的窗口注册表名称是langgraphagent。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
       style='text-decoration:line-through;font-family:"Open Sans";font-size:
-      36.0pt'>最好是先启动Docker desktop。</span></li>
+      12.0pt'>最好是先启动Docker desktop。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
       style='text-decoration:line-through;font-family:"var\(--monospace\)";
-      font-size:36.0pt;background:#F3F4F4'>docker login
+      font-size:12.0pt;background:#F3F4F4'>docker login
       llmappexpregistry.azurecr.io --username yourusername --password
       yourpassword</span><span style='text-decoration:line-through;font-family:
-      "Open Sans";font-size:36.0pt'>(可能 要开代理)。<br>
+      "Open Sans";font-size:12.0pt'>(可能 要开代理)。<br>
             注意：这里的用户名和密码不是微软账号和密码。使用az acr login --name
       langgraphagent（可能要开代理），使用的是 Azure CLI 的认证令牌，登录到langgraphagent这个容器上，然后az
       acr update -n langgraphagent --admin-enabled true，再运行az acr credential
       show --name langgraphagent --query username -o tsv获得用户名，再运行az acr
       credential show --name langgraphagent --query passwords[0].value -o
       tsv获得密码，再</span><span style='font-weight:bold;text-decoration:line-through;
-      font-family:"Open Sans";font-size:36.0pt'>docker login
+      font-family:"Open Sans";font-size:12.0pt'>docker login
       langgraphagent.azurecr.io -u &lt;上一步获取的用户名&gt; -p &lt;上一步获取的密码&gt;</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
       style='text-decoration:line-through;font-family:"Open Sans";font-size:
-      36.0pt'>（如果直接docker build报错）</span><span style='text-decoration:line-through;
-      font-family:"var\(--monospace\)";font-size:36.0pt;background:#F3F4F4'>docker
+      12.0pt'>（如果直接docker build报错）</span><span style='text-decoration:line-through;
+      font-family:"var\(--monospace\)";font-size:12.0pt;background:#F3F4F4'>docker
       pull original_image_name</span><span style='text-decoration:line-through;
-      font-family:"Open Sans";font-size:36.0pt'>(挂梯子，有的梯子可能也不好用，，已经pull了可以跳过)
+      font-family:"Open Sans";font-size:12.0pt'>(挂梯子，有的梯子可能也不好用，，已经pull了可以跳过)
       original_image_name，就是项目根目录下dockerfile文件中的第一行FROM
       python:3.12.3-slim中的python:3.12.3-slim</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
       style='text-decoration:line-through;font-family:"Open Sans";font-size:
-      36.0pt'>(</span><span style='font-weight:bold;text-decoration:line-through;
-      font-family:"Open Sans";font-size:36.0pt'>build 之前检查 dockfile</span><span
+      12.0pt'>(</span><span style='font-weight:bold;text-decoration:line-through;
+      font-family:"Open Sans";font-size:12.0pt'>build 之前检查 dockfile</span><span
       style='text-decoration:line-through;font-family:"Open Sans";font-size:
-      36.0pt'>)</span><span style='text-decoration:line-through;font-family:
-      "var\(--monospace\)";font-size:36.0pt;background:#F3F4F4'>docker build -t
+      12.0pt'>)</span><span style='text-decoration:line-through;font-family:
+      "var\(--monospace\)";font-size:12.0pt;background:#F3F4F4'>docker build -t
       langgraphagent.azurecr.io/botapp:v1 .</span><span style='text-decoration:
-      line-through;font-family:"Open Sans";font-size:36.0pt'>（挂梯子，有的梯子可能也不好用）</span></li>
+      line-through;font-family:"Open Sans";font-size:12.0pt'>（挂梯子，有的梯子可能也不好用）</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
       style='text-decoration:line-through;font-family:"var\(--monospace\)";
-      font-size:36.0pt;background:#F3F4F4'>docker push
+      font-size:12.0pt;background:#F3F4F4'>docker push
       langgraphagent.azurecr.io/botapp:v1</span><span style='text-decoration:
-      line-through;font-family:"Open Sans";font-size:36.0pt'>（不用梯子）</span></li>
+      line-through;font-family:"Open Sans";font-size:12.0pt'>（不用梯子）</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
-      style='font-family:"Open Sans";font-size:36.0pt'>不要第3-第7步，<br>
+      style='font-family:"Open Sans";font-size:12.0pt'>不要第3-第7步，<br>
             使用az acr login --name langgraphagent（可能要开代理），使用的是 Azure CLI
       的认证令牌，登录到langgraphagent这个容器上，然后<br>
             </span><span style='font-family:"var\(--monospace\)";font-size:
-      36.0pt;background:#F3F4F4'>az acr build --resource-group
+      12.0pt;background:#F3F4F4'>az acr build --resource-group
       llmappexpresourcegroup --registry langgraphagent --image agentapp:latest
       .<br>
-            </span><span style='font-family:"Open Sans";font-size:36.0pt'>这样在本地连docker都不需要安装
+            </span><span style='font-family:"Open Sans";font-size:12.0pt'>这样在本地连docker都不需要安装
       了。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
-      style='font-family:"Open Sans";font-size:36.0pt'>新建azure app
+      style='font-family:"Open Sans";font-size:12.0pt'>新建azure app
       service，在容器选项卡中选择刚才上传的容器即可。</span></li>
   <li style='margin-top:0;margin-bottom:0;vertical-align:middle;color:#333333'><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>在</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>app service</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>网页端设置</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=en-US>llm api key</span><span
-      style='font-family:微软雅黑;font-size:36.0pt' lang=zh-CN>。</span></li>
+      style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>在</span><span
+      style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>app service</span><span
+      style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>网页端设置</span><span
+      style='font-family:微软雅黑;font-size:12.0pt' lang=en-US>llm api key</span><span
+      style='font-family:微软雅黑;font-size:12.0pt' lang=zh-CN>。</span></li>
  </ol>
 </ul>
 

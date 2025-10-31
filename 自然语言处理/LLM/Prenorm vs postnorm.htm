@@ -10,11 +10,11 @@ xmlns="http://www.w3.org/TR/REC-html40">
 <link rel=File-List href="Prenorm%20vs%20postnorm.files/filelist.xml">
 </head>
 
-<body lang=zh-CN style='font-family:微软雅黑;font-size:36.0pt'>
+<body lang=zh-CN style='font-family:微软雅黑;font-size:12.0pt'>
 
 <div style='direction:ltr;border-width:100%'>
 
-<div style='direction:ltr;margin-top:0in;margin-left:0in;width:27.2631in'>
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:19.8076in'>
 
 <div style='direction:ltr;margin-top:0in;margin-left:0in;width:3.4215in'>
 
@@ -34,26 +34,26 @@ style='font-family:Calibri'>17</span><span style='font-family:微软雅黑'>日<
 
 </div>
 
-<div style='direction:ltr;margin-top:.7236in;margin-left:.4326in;width:26.8305in'>
+<div style='direction:ltr;margin-top:.7236in;margin-left:.4326in;width:19.375in'>
 
-<p style='margin:0in;margin-left:2.625in'><img
-src="Prenorm%20vs%20postnorm.files/image001.jpg" width=1616 height=999></p>
+<p style='margin:0in;margin-left:1.875in'><img
+src="Prenorm%20vs%20postnorm.files/image001.jpg" width=454 height=281></p>
 
-<p style='margin:0in;margin-left:2.625in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;margin-left:4.125in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>上图中</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>上图中</span><span
 lang=en-US>F</span><span lang=zh-CN>表示</span><span lang=en-US>sub-layer</span><span
 lang=zh-CN>，可以是</span><span lang=en-US>attention</span><span lang=zh-CN>层，也可以是</span><span
 lang=en-US>ffn</span><span lang=zh-CN>层。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>postnorm</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>postnorm</span><span
 lang=zh-CN>是</span><span lang=en-US>LN</span><span lang=zh-CN>层在残差连接之外</span><span
 lang=en-US> </span><span lang=zh-CN>，而pre</span><span lang=en-US>norm</span><span
 lang=zh-CN>是</span><span lang=en-US>LN</span><span lang=zh-CN>层在残差连接内部。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>为什么主流</span><span style='font-weight:bold' lang=en-US>transformer</span><span
 style='font-weight:bold' lang=zh-CN>从</span><span style='font-weight:bold'
 lang=en-US>postnorm</span><span style='font-weight:bold' lang=zh-CN>改成了</span><span
@@ -61,30 +61,30 @@ style='font-weight:bold' lang=en-US>prenorm</span><span style='font-weight:
 bold' lang=zh-CN>？因为</span><span style='font-weight:bold' lang=en-US>prenorm</span><span
 style='font-weight:bold' lang=zh-CN>训练更加稳定。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;margin-left:4.125in'><img
-src="Prenorm%20vs%20postnorm.files/image002.jpg" width=1322 height=731></p>
+<p style='margin:0in;margin-left:1.875in'><img
+src="Prenorm%20vs%20postnorm.files/image002.jpg" width=445 height=246></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>这篇论文，发现</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>这篇论文，发现</span><span
 lang=en-US>prenorm</span><span lang=zh-CN>可以不进行</span><span lang=en-US>warmup</span><span
 lang=zh-CN>，而</span><span lang=en-US>postnorm</span><span lang=zh-CN>需要进行一定的</span><span
 lang=en-US>warmup</span><span lang=zh-CN>才能收敛，且网络越深需要的</span><span lang=en-US>warmup</span><span
 lang=zh-CN>步数越多。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=zh-CN>为什么</span><span style='font-weight:bold' lang=en-US>postnorm</span><span
 style='font-weight:bold' lang=zh-CN>训练不</span><span style='font-weight:bold'
 lang=en-US>stable</span><span style='font-weight:bold' lang=zh-CN>呢，需要</span><span
 style='font-weight:bold' lang=en-US>warmup</span><span style='font-weight:bold'
 lang=zh-CN>呢？</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=zh-CN>微软的论文</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=zh-CN>微软的论文</span><span
 lang=en-US>Deepnet: scaling transformers to 1000 layers</span><span lang=zh-CN>：</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>postnorm</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>postnorm</span><span
 lang=zh-CN>将l</span><span lang=en-US>ayernorm</span><span lang=zh-CN>放在</span><span
 lang=en-US>residual connection</span><span lang=zh-CN>之外</span><span
 lang=en-US> </span><span lang=zh-CN>，</span><span style='font-weight:bold'
@@ -92,17 +92,17 @@ lang=zh-CN>如果不经过合适的</span><span style='font-weight:bold' lang=en
 style='font-weight:bold' lang=zh-CN>或</span><span style='font-weight:bold'
 lang=en-US>initiazaiton</span><span style='font-weight:bold' lang=zh-CN>，会出现梯度消失的现象，导致训练不收敛。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold'>从直觉来解释：</span></p>
 
 <p style='margin:0in;margin-left:1.5in'><img
-src="Prenorm%20vs%20postnorm.files/image003.jpg" width=1995 height=586></p>
+src="Prenorm%20vs%20postnorm.files/image003.jpg" width=825 height=242></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'>&nbsp;</p>
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'>&nbsp;</p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>postnorm</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>postnorm</span><span
 lang=zh-CN>中l</span><span lang=en-US>ayernorm</span><span lang=zh-CN>的位置在</span><span
 lang=en-US>C</span><span lang=zh-CN>，这个位置是信息的唯一通路，</span><span
 style='font-weight:bold' lang=zh-CN>此时的</span><span style='font-weight:bold'
@@ -110,7 +110,7 @@ lang=en-US>layernorm</span><span style='font-weight:bold' lang=zh-CN>控制了�
 style='font-weight:bold' lang=en-US>attention or mlp module</span><span
 style='font-weight:bold' lang=zh-CN>出现梯度消失的问题。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span lang=en-US>prenorm</span><span
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span lang=en-US>prenorm</span><span
 lang=zh-CN>中</span><span lang=en-US>layernorm</span><span lang=zh-CN>的位置是在</span><span
 lang=en-US>A</span><span lang=zh-CN>，此时前面上一个模块的</span><span style='font-weight:
 bold' lang=en-US>attention or mlp module</span><span style='font-weight:bold'
@@ -118,7 +118,7 @@ lang=zh-CN>的输出</span><span lang=zh-CN>除了经过这个</span><span lang=
 lang=zh-CN>层传递到网络更深层之外，</span><span style='font-weight:bold' lang=zh-CN>还可以通过旁边的残差连接传递到更深层，</span><span
 lang=zh-CN>即</span><span lang=en-US>gradient</span><span lang=zh-CN>可以通过残差连接往回传，这解决了梯度消失的问题。</span></p>
 
-<p style='margin:0in;font-family:微软雅黑;font-size:36.0pt'><span style='font-weight:
+<p style='margin:0in;font-family:微软雅黑;font-size:12.0pt'><span style='font-weight:
 bold' lang=en-US>peri-LN</span><span style='font-weight:bold' lang=zh-CN>这篇</span><span
 style='font-weight:bold' lang=en-US>paper</span><span lang=zh-CN>在</span><span
 lang=en-US>A</span><span lang=zh-CN>和</span><span lang=en-US>B</span><span
